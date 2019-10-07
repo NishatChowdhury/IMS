@@ -370,7 +370,6 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('extra/500') }}">
-
                             <p>Notice Mgmt </p>
                         </a>
                     </li>
