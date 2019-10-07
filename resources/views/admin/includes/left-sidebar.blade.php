@@ -371,7 +371,7 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('extra/500') }}">
 
-                            <p>Notic Mgmt </p>
+                            <p>Notice Mgmt </p>
                         </a>
                     </li>
                     <li class="nav-item">
