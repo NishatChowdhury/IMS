@@ -364,7 +364,6 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
-
                             <p>Site Basic Info </p>
                         </a>
                     </li>
