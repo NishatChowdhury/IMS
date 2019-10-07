@@ -341,7 +341,6 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
-
                             <p>Fee Collection</p>
                         </a>
                     </li>
