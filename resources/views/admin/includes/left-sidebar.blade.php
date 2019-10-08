@@ -78,8 +78,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('ui/general') }}">
-
+                        <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('ui/general') }}">
                             <p>Dashboard</p>
                         </a>
                     </li>
