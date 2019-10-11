@@ -41,7 +41,7 @@
             {{--</li>--}}
             <li class="nav-item has-treeview {{ isActive(['chart*']) }}">
                 <a href="#" class="nav-link {{ isActive(['chart*']) }}">
-                    <i class="nav-icon fas fa-chart-pie"></i>
+                    <i class="nav-icon fas fa-user-plus"></i>
                     <p>
                         Admission
                         <i class="right fas fa-angle-left"></i>
@@ -68,8 +68,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive('ui*') }}">
-                <a href="#" class="nav-link {{ isActive('ui*') }}">
+            <li class="nav-item has-treeview {{ isActive('attendance*') }}">
+                <a href="#" class="nav-link {{ isActive('attendance*') }}">
                     <i class="nav-icon fas fa-tree"></i>
                     <p>
                         Attendance
@@ -78,31 +78,32 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('ui/general') }}">
+                        <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('attendance/dashboard') }}">
+                            <i class="far fa-circle nav-icon"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('ui/icons') }}">
-
+                        <a href="#" class="nav-link {{ isActive('attendance/setting') }}">
+                            <i class="far fa-circle nav-icon"></i>
                             <p>Setting</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('ui/buttons') }}">
-
+                        <a href="#" class="nav-link {{ isActive('attendance/student') }}">
+                            <i class="far fa-circle nav-icon"></i>
                             <p>Student Attendance</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('ui/sliders') }}">
-
+                        <a href="#" class="nav-link {{ isActive('attendance/teacher') }}">
+                            <i class="far fa-circle nav-icon"></i>
                             <p>Teacher Attendance</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('ui/sliders') }}">
-
+                        <a href="#" class="nav-link {{ isActive('attendance/report') }}">
+                            <i class="far fa-circle nav-icon"></i>
                             <p>Monthly Report</p>
                         </a>
                     </li>
@@ -110,7 +111,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive('form*') }}">
                 <a href="#" class="nav-link {{ isActive('form*') }}">
-                    <i class="nav-icon fas fa-edit"></i>
+                    <i class="nav-icon fas fa-user-graduate"></i>
                     <p>
                         Student Mgmt
                         <i class="fas fa-angle-left right"></i>
@@ -119,25 +120,21 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('form/general') }}">
-
                             <p>Students </p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('form/advance') }}">
-
                             <p>Optional Subject </p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('form/editor') }}">
-
                             <p>Testimonial</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('form/editor') }}">
-
                             <p>Design ID Card</p>
                         </a>
                     </li>
@@ -154,25 +151,21 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('table/simple') }}">
-
                             <p>Academic Year</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('table/data') }}">
-
                             <p>Classes</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('table/data') }}">
-
                             <p>Subjects</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('table/data') }}">
-
                             <p>Profile</p>
                         </a>
                     </li>
@@ -190,7 +183,7 @@
             {{--</li>--}}
             <li class="nav-item has-treeview {{ isActive(['mailbox*']) }}">
                 <a href="#" class="nav-link {{ isActive(['mailbox*']) }}">
-                    <i class="nav-icon far fa-envelope"></i>
+                    <i class="nav-icon fas fa-diagnoses"></i>
                     <p>
                         Exam Mgmt
                         <i class="fas fa-angle-left right"></i>
@@ -199,13 +192,11 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('mailbox/inbox') }}">
-
                             <p>Grade System </p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('mailbox/compose') }}">
-
                             <p>Examinations</p>
                         </a>
                     </li>
@@ -226,7 +217,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['page*']) }}">
                 <a href="#" class="nav-link {{ isActive(['page*']) }}">
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fas fa-money-check-alt"></i>
                     <p>
                         Finance
                         <i class="fas fa-angle-left right"></i>
@@ -243,7 +234,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                 <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="nav-icon far fa-plus-square"></i>
+                    <i class="nav-icon fas fa-users-cog"></i>
                     <p>
                         Staff Mgmt
                         <i class="fas fa-angle-left right"></i>
@@ -278,7 +269,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                 <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="nav-icon far fa-plus-square"></i>
+                    <i class="nav-icon fas fa-comments"></i>
                     <p>
                         Communication
                         <i class="fas fa-angle-left right"></i>
@@ -313,7 +304,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                 <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="nav-icon far fa-plus-square"></i>
+                    <i class="nav-icon far fa-scroll"></i>
                     <p>
                         Reports
                         <i class="fas fa-angle-left right"></i>
@@ -352,7 +343,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                 <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="nav-icon far fa-plus-square"></i>
+                    <i class="nav-icon far fa-shapes"></i>
                     <p>
                         Settings
                         <i class="fas fa-angle-left right"></i>
@@ -392,7 +383,7 @@
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-file"></i>
+                    <i class="nav-icon fas fa-file-invoice-dollar"></i>
                     <p>SC Invoices</p>
                 </a>
             </li>
@@ -404,7 +395,7 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-file"></i>
+                    <i class="nav-icon fas fa-life-ring"></i>
                     <p>Need Helps?</p>
                 </a>
             </li>

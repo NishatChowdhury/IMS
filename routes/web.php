@@ -17,7 +17,7 @@
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'FrontController@index');
 
 Route::get('attendance','AttendanceController@index')->name('custom.view');
-Route::get('attendance-dashboard','AttendanceController@dashBoard')->name('attendance.dashboard');
+Route::get('attendance/dashboard','AttendanceController@dashBoard')->name('attendance.dashboard');

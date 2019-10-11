@@ -30,13 +30,13 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        @include('includes.header')
+        @include('admin.includes.header')
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        @include('includes.left-sidebar')
+        @include('admin.includes.left-sidebar')
     <!-- /.sidebar -->
     </aside>
 
@@ -52,12 +52,12 @@
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
-        @include('includes.right-aside')
+        @include('admin.includes.right-aside')
     </aside>
     <!-- /.control-sidebar -->
 
     <footer class="main-footer">
-        @include('includes.footer')
+        @include('admin.includes.footer')
     </footer>
 </div>
 <!-- ./wrapper -->
