@@ -20,8 +20,8 @@
     </div>
     <!-- /.content-header -->
 
-    <div class="container-fluid ">
-            <div class="row">
+    <div class="container-fluid">
+            <div class="row" >
                 <div class="col-lg-6 card">
                     <form action="#">
                         <div class="row">

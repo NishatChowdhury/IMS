@@ -48,19 +48,19 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('chart/chartjs') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Examinations</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('chart/flot') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Applications</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('chart/inline-chart') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Results</p>
@@ -77,31 +77,31 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('attendance/dashboard') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('attendance/setting') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Setting</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('attendance/student') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Student Attendance</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('attendance/teacher') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Teacher Attendance</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('attendance/report') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Monthly Report</p>
@@ -118,25 +118,25 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('form/general') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Students </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('form/advance') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Optional Subject </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('form/editor') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Testimonial</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('form/editor') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Design ID Card</p>
@@ -153,25 +153,25 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('table/simple') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Academic Year</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('table/data') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Classes</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('table/data') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Subjects</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('table/data') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profile</p>
@@ -198,25 +198,25 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('mailbox/inbox') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Grade System </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('mailbox/compose') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Examinations</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('mailbox/read') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Exam Results</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('mailbox/read') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Generate Final Result</p>
@@ -234,7 +234,7 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('page/invoice') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Invoice</p>
@@ -251,19 +251,19 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Error 404</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/500') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Error 500</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Blank Page</p>
@@ -286,19 +286,19 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Error 404</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/500') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Error 500</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Blank Page</p>
@@ -321,25 +321,25 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profit and Loss </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/500') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Balance Sheet</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Annual Payments</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Fee Collection</p>
@@ -362,25 +362,25 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Basic Info </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/500') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Mgmt </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Image Mgmt</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('extra/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
