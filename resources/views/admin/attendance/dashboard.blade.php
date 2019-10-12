@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','AdminLTE | ChartJS')
+@section('title','Attendance  | Dashboard')
 
 @section('content')
     <!-- Content Header (Page header) -->
