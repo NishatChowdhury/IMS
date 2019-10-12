@@ -19,8 +19,8 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-    <div class="container-fluid">
+    <section class="content">
+        <div class="container-fluid">
             <div class="row" >
                 <div class="col-lg-6 card">
                     <form action="#">
@@ -73,33 +73,35 @@
                 <div class="col-lg-6 card">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
-                                <th>Sl</th>
-                                <th>Sl</th>
-                                <th>Sl</th>
-                                <th>Sl</th>
-                                <th>Sl</th>
-                                <th>Sl</th>
-                                <th>Sl</th>
-                            </tr>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Sl</th>
+                            <th>Sl</th>
+                            <th>Sl</th>
+                            <th>Sl</th>
+                            <th>Sl</th>
+                            <th>Sl</th>
+                        </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-    </div>
+        </div>
+    </section>
+
 
 
 

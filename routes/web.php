@@ -20,7 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'FrontController@index');
 
 Route::get('attendance','AttendanceController@index')->name('custom.view');
-Route::get('attendance/dashboard','AttendanceController@dashBoard')->name('attendance.dashboard');
+Route::get('attendance/dashboard','AttendanceController@dashboard')->name('attendance.dashboard');
+Route::get('attendance/setting','AttendanceController@setting')->name('attendance.setting');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -20,4 +20,9 @@ class AttendanceController extends Controller
     {
         return view('admin.attendance.dashboard');
     }
+
+    public function setting()
+    {
+        return view('admin.attendance.setting');
+    }
 }
