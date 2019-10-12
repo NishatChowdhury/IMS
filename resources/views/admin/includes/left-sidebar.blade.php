@@ -397,6 +397,7 @@
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
+
                     <i class="nav-icon fas fa-file-invoice-dollar"></i>
                     <p>SC Invoices</p>
                 </a>
@@ -410,6 +411,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-life-ring"></i>
+
                     <p>Need Helps?</p>
                 </a>
             </li>
