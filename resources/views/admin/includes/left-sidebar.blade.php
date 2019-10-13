@@ -314,7 +314,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                 <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="nav-icon far fa-scroll"></i>
+                    <i class="fas fa-chart-line"></i>
                     <p>
                         Reports
                         <i class="fas fa-angle-left right"></i>
@@ -353,9 +353,9 @@
                     {{--</li>--}}
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
-                <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="nav-icon far fa-shapes"></i>
+            <li class="nav-item has-treeview {{ isActive(['settings*']) }}">
+                <a href="#" class="nav-link {{ isActive(['settings*']) }}">
+                    <i class="fas fa-cogs"></i>
                     <p>
                         Settings
                         <i class="fas fa-angle-left right"></i>
@@ -363,25 +363,25 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/404') }}">
+                        <a href="{{route('settings.basicInfo')}}" class="nav-link {{ isActive('settings/basicInfo') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Basic Info </p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/500') }}">
+                        <a href="{{route('settings.notice')}}" class="nav-link {{ isActive('settings/notice') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Mgmt </p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                        <a href="{{route('settings.image')}}" class="nav-link {{ isActive('settings/image') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Image Mgmt</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                        <a href="{{route('settings.configuredPage')}}" class="nav-link {{ isActive('settings/configuredPage') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
                         </a>

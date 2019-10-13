@@ -38,6 +38,15 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 Auth::routes();
 //End Attendance Route
 
+//Settings Route by Rimon
+Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
+Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
+Route::get('settings/image','SettingsController@image')->name('settings.image');
+Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
+Auth::routes();
+//End Settings Route
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
