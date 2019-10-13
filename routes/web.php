@@ -15,6 +15,8 @@
 //    return view('welcome');
 //});
 
+use Illuminate\Support\Facades\Artisan;
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'FrontController@index');
@@ -39,4 +41,6 @@ Route::get('/stu_add','StudentController@create')->name('student.add');
 
 //End Students Route
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('migrate',function(){
+    Artisan::call('migrate');
+});
