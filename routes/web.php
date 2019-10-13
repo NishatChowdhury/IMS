@@ -15,7 +15,14 @@
 //    return view('welcome');
 //});
 
+
 use Illuminate\Support\Facades\Artisan;
+
+/** Dashboard Routes */
+Route::get('dashboard','DashboardController@index');
+
+// Routes For ADMIN LTE Alpha END........//
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
