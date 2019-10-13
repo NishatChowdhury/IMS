@@ -32,9 +32,9 @@
                            </div>
                            <div class="row">
                                <div>
-                                   <button type="button" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px; "> <i class="fas fa-plus-circle"></i> Info</button>
+                                   <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                                </div>
-                               </div>
+                           </div>
                        </div>
                        <!-- /.card-header -->
                        <div class="card-body">
@@ -77,6 +77,150 @@
            </div>
         </div>
     </section>
+
+    <!-- ***/Attendance setting add new form -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Attendance Setting</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Attendance Start Time*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="" >
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Attendance End Time*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="" >
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Late Attendance End Time*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="" >
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Late Present Fee*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2">Tk</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="" placeholder="0"  aria-describedby="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Absent Fee*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2">Tk</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="" placeholder="0"  aria-describedby="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exit Attendance Start Time*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="" >
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exit Attendance End Time*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="" >
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Process*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Notification*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Shift*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">User*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /Attendance setting add new form End*** -->
 
 
 
