@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-lg-10 mx-auto text-center text-white">
                         <h1 class="display-lg-3 font-weight-bold animated slideInUp">
-                            Chipatali Madrasha
+                            WP School
                         </h1>
                         <p class="lead animated fadeInUp">
                             This modern and inviting academic template is perfectly suited for school, colleges, university, on-line course, and other educational institutions.
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-lg-10 mx-auto text-center text-white">
                         <h1 class="display-lg-3 font-weight-bold animated slideInUp">
-                            Chipatali Madrasha
+                            WP School
                         </h1>
                         <p class="lead animated fadeInUp">
                             This modern and inviting academic template is perfectly suited for school, colleges, university, on-line course, and other educational institutions.

@@ -314,7 +314,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                 <a href="#" class="nav-link {{ isActive(['extra*']) }}">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="nav-icon fas fa-scroll"></i>
                     <p>
                         Reports
                         <i class="fas fa-angle-left right"></i>
@@ -355,7 +355,7 @@
             </li>
             <li class="nav-item has-treeview {{ isActive(['settings*']) }}">
                 <a href="#" class="nav-link {{ isActive(['settings*']) }}">
-                    <i class="fas fa-cogs"></i>
+                    <i class="fas fa-shapes"></i>
                     <p>
                         Settings
                         <i class="fas fa-angle-left right"></i>

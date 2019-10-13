@@ -3,7 +3,7 @@
         <div class="navbar-brand">
             <div class="row">
                 <div class="col-2 hdr">
-                    <a class="logo-default" href="index.html"><img alt="" src="assets/img/logo-only.jpg"></a>
+                    <a class="logo-default" href="{{ url('/') }}"><img alt="" src="assets/img/logo-only.jpg"></a>
                 </div>
                 <div class="col-10 hdr">
                     <p style="font-size:28px;font-weight:bold">CHIPATALI  JAMIA GAUSIA MUINIA KAMIL (M.A) MADRASHAH</p>

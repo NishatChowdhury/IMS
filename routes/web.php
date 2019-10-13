@@ -35,7 +35,6 @@ Route::get('attendance/setting','AttendanceController@setting')->name('attendanc
 Route::get('attendance/student','AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','AttendanceController@report')->name('attendance.report');
-Auth::routes();
 //End Attendance Route
 
 //Settings Route by Rimon
@@ -43,13 +42,7 @@ Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.
 Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
 Route::get('settings/image','SettingsController@image')->name('settings.image');
 Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
-Auth::routes();
 //End Settings Route
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
 //Students Route by babu
 Route::get('/stu_list','StudentController@index')->name('student.list');

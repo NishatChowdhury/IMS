@@ -2,7 +2,7 @@
     <div class="navbar p-0 navbar-expand-lg">
         <div class="navbar-brand">
             {{--<a class="logo-default" href="index.html"><img alt="" src="assets/img/logo-black.png"></a>--}}
-            <a class="logo-default" href="index.html"><img alt="" src="assets/img/logo-550.jpg"></a>
+            <a class="logo-default" href="{{ url('/') }}"><img alt="" src="{{ asset('assets/img') }}/{{ siteConfig('logo') }}"></a>
         </div>
         <span aria-expanded="false" class="navbar-toggler ml-auto collapsed" data-target="#ec-nav__collapsible" data-toggle="collapse">
         <div class="hamburger hamburger--spin js-hamburger">
@@ -101,9 +101,6 @@
                     </div>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle no-caret" href="#" data-toggle="dropdown">Gallery</a>
-                </li>
-                <li class="nav-item nav-item__has-dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">News & Notice</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
@@ -112,6 +109,9 @@
                         </ul>
 
                     </div>
+                </li>
+                <li class="nav-item nav-item__has-dropdown">
+                    <a class="nav-link dropdown-toggle no-caret" href="#" data-toggle="dropdown">Gallery</a>
                 </li>
             </ul>
         </div>

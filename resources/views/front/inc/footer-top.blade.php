@@ -21,13 +21,13 @@
                 <h4 class="h5 text-white">Contact Us</h4>
                 <div class="width-3rem bg-primary height-3 mt-3"></div>
                 <ul class="list-unstyled marginTop-40">
-                    <li class="mb-3"><i class="ti-headphone mr-3"></i><a href="tel:+8801740411513">800 567.890.576 </a></li>
-                    <li class="mb-3"><i class="ti-email mr-3"></i><a href="mailto:support@educati.com">info@webpointbd.com</a></li>
+                    <li class="mb-3"><i class="ti-headphone mr-3"></i><a href="tel:{{ siteConfig('phone') }}">{{ siteConfig('phone') }}</a></li>
+                    <li class="mb-3"><i class="ti-email mr-3"></i><a href="mailto:{{ siteConfig('email') }}">{{ siteConfig('email') }}</a></li>
                     <li class="mb-3">
                         <div class="media">
                             <i class="ti-location-pin mt-2 mr-3"></i>
                             <div class="media-body">
-                                <span> 184 Main Collins Street Chicago, United States</span>
+                                <span>{{ siteConfig('address') }}</span>
                             </div>
                         </div>
                     </li>
