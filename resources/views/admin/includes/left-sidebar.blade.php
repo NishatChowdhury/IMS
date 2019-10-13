@@ -121,6 +121,8 @@
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('form/general') }}">
                             <i class="far fa-circle nav-icon"></i>
+                    <li class="nav-item">
+                        <a href="{{route('student.list')}}" class="nav-link {{ isActive('form/general') }}">
                             <p>Students </p>
                         </a>
                     </li>
