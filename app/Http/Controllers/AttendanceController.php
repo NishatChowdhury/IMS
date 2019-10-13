@@ -25,4 +25,19 @@ class AttendanceController extends Controller
     {
         return view('admin.attendance.setting');
     }
+
+    public function student()
+    {
+        return view('admin.attendance.student');
+    }
+
+    public function teacher()
+    {
+        return view('admin.attendance.teacher');
+    }
+
+    public function report(){
+        return view('admin.attendance.report');
+    }
+
 }

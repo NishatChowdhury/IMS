@@ -90,19 +90,19 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('attendance/student') }}">
+                        <a href="{{ route('attendance.student')}}" class="nav-link {{ isActive('attendance/student') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Student Attendance</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('attendance/teacher') }}">
+                        <a href="{{ route('attendance.teacher')}}" class="nav-link {{ isActive('attendance/teacher') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Teacher Attendance</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('attendance/report') }}">
+                        <a href="{{ route('attendance.report') }}" class="nav-link {{ isActive('attendance/report') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Monthly Report</p>
                         </a>
