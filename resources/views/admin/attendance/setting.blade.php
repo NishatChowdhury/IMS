@@ -26,9 +26,17 @@
            <div class="row">
                <div class="col-12">
                    <div class="card">
-                       <div class="card-header">
-                           <button type="button" class="btn btn-primary btn-flat"> New</button>
+                       <div class="card-header" style="border-bottom: none !important;">
+                           <div class="row">
+                               <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : 1000</h3>
+                           </div>
+                           <div class="row">
+                               <div>
+                                   <button type="button" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px; "> <i class="fas fa-plus-circle"></i> Info</button>
+                               </div>
+                               </div>
                        </div>
+                       <!-- /.card-header -->
                        <div class="card-body">
                            <table id="example2" class="table table-bordered table-hover">
                                <thead>
