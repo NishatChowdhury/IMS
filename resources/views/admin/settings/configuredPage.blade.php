@@ -20,6 +20,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <!-- ***/Configured page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -27,7 +28,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : 1000</h3>
+                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="far fa-file-alt" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : 1000</h3>
                             </div>
                             <div class="row">
                                 <div>
@@ -80,10 +81,7 @@
         </div>
     </section>
 
-
-
-
-    <!-- ***/Attendance setting add new form -->
+    <!-- ***/Pop Up Model for button -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
@@ -133,26 +131,31 @@
                             </div>
                         </div>
                     </form>
+                    <div style="float: right">
+                        <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
-                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
     </div>
-
-    <!-- /Attendance setting add new form End*** -->
+    <!-- /Pop Up Model for button End***-->
 @stop
+<!-- /Configured page inner Content End***-->
 
+
+<!-- *** External CSS  File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">
 @stop
 
+<!-- *** External JS File-->
 @section('plugin')
     <script src= "{{ asset('assets/js/editor.js') }}"></script>
 @stop
 
+<!-- Scripts-->
 @section('script')
     <script>
         $(document).ready(function() {

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Site Basic Info</h1>
+                    <h1>Site Basic Information</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -20,6 +20,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <!-- ***Site info Inner Content Start-->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -53,7 +54,7 @@
                                         <input type="text" class="form-control" id="" placeholder="Type Instution Code...">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="eiin">EIIN</label>
+                                        <label for="eiinNo">EIIN No</label>
                                         <input type="number" class="form-control" id="" placeholder="Insert EIIN Number...">
                                     </div>
                                 </div>
@@ -84,11 +85,11 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="title">Logo Text Top</label>
-                                        <input type="text" class="form-control" id="" placeholder="">
+                                        <input type="text" class="form-control" id="" placeholder="type..">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="name">Logo Text Bottom</label>
-                                        <input type="text" class="form-control" id="" placeholder="">
+                                        <input type="text" class="form-control" id="" placeholder="type..">
                                     </div>
                                 </div>
                                 <div class="form-group files color">
@@ -105,10 +106,11 @@
         </div>
     </section>
 
+@stop
+<!--Site info Inner Content End***-->
 
 
+<!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
-@stop
-
 @stop
