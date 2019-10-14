@@ -23,7 +23,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview {{ isActive(['/','dashboard*']) }}">
-                <a href="#" class="nav-link {{ isActive(['dashboard*','/']) }}">
+                <a href="{{ action('DashboardController@index') }}" class="nav-link {{ isActive(['dashboard*','/']) }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Dashboard
@@ -353,8 +353,8 @@
                     {{--</li>--}}
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['settings*']) }}">
-                <a href="#" class="nav-link {{ isActive(['settings*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*']) }}">
+                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
                         Settings
@@ -363,7 +363,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('settings.basicInfo')}}" class="nav-link {{ isActive('settings/basicInfo') }}">
+                        <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Basic Info </p>
                         </a>
@@ -381,7 +381,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('settings.configuredPage')}}" class="nav-link {{ isActive('settings/configuredPage') }}">
+                        <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
                         </a>

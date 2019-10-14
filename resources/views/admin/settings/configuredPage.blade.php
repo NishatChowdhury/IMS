@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Settings | Configured Pages')
+@section('title','Settings | Pages')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -27,9 +27,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="far fa-file-alt" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : 1000</h3>
-                            </div>
+                            {{--<div class="row">--}}
+                                {{--<h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : 1000</h3>--}}
+                            {{--</div>--}}
                             <div class="row">
                                 <div>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
@@ -46,32 +46,26 @@
                                     <th>Content</th>
                                     <th>Order </th>
                                     <th>Action</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($pages as $page)
                                 <tr>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $page->name }}</td>
+                                    <td>{{ substr(strip_tags($page->content),0,99) }}...</td>
+                                    <td>{{ $page->order }}</td>
+                                    <td><button type="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button></td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing {{ $pages->firstItem() }} to {{ $pages->count() }} of {{ $pages->total() }} entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                        </ul>
-                                    </nav>
+                                    {{ $pages->links() }}
                                 </div>
                             </div>
                         </div>

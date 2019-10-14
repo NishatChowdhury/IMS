@@ -33,42 +33,46 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="">
+                            {{ Form::model($info,['action'=>'SiteInformationController@update','method'=>'patch']) }}
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="title">Title</label>
-                                        <input type="text" class="form-control" id="" placeholder="CCS">
+                                        {{ Form::text('title',null,['class'=>'form-control']) }}
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="" placeholder="School Name">
+                                        {{ Form::text('name',null,['class'=>'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAddress">Address</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="Address...">
+                                    {{ Form::text('address',null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="">Institution Code</label>
-                                        <input type="text" class="form-control" id="" placeholder="Type Instution Code...">
+                                        {{ Form::text('institute_code',null,['class'=>'form-control']) }}
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="eiinNo">EIIN No</label>
-                                        <input type="number" class="form-control" id="" placeholder="Insert EIIN Number...">
+                                        {{ Form::text('eiin',null,['class'=>'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="title">Phone</label>
-                                        <input type="number" class="form-control" id="" placeholder="Enter Phone Number...">
+                                        {{ Form::text('phone',null,['class'=>'form-control']) }}
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="" placeholder="Enter Email Address...">
+                                        {{ Form::text('email',null,['class'=>'form-control']) }}
                                     </div>
                                 </div>
-                            </form>
+                            <div class="form-row">
+                                {{ Form::submit('SAVE',['class'=>'btn btn-success']) }}
+                                {{ Form::reset('RESET',['class'=>'btn btn-warning']) }}
+                            </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -81,10 +85,10 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="">
+                            {{ Form::model($info,['action'=>'SiteInformationController@logo','method'=>'patch','files'=>true]) }}
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="title">Logo Text Top</label>
+                                        <label for="title">Logo Text Top 550 X 140</label>
                                         <input type="text" class="form-control" id="" placeholder="type..">
                                     </div>
                                     <div class="form-group col-md-6">
@@ -93,9 +97,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group files color">
-                                    <input type="file" class="form-control" multiple="">
+                                    <input type="file" class="form-control" multiple="" name="logo">
                                 </div>
-                            </form>
+                            <div class="form-row">
+                                {{ Form::submit('SAVE',['class'=>'btn btn-success']) }}
+                            </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
