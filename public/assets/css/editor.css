@@ -128,7 +128,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     line-height:14px;
 }
 .Editor-editor{
-    height:300px;
+    height:250px;
     padding:1%;
     border:1px solid #EEE;
     border-radius:0;
