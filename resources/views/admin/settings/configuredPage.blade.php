@@ -99,7 +99,7 @@
                             <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <select id="inputState" class="form-control">
+                                    <select id="inputState" class="form-control" style="height: 35px !important;">
                                         <option selected>Page...</option>
                                         <option>...</option>
                                         <option>...</option>
@@ -113,7 +113,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Content*</label>
                             <div class="col-sm-10">
-
+                                <textarea id="txtEditor"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -146,4 +146,21 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">
+@stop
+
+@section('plugin')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src= "{{ asset('assets/js/editor.js') }}"></script>
+@stop
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $("#txtEditor").Editor();
+        });
+    </script>
 @stop
