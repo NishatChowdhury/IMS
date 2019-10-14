@@ -102,6 +102,9 @@
             <h3 class="card-title" style="text-align: center">Payment Details</h3>
         </div>
         <div class="card-body">
+            <div class="card-header">
+                <h5 class="card-title">Street Address</h5>
+            </div>
             <div class="form-group">
                 {{ Form::label('streetAddress','Street Address',['class'=>'control-label']) }}
                 {{ Form::text('streetAddress',null,['class'=>'form-control', 'placeholder'=>'Street Address']) }}
@@ -160,6 +163,6 @@
     </div>
 
 </div>
-<div style="float:right">
-    {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success']) !!}
-</div>
+    {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success','style'=>'float:right']) !!}
+
+
