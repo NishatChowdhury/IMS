@@ -24,7 +24,7 @@ Route::get('dashboard','DashboardController@index');
 // Routes For ADMIN LTE Alpha END........//
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'FrontController@index');
 
@@ -41,8 +41,17 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
 Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
 Route::get('settings/image','SettingsController@image')->name('settings.image');
-Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
+//Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
+
+// smartrahat start
+Route::get('siteinfo','SiteInformationController@index');
+Route::patch('site-info/update','SiteInformationController@update');
+Route::patch('site-info/logo','SiteInformationController@logo');
+
+Route::get('pages','PageController@index');
+Route::patch('pages/{id}/update','PageController@update');
+// smartrahat end
 
 //Students Route by babu
 Route::get('/stu_list','StudentController@index')->name('student.list');

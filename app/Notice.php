@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notice extends Model
 {
-    //
+    protected $fillable = ['type_id','title','description','start','end','file'];
 }
