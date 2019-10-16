@@ -71,7 +71,7 @@
                                 </div>
                             </form>
                             <div style="float: right;padding-bottom: 50px">
-                                <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Submit</button>
+                                <button type="button" class="btn btn-success" > <i class="fas fa-plus-circle"></i> Submit</button>
                             </div>
                         </div>
                     </div>
