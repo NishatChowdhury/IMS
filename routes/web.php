@@ -42,6 +42,7 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
 Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
 Route::get('settings/image','SettingsController@image')->name('settings.image');
+Route::get('settings/slider','SettingsController@slider')->name('settings.slider');
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
 
