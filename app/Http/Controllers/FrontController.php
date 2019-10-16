@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -11,8 +12,9 @@ class FrontController extends Controller
         return view('front.index');
     }
 
-    public function single()
+    public function introduction()
     {
-        return view('front.single');
+        $content = Page::query()->where('name','introduction')->first();
+        return view('front.pages.introduction',compact('content'));
     }
 }

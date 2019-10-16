@@ -27,9 +27,18 @@ class PageController extends Controller
 
     public function update($id,Request $request)
     {
-        dd($request->all());
         $page = Page::query()->findOrFail($id);
-        $page->update($request->all());
-        return redirect('settings/configuredPage');
+
+        if($request->hasFile('image')){
+            $name = $id.'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path().'/assets/img/pages/', $name);
+            $data = $request->except('image');
+            $data['image'] = $name;
+            $page->update($data);
+        }else{
+            $page->update($request->all());
+        }
+
+        return redirect('pages');
     }
 }

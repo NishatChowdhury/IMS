@@ -43,7 +43,7 @@
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Content*</label>
 {{--                                <textarea name="content" id="txtEditor">{{ $page->content }}</textarea>--}}
-                                {{ Form::textarea('content',null,['id'=>'content']) }}
+                                {{ Form::textarea('content',null,['id'=>'editor1']) }}
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>
@@ -56,7 +56,7 @@
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>
                                 <div class="col-sm-10">
                                     <div class="form-group files color">
-                                        <input type="file" class="form-control" multiple="">
+                                        <input type="file" name="image" class="form-control" multiple="">
                                     </div>
                                 </div>
                             </div>
@@ -88,8 +88,8 @@
 
 @section('plugin')
     <!-- Select2 -->
-    <script src="http://localhost/adminlte-alpha/public/plugins/select2/select2.full.min.js/"></script>
-    <script src= "{{ asset('assets/js/editor.js') }}"></script>
+    <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
+    <script src= "{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
 @stop
 
 @section('script')
@@ -97,8 +97,27 @@
         //Initialize Select2 Elements
         $('.select2').select2();
 
-        $(document).ready(function() {
-            $("#content").Editor();
-        });
+        // $(document).ready(function() {
+        //     $("#content").Editor();
+        // });
+
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                });
+
+            // bootstrap WYSIHTML5 - text editor
+
+            $('.textarea').wysihtml5({
+                toolbar: { fa: true }
+            })
+        })
     </script>
 @stop

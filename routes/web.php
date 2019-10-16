@@ -27,7 +27,7 @@ Route::get('dashboard','DashboardController@index');
 Auth::routes(['register' => false]);
 Route::get('/home', 'DashboardController@index')->name('home');
 Route::get('/', 'FrontController@index');
-Route::get('single','FrontController@single');
+Route::get('/introduction','FrontController@introduction');
 
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
