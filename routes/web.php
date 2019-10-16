@@ -25,8 +25,9 @@ Route::get('dashboard','DashboardController@index');
 
 
 Auth::routes(['register' => false]);
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'DashboardController@index')->name('home');
 Route::get('/', 'FrontController@index');
+Route::get('single','FrontController@single');
 
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
@@ -50,6 +51,7 @@ Route::patch('site-info/update','SiteInformationController@update');
 Route::patch('site-info/logo','SiteInformationController@logo');
 
 Route::get('pages','PageController@index');
+Route::get('page/edit/{id}','PageController@edit');
 Route::patch('pages/{id}/update','PageController@update');
 // smartrahat end
 

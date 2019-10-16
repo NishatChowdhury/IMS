@@ -55,7 +55,7 @@
                                     <td>{{ $page->name }}</td>
                                     <td>{{ substr(strip_tags($page->content),0,99) }}...</td>
                                     <td>{{ $page->order }}</td>
-                                    <td><button type="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button></td>
+                                    <td><a href="{{ action('PageController@edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
