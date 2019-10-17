@@ -26,7 +26,7 @@
                                 <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> About Institute </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="page-events.html"> Introduction </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@introduction') }}"> Introduction </a></li>
                                         <li><a class="nav-link__list" href="page-event-details.html"> Governing Body</a></li>
                                         <li><a class="nav-link__list" href="page-event-details.html"> Founder & Donor</a></li>
                                     </ul>

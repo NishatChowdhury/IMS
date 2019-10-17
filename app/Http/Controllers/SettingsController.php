@@ -30,4 +30,9 @@ class SettingsController extends Controller
     {
         return view('admin.settings.configuredPage');
     }
+
+    public function slider()
+    {
+        return view('admin.settings.slider');
+    }
 }

@@ -32,7 +32,7 @@
                             {{--</div>--}}
                             <div class="row">
                                 <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                    <button type="button" class="btn btn-info btn-sm" disabled data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                     <td>{{ $page->name }}</td>
                                     <td>{{ substr(strip_tags($page->content),0,99) }}...</td>
                                     <td>{{ $page->order }}</td>
-                                    <td><button type="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button></td>
+                                    <td><a href="{{ action('PageController@edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>

@@ -386,12 +386,12 @@
                             <p>Page Mgmt</p>
                         </a>
                     </li>
-                    {{--<li class="nav-item">--}}
-                    {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
-                    {{--<i class="far fa-circle nav-icon"></i>--}}
-                    {{--<p>Starter Page</p>--}}
-                    {{--</a>--}}
-                    {{--</li>--}}
+                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('settings.slider')}}" class="nav-link {{ isActive('settings/slider') }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Slider</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}

@@ -17,7 +17,7 @@ class SeedUserTable extends Migration
             $data['name'] = 'Mohammed Rahat Hossain';
             $data['email'] = 'admin@gmail.com';
             $data['password'] = bcrypt('admin123');
-            \App\User::query()->create($data);
+//            \App\User::query()->create($data);
         });
     }
 

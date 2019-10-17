@@ -155,8 +155,7 @@
         </div>
         {{--teacher bar chart end--}}
 
-
-        </div><!-- /.container-fluid -->
+<!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 
