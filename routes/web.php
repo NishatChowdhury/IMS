@@ -26,8 +26,51 @@ Route::get('dashboard','DashboardController@index');
 
 Auth::routes(['register' => false]);
 Route::get('/home', 'DashboardController@index')->name('home');
+
+/*
+  ==== Route for Front-End Menu Bar Start ==== @MKH
+ */
 Route::get('/', 'FrontController@index');
+
+    //Institute -> About
 Route::get('/introduction','FrontController@introduction');
+Route::get('/governing-body','FrontController@governing_body');
+Route::get('/founder-n-donor','FrontController@donor');
+
+    //Institute-> Infrastructure
+Route::get('/building-room','FrontController@building_room');
+Route::get('/library','FrontController@library');
+Route::get('/transport','FrontController@transport');
+Route::get('/hostel','FrontController@hostel');
+
+    //Institute -> Academic
+Route::get('/class-routine','FrontController@class_routine');
+Route::get('/calender','FrontController@calender');
+Route::get('/syllabus','FrontController@syllabus');
+Route::get('/performance','FrontController@performance');
+
+    //TEAM
+Route::get('/managing-committee','FrontController@managing_committee');
+Route::get('/teacher','FrontController@teacher');
+Route::get('/staff','FrontController@staff');
+
+    //Result  (Front-End)
+Route::get('/internal-exam','FrontController@internal_exam');
+Route::get('/public-exam','FrontController@public_exam');
+Route::get('/admission','FrontController@admission');
+
+    //Attendance
+Route::get('/attendance-summery','FrontController@attendance_summery');
+Route::get('/student-attendance','FrontController@student_attendance');
+Route::get('/teacher-attendance','FrontController@teacher_attendance');
+
+    //News & Notice
+Route::get('/notice','FrontController@notice');
+Route::get('/news','FrontController@news');
+
+    //Gallery
+Route::get('/gallery','FrontController@gallery');
+/*===== Route for Front-End Menu Bar END ====*/
 
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
