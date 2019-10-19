@@ -252,15 +252,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/404') }}">
+                        <a href="{{route('staff.teacher')}}" class="nav-link {{ isActive('staff/teacher') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Error 404</p>
+                            <p>Teacher</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/500') }}">
+                        <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('staff/addstaff') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Error 500</p>
+                            <p>Staff Add</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">

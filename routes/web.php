@@ -73,6 +73,12 @@ Route::get('settings/slider','SettingsController@slider')->name('settings.slider
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
 
+//Staff Route by Rimon
+Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');
+Route::get('staff/staffadd','StaffController@addstaff')->name('staff.addstaff');
+//End Staff Route b
+
+
 // smartrahat start
 Route::get('siteinfo','SiteInformationController@index');
 Route::patch('site-info/update','SiteInformationController@update');
