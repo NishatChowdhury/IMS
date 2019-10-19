@@ -9,7 +9,7 @@ Route::get('dashboard','DashboardController@index');
 
 
 Auth::routes(['register' => false]);
-Route::get('/home', 'DashboardController@index')->name('home');
+//Route::get('/home', 'DashboardController@index')->name('home'); /*Already exist*/
 
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
