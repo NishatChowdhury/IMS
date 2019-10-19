@@ -10,7 +10,7 @@
 
     @include('front.events')
 
-    @include('front.gallery')
+    {{--@include('front.gallery')--}}
 
     @include('front.progress-bar')
 

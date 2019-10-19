@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav ec-nav__navbar ml-auto">
 
                 <li class="nav-item nav-item__has-megamenu megamenu-col-2">
-                    <a class="nav-link dropdown-toggle no-caret" href="{{action('FrontController@index')}}" data-toggle="dropdown">Home</a>
+                    <a class="nav-link" href="{{action('FrontController@index')}}" >Home</a>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Institute</a>
@@ -113,7 +113,7 @@
                     </div>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle no-caret" href="{{action('FrontController@gallery')}}" data-toggle="dropdown">Gallery</a>
+                    <a class="nav-link no-caret" href="{{action('FrontController@gallery')}}">Gallery</a>
                 </li>
             </ul>
         </div>

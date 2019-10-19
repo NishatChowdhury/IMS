@@ -150,6 +150,6 @@ class FrontController extends Controller
     public function gallery()
     {
         $content = Page::query()->where('name','introduction')->first();
-        return view('front.gallery',compact('content'));
+        return view('front.pages.gallery',compact('content'));
     }
 }

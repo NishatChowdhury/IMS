@@ -1,21 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
 use Illuminate\Support\Facades\Artisan;
 
 /** Dashboard Routes */
@@ -30,7 +14,7 @@ Route::get('/home', 'DashboardController@index')->name('home');
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
  */
-Route::get('/', 'FrontController@index');
+Route::get('/', 'FrontController@index')->name('front-home');
 
     //Institute -> About
 Route::get('/introduction','FrontController@introduction');
@@ -88,6 +72,12 @@ Route::get('settings/image','SettingsController@image')->name('settings.image');
 Route::get('settings/slider','SettingsController@slider')->name('settings.slider');
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
+
+//Staff Route by Rimon
+Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');
+Route::get('staff/staffadd','StaffController@addstaff')->name('staff.addstaff');
+//End Staff Route b
+
 
 // smartrahat start
 Route::get('siteinfo','SiteInformationController@index');
