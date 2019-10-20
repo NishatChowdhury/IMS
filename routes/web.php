@@ -9,7 +9,7 @@ Route::get('dashboard','DashboardController@index');
 
 
 Auth::routes(['register' => false]);
-//Route::get('/home', 'DashboardController@index')->name('home'); /*Already exist*/
+Route::get('/home', 'DashboardController@index')->name('home'); /*Already exist*/
 
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
@@ -67,7 +67,7 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
-Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
+//Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
 Route::get('settings/image','SettingsController@image')->name('settings.image');
 Route::get('settings/slider','SettingsController@slider')->name('settings.slider');
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
@@ -87,6 +87,10 @@ Route::patch('site-info/logo','SiteInformationController@logo');
 Route::get('pages','PageController@index');
 Route::get('page/edit/{id}','PageController@edit');
 Route::patch('pages/{id}/update','PageController@update');
+
+Route::get('notices','NoticeController@index');
+Route::post('notice/store','NoticeController@store');
+Route::get('notice/edit/{id}','NoticeController@edit');
 // smartrahat end
 
 //Students Route by babu
@@ -97,4 +101,5 @@ Route::get('/stu_add','StudentController@create')->name('student.add');
 
 Route::get('migrate',function(){
     Artisan::call('migrate');
+    dd('migration complete');
 });

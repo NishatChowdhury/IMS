@@ -39,6 +39,7 @@
                     {{--</p>--}}
                 {{--</a>--}}
             {{--</li>--}}
+            @cannot('cms')
             <li class="nav-item has-treeview {{ isActive(['chart*']) }}">
                 <a href="#" class="nav-link {{ isActive(['chart*']) }}">
                     <i class="nav-icon fas fa-user-plus"></i>
@@ -353,7 +354,8 @@
                     {{--</li>--}}
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*']) }}">
+            @endcannot
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','notice*']) }}">
                 <a href="#" class="nav-link {{ isActive(['settings*','page*','site*']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
@@ -369,9 +371,9 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('settings.notice')}}" class="nav-link {{ isActive('settings/notice') }}">
+                        <a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Notice Mgmt </p>
+                            <p>Notice Management </p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -395,6 +397,7 @@
                 </ul>
             </li>
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
+            @cannot('cms')
             <li class="nav-item">
                 <a href="#" class="nav-link">
 
@@ -408,6 +411,7 @@
                     <p>Activities</p>
                 </a>
             </li>
+            @endcannot
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-life-ring"></i>

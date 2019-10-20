@@ -6,7 +6,7 @@
 
     <div class="carousel-inner">
         <div class="carousel-item padding-y-80 height-90vh active">
-            <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/carousel/1.jpg') }}) no-repeat"></div>
+            <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/1920x800/1.jpg') }}) no-repeat"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 mx-auto text-center text-white">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="carousel-item padding-y-80 height-90vh">
-            <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/carousel/2.jpg') }}) no-repeat"></div>
+            <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/1920x800/2.jpg') }}) no-repeat"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 mx-auto text-center text-white">
