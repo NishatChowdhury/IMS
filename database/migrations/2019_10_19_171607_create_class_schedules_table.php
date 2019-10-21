@@ -20,16 +20,6 @@ class CreateClassSchedulesTable extends Migration
             $table->time('start');
             $table->time('end');
             $table->timestamps();
-
-            $table->foreign('subject_id')
-                ->references('id')
-                ->on('assign_subjects')
-                ->onDelete('cascade');
-
-            $table->foreign('day_id')
-                ->references('id')
-                ->on('days')
-                ->onDelete('cascade');
         });
     }
 
@@ -40,9 +30,6 @@ class CreateClassSchedulesTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign('assign_subjects_subject_id_foreign');
-        $table->dropForeign('days_day_id_foreign');
-
         Schema::dropIfExists('class_schedules');
     }
 }

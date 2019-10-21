@@ -24,21 +24,6 @@ class CreateSessionClassesTable extends Migration
             $table->decimal('tuition_fee', 8,2);
             $table->decimal('admission_fee', 8, 2);
             $table->decimal('admission_Form_fee', 8, 2);
-
-            $table->foreign('session_id')
-                ->references('id')
-                ->on('sessions')
-                ->onDelete('cascade');
-
-            $table->foreign('academic_class_id')
-                ->references('id')
-                ->on('academic_classes')
-                ->onDelete('cascade');
-
-            $table->foreign('group_id')
-                ->references('id')
-                ->on('groups')
-                ->onDelete('cascade');
         });
     }
 
@@ -50,11 +35,7 @@ class CreateSessionClassesTable extends Migration
     public function down()
     {
         Schema::table('classes', function (Blueprint $table) {
-            $table->dropForeign('[session_id]');
-            $table->dropForeign(['academic_class_id']);
-            $table->dropForeign('[group_id]');
-
-            Schema::dropIfExists('session_classes');
+           Schema::dropIfExists('session_classes');
         });
     }
 }
