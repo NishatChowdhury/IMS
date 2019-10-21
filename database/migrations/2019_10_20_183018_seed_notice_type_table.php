@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class SeedUserTable extends Migration
+class SeedNoticeTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class SeedUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $data['name'] = 'Mohammed Rahat Hossain';
-            $data['module'] = 0;
-            $data['email'] = 'admin@gmail.com';
-            $data['password'] = bcrypt('admin123');
-            \App\User::query()->create($data);
+        Schema::table('notice_types', function (Blueprint $table) {
+            $data = ['News','Notice'];
+            foreach($data as $d){
+                \App\NoticeType::query()->create(['name'=>$d]);
+            }
         });
     }
 
@@ -29,7 +28,7 @@ class SeedUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('notice_types', function (Blueprint $table) {
             //
         });
     }

@@ -20,22 +20,6 @@ class CreateSectionsTable extends Migration
             $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamps();
-
-
-            $table->foreign('session_id')
-                ->references('id')
-                ->on('sessions')
-                ->onDelete('cascade');
-
-            $table->foreign('class_id')
-                ->references('id')
-                ->on('classes')
-                ->onDelete('cascade');
-
-            $table->foreign('group_id')
-                ->references('id')
-                ->on('groups')
-                ->onDelete('cascade');
         });
     }
 

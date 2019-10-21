@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notice;
 use App\Page;
 use Illuminate\Http\Request;
 
@@ -136,8 +137,8 @@ class FrontController extends Controller
 //News & Notice Start...
     public function notice()
     {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.notice',compact('content'));
+        $notices = Notice::query()->get();
+        return view('front.pages.notice',compact('notices'));
     }
     public function news()
     {

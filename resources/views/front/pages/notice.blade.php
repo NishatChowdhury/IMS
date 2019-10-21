@@ -31,7 +31,26 @@
         <div class="container">
             <div class="row align-items-center">
 
-                {!! $content->content !!}
+                <table class="table-bordered">
+                    <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($notices as $notice)
+                        <tr>
+                            <td></td>
+                            <td>{{ $notice->start }}</td>
+                            <td>{{ $notice->title }}</td>
+                            <td></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
 
             </div> <!-- END row-->
         </div> <!-- END container-->

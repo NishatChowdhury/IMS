@@ -20,7 +20,7 @@ class CreateNoticeTable extends Migration
             $table->text('description');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
