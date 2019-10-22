@@ -25,4 +25,14 @@ class InstitutionController extends Controller
     {
         return view ('admin.institution.subjects');
     }
+
+    public function section()
+    {
+        return view ('admin.institution.section');
+    }
+
+    public function profile()
+    {
+        return view ('admin.institution.profile');
+    }
 }

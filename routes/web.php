@@ -83,6 +83,8 @@ Route::get('institution/academicyear','InstitutionController@academicyear')->nam
 Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
 Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
+Route::get('institution/section','InstitutionController@section')->name('institution.section');
+Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 //End Institution Mgnt Route
 
 

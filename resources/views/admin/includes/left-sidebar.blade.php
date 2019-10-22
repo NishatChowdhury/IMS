@@ -173,19 +173,19 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.classsubjects')}}" class="nav-link {{ isActive('institution/Classsubjects') }}">
+                        <a href="{{route('institution.classsubjects')}}" class="nav-link {{ isActive('institution/classsubjects') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Class Subjects</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('institution/section') }}">
+                        <a href="{{route('institution.section')}}" class="nav-link {{ isActive('institution/section') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Section</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('table/data') }}">
+                        <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profile</p>
                         </a>
