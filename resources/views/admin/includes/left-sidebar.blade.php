@@ -155,21 +155,33 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('table/simple') }}">
+                        <a href="{{route('institution.academicyear')}}" class="nav-link {{ isActive('institution/academicyear') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Academic Year</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('table/data') }}">
+                        <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/classes') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Classes</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('table/data') }}">
+                        <a href="{{route('institution.subjects')}}" class="nav-link {{ isActive('institution/subjects') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Subjects</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('institution.classsubjects')}}" class="nav-link {{ isActive('institution/Classsubjects') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Class Subjects</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="#" class="nav-link {{ isActive('institution/section') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Section</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">

@@ -76,7 +76,14 @@ Route::get('settings/slider','SettingsController@slider')->name('settings.slider
 //Staff Route by Rimon
 Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');
 Route::get('staff/staffadd','StaffController@addstaff')->name('staff.addstaff');
-//End Staff Route b
+//End Staff Route
+
+//Institution Mgnt Route by Rimon
+Route::get('institution/academicyear','InstitutionController@academicyear')->name('institution.academicyear');
+Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
+Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
+Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
+//End Institution Mgnt Route
 
 
 // smartrahat start
@@ -102,4 +109,10 @@ Route::get('/stu_add','StudentController@create')->name('student.add');
 Route::get('migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
+});
+
+Route::get('reboot',function(){
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
 });

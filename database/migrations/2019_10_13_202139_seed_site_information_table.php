@@ -16,6 +16,7 @@ class SeedSiteInformationTable extends Migration
         Schema::table('site_information', function (Blueprint $table) {
             $data['title'] = 'WP';
             $data['name'] = 'Web Point Limited';
+            $data['bn'] = '';
             $data['address'] = 'College Road, Chawk Bazar, Chittagong';
             $data['institute_code'] = '123456';
             $data['eiin'] = '4321';

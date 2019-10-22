@@ -17,6 +17,7 @@ class CreateSiteInformationTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('name');
+            $table->string('bn');
             $table->string('address');
             $table->string('institute_code');
             $table->string('eiin');
