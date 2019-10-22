@@ -39,7 +39,7 @@ class SiteInformationController extends Controller
     public function logo(Request $request)
     {
         $this->validate($request,[
-            'logo' => 'required|mimetypes:image/png,image/jpeg|dimensions:width=550,height=140'
+            'logo' => 'required|mimetypes:image/png,image/jpeg'
         ]);
         if($request->hasFile('logo')){
             $name = time().$request->file('logo')->getClientOriginalName();

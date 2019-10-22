@@ -8,5 +8,5 @@ class SiteInformation extends Model
 {
     protected $table = 'site_information';
 
-    protected $fillable = ['title','name','address','institute_code','eiin','phone','email','logo'];
+    protected $fillable = ['title','name','bn','address','institute_code','eiin','phone','email','logo'];
 }

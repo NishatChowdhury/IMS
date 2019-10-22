@@ -103,3 +103,9 @@ Route::get('migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
+
+Route::get('reboot',function(){
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+});
