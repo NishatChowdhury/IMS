@@ -28,7 +28,7 @@
                     <div class="card card-light">
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['method'=>'post','files'=>true]) !!}
+                        {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post','files'=>true]) !!}
                           @include('admin.student.form')
                         {!! Form::close() !!}
                     </div>                   <!-- /.card -->

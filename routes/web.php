@@ -9,7 +9,7 @@ Route::get('dashboard','DashboardController@index');
 
 
 Auth::routes(['register' => false]);
-Route::get('/home', 'DashboardController@index')->name('home'); /*Already exist*/
+Route::get('/home', 'DashboardController@index')->name('home');
 
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
@@ -113,7 +113,9 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 //Students Route by babu
 Route::get('/stu_list','StudentController@index')->name('student.list');
 Route::get('/stu_add','StudentController@create')->name('student.add');
-
+    //@MKH
+Route::post('store-std', 'StudentController@store');
+Route::post('add-std', 'StudentController@store');
 //End Students Route
 
 Route::get('migrate',function(){
