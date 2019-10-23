@@ -1,42 +1,63 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
+        @foreach($sliders as $key => $slider)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="{{ $slider->active == 1 ? 'active' : '' }}"></li>
+        @endforeach
+            {{--<li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>--}}
+            {{--<li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>--}}
     </ol>
 
     <div class="carousel-inner">
-        <div class="carousel-item padding-y-80 height-90vh active">
-            <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/1920x800/1.jpg') }}) no-repeat"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto text-center text-white">
-                        <h1 class="display-lg-3 font-weight-bold animated slideInUp">
-                            WP School
-                        </h1>
-                        <p class="lead animated fadeInUp">
-                            This modern and inviting academic template is perfectly suited for school, colleges, university, on-line course, and other educational institutions.
-                        </p>
-                        <a href="#" class="btn btn-primary mt-3 mx-2 animated slideInUp">Learn More</a>
+        @foreach($sliders as $key => $slider)
+            <div class="carousel-item padding-y-80 height-90vh {{ $key == 0 ? 'active' : '' }}">
+                <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/sliders') }}/{{ $slider->image }}) no-repeat"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto text-center text-white">
+                            <h1 class="display-lg-3 font-weight-bold animated slideInUp">
+                                {{ $slider->title }}
+                            </h1>
+                            <p class="lead animated fadeInUp">
+                                {{ $slider->description }}
+                            </p>
+                            <a href="{{ $slider->redirect_url }}" class="btn btn-primary mt-3 mx-2 animated slideInUp">{{ $slider->button_text }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-item padding-y-80 height-90vh">
-            <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/1920x800/2.jpg') }}) no-repeat"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto text-center text-white">
-                        <h1 class="display-lg-3 font-weight-bold animated slideInUp">
-                            WP School
-                        </h1>
-                        <p class="lead animated fadeInUp">
-                            This modern and inviting academic template is perfectly suited for school, colleges, university, on-line course, and other educational institutions.
-                        </p>
-                        <a href="#" class="btn btn-primary mt-3 mx-2 animated slideInUp">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
+        {{--<div class="carousel-item padding-y-80 height-90vh active">--}}
+            {{--<div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/1920x800/1.jpg') }}) no-repeat"></div>--}}
+            {{--<div class="container">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-lg-10 mx-auto text-center text-white">--}}
+                        {{--<h1 class="display-lg-3 font-weight-bold animated slideInUp">--}}
+                            {{--WP School--}}
+                        {{--</h1>--}}
+                        {{--<p class="lead animated fadeInUp">--}}
+                            {{--This modern and inviting academic template is perfectly suited for school, colleges, university, on-line course, and other educational institutions.--}}
+                        {{--</p>--}}
+                        {{--<a href="#" class="btn btn-primary mt-3 mx-2 animated slideInUp">Learn More</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="carousel-item padding-y-80 height-90vh">--}}
+            {{--<div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/1920x800/2.jpg') }}) no-repeat"></div>--}}
+            {{--<div class="container">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-lg-10 mx-auto text-center text-white">--}}
+                        {{--<h1 class="display-lg-3 font-weight-bold animated slideInUp">--}}
+                            {{--WP School--}}
+                        {{--</h1>--}}
+                        {{--<p class="lead animated fadeInUp">--}}
+                            {{--This modern and inviting academic template is perfectly suited for school, colleges, university, on-line course, and other educational institutions.--}}
+                        {{--</p>--}}
+                        {{--<a href="#" class="btn btn-primary mt-3 mx-2 animated slideInUp">Learn More</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <i class="ti-angle-left iconbox bg-black-0_5 hover:primary"></i>

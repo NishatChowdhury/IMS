@@ -69,7 +69,7 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
 //Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
 Route::get('settings/image','SettingsController@image')->name('settings.image');
-Route::get('settings/slider','SettingsController@slider')->name('settings.slider');
+//Route::get('settings/slider','SettingsController@slider')->name('settings.slider');
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
 
@@ -104,6 +104,10 @@ Route::patch('pages/{id}/update','PageController@update');
 Route::get('notices','NoticeController@index');
 Route::post('notice/store','NoticeController@store');
 Route::get('notice/edit/{id}','NoticeController@edit');
+
+Route::get('sliders','SliderController@index');
+Route::post('slider/store','SliderController@store');
+Route::delete('slider/destroy/{id}','SliderController@destroy');
 // smartrahat end
 
 //Students Route by babu

@@ -379,8 +379,8 @@
                 </ul>
             </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','notice*']) }}">
-                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','notice*','slider*']) }}">
+                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','notice*','slider*']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
                         Settings
@@ -413,7 +413,7 @@
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('settings.slider')}}" class="nav-link {{ isActive('settings/slider') }}">
+                        <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Slider</p>
                         </a>

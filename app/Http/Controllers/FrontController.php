@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Notice;
 use App\Page;
+use App\Slider;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        return view('front.index');
+        $sliders = Slider::all();
+        return view('front.index',compact('sliders'));
     }
 
     public function introduction()
