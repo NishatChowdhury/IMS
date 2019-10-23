@@ -15,4 +15,20 @@ class StaffController extends Controller
     {
         return view ('admin.staff.addstaff');
     }
+
+    public function threshold()
+    {
+        return view ('admin.staff.threshold');
+    }
+
+    public function kpi()
+    {
+        return view ('admin.staff.kpi');
+    }
+
+    public function payslip()
+    {
+        return view ('admin.staff.payslip');
+    }
+
 }

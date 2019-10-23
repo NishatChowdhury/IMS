@@ -277,9 +277,21 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                        <a href="{{route('staff.threshold')}}" class="nav-link {{ isActive('staff/threshold') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Blank Page</p>
+                            <p>Threshold</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('staff.kpi')}}" class="nav-link {{ isActive('staff/kpi') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>kpi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('staff.payslip')}}" class="nav-link {{ isActive('staff/payslip') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>PaySlip</p>
                         </a>
                     </li>
                     {{--<li class="nav-item">--}}
