@@ -11,19 +11,19 @@
         @foreach($sliders as $key => $slider)
             <div class="carousel-item padding-y-80 height-90vh {{ $key == 0 ? 'active' : '' }}">
                 <div class="bg-absolute" data-dark-overlay="4" style="background:url({{ asset('assets/img/sliders') }}/{{ $slider->image }}) no-repeat"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-10 mx-auto text-center text-white">
-                            <h1 class="display-lg-3 font-weight-bold animated slideInUp">
-                                {{ $slider->title }}
-                            </h1>
-                            <p class="lead animated fadeInUp">
-                                {{ $slider->description }}
-                            </p>
-                            <a href="{{ $slider->redirect_url }}" class="btn btn-primary mt-3 mx-2 animated slideInUp">{{ $slider->button_text }}</a>
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="container">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-lg-10 mx-auto text-center text-white">--}}
+                            {{--<h1 class="display-lg-3 font-weight-bold animated slideInUp">--}}
+                                {{--{{ $slider->title }}--}}
+                            {{--</h1>--}}
+                            {{--<p class="lead animated fadeInUp">--}}
+                                {{--{{ $slider->description }}--}}
+                            {{--</p>--}}
+                            {{--<a href="{{ $slider->redirect_url }}" class="btn btn-primary mt-3 mx-2 animated slideInUp">{{ $slider->button_text }}</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         @endforeach
         {{--<div class="carousel-item padding-y-80 height-90vh active">--}}

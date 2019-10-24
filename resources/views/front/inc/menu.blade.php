@@ -37,8 +37,8 @@
                                 <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Administrative Message </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="page-help-&-support.html"> President Message </a></li>
-                                        <li><a class="nav-link__list" href="page-help-&-support-topics.html"> Principal Message</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@president') }}"> President Message </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@principal') }}"> Principal Message</a></li>
                                     </ul>
                                 </div>
                             </li>

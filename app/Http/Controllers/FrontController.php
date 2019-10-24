@@ -12,7 +12,8 @@ class FrontController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('front.index',compact('sliders'));
+        $content = Page::all();
+        return view('front.index',compact('sliders','content'));
     }
 
     public function introduction()
@@ -31,6 +32,17 @@ class FrontController extends Controller
     {
         $content = Page::query()->where('name','introduction')->first();
         return view('front.pages.founder-n-donor',compact('content'));
+    }
+
+    public function principal()
+    {
+        $content = Page::query()->where('name','principal message')->first();
+        return view('front.pages.principal',compact('content'));
+    }
+    public function president()
+    {
+        $content = Page::query()->where('name','president message')->first();
+        return view('front.pages.president',compact('content'));
     }
 //Institute -> infrastructure ---Start
     public function building_room()

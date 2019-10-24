@@ -14,12 +14,16 @@ Route::get('/home', 'DashboardController@index')->name('home');
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
  */
-Route::get('/', 'FrontController@index')->name('front-home');
+Route::get('/', 'FrontController@index');
 
     //Institute -> About
 Route::get('/introduction','FrontController@introduction');
 Route::get('/governing-body','FrontController@governing_body');
 Route::get('/founder-n-donor','FrontController@donor');
+
+//Institute -> Administrative message
+Route::get('/president','FrontController@president');
+Route::get('/principal','FrontController@principal');
 
     //Institute-> Infrastructure
 Route::get('/building-room','FrontController@building_room');
