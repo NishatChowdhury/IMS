@@ -87,11 +87,23 @@ Route::get('staff/payslip','StaffController@payslip')->name('staff.payslip');
 //End Staff Route
 
 //Institution Mgnt Route by Rimon
+    //Session @MKH
 Route::get('institution/academicyear','InstitutionController@academicyear')->name('institution.academicyear');
+Route::post('institution/store-session', 'InstitutionController@store_session');
+Route::post('institution/edit-session', 'InstitutionController@edit_session');
+Route::post('institution/update-session', 'InstitutionController@update_session');
+Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
+
 Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
-Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
+Route::post('institution/store-class','InstitutionController@store_class');
+Route::post('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
-Route::get('institution/section','InstitutionController@section')->name('institution.section');
+    //Academic Classes $ Groups
+Route::get('institution/class&groups','InstitutionController@class_group')->name('class.group');
+Route::post('institution/create-class', 'InstitutionController@create_class');
+Route::get('institution/{id}/delete-class', 'InstitutionController@delete_class');
+Route::post('institution/create-group', 'InstitutionController@create_group');
+Route::get('institution/{id}/delete-group', 'InstitutionController@delete_grp');
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 //End Institution Mgnt Route
 

@@ -17,13 +17,13 @@ class CreateSessionClassesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('session_id');
             $table->unsignedBigInteger('academic_class_id');
-            $table->string('name');
             $table->string('code');
-            $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->string('section_name');
-            $table->decimal('tuition_fee', 8,2);
-            $table->decimal('admission_fee', 8, 2);
-            $table->decimal('admission_Form_fee', 8, 2);
+            $table->decimal('tuition_fee', 8,2)->nullable();
+            $table->decimal('admission_fee', 8, 2)->nullable();
+            $table->decimal('admission_form_fee', 8, 2)->nullable();
+            $table->timestamps();
         });
     }
 

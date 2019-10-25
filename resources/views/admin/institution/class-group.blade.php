@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Institution Mgnt | Academic Year')
+@section('title','Institution Mgnt | Classes')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Academic Year</h1>
+                    <h1>Classes & Groups</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Institution Mgnt</a></li>
-                        <li class="breadcrumb-item active">Academic Year</li>
+                        <li class="breadcrumb-item active">Group</li>
                     </ol>
                 </div>
             </div>
@@ -39,100 +39,109 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Academic Year Name</th>
-                                    <th>Start Date</th>
-                                    <th>End date</th>
-                                    <th>Descriptions</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($sessions ?? ''  as $session)
-                                    <tr>
-                                        <td>{{$session->year}}</td>
-                                        <td>{{$session->start}}</td>
-                                        <td>{{$session->end}}</td>
-                                        <td>{{$session->description}}</td>
-                                        <td>
-                                            {{--<a type="button" class="btn btn-info btn-sm edit_session" value='{{$session->id}}'
-                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
-                                            </a>--}}
 
-                                            <a type="button" href="{{action('InstitutionController@delete_session', $session->id)}}"
-                                               class="btn btn-danger btn-sm delete_session"
-                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ClassModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                        <h3 style="display: inline-block; float: right">Class</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Class Name</th>
+                                <th>Numerical</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @php($i = 0)
+                            @foreach( $classes ?? '' as $class)
+                                <tr>
+                                    <td>{{++$i}}</td>
+                                    <td>{{$class->name}}</td>
+                                    <td class="text-center">{{$class->numeric_class}}</td>
+                                    <td>
+                                        <a type="button" href="{{action('InstitutionController@delete_class',$class->id)}}"
+                                           class="btn btn-danger btn-sm"
+                                           style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#GroupModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                        <h3 style="display: inline-block; float: right">Groups</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($groups ?? '' as $group)
+                                <tr>
+                                    <td>{{$group->name}}</td>
+                                    <td>
+                                        <a type="button" href="{{action('InstitutionController@delete_grp',$group->id)}}"
+                                           class="btn btn-danger btn-sm delete_grp"
+                                           style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ***/ Pop Up Model for button -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- ***/ Pop Up Model for Class Creation -->
+    <div class="modal fade" id="ClassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content" style="width: 900px !important; padding: 0px 100px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Academic Year</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Class</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/store-session', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'institution/create-class', 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Year*</label>
-                        <div class="col-sm-10">
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <div class="col-9">
                             <div class="input-group">
-                                <input type="text" name="year" class="form-control" id="" aria-describedby="" placeholder="ex-2017-2019">
+                                <input type="text" name="name" class="form-control" id="" aria-describedby="" placeholder="ex-2017-2019">
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
-                        <div class="col-sm-10">
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right"> Numerical Class Name</label>
+                        <div class="col-9">
                             <div class="input-group">
-                                <input type="date" name="start" class="form-control" id="" aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="date" name="end" class="form-control" id="" aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right"> Description</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <textarea name="description" class="form-control" rows="3" id=""> </textarea>
+                                <input type="number" name="numeric_class" class="form-control" id="" aria-describedby="" placeholder="ex-2017-2019">
                             </div>
                         </div>
                     </div>
@@ -146,7 +155,41 @@
             </div>
         </div>
     </div>
-    <!-- ***/ Pop Up Model for button End-->
+    <!-- ***/ Pop Up Model for Class End-->
+
+
+    <!-- ***/ Pop Up Model for Group Creation -->
+    <div class="modal fade" id="GroupModal" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:40%; width: 700px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['url'=>'institution/create-group', 'method'=>'post']) !!}
+                    <div class="form-group row">
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Group Name*</label>
+                        <div class="col-9">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control" id="" required="required" aria-describedby="" placeholder="ex-2017-2019">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ***/ Pop Up Model for Groups End-->
+
 
     {{--Edit Session Model--}}
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -212,7 +255,7 @@
 @stop
 @section('script')
     <script>
-        $(document).on('click', '.edit_session', function () {
+        $(document).on('click', '.edit', function () {
             $("#edit").modal("show");
             var session_id = $(this).val();
             alert(session_id);

@@ -161,6 +161,12 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('class.group')}}" class="nav-link {{ isActive('institution/section') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Create Classes & Groups</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/classes') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Classes</p>
@@ -178,12 +184,7 @@
                             <p>Class Subjects</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.section')}}" class="nav-link {{ isActive('institution/section') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Section</p>
-                        </a>
-                    </li>
+
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">
                             <i class="far fa-circle nav-icon"></i>

@@ -69,17 +69,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>VIII</td>
-                                    <td>Eight</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                {{--@foreach($classes ?? '' as $class)
+                                    <tr>
+                                        <td>{{$class->class->name}}</td>
+                                    </tr>
+                                @endforeach--}}
                                 </tbody>
                             </table>
                         </div>
@@ -100,67 +94,104 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class Code*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
+                    @if(count($academic_classes)===0)
+                        <div class="alert alert-warning alert-dismissible" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Please, Create class first. Go to <a href="{{url('institution/class&groups')}}">Create Class</a></strong>
+                        </div>
+                    @endif
+
+                    {!! Form::open(['action'=>'InstitutionController@store_class', 'method'=>'post']) !!}
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Session*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control" name="session_id">
+                                    <option selected disabled="">Select Session</option>
+                                    @foreach($sessions ?? '' as $session)
+                                        <option value="{{$session->id}}">{{$session->year}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tuition Fee</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Groups</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="e.g.-Science,Business">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Sections</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="e.g. A,B,C..">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Admission Fee</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="Admission Fee">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Admission Form Fee </label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="Admission Form Fee">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div style="float: right">
-                        <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Class*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control" name="academic_class_id">
+                                    <option selected disabled>Select Class</option>
+                                    @foreach($academic_classes ?? '' as $class)
+                                        <option value="{{$class->id}}">{{$class->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Code</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="text" name="code" class="form-control" id=""  aria-describedby="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Group</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control" name="group_id">
+                                    <option selected disabled>Select Group</option>
+                                    @foreach($groups ?? '' as $group)
+                                        <option value="{{$group->id}}">{{$group->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Sections</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="text" name="section_name" class="form-control" id=""  aria-describedby="" placeholder="e.g. A,B,C..">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Tuition Fee</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="number" name="tuition_fee" class="form-control" id=""  aria-describedby="" placeholder="Admission Fee">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Admission Fee</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="number" name="admission_fee" class="form-control" id=""  aria-describedby="" placeholder="Admission Fee">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Admission Form Fee </label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="number" name="admission_form_fee" class="form-control" id=""  aria-describedby="" placeholder="Admission Form Fee">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                    </div>
+                    {!! Form::close() !!}
+
                 </div>
                 <div class="modal-footer"></div>
             </div>
