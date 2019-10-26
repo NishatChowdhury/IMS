@@ -87,7 +87,7 @@
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
                                             </a>
 
-                                            <a type="button" href="{{action('InstitutionController@delete_class', $class->id)}}"
+                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}"
                                                class="btn btn-danger btn-sm delete_session"
                                                style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
                                             </a>
@@ -121,7 +121,7 @@
                         </div>
                     @endif
 
-                    {!! Form::open(['action'=>'InstitutionController@store_class', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'institution/store-class', 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Session*</label>
                         <div class="col-sm-9">
@@ -317,7 +317,9 @@
                     </div>
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Update</button>
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus-circle"></i> Update
+                        </button>
                     </div>
                     {!! Form::close() !!}
 
@@ -337,15 +339,15 @@
 
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-session-class')}}",
+                url:"{{ url('institution/edit-SessionClass')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
                     console.log(response);
-                    $("#session_id").val(response.session_id).seleted;
-                    $("#academic_class_id").val(response.academic_class_id).seleted;
+                    $("#session_id").val(response.session_id);
+                    $("#academic_class_id").val(response.academic_class_id);
                     $("#code").val(response.code);
-                    $("#group_id").val(response.group_id).seleted;
+                    $("#group_id").val(response.group_id);
                     $("#section").val(response.section);
                     $("#tuition_fee").val(response.tuition_fee);
                     $("#admission_fee").val(response.admission_fee);

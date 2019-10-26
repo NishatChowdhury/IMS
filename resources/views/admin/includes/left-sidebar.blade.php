@@ -126,6 +126,12 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('basics')}}" class="nav-link {{ isActive('form/general') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Options </p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="#" class="nav-link {{ isActive('form/advance') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Optional Subject </p>

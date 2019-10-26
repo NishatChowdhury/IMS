@@ -7,6 +7,7 @@ use App\Group;
 use App\Section;
 use App\Session;
 use App\SessionClass;
+use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -123,7 +124,7 @@ class InstitutionController extends Controller
                 'academic_class_id' => $req->academic_class_id,
                 'code' => $req->code,
                 'group_id' => $req->group_id or null,
-                'section_name' => $req->section_name,
+                'section' => $req->section,
                 'tuition_fee' => $req->tuition_fee,
                 'admission_fee' => $req->admission_fee,
                 'admission_form_fee' => $req->admission_form_fee
@@ -132,7 +133,7 @@ class InstitutionController extends Controller
 
         $thisClass_id = SessionClass::query()->first()->id;
         $data = [
-            'section_name' => $req->section_name,
+            'section_name' => $req->section,
             'session_id' => $req->session_id,
             'class_id' => $thisClass_id,
             'group_id' => $req->group_id or null,
@@ -152,14 +153,45 @@ class InstitutionController extends Controller
         return redirect('institution/class')->with('success', 'Class has been Updated');
     }
 
+    public function delete_SessionClass($id){
+        $class = SessionClass::findOrFail($id);
+        $class->delete();
+        return redirect('institution/class')->with('success', 'Class has been Deleted');
+    }
+
+    /*Subjects Start*/
+    public function subjects()
+    {
+        $subjects = Subject::all();
+        return view ('admin.institution.subjects', compact('subjects'));
+    }
+
+    public function create_subject(Request $request){
+        Subject::create($request->all());
+        return redirect('institution/subject')->with('success', 'Subject Added Successfully');
+    }
+
+    public function edit_subject(Request $req){
+        $subject = Subject::findOrFail($req->id);
+        return $subject;
+    }
+
+    public function update_subject(Request $req){
+        $subject = Subject::findOrFail($req->id);
+        $subject->update($req->all());
+        return redirect('institution/subject')->with('success', 'Class has been Updated');
+    }
+
+    public function delete_subject($id){
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+        return redirect('institution/subject')->with('success', 'Class has been Deleted');
+    }
+    /*Subjects End*/
+
     public function classsubjects()
     {
         return view ('admin.institution.classsubjects');
-    }
-
-    public function subjects()
-    {
-        return view ('admin.institution.subjects');
     }
 
     public function profile()

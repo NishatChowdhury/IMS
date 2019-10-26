@@ -121,13 +121,18 @@ Route::post('institution/update-group', 'InstitutionController@update_group');
 Route::get('institution/{id}/delete-group', 'InstitutionController@delete_grp');
 
     //Session-Class
-
 Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
 Route::post('institution/store-class','InstitutionController@store_class');
-Route::post('institution/edit-session-class','InstitutionController@edit_SessionClass');
-Route::post('institution/update-session-class','InstitutionController@update_SessionClass');
+Route::post('institution/edit-SessionClass','InstitutionController@edit_SessionClass');
+Route::post('institution/update-SessionClass','InstitutionController@update_SessionClass');
+Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
+    //Subjects
+Route::get('institution/subject','InstitutionController@subjects')->name('institution.subjects');
+Route::post('institution/create-subject','InstitutionController@create_subject');
+Route::post('institution/edit-subject','InstitutionController@edit_subject');
+Route::post('institution/update-subject','InstitutionController@update_subject');
+Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
 
-Route::post('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 //End Institution Mgnt Route
@@ -152,6 +157,7 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 // smartrahat end
 
 //Students Route by babu
+Route::get('/create-BasicInfo','StudentController@basic')->name('basics');
 Route::get('/stu_list','StudentController@index')->name('student.list');
 Route::get('/stu_add','StudentController@create')->name('student.add');
     //@MKH
