@@ -19,7 +19,7 @@ class CreateSessionClassesTable extends Migration
             $table->unsignedBigInteger('academic_class_id');
             $table->string('code');
             $table->unsignedBigInteger('group_id')->nullable();
-            $table->string('section_name');
+            $table->string('section');
             $table->decimal('tuition_fee', 8,2)->nullable();
             $table->decimal('admission_fee', 8, 2)->nullable();
             $table->decimal('admission_form_fee', 8, 2)->nullable();

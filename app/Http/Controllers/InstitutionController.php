@@ -32,33 +32,86 @@ class InstitutionController extends Controller
                 'end' => $request->end,
                 'description' => $request->description,
             ];
-
         }*/
         Session::create($request->all());
         return redirect('institution/academicyear')->with('success', 'Academic year added successfully');
-
     }
-
 
     public function edit_session(Request $request){
-        $session = Session::find($request->session_id)->first();
+        $session = Session::findOrFail($request->session_id);
         return $session;
     }
+
     public function update_session(Request $request){
-        dd($request->all());
+        $session = Session::findOrFail($request->session_id);
+        $session->update($request->all());
+        return redirect('institution/academicyear')->with('success', 'Academic year Updated');
     }
 
     public function delete_session($id){
-         $session = Session::find($id)->first();
+         $session = Session::findOrFail($id);
          $session->delete();
          return redirect('institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
     }
+
+    public function class_group()
+    {
+        $classes = AcademicClass::all();
+        $groups = Group::all();
+        return view ('admin.institution.class-group', compact('classes', 'groups'));
+    }
+
+    public function create_class(Request $req){
+        AcademicClass::create($req->all());
+        return redirect('institution/class&groups')->with('success', 'Class added successfully');
+    }
+
+    public function edit_class(Request $req){
+        $class = AcademicClass::findorFail($req->class_id);
+        return $class;
+    }
+
+    public function update_class(Request $req){
+        $class = AcademicClass::findOrFail($req->id);
+        $class->update($req->all());
+        return redirect('institution/class&groups')->with('success', 'Class has been Updated');
+    }
+
+    public function delete_class($id){
+        $class= AcademicClass::findOrFail($id);
+        $class->delete();
+        return redirect('institution/class&groups')->with('success', 'Class deleted successfully');
+    }
+
+    public function create_group(Request $req){
+        Group::create($req->all());
+        return redirect('institution/class&groups')->with('success', 'Group added successfully');
+    }
+
+    public function edit_group(Request $req){
+        $data = Group::findorFail($req->id);
+        return $data;
+    }
+
+    public function update_group(Request $req){
+        $data = Group::findOrFail($req->group_id);
+        $info = ['name' => $req->group_name];
+        $data->update($info);
+        return redirect('institution/class&groups')->with('success', 'Group has been Updated');
+    }
+
+    public function delete_grp($id){
+        $group= Group::findOrFail($id)->first();
+        $group->delete();
+        return redirect('institution/class&groups')->with('success', 'Group deleted successfully');
+    }
+
     public function classes()
     {
         $sessions = Session::all();
         $academic_classes = AcademicClass::all();
         $groups = Group::all();
-        $classes = SessionClass::query()->first();
+        $classes = SessionClass::query()->get();
 
         return view ('admin.institution.classes', compact('sessions','academic_classes', 'classes', 'groups'));
     }
@@ -87,6 +140,18 @@ class InstitutionController extends Controller
         Section::create($data);
         return redirect('institution/class');
     }
+
+    public function edit_SessionClass(Request $req){
+        $class = SessionClass::findOrFail($req->id);
+        return $class;
+    }
+
+    public function update_SessionClass(Request $req){
+        $class = SessionClass::findOrFail($req->id);
+        $class->update($req->all());
+        return redirect('institution/class')->with('success', 'Class has been Updated');
+    }
+
     public function classsubjects()
     {
         return view ('admin.institution.classsubjects');
@@ -95,35 +160,6 @@ class InstitutionController extends Controller
     public function subjects()
     {
         return view ('admin.institution.subjects');
-    }
-
-    public function class_group()
-    {
-        $classes = AcademicClass::all();
-        $groups = Group::all();
-        return view ('admin.institution.class-group', compact('classes', 'groups'));
-    }
-
-    public function create_class(Request $req){
-        AcademicClass::create($req->all());
-        return redirect('institution/class&groups')->with('success', 'Class added successfully');
-    }
-
-    public function delete_class($id){
-        $class= AcademicClass::findOrFail($id)->first();
-        $class->delete();
-        return redirect('institution/class&groups')->with('success', 'Group deleted successfully');
-    }
-
-    public function create_group(Request $req){
-        Group::create($req->all());
-        return redirect('institution/class&groups')->with('success', 'Group added successfully');
-    }
-
-    public function delete_grp($id){
-        $group= Group::findOrFail($id)->first();
-        $group->delete();
-        return redirect('institution/class&groups')->with('success', 'Group deleted successfully');
     }
 
     public function profile()

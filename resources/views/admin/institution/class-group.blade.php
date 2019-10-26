@@ -71,9 +71,13 @@
                                     <td>{{$class->name}}</td>
                                     <td class="text-center">{{$class->numeric_class}}</td>
                                     <td>
+                                        <a type="button" class="btn btn-info btn-sm edit_class" value='{{$class->id}}'
+                                           style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
+                                        </a>
+
                                         <a type="button" href="{{action('InstitutionController@delete_class',$class->id)}}"
                                            class="btn btn-danger btn-sm"
-                                           style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
+                                           style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
                                     </td>
                                 </tr>
@@ -101,6 +105,9 @@
                                 <tr>
                                     <td>{{$group->name}}</td>
                                     <td>
+                                        <a type="button" class="btn btn-info btn-sm edit_group" value='{{$group->id}}'
+                                           style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
+                                        </a>
                                         <a type="button" href="{{action('InstitutionController@delete_grp',$group->id)}}"
                                            class="btn btn-danger btn-sm delete_grp"
                                            style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
@@ -191,59 +198,39 @@
     <!-- ***/ Pop Up Model for Groups End-->
 
 
-    {{--Edit Session Model--}}
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{--Edit Class Model--}}
+    <div class="modal fade" id="edit_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content" style="width: 900px !important; padding: 0px 100px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Academic Year</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Class</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/update-session', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'institution/update-class', 'method'=>'post']) !!}
+                    {!! Form::hidden('id', null, ['id' => 'class_id']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Year*</label>
-                        <div class="col-sm-10">
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <div class="col-9">
                             <div class="input-group">
-                                <input type="text" name="year" class="form-control" id="year" aria-describedby="" placeholder="ex-2017-2019">
+                                <input type="text" name="name" class="form-control" id="class_name" aria-describedby="" placeholder="ex-2017-2019">
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
-                        <div class="col-sm-10">
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right"> Numerical Class Name</label>
+                        <div class="col-9">
                             <div class="input-group">
-                                <input type="date" name="start" class="form-control" id="start" aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="date" name="end" class="form-control" id="end" aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right"> Description</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <textarea name="description" class="form-control" rows="3" id="description"> </textarea>
+                                <input type="number" name="numeric_class" class="form-control" id="numeric_class" aria-describedby="" placeholder="ex-2017-2019">
                             </div>
                         </div>
                     </div>
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Update</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -251,25 +238,77 @@
             </div>
         </div>
     </div>
-    {{--Edit Session Model--}}
+    {{--Edit Class Model--}}
+
+    <!-- ***/ Pop Up Model for Edit Group -->
+    <div class="modal fade" id="edit_group" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:40%; width: 700px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['url'=>'institution/update-group', 'method'=>'post']) !!}
+                    {!! Form::hidden('group_id', null, ['id'=>'group_id']) !!}
+                    <div class="form-group row">
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Group Name*</label>
+                        <div class="col-9">
+                            <div class="input-group">
+                                <input type="text" name="group_name" class="form-control" id="group_name" required="required" aria-describedby="" placeholder="ex-2017-2019">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i>Update</button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ***/ Pop Up Model for Edit Groups End-->
+
+
 @stop
 @section('script')
     <script>
-        $(document).on('click', '.edit', function () {
-            $("#edit").modal("show");
-            var session_id = $(this).val();
-            alert(session_id);
+        $(document).on('click', '.edit_class', function () {
+            $("#edit_class").modal("show");
+            var class_id = $(this).attr('value');
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-session')}}",
-                data:{session_id:session_id,"_token":"{{ csrf_token() }}"},
+                url:"{{ url('institution/edit-class')}}",
+                data:{class_id:class_id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
                     console.log(response);
-                    $("#year").val(response.year);
-                    $("#start").val(response.start);
-                    $("#end").val(response.end);
-                    $("#description").val(response.description);
+                    $("#class_id").val(response.id);
+                    $("#class_name").val(response.name);
+                    $("#numeric_class").val(response.numeric_class);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        });
+
+        $(document).on('click', '.edit_group', function () {
+            $("#edit_group").modal("show");
+            var id = $(this).attr('value');
+            $.ajax({
+                method:"post",
+                url:"{{ url('institution/edit-group')}}",
+                data:{id:id,"_token":"{{ csrf_token() }}"},
+                dataType:"json",
+                success:function(response){
+                    console.log(response);
+                    $("#group_id").val(response.id);
+                    $("#group_name").val(response.name);
                 },
                 error:function(err){
                     console.log(err);

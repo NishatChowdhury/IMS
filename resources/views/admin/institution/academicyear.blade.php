@@ -66,9 +66,9 @@
                                         <td>{{$session->end}}</td>
                                         <td>{{$session->description}}</td>
                                         <td>
-                                            {{--<a type="button" class="btn btn-info btn-sm edit_session" value='{{$session->id}}'
+                                            <a type="button" class="btn btn-info btn-sm edit_session" value='{{$session->id}}'
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
-                                            </a>--}}
+                                            </a>
 
                                             <a type="button" href="{{action('InstitutionController@delete_session', $session->id)}}"
                                                class="btn btn-danger btn-sm delete_session"
@@ -160,6 +160,7 @@
                 </div>
                 <div class="modal-body">
                     {!! Form::open(['url'=>'institution/update-session', 'method'=>'post']) !!}
+                    {!! Form::hidden('session_id', null,['id'=>'session_id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Year*</label>
                         <div class="col-sm-10">
@@ -191,7 +192,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right"> Description</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Description</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <textarea name="description" class="form-control" rows="3" id="description"> </textarea>
@@ -200,7 +201,7 @@
                     </div>
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Update </button>
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -214,8 +215,8 @@
     <script>
         $(document).on('click', '.edit_session', function () {
             $("#edit").modal("show");
-            var session_id = $(this).val();
-            alert(session_id);
+            var session_id = $(this).attr('value');
+
             $.ajax({
                 method:"post",
                 url:"{{ url('institution/edit-session')}}",
@@ -223,6 +224,7 @@
                 dataType:"json",
                 success:function(response){
                     console.log(response);
+                    $("#session_id").val(response.id);
                     $("#year").val(response.year);
                     $("#start").val(response.start);
                     $("#end").val(response.end);
