@@ -40,47 +40,31 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Friendly Name</th>
-                                    <th>Title </th>
-                                    <th>Short Descriptions</th>
-                                    <th>Type</th>
-                                    <th>Start Date</th>
-                                    <th>End date</th>
-                                    <th>Tag</th>
+                                    <th>ID</th>
+                                    <th>Name </th>
+                                    <th>Category</th>
+                                    <th>Images</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th>Principle</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>President</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Landing Page Gallery</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($albums as $album)
+                                    <tr>
+                                        <th>{{ $album->id }}</th>
+                                        <td>{{ $album->name }}</td>
+                                        <td>
+                                            @if($album->category)
+                                                {{ $album->category->name }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $album->images->count() }} Image(s)</td>
+                                        <td>
+                                            {{ Form::open(['action'=>['AlbumController@destroy',$album->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -138,4 +122,13 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+@stop
+
+@section('script')
+    <script>
+        function confirmDelete(){
+            var x = confirm('Are you sure you want to delete this album? All images in this album will also be deleted!!!');
+            return !!x;
+        }
+    </script>
 @stop

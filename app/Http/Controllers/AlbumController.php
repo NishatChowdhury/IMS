@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\Repository\GalleryRepositories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AlbumController extends Controller
 {
@@ -21,13 +22,21 @@ class AlbumController extends Controller
 
     public function index()
     {
+        $albums = Album::all();
         $repository = $this->repositories;
-        return view('admin.settings.album',compact('repository'));
+        return view('admin.gallery.album',compact('albums','repository'));
     }
 
     public function store(Request $request)
     {
         Album::query()->create($request->all());
-        return redirect('settings/albums');
+        return redirect('gallery/albums');
+    }
+
+    public function destroy($id)
+    {
+        $album = Album::query()->findOrFail($id);
+        $album->delete();
+        return redirect('gallery/albums');
     }
 }

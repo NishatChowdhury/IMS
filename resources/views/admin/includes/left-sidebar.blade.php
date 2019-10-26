@@ -402,24 +402,6 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('GalleryController@index') }}" class="nav-link {{ isActive('settings/image') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Image Mgmt</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('GalleryCategoryController@index') }}" class="nav-link {{ isActive('settings/gallery/category') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Image Category</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('AlbumController@index') }}" class="nav-link {{ isActive('settings/albums') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Image Album</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
@@ -433,6 +415,36 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item has-treeview {{ isActive(['gallery*']) }}">
+                <a href="#" class="nav-link {{ isActive(['gallery*']) }}">
+                    <i class="fas fa-camera-retro"></i>
+                    <p>
+                        Gallery
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('GalleryController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Image Mgmt</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('GalleryCategoryController@index') }}" class="nav-link {{ isActive('gallery/category') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Image Category</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('AlbumController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Image Album</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
             @cannot('cms')
             <li class="nav-item">

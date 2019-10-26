@@ -14,12 +14,20 @@ class GalleryCategoryController extends Controller
 
     public function index()
     {
-        return view('admin.settings.category');
+        $categories = GalleryCategory::all();
+        return view('admin.gallery.category',compact('categories'));
     }
 
     public function store(Request $request)
     {
         GalleryCategory::query()->create($request->all());
-        return redirect('settings/gallery/category');
+        return redirect('gallery/category');
+    }
+
+    public function destroy($id)
+    {
+        $category = GalleryCategory::query()->findOrFail($id);
+        $category->delete();
+        return redirect('gallery/category');
     }
 }
