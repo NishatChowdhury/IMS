@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Religion extends Model
+class GalleryCategory extends Model
 {
     protected $fillable = ['name'];
 }

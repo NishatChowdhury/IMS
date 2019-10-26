@@ -43,7 +43,8 @@
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Content*</label>
 {{--                                <textarea name="content" id="txtEditor">{{ $page->content }}</textarea>--}}
-                                {{ Form::textarea('content',null,['id'=>'editor1']) }}
+                                <span class="col-md-12"></span>
+                                {{ Form::textarea('content',null,['id'=>'editor1','class'=>'form-control']) }}
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>
@@ -89,7 +90,8 @@
 @section('plugin')
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
-    <script src= "{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
+    {{--<script src= "{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>--}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 @stop
 
 @section('script')
@@ -101,23 +103,38 @@
         //     $("#content").Editor();
         // });
 
-        $(function () {
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            ClassicEditor
-                .create(document.querySelector('#editor1'))
-                .then(function (editor) {
-                    // The editor instance
-                })
-                .catch(function (error) {
-                    console.error(error)
-                });
-
-            // bootstrap WYSIHTML5 - text editor
-
-            $('.textarea').wysihtml5({
-                toolbar: { fa: true }
-            })
-        })
+        // $(function () {
+        //     // Replace the <textarea id="editor1"> with a CKEditor
+        //     // instance, using default configuration.
+        //     ClassicEditor
+        //         .create(document.querySelector('#editor1'))
+        //         .then(function (editor) {
+        //             // The editor instance
+        //         })
+        //         .catch(function (error) {
+        //             console.error(error)
+        //         });
+        //
+        //     // bootstrap WYSIHTML5 - text editor
+        //
+        //     $('.textarea').wysihtml5({
+        //         toolbar: { fa: true }
+        //     })
+        // })
+    </script>
+    <script>
+        // import Image from '@ckeditor/ckeditor5-image/src/image';
+        // import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+        // import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
+        // import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
+        // import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+        ClassicEditor
+            .create( document.querySelector( '#editor1' ))
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 @stop

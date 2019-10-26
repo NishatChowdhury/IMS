@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Settings | Image')
+@section('title','Settings | Album')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Image</h1>
+                    <h1>Album</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -102,95 +102,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{--<form>--}}
-                    {{ Form::open(['action'=>'GalleryController@store','method'=>'post','files'=>true]) }}
+                    {{ Form::open(['action'=>'AlbumController@store','method'=>'post']) }}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Friendly Name</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control" id=""  aria-describedby="">
+                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+                                {{ Form::select('gallery_category_id',$repository->categories(),null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Album Title</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="title" class="form-control" id=""  aria-describedby="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <textarea type="text" name="description" class="form-control" rows="5" id=""> </textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <select name="type_id" id="inputState" class="form-control" style="height: 35px !important;">
-                                    <option selected>Select...</option>
-                                    <option value="1">...</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Album</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{--<select id="inputState" class="form-control" style="height: 35px !important;">--}}
-                                {{--<option selected>Select...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--</select>--}}
-                                {{ Form::select('album_id',$repository->albums(),null,['class'=>'form-control','id'=>'inputState']) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="start" id=""  aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" name="end" class="form-control" id=""  aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tag</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" name="tags" class="form-control" id=""  aria-describedby="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>
-                        <div class="col-sm-10">
-                            <div class="form-group files color">
-                                <input type="file" name="image" class="form-control" multiple="">
+                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+                                {{ Form::text('name',null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
@@ -198,7 +125,6 @@
                         <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
                     {{ Form::close() }}
-                    {{--</form>--}}
 
                 </div>
                 <div class="modal-footer"></div>

@@ -74,10 +74,19 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
 //Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
-Route::get('settings/image','SettingsController@image')->name('settings.image');
+Route::get('settings/image','GalleryController@index')->name('settings.image');
+Route::post('settings/image/store','GalleryController@store');
 //Route::get('settings/slider','SettingsController@slider')->name('settings.slider');
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
+
+// Gallery Routes start
+Route::get('settings/gallery/category','GalleryCategoryController@index');
+Route::post('settings/gallery/category/store','GalleryCategoryController@store');
+
+Route::get('settings/albums','AlbumController@index');
+Route::post('settings/album/store','AlbumController@store');
+// Gallery Routes ends
 
 //Staff Route by Rimon
 Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');

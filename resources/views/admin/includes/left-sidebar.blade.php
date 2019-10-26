@@ -402,9 +402,21 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('settings.image')}}" class="nav-link {{ isActive('settings/image') }}">
+                        <a href="{{ action('GalleryController@index') }}" class="nav-link {{ isActive('settings/image') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Image Mgmt</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('GalleryCategoryController@index') }}" class="nav-link {{ isActive('settings/gallery/category') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Image Category</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('AlbumController@index') }}" class="nav-link {{ isActive('settings/albums') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Image Album</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
