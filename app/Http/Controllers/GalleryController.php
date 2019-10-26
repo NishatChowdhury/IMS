@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Gallery;
 use App\Repository\GalleryRepositories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class GalleryController extends Controller
 {
@@ -21,8 +22,9 @@ class GalleryController extends Controller
 
     public function index()
     {
+        $images = Gallery::all();
         $repository = $this->repositories;
-        return view('admin.settings.image',compact('repository'));
+        return view('admin.gallery.image',compact('images','repository'));
     }
 
     public function store(Request $request)
@@ -36,6 +38,14 @@ class GalleryController extends Controller
         }else{
             Gallery::query()->create($request->all());
         }
-        return redirect('settings/image');
+        return redirect('gallery/image');
+    }
+
+    public function destroy($id)
+    {
+        $image = Gallery::query()->findOrFail($id);
+        File::delete('assets/img/gallery/'.$image->album_id.'/'.$image->image);
+        $image->delete();
+        return redirect('gallery/image');
     }
 }

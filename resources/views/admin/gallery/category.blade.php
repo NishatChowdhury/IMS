@@ -40,47 +40,27 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Friendly Name</th>
-                                    <th>Title </th>
-                                    <th>Short Descriptions</th>
-                                    <th>Type</th>
-                                    <th>Start Date</th>
-                                    <th>End date</th>
-                                    <th>Tag</th>
+                                    <th>ID</th>
+                                    <th>Name </th>
+                                    <th>Album</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($categories as $category)
                                 <tr>
-                                    <th>Principle</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <th>{{ $category->id }}</th>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->albums->count() }} Album(s)</td>
+                                    <td>{{ $category->images->count() }} Image(s)</td>
+                                    <td>
+                                        {{ Form::open(['action'=>['GalleryCategoryController@destroy',$category->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        {{ Form::close() }}
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th>President</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Landing Page Gallery</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -128,4 +108,13 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+@stop
+
+@section('script')
+    <script>
+        function confirmDelete(){
+            var x = confirm('Are you sure you want to delete this category? All albums and images in this category will also be deleted!!!');
+            return !!x;
+        }
+    </script>
 @stop

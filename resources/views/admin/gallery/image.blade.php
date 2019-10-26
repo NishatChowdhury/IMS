@@ -40,47 +40,47 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Friendly Name</th>
-                                    <th>Title </th>
-                                    <th>Short Descriptions</th>
-                                    <th>Type</th>
+                                    <th>ID</th>
+                                    <th>Name </th>
+                                    <th>Album</th>
+                                    <th>Category</th>
                                     <th>Start Date</th>
                                     <th>End date</th>
                                     <th>Tag</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th>Principle</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>President</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Landing Page Gallery</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($images as $image)
+                                    <tr>
+                                        <th>{{ $image->id }}</th>
+                                        <td>{{ $image->name }}</td>
+                                        <td>
+                                            @if($image->album)
+                                                {{ $image->album->name }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($image->album)
+                                                @if($image->album->category)
+                                                    {{ $image->album->category->name }}
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td>{{ $image->start }}</td>
+                                        <td>{{ $image->end }}</td>
+                                        <td>{{ $image->tags }}</td>
+                                        <td>
+                                            <img src="{{ asset('assets/img/gallery') }}/{{ $image->album ? $image->album->id : '' }}/{{ $image->image }}" alt="{{ $image->title }}" width="75">
+                                        </td>
+                                        <td>
+                                            {{ Form::open(['action'=>['GalleryController@destroy',$image->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -212,4 +212,13 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+@stop
+
+@section('script')
+    <script>
+        function confirmDelete(){
+            var x = confirm('Are you sure you want delete this image?');
+            return !!x;
+        }
+    </script>
 @stop
