@@ -154,11 +154,24 @@ class FrontController extends Controller
         $notices = Notice::query()->get();
         return view('front.pages.notice',compact('notices'));
     }
+    public function noticedetails()
+    {
+        $notices = Notice::query()->get();
+        return view('front.pages.notice-details',compact('noticedetails'));
+    }
+
     public function news()
     {
         $content = Page::query()->where('name','introduction')->first();
         return view('front.pages.news',compact('content'));
     }
+
+    public function newsdetails()
+    {
+        $notices = Notice::query()->get();
+        return view('front.pages.news-details',compact('newsdetails'));
+    }
+
 //News & Notice END...
 
 //Gallery

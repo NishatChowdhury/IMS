@@ -54,7 +54,9 @@ Route::get('/teacher-attendance','FrontController@teacher_attendance');
 
     //News & Notice
 Route::get('/notice','FrontController@notice');
+Route::get('/notice-details','FrontController@noticedetails');
 Route::get('/news','FrontController@news');
+Route::get('/news-details','FrontController@newsdetails');
 
     //Gallery
 Route::get('/gallery','FrontController@gallery');
