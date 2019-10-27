@@ -33,7 +33,7 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;" disabled="disabled"> <i class="fas fa-plus-circle"></i> New</button>
                                 </div>
                             </div>
                         </div>
@@ -42,33 +42,21 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Short Description</th>
-                                    <th>Start Date</th>
-                                    <th>End Date </th>
-                                    <th>Category</th>
-                                    <th>Type</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Total Notice</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($notices as $notice)
+                                @foreach($types as $type)
                                     <tr>
-                                        <td>{{ $notice->title }}</td>
-                                        <td>{{ substr(strip_tags($notice->description),0,99) }}</td>
-                                        <td>{{ $notice->start->format('Y-m-d') }}</td>
-                                        <td>{{ $notice->end->format('Y-m-d') }}</td>
+                                        <td>{{ $type->id }}</td>
+                                        <td>{{ $type->name }}</td>
+                                        <td>{{ $type->notices->count() }}</td>
                                         <td>
-                                            @if($notice->category)
-                                                {{ $notice->category->name }}
-                                            @endif
+                                            {{--<a href="{{ action('NoticeTypeController@edit',$type->id) }}" class="btn btn-warning btn-sm btn-disabled"><i class="fas fa-edit"></i></a>--}}
                                         </td>
-                                        <td>
-                                            @if($notice->type)
-                                                {{ $notice->type->name }}
-                                            @endif
-                                        </td>
-                                        <td><a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -106,30 +94,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'NoticeController@store','method'=>'post','files'=>true]) }}
+                    {{ Form::open(['action'=>'NoticeController@store','method'=>'post']) }}
                     {{--<form>--}}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{ Form::select('type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category*</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{ Form::select('notice_category_id',$repository->categories(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title*</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::text('title',null,['class'=>'form-control']) }}
+                                {{ Form::text('name',null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
@@ -139,38 +111,6 @@
                             <div class="input-group">
                                 {{--<textarea type="text" class="form-control" rows="5" id=""> </textarea>--}}
                                 {{ Form::textarea('description',null,['class'=>'form-control','row'=>5]) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{--<input type="text" class="form-control" id=""  aria-describedby="" >--}}
-                                {{ Form::text('start',null,['class'=>'form-control']) }}
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{--<input type="text" class="form-control" id=""  aria-describedby="" >--}}
-                                {{ Form::text('end',null,['class'=>'form-control']) }}
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Notice file*</label>
-                        <div class="col-sm-10">
-                            <div class="form-group files color">
-                                <input type="file" class="form-control" multiple="">
                             </div>
                         </div>
                     </div>
@@ -188,8 +128,3 @@
     <!-- /Pop Up Model for button End***-->
 @stop
 <!-- /Notices page inner Content End***-->
-
-<!-- *** External CSS File-->
-@section('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
-@stop

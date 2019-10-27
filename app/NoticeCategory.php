@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NoticeType extends Model
+class NoticeCategory extends Model
 {
     protected $fillable = ['name','description'];
 

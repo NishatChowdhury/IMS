@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Notice;
+use App\NoticeCategory;
 use App\Page;
 use App\Slider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -151,25 +153,39 @@ class FrontController extends Controller
 //News & Notice Start...
     public function notice()
     {
-        $notices = Notice::query()->get();
-        return view('front.pages.notice',compact('notices'));
+        $notices = Notice::query()
+            ->where('notice_type_id',1)
+            ->where('start','<',Carbon::today())
+            ->where('end','>',Carbon::today())
+            ->orderByDesc('start')
+            ->paginate(5);
+        $categories = NoticeCategory::all();
+        return view('front.pages.notice',compact('notices','categories'));
     }
-    public function noticedetails()
+    public function noticeDetails($id)
     {
-        $notices = Notice::query()->get();
-        return view('front.pages.notice-details',compact('noticedetails'));
+        $notice = Notice::query()->findOrFail($id);
+        $categories = NoticeCategory::all();
+        return view('front.pages.notice-details',compact('notice','categories'));
     }
 
     public function news()
     {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.news',compact('content'));
+        $newses = Notice::query()
+            ->where('notice_type_id',2)
+            ->where('start','<',Carbon::today())
+            ->where('end','>',Carbon::today())
+            ->orderByDesc('start')
+            ->paginate(5);
+        $categories = NoticeCategory::all();
+        return view('front.pages.news',compact('newses','categories'));
     }
 
-    public function newsdetails()
+    public function newsDetails($id)
     {
-        $notices = Notice::query()->get();
-        return view('front.pages.news-details',compact('newsdetails'));
+        $news = Notice::query()->findOrFail($id);
+        $categories = NoticeCategory::all();
+        return view('front.pages.news-details',compact('news','categories'));
     }
 
 //News & Notice END...

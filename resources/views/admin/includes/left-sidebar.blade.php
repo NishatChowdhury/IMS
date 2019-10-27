@@ -380,8 +380,8 @@
                 </ul>
             </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','notice*','slider*']) }}">
-                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','notice*','slider*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*']) }}">
+                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
                         Settings
@@ -395,12 +395,12 @@
                             <p>Site Basic Info </p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Notice Management </p>
-                        </a>
-                    </li>
+                    {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                        {{--<a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">--}}
+                            {{--<i class="far fa-circle nav-icon"></i>--}}
+                            {{--<p>Notice Management </p>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
                             <i class="far fa-circle nav-icon"></i>
@@ -411,6 +411,35 @@
                         <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Slider</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview {{ isActive(['notice*']) }}">
+                <a href="#" class="nav-link {{ isActive(['notice*']) }}">
+                    <i class="fas fa-bullhorn"></i>
+                    <p>
+                        Notice
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Notice Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('NoticeCategoryController@index') }}" class="nav-link {{ isActive('notice/category') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Notice Category</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Notice Type</p>
                         </a>
                     </li>
                 </ul>

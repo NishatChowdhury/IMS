@@ -54,9 +54,9 @@ Route::get('/teacher-attendance','FrontController@teacher_attendance');
 
     //News & Notice
 Route::get('/notice','FrontController@notice');
-Route::get('/notice-details','FrontController@noticedetails');
+Route::get('/notice-details/{id}','FrontController@noticeDetails');
 Route::get('/news','FrontController@news');
-Route::get('/news-details','FrontController@newsdetails');
+Route::get('/news-details/{id}','FrontController@newsDetails');
 
     //Gallery
 Route::get('/gallery','FrontController@gallery');
@@ -150,6 +150,14 @@ Route::patch('pages/{id}/update','PageController@update');
 Route::get('notices','NoticeController@index');
 Route::post('notice/store','NoticeController@store');
 Route::get('notice/edit/{id}','NoticeController@edit');
+
+Route::get('notice/category','NoticeCategoryController@index');
+Route::post('notice/category/store','NoticeCategoryController@store');
+Route::get('notice/category/edit/{id}','NoticeCategoryController@edit');
+
+Route::get('notice/type','NoticeTypeController@index');
+Route::post('notice/type/store','NoticeTypeController@store');
+Route::get('notice/type/edit/{id}','NoticeTypeController@edit');
 
 Route::get('sliders','SliderController@index');
 Route::post('slider/store','SliderController@store');
