@@ -178,12 +178,12 @@
                 </div>
                 <div class="modal-body">
                     {!! Form::open(['action'=>'InstitutionController@update_subject', 'method'=>'post']) !!}
-                    {!! Form::hidden('id', null, ['id'=> 'id']) !!}
+                    {!! Form::hidden('id', null, ['id'=> 'sub_id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Code</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="code" class="form-control" id="code"  aria-describedby="">
+                                <input type="text" name="code" class="form-control" id="sub_code"  aria-describedby="">
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control" id="name"  aria-describedby="" required>
+                                <input type="text" name="name" class="form-control" id="sub_name"  aria-describedby="" required>
                             </div>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Short Name</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="short_name" class="form-control" id="short_name"  aria-describedby="">
+                                <input type="text" name="short_name" class="form-control" id="sub_short_name"  aria-describedby="">
                             </div>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Level</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="level" class="form-control" id="level"  aria-describedby="" placeholder="Eg. Primary/Common...">
+                                <input type="text" name="level" class="form-control" id="sub_level"  aria-describedby="" placeholder="Eg. Primary/Common...">
                             </div>
                         </div>
                     </div>
@@ -216,25 +216,13 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tuition Fee</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="credit_fee" class="form-control" id="credit_fee"  aria-describedby="">
+                                <input type="text" name="credit_fee" class="form-control" id="sub_credit_fee"  aria-describedby="">
                             </div>
                         </div>
                     </div>
-                    {{--<div class="form-group row">
-                        <div class="col-sm-4">
-                            <div style="margin-left: 170px;">
-                                <div class="input-group">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                </div>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Is Split
-                                </label>
-                            </div>
-                        </div>
-                    </div>--}}
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i>Add</button>
+                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i>Update</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -257,13 +245,14 @@
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
+
                     console.log(response);
-                    $("#id").val(response.id);
-                    $("#name").val(response.name);
-                    $("#code").val(response.code);
-                    $("#short_name").val(response.short_name);
-                    $("#level").val(response.level);
-                    $("#credit_fee").val(response.credit_fee);
+                    $("#sub_id").val(response.id);
+                    $("#sub_name").val(response.name);
+                    $("#sub_code").val(response.code);
+                    $("#sub_short_name").val(response.short_name);
+                    $("#sub_level").val(response.level);
+                    $("#sub_credit_fee").val(response.credit_fee);
 
                 },
                 error:function(err){

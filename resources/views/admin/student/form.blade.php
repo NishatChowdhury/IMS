@@ -30,13 +30,13 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('academicYear', 'Academic Year',['class'=>'control-label' ]) }}
-                        {{ Form::select('session_id', ['1' => '2019', '2' => '2020'], null, ['placeholder' => 'Select Academic year...','class'=>'form-control']) }}
+                        {{ Form::select('session_id', $sessions, null, ['placeholder' => 'Select Academic year...','class'=>'form-control session']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{Form::label('className','Class',['class'=>'control-label'])}}
-                        {{ Form::select('class_id', ['1' => 'Class 5', '6' => 'Class 6'], null, ['placeholder' => 'Select Class Name...','class'=>'form-control']) }}
+                        {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
                     </div>
                 </div>
             </div>
@@ -45,13 +45,16 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('sectionId','Section',['class'=>'control-label']) }}
-                        {{ Form::select('section_id', ['1' => 'Section A', '2' => 'Sec B'], null, ['placeholder' => 'Select Section...','class'=>'form-control']) }}
+                        <select name="secton_id" class="section form-control col-md-12">
+
+                        </select>
+                        {{--{{ Form::select('section_id', $sections, null, ['placeholder' => 'Select Section...','class'=>'form-control section']) }}--}}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('group','Group',['class'=>'control-label']) }}
-                        {{ Form::select('group_id', ['1' => 'Science', '2' => 'Arts'], null, ['placeholder' => 'Select Section...','class'=>'form-control']) }}
+                        {{ Form::select('group_id', $groups, null, ['placeholder' => 'Select Section...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -81,7 +84,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('gender','Gender',['class'=>'control-label']) }}
-                        {{ Form::select('gender', ['Male' => 'Male', 'Female' => 'Female','Third Gender'=>'Third Gender'], null, ['placeholder' => 'Select Gender...','class'=>'form-control']) }}
+                        {{ Form::select('gender', $genders, null, ['placeholder' => 'Select Gender...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -103,13 +106,13 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('bloodGroup','Blood Group',['class'=>'control-label']) }}
-                        {{ Form::select('blood_group_id', ['1' => 'A+', '2' => 'A-','3'=>'B+'], null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
+                        {{ Form::select('blood_group_id', $blood_groups, null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('religion','Religion',['class'=>'control-label']) }}
-                        {{ Form::select('religion_id', ['1' => 'Islam', '2' => 'Hindu','3'=>'Buddies'], null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
+                        {{ Form::select('religion_id', $religions, null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -134,7 +137,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('division','Division',['class'=>'control-label']) }}
-                        {{ Form::select('division_id', ['1' => 'Cox\'s Bazar', '2' => 'Chittagon','3'=>'dhaka'], null, ['placeholder' => 'Select Division...','class'=>'form-control']) }}
+                        {{ Form::select('division_id', $divisions, null, ['placeholder' => 'Select Division...','class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -149,13 +152,13 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('country','Country',['class'=>'control-label']) }}
-                        {{ Form::select('country_id', ['1' => 'Bangladesh', '2' => 'Pakistan','3'=>'Japan'], null, ['placeholder' => 'Select Country...','class'=>'form-control']) }}
+                        {{ Form::select('country_id', $countries, null, ['placeholder' => 'Select Country...','class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('state','State',['class'=>'control-label']) }}
-                        {{ Form::select('state_id', ['1' => 'Noakhali', '2' => 'Patya','3'=>'Gopalghanj'], null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
+                        {{ Form::text('state', null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -191,8 +194,8 @@
 
             <div class="form-group">
                 {{ Form::label('status','Status',['class'=>'control-label']) }}<br>
-                {{ Form::radio('status','0',['class'=>'form-control', false]) }} Inactive
-                {{ Form::radio('status','1',['class'=>'form-control', true]) }} Active
+                {{ Form::radio('status', 0, ['class'=>'form-control', false]) }} Inactive
+                {{ Form::radio('status', 1, ['class'=>'form-control', true]) }} Active
             </div>
         </div>
         <!-- /.card-body -->
@@ -202,4 +205,3 @@
         </div>
     </div>
 </div>
-

@@ -40,7 +40,31 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+@stop
+@section('script')
+    <script>
+        $(document).on('change', '.class', function () {
+            var id = $(this).val();
+            var session_id = $('.session').val();
 
+            $.ajax({
+                url: '{{url("get-sectionByclass")}}',
+                type: 'post',
+                data: {id:id, session_id:session_id, _token:'{{csrf_token()}}'},
 
+                success: function(data) {
+                    console.log(data);
+                    if (data.length > 0) {
+                        var $selectSection = $('.section');
+                        var html = '<option disabled selected> Select Section</option>';
+                        $.each(data, function (idx, item) {
+                            html += '<option value="' + item.id + '">' + item.section_name + '</option>';
+                        });
 
+                        $selectSection.html(html);
+                    }
+                }
+            });
+        })
+    </script>
 @stop

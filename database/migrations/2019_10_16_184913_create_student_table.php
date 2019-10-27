@@ -24,7 +24,7 @@ class CreateStudentTable extends Migration
             $table->integer('rank')->unsigned()->nullable();
             $table->string('father');
             $table->string('mother');
-            $table->string('gender');
+            $table->integer('gender')->unsigned();
             $table->string('mobile')->nullable();
             $table->string('dob')->nullable();
             $table->integer('blood_group_id')->unsigned()->nullable();
@@ -34,13 +34,13 @@ class CreateStudentTable extends Migration
             $table->string('area')->nullable();
             $table->string('zip')->nullable();
             $table->integer('division_id')->unsigned()->nullable();
-            $table->integer('state_id')->unsigned()->nullable();
+            $table->integer('state')->nullable();
             $table->integer('country_id')->unsigned();
             $table->string('email')->nullable();
             $table->string('father_mobile')->nullable();
             $table->string('mother_mobile')->nullable();
             $table->integer('notification_type_id')->unsigned()->nullable();
-            $table->string('status');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

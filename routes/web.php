@@ -157,7 +157,6 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 // smartrahat end
 
 //Students Route by babu
-Route::get('/create-BasicInfo','StudentController@basic')->name('basics');
 Route::get('/stu_list','StudentController@index')->name('student.list');
 Route::get('/stu_add','StudentController@create')->name('student.add');
     //@MKH
@@ -169,6 +168,8 @@ Route::get('migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
+
+Route::post('get-sectionByclass', 'StudentController@get_section');
 
 Route::get('reboot',function(){
     Artisan::call('config:cache');

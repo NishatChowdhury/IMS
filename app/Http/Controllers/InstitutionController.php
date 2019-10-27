@@ -128,10 +128,11 @@ class InstitutionController extends Controller
                 'tuition_fee' => $req->tuition_fee,
                 'admission_fee' => $req->admission_fee,
                 'admission_form_fee' => $req->admission_form_fee
-        ];
+            ];
         SessionClass::create($add_class);
 
-        $thisClass_id = SessionClass::query()->first()->id;
+        $thisClass_id = SessionClass::query()->orderBy('id', 'desc')->first()->id;
+
         $data = [
             'section_name' => $req->section,
             'session_id' => $req->session_id,
@@ -150,7 +151,7 @@ class InstitutionController extends Controller
     public function update_SessionClass(Request $req){
         $class = SessionClass::findOrFail($req->id);
         $class->update($req->all());
-        return redirect('institution/class')->with('success', 'Class has been Updated');
+        return redirect(route('institution.classes'))->with('success', 'Class has been Updated');
     }
 
     public function delete_SessionClass($id){

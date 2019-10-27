@@ -80,7 +80,7 @@
                                         <td>{{$class->section}}</td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
+                                        <td>{{$class->tuition_fee}}</td>
                                         <td></td>
                                         <td>
                                             <a type="button" class="btn btn-info btn-sm edit" value='{{$class->id}}'
@@ -219,7 +219,7 @@
     </div>
     <!-- ***/ Pop Up Model for button End-->
 
-    <!-- ***/ Pop Up Model for button -->
+    <!-- ***/ Pop Up Model for Edit Session Class -->
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
@@ -344,6 +344,7 @@
                 dataType:"json",
                 success:function(response){
                     console.log(response);
+                    $("#id").val(response.id);
                     $("#session_id").val(response.session_id);
                     $("#academic_class_id").val(response.academic_class_id);
                     $("#code").val(response.code);
