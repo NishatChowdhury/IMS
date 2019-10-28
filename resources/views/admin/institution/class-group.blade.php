@@ -136,19 +136,20 @@
                 <div class="modal-body">
                     {!! Form::open(['url'=>'institution/create-class', 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                                {!!  Form::label('Class Name*', null, ['class' => 'control-form-label, col-sm-3', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-9">
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control" id="" aria-describedby="" placeholder="ex-2017-2019">
+                                {!!  Form::text('name', null, array_merge(['class' => 'form-control','placeholder'=>'ex- One'])) !!}
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right"> Numerical Class Name</label>
+                                {!!  Form::label('Numerical Class Name', null, ['class' => 'control-form-label, col-sm-3', 'style'=>'font-weight: 500; text-align: right'])  !!}
+
                         <div class="col-9">
                             <div class="input-group">
-                                <input type="number" name="numeric_class" class="form-control" id="" aria-describedby="" placeholder="ex-2017-2019">
+                                {!!  Form::text('numeric_class', null, array_merge(['class' => 'form-control', 'placeholder'=>'ex- 01'])) !!}
                             </div>
                         </div>
                     </div>

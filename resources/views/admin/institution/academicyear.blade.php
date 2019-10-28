@@ -99,18 +99,18 @@
                 <div class="modal-body">
                     {!! Form::open(['url'=>'institution/store-session', 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Year*</label>
+                                {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="year" class="form-control" id="" aria-describedby="" placeholder="ex-2017-2019">
+                                {!!  Form::text('year', null, array_merge(['class' => 'form-control', 'placeholder'=>'ex-2017-2019'])) !!}
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
+                                {!!  Form::label('Start Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="date" name="start" class="form-control" id="" aria-describedby="" >
+                                {!!  Form::date('start', null, array_merge(['class' => 'form-control'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -118,10 +118,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
+                                {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="date" name="end" class="form-control" id="" aria-describedby="" >
+                                {!!  Form::date('end', null, array_merge(['class' => 'form-control'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -129,10 +129,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right"> Description</label>
+                            {!!  Form::label('Description', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <textarea name="description" class="form-control" rows="3" id=""> </textarea>
+                                {!!  Form::textarea('description', null, array_merge(['class' => 'form-control','rows'=>'3'])) !!}
                             </div>
                         </div>
                     </div>
@@ -162,18 +162,18 @@
                     {!! Form::open(['url'=>'institution/update-session', 'method'=>'post']) !!}
                     {!! Form::hidden('session_id', null,['id'=>'session_id']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Year*</label>
+                                {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="year" class="form-control" id="year" aria-describedby="" placeholder="ex-2017-2019">
+                                {!!  Form::text('year', null, array_merge(['class' => 'form-control', 'id'=>'year', 'placeholder'=>'ex-2017-2019'])) !!}
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
+                        {!!  Form::label('Start Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="date" name="start" class="form-control" id="start" aria-describedby="" >
+                                {!!  Form::date('start', null, array_merge(['class' => 'form-control','id'=>'start'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -181,10 +181,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
+                                {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="date" name="end" class="form-control" id="end" aria-describedby="" >
+                                {!!  Form::date('end', null, array_merge(['class' => 'form-control','id'=>'end'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -192,10 +192,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Description</label>
+                                {!!  Form::label('Description', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <textarea name="description" class="form-control" rows="3" id="description"> </textarea>
+                                {!!  Form::textarea('description', null, array_merge(['class' => 'form-control','id'=>'description','rows'=>'3'])) !!}
                             </div>
                         </div>
                     </div>
@@ -213,6 +213,7 @@
 @stop
 @section('script')
     <script>
+
         $(document).on('click', '.edit_session', function () {
             $("#edit").modal("show");
             var session_id = $(this).attr('value');
