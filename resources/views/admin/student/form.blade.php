@@ -22,35 +22,32 @@
     </div>
     <div class="col-md-6">
         <div class="card-body">
-            <div class="form-group">
-                {{ Form::label('studentName','Student Name',['class'=>'control-label']) }}
-                {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Student Name']) }}
-            </div>
+
             <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('studentName','Student Name',['class'=>'control-label']) }}
+                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Student Name']) }}
+                    </div>
+                </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('academicYear', 'Academic Year',['class'=>'control-label' ]) }}
                         {{ Form::select('session_id', $sessions, null, ['placeholder' => 'Select Academic year...','class'=>'form-control session']) }}
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{Form::label('className','Class',['class'=>'control-label'])}}
-                        {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
-                    </div>
-                </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('sectionId','Section',['class'=>'control-label']) }}
-                        <select name="secton_id" class="section form-control col-md-12">
-
-                        </select>
-                        {{--{{ Form::select('section_id', $sections, null, ['placeholder' => 'Select Section...','class'=>'form-control section']) }}--}}
+                        {{Form::label('className','Class',['class'=>'control-label'])}}
+                        <select name="class_id" class="class form-control col-md-12"></select>
+                        {{--{{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}--}}
                     </div>
                 </div>
+                {!! Form::hidden('section_id', null, ['id'=>'section']) !!}
+
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('group','Group',['class'=>'control-label']) }}
@@ -59,17 +56,26 @@
                 </div>
             </div>
 
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('studentId','Student Id',['class'=>'control-label']) }}
-                        {{ Form::text('studentId',null,['class'=>'form-control', 'placeholder'=>'Student Card ID']) }}
+                        {{ Form::label('sectionId','Section',['class'=>'control-label']) }}
+                        <select name="secton_id" class="section form-control col-md-12"></select>
                     </div>
                 </div>
+            </div>--}}
+
+            <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('rank','Rank',['class'=>'control-label']) }}
                         {{ Form::text('rank',null,['class'=>'form-control', 'placeholder'=>'Student Rank']) }}
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('studentId','Student Id',['class'=>'control-label']) }}
+                        {{ Form::text('studentId',null,['class'=>'form-control', 'placeholder'=>'Student Card ID']) }}
                     </div>
                 </div>
             </div>
@@ -118,7 +124,8 @@
             </div>
             <div class="form-group">
                 {{  Form::label('stuPic', 'Student Picture', ['class' => 'control-label'])  }}
-                {{ Form::file('image',['class'=>'form-control']) }}
+                {{ Form::file('image',['class'=>'form-control', 'id'=>"file-input"]) }}
+                <div id="thumb-output"></div>
             </div>
             <div class="form-group">
                 {{ Form::label('streetAddress','Address',['class'=>'control-label']) }}

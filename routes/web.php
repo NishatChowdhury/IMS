@@ -169,16 +169,15 @@ Route::get('/stu_list','StudentController@index')->name('student.list');
 Route::get('/stu_add','StudentController@create')->name('student.add');
     //@MKH
 Route::post('store-std', 'StudentController@store');
-Route::post('add-std', 'StudentController@store');
 //End Students Route
+
+//Route::post('get-sectionByclass', 'StudentController@get_section');
+Route::get('get-ClassSectionBysession{id}', 'StudentController@get_class_section');
 
 Route::get('migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
-
-Route::post('get-sectionByclass', 'StudentController@get_section');
-
 Route::get('reboot',function(){
     Artisan::call('config:cache');
     Artisan::call('cache:clear');

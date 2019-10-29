@@ -21,21 +21,22 @@ class StudentController extends Controller
         return view('admin.student.list');
     }
 
-    public function get_section(Request $req){
+    /*public function get_section(Request $req){
         $sections = Section::query()->where('session_id', $req->session_id)->where('class_id', $req->id)->get();
         return $sections;
+    }*/
+    public function get_class_section($id){
+        $classes = DB::table('session_classes')
+            ->join('academic_classes', 'session_classes.academic_class_id', '=', 'academic_classes.id')
+            ->join('sections', 'session_classes.id', '=', 'sections.class_id')
+            ->where('session_classes.session_id', $id)
+            ->get(['session_classes.id', 'academic_classes.name', 'sections.id as section_id', 'session_classes.section']);
+        return $classes;
     }
     public function create(){
         $sessions = Session::pluck('year','id');
         $last_session_id = Session::orderBy('id', 'desc')->value('id');
-        $groups = Group::pluck('id', 'name');
-        $classes = DB::table('session_classes')
-            ->distinct()
-            ->join('academic_classes', 'session_classes.academic_class_id', '=', 'academic_classes.id')
-            ->where('session_classes.session_id', $last_session_id)
-            ->pluck('academic_classes.name', 'session_classes.id');
-
-        //$sections = Section::query()->where('session_id', $last_session_id)->pluck('section_name', 'id');
+        $groups = Group::pluck('name', 'id');
         $genders = Gender::pluck('name', 'id');
         $blood_groups = BloodGroup::pluck('name', 'id');
         $religions = Religion::pluck('name', 'id');
@@ -46,15 +47,17 @@ class StudentController extends Controller
 
     public function store(Request $req){
         //dd($req->all());
-        if ($req->hasFile('file')){
-            $image = $req->student_id.'.'.$req->file('image')->getClientOriginalExtension();
+        $data = $req->all(); //Temporary
+        $data['section_id'] = 1; //temporary
+        if ($req->hasFile('image')){
+            $image = $req->studentId.'.'.$req->file('image')->getClientOriginalExtension();
             $req->file('image')->move(public_path().'/assets/img/students/', $image);
             $data = $req->except('image');
             $data['image'] = $image;
-
             Student::create($data);
         }else{
-            Student::create($req->all());
+
+            Student::create($data);
         }
 
         return redirect('stu_add')->with('success','Student Added Successfully');

@@ -28,7 +28,7 @@
                     <div class="card card-light">
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post','files'=>true]) !!}
+                        {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'files'=>true]) !!}
                           @include('admin.student.form')
                         {!! Form::close() !!}
                     </div>                   <!-- /.card -->
@@ -41,30 +41,34 @@
     </section>
     <!-- /.content -->
 @stop
+
 @section('script')
     <script>
-        $(document).on('change', '.class', function () {
-            var id = $(this).val();
-            var session_id = $('.session').val();
+        $(document).on('change', '.session', function () {
+            var id= $(this).val();
 
             $.ajax({
-                url: '{{url("get-sectionByclass")}}',
-                type: 'post',
-                data: {id:id, session_id:session_id, _token:'{{csrf_token()}}'},
-
-                success: function(data) {
+                url: '{{url("get-ClassSectionBysession/")}}'+id,
+                type: 'GET',
+                success:function (data) {
                     console.log(data);
-                    if (data.length > 0) {
-                        var $selectSection = $('.section');
-                        var html = '<option disabled selected> Select Section</option>';
+                    if (data.length>0){
+                        var $select_class =  $('.class');
+                        var html = '<option disabled selected> Select Class-Section</option>';
                         $.each(data, function (idx, item) {
-                            html += '<option value="' + item.id + '">' + item.section_name + '</option>';
+                            html += '<option value="' + item.id + '" data-id="'+item.section_id+'" >' + item.name + ' [ Sec- '+item.section+' ]</option>';
                         });
-
-                        $selectSection.html(html);
+                        $select_class.html(html);
                     }
                 }
             });
-        })
+        });
+
+        $(document).on('change', '.class', function () {
+            //var id = $(this).val();
+            var section_id = $(this).attr("data-id");
+            console.log(section_id);
+            $('.section').html(section_id);
+        });
     </script>
 @stop
