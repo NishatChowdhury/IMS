@@ -48,8 +48,8 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('chart/chartjs') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Examinations</p>
@@ -77,8 +77,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('attendance/dashboard') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Dashboard</p>
@@ -118,8 +118,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="{{route('student.list')}}" class="nav-link {{ isActive('form/general') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Students </p>
@@ -153,8 +153,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="{{route('institution.academicyear')}}" class="nav-link {{ isActive('institution/academicyear') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Academic Year</p>
@@ -211,8 +211,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('mailbox/inbox') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Grade System </p>
@@ -247,8 +247,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('page/invoice') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Invoice</p>
@@ -264,8 +264,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="{{route('staff.teacher')}}" class="nav-link {{ isActive('staff/teacher') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Teacher</p>
@@ -311,8 +311,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Error 404</p>
@@ -346,8 +346,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview"  style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="#" class="nav-link {{ isActive('extra/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profit and Loss </p>
@@ -388,8 +388,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
                         <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Basic Info </p>
@@ -423,8 +423,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
                         <a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Management</p>
@@ -452,8 +452,8 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
                         <a href="{{ action('GalleryController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Image Mgmt</p>
