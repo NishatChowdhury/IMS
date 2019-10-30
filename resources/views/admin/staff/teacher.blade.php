@@ -42,7 +42,7 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
+                                    <a href="{{route('staff.addstaff')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>
