@@ -24,6 +24,15 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-md-12 text-danger">
+                    @if($errors->any())
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
                 <div class="col-12">
                     <div class="card">
                         <div class="container">

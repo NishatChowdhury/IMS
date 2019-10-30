@@ -311,3 +311,26 @@ h1{
 .dropdown-menu>li>a{
     cursor:pointer;
 }
+
+
+
+/**add staff page tabs css  **/
+
+
+#nav-tab  a p{ color: #0c0c0c; font-size: 18px; font-weight: 600;}
+#nav-tab  i{ color: #0c0c0c;}
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #0c0c0c;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 1px solid seagreen !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #eee;
+    font-size: 20px;
+}

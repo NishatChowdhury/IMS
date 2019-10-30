@@ -32,6 +32,15 @@
                         <div class="card-header">
                             <h3 class="card-title">Quick Example</h3>
                         </div>
+                        <div class="card-body">
+                            @if($errors->any())
+                                <ul class="text-danger">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         {{ Form::model($page,['action'=>['PageController@update',$page->id],'method'=>'patch','files'=>true]) }}

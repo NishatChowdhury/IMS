@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicClass;
 use App\BloodGroup;
 use App\Country;
 use App\Division;
@@ -42,6 +43,8 @@ class StudentController extends Controller
         $religions = Religion::pluck('name', 'id');
         $divisions= Division::pluck('name', 'id');
         $countries = Country::pluck('name', 'id');
+        $classes = AcademicClass::all()->pluck('name','id');
+        $sections = Section::all()->pluck('name','id');
         return view('admin.student.add', compact('sessions', 'groups', 'classes', 'sections', 'genders', 'blood_groups', 'religions', 'divisions', 'countries'));
     }
 
@@ -54,10 +57,9 @@ class StudentController extends Controller
             $req->file('image')->move(public_path().'/assets/img/students/', $image);
             $data = $req->except('image');
             $data['image'] = $image;
-            Student::create($data);
+            Student::query()->create($data);
         }else{
-
-            Student::create($data);
+            Student::query()->create($data);
         }
 
         return redirect('stu_add')->with('success','Student Added Successfully');

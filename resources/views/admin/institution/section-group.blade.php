@@ -68,6 +68,9 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$section->name}}</td>
+                                    <td>{{ $class->id }}</td>
+                                    <td>{{$class->name}}</td>
+                                    <td class="text-center">{{$class->numeric_class}}</td>
                                     <td>
                                         <a type="button" class="btn btn-info btn-sm edit_sec" value='{{$section->id}}'
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
@@ -94,6 +97,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Group Name</th>
                                 <th>Action</th>
                             </tr>
@@ -101,7 +105,8 @@
                             <tbody>
                             @foreach($groups ?? '' as $group)
                                 <tr>
-                                    <td>{{$group->name}}</td>
+                                    <td>{{ $group->id }}</td>
+                                    <td>{{ $group->name }}</td>
                                     <td>
                                         <a type="button" class="btn btn-info btn-sm edit_group" value='{{$group->id}}'
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit

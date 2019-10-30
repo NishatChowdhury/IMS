@@ -145,11 +145,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['table*']) }}">
-                <a href="#" class="nav-link {{ isActive(['table*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['institution*']) }}">
+                <a href="#" class="nav-link {{ isActive(['institution*']) }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
-                        Institution Mgmt
+                        Institution Management
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>

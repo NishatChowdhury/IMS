@@ -22,6 +22,16 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'button_text' => 'required',
+            'redirect_url' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'image' => 'required|image|max:2000'
+        ]);
+
         if($request->hasFile('image')){
             $name = time().$request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path().'/assets/img/sliders/', $name);

@@ -51,6 +51,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Academic Year Name</th>
                                     <th>Start Date</th>
                                     <th>End date</th>
@@ -61,21 +62,25 @@
                                 <tbody>
                                 @foreach($sessions ?? ''  as $session)
                                     <tr>
+                                        <td>{{$session->id}}</td>
                                         <td>{{$session->year}}</td>
                                         <td>{{$session->start}}</td>
                                         <td>{{$session->end}}</td>
                                         <td>{{$session->description}}</td>
                                         <td>
+                                            {{ Form::open(['action'=>['InstitutionController@delete_session',$session->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <a type="button" class="btn btn-info btn-sm edit_session" value='{{$session->id}}'
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
                                             </a>
 
-                                            <a type="button" href="{{action('InstitutionController@delete_session', $session->id)}}"
-                                               class="btn btn-danger btn-sm delete_session"
-                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
-                                            </a>
+                                            {{--<a type="button" href="{{action('InstitutionController@delete_session', $session->id)}}"--}}
+                                               {{--class="btn btn-danger btn-sm delete_session"--}}
+                                               {{--style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete--}}
+                                            {{--</a>--}}
+<button type="submit" class="btn btn-danger btn-sm" disabled="">Danger</button>
+                                            {{ Form::close() }}
                                         </td>
-                                    </tr>
+                                    </tr>web
                                 @endforeach
                                 </tbody>
                             </table>

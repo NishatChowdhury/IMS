@@ -73,8 +73,12 @@
                                 @php($i = 0)
                                 @foreach($classes ?? '' as $class)
                                     <tr>
-                                        <td>{{++$i}}</td>
-                                        <td>{{$class->class->name}}</td>
+                                        <td>{{ $class->id }}</td>
+                                        <td>
+                                            @if($class->class)
+                                                {{$class->class->name}}
+                                            @endif
+                                        </td>
                                         <td>{{$class->code}}</td>
                                         <td>{{$class->group ? $class->group->name : ''}}</td>
                                         <td>{{$class->section}}</td>
