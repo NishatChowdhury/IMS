@@ -111,51 +111,30 @@ class InstitutionController extends Controller
 
     public function classes()
     {
-        $sessions = Session::all();
         $classes = AcademicClass::all();
 
-        return view ('admin.institution.classes', compact('sessions','classes'));
+        return view ('admin.institution.classes', compact('classes'));
     }
 
     public function store_class(Request $req){
         //dd($req->all());
-            $add_class = [
-                'session_id' => $req->session_id,
-                'academic_class_id' => $req->academic_class_id,
-                'code' => $req->code,
-                'group_id' => $req->group_id or null,
-                'section' => $req->section,
-                'tuition_fee' => $req->tuition_fee,
-                'admission_fee' => $req->admission_fee,
-                'admission_form_fee' => $req->admission_form_fee
-            ];
-        SessionClass::create($add_class);
-
-        $thisClass_id = SessionClass::query()->orderBy('id', 'desc')->first()->id;
-
-        $data = [
-            'section_name' => $req->section,
-            'session_id' => $req->session_id,
-            'class_id' => $thisClass_id,
-            'group_id' => $req->group_id or null,
-        ];
-        Section::create($data);
+        AcademicClass::query()->create($req->all());
         return redirect('institution/class');
     }
 
     public function edit_SessionClass(Request $req){
-        $class = SessionClass::findOrFail($req->id);
+        $class = AcademicClass::findOrFail($req->id);
         return $class;
     }
 
     public function update_SessionClass(Request $req){
-        $class = SessionClass::findOrFail($req->id);
+        $class = AcademicClass::findOrFail($req->id);
         $class->update($req->all());
         return redirect(route('institution.classes'))->with('success', 'Class has been Updated');
     }
 
     public function delete_SessionClass($id){
-        $class = SessionClass::findOrFail($id);
+        $class = AcademicClass::findOrFail($id);
         $class->delete();
         return redirect('institution/class')->with('success', 'Class has been Deleted');
     }

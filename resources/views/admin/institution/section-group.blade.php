@@ -68,9 +68,6 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$section->name}}</td>
-                                    <td>{{ $class->id }}</td>
-                                    <td>{{$class->name}}</td>
-                                    <td class="text-center">{{$class->numeric_class}}</td>
                                     <td>
                                         <a type="button" class="btn btn-info btn-sm edit_sec" value='{{$section->id}}'
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
