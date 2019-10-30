@@ -145,11 +145,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['table*']) }}">
-                <a href="#" class="nav-link {{ isActive(['table*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['institution*']) }}">
+                <a href="#" class="nav-link {{ isActive(['institution*']) }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
-                        Institution Mgmt
+                        Institution Management
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -161,7 +161,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('class.group')}}" class="nav-link {{ isActive('institution/section') }}">
+                        <a href="{{route('class.group')}}" class="nav-link {{ isActive('institution/class&groups') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Create Classes & Groups</p>
                         </a>

@@ -42,8 +42,8 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{Form::label('className','Class',['class'=>'control-label'])}}
-                        <select name="class_id" class="class form-control col-md-12"></select>
-                        {{--{{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}--}}
+                        {{--<select name="class_id" class="class form-control col-md-12"></select>--}}
+                        {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
                     </div>
                 </div>
                 {!! Form::hidden('section_id', null, ['id'=>'section']) !!}
@@ -56,14 +56,15 @@
                 </div>
             </div>
 
-            {{--<div class="row">
+            <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('sectionId','Section',['class'=>'control-label']) }}
-                        <select name="secton_id" class="section form-control col-md-12"></select>
+                        {{--<select name="secton_id" class="section form-control col-md-12"></select>--}}
+                        {{ Form::select('section_id',$sections,null,['class'=>'form-control']) }}
                     </div>
                 </div>
-            </div>--}}
+            </div>
 
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -90,7 +91,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('gender','Gender',['class'=>'control-label']) }}
-                        {{ Form::select('gender', $genders, null, ['placeholder' => 'Select Gender...','class'=>'form-control']) }}
+                        {{ Form::select('gender_id', $genders, null, ['placeholder' => 'Select Gender...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ class Student extends Model
         'address',
         'area',
         'zip',
-        'division_id',
+        //'division_id',
         'state_id',
         'country_id',
         'email',

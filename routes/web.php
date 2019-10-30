@@ -16,7 +16,7 @@ Route::get('/home', 'DashboardController@index')->name('home');
  */
 Route::get('/', 'FrontController@index');
 
-    //Institute -> About
+//Institute -> About
 Route::get('/introduction','FrontController@introduction');
 Route::get('/governing-body','FrontController@governing_body');
 Route::get('/founder-n-donor','FrontController@donor');
@@ -25,40 +25,40 @@ Route::get('/founder-n-donor','FrontController@donor');
 Route::get('/president','FrontController@president');
 Route::get('/principal','FrontController@principal');
 
-    //Institute-> Infrastructure
+//Institute-> Infrastructure
 Route::get('/building-room','FrontController@building_room');
 Route::get('/library','FrontController@library');
 Route::get('/transport','FrontController@transport');
 Route::get('/hostel','FrontController@hostel');
 
-    //Institute -> Academic
+//Institute -> Academic
 Route::get('/class-routine','FrontController@class_routine');
 Route::get('/calender','FrontController@calender');
 Route::get('/syllabus','FrontController@syllabus');
 Route::get('/performance','FrontController@performance');
 
-    //TEAM
+//TEAM
 Route::get('/managing-committee','FrontController@managing_committee');
 Route::get('/teacher','FrontController@teacher');
 Route::get('/staff','FrontController@staff');
 
-    //Result  (Front-End)
+//Result  (Front-End)
 Route::get('/internal-exam','FrontController@internal_exam');
 Route::get('/public-exam','FrontController@public_exam');
 Route::get('/admission','FrontController@admission');
 
-    //Attendance
+//Attendance
 Route::get('/attendance-summery','FrontController@attendance_summery');
 Route::get('/student-attendance','FrontController@student_attendance');
 Route::get('/teacher-attendance','FrontController@teacher_attendance');
 
-    //News & Notice
+//News & Notice
 Route::get('/notice','FrontController@notice');
 Route::get('/notice-details/{id}','FrontController@noticeDetails');
 Route::get('/news','FrontController@news');
 Route::get('/news-details/{id}','FrontController@newsDetails');
 
-    //Gallery
+//Gallery
 Route::get('/gallery','FrontController@gallery');
 /*===== Route for Front-End Menu Bar END ====*/
 
@@ -102,14 +102,14 @@ Route::get('staff/payslip','StaffController@payslip')->name('staff.payslip');
 //End Staff Route
 
 //Institution Mgnt Route by Rimon
-    //Session @MKH
+//Session @MKH
 Route::get('institution/academicyear','InstitutionController@academicyear')->name('institution.academicyear');
 Route::post('institution/store-session', 'InstitutionController@store_session');
 Route::post('institution/edit-session', 'InstitutionController@edit_session');
 Route::post('institution/update-session', 'InstitutionController@update_session');
 Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
 
-    //Academic Classes $ Groups
+//Academic Classes $ Groups
 Route::get('institution/class&groups','InstitutionController@class_group')->name('class.group');
 Route::post('institution/create-class', 'InstitutionController@create_class');
 Route::post('institution/edit-class', 'InstitutionController@edit_class');
@@ -120,14 +120,14 @@ Route::post('institution/edit-group', 'InstitutionController@edit_group');
 Route::post('institution/update-group', 'InstitutionController@update_group');
 Route::get('institution/{id}/delete-group', 'InstitutionController@delete_grp');
 
-    //Session-Class
+//Session-Class
 Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
 Route::post('institution/store-class','InstitutionController@store_class');
 Route::post('institution/edit-SessionClass','InstitutionController@edit_SessionClass');
 Route::post('institution/update-SessionClass','InstitutionController@update_SessionClass');
 Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
-    //Subjects
-Route::get('institution/subject','InstitutionController@subjects')->name('institution.subjects');
+//Subjects
+Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::post('institution/create-subject','InstitutionController@create_subject');
 Route::post('institution/edit-subject','InstitutionController@edit_subject');
 Route::post('institution/update-subject','InstitutionController@update_subject');
@@ -167,7 +167,7 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 //Students Route by babu
 Route::get('/stu_list','StudentController@index')->name('student.list');
 Route::get('/stu_add','StudentController@create')->name('student.add');
-    //@MKH
+//@MKH
 Route::post('store-std', 'StudentController@store');
 //End Students Route
 
@@ -182,4 +182,62 @@ Route::get('reboot',function(){
     Artisan::call('config:cache');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
+});
+
+Route::get('download-attendances',function(){
+
+    date_default_timezone_set('Asia/Dhaka');
+
+    $data2=array(
+        "get_log"=>array(
+            "user_name" => "akschool",
+            //"user_name" => "chakariacambrian",
+            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
+            //"auth"=>"3efd234cefa324567a342deafd32672", //cambrian
+            "log"=>array(
+                "date1"=>date('2019-07-23'),
+                "date2"=>date('Y-m-d')
+            )
+        )
+    );
+
+    $url_send ="https://rumytechnologies.com/rams/api";
+    $str_data = json_encode($data2);
+
+    $ch = curl_init($url_send);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($str_data))
+    );
+
+    $result = (curl_exec($ch));
+
+    $getvalue = json_decode($result);
+
+    foreach($getvalue->log as $row){
+
+        ini_set('max_execution_time',30);
+
+        $attendance = new \App\Attendance();
+        $attendance->registration_id = $row->registration_id;
+        $attendance->unit_name = $row->unit_name;
+        $attendance->user_name = $row->user_name;
+        $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+        $attendance->access_id = $row->access_id;
+        $attendance->department = $row->department;
+        $attendance->unit_id = $row->unit_id;
+        $attendance->card = $row->card;
+
+        $attendance->save();
+    }
+    dd('data saved successfully');
+
+});
+
+Route::get('test-download',function(){
+    Artisan::call('CronJob:DownloadAttendances');
 });

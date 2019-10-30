@@ -18,6 +18,7 @@
 
     @include('front.result')
 
-    @include('front.teacher')
+    <!-- will be open after finishing teacher -->
+    {{--@include('front.teacher')--}}
 
 @stop

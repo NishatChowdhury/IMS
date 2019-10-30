@@ -33,6 +33,15 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if($errors->any())
+                                <ul class="text-danger">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        <div class="card-body">
                             {{ Form::model($info,['action'=>'SiteInformationController@update','method'=>'patch']) }}
                             <div class="form-row">
                                 <div class="form-group col-md-6">

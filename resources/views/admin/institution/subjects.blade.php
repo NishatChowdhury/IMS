@@ -64,7 +64,7 @@
                                 @php($i = 0)
                                 @foreach($subjects ?? '' as $subject)
                                     <tr>
-                                        <td>{{++$i}}</td>
+                                        <td>{{ $subject->id }}</td>
                                         <td>{{$subject->name}}</td>
                                         <td>{{$subject->code}}</td>
                                         <td>{{$subject->short_name}}</td>
