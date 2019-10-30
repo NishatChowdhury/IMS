@@ -160,18 +160,21 @@
                             <p>Academic Year</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('class.group')}}" class="nav-link {{ isActive('institution/section') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Create Classes & Groups</p>
-                        </a>
-                    </li>
+
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/classes') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Classes</p>
                         </a>
                     </li>
+
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('section.group')}}" class="nav-link {{ isActive('institution/section-groups') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Sections $ Groups</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.subjects')}}" class="nav-link {{ isActive('institution/subjects') }}">
                             <i class="far fa-circle nav-icon"></i>

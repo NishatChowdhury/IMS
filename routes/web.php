@@ -110,11 +110,12 @@ Route::post('institution/update-session', 'InstitutionController@update_session'
 Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
 
     //Academic Classes $ Groups
-Route::get('institution/class&groups','InstitutionController@class_group')->name('class.group');
-Route::post('institution/create-class', 'InstitutionController@create_class');
-Route::post('institution/edit-class', 'InstitutionController@edit_class');
-Route::post('institution/update-class', 'InstitutionController@update_class');
-Route::get('institution/{id}/delete-class', 'InstitutionController@delete_class');
+Route::get('institution/section-groups','InstitutionController@section_group')->name('section.group');
+Route::post('institution/create-section', 'InstitutionController@create_section');
+Route::post('institution/edit-section', 'InstitutionController@edit_section');
+Route::post('institution/update-section', 'InstitutionController@update_section');
+Route::get('institution/{id}/delete-section', 'InstitutionController@delete_section');
+
 Route::post('institution/create-group', 'InstitutionController@create_group');
 Route::post('institution/edit-group', 'InstitutionController@edit_group');
 Route::post('institution/update-group', 'InstitutionController@update_group');

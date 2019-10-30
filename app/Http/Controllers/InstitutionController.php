@@ -34,87 +34,87 @@ class InstitutionController extends Controller
                 'description' => $request->description,
             ];
         }*/
-        Session::create($request->all());
+        Session::query()->create($request->all());
         return redirect('institution/academicyear')->with('success', 'Academic year added successfully');
     }
 
     public function edit_session(Request $request){
-        $session = Session::findOrFail($request->session_id);
+        $session = Session::query()->findOrFail($request->session_id);
         return $session;
     }
 
     public function update_session(Request $request){
-        $session = Session::findOrFail($request->session_id);
+        $session = Session::query()->findOrFail($request->session_id);
         $session->update($request->all());
         return redirect('institution/academicyear')->with('success', 'Academic year Updated');
     }
 
     public function delete_session($id){
-         $session = Session::findOrFail($id);
+         $session = Session::query()->findOrFail($id);
          $session->delete();
          return redirect('institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
     }
 
-    public function class_group()
+    public function section_group()
     {
-        $classes = AcademicClass::all();
+        $sections = Section::all();
         $groups = Group::all();
-        return view ('admin.institution.class-group', compact('classes', 'groups'));
+        return view ('admin.institution.section-group', compact('sections', 'groups'));
     }
 
-    public function create_class(Request $req){
-        AcademicClass::create($req->all());
-        return redirect('institution/class&groups')->with('success', 'Class added successfully');
+    public function create_section(Request $req){
+        Section::query()->create($req->all());
+        return redirect('institution/section-groups')->with('success', 'Section added successfully');
     }
 
-    public function edit_class(Request $req){
-        $class = AcademicClass::findorFail($req->class_id);
-        return $class;
+    public function edit_section(Request $req){
+        $section = Section::query()->findorFail($req->id);
+        return $section;
     }
 
-    public function update_class(Request $req){
-        $class = AcademicClass::findOrFail($req->id);
-        $class->update($req->all());
-        return redirect('institution/class&groups')->with('success', 'Class has been Updated');
+    public function update_section(Request $req){
+        $section = Section::query()->findOrFail($req->id);
+        $section->update(['name' => $req->section_name]);
+        return redirect('institution/section-groups')->with('success', 'Section has been Updated');
     }
 
-    public function delete_class($id){
-        $class= AcademicClass::findOrFail($id);
-        $class->delete();
-        return redirect('institution/class&groups')->with('success', 'Class deleted successfully');
+    public function delete_section($id){
+        $section= Section::query()->findOrFail($id);
+        $section->delete();
+        return redirect('institution/section-groups')->with('success', 'Section deleted successfully');
     }
 
     public function create_group(Request $req){
-        Group::create($req->all());
-        return redirect('institution/class&groups')->with('success', 'Group added successfully');
+        Group::query()->create($req->all());
+        return redirect('institution/section-groups')->with('success', 'Group added successfully');
     }
 
     public function edit_group(Request $req){
-        $data = Group::findorFail($req->id);
+        $data = Group::query()->findorFail($req->id);
         return $data;
     }
 
     public function update_group(Request $req){
-        $data = Group::findOrFail($req->group_id);
+        $data = Group::query()->findOrFail($req->group_id);
         $info = ['name' => $req->group_name];
         $data->update($info);
-        return redirect('institution/class&groups')->with('success', 'Group has been Updated');
+        return redirect('institution/section-groups')->with('success', 'Group has been Updated');
     }
 
     public function delete_grp($id){
-        $group= Group::findOrFail($id)->first();
+        $group= Group::query()->findOrFail($id)->first();
         $group->delete();
-        return redirect('institution/class&groups')->with('success', 'Group deleted successfully');
+        return redirect('institution/section-groups')->with('success', 'Group deleted successfully');
     }
+    /*Institute >> Section-Groups End*/
+
 
     public function classes()
     {
         $sessions = Session::all();
-        $academic_classes = AcademicClass::all();
-        $groups = Group::all();
-        $classes = SessionClass::query()->get();
+        $classes = AcademicClass::all();
 
-        return view ('admin.institution.classes', compact('sessions','academic_classes', 'classes', 'groups'));
+        return view ('admin.institution.classes', compact('sessions','classes'));
     }
 
     public function store_class(Request $req){

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Classes & Groups</h1>
+                    <h1>Sections & Groups</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -50,32 +50,30 @@
             <div class="row">
                 <div class="col-6">
                     <div class="card-header">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ClassModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
-                        <h3 style="display: inline-block; float: right">Class</h3>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#section" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                        <h3 style="display: inline-block; float: right">Sections</h3>
                     </div>
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Class Name</th>
-                                <th>Numerical</th>
+                                <th>Section Name</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i = 0)
-                            @foreach( $classes ?? '' as $class)
+                            @foreach( $sections ?? '' as $section)
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$class->name}}</td>
-                                    <td class="text-center">{{$class->numeric_class}}</td>
+                                    <td>{{$section->name}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-info btn-sm edit_class" value='{{$class->id}}'
+                                        <a type="button" class="btn btn-info btn-sm edit_sec" value='{{$section->id}}'
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
 
-                                        <a type="button" href="{{action('InstitutionController@delete_class',$class->id)}}"
+                                        <a type="button" href="{{action('InstitutionController@delete_section',$section->id)}}"
                                            class="btn btn-danger btn-sm"
                                            style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
@@ -123,33 +121,23 @@
         </div>
     </section>
 
-    <!-- ***/ Pop Up Model for Class Creation -->
-    <div class="modal fade" id="ClassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- ***/ Pop Up Model for Group Creation -->
+    <div class="modal fade" id="section" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width: 900px !important; padding: 0px 100px;">
+            <div class="modal-content" style="left:-30%; width: 700px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Class</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Section</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/create-class', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'institution/create-section', 'method'=>'post']) !!}
                     <div class="form-group row">
-                                {!!  Form::label('Class Name*', null, ['class' => 'control-form-label, col-sm-3', 'style'=>'font-weight: 500; text-align: right'])  !!}
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Section Name*</label>
                         <div class="col-9">
                             <div class="input-group">
-                                {!!  Form::text('name', null, array_merge(['class' => 'form-control','placeholder'=>'ex- One'])) !!}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                                {!!  Form::label('Numerical Class Name', null, ['class' => 'control-form-label, col-sm-3', 'style'=>'font-weight: 500; text-align: right'])  !!}
-
-                        <div class="col-9">
-                            <div class="input-group">
-                                {!!  Form::text('numeric_class', null, array_merge(['class' => 'form-control', 'placeholder'=>'ex- 01'])) !!}
+                                <input type="text" name="name" class="form-control" id="" required="required" aria-describedby="" placeholder="ex-2017-2019">
                             </div>
                         </div>
                     </div>
@@ -163,7 +151,7 @@
             </div>
         </div>
     </div>
-    <!-- ***/ Pop Up Model for Class End-->
+    <!-- ***/ Pop Up Model for Groups End-->
 
 
     <!-- ***/ Pop Up Model for Group Creation -->
@@ -199,39 +187,30 @@
     <!-- ***/ Pop Up Model for Groups End-->
 
 
-    {{--Edit Class Model--}}
-    <div class="modal fade" id="edit_class" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{--Edit Section Model--}}
+    <div class="modal fade" id="edit_sec" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width: 900px !important; padding: 0px 100px;">
+            <div class="modal-content" style="left:-30%; width: 700px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Class</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Section</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/update-class', 'method'=>'post']) !!}
-                    {!! Form::hidden('id', null, ['id' => 'class_id']) !!}
+                    {!! Form::open(['url'=>'institution/update-section', 'method'=>'post']) !!}
+                    {!! Form::hidden('id', null, ['id'=>'sec_id']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Section Name*</label>
                         <div class="col-9">
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control" id="class_name" aria-describedby="" placeholder="ex-2017-2019">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right"> Numerical Class Name</label>
-                        <div class="col-9">
-                            <div class="input-group">
-                                <input type="number" name="numeric_class" class="form-control" id="numeric_class" aria-describedby="" placeholder="ex-2017-2019">
+                                <input type="text" name="section_name" class="form-control" id="section_name" required="required" aria-describedby="" placeholder="ex-2017-2019">
                             </div>
                         </div>
                     </div>
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Update</button>
+                        <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i>Update</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -239,7 +218,7 @@
             </div>
         </div>
     </div>
-    {{--Edit Class Model--}}
+    {{--Edit Section Model--}}
 
     <!-- ***/ Pop Up Model for Edit Group -->
     <div class="modal fade" id="edit_group" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
@@ -278,19 +257,19 @@
 @stop
 @section('script')
     <script>
-        $(document).on('click', '.edit_class', function () {
-            $("#edit_class").modal("show");
-            var class_id = $(this).attr('value');
+        $(document).on('click', '.edit_sec', function () {
+            $("#edit_sec").modal("show");
+            var id = $(this).attr('value');
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-class')}}",
-                data:{class_id:class_id,"_token":"{{ csrf_token() }}"},
+                url:"{{ url('institution/edit-section')}}",
+                data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
                     console.log(response);
-                    $("#class_id").val(response.id);
-                    $("#class_name").val(response.name);
-                    $("#numeric_class").val(response.numeric_class);
+                    $("#sec_id").val(response.id);
+                    $("#section_name").val(response.name);
+
                 },
                 error:function(err){
                     console.log(err);
