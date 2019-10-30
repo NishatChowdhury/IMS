@@ -159,7 +159,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="start" id=""  aria-describedby="" >
+                                <input class="form-control" name="date" id="datePicker"  aria-describedby="" >
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -170,7 +170,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="end" class="form-control" id=""  aria-describedby="" >
+                                <input name="date"  class="form-control" id="datePicker1"  aria-describedby="" >
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -212,7 +212,15 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
 @stop
+
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
 
 @section('script')
     <script>
@@ -220,5 +228,21 @@
             var x = confirm('Are you sure you want delete this image?');
             return !!x;
         }
+        $(document).ready(function() {
+            $('#datePicker')
+                .datepicker({
+                    format: 'yyyy/mm/dd'
+                })
+        });
+        $(document).ready(function() {
+            $('#datePicker1')
+                .datepicker({
+                    format: 'yyyy/mm/dd'
+                })
+        });
     </script>
 @stop
+
+
+
+

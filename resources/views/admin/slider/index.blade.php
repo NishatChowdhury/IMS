@@ -70,8 +70,8 @@
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                        {{ Form::text('start',null,['class'=>'form-control']) }}
+                                        <input name="date" class="form-control" id="datePicker"  aria-describedby="">
+                                        {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
                                     </div>
                                 </div>
                             </div>
@@ -79,8 +79,8 @@
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                        {{ Form::text('end',null,['class'=>'form-control']) }}
+                                        <input name="date" class="form-control" id="datePicker1"  aria-describedby="">
+                                        {{--{{ Form::text('end',null,['class'=>'form-control']) }}--}}
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +154,33 @@
     </section>
 @stop
 <!-- /Slider page inner Content End***-->
+
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+@stop
+
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#datePicker')
+                .datepicker({
+                    format: 'yyyy/mm/dd'
+                })
+        });
+        $(document).ready(function() {
+            $('#datePicker1')
+                .datepicker({
+                    format: 'yyyy/mm/dd'
+                })
+        });
+    </script>
 @stop
