@@ -14,7 +14,7 @@ class SeedCountries extends Migration
     public function up()
     {
         Schema::table('countries', function (Blueprint $table) {
-            $countries = ['Bangladesh', 'India', 'Pakistan', 'Myanmar', 'Bhutan', 'China', 'Russia', 'Indonesia', 'Iran', 'Japan'];
+            $countries = ['Bangladesh'];
             foreach ($countries as $con){
                 \App\Country::query()->create(['name'=>$con]);
             }
@@ -28,6 +28,8 @@ class SeedCountries extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::table('countries', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -15,14 +15,14 @@ class CreateSliderTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('button_text');
-            $table->string('redirect_url');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->string('button_text')->nullable();
+            $table->string('redirect_url')->nullable();
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->string('image');
-            $table->integer('active')->nullable();
+            $table->integer('active');
             $table->timestamps();
         });
     }
