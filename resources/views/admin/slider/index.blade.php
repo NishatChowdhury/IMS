@@ -182,13 +182,13 @@
         $(document).ready(function() {
             $('#datePicker')
                 .datepicker({
-                    format: 'yyyy/mm/dd'
+                    format: 'yyyy-mm-dd'
                 })
         });
         $(document).ready(function() {
             $('#datePicker1')
                 .datepicker({
-                    format: 'yyyy/mm/dd'
+                    format: 'yyyy-mm-dd'
                 })
         });
     </script>
