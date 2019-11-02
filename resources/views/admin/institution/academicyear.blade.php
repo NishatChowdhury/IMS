@@ -115,7 +115,7 @@
                                 {!!  Form::label('Start Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {!!  Form::date('start', null, array_merge(['class' => 'form-control'])) !!}
+                                {!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -126,7 +126,7 @@
                                 {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {!!  Form::date('end', null, array_merge(['class' => 'form-control'])) !!}
+                                {!!  Form::text('end', null, array_merge(['class' => 'form-control datePicker'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -178,7 +178,7 @@
                         {!!  Form::label('Start Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {!!  Form::date('start', null, array_merge(['class' => 'form-control','id'=>'start'])) !!}
+                                {!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -189,7 +189,7 @@
                                 {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {!!  Form::date('end', null, array_merge(['class' => 'form-control','id'=>'end'])) !!}
+                                {!!  Form::text('end', null, array_merge(['class' => 'form-control datePicker','id'=>'end'])) !!}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -216,6 +216,18 @@
     </div>
     {{--Edit Session Model--}}
 @stop
+
+<!-- *** External CSS File-->
+@section('style')
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+@stop
+
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
 @section('script')
     <script>
 
@@ -241,5 +253,14 @@
                 }
             });
         });
+
+        // datePicker
+        $(document).ready(function() {
+            $('.datePicker')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                })
+        });
+
     </script>
 @stop

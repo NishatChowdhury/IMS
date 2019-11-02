@@ -79,8 +79,8 @@
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <input name="date" class="form-control" id="datePicker"  aria-describedby="">
-                                        {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
+                                        {{--<input name="date" class="form-control datePicker" id=""  aria-describedby="">--}}
+                                        {{ Form::text('start',null,['class'=>'form-control datePicker']) }}
                                     </div>
                                 </div>
                             </div>
@@ -88,8 +88,8 @@
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <input name="date" class="form-control" id="datePicker1"  aria-describedby="">
-                                        {{--{{ Form::text('end',null,['class'=>'form-control']) }}--}}
+                                        {{--<input name="date" class="form-control datePicker" id=""  aria-describedby="">--}}
+                                        {{ Form::text('end',null,['class'=>'form-control datePicker']) }}
                                     </div>
                                 </div>
                             </div>
@@ -180,13 +180,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#datePicker')
-                .datepicker({
-                    format: 'yyyy-mm-dd'
-                })
-        });
-        $(document).ready(function() {
-            $('#datePicker1')
+            $('.datePicker')
                 .datepicker({
                     format: 'yyyy-mm-dd'
                 })

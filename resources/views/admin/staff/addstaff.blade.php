@@ -116,7 +116,8 @@
                                                                         <div class="form-group">
                                                                             <label for="">Joining Date</label>
                                                                             <div class="input-group">
-                                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                                {{--<input id="" type="text" class="form-control datePicker" aria-describedby="">--}}
+                                                                                {{Form::text('start',null,['class'=>'form-control datePicker'])}}
                                                                                 <div class="input-group-prepend">
                                                                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                                                                 </div>
@@ -198,7 +199,8 @@
                                                                         <div class="form-group">
                                                                             <label for="">Date Of Birth</label>
                                                                             <div class="input-group">
-                                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                                {{--<input id="" type="text" class="form-control datePicker" aria-describedby="">--}}
+                                                                                {{Form::text('start',null,['class'=>'form-control datePicker'])}}
                                                                                 <div class="input-group-prepend">
                                                                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                                                                 </div>
@@ -264,4 +266,23 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+
+@stop
+
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.datePicker')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                })
+        });
+    </script>
 @stop
