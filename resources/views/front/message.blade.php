@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 {{--<img src="assets/img/avatar/1_1.png" alt="">--}}
-                <img src="{{ asset('assets/img/pages/') }}/{{ $content->where('name','president message')->first()->image }}" alt="">
+                <img src="{{ asset('assets/img/pages/') }}/{{ $content->where('name','principal message')->first()->image }}" alt="">
             </div>
             <div class="col-md-6 mt-3">
                 <h2>

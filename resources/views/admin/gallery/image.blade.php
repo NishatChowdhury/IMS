@@ -44,8 +44,6 @@
                                     <th>Name </th>
                                     <th>Album</th>
                                     <th>Category</th>
-                                    <th>Start Date</th>
-                                    <th>End date</th>
                                     <th>Tag</th>
                                     <th>Image</th>
                                     <th>Action</th>
@@ -55,7 +53,7 @@
                                 @foreach($images as $image)
                                     <tr>
                                         <th>{{ $image->id }}</th>
-                                        <td>{{ $image->name }}</td>
+                                        <td>{{ $image->title }}</td>
                                         <td>
                                             @if($image->album)
                                                 {{ $image->album->name }}
@@ -68,8 +66,6 @@
                                                 @endif
                                             @endif
                                         </td>
-                                        <td>{{ $image->start }}</td>
-                                        <td>{{ $image->end }}</td>
                                         <td>{{ $image->tags }}</td>
                                         <td>
                                             <img src="{{ asset('assets/img/gallery') }}/{{ $image->album ? $image->album->id : '' }}/{{ $image->image }}" alt="{{ $image->title }}" width="75">
@@ -105,14 +101,6 @@
                     {{--<form>--}}
                     {{ Form::open(['action'=>'GalleryController@store','method'=>'post','files'=>true]) }}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Friendly Name</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" name="name" class="form-control" id=""  aria-describedby="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title</label>
                         <div class="col-sm-10">
                             <div class="input-group">
@@ -129,59 +117,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <select name="type_id" id="inputState" class="form-control" style="height: 35px !important;">
-                                    <option selected>Select...</option>
-                                    <option value="1">...</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Album</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<select id="inputState" class="form-control" style="height: 35px !important;">--}}
-                                {{--<option selected>Select...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--</select>--}}
                                 {{ Form::select('album_id',$repository->albums(),null,['class'=>'form-control','id'=>'inputState']) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{--<input class="form-control datePicker" name="date" id=""  aria-describedby="" >--}}
-                                {{Form::text('start',null,['class'=>'form-control datePicker'])}}
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{--<input name="date"  class="form-control datePicker" id=""  aria-describedby="" >--}}
-                                {{Form::text('start',null,['class'=>'form-control datePicker'])}}
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tag</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tags</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="text" name="tags" class="form-control" id=""  aria-describedby="">
@@ -230,12 +174,6 @@
             var x = confirm('Are you sure you want delete this image?');
             return !!x;
         }
-        $(document).ready(function() {
-            $('.datePicker')
-                .datepicker({
-                    format: 'yyyy-mm-dd'
-                })
-        });
     </script>
 @stop
 

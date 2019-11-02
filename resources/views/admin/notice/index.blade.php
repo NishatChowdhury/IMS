@@ -112,7 +112,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{ Form::select('type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
+                                {{ Form::select('notice_type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
                             </div>
                         </div>
                     </div>
@@ -146,8 +146,8 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<input  name="date" class="form-control datePicker" aria-describedby="">--}}
-                                {{ Form::text('start',null,['class'=>'form-control datePicker']) }}
+                                <input name="start" class="form-control datePicker" aria-describedby="">
+                                {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -158,8 +158,8 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<input  name="date" class="form-control datePicker" aria-describedby="">--}}
-                                {{ Form::text('end',null,['class'=>'form-control datePicker']) }}
+                                <input name="end" class="form-control datePicker" aria-describedby="">
+                                {{--{{ Form::text('end',null,['class'=>'form-control']) }}--}}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>

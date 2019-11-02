@@ -18,8 +18,14 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
-        return view('admin.student.list');
+        $students = Student::query()->paginate(20);
+        return view('admin.student.list',compact('students'));
     }
 
     /*public function get_section(Request $req){

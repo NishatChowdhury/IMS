@@ -26,13 +26,13 @@ class FrontController extends Controller
 
     public function governing_body()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','governing body')->first();
         return view('front.pages.governing-body',compact('content'));
     }
 
     public function donor()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','founder & donor')->first();
         return view('front.pages.founder-n-donor',compact('content'));
     }
 
@@ -49,25 +49,25 @@ class FrontController extends Controller
 //Institute -> infrastructure ---Start
     public function building_room()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','building & rooms')->first();
         return view('front.pages.building-n-room',compact('content'));
     }
 
     public function library()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','library')->first();
         return view('front.pages.library',compact('content'));
     }
 
     public function transport()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','transport')->first();
         return view('front.pages.transport',compact('content'));
     }
 
     public function hostel()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','hotel')->first();
         return view('front.pages.hostel',compact('content'));
     }
 //Institute -> infrastructure ---Start
@@ -75,22 +75,22 @@ class FrontController extends Controller
 //Institute -> Academic ---START
     public function class_routine()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','class routine')->first();
         return view('front.pages.class-routine',compact('content'));
     }
     public function calender()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','calendar')->first();
         return view('front.pages.calender',compact('content'));
     }
     public function syllabus()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','syllabus')->first();
         return view('front.pages.syllabus',compact('content'));
     }
     public function performance()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','performance')->first();
         return view('front.pages.performance',compact('content'));
     }
 //Institute -> Academic ---END
@@ -98,17 +98,17 @@ class FrontController extends Controller
 //TEAM -> --START
     public function managing_committee()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','managing committee')->first();
         return view('front.pages.managing-committee',compact('content'));
     }
     public function teacher()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','teachers')->first();
         return view('front.pages.teacher',compact('content'));
     }
     public function staff()
     {
-        $content = Page::query()->where('name','introduction')->first();
+        $content = Page::query()->where('name','staff')->first();
         return view('front.pages.staff',compact('content'));
     }
 //TEAM -> --END
@@ -154,7 +154,7 @@ class FrontController extends Controller
     public function notice()
     {
         $notices = Notice::query()
-            ->where('notice_type_id',1)
+            ->where('notice_type_id',2)
             ->where('start','<',Carbon::today())
             ->where('end','>',Carbon::today())
             ->orderByDesc('start')
@@ -172,7 +172,7 @@ class FrontController extends Controller
     public function news()
     {
         $newses = Notice::query()
-            ->where('notice_type_id',2)
+            ->where('notice_type_id',1)
             ->where('start','<',Carbon::today())
             ->where('end','>',Carbon::today())
             ->orderByDesc('start')

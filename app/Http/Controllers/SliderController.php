@@ -29,7 +29,7 @@ class SliderController extends Controller
             'redirect_url' => 'required',
             'start' => 'required|date',
             'end' => 'required|date',
-            'image' => 'required|image|max:2000'
+            'image' => 'required|max:2000'
         ]);
 
         if($request->hasFile('image')){

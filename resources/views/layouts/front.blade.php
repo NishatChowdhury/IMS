@@ -44,6 +44,7 @@
 
 <header class="site-header bg-dark text-white-0_5">
     @include('front.inc.info-bar')
+    @include('front.inc.title-bar')
 </header><!-- END site header-->
 
 

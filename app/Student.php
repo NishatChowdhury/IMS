@@ -34,4 +34,24 @@ class Student extends Model
         'notification_type_id',
         'status'
     ];
+
+    public function academicClass()
+    {
+        return $this->belongsTo(AcademicClass::class,'class_id');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function sessions()
+    {
+        return $this->belongsTo(Session::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }

@@ -70,7 +70,7 @@
                                 @php($i = 0)
                                 @foreach($classes ?? '' as $class)
                                     <tr>
-                                        <td>{{++$i}}</td>
+                                        <td>{{ $class->id }}</td>
                                         <td>{{$class->name}}</td>
                                         <td>{{$class->numeric_class}}</td>
                                         <td></td>
