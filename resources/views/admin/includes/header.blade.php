@@ -126,30 +126,30 @@
     <li class="nav-item dropdown" style="margin-top:4px;">
         <a href="#" class="user dropdown-toggle" data-toggle="dropdown" style="margin:10px;">
 
-            <img src="{{ asset('dist/img/user2-160x160.jpg') }}" style="height:33.33px; margin-right:5px;" class="img-circle elevation-2" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+            <img src="{{ asset('dist/img/user.png') }}" style="height:33.33px; margin-right:5px;" class="img-circle elevation-2" alt="User Image">
+            <span class="hidden-xs">{{ Auth::user()->name }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="background-color: #007bff">
             <li class="user-header">
-                <img class="user-hd-img"  src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-cir" alt="User Image">
+                <img class="user-hd-img"  src="{{ asset('dist/img/user.png') }}" class="img-cir" alt="User Image">
                 <p class="user-hd-text">
-                    Alexander Pierce - Web Developer <br>
-                    <small>Member since Nov. 2012</small>
+                    {{ Auth::user()->name }} - {{ Auth::user()->role_id }} <br>
+                    <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                 </p>
             </li>
             <!-- Menu Body -->
             <li class="user-body">
-                <div class="row">
-                    <div class="col-xs-4 text-center">
-                        <a class="text-white" href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                        <a class="text-white" href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                        <a class="text-white" href="#">Friends</a>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-xs-4 text-center">--}}
+                        {{--<a class="text-white" href="#">Followers</a>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xs-4 text-center">--}}
+                        {{--<a class="text-white" href="#">Sales</a>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-xs-4 text-center">--}}
+                        {{--<a class="text-white" href="#">Friends</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <!-- /.row -->
             </li>
             <!-- Menu Footer-->

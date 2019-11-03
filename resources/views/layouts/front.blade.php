@@ -16,7 +16,8 @@
 
 
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}">
+    {{--<link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}">--}}
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon/114x114.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/img/favicon/96x96.png') }}">
 

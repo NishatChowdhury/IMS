@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
 
     <!-- Title-->
-    <title>Complete education theme for School, College, University, E-learning</title>
+    <title>@yield('title')</title>
 
     <!-- SEO Meta-->
-    <meta name="description" content="Education theme by EchoTheme">
+    <meta name="description" content="Education software by Web Limited Ltd.">
     <meta name="keywords" content="HTML5 Education theme, responsive HTML5 theme, bootstrap 4, Clean Theme">
-    <meta name="author" content="education">
+    <meta name="author" content="smartrahat">
 
     <!-- viewport scale-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -81,5 +81,6 @@
 
 <script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
+@yield('script')
 </body>
 </html>

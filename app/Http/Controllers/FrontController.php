@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Album;
+use App\Gallery;
+use App\GalleryCategory;
 use App\Notice;
 use App\NoticeCategory;
 use App\Page;
@@ -193,7 +196,15 @@ class FrontController extends Controller
 //Gallery
     public function gallery()
     {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.gallery',compact('content'));
+        $categories = GalleryCategory::all();
+        $albums = Album::all();
+        return view('front.pages.gallery',compact('categories','albums'));
+    }
+
+    public function album($id)
+    {
+        //$album = Album::query()->findOrFail($id);
+        $images = Gallery::query()->where('album_id',$id)->get();
+        return view('front.pages.album',compact('images'));
     }
 }

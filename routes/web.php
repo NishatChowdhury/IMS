@@ -60,6 +60,7 @@ Route::get('/news-details/{id}','FrontController@newsDetails');
 
 //Gallery
 Route::get('/gallery','FrontController@gallery');
+Route::get('/album/{name}','FrontController@album');
 /*===== Route for Front-End Menu Bar END ====*/
 
 //Attendance Route by Rimon
