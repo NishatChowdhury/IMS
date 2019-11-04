@@ -167,10 +167,10 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 // smartrahat end
 
 //Students Route by babu
-Route::get('/stu_list','StudentController@index')->name('student.list');
-Route::get('/stu_add','StudentController@create')->name('student.add');
+Route::get('students','StudentController@index')->name('student.list');
+Route::get('student/create','StudentController@create')->name('student.add');
 //@MKH
-Route::post('store-std', 'StudentController@store');
+Route::post('student/store', 'StudentController@store');
 //End Students Route
 
 //Route::post('get-sectionByclass', 'StudentController@get_section');

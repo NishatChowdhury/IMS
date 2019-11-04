@@ -37,6 +37,7 @@ class SliderController extends Controller
             $request->file('image')->move(public_path().'/assets/img/sliders/', $name);
             $data = $request->except('image');
             $data['image'] = $name;
+            $data['active'] = 1;
             Slider::query()->create($data);
         }else{
             dd('two');

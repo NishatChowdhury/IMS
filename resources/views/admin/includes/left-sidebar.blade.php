@@ -110,8 +110,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive('form*') }}">
-                <a href="#" class="nav-link {{ isActive('form*') }}">
+            <li class="nav-item has-treeview {{ isActive('student*') }}">
+                <a href="#" class="nav-link {{ isActive('student*') }}">
                     <i class="nav-icon fas fa-user-graduate"></i>
                     <p>
                         Student Mgmt
@@ -120,7 +120,7 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{route('student.list')}}" class="nav-link {{ isActive('form/general') }}">
+                        <a href="{{ action('StudentController@index') }}" class="nav-link {{ isActive('students') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Students </p>
                         </a>
@@ -259,8 +259,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
-                <a href="#" class="nav-link {{ isActive(['extra*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['staff*']) }}">
+                <a href="#" class="nav-link {{ isActive(['staff*']) }}">
                     <i class="nav-icon fas fa-users-cog"></i>
                     <p>
                         Staff Mgmt
@@ -275,7 +275,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('staff/addstaff') }}">
+                        <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('staff/staffadd') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Staff Add</p>
                         </a>

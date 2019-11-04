@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ $students->count() }}</h3>
+                            <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ $students->total() }}</h3>
                         </div>
                         <div class="row">
                             <div>
