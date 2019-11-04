@@ -131,7 +131,7 @@
                                                                             <label for="">Salary</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-prepend">
-                                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-money nav-icon"></i> Tk </span>
                                                                                 </div>
                                                                                 <input id="datePicker1" name="date" class="form-control" aria-describedby="">
                                                                             </div>
@@ -142,7 +142,7 @@
                                                                             <label for="">Bonus</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-prepend">
-                                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-money nav-icon"></i> Tk </span>
                                                                                 </div>
                                                                                 <input id="datePicker1" name="date" class="form-control" aria-describedby="">
                                                                             </div>
@@ -187,7 +187,7 @@
                                                                             <label for="">Mobile</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-prepend">
-                                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
+                                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-phone"></i></span>
                                                                                 </div>
                                                                                 <input id="datePicker1" name="date" class="form-control" aria-describedby="">
                                                                             </div>

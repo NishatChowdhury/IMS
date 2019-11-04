@@ -96,7 +96,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id=""  aria-describedby="" >
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                        <span class="input-group-text" id="inputGroupPrepend2"><i class="fa fa-clock nav-icon"></i> </span>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id=""  aria-describedby="" >
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id=""  aria-describedby="" >
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id=""  aria-describedby="" >
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id=""  aria-describedby="" >
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-circle nav-icon"></i></span>
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
                                     </div>
                                 </div>
                             </div>
