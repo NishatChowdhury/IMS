@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\StaffRepository;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
+    /**
+     * @var StaffRepository
+     */
+    private $repository;
+
+    public function __construct(StaffRepository $repository)
+    {
+        $this->middleware('auth');
+        $this->repository = $repository;
+    }
     public function teacher()
     {
         return view ('admin.staff.teacher');

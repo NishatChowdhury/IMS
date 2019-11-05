@@ -26,13 +26,13 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('studentName','Student Name',['class'=>'control-label']) }}
+                        {{ Form::label('name','Student Name',['class'=>'control-label']) }}
                         {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Student Name']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('academicYear', 'Academic Year',['class'=>'control-label' ]) }}
+                        {{ Form::label('session_id', 'Academic Year',['class'=>'control-label' ]) }}
                         {{ Form::select('session_id', $sessions, null, ['placeholder' => 'Select Academic year...','class'=>'form-control session']) }}
                     </div>
                 </div>
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{Form::label('className','Class',['class'=>'control-label'])}}
+                        {{Form::label('class_id','Class',['class'=>'control-label'])}}
                         {{--<select name="class_id" class="class form-control col-md-12"></select>--}}
                         {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
                     </div>
@@ -50,7 +50,7 @@
 
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('group','Group',['class'=>'control-label']) }}
+                        {{ Form::label('group_id','Group',['class'=>'control-label']) }}
                         {{ Form::select('group_id', $groups, null, ['placeholder' => 'Select Section...','class'=>'form-control']) }}
                     </div>
                 </div>
@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('sectionId','Section',['class'=>'control-label']) }}
+                        {{ Form::label('section_id','Section',['class'=>'control-label']) }}
                         {{--<select name="secton_id" class="section form-control col-md-12"></select>--}}
                         {{ Form::select('section_id',$sections,null,['class'=>'form-control']) }}
                     </div>

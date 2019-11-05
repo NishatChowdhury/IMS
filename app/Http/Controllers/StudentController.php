@@ -41,14 +41,14 @@ class StudentController extends Controller
         return $classes;
     }
     public function create(){
-        $sessions = Session::pluck('year','id');
-        $last_session_id = Session::orderBy('id', 'desc')->value('id');
-        $groups = Group::pluck('name', 'id');
-        $genders = Gender::pluck('name', 'id');
-        $blood_groups = BloodGroup::pluck('name', 'id');
-        $religions = Religion::pluck('name', 'id');
-        $divisions= Division::pluck('name', 'id');
-        $countries = Country::pluck('name', 'id');
+        $sessions = Session::all()->pluck('year','id');
+        $last_session_id = Session::query()->orderBy('id', 'desc')->value('id');
+        $groups = Group::all()->pluck('name', 'id');
+        $genders = Gender::all()->pluck('name', 'id');
+        $blood_groups = BloodGroup::all()->pluck('name', 'id');
+        $religions = Religion::all()->pluck('name', 'id');
+        $divisions= Division::all()->pluck('name', 'id');
+        $countries = Country::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name','id');
         $sections = Section::all()->pluck('name','id');
         return view('admin.student.add', compact('sessions', 'groups', 'classes', 'sections', 'genders', 'blood_groups', 'religions', 'divisions', 'countries'));
