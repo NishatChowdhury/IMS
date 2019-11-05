@@ -42,33 +42,38 @@
                             </nav>
                             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    {!! Form::open(['action'=>'StaffController@store_staff', 'method'=>'post', 'files'=>true]) !!}
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="card" style="margin: 10px;">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">Institution Related Information</h3>
-                                                </div>
-                                                <!-- /.card-header -->
-                                                <!-- form start -->
-                                                <form role="form">
-                                                    <div class="card-body">
+                                            <table id="example2" class="table table-bordered" style="margin: 10px;">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h3 class="card-title"> Institution Related Information </h3>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="card-body">
                                                             <div class="form-group row col-md-12">
                                                                 <label for="inputEmail4">Email*</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
                                                                     </div>
-                                                                    <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                    <input id="email" name="mail" class="form-control" aria-describedby="">
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Code</label>
-                                                                    <input type="text" class="form-control" id="" placeholder="">
+                                                                    <input type="text" name="code" class="form-control" id="" placeholder="" required>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Job Title</label>
-                                                                    <input type="text" class="form-control" id="" placeholder="">
+                                                                    <input type="text" name="title" class="form-control" id="" required placeholder="">
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
@@ -76,7 +81,7 @@
                                                                     <div class="form-group">
                                                                         <label for="">Role </label>
                                                                         <div class="input-group">
-                                                                            <select id="inputState" class="form-control" style="height: 35px !important;">
+                                                                            <select name="role_id" id="inputState" class="form-control" style="height: 35px !important;" >
                                                                                 <option>Select</option>
                                                                                 <option>...</option>
                                                                             </select>
@@ -87,7 +92,7 @@
                                                                     <div class="form-group">
                                                                         <label for="">Job Type</label>
                                                                         <div class="input-group">
-                                                                            <select id="inputState" class="form-control" style="height: 35px !important;">
+                                                                            <select name="job_type_id" id="inputState" class="form-control" required style="height: 35px !important;">
                                                                                 <option>Select</option>
                                                                                 <option>...</option>
                                                                             </select>
@@ -100,7 +105,7 @@
                                                                     <div class="form-group">
                                                                         <label for="">Staff type*</label>
                                                                         <div class="input-group">
-                                                                            <select id="inputState" class="form-control" style="height: 35px !important;">
+                                                                            <select name="staff_type_id" id="inputState" class="form-control" required style="height: 35px !important;">
                                                                                 <option>Select</option>
                                                                                 <option>...</option>
                                                                             </select>
@@ -111,10 +116,11 @@
                                                                     <div class="form-group">
                                                                         <label for="">Joining Date</label>
                                                                         <div class="input-group">
-                                                                            {{--<input id="" type="text" class="form-control datePicker" aria-describedby="">--}}
-                                                                            {{Form::text('start',null,['class'=>'form-control datePicker'])}}
+                                                                            {{Form::text('joining',null,['class'=>'form-control datePicker'])}}
                                                                             <div class="input-group-prepend">
-                                                                                <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
+ <span class="input-group-text" id="inputGroupPrepend2">
+ <i class="far fa-calendar-alt"></i>
+ </span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -126,9 +132,11 @@
                                                                         <label for="">Salary</label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend">
-                                                                                <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-money nav-icon"></i> Tk </span>
+ <span class="input-group-text" id="inputGroupPrepend2">
+ <i class="fa fa-money nav-icon"></i> Tk
+ </span>
                                                                             </div>
-                                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                            <input id="" name="salary" class="form-control" aria-describedby="">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -139,39 +147,42 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-money nav-icon"></i> Tk </span>
                                                                             </div>
-                                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                            <input id="" name="bonus" class="form-control" aria-describedby="">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                    <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- /.card -->
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
+
                                         <div class="col-md-6">
-                                            <div class="card" style="margin: 10px;">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">General Information</h3>
-                                                </div>
-                                                <!-- /.card-header -->
-                                                <!-- form start -->
-                                                <form role="form">
-                                                    <div class="card-body">
+                                            <table id="example2" class="table table-bordered" style="margin: 10px;">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h3 class="card-title"> General Information </h3>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="card-body">
                                                             <div class="form-group row col-md-12">
                                                                 <label for="inputEmail4">Name*</label>
                                                                 <div class="input-group ">
-                                                                    <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                    <input id="" name="name" class="form-control" aria-describedby="" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Father/Husband's Name</label>
-                                                                    <input type="text" class="form-control" id="" placeholder="">
+                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="">
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <div class="form-group">
@@ -180,7 +191,7 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-phone"></i></span>
                                                                             </div>
-                                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                                            <input id="mobile" name="mobile" class="form-control" aria-describedby="" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -190,8 +201,8 @@
                                                                     <div class="form-group">
                                                                         <label for="">Date Of Birth</label>
                                                                         <div class="input-group">
-                                                                            <input id="" type="text" class="form-control datePicker" aria-describedby="">
-                                                                            {{Form::text('start',null,['class'=>'form-control datePicker'])}}
+                                                                            {{--<input id="" type="text" class="form-control datePicker" aria-describedby="">--}}
+                                                                            {{Form::text('dob', null, ['class'=>'form-control datePicker'])}}
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                                                             </div>
@@ -200,7 +211,7 @@
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">National ID</label>
-                                                                    <input type="text" class="form-control" id="" placeholder="">
+                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="">
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
@@ -208,10 +219,7 @@
                                                                     <div class="form-group">
                                                                         <label for="">Gender </label>
                                                                         <div class="input-group">
-                                                                            <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                                                <option>Select</option>
-                                                                                <option>...</option>
-                                                                            </select>
+                                                                            {!! Form::select('gender_id', $genders, null, ['class'=>'form-control', 'required']) !!}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -219,10 +227,7 @@
                                                                     <div class="form-group">
                                                                         <label for="">Blood Group</label>
                                                                         <div class="input-group">
-                                                                            <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                                                <option>Select</option>
-                                                                                <option>...</option>
-                                                                            </select>
+                                                                            {!! Form::select('blood_group_id', $blood_groups, null, ['class'=>'form-control']) !!}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -230,187 +235,22 @@
                                                             <div class="form-group col-md-12">
                                                                 <label for="inputEmail4">Add File</label>
                                                                 <div class="form-group files color">
-                                                                    <input type="file" class="form-control" multiple="">
+                                                                    <input type="file" name="image" class="form-control">
                                                                 </div>
                                                             </div>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                    <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- /.card -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <button type="submit" class="btn btn-primary btn-block">Save</button>
                                         </div>
+
                                     </div>
+                                    {!! Form::close() !!}
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card" style="margin: 10px;">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">Present  Address</h3>
-                                                </div>
-                                                <!-- /.card-header -->
-                                                <!-- form start -->
-                                                <form role="form">
-                                                    <div class="card-body">
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Name*</label>
-                                                            <div class="input-group">
-                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="type name..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Email*</label>
-                                                            <div class="input-group ">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                                                </div>
-                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Address*</label>
-                                                            <div class="input-group ">
-                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="enter address..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="">City</label>
-                                                                <input type="text" class="form-control" id="" placeholder="">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="">Zip Code</label>
-                                                                <input type="text" class="form-control" id="" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="">Stat/Province/Region*</label>
-                                                                    <div class="input-group">
-                                                                        <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                                            <option>Select</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="">Country</label>
-                                                                    <div class="input-group">
-                                                                        <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                                            <option>Select</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Mobile*</label>
-                                                            <div class="input-group ">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-phone"></i></span>
-                                                                </div>
-                                                                <input id="" name="date" class="form-control" aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                    <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- /.card -->
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card" style="margin: 10px;">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">Permanent Address</h3>
-                                                </div>
-                                                <!-- /.card-header -->
-                                                <!-- form start -->
-                                                <form role="form">
-                                                    <div class="card-body">
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Name*</label>
-                                                            <div class="input-group">
-                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="type name..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Email*</label>
-                                                            <div class="input-group ">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                                                </div>
-                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Address*</label>
-                                                            <div class="input-group ">
-                                                                <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="enter address..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="">District</label>
-                                                                <input type="text" class="form-control" id="" placeholder="">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="">City</label>
-                                                                <input type="text" class="form-control" id="" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="">Stat/Province/Region*</label>
-                                                                    <div class="input-group">
-                                                                        <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                                            <option>Select</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="">Country</label>
-                                                                    <div class="input-group">
-                                                                        <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                                            <option>Select</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row col-md-12">
-                                                            <label for="inputEmail4">Mobile*</label>
-                                                            <div class="input-group ">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-phone"></i></span>
-                                                                </div>
-                                                                <input id="" name="date" class="form-control" aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                    <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- /.card -->
-                                        </div>
-                                    </div>
+                                    content
                                 </div>
                             </div>
                         </section>

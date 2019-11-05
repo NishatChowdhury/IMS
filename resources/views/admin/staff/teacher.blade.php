@@ -90,7 +90,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>SL</th>
                                     <th>Code</th>
                                     <th>Name</th>
                                     <th>Job Title </th>
@@ -101,18 +101,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @php($i= 0)
+                                @foreach($staffs as $staff)
                                 <tr>
+                                    <td>{{++$i}}</td>
                                     <td>
                                         <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="" alt="">
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$staff->code}}</td>
+                                    <td>{{$staff->name}}</td>
+                                    <td>{{$staff->title}}</td>
+                                    {{--<td>{{$staff->staff_type->name}}</td>--}}
+                                    <td>{{$staff->staff_type_id}}</td>
+                                    <td>{{$staff->mail}}</td>
+                                    <td>{{$staff->mobile}}</td>
+                                    <td>
+
+                                    </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
