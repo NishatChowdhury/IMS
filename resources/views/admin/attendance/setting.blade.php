@@ -21,6 +21,45 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <!-- /.Search-panel -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="col-md-12">
+                            <div class="card" style="margin: 10px;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Quick  Search</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+                                        <div class="form-group row col-md-12">
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search aria-hidden="true"></i></span>
+                                                </div>
+                                                <input id="" type="search" name="search" class="form-control" aria-describedby="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.Search-panel -->
+
     <section class="content">
         <div class="container-fluid">
            <div class="row">
