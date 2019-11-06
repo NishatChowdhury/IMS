@@ -22,7 +22,7 @@ class SeedSiteInformationTable extends Migration
             $data['eiin'] = '4321';
             $data['phone'] = '+8801875004610';
             $data['email'] = 'info@webpointbd.com';
-            $data['logo'] = 'logo-550.jpg';
+            $data['logo'] = 'logo.jpg';
             \App\SiteInformation::query()->create($data);
         });
     }

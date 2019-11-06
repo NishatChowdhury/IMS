@@ -16,7 +16,7 @@ class CreateStatesTable extends Migration
         Schema::create('states', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('postal_code')->nullable();
+            $table->unsignedBigInteger('country_id');
             $table->timestamps();
         });
     }

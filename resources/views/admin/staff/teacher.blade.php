@@ -20,6 +20,45 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <!-- /.Search-panel -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="col-md-12">
+                            <div class="card" style="margin: 10px;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Quick  Search</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+                                        <div class="form-group row col-md-12">
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search aria-hidden="true"></i></span>
+                                                </div>
+                                                <input id="" type="search" name="search" class="form-control" aria-describedby="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.Search-panel -->
+
     <!-- ***/teacher page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
@@ -42,7 +81,7 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
+                                    <a href="{{route('staff.addstaff')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +90,8 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>SL</th>
+                                    <th>Image</th>
                                     <th>Code</th>
                                     <th>Name</th>
                                     <th>Job Title </th>
@@ -62,18 +102,31 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @php($i = 0)
+                                @foreach($staffs as $staff)
                                 <tr>
+                                    <td>{{++$i}}</td>
                                     <td>
-                                        <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="" alt="">
+                                        <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="{{asset('assets/img/staffs/'.$staff->image)}}" alt="Staff Image">
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$staff->code}}</td>
+                                    <td>{{$staff->name}}</td>
+                                    <td>{{$staff->title}}</td>
+                                    <td>{{$staff->staff_type_id}}</td>
+                                    <td>{{$staff->mail}}</td>
+                                    <td>{{$staff->mobile}}</td>
+                                    <td>
+                                        <a type="button" class="btn btn-info btn-sm edit" href="{{action('StaffController@edit_staff', $staff->id)}}" style="margin-left: 10px;">
+                                            <i class="fas fa-edit"></i>Edit
+                                        </a>
+
+                                        <a type="button" href="{{url('staff/delete-staff', $staff->id)}}"
+                                        class="btn btn-danger btn-sm delete"
+                                        style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

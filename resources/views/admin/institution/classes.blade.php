@@ -57,11 +57,9 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Class Code</th>
+                                    <th>SL</th>
                                     <th>Class Name</th>
-                                    <th>Tuition Fee Display </th>
-                                    <th>Group</th>
-                                    <th>Section</th>
+                                    <th>Numeric Class</th>
                                     <th>Total Student</th>
                                     <th>Total Subject</th>
                                     <th>Status</th>
@@ -69,17 +67,27 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>VIII</td>
-                                    <td>Eight</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @php($i = 0)
+                                @foreach($classes ?? '' as $class)
+                                    <tr>
+                                        <td>{{ $class->id }}</td>
+                                        <td>{{$class->name}}</td>
+                                        <td>{{$class->numeric_class}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <a type="button" class="btn btn-info btn-sm edit" value='{{$class->id}}'
+                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
+                                            </a>
+
+                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}"
+                                               class="btn btn-danger btn-sm delete_session"
+                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -100,72 +108,111 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class Code*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
+
+                    {!! Form::open(['url'=>'institution/store-class', 'method'=>'post']) !!}
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Class Name']) !!}
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tuition Fee</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Groups</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="e.g.-Science,Business">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Sections</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="e.g. A,B,C..">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Admission Fee</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="Admission Fee">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Admission Form Fee </label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="Admission Form Fee">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div style="float: right">
-                        <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('numeric_class', null, ['class'=>'form-control', 'placeholder'=>'E.g. 1/2/3']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                    </div>
+                    {!! Form::close() !!}
+
                 </div>
                 <div class="modal-footer"></div>
             </div>
         </div>
     </div>
-
     <!-- ***/ Pop Up Model for button End-->
+
+    <!-- ***/ Pop Up Model for Edit Session Class -->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['action'=>'InstitutionController@update_SessionClass', 'method'=>'post']) !!}
+                    {!! Form::hidden('id', null, ['id'=>'id']) !!}
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('name', null, ['class'=>'form-control class_name', 'placeholder'=>'Class Name']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('numeric_class', null, ['class'=>'form-control numeric_class', 'placeholder'=>'E.g. 1/2/3']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus-circle"></i> Update
+                        </button>
+                    </div>
+                    {!! Form::close() !!}
+
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ***/ Pop Up Model for button End-->
+@stop
+
+@section('script')
+    <script>
+        $(document).on('click', '.edit', function () {
+            $("#edit").modal("show");
+            var id = $(this).attr('value');
+
+            $.ajax({
+                method:"post",
+                url:"{{ url('institution/edit-SessionClass')}}",
+                data:{id:id,"_token":"{{ csrf_token() }}"},
+                dataType:"json",
+                success:function(response){
+                    console.log(response);
+                    $("#id").val(response.id);
+                    $(".class_name").val(response.name);
+                    $(".numeric_class").val(response.numeric_class);
+
+
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        });
+    </script>
 @stop

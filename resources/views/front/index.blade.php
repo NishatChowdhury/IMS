@@ -6,6 +6,10 @@
 
     @include('front.features')
 
+    @include('front.chairman')
+
+    <hr>
+
     @include('front.message')
 
     @include('front.events')
@@ -18,6 +22,7 @@
 
     @include('front.result')
 
-    @include('front.teacher')
+    <!-- will be open after finishing teacher -->
+    {{--@include('front.teacher')--}}
 
 @stop

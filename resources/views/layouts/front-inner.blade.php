@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
 
     <!-- Title-->
-    <title>Complete education theme for School, College, University, E-learning</title>
+    <title>@yield('title')</title>
 
     <!-- SEO Meta-->
-    <meta name="description" content="Education theme by EchoTheme">
+    <meta name="description" content="Education software by Web Limited Ltd.">
     <meta name="keywords" content="HTML5 Education theme, responsive HTML5 theme, bootstrap 4, Clean Theme">
-    <meta name="author" content="education">
+    <meta name="author" content="smartrahat">
 
     <!-- viewport scale-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
-    <link rel="shortcut icon" href="assets/img/favicon/114x114.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/img/favicon/96x96.png">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon/114x114.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/img/favicon/96x96.png') }}">
 
 
     <!--Google fonts-->
@@ -26,13 +26,13 @@
 
 
     <!-- Icon fonts -->
-    <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.css">
-    <link rel="stylesheet" href="assets/fonts/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/themify-icons/css/themify-icons.css') }}">
 
 
     <!-- stylesheet-->
-    <link rel="stylesheet" href="assets/css/vendors.bundle.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 </head>
 
@@ -79,7 +79,8 @@
     <i class="ti-angle-up"></i>
 </div>
 
-<script src="assets/js/vendors.bundle.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
+@yield('script')
 </body>
 </html>

@@ -15,7 +15,8 @@ class CreateNoticeTable extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('type_id')->unsigned();
+            $table->unsignedBigInteger('notice_type_id');
+            $table->unsignedBigInteger('notice_category_id');
             $table->string('title');
             $table->text('description');
             $table->dateTime('start');

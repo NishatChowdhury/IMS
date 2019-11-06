@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="navbar p-0 navbar-expand-lg">
-        <div class="navbar-brand ml-5">
+        {{--<div class="navbar-brand ml-5">--}}
             {{--<a class="logo-default" href="index.html"><img alt="" src="assets/img/logo-black.png"></a>--}}
-            <a class="logo-default" href="{{ url('/') }}"><img alt="" src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="75" height="75"></a>
-        </div>
+            {{--<a class="logo-default" href="{{ url('/') }}"><img alt="" src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="75" height="75"></a>--}}
+        {{--</div>--}}
         <span aria-expanded="false" class="navbar-toggler ml-auto collapsed" data-target="#ec-nav__collapsible" data-toggle="collapse">
         <div class="hamburger hamburger--spin js-hamburger">
           <div class="hamburger-box">
@@ -37,8 +37,8 @@
                                 <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Administrative Message </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="page-help-&-support.html"> President Message </a></li>
-                                        <li><a class="nav-link__list" href="page-help-&-support-topics.html"> Principal Message</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@president') }}"> President Message </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@principal') }}"> Principal Message</a></li>
                                     </ul>
                                 </div>
                             </li>

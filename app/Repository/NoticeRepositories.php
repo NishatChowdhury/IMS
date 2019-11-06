@@ -9,6 +9,7 @@
 namespace App\Repository;
 
 
+use App\NoticeCategory;
 use App\NoticeType;
 
 class NoticeRepositories
@@ -16,5 +17,10 @@ class NoticeRepositories
     public function types()
     {
         return NoticeType::all()->pluck('name','id');
+    }
+
+    public function categories()
+    {
+        return NoticeCategory::all()->pluck('name','id');
     }
 }

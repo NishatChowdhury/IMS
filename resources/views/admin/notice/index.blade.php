@@ -46,20 +46,30 @@
                                     <th>Short Description</th>
                                     <th>Start Date</th>
                                     <th>End Date </th>
+                                    <th>Category</th>
                                     <th>Type</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($notices as $notice)
-                                <tr>
-                                    <td>{{ $notice->title }}</td>
-                                    <td>{{ substr(strip_tags($notice->description),0,99) }}</td>
-                                    <td>{{ $notice->start }}</td>
-                                    <td>{{ $notice->end }}</td>
-                                    <td>{{ $notice->type->name }}</td>
-                                    <td><a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $notice->title }}</td>
+                                        <td>{{ substr(strip_tags($notice->description),0,99) }}</td>
+                                        <td>{{ $notice->start->format('Y-m-d') }}</td>
+                                        <td>{{ $notice->end->format('Y-m-d') }}</td>
+                                        <td>
+                                            @if($notice->category)
+                                                {{ $notice->category->name }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($notice->type)
+                                                {{ $notice->type->name }}
+                                            @endif
+                                        </td>
+                                        <td><a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -102,15 +112,15 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{ Form::select('type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
-                                {{--<select id="inputState" class="form-control" style="height: 35px !important;">--}}
-                                {{--<option selected>Notice...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--<option>...</option>--}}
-                                {{--</select>--}}
+                                {{ Form::select('notice_type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category*</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{ Form::select('notice_category_id',$repository->categories(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
                             </div>
                         </div>
                     </div>
@@ -136,8 +146,8 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<input type="text" class="form-control" id=""  aria-describedby="" >--}}
-                                {{ Form::text('start',null,['class'=>'form-control']) }}
+                                <input name="start" class="form-control datePicker" aria-describedby="">
+                                {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -148,8 +158,8 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<input type="text" class="form-control" id=""  aria-describedby="" >--}}
-                                {{ Form::text('end',null,['class'=>'form-control']) }}
+                                <input name="end" class="form-control datePicker" aria-describedby="">
+                                {{--{{ Form::text('end',null,['class'=>'form-control']) }}--}}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
                                 </div>
@@ -182,4 +192,25 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+
 @stop
+
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
+
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.datePicker')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                })
+        });
+    </script>
+@stop
+
