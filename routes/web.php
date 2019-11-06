@@ -96,6 +96,10 @@ Route::delete('gallery/album/delete/{id}','AlbumController@destroy');
 //Staff Route by Rimon
 Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');
 Route::get('staff/staffadd','StaffController@addstaff')->name('staff.addstaff');
+Route::post('staff/store-staff','StaffController@store_staff');
+Route::get('staff/edit-staff/{id}','StaffController@edit_staff');
+Route::patch('staff/update-staff','StaffController@update_staff');
+Route::get('staff/delete-staff/{id}','StaffController@delete_staff');
 Route::get('staff/threshold','StaffController@threshold')->name('staff.threshold');
 Route::get('staff/kpi','StaffController@kpi')->name('staff.kpi');
 Route::get('staff/payslip','StaffController@payslip')->name('staff.payslip');
