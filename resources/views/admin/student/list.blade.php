@@ -22,6 +22,92 @@
     <!-- /.content-header -->
 
 
+    <!-- /.Search-panel -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="col-md-12">
+                            <div class="card" style="margin: 10px;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Quick  Search</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Name*</label>
+                                                        <div class="input-group">
+                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="type name..">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Class*</label>
+                                                        <div class="input-group">
+                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder=" type class..">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Section*</label>
+                                                        <div class="input-group">
+                                                            <select id="inputState" class="form-control" style="height: 35px !important;">
+                                                                <option>Select</option>
+                                                                <option>...</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Group*</label>
+                                                        <div class="input-group">
+                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Student ID</label>
+                                                        <div class="input-group">
+                                                            <input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="type ID..">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{--<div class="input-group ">--}}
+                                                {{--<div class="input-group-prepend">--}}
+                                                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search aria-hidden="true"></i></span>--}}
+                                                {{--</div>--}}
+                                                {{--<input id="" type="search" name="search" class="form-control" aria-describedby="">--}}
+                                            {{--</div>--}}
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.Search-panel -->
+
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
