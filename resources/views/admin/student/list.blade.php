@@ -26,87 +26,57 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                {{--<div class="col-md-12">--}}
-                {{--<div class="card">--}}
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
-                    {{--<div class="card-header">--}}
-                    {{--<h3 class="card-title">Quick  Search</h3>--}}
-                    {{--</div>--}}
-                    <!-- /.card-header -->
                         <!-- form start -->
-                        {{--<form role="form">--}}
-                            {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
-                            <div class="card-body">
-                                {{--<div class="form-group row">--}}
-                                <div class="form-row">
-                                    <div class="col">
-                                        <label for="">Student ID</label>
-                                        <div class="input-group">
-                                            {{--<input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="type ID..">--}}
-                                            {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
-                                        </div>
+                        {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="">Student ID</label>
+                                    <div class="input-group">
+                                        {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
-                                    <div class="col">
-                                        <label for="">Name</label>
-                                        <div class="input-group">
-                                            {{--<input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder="type name..">--}}
-                                            {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">Class</label>
-                                        <div class="input-group">
-                                            {{--<input id="datePicker1" name="date" class="form-control" aria-describedby="" placeholder=" type class..">--}}
-                                            {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">Section</label>
-                                        <div class="input-group">
-                                            {{--<select id="inputState" class="form-control" style="height: 35px !important;">--}}
-                                                {{--<option>Select</option>--}}
-                                                {{--<option>...</option>--}}
-                                            {{--</select>--}}
-                                            {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">Group</label>
-                                        <div class="input-group">
-                                            {{--<input id="datePicker1" name="date" class="form-control" aria-describedby="">--}}
-                                            {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-1">
-                                        <label for=""> </label>
-                                        <div class="input-group">
-                                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-
                                 </div>
-                                {{--<div class="input-group ">--}}
-                                {{--<div class="input-group-prepend">--}}
-                                {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search aria-hidden="true"></i></span>--}}
-                                {{--</div>--}}
-                                {{--<input id="" type="search" name="search" class="form-control" aria-describedby="">--}}
-                                {{--</div>--}}
+                                <div class="col">
+                                    <label for="">Name</label>
+                                    <div class="input-group">
+                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Class</label>
+                                    <div class="input-group">
+                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Section</label>
+                                    <div class="input-group">
+                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Group</label>
+                                    <div class="input-group">
+                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-1">
+                                    <label for=""> </label>
+                                    <div class="input-group">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+
                             </div>
-                        {{--</div>--}}
-                        <!-- /.card-body -->
-                            {{--<div class="card-footer">--}}
-                                {{--<button type="submit" class="btn btn-primary">Search</button>--}}
-                            {{--</div>--}}
-                                    {{ Form::close() }}
-                        {{--</form>--}}
+                        </div>
+                        {{ Form::close() }}
                     </div>
                     <!-- /.card -->
                 </div>
             </div>
-            {{--</div>--}}
-            {{--</div>--}}
         </div>
     </section>
     <!-- /.Search-panel -->
@@ -118,19 +88,16 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                            <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ $students->total() }}</h3>
-                        {{--</div>--}}
-                        {{--<div class="row">--}}
+                        <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ $students->total() }}</h3>
                         <div class="card-tools">
                             <a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
                             <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
-                        </div>
-                    {{--</div>--}}
+                    </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
+                        <table id="example1" class="table table-bordered table-striped table-sm">
+                            <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
                                 <th>Rank</th>
@@ -167,7 +134,7 @@
                         </table>
                     </div>
                     <div class="card-body">
-                        {{ $students->links() }}
+                        {{ $students->appends(Request::except('page'))->links() }}
                     </div>
                     <!-- /.card-body -->
                 </div>
