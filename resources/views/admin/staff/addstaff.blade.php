@@ -242,7 +242,7 @@
                                         <button type="submit" class="btn btn-primary btn-block">Save</button>
                                     </div>
                                 </div>
-                                    {!! Form::hidden('id', $info->id ?? 0, ['class'=> 'form-control']) !!}
+{{--                                    {!! Form::hidden('id', $info->id ?? 0, ['class'=> 'form-control']) !!}--}}
                                 {!! Form::close() !!}
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">

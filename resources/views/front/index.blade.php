@@ -23,6 +23,6 @@
     @include('front.result')
 
     <!-- will be open after finishing teacher -->
-    {{--@include('front.teacher')--}}
+    @include('front.teacher')
 
 @stop

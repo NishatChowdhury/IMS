@@ -34,17 +34,17 @@ class StaffController extends Controller
     }
 
     public function store_staff(Request $req){
-            if ($req->hasFile('image')){
-                $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
-
-                $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
-                $data = $req->except('image');
-                $data['image'] = $image;
-                Staff::query()->create($data);
-                dd('added');
-            }else{
-                return redirect()->back()->with('warning','Please, Choose an image');
-            }
+        //dd($req->all());
+        if ($req->hasFile('image')){
+            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
+            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
+            $data = $req->except('image');
+            $data['image'] = $image;
+            Staff::query()->create($data);
+            //dd('added');
+        }else{
+            Staff::query()->create($req->except('image'));
+        }
 
         return redirect(route('staff.addstaff'))->with('success','Staff Saved Successfully');
     }
@@ -58,16 +58,16 @@ class StaffController extends Controller
 
     public function update_staff(Request $req){
         $is_exists = Staff::query()->findOrFail($req->id);
-            if ($req->hasFile('image')){
-                unlink(public_path('/assets/img/staffs/'.$is_exists->image));
-                $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
-                $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
-                $data = $req->except('image');
-                $data['image'] = $image;
-                $is_exists->update($data);
-            }else{
-                $is_exists->update($req->all());
-            }
+        if ($req->hasFile('image')){
+            unlink(public_path('/assets/img/staffs/'.$is_exists->image));
+            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
+            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
+            $data = $req->except('image');
+            $data['image'] = $image;
+            $is_exists->update($data);
+        }else{
+            $is_exists->update($req->all());
+        }
 
         return redirect(route('staff.addstaff'))->with('success','Staff Saved Successfully');
     }
