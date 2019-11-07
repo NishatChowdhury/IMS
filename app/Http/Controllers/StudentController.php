@@ -9,23 +9,55 @@ use App\Division;
 use App\Gender;
 use App\Group;
 use App\Religion;
+use App\Repository\StudentRepository;
 use App\Section;
 use App\Session;
 use App\SessionClass;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class StudentController extends Controller
 {
-    public function __construct()
+    /**
+     * @var StudentRepository
+     */
+    private $repository;
+
+    public function __construct(StudentRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
-    public function index(){
-        $students = Student::query()->paginate(20);
-        return view('admin.student.list',compact('students'));
+    public function index(Request $request,Student $student){
+        //dd($request->all());
+        $s = $student->newQuery();
+        if($request->get('studentId')){
+            $studentId = $request->get('studentId');
+            $s->where('studentId',$studentId);
+        }
+        if($request->get('name')){
+            $name = $request->get('name');
+            $s->where('name','like','%'.$name.'%');
+        }
+        if($request->get('class_id')){
+            $class = $request->get('class_id');
+            $s->where('class_id',$class);
+        }
+        if($request->get('section_id')){
+            $section = $request->get('section_id');
+            $s->where('section_id',$section);
+        }
+        if($request->get('group_id')){
+            $group = $request->get('group_id');
+            $s->where('group_id',$group);
+        }
+
+        $students = $s->paginate(20);
+        $repository = $this->repository;
+        return view('admin.student.list',compact('students','repository'));
     }
 
     /*public function get_section(Request $req){

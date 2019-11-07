@@ -33,22 +33,54 @@ class StaffController extends Controller
         return view ('admin.staff.addstaff', compact('genders', 'blood_groups'));
     }
 
-    public function store_staff(Request $request){
-        //dd($request->all());
-
-        if ($request->hasFile('image')){
-            $image = $request->code.'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path().'/assets/img/staffs/', $image);
-            $data = $request->except('image');
+    public function store_staff(Request $req){
+        //dd($req->all());
+        if ($req->hasFile('image')){
+            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
+            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
+            $data = $req->except('image');
             $data['image'] = $image;
-            Student::query()->create($data);
+            Staff::query()->create($data);
+            //dd('added');
         }else{
-            Student::query()->create($request->all());
+            Staff::query()->create($req->except('image'));
         }
 
-        return redirect('stu_add')->with('success','Student Added Successfully');
+        return redirect(route('staff.addstaff'))->with('success','Staff Saved Successfully');
     }
 
+    public function edit_staff($id){
+        $info = Staff::query()->findOrFail($id);
+        $genders = Gender::all()->pluck('name', 'id');
+        $blood_groups = BloodGroup::all()->pluck('name', 'id');
+        return view ('admin.staff.addstaff', compact('genders', 'blood_groups','info'))->with('update',$info);
+    }
+
+    public function update_staff(Request $req){
+        $is_exists = Staff::query()->findOrFail($req->id);
+        if ($req->hasFile('image')){
+            unlink(public_path('/assets/img/staffs/'.$is_exists->image));
+            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
+            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
+            $data = $req->except('image');
+            $data['image'] = $image;
+            $is_exists->update($data);
+        }else{
+            $is_exists->update($req->all());
+        }
+
+        return redirect(route('staff.addstaff'))->with('success','Staff Saved Successfully');
+    }
+
+    public function delete_staff($id){
+        $is_exists = Staff::query()->findOrFail($id);
+
+        if ($is_exists->image != null){
+            unlink(public_path('/assets/img/staffs/'.$is_exists->image));
+        }
+        $is_exists->delete();
+        return redirect(route('staff.teacher'))->with('success','Staff Deleted Successfully');
+    }
     public function threshold()
     {
         return view ('admin.staff.threshold');

@@ -28,9 +28,10 @@
                     <!-- DONUT CHART -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Student Attendance - <br> September</h3>
-                            <h6> Marked : 000000</h6>
-
+                            <h4 class="card-title">Student Attendance <br> Month : {{ $month_name }}</h4>
+                            <h6>
+                                <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">present : {{ $total_attendance }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">Total Students : {{ $total_student }}</span>
+                            </h6>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
                                 </button>
@@ -51,9 +52,10 @@
                     <!-- DONUT CHART -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Teacher Attendance - <br> September</h3>
-                            <h6>Marked : 0</h6>
-
+                            <h3 class="card-title">Teacher Attendance <br> Month : {{ $month_name }} </h3>
+                            <h6>
+                                <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">present : {{ $total_attendance_teacher }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents_teacher }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">Total Teachers : {{ $total_teacher }}</span>
+                            </h6>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
                                 </button>
@@ -74,9 +76,8 @@
                     <!-- DONUT CHART -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Attendance Notification - <br> September</h3>
+                            <h3 class="card-title">Attendance Notification <br> {{ $month_name }}</h3>
                             <h6>10000</h6>
-
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
                                 </button>
@@ -153,9 +154,8 @@
             </div>
             <!-- /.col (RIGHT) -->
         </div>
-        {{--teacher bar chart end--}}
-
-<!-- /.container-fluid -->
+    {{--teacher bar chart end--}}
+    <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 
@@ -233,15 +233,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                            </tr>
+                                @foreach($academicClasses as $academicClass)
+                                    <tr>
+                                        <td>{{$academicClass->name}}</td>
+                                        <td>{{$today_date}}</td>
+                                        <td>{{date('l')}}</td>
+                                        <td>{{'status'}}</td>
+                                        <td>{{'0.00'}}</td>
+                                        <td>{{'0.00'}}</td>
+                                        <td>{{'Action'}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                             </tfoot>
@@ -284,76 +286,31 @@
 //            var areaChart       = new Chart(areaChartCanvas);
 //
             var areaChartData = {
-                labels  : ['January', 'February', 'March', 'April', 'May', 'June'],
+                labels  : ['January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December'],
+
                 datasets: [
                     {
-                        label               : 'Electronics',
-                        fillColor           : 'rgba(210, 214, 222, 1)',
+                        label               : 'Absents',
+                        fillColor           : 'rgba(128, 0, 0, 0.7)',
                         strokeColor         : 'rgba(210, 214, 222, 1)',
                         pointColor          : 'rgba(210, 214, 222, 1)',
                         pointStrokeColor    : '#c1c7d1',
                         pointHighlightFill  : '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data                : [65, 59, 80, 81, 56, 55, 40]
+                        data                : [65, 59, 80, 81, 56, 55, 40,50,56,65,25,35]
                     },
                     {
-                        label               : 'Digital Goods',
+                        label               : 'Presents',
                         fillColor           : 'rgba(60,141,188,0.9)',
                         strokeColor         : 'rgba(60,141,188,0.8)',
                         pointColor          : '#3b8bba',
                         pointStrokeColor    : 'rgba(60,141,188,1)',
                         pointHighlightFill  : '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data                : [28, 48, 40, 19, 86, 27, 90]
+                        data                : [28, 48, 40, 19, 86, 27, 90,23,26,65,54,45]
                     }
                 ]
             };
-//
-//            var areaChartOptions = {
-//                //Boolean - If we should show the scale at all
-//                showScale               : true,
-//                //Boolean - Whether grid lines are shown across the chart
-//                scaleShowGridLines      : false,
-//                //String - Colour of the grid lines
-//                scaleGridLineColor      : 'rgba(0,0,0,.05)',
-//                //Number - Width of the grid lines
-//                scaleGridLineWidth      : 1,
-//                //Boolean - Whether to show horizontal lines (except X axis)
-//                scaleShowHorizontalLines: true,
-//                //Boolean - Whether to show vertical lines (except Y axis)
-//                scaleShowVerticalLines  : true,
-//                //Boolean - Whether the line is curved between points
-//                bezierCurve             : true,
-//                //Number - Tension of the bezier curve between points
-//                bezierCurveTension      : 0.3,
-//                //Boolean - Whether to show a dot for each point
-//                pointDot                : false,
-//                //Number - Radius of each point dot in pixels
-//                pointDotRadius          : 4,
-//                //Number - Pixel width of point dot stroke
-//                pointDotStrokeWidth     : 1,
-//                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-//                pointHitDetectionRadius : 20,
-//                //Boolean - Whether to show a stroke for datasets
-//                datasetStroke           : true,
-//                //Number - Pixel width of dataset stroke
-//                datasetStrokeWidth      : 2,
-//                //Boolean - Whether to fill the dataset with a color
-//                datasetFill             : true,
-//                //String - A legend template
-//      maintainAspectRatio     : true,
-//      //Boolean - whether to make the chart responsive to window resizing
-//      responsive              : true
-//    };
-//
-//    //-------------
-//    //- LINE CHART -
-//    //--------------
-//    var lineChartCanvas          = $('#lineChart').get(0).getContext('2d');
-//    var lineChart                = new Chart(lineChartCanvas);
-//    var lineChartOptions         = areaChartOptions;
-//    lineChartOptions.datasetFill = false;
-//    lineChart.Line(areaChartData, lineChartOptions);
 
             //-------------
             //- PIE CHART -
@@ -361,44 +318,23 @@
             // Get context with jQuery - using jQuery's .get() method.
             var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
             var pieChart       = new Chart(pieChartCanvas);
+
             var PieData        = [
                 {
-                    value    : 700,
+                    value    : '<?= $total_absents ?>',
                     color    : '#f56954',
                     highlight: '#f56954',
-                    label    : 'Chrome'
+                    label    : 'Absents'
                 },
                 {
-                    value    : 500,
+                    value    : '<?= $total_attendance ?>',
                     color    : '#00a65a',
                     highlight: '#00a65a',
-                    label    : 'IE'
-                },
-                {
-                    value    : 400,
-                    color    : '#f39c12',
-                    highlight: '#f39c12',
-                    label    : 'FireFox'
-                },
-                {
-                    value    : 600,
-                    color    : '#00c0ef',
-                    highlight: '#00c0ef',
-                    label    : 'Safari'
-                },
-                {
-                    value    : 300,
-                    color    : '#3c8dbc',
-                    highlight: '#3c8dbc',
-                    label    : 'Opera'
-                },
-                {
-                    value    : 100,
-                    color    : '#d2d6de',
-                    highlight: '#d2d6de',
-                    label    : 'Navigator'
+                    label    : 'Presents'
                 }
+
             ];
+
             var pieOptions     = {
                 //Boolean - Whether we should show a stroke on each segment
                 segmentShowStroke    : true,
@@ -419,50 +355,28 @@
                 //Boolean - whether to make the chart responsive to window resizing
                 responsive           : true,
                 // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-                maintainAspectRatio  : true};
+                maintainAspectRatio  : true
+            };
             pieChart.Doughnut(PieData, pieOptions);
 
 
             //pirchart2 start
-            var pieChartCanvas = $('#pieChart2').get(0).getContext('2d');
+            var pieChartCanvas = $('#pieChart3').get(0).getContext('2d');
             var pieChart       = new Chart(pieChartCanvas);
             var PieData        = [
                 {
-                    value    : 700,
+                    value    : '<?= $total_absents_teacher ?>',
                     color    : '#f56954',
                     highlight: '#f56954',
-                    label    : 'Chrome'
+                    label    : 'Absents'
                 },
                 {
-                    value    : 500,
+                    value    : '<?= $total_attendance_teacher ?>',
                     color    : '#00a65a',
                     highlight: '#00a65a',
-                    label    : 'IE'
-                },
-                {
-                    value    : 400,
-                    color    : '#f39c12',
-                    highlight: '#f39c12',
-                    label    : 'FireFox'
-                },
-                {
-                    value    : 600,
-                    color    : '#00c0ef',
-                    highlight: '#00c0ef',
-                    label    : 'Safari'
-                },
-                {
-                    value    : 300,
-                    color    : '#3c8dbc',
-                    highlight: '#3c8dbc',
-                    label    : 'Opera'
-                },
-                {
-                    value    : 100,
-                    color    : '#d2d6de',
-                    highlight: '#d2d6de',
-                    label    : 'Navigator'
+                    label    : 'Presents'
                 }
+
             ];
             var pieOptions     = {
                 //Boolean - Whether we should show a stroke on each segment
@@ -489,20 +403,20 @@
             //phichar2 end
 
             //pirchart3 start
-            var pieChartCanvas = $('#pieChart3').get(0).getContext('2d');
+            var pieChartCanvas = $('#pieChart2').get(0).getContext('2d');
             var pieChart       = new Chart(pieChartCanvas);
             var PieData        = [
                 {
                     value    : 700,
                     color    : '#f56954',
                     highlight: '#f56954',
-                    label    : 'Chrome'
+                    label    : 'Abseent'
                 },
                 {
                     value    : 500,
                     color    : '#00a65a',
                     highlight: '#00a65a',
-                    label    : 'IE'
+                    label    : 'Present'
                 },
                 {
                     value    : 400,

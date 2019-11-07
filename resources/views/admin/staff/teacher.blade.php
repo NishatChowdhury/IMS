@@ -91,6 +91,7 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
+                                    <th>Image</th>
                                     <th>Code</th>
                                     <th>Name</th>
                                     <th>Job Title </th>
@@ -101,22 +102,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php($i= 0)
+                                @php($i = 0)
                                 @foreach($staffs as $staff)
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>
-                                        <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="" alt="">
+                                        <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="{{asset('assets/img/staffs/'.$staff->image)}}" alt="Staff Image">
                                     </td>
                                     <td>{{$staff->code}}</td>
                                     <td>{{$staff->name}}</td>
                                     <td>{{$staff->title}}</td>
-                                    {{--<td>{{$staff->staff_type->name}}</td>--}}
                                     <td>{{$staff->staff_type_id}}</td>
                                     <td>{{$staff->mail}}</td>
                                     <td>{{$staff->mobile}}</td>
                                     <td>
+                                        <a type="button" class="btn btn-info btn-sm edit" href="{{action('StaffController@edit_staff', $staff->id)}}" style="margin-left: 10px;">
+                                            <i class="fas fa-edit"></i>Edit
+                                        </a>
 
+                                        <a type="button" href="{{url('staff/delete-staff', $staff->id)}}"
+                                        class="btn btn-danger btn-sm delete"
+                                        style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

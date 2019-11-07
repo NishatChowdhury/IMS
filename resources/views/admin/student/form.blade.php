@@ -26,14 +26,14 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('name','Student Name',['class'=>'control-label']) }}
-                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Student Name']) }}
+                        {{ Form::label('academicYear', 'Academic Year',['class'=>'control-label' ]) }}
+                        {{ Form::select('year', ['2019' => 'Year 2019', '2020' => 'Year 2020'], null, ['placeholder' => 'Select Academic year...','class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('session_id', 'Academic Year',['class'=>'control-label' ]) }}
-                        {{ Form::select('session_id', $sessions, null, ['placeholder' => 'Select Academic year...','class'=>'form-control session']) }}
+                        {{Form::label('className','Class',['class'=>'control-label'])}}
+                        {{ Form::select('className', ['5' => 'Class 5', '6' => 'Class 6'], null, ['placeholder' => 'Select Class Name...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('dateOfBirth','Date of Birth',['class'=>'control-label']) }}
-                        {{ Form::date('dob',null,['class'=>'form-control', 'placeholder'=>'Date of Birht']) }}
+                        {{ Form::date('dateOfBirth',null,['class'=>'form-control', 'placeholder'=>'Date of Birht']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -119,7 +119,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('religion','Religion',['class'=>'control-label']) }}
-                        {{ Form::select('religion_id', $religions, null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
+                        {{ Form::select('religion', ['1' => 'Islam', '2' => 'Hindu','3'=>'Buddies'], null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -195,7 +195,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('motherMobile','Mother Mobile',['class'=>'control-label']) }}
-                        {{ Form::text('mother_mobile',null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
+                        {{ Form::text('motherMobile',null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
                     </div>
                 </div>
             </div>

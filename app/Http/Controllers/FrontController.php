@@ -9,6 +9,7 @@ use App\Notice;
 use App\NoticeCategory;
 use App\Page;
 use App\Slider;
+use App\Staff;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class FrontController extends Controller
     {
         $sliders = Slider::all();
         $content = Page::all();
-        return view('front.index',compact('sliders','content'));
+        $teachers = Staff::all();
+        return view('front.index',compact('sliders','content','teachers'));
     }
 
     public function introduction()

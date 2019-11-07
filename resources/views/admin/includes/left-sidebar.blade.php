@@ -1,10 +1,9 @@
 <!-- Brand Logo -->
-<a href="{{url('/')}}" class="brand-link">
+<a href="{{url('dashboard')}}" class="brand-link">
     <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
     <span class="brand-text font-weight-light">WPIMS</span>
 </a>
-
 <!-- Sidebar -->
 <div class="sidebar nano">
     <!-- Sidebar user panel (optional) -->
@@ -13,7 +12,7 @@
             <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="{{url('dashboard')}}" class="d-block">{{ siteConfig('title') }}</a>
+            <a href="{{url('/')}}" class="d-block">{{ siteConfig('title') }}</a>
         </div>
     </div>
 
