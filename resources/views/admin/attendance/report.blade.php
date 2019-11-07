@@ -1,7 +1,18 @@
 @extends('layouts.fixed')
 
 @section('title','Attendance | Monthly Report')
-
+@section('style')
+    <style>
+        @media (min-width: 992px) {
+            #atn_result_show{
+                font-size: 13px;
+            }
+            .table td, th{
+                padding: .5rem;
+            }
+        }
+    </style>
+@endsection
 @section('content')
 
     <!-- Content Header (Page header) -->
@@ -9,211 +20,138 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Monthly Attendance Report </h1>
+                    <h1>Attendance Monthly Report </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Attendance </a></li>
-                        <li class="breadcrumb-item active">Monthly Report</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Attendance Monthly Report</li>
                     </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
 
-    <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="col-md-12">
-                            <div class="card" style="margin: 10px;">
-                                <div class="card-header">
-                                    <h3 class="card-title">Quick  Search</h3>
+            <div class="card card-default">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            {{  Form::open(['id'=>'resultSearchForm']) }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ Form::label('user','User',['class'=>'control-label']) }}
+                                        {{ Form::select('user', ['1' => 'Student', '2' => 'Teacher'], null, ['placeholder' => 'Select User...','class'=>'form-control select2']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('month','Month',['class'=>'control-label']) }}
+                                        {{ Form::selectMonth('month',null,['class'=>'form-control select2','id'=>'month']) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ Form::label('year','Year',['class'=>'control-label']) }}
+                                        {{ Form::selectRange('year',\Carbon\Carbon::now()->format('Y'),2018,null,['class'=>'form-control','id'=>'year']) }}
+                                    </div>
                                 </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <form role="form">
-                                    <div class="card-body">
-                                        <div class="form-group row col-md-12">
-                                            <div class="input-group ">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search aria-hidden="true"></i></span>
-                                                </div>
-                                                <input id="" type="search" name="search" class="form-control" aria-describedby="">
-                                            </div>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ Form::label('class','Class',['class'=>'control-label']) }}
+                                        {{ Form::select('class', ['12' => 'Six', '11' => 'Seven'], null, ['placeholder' => 'Select Class Name...','class'=>'form-control select2']) }}
                                     </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    <div class="form-group">
+                                        {{ Form::label('group','Group',['class'=>'control-label']) }}
+                                        {{ Form::select('group', ['1' => 'Science', '2' => 'Business'], null, ['placeholder' => 'Select Class Group...','class'=>'form-control select2']) }}
                                     </div>
-                                </form>
+                                    <div class="form-group">
+                                        {{ Form::label('section','Section',['class'=>'control-label']) }}
+                                        {{ Form::select('section', ['6' => 'A', '2' => 'B'], null, ['placeholder' => 'Select Class Section...','class'=>'form-control select2']) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::submit('Generate',['class'=>'btn btn-success float-md-right']) }}
+                                </div>
                             </div>
-                            <!-- /.card -->
+
+                            {{ Form::close() }}
+
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <ul style="list-style: none">
+                                    <li> <i class="fas fa-circle" style="color: #008000"></i> <span> P - Present </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> L - Late </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> R - Left without completing the day </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> A - Absent </span></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- /.Search-panel -->
 
-    <!-- ***/Monthly Report page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card" style="padding: 15px 0px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group row">
-                                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">User*</label>
-                                        <div class="col-sm-10">
-                                            <div class="input-group">
-                                                <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                    <option selected>Student</option>
-                                                    <option>Teacher</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class*</label>
-                                        <div class="col-sm-10">
-                                            <div class="input-group">
-                                                <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                    <option selected>Nursery-Shapla</option>
-                                                    <option>Nursery-Beli</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Month*</label>
-                                        <div class="col-sm-10">
-                                            <div class="input-group">
-                                                <select id="inputState" class="form-control" style="height: 35px !important;">
-                                                    <option selected>January</option>
-                                                    <option>February</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div>
-                                        <ul style="list-style: none">
-                                            <li> <i class="fas fa-circle" style="color: #008000"></i> <span> P - Present </span></li>
-                                            <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> L - Late </span></li>
-                                            <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> R - Left without completing the day </span></li>
-                                            <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> A - Absent </span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">Month: Month Name  </div>
-                                <div class="col-md-3">Year: 2109</div>
-                                <div class="col-md-3">
-                                    <div style="text-align: center">
-                                        <button type="button" class="btn btn-success" > <i class="fas fa-cogs"></i> Generate</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-info  btn-sm" style="float: right; padding: .25rem 0.9rem;"> <i class="fas fa-cloud-download-alt"></i></button>
-                                </div>
-                            </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Month Name :
+                            </h3>
                         </div>
-
-
+                        <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="col-md-12">
-                                <table id="example2" class="table table-responsive table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Roll</th>
-                                        <th>Student Name</th>
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <th>5</th>
-                                        <th>6</th>
-                                        <th>7</th>
-                                        <th>8</th>
-                                        <th>9</th>
-                                        <th>10</th>
-                                        <th>11</th>
-                                        <th>12</th>
-                                        <th>13</th>
-                                        <th>14</th>
-                                        <th>15</th>
-                                        <th>16</th>
-                                        <th>17</th>
-                                        <th>18</th>
-                                        <th>19</th>
-                                        <th>20</th>
-                                        <th>21</th>
-                                        <th>22</th>
-                                        <th>23</th>
-                                        <th>24</th>
-                                        <th>25</th>
-                                        <th>26</th>
-                                        <th>27</th>
-                                        <th>28</th>
-                                        <th>29</th>
-                                        <th>30</th>
-                                        <th>31</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>robin</td>
-                                        <td>P</td>
-                                        <td>L</td>
-                                        <td>R</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>L</td>
-                                        <td>A</td>
-                                        <td>P</td>
-                                        <td>L</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>L</td>
-                                        <td>R</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>L</td>
-                                        <td>R</td>
-                                        <td>A</td>
-                                        <td>P</td>
-                                        <td>R</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>R</td>
-                                        <td>A</td>
-                                        <td>R</td>
-                                        <td>P</td>
-                                        <td>P</td>
-                                        <td>R</td>
-                                        <td>A</td>
-                                    </tr>
-                                    </tbody>
+                            <div class="att-table">
+                                <table class="table table-bordered table-responsive" id="atn_result_show">
+
                                 </table>
                             </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </section>
-
-
-
+            <div ><h4 id="erro-box" style="text-align: center; color:red; display: none" >Attendance Not Found</h4></div>
+        </div><!-- /.container-fluid -->
+    </section>    <!-- /.content -->
 @stop
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#resultSearchForm').submit(function (e) {
+            e.preventDefault();
+            var formData = $( this ).serialize();
+
+            $.ajax({
+                url: '{{ url('/get_attendance_monthly') }}',
+                data: formData,
+                type: 'POST',
+                error: function(xhr, ajaxOptions, thrownError) {
+                    if(xhr.status==404) {
+                        $('#erro-box').css('display','');
+                        $("#erro-box").fadeOut(5000);
+                    }
+                },
+                success: function(data) {
+                    $("#atn_result_show").html(data);
+                    $("#atn_result_show").html(data);
+
+                }
+
+            });
+
+        });
+    </script>
+@endsection
 

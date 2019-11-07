@@ -4,7 +4,6 @@
          style="opacity: .8">
     <span class="brand-text font-weight-light">WPIMS</span>
 </a>
-
 <!-- Sidebar -->
 <div class="sidebar nano">
     <!-- Sidebar user panel (optional) -->

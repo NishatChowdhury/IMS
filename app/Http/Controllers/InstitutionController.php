@@ -18,6 +18,10 @@ class InstitutionController extends Controller
         $sessions = Session::all();
         return view ('admin.institution.academicyear', compact('sessions'));
     }
+    public function academicyearstore(Request $request){
+       return $request->all();
+
+    }
 
     public function store_session(Request $request){
         //dd($request->all());
