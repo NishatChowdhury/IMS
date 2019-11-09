@@ -25,34 +25,54 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="col-md-12">
-                            <div class="card" style="margin: 10px;">
-                                <div class="card-header">
-                                    <h3 class="card-title">Quick  Search</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <form role="form">
-                                    <div class="card-body">
-                                        <div class="form-group row col-md-12">
-                                            <div class="input-group ">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search aria-hidden="true"></i></span>
-                                                </div>
-                                                <input id="" type="search" name="search" class="form-control" aria-describedby="">
-                                            </div>
+                    <div class="card" style="margin: 0px;">
+                        <!-- form start -->
+                        <form action="">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="">Staff ID</label>
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="Student ID" name="studentId" type="text">
                                         </div>
                                     </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    <div class="col">
+                                        <label for="">Name</label>
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="Name" name="name" type="text">
+                                        </div>
                                     </div>
-                                </form>
+                                    <div class="col">
+                                        <label for="">Staff Type</label>
+                                        <div class="input-group">
+                                            <select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label for="">Job Type</label>
+                                        <div class="input-group">
+                                            <select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label for="">Group</label>
+                                        <div class="input-group">
+                                            <select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-1" style="padding-top: 32px;">
+                                        <div class="input-group">
+                                            <button style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <!-- /.card -->
-                        </div>
+                        </form>
+
                     </div>
+                    <!-- /.card -->
                 </div>
             </div>
         </div>
