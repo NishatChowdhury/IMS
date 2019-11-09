@@ -1,4 +1,3 @@
-
 <div class="att-table">
     <table class="table table-striped table-hover">
 <thead>

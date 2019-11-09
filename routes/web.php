@@ -70,6 +70,7 @@ Route::get('attendance/setting','AttendanceController@setting')->name('attendanc
 Route::get('attendance/student','AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','AttendanceController@report')->name('attendance.report');
+Route::post('/get_attendance_monthly', 'AttendanceController@getAttendanceMonthly');
 //End Attendance Route
 
 //Settings Route by Rimon

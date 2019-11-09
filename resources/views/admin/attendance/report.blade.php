@@ -58,8 +58,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {{ Form::label('class','Class',['class'=>'control-label']) }}
-                                        {{ Form::select('class', ['12' => 'Six', '11' => 'Seven'], null, ['placeholder' => 'Select Class Name...','class'=>'form-control select2']) }}
+                                        {{ Form::label('class') }}
+                                            <select name="academicClass" class="form-control select2">
+                                                <option value="" selected>Slect Academic Class</option>
+                                                @foreach($allClasses as $allClass)
+                                                    <option value= "{{$allClass->id}}"> {{ $allClass->name }} </option>
+                                                @endforeach
+                                            </select>
                                     </div>
                                     <div class="form-group">
                                         {{ Form::label('group','Group',['class'=>'control-label']) }}
