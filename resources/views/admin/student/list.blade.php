@@ -63,10 +63,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-1">
-                                    <label for=""> </label>
+                                <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
 
