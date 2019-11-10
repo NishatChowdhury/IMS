@@ -8,7 +8,7 @@ Route::get('dashboard','DashboardController@index');
 // Routes For ADMIN LTE Alpha END........//
 
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 Route::get('/home', 'DashboardController@index')->name('home');
 
 /*
@@ -70,6 +70,9 @@ Route::get('attendance/student','AttendanceController@student')->name('attendanc
 Route::get('attendance/teacher','AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','AttendanceController@report')->name('attendance.report');
 Route::post('/get_attendance_monthly', 'AttendanceController@getAttendanceMonthly');
+Route::post('/indStudentAttendance','AttendanceController@individulAttendance')->name('student.indAttendance');
+Route::post('/classStudentAttendance','AttendanceController@classAttendance')->name('student.classAttendance');
+Route::post('/indTeacherAttendance','AttendanceController@individulTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
 
 Route::get('attendance/setting','ShiftController@index');

@@ -21,67 +21,6 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <!-- /.Search-panel -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="margin: 10px;">
-                        <!-- form start -->
-                        {{ Form::open(['action'=>'AttendanceController@student','role'=>'form','method'=>'get']) }}
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="col">
-                                    <label for="">Student ID</label>
-                                    <div class="input-group">
-                                        {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Date*</label>
-                                    <div class="input-group">
-{{--                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
-                                        {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Class*</label>
-                                    <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-1">
-                                    <label for=""> </label>
-                                    <div class="input-group">
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        {{ Form::close() }}
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.Search-panel -->
-
-
     <!-- ***/Student Attendances page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
@@ -93,31 +32,31 @@
                                 <div class="row" style="padding: 10px;">
                                     <div class="col-md-2">
                                         <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
+                                            <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
+                                                <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                            </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Total Found</h5>
-                                                <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($attendances) }}</span></p>
+                                                <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px"> @php echo count(\App\Student::all()) @endphp</span></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00b249; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
+                                            <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00b249; border-radius: 50%;" >
+                                                <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                            </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Present</h5>
-                                                <p><span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">00</span></p>
+                                                <p><span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">@php echo 00 @endphp</span></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #007bff; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
+                                            <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #007bff; border-radius: 50%;" >
+                                                <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                            </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Late Present</h5>
                                                 <p><span class="badge badge-primary" style="color: black; padding: 5px 45px; font-size: 18px">00</span></p>
@@ -126,9 +65,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ffa500; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
+                                            <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ffa500; border-radius: 50%;" >
+                                                <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                            </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Left Early</h5>
                                                 <p><span class="badge badge-warning" style="color: black; padding: 5px 35px; font-size: 18px">00</span></p>
@@ -137,9 +76,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
+                                            <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >
+                                                <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                            </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Absent</h5>
                                                 <p><span class="badge badge-danger" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>
@@ -155,76 +94,140 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" style="padding: 1.00rem;">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Card</th>
-                                    <th>Rank</th>
-                                    <th>Date </th>
-                                    <th>Class</th>
-                                    <th>Subject</th>
-                                    <th>Teacher</th>
-                                    <th>Enter Time</th>
-                                    <th>Exit Time</th>
-                                    <th>Status</th>
-                                    <th>Is Notified</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($attendances as $attn)
-                                    <tr>
-                                        <td>
-                                            {{ $attn['student'] }}
-                                            {{--@if($attn->student)--}}
-                                                {{--{{ $attn->student->name }}--}}
-                                            {{--@endif--}}
-                                        </td>
-                                        <td>{{ $attn['card'] }}</td>
-                                        <td>
-                                            {{ $attn['rank'] }}
-                                            {{--@if($attn->student)--}}
-                                                {{--{{ $attn->student->rank }}--}}
-                                            {{--@endif--}}
-                                        </td>
-                                        <td>{{ $attn['date'] }}</td>
-                                        <td>
-                                            {{ $attn['class'] }}
-                                            {{--@if($attn->student)--}}
-                                                {{--@if($attn->student->academicClass)--}}
-                                                    {{--{{ $attn->student->academicClass->name }}--}}
-                                                {{--@endif--}}
-                                            {{--@endif--}}
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{ $attn['enter'] }}</td>
-                                        <td>{{ $attn['exit'] }}</td>
-                                        <td>
-                                            {{--{{ $attn->student->status }}--}}
-                                            {{ $attn['status'] }}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            {{--<div class="row" style="margin-top: 10px">--}}
-                                {{--<div class="col-sm-12 col-md-9">--}}
-                                    {{--<div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-sm-12 col-md-3">--}}
-                                    {{--{{ $attendances->appends(Request::except('page'))->links() }}--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{--start --}}
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header">
+                                        <h4>Individual Student Attendance Search</h4>
+                                    </div>
+                                    <div class="card-body ">
+                                        {{ Form::open(['route'=>'student.indAttendance','method'=>'post','id'=>'indAttendanceStudent']) }}
+                                        @csrf
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ Form::label('Student Card ID') }}
+
+                                                <select name="studentCardId" class="form-control select2">
+                                                    <option value="" selected>Slect Student Card ID</option>
+                                                    @foreach($allStudents as $allStudent)
+                                                        <option value= " {{ $allStudent->studentId }} "> {{$allStudent->name}} - {{ $allStudent->studentId }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Date range button:</label>
+                                                <div class="form-group">
+                                                    <input type="text" name="dateRangeStudent" id="" class="form-control daterange-btn" autocomplete="off">
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-1" style=" margin:29px 0 0 0;">
+                                                <input type="submit" class="btn btn-info" value="search">
+                                            </div>
+
+                                        </div>
+                                        {{  Form::close() }}
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+                            </div>
                         </div>
-                        <div class="card-body">
-{{--                            {{ $attendances->appends(Request::except('page'))->links() }}--}}
+
+                        {{--Class Wish Card Search--}}
+
+                        <div class="col-md-6">
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header">
+                                        <h4>Class Wish Attendance Search</h4>
+                                    </div>
+                                    <div class="card-body ">
+                                        {{ Form::open(['route'=>'student.classAttendance','method'=>'post','id'=>'classAttendance']) }}
+                                        <div class="form-row">
+                                            <div class=" form-group col-md-6">
+                                                {{ Form::label('Academic Class') }}
+                                                <select name="academicClass" class="form-control select2">
+                                                    <option value="" selected>Slect Academic Class</option>
+                                                    @foreach($allClasses as $allClass)
+                                                        <option value= " {{ $allClass->id }} "> {{ $allClass->name }} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Date range button:</label>
+                                                <div class="form-group">
+                                                    <input type="text" name="dateRangeClass" id="" class="form-control daterange-btn" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-1" style=" margin:29px 0 0 0;">
+                                                <input type="submit" class="btn btn-info" value="search">
+                                            </div>
+                                        </div>
+                                        {{  Form::close() }}
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body" style="padding: 1.00rem;">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Student Id</th>
+                                <th>Rank</th>
+                                <th>Date </th>
+                                <th>Class</th>
+                                <th>Subject</th>
+                                <th>Teacher</th>
+                                <th>Enter Time</th>
+                                <th>Exit Time</th>
+                                <th>Status</th>
+                                <th>Is Notified</th>
+                            </tr>
+                            </thead>
+                            <tbody id="indStudent" >
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-sm-12 col-md-9">
+                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">First</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @stop
@@ -237,37 +240,52 @@
 
 @stop
 
-<!-- *** External CSS File-->
-@section('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
-@stop
-
 @section('plugin')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('/plugins/select2/select2.full.min.js') }}"></script>
-    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
 
 @stop
 
 
 @section('script')
     <script>
+
+        $("#indAttendanceStudent").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                method: $(this).attr('method'),
+                url : $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType:'html',
+                success:function (res) {
+                    $("#indStudent").html(res);
+                    console.log(res);
+                }
+            });
+        });
+        $("#classAttendance").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                method: $(this).attr('method'),
+                url : $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType:'html',
+                success:function (res) {
+                    $("#indStudent").html(res);
+                    console.log(res);
+                }
+            });
+        });
+
         //Date range as a button
         $(function () {
             $('.select2').select2();
         });
-        // $(document).ready(function() {
-            $('.datePicker')
-                .datepicker({
-                    format: 'yyyy-mm-dd'
-                });
-        // });
         $('.daterange-btn').daterangepicker(
             {
                 format : 'YYYY-MM-DD',
@@ -286,8 +304,3 @@
         );
     </script>
 @stop
-
-
-
-
-

@@ -232,15 +232,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($academicClasses as $academicClass)
+                                @foreach($class_attendances as $key=>$info)
                                     <tr>
-                                        <td>{{$academicClass->name}}</td>
-                                        <td>{{$today_date}}</td>
-                                        <td>{{date('l')}}</td>
-                                        <td>{{'status'}}</td>
-                                        <td>{{'0.00'}}</td>
-                                        <td>{{'0.00'}}</td>
-                                        <td>{{'Action'}}</td>
+                                        <td>{{ $info->name}}</td>
+                                        <td class="text-center">{{date('Y-m-d')}}</td>
+                                        <td class="text-center">{{date('l')}}</td>
+                                        <td class="text-center">{{'--'}}</td>
+                                        <td class="text-center">{{$info->totalScan}}</td>
+                                        <td class="text-center">{{'--'}}</td>
+                                        <td class="text-center">{{'--'}}</td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
