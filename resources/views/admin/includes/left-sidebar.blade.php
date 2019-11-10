@@ -84,7 +84,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('attendance.setting') }}" class="nav-link {{ isActive('attendance/setting') }}">
+                        <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Setting</p>
                         </a>

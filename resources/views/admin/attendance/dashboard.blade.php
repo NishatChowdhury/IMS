@@ -33,8 +33,7 @@
                                 <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">present : {{ $total_attendance }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">Total Students : {{ $total_student }}</span>
                             </h6>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                </button>
+                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
                                 <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
                             </div>
                         </div>

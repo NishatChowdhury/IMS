@@ -4,21 +4,28 @@ namespace App\Http\Controllers;
 
 use App\AcademicClass;
 use App\Attendance;
+use App\Repository\AttendanceRepository;
 use App\Staff;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
-    public function __construct()
+    /**
+     * @var AttendanceRepository
+     */
+    private $repository;
+
+    public function __construct(AttendanceRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     public function index()
     {
-
         return view('admin.attendance.attendance');
     }
 
@@ -100,7 +107,7 @@ class AttendanceController extends Controller
     public function teacher()
     {
         $today_date = date('Y-m-d');
-        $teachers = Staff::query()->where('type','teacher')->get();
+        $teachers = Staff::query()->where('staff_type_id',2)->get();
         $total_attendance_teacher = $n =0;
         foreach ($teachers as $teacher){
             $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
@@ -120,16 +127,99 @@ class AttendanceController extends Controller
         return view('admin.attendance.teacher', compact('today_date', 'teachers', 'teachers_data','total_attendance_teacher','total_absents_teacher'));
     }
 
-    public function setting()
-    {
-        return view('admin.attendance.setting');
-    }
+//    public function setting()
+//    {
+//        return view('admin.attendance.setting');
+//    }
 
-    public function student()
+    public function student(Student $student, Request $request)
     {
-        $allStudents = Student::query()->get(['studentId','name']);
-        $allClasses = AcademicClass::query()->get(['id', 'name']);
-        return view('admin.attendance.student',compact('allStudents','allClasses'));
+        if($request->all() == []){
+            $attendances = [];
+            $repository = $this->repository;
+            return view('admin.attendance.student',compact('attendances','repository'));
+        }
+
+        $today = $request->get('date');
+        //$today = '2019-11-06';
+
+        $s = $student->newQuery();
+
+        if($request->get('studentId')){
+            $studentId = $request->get('studentId');
+            $s->where('studentId',$studentId);
+        }
+        if($request->get('name')){
+            $name = $request->get('name');
+            $s->where('name','like','%'.$name.'%');
+        }
+        if($request->get('class_id')){
+            $class = $request->get('class_id');
+            $s->where('class_id',$class);
+        }
+        if($request->get('section_id')){
+            $section = $request->get('section_id');
+            $s->where('section_id',$section);
+        }
+        if($request->get('group_id')){
+            $group = $request->get('group_id');
+            $s->where('group_id',$group);
+        }
+
+        $students = $s
+            //->whereIn('studentId',['S194300','S194278'])
+            ->get();
+        //dd($students);
+
+//        $attendances = Attendance::query()
+//            ->whereIn('registration_id',$students)
+//            ->whereDate('access_date',$today)
+//            ->paginate(20);
+
+        $attendances = [];
+        foreach($students as $student){
+            $attn = Attendance::query()
+                ->where('access_date','like','%'.$today.'%')
+                ->where('registration_id',$student->studentId)
+                ->get();
+
+            if($attn->count() > 0){
+                $attendances[] = collect([
+                    'student'=>$student->name,
+                    'card'=>$student->studentId,
+                    'rank'=>$student->rank,
+                    'date'=>$today,
+                    'class'=>$student->academicClass->name,
+                    'subject'=>'Subject',
+                    'teacher'=>'Teacher',
+                    'enter'=>$attn->first()->access_date,
+                    'exit'=>$attn->last()->access_date,
+                    'status'=>'P',
+                    'is_notified'=>'Is Notified'
+                ]);
+            }else{
+                $attendances[] = collect([
+                    'student'=>$student->name,
+                    'card'=>$student->studentId,
+                    'rank'=>$student->rank,
+                    'date'=>$today,
+                    'class'=>$student->academicClass->name,
+                    'subject'=>'Subject',
+                    'teacher'=>'Teacher',
+                    'enter'=>'-',
+                    'exit'=>'-',
+                    'status'=>'A',
+                    'is_notified'=>'Is Notified'
+                ]);
+                //dd($attendances);
+            }
+        }
+
+        $repository = $this->repository;
+        //$attendances = [];
+        //dd($attendances);
+
+        return view('admin.attendance.student',compact('attendances','repository'));
     }
 
 

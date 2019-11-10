@@ -66,12 +66,14 @@ Route::get('/album/{name}','FrontController@album');
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
 Route::get('attendance/dashboard','AttendanceController@dashboard')->name('attendance.dashboard');
-Route::get('attendance/setting','AttendanceController@setting')->name('attendance.setting');
 Route::get('attendance/student','AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','AttendanceController@report')->name('attendance.report');
 Route::post('/get_attendance_monthly', 'AttendanceController@getAttendanceMonthly');
 //End Attendance Route
+
+Route::get('attendance/setting','ShiftController@index');
+Route::post('attendance/shift/store','ShiftController@store');
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
