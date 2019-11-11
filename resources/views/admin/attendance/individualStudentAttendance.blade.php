@@ -11,8 +11,15 @@
             <td> </td>
             <td> {{ \Carbon\Carbon::parse($info->first()->access_date)->format('h:i:s A') }}</td>
             <td> {{ \Carbon\Carbon::parse($info->last()->access_date)->format('h:i:s A') }} </td>
-            <td> </td>
-            <td> </td>
+
+            @if(\Carbon\Carbon::parse($info->first()->access_date)->format('h:i:s A') <= '09:00:00')
+                    <td class="badge" style="color:white; background: green; padding: 5px 8px; ">{{'In Time'}}</td>
+                @else(\Carbon\Carbon::parse($info->first()->access_date)->format('h:i:s A') >= '09:00:02')
+                    <td class="badge" style="color:white; background: darkred; padding: 5px 8px; ">{{'Late'}}</td>
+
+            @endif
+
+            <td></td>
         </tr>
     @endforeach
 @else

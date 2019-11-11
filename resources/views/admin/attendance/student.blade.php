@@ -38,7 +38,14 @@
                                             </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Total Found</h5>
-                                                <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px"> @php echo count(\App\Student::all()) @endphp</span></p>
+                                                <p>
+                                                    <span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">
+                                                        @php
+                                                            $allStuAttend = count(\App\Student::all());
+                                                            echo $allStuAttend;
+                                                        @endphp
+                                                    </span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +56,15 @@
                                             </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Present</h5>
-                                                <p><span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">@php echo 00 @endphp</span></p>
+                                                <p>
+                                                    <span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">
+                                                        @php
+                                                              $date = date('Y-m-d');
+                                                              $stuAttendance = count(\App\Attendance::query()->where('access_date', 'like','%'.$date.'%')->distinct()->get(['registration_id']));
+                                                              echo $stuAttendance;
+                                                        @endphp
+                                                    </span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +97,14 @@
                                             </div>
                                             <div class="dec-block-dec" style="float:left;">
                                                 <h5 style="margin-bottom: 0px; font-weight: bold">Absent</h5>
-                                                <p><span class="badge badge-danger" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>
+                                                <p>
+                                                    <span class="badge badge-danger" style="color: black; padding: 5px 28px; font-size: 18px">
+                                                        @php
+                                                            $stuAbsent = $allStuAttend-$stuAttendance;
+                                                            echo $stuAbsent;
+                                                        @endphp
+                                                    </span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -121,7 +143,7 @@
                                             <div class="form-group">
                                                 <label>Date range button:</label>
                                                 <div class="form-group">
-                                                    <input type="text" name="dateRangeStudent" id="" class="form-control daterange-btn">
+                                                    <input type="text" name="dateRangeStudent" id="" class="form-control daterange-btn" autocomplete="off">
 
                                                 </div>
                                             </div>
@@ -161,7 +183,7 @@
                                             <div class="form-group">
                                                 <label>Date range button:</label>
                                                 <div class="form-group">
-                                                    <input type="text" name="dateRangeClass" id="" class="form-control daterange-btn" >
+                                                    <input type="text" name="dateRangeClass" id="" class="form-control daterange-btn" autocomplete="off" >
                                                 </div>
                                             </div>
 
@@ -196,17 +218,7 @@
                             </thead>
                             <tbody id="indStudent" >
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td colspan="11" style="text-align: center; color: #7b9726; font-size: 20px">STUDENT SEARCH</td>
                             </tr>
                             </tbody>
                         </table>

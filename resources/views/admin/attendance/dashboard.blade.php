@@ -232,18 +232,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($class_attendances as $key=>$info)
-                                    <tr>
-                                        <td>{{ $info->name}}</td>
-                                        <td class="text-center">{{date('Y-m-d')}}</td>
-                                        <td class="text-center">{{date('l')}}</td>
-                                        <td class="text-center">{{'--'}}</td>
-                                        <td class="text-center">{{$info->totalScan}}</td>
-                                        <td class="text-center">{{'--'}}</td>
-                                        <td class="text-center">{{'--'}}</td>
+                                @if($class_attendances != null)
+                                    @foreach($class_attendances as $key=>$info)
+                                        <tr>
+                                            <td>{{ $info->name}}</td>
+                                            <td class="text-center">{{date('d-M-Y')}}</td>
+                                            <td class="text-center">{{date('l')}}</td>
+                                            <td class="text-center">{{'--'}}</td>
+                                            <td class="text-center">{{$info->totalScan}}</td>
+                                            <td class="text-center">{{'--'}}</td>
+                                            <td class="text-center">{{'--'}}</td>
 
+                                        </tr>
+                                    @endforeach
+                                    @else
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; color: #7b9726; font-size: 20px">{{'CARD NOT PUNCH TODAY'}}</td>
                                     </tr>
-                                @endforeach
+                                @endif
+
                             </tbody>
                             <tfoot>
                             </tfoot>

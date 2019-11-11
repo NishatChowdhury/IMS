@@ -28,7 +28,6 @@ class AttendanceController extends Controller
         $month_name = date('F');
         //month Calculation end
 
-
 //      total Students present attendance count start
         $today_date = date('Y-m-d');
         $students = Student::query()->get('studentId');
@@ -63,10 +62,11 @@ class AttendanceController extends Controller
 
 //        Class wish attendance list start
         $academicClasses = AcademicClass::query()->get();
+        $class_attendances = DB::select("SELECT COUNT(*) AS totalScan, class_id , c.name FROM students, academic_classes as c WHERE students.class_id=c.id AND studentId in (SELECT DISTINCT registration_id FROM attendances WHERE access_date LIKE '".$today_date."%') GROUP BY students.class_id");
 
 //        Class wish attendance list end
 
-        return view('admin.attendance.dashboard',compact('month_name','today_date','total_attendance','total_absents','total_student','total_attendance_teacher','total_absents_teacher','total_teacher','academicClasses'));
+        return view('admin.attendance.dashboard',compact('month_name','today_date','total_attendance','total_absents','total_student','total_attendance_teacher','total_absents_teacher','total_teacher','academicClasses','class_attendances'));
     }
 
     public function getAttendanceMonthly(Request $request){
@@ -131,8 +131,6 @@ class AttendanceController extends Controller
         $allClasses = AcademicClass::query()->get(['id', 'name']);
         return view('admin.attendance.student',compact('allStudents','allClasses'));
     }
-
-
 
     public function report(){
 
