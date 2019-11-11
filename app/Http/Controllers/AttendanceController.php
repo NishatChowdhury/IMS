@@ -28,6 +28,7 @@ class AttendanceController extends Controller
         $month_name = date('F');
         //month Calculation end
 
+
 //      total Students present attendance count start
         $today_date = date('Y-m-d');
         $students = Student::query()->get('studentId');
@@ -61,13 +62,11 @@ class AttendanceController extends Controller
 //      Total Teacher Present Attendance Count End
 
 //        Class wish attendance list start
-
-        $class_attendances = DB::select("SELECT COUNT(*) AS totalScan, exam_class_id,c.name FROM students,exam_classes as c WHERE students.exam_class_id=c.id AND card_id in (SELECT DISTINCT registration_id FROM attendances WHERE access_date LIKE '".$today_date."%') GROUP BY students.exam_class_id");
-
+        $academicClasses = AcademicClass::query()->get();
 
 //        Class wish attendance list end
 
-        return view('admin.attendance.dashboard',compact('month_name','today_date','total_attendance','total_absents','total_student','total_attendance_teacher','total_absents_teacher','total_teacher','academicClasses','class_attendances'));
+        return view('admin.attendance.dashboard',compact('month_name','today_date','total_attendance','total_absents','total_student','total_attendance_teacher','total_absents_teacher','total_teacher','academicClasses'));
     }
 
     public function getAttendanceMonthly(Request $request){
@@ -155,6 +154,7 @@ class AttendanceController extends Controller
             });
         }
 
+
         return view('admin.attendance.individualStudentAttendance',compact('std','attendances'));
     }
 
@@ -166,28 +166,24 @@ class AttendanceController extends Controller
         $teacherCardId = $request->teacherCardId;
         $teachers = Staff::query()->where('code', $teacherCardId)->first();
         if ($teachers){
-            $attendances =Attendance::query()->where('registration_id',$teacherCardId)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
+            $attendances = Attendance::query()->where('registration_id',$teacherCardId)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
                 return \Carbon\Carbon::parse($date->access_date)->format('Y-m-d');
             });
         }
 
         return view('admin.attendance.individualTeacherAttendance',compact('teachers','attendances'));
     }
+
     public function classAttendance(Request $request){
-        dd('Under Construction');
+        //dd('Under Construction');
         $explode = explode(' - ',$request->dateRangeClass);
         $start = $explode[0];
         $end = $explode[1];
         $class_id = $request->academicClass;
+        $students = Student::query()->where('class_id', $class_id)->get();
 
-        $students = Student::query()->where('class_id',$class_id)->get();
+        return view('admin.attendance.classAttendance',compact('students','start', 'end'));
 
-        foreach ($students as $student){
-        $attendances[] =  $attendances =Attendance::query()->where('registration_id',$student->studentId)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
-            return \Carbon\Carbon::parse($date->access_date)->format('Y-m-d');
-        });
-        }
-        dd($attendances);
 
     }
 

@@ -21,6 +21,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
+
     <!-- ***/Student Attendances page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
@@ -120,7 +121,7 @@
                                             <div class="form-group">
                                                 <label>Date range button:</label>
                                                 <div class="form-group">
-                                                    <input type="text" name="dateRangeStudent" id="" class="form-control daterange-btn" autocomplete="off">
+                                                    <input type="text" name="dateRangeStudent" id="" class="form-control daterange-btn">
 
                                                 </div>
                                             </div>

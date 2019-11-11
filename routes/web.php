@@ -8,7 +8,7 @@ Route::get('dashboard','DashboardController@index');
 // Routes For ADMIN LTE Alpha END........//
 
 
-Auth::routes(['register' => true]);
+Auth::routes(['register' => false]);
 Route::get('/home', 'DashboardController@index')->name('home');
 
 /*
