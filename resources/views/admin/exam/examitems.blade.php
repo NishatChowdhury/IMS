@@ -46,9 +46,9 @@
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Schedules" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-calendar"></i> </button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Allocate Seat"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-server"></i> </button>
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schedulespreview" data-whatever="@mdo" data-placement="top" title="AdmitCard Preview"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-spinner"></i></button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Schedules" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-calendar"></i> </button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocateseat" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Allocate Seat"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-server"></i> </button>
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#admitcard" data-whatever="@mdo" data-placement="top" title="AdmitCard Preview"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-spinner"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -84,6 +84,21 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-sm-12 col-md-9">
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,8 +106,8 @@
         </div>
     </section>
 
-    <!-- ***/ Pop Up Model for button -->
-    <div class="modal fade" id="schedulespreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- ***/ Pop Up Model for Admit Card Preview button -->
+    <div class="modal fade" id="admitcard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
@@ -227,5 +242,255 @@
             </div>
         </div>
     </div>
-    <!-- ***/ Pop Up Model for button End-->
+    <!-- ***/ Pop Up Model for Admit Card Preview  button End-->
+
+    <!-- ***/ Pop Up Model for  Allocate Seat button -->
+    <div class="modal fade" id="allocateseat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Allocate Seat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#" data-whatever="@mdo"  style="margin-top: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dec-block">
+                                <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
+                                    <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                </div>
+                                <div class="dec-block-dec" style="float:left;">
+                                    <h5 style="margin-bottom: 0px;">Total Exam Candidate</h5>
+                                    <p>150</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dec-block">
+                                <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #2faa20; border-radius: 50%;" >
+                                    <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                </div>
+                                <div class="dec-block-dec" style="float:left;">
+                                    <h5 style="margin-bottom: 0px;">Seat Selected</h5>
+                                    <p>0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="POST" action="" accept-charset=""><input name="" type="hidden" value="">
+                        <div class="form-group row">
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>select option</option>
+                                        <option>select option</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>select option</option>
+                                        <option>select option</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>Seat From</th>
+                            <th>Seat To</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success btn-sm"> <i class=""> </i> Apply</button>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ***/ Pop Up Model for  Allocate Seat  button End-->
+
+    <!-- ***/ Pop Up Model for  Schedules button -->
+    <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Name*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="">
+                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Subject*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Date*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input name="start" class="form-control datePicker" aria-describedby="">
+                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Time*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input name="start" class="form-control" aria-describedby="">
+                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Date*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input name="start" class="form-control datePicker" aria-describedby="">
+                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Time*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input name="start" class="form-control" aria-describedby="">
+                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Marks*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id=""  aria-describedby="">
+                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Type*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float: right; margin-right: 75px;">
+                            <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ***/ Pop Up Model for  Schedules button -->
+
+@stop
+
+<!-- *** External CSS File-->
+@section('style')
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+@stop
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.datePicker')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                })
+        });
+    </script>
 @stop
