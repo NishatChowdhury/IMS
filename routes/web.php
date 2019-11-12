@@ -75,6 +75,15 @@ Route::post('/classStudentAttendance','AttendanceController@classAttendance')->n
 Route::post('/indTeacherAttendance','AttendanceController@individulTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
 
+//Exam Route by Rimon
+Route::get('exam/gradesystem','ExamController@gradesystem')->name('exam.gradesystem');
+Route::get('exam/examination','ExamController@examination')->name('exam.examination');
+Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
+//Exam Route by Rimon
+
+
+
+
 Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
 
