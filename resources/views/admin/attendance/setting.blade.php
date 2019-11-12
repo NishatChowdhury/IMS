@@ -129,13 +129,13 @@
                 <div class="modal-body">
                     {{--<form>--}}
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
                         <div class="col-sm-9">
-                            <div class="input-group">
+                            <div class="">
                                 <input type="text" name="name" class="form-control" id=""  aria-describedby="" >
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
-                                </div>
+                                {{--<div class="input-group-prepend">--}}
+                                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -162,13 +162,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Grace Time</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Grace Time*</label>
                         <div class="col-sm-9">
-                            <div class="input-group">
+                            <div class="">
                                 <input type="text" name="grace" class="form-control">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
-                                </div>
+                                {{--<div class="input-group-prepend">--}}
+                                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
