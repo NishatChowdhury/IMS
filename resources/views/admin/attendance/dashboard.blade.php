@@ -33,8 +33,7 @@
                                 <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">present : {{ $total_attendance }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">Total Students : {{ $total_student }}</span>
                             </h6>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                </button>
+                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
                                 <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
                             </div>
                         </div>
@@ -233,17 +232,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($academicClasses as $academicClass)
+                                @if($class_attendances != null)
+                                    @foreach($class_attendances as $key=>$info)
+                                        <tr>
+                                            <td>{{ $info->name}}</td>
+                                            <td class="text-center">{{date('d-M-Y')}}</td>
+                                            <td class="text-center">{{date('l')}}</td>
+                                            <td class="text-center">{{'--'}}</td>
+                                            <td class="text-center">{{$info->totalScan}}</td>
+                                            <td class="text-center">{{'--'}}</td>
+                                            <td class="text-center">{{'--'}}</td>
+
+                                        </tr>
+                                    @endforeach
+                                    @else
                                     <tr>
-                                        <td>{{$academicClass->name}}</td>
-                                        <td>{{$today_date}}</td>
-                                        <td>{{date('l')}}</td>
-                                        <td>{{'status'}}</td>
-                                        <td>{{'0.00'}}</td>
-                                        <td>{{'0.00'}}</td>
-                                        <td>{{'Action'}}</td>
+                                        <td colspan="7" style="text-align: center; color: #7b9726; font-size: 20px">{{'CARD NOT PUNCH TODAY'}}</td>
                                     </tr>
-                                @endforeach
+                                @endif
+
                             </tbody>
                             <tfoot>
                             </tfoot>

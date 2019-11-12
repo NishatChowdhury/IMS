@@ -84,7 +84,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('attendance.setting') }}" class="nav-link {{ isActive('attendance/setting') }}">
+                        <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Setting</p>
                         </a>
@@ -215,15 +215,21 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('mailbox/inbox') }}">
+                        <a href="{{route('exam.gradesystem')}}" class="nav-link {{ isActive('exam/gradesystem') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Grade System </p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('mailbox/compose') }}">
+                        <a href="{{route('exam.examination')}}" class="nav-link {{ isActive('exam/examination') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Examinations</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('exam.examitems')}}" class="nav-link {{ isActive('exam/examitems') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Exam Schedules</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">

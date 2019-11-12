@@ -152,7 +152,7 @@ class InstitutionController extends Controller
 
     public function create_subject(Request $request){
         Subject::create($request->all());
-        return redirect('institution/subject')->with('success', 'Subject Added Successfully');
+        return redirect('institution/subjects')->with('success', 'Subject Added Successfully');
     }
 
     public function edit_subject(Request $req){
@@ -163,13 +163,13 @@ class InstitutionController extends Controller
     public function update_subject(Request $req){
         $subject = Subject::findOrFail($req->id);
         $subject->update($req->all());
-        return redirect('institution/subject')->with('success', 'Class has been Updated');
+        return redirect('institution/subjects')->with('success', 'Class has been Updated');
     }
 
     public function delete_subject($id){
         $subject = Subject::findOrFail($id);
         $subject->delete();
-        return redirect('institution/subject')->with('success', 'Class has been Deleted');
+        return redirect('institution/subjects')->with('success', 'Class has been Deleted');
     }
     /*Subjects End*/
 

@@ -66,11 +66,26 @@ Route::get('/album/{name}','FrontController@album');
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
 Route::get('attendance/dashboard','AttendanceController@dashboard')->name('attendance.dashboard');
-Route::get('attendance/setting','AttendanceController@setting')->name('attendance.setting');
 Route::get('attendance/student','AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','AttendanceController@report')->name('attendance.report');
+Route::post('/get_attendance_monthly', 'AttendanceController@getAttendanceMonthly');
+Route::post('/indStudentAttendance','AttendanceController@individulAttendance')->name('student.indAttendance');
+Route::post('/classStudentAttendance','AttendanceController@classAttendance')->name('student.classAttendance');
+Route::post('/indTeacherAttendance','AttendanceController@individulTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
+
+//Exam Route by Rimon
+Route::get('exam/gradesystem','ExamController@gradesystem')->name('exam.gradesystem');
+Route::get('exam/examination','ExamController@examination')->name('exam.examination');
+Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
+//Exam Route by Rimon
+
+
+
+
+Route::get('attendance/setting','ShiftController@index');
+Route::post('attendance/shift/store','ShiftController@store');
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');

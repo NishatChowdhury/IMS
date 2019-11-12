@@ -20,7 +20,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Admin</b>LTE</a>
+        <a href="#"><b>WP</b>IMS</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -29,7 +29,7 @@
 
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="form-group has-feedback">
+                <div class="input-group mb-3">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-mail">
                     <div class="input-group-append">
                         <span class="fas fa-envelope input-group-text"></span>
@@ -69,13 +69,13 @@
                 </div>
             </form>
             <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook-f mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus-g mr-2"></i> Sign in using Google+
-                </a>
+                {{--<p>- OR -</p>--}}
+                {{--<a href="#" class="btn btn-block btn-primary">--}}
+                    {{--<i class="fab fa-facebook-f mr-2"></i> Sign in using Facebook--}}
+                {{--</a>--}}
+                {{--<a href="#" class="btn btn-block btn-danger">--}}
+                    {{--<i class="fab fa-google-plus-g mr-2"></i> Sign in using Google+--}}
+                {{--</a>--}}
             </div>
 
             <p class="mb-1">
@@ -87,7 +87,7 @@
             </p>
             <p class="mb-0">
 {{--                <a href="{{ route('register') }}" class="text-center">Register a new membership</a>--}}
-                <a href="#" class="text-center">Register a new membership</a>
+                {{--<a href="#" class="text-center">Register a new membership</a>--}}
             </p>
         </div>
         <!-- /.login-card-body -->

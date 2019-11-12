@@ -51,24 +51,30 @@
                                         {{ Form::selectMonth('month',null,['class'=>'form-control select2','id'=>'month']) }}
                                     </div>
 
+
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         {{ Form::label('year','Year',['class'=>'control-label']) }}
                                         {{ Form::selectRange('year',\Carbon\Carbon::now()->format('Y'),2018,null,['class'=>'form-control','id'=>'year']) }}
                                     </div>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group">
-                                        {{ Form::label('class','Class',['class'=>'control-label']) }}
-                                        {{ Form::select('class', ['12' => 'Six', '11' => 'Seven'], null, ['placeholder' => 'Select Class Name...','class'=>'form-control select2']) }}
+                                        {{ Form::label('class') }}
+                                            <select name="academicClass" class="form-control select2">
+                                                <option value="" selected>Slect Academic Class</option>
+                                                @foreach($allClasses as $allClass)
+                                                    <option value= "{{$allClass->id}}"> {{ $allClass->name }} </option>
+                                                @endforeach
+                                            </select>
                                     </div>
-                                    <div class="form-group">
-                                        {{ Form::label('group','Group',['class'=>'control-label']) }}
-                                        {{ Form::select('group', ['1' => 'Science', '2' => 'Business'], null, ['placeholder' => 'Select Class Group...','class'=>'form-control select2']) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label('section','Section',['class'=>'control-label']) }}
-                                        {{ Form::select('section', ['6' => 'A', '2' => 'B'], null, ['placeholder' => 'Select Class Section...','class'=>'form-control select2']) }}
-                                    </div>
+                                    {{--<div class="form-group">--}}
+                                        {{--{{ Form::label('group','Group',['class'=>'control-label']) }}--}}
+                                        {{--{{ Form::select('group', ['1' => 'Science', '2' => 'Business'], null, ['placeholder' => 'Select Class Group...','class'=>'form-control select2']) }}--}}
+                                    {{--</div>--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--{{ Form::label('section','Section',['class'=>'control-label']) }}--}}
+                                        {{--{{ Form::select('section', ['6' => 'A', '2' => 'B'], null, ['placeholder' => 'Select Class Section...','class'=>'form-control select2']) }}--}}
+                                    {{--</div>--}}
                                 </div>
                                 <div class="form-group">
                                     {{ Form::submit('Generate',['class'=>'btn btn-success float-md-right']) }}

@@ -1,6 +1,7 @@
 @extends('layouts.fixed')
 
-@section('title','AdminLTE 3 | Dashboard')
+@section('title','WPIMS | Dashboard')
+
 @section('plugin-css')
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/iCheck/flat/blue.css') }}">
