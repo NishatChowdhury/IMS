@@ -155,6 +155,10 @@ Route::post('institution/update-subject','InstitutionController@update_subject')
 Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
 
 Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
+Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
+Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 //End Institution Mgnt Route
 

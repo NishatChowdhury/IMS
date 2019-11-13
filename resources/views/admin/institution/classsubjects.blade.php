@@ -55,10 +55,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Subject</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Subject</button>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> Class Schedule</button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> Class Schedule</button>
                                     </div>
                                 </div>
                             </div>
@@ -80,16 +80,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($assigned_sub as $sub)
+                                    <tr>
+                                        <td>{{$sub->subject->code}}</td>
+                                        <td>{{$sub->subject->name}}</td>
+                                        <td>{{$sub->subject->short_name}}</td>
+                                        <td>{{$sub->teacher->name}}</td>
+                                        <td>
+                                            {{$sub->objective_pass>0 ? 'Obj:('.$sub->objective_pass.')' : ''}}
+                                            {{$sub->written_pass>0? '| Wrtn:('.$sub->written_pass.')': ''}}
+                                            {{$sub->practical_pass>0? '| Prac:('.$sub->practical_pass.')': ''}}
+                                        </td>
+                                        <td>{{$sub->is_optional?'Optional': 'Compulsory'}}</td>
+                                        <td></td>
+                                        <td>
+                                            <a type="button" class="btn btn-info btn-sm edit" value='{{$sub->id}}' tyle="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
+                                            </a>
+
+                                            <a type="button" href="{{action('InstitutionController@delete_assigned',$sub->id)}}"
+                                               class="btn btn-danger btn-sm"
+                                               style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -110,137 +124,80 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <div class="row">
+                        {!! Form::open(['action'=>'InstitutionController@assign_subject', 'method'=>'post', 'class'=>'form-control']) !!}
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class Name</label>
-                            <div class="col-sm-10">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Class*</label>
+                            <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Class Code</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Select Subject*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <select id="inputState" class="form-control" style="height: 35px !important;">
-                                        <option selected>Select Subjects...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <select id="inputState" class="form-control" style="height: 35px !important;">
-                                        <option selected>Select Teacher...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Institution*</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <select id="inputState" class="form-control" style="height: 35px !important;">
-                                        <option selected>Select...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                    </select>
+                                    {!! Form::select('class_id', $classes, null, ['class'=>'form-control class_id']) !!}
                                 </div>
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Subject*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    {!! Form::select('subject_id', $subjects, null, ['class'=>'form-control subject_id']) !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    {!! Form::select('teacher_id', $staffs, null, ['class'=>'form-control teacher_id']) !!}
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
-                                <div style="margin-left: 170px;">
-                                    <div class="input-group">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    </div>
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Is Optional
-                                    </label>
+                            <label for="" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input name="is_optional" class="form-check-input is_optional" type="checkbox" value=1 id="defaultCheck1">
+                                </div>
+                                <label class="form-check-label" for="defaultCheck1">Is Optional?</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Objective Pass Mark</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="number" name="objective_pass" class="form-control objective_pass">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Objective Pass Mark</label>
-                            <div class="col-sm-10">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Written Pass Mark</label>
+                            <div class="col-sm-9">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                          <input type="checkbox">
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control">
+                                    <input type="number" name="written_pass" class="form-control written_pass">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Written Pass Mark</label>
-                            <div class="col-sm-10">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Practical Pass Mark</label>
+                            <div class="col-sm-9">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                          <input type="checkbox">
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control">
+                                    <input type="number" name="practical_pass" class="form-control practical_pass">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Practical Pass Mark</label>
-                            <div class="col-sm-10">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Viva Pass Mark</label>
+                            <div class="col-sm-9">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                          <input type="checkbox">
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control">
+                                    <input type="number" name="viva_pass" class="form-control viva_pass">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Viva Pass Mark</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                          <input type="checkbox">
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
+                        {!! Form::hidden('id',null,['class'=>'id']) !!}
+                        <div class="form-group" style="float: right">
+                            <button type="submit" class="btn btn-success btn-sm pull-right"> <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
-                    </form>
-                    <div style="float: right">
-                        <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                        {!! Form::close() !!}
                     </div>
                 </div>
                 <div class="modal-footer"></div>
@@ -274,14 +231,14 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" id=""  aria-describedby="">
+                                <input type="text" class="form-control" id="" aria-describedby="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4"> Start* </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="10.00" >
+                                    <input type="text" class="form-control" id="" aria-describedby="" placeholder="10.00" >
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
                                     </div>
@@ -290,7 +247,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4"> End* </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="10.00">
+                                    <input type="text" class="form-control" id="" aria-describedby="" placeholder="10.00">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
                                     </div>
@@ -299,12 +256,36 @@
                         </div>
                     </form>
                     <div style="float: right">
-                        <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                        <button type="button" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
                 </div>
                 <div class="modal-footer"></div>
             </div>
         </div>
     </div>
+@stop
 
+@section('script')
+    <script>
+        $(document).on('click','.edit', function () {
+           var id = $(this).attr('value');
+           $.ajax({
+               method : 'post',
+               url : '{{route('edit.assign')}}',
+               data: {id:id, _token:'{{csrf_token()}}'},
+               success:function (res) {
+                   $("#exampleModal").modal("show");
+                   $('.subject_id').val(res.subject_id);
+                   $('.class_id').val(res.class_id);
+                   $('.teacher_id').val(res.teacher_id);
+                   $('.is_optional').val(res.is_optional);
+                   $('.objective_pass').val(res.objective_pass);
+                   $('.written_pass').val(res.written_pass);
+                   $('.practical_pass').val(res.practical_pass);
+                   $('.viva_pass').val(res.viva_pass);
+                   $('.id').val(res.id);
+               }
+           });
+        });
+    </script>
 @stop

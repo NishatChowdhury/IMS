@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\AcademicClass;
+use App\AssignSubject;
 use App\Group;
 use App\Section;
 use App\Session;
 use App\SessionClass;
+use App\Staff;
 use App\Subject;
+use App\SubjectAssign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -175,9 +178,36 @@ class InstitutionController extends Controller
 
     public function classsubjects()
     {
-        return view ('admin.institution.classsubjects');
+        $classes = AcademicClass::all()->pluck('name', 'id');
+        $subjects = Subject::all()->pluck('name', 'id');
+        $staffs = Staff::all()->pluck('name','id');
+        $assigned_sub = AssignSubject::all();
+        return view ('admin.institution.classsubjects', compact('classes', 'subjects','staffs','assigned_sub'));
     }
 
+    public function assign_subject(Request $request){
+        if ($request->id != null){
+            $ass_subjects = AssignSubject::findOrFail($request->id);
+            $data = $request->except('id');
+            $ass_subjects->update($data);
+            return redirect('institution/subjects/classsubjects')->with('success', 'Subjects Updated Successfully');
+        }else{
+            AssignSubject::query()->create($request->all());
+            return redirect('institution/subjects/classsubjects')->with('success', 'Subjects assigned Successfully');
+        }
+
+    }
+
+    public function delete_assigned($id){
+        $ass_subject = AssignSubject::findOrFail($id);
+        $ass_subject->delete();
+        return redirect('institution/subjects/classsubjects')->with('success', 'Subjects Deleted Successfully');
+    }
+
+    public function edit_assigned(Request $request){
+        $ass_subjects = AssignSubject::findOrFail($request->id);
+        return $ass_subjects;
+    }
     public function profile()
     {
         return view ('admin.institution.profile');
