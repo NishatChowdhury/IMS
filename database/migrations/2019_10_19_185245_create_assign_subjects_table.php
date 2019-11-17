@@ -21,7 +21,7 @@ class CreateAssignSubjectsTable extends Migration
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('teacher_id');
             //$table->unsignedBigInteger('instruction');
-            $table->boolean('is_optional');
+            $table->boolean('is_optional')->default(0);
             $table->decimal('objective_pass',5, 2)->nullable();
             $table->decimal('written_pass',5, 2)->nullable();
             $table->decimal('practical_pass',5, 2)->nullable();

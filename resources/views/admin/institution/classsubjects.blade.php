@@ -96,7 +96,6 @@
                                         <td>
                                             <a type="button" class="btn btn-info btn-sm edit" value='{{$sub->id}}' tyle="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                             </a>
-
                                             <a type="button" href="{{action('InstitutionController@delete_assigned',$sub->id)}}"
                                                class="btn btn-danger btn-sm"
                                                style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete

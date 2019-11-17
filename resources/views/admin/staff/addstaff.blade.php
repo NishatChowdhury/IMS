@@ -244,9 +244,7 @@
                                 </div>
                                 {!! Form::close() !!}
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                content
-                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> content </div>
                         </div>
                     </section>
                 </div>

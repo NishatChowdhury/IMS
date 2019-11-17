@@ -176,6 +176,7 @@ class InstitutionController extends Controller
     }
     /*Subjects End*/
 
+    /*Assign Subjects*/
     public function classsubjects()
     {
         $classes = AcademicClass::all()->pluck('name', 'id');
