@@ -75,14 +75,14 @@ Route::post('/classStudentAttendance','AttendanceController@classAttendance')->n
 Route::post('/indTeacherAttendance','AttendanceController@individulTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
 
-//Exam Route by Rimon
+//Exam Route Start  by Rimon
 Route::get('exam/gradesystem','ExamController@gradesystem')->name('exam.gradesystem');
+    //Grading System @MKH
+Route::post('exam/store-grade', 'ExamController@store_grade');
+Route::get('exam/delete-grade/{id}', 'ExamController@delete_grade');
 Route::get('exam/examination','ExamController@examination')->name('exam.examination');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
-//Exam Route by Rimon
-
-
-
+//Exam management End
 
 Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
@@ -155,9 +155,12 @@ Route::post('institution/update-subject','InstitutionController@update_subject')
 Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
 
 Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
-Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
-//End Institution Mgnt Route
+Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
+Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
 
+Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 
 // smartrahat start
 Route::get('siteinfo','SiteInformationController@index');

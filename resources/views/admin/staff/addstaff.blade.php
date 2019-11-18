@@ -44,7 +44,7 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                                 @if(isset($info))
-                                    {!! Form::open(['action'=>'StaffController@update_staff', 'method' => 'PATCH', 'files'=>true]) !!}
+                                    {!! Form::open([['action'=>'StaffController@update_staff',$info->id], 'method' => 'PATCH', 'files'=>true]) !!}
                                 @else
                                     {!! Form::open(['action'=>'StaffController@store_staff', 'method'=>'post', 'files'=>true]) !!}
                                 @endif
@@ -242,12 +242,9 @@
                                         <button type="submit" class="btn btn-primary btn-block">Save</button>
                                     </div>
                                 </div>
-{{--                                    {!! Form::hidden('id', $info->id ?? 0, ['class'=> 'form-control']) !!}--}}
                                 {!! Form::close() !!}
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                content
-                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> content </div>
                         </div>
                     </section>
                 </div>

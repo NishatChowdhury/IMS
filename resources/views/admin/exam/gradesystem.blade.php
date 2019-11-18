@@ -53,23 +53,35 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>From Mark</th>
-                                    <th>To Mark</th>
+                                    <th>System No</th>
+                                    <th>Mark From</th>
+                                    <th>Mark To</th>
+                                    <th>Point From</th>
+                                    <th>Point </th>
                                     <th>Grade</th>
-                                    <th>Description</th>
-                                    <th>Grade Point Display</th>
+                                    <th>Comments</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($gradings as $grade)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$grade->system}}</td>
+                                    <td>{{$grade->mark_from}}</td>
+                                    <td>{{$grade->mark_to}}</td>
+                                    <td>{{$grade->point_from}}</td>
+                                    <td>{{$grade->point_to}}</td>
+                                    <td>{{$grade->grade}}</td>
+                                    <td>{{$grade->comment}}</td>
+                                    <td>
+                                        <a type="button" href="{{action('ExamController@delete_grade',$grade->id)}}"
+                                           class="btn btn-danger btn-sm"
+                                           style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
+                                        </a>
+                                    </td>
+
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
@@ -105,54 +117,72 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    {!! Form::open(['action'=>'ExamController@store_grade', 'method'=>'post']) !!}
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">From Mark*</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Result System</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="0">
+                                    <input type="number" name="system" class="form-control" id="system" placeholder="1 / 2.....">
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">To Mark*</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Mark From*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="0">
+                                    <input type="number" name="mark_from" class="form-control" id="mark_from" placeholder="0">
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Mark To*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="number" name="mark_to" class="form-control" id="mark_to"  aria-describedby="" placeholder="0">
+                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Point From</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" name="point_from" class="form-control" id="point_from"  aria-describedby="" placeholder="0">
+                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Point To</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" name="point_to" class="form-control" id="point_to"  aria-describedby="" placeholder="0">
+                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Grade*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <select class="form-control" id="">
-                                        <option>A+</option>
-                                        <option>A</option>
-                                    </select>
+                                    <input type="text" name="grade" class="form-control" id="grade"  aria-describedby="" >
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Description</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Comments</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="Excellent">
+                                    <input type="text" name="comment" class="form-control" id="comment"  aria-describedby="" placeholder="Excellent">
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Grade Point</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="0">
-                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
-                                </div>
-                            </div>
-                        </div>
+
                         <div style="float: right; margin-right: 75px;">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>

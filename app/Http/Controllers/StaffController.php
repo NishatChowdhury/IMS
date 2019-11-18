@@ -57,6 +57,7 @@ class StaffController extends Controller
     }
 
     public function update_staff(Request $req){
+        //dd($req->id);
         $is_exists = Staff::query()->findOrFail($req->id);
         if ($req->hasFile('image')){
             unlink(public_path('/assets/img/staffs/'.$is_exists->image));
