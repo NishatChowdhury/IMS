@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\Gender;
 use App\Grade;
 use Illuminate\Http\Request;
@@ -28,7 +29,32 @@ class ExamController extends Controller
 
     public function examination()
     {
-        return view ('admin.exam.examination');
+        $exams = Exam::all();
+        return view ('admin.exam.examination', compact('exams'));
+    }
+
+    public function store_exam(Request $request){
+        if ($request->has('combined_exam_id')){
+            $data = [
+                'name' => $request->name,
+                'combined_exam_id1' => $request->combined_exam_id[0],
+                'notify' => $request->notify
+            ];
+            if(count($request->combined_exam_id)==2){
+                $data['combined_exam_id2'] = $request->combined_exam_id[1];
+            }
+            Exam::query()->create($data);
+        }else{
+            Exam::query()->create($request->all());
+        }
+        return redirect('exam/examination')->with('success', 'Exam Added Successfully');
+
+    }
+
+    public function delete_exam($id){
+        $exam = Exam::findOrFail($id);
+        $exam->delete();
+        return redirect('exam/examination')->with('success', 'Exam Deleted Successfully');
     }
 
     public function examitems()

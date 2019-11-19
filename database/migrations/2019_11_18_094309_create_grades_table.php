@@ -18,7 +18,7 @@ class CreateGradesTable extends Migration
             $table->integer('system')->default(0);
             $table->integer('mark_from');
             $table->integer('mark_to');
-            $table->decimal('point_from',2);
+            $table->decimal('point_from',3,2);
             $table->decimal('point_to',3,2);
             $table->string('grade');
             $table->string('comment')->nullable();

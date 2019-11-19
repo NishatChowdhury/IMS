@@ -55,24 +55,41 @@
                                 <thead>
                                 <tr>
                                     <th>Exam Name</th>
-                                    <th>Academic Year</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
+                                    <th>Combined Exam</th>
                                     <th>Notify Exam Result</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($exams as $exam)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$exam->name}}</td>
+                                    <td>
+                                    @php
+                                        if($exam->combined_exam_id1 != ''){
+                                            $com = \App\Exam::find($exam->combined_exam_id1)->name;
+                                            echo $com;
+
+                                            if($exam->combined_exam_id2 != ''){
+                                                $com = \App\Exam::find($exam->combined_exam_id2)->name;
+                                                echo ', '.$com;
+                                            }
+                                        }
+
+                                        else{
+                                            echo 'None';
+                                        }
+                                    @endphp
+                                    </td>
+                                    <td>{{ $exam->notify==1? "Notify" : "Dont Notify"}}</td>
+                                    <td>
+                                        <a type="button" href="{{action('ExamController@delete_exam',$exam->id)}}"
+                                           class="btn btn-danger btn-sm"
+                                           style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
+                                        </a>
+                                    </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
@@ -108,57 +125,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    {!! Form::open(['action'=>'ExamController@store_exam', 'method'=>'post']) !!}
+
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="" placeholder="">
+                                    <input type="text" name="name" class="form-control" id="name"  aria-describedby="" placeholder="">
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Academic Year</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select if Combined Exam</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <select class="form-control" id="">
-                                        <option>2018</option>
-                                        <option>2019</option>
-                                        <option>2020</option>
-                                    </select>
+                                    @php($all_exams = $exams->pluck('name', 'id'))
+                                    {!! Form::select('combined_exam_id[]', $all_exams, null, ['class'=>'form-control', 'multiple']) !!}
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Date*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input name="start" class="form-control datePicker" aria-describedby="">
-                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Date*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input name="start" class="form-control datePicker" aria-describedby="">
-                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right"></label>
                             <div class="col-sm-8">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <input name="notify" class="form-check-input" type="checkbox" value=1 id="">
                                     <label class="form-check-label" for="defaultCheck1">
                                        Notify Exam Result
                                     </label>
@@ -168,7 +160,7 @@
                         <div style="float: right; margin-right: 75px;">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div class="modal-footer"></div>
             </div>

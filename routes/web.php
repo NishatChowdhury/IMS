@@ -81,6 +81,8 @@ Route::get('exam/gradesystem','ExamController@gradesystem')->name('exam.gradesys
 Route::post('exam/store-grade', 'ExamController@store_grade');
 Route::get('exam/delete-grade/{id}', 'ExamController@delete_grade');
 Route::get('exam/examination','ExamController@examination')->name('exam.examination');
+Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
+Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
