@@ -233,13 +233,13 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('mailbox/read') }}">
+                        <a href="{{route('exam.examresult')}}" class="nav-link {{ isActive('exam/examresult') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Exam Results</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('mailbox/read') }}">
+                        <a href="{{route('exam.setfinalresultrule')}}" class="nav-link {{ isActive('exam/setfinalresultrule') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Generate Final Result</p>
                         </a>

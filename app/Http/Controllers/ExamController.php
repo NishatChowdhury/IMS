@@ -36,4 +36,14 @@ class ExamController extends Controller
         return view ('admin.exam.examitems');
     }
 
+    public function examresult()
+    {
+        return view ('admin.exam.examresult');
+    }
+
+    public function setfinalresultrule()
+    {
+        return view ('admin.exam.setfinalresultrule');
+    }
+
 }
