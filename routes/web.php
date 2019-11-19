@@ -82,6 +82,8 @@ Route::post('exam/store-grade', 'ExamController@store_grade');
 Route::get('exam/delete-grade/{id}', 'ExamController@delete_grade');
 Route::get('exam/examination','ExamController@examination')->name('exam.examination');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
+Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
+Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 //Exam management End
 
 Route::get('attendance/setting','ShiftController@index');
