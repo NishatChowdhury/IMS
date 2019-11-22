@@ -47,9 +47,10 @@
                                     </div>
                                     <div style="float: right;">
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Schedules" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-calendar"></i> </button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocateseat" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Allocate Seat"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-server"></i> </button>
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#admitcard" data-whatever="@mdo" data-placement="top" title="AdmitCard Preview"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-spinner"></i></button>
-                                        <a href="{{ action('ExamController@admitCard') }}" class="btn btn-primary btn-sm"><i class="far fa-id-card"></i></a>
+                                        {{--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocateseat" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Allocate Seat"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-server"></i> </button>--}}
+                                        <a href="{{ action('ExamController@seatAllocate') }}" class="btn btn-info btn-sm" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"><i class="fa fa-server"></i></a>
+                                        {{--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#admitcard" data-whatever="@mdo" data-placement="top" title="AdmitCard Preview"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-spinner"></i></button>--}}
+                                        <a href="{{ action('ExamController@admitCard') }}" class="btn btn-primary btn-sm" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"><i class="far fa-id-card"></i></a>
                                     </div>
                                 </div>
                             </div>

@@ -86,6 +86,7 @@ Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
 Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
 Route::get('exam/admit-card','ExamController@admitCard');
+Route::get('exam/seat-allocate','ExamController@seatAllocate');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 //Exam management End

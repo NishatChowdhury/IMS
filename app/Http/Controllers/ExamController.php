@@ -82,4 +82,9 @@ class ExamController extends Controller
         return view('admin.exam.admit-card');
     }
 
+    public function seatAllocate(Request $request)
+    {
+        return view('admin.exam.seat-allocate');
+    }
+
 }
