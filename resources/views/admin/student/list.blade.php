@@ -125,7 +125,7 @@
                                     <td>{{ $student->mother }}</td>
                                     <td>0.00%</td>
                                     <td>{{ $student->status }}</td>
-                                    <td></td>
+                                    <td><img src="{{ asset('assets/img/students/'.$student->session_id.'/'.$student->class_id.'/'.$student->studentId.'.jpg') }}" height="100" alt=""></td>
                                     <td>X</td>
                                 </tr>
                             @endforeach

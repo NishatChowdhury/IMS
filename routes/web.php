@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 /** Dashboard Routes */
 Route::get('dashboard','DashboardController@index');
@@ -84,6 +85,7 @@ Route::get('exam/examination','ExamController@examination')->name('exam.examinat
 Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
 Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
+Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 //Exam management End
@@ -133,7 +135,7 @@ Route::post('institution/edit-session', 'InstitutionController@edit_session');
 Route::post('institution/update-session', 'InstitutionController@update_session');
 Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
 
-    //Academic Classes $ Groups
+//Academic Classes $ Groups
 Route::get('institution/section-groups','InstitutionController@section_group')->name('section.group');
 Route::post('institution/create-section', 'InstitutionController@create_section');
 Route::post('institution/edit-section', 'InstitutionController@edit_section');
@@ -202,6 +204,10 @@ Route::post('student/store', 'StudentController@store');
 //Route::post('get-sectionByclass', 'StudentController@get_section');
 Route::get('get-ClassSectionBysession{id}', 'StudentController@get_class_section');
 
+/** Route for Apps start */
+Route::post('api/attendance','AndroidController@attendance');
+/** Route for Apps end */
+
 Route::get('migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
@@ -268,4 +274,20 @@ Route::get('download-attendances',function(){
 
 Route::get('test-download',function(){
     Artisan::call('CronJob:DownloadAttendances');
+});
+
+Route::get('rename-pic',function(){
+    $students = \App\Student::query()->where('class_id',3)->get();
+    foreach($students as $student){
+        $session = $student->session_id;
+        $class = $student->class_id;
+        $file = $student->studentId;
+        $isExist = Storage::disk('local')->exists('Shisu/'.$student->rank.'.jpg');
+        if($isExist){
+            $isDuplicate = Storage::disk('local')->exists('std/students/'.$session.'/'.$class.'/'.$file.'.jpg');
+            if(!$isDuplicate){
+                Storage::copy('Shisu/'.$student->rank.'.jpg', 'std/students/'.$session.'/'.$class.'/'.$file.'.jpg');
+            }
+        }
+    }
 });

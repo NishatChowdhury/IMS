@@ -205,8 +205,8 @@
                     {{--</p>--}}
                 {{--</a>--}}
             {{--</li>--}}
-            <li class="nav-item has-treeview {{ isActive(['mailbox*']) }}">
-                <a href="#" class="nav-link {{ isActive(['mailbox*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['exam*']) }}">
+                <a href="#" class="nav-link {{ isActive(['exam*']) }}">
                     <i class="nav-icon fas fa-diagnoses"></i>
                     <p>
                         Exam Mgmt

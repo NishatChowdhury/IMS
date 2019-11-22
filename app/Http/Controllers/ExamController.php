@@ -22,7 +22,7 @@ class ExamController extends Controller
     }
 
     public function delete_grade($id){
-        $grade = Grade::findOrFail($id);
+        $grade = Grade::query()->findOrFail($id);
         $grade->delete();
         return redirect('exam/gradesystem')->with('success', 'Grading System Deleted Successfully');
     }
@@ -70,6 +70,16 @@ class ExamController extends Controller
     public function setfinalresultrule()
     {
         return view ('admin.exam.setfinalresultrule');
+    }
+
+    /**
+     * @param Request $request
+     * Created by smartrahat
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function admitCard(Request $request)
+    {
+        return view('admin.exam.admit-card');
     }
 
 }
