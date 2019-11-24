@@ -10,43 +10,22 @@
                         <div class="card-body">
                             <table id="example2" class="table table-bordered">
                                 <tr>
-                                    <td>English 1st</td>
-                                    <td>27-11-19</td>
-                                    <td>10:00 AM</td>
-                                    <td>01:00 PM</td>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>English 2st</td>
+                                    <td>English</td>
                                     <td>28-11-19</td>
                                     <td>10:00 AM</td>
                                     <td>01:00 PM</td>
                                     <td>100</td>
                                 </tr>
                                 <tr>
-                                    <td>Bangla 1st</td>
+                                    <td>Mathematics</td>
                                     <td>30-11-19</td>
                                     <td>10:00 AM</td>
                                     <td>01:00 PM</td>
                                     <td>100</td>
                                 </tr>
                                 <tr>
-                                    <td>Bangla 2nd</td>
-                                    <td>01-12-19</td>
-                                    <td>10:00 AM</td>
-                                    <td>01:00 PM</td>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>Agriculture & Home Studies</td>
+                                    <td>Bangla</td>
                                     <td>02-12-19</td>
-                                    <td>10:00 AM</td>
-                                    <td>01:00 PM</td>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>Science</td>
-                                    <td>03-12-19</td>
                                     <td>10:00 AM</td>
                                     <td>01:00 PM</td>
                                     <td>100</td>
@@ -59,22 +38,8 @@
                                     <td>100</td>
                                 </tr>
                                 <tr>
-                                    <td>Information And Communication Technology</td>
-                                    <td>05-12-19</td>
-                                    <td>10:00 AM</td>
-                                    <td>01:00 PM</td>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>Mathematics</td>
+                                    <td>Drawing</td>
                                     <td>07-12-19</td>
-                                    <td>10:00 AM</td>
-                                    <td>01:00 PM</td>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>Bangladesh and Global Studies</td>
-                                    <td>08-12-19</td>
                                     <td>10:00 AM</td>
                                     <td>01:00 PM</td>
                                     <td>100</td>
