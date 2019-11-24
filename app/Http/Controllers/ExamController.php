@@ -5,10 +5,23 @@ namespace App\Http\Controllers;
 use App\Exam;
 use App\Gender;
 use App\Grade;
+use App\Repository\ExamRepository;
+use App\Student;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
+    /**
+     * @var ExamRepository
+     */
+    private $repository;
+
+    public function __construct(ExamRepository $repository)
+    {
+        $this->middleware('auth');
+        $this->repository = $repository;
+    }
+
     public function gradesystem()
     {
         $gradings = Grade::all();
@@ -73,13 +86,43 @@ class ExamController extends Controller
     }
 
     /**
+     * @param Student $student
      * @param Request $request
      * Created by smartrahat
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function admitCard(Request $request)
+    public function admitCard(Student $student, Request $request)
     {
-        return view('admin.exam.admit-card');
+        if($request->all() == []){
+            $students = [];
+        }else{
+            $s = $student->newQuery();
+            if($request->get('studentId')){
+                $studentId = $request->get('studentId');
+                $s->where('studentId',$studentId);
+            }
+            if($request->get('name')){
+                $name = $request->get('name');
+                $s->where('name','like','%'.$name.'%');
+            }
+            if($request->get('class_id')){
+                $class = $request->get('class_id');
+                $s->where('class_id',$class);
+            }
+            if($request->get('section_id')){
+                $section = $request->get('section_id');
+                $s->where('section_id',$section);
+            }
+            if($request->get('group_id')){
+                $group = $request->get('group_id');
+                $s->where('group_id',$group);
+            }
+
+            $students = $s->get();
+        }
+
+        $repository = $this->repository;
+        return view('admin.exam.admit-card',compact('repository','students'));
     }
 
     public function seatAllocate(Request $request)
