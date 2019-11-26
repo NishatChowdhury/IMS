@@ -58,39 +58,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <form method="POST" action="" accept-charset=""><input name="" type="hidden" value="">
-                                <div class="form-group row">
-                                    <div class="col-sm-7">
-                                        <div class="input-group">
-                                            <select class="form-control" id="">
-                                                <option>Select Class</option>
-                                                <option>Select Class</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-7">
-                                        <div class="input-group">
-                                            <select class="form-control" id="">
-                                                <option>Select Section</option>
-                                                <option>Select Section</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-7">
-                                        <div class="input-group">
-                                            <select class="form-control" id="">
-                                                <option>Select Group</option>
-                                                <option>Select Group</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -134,6 +101,39 @@
                 </div>
                 <div class="modal-body">
                     <form action="">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>Select Class</option>
+                                        <option>Select Class</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Section</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>Select Section</option>
+                                        <option>Select Section</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Group</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <select class="form-control" id="">
+                                        <option>Select Group</option>
+                                        <option>Select Group</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Room No</label>
                             <div class="col-sm-8">
