@@ -63,6 +63,7 @@
                                     <tr>
                                         <th>Class</th>
                                         <th>Subject</th>
+                                        <th>Date</th>
                                         <th>Start</th>
                                         <th>End</th>
                                         <th>Mark</th>
@@ -73,17 +74,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($schedules as $schedule)
                                     <tr>
+                                        <td>{{\App\AcademicClass::query()->findOrFail($schedule->class_id)->name}}</td>
+                                        <td>{{\App\Subject::query()->FindOrFail($schedule->subject_id)->name}}</td>
+                                        <td>{{$schedule->date}}</td>
+                                        <td>{{$schedule->start}}</td>
+                                        <td>{{$schedule->end}}</td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{\App\Staff::query()->findOrFail($schedule->teacher_id)->name}}</td>
                                         <td></td>
                                         <td></td>
                                     </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
@@ -352,13 +355,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    {!! Form::open(['action'=>'ExamController@schedule', 'method'=>'post']) !!}
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Name*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
+                                    {{ Form::select('session_id', $sessions, null, ['class'=>'form-control','placeholder' => 'Select Session']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Name*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ Form::select('exam_id', $exams, null, ['class'=>'form-control','placeholder' => 'Select An Exam']) }}
                                 </div>
                             </div>
                         </div>
@@ -366,97 +376,16 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <select class="form-control" id="">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                    </select>
+                                    {{ Form::select('class_id', $classes, null, ['class'=>'form-control', 'id'=>'class','placeholder' => 'Select Class']) }}
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Subject*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <select class="form-control" id="">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Date*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input name="start" class="form-control datePicker" aria-describedby="">
-                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Time*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input name="start" class="form-control" aria-describedby="">
-                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Date*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input name="start" class="form-control datePicker" aria-describedby="">
-                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Time*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input name="start" class="form-control" aria-describedby="">
-                                    {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Marks*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id=""  aria-describedby="">
-                                    {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <select class="form-control" id="">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Type*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <select class="form-control" id="">
+                                    <select class="form-control" id="" name="exam_type">
                                         <option>option 1</option>
                                         <option>option 2</option>
                                     </select>
@@ -466,7 +395,7 @@
                         <div style="float: right; margin-right: 75px;">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div class="modal-footer"></div>
             </div>
@@ -494,5 +423,23 @@
                     format: 'yyyy-mm-dd'
                 })
         });
+
+        /*$(document).on('change', '#class', function () {
+            var id = $(this).val();
+
+            $.ajax({
+                method: 'post',
+                url : '{{url('ajax/get_subject')}}',
+                data : {id:id, _token:"{{csrf_token()}}"},
+
+                success: function (respone) {
+                    console.log(respone);
+                    var html = '<option>Select Class</option>';
+                    $.each(subjeccts, function (idx, item) {
+                       html+= '<option value='+idx+'>'+item+'</option>';
+                    });
+                }
+            });
+        });*/
     </script>
 @stop

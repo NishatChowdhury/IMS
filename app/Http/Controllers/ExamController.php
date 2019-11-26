@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicClass;
+use App\AssignSubject;
 use App\Exam;
+use App\ExamSchedule;
 use App\Gender;
 use App\Grade;
 use App\Repository\ExamRepository;
+use App\Session;
+use App\Staff;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -72,7 +77,54 @@ class ExamController extends Controller
 
     public function examitems()
     {
-        return view ('admin.exam.examitems');
+        $sessions = Session::all()->pluck('year', 'id');
+        $exams = Exam::all()->pluck('name', 'id');
+        $classes = AcademicClass::all()->pluck('name', 'id');
+        $schedules = ExamSchedule::all();
+        return view ('admin.exam.examitems', compact('sessions', 'exams', 'classes', 'schedules'));
+    }
+
+    public function schedule(Request $request){
+        //dd($request->all());
+        $session_id = $request->session_id ;
+        $exam_id = $request->exam_id ;
+        $class_id = $request->class_id ;
+        $exam_type = $request->exam_type ;
+        $subjects = AssignSubject::query()->where('class_id', $class_id)->get();
+        $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
+
+        return view('admin.exam.exam_schedule', compact('session_id', 'exam_id', 'class_id', 'exam_type', 'subjects', 'teachers'));
+    }
+
+    public function store_schedule(Request $request){
+        //dd($request->all());
+        $subjects = $request->subject_id;
+
+        foreach($subjects as $idx => $sub){
+            $data = [
+                'session_id' => $request->session_id,
+                'exam_id' => $request->exam_id,
+                'class_id' => $request->class_id,
+                'exam_type' => $request->exam_type,
+                'subject_id' => $sub,
+                'date' => $request->date[$idx],
+                'start' => $request->start[$idx],
+                'end' => $request->end[$idx],
+                'teacher_id' => $request->teacher_id[$idx]
+            ];
+            $is_exists = ExamSchedule::query()
+                ->where('session_id', $request->session_id)
+                ->where('class_id', $request->class_id)
+                ->where('exam_id', $request->exam_id)
+                ->where('subject_id', $sub)
+                ->first();
+            if ($is_exists == null){
+                ExamSchedule::query()->create($data);
+            }else{
+                $is_exists->update($data);
+            }
+        }
+        return redirect('exam/examitems')->with('success', 'Exam Schedule Saved Successfully');
     }
 
     public function examresult()

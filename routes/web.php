@@ -85,6 +85,8 @@ Route::get('exam/examination','ExamController@examination')->name('exam.examinat
 Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
 Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
+Route::post('exam/make-schedule', 'ExamController@schedule');
+Route::post('exam/store-schedule', 'ExamController@store_schedule');
 Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/seat-allocate','ExamController@seatAllocate');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
@@ -166,7 +168,6 @@ Route::post('institution/assign-subject','InstitutionController@assign_subject')
 Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
 Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
 Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
-
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 
 // smartrahat start
@@ -201,9 +202,6 @@ Route::get('student/create','StudentController@create')->name('student.add');
 //@MKH
 Route::post('student/store', 'StudentController@store');
 //End Students Route
-
-//Route::post('get-sectionByclass', 'StudentController@get_section');
-Route::get('get-ClassSectionBysession{id}', 'StudentController@get_class_section');
 
 /** Route for Apps start */
 Route::post('api/attendance','AndroidController@attendance');
