@@ -64,6 +64,12 @@ Route::get('/gallery','FrontController@gallery');
 Route::get('/album/{name}','FrontController@album');
 /*===== Route for Front-End Menu Bar END ====*/
 
+//Admission Route by Rimon
+Route::get('admission/exams','AdmissionController@admissionExams')->name('admission.exams');
+Route::get('admission/applicant','AdmissionController@admissionApplicant')->name('admission.applicant');
+Route::get('admission/examResult','AdmissionController@admissionExamResult')->name('admission.examResult');
+//End Admission Route
+
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
 Route::get('attendance/dashboard','AttendanceController@dashboard')->name('attendance.dashboard');
@@ -89,6 +95,7 @@ Route::post('exam/make-schedule', 'ExamController@schedule');
 Route::post('exam/store-schedule', 'ExamController@store_schedule');
 Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/seat-allocate','ExamController@seatAllocate');
+Route::get('exam/result-details','ExamController@resultDetails');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 //Exam management End

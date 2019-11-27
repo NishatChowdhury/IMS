@@ -182,4 +182,9 @@ class ExamController extends Controller
         return view('admin.exam.seat-allocate');
     }
 
+    public function resultDetails()
+    {
+        return view('admin.exam.result-details');
+    }
+
 }

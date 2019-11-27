@@ -49,19 +49,19 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('chart/chartjs') }}">
+                        <a href="{{route('admission.exams')}}" class="nav-link {{ isActive('admission/exams') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Examinations</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('chart/flot') }}">
+                        <a href="{{route('admission.applicant')}}" class="nav-link {{ isActive('admission/applicant') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Applications</p>
+                            <p>Applicants</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('chart/inline-chart') }}">
+                        <a href="{{route('admission.examResult')}}" class="nav-link {{ isActive('admission/examResult') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Results</p>
                         </a>

@@ -20,6 +20,65 @@
         </div><!-- /.container-fluid -->
     </section>
 
+
+    <!-- /.Search-panel -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin: 10px;">
+                        <!-- form start -->
+                        {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="">Exam Name</label>
+                                    <div class="input-group">
+                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Student ID</label>
+                                    <div class="input-group">
+                                        {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Class</label>
+                                    <div class="input-group">
+                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Section</label>
+                                    <div class="input-group">
+                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Group</label>
+                                    <div class="input-group">
+                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-1" style="padding-top: 32px;">
+                                    <div class="input-group">
+                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.Search-panel -->
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -54,7 +113,7 @@
                                 <tr>
                                     <th>Student Name</th>
                                     <th>Student ID Year</th>
-                                    <th>Class Nme</th>
+                                    <th>Class Name</th>
                                     <th>Current Rank Date</th>
                                     <th>Exam Name</th>
                                     <th>Date</th>
@@ -67,17 +126,17 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <td>laravel</td>
+                                    <td>123049</td>
+                                    <td>one</td>
+                                    <td>01</td>
+                                    <td>programming</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><a href="{{action('ExamController@resultDetails')}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
                                 </tr>
                                 </tbody>
                             </table>
