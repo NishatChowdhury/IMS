@@ -100,6 +100,12 @@ Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 //Exam management End
 
+//Communication Route by Rimon
+Route::get('communication/student-sms','CommunicationController@studentSms')->name('communication.student-sms');
+Route::get('communication/staff-sms','CommunicationController@staffSms')->name('communication.staff-sms');
+Route::get('communication/history-sms','CommunicationController@historySms')->name('communication.history-sms');
+//End Communication Route
+
 Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
 

@@ -321,21 +321,21 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('extra/404') }}">
+                        <a href="{{route('communication.student-sms')}}" class="nav-link {{ isActive('communication/student-sms') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Error 404</p>
+                            <p>Student SMS</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/500') }}">
+                        <a href="{{route('communication.staff-sms')}}" class="nav-link {{ isActive('communication/staff-sms') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Error 500</p>
+                            <p>Staff SMS</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                        <a href="{{route('communication.history-sms')}}" class="nav-link {{ isActive('communication/history-sms') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Blank Page</p>
+                            <p>SMS History</p>
                         </a>
                     </li>
                     {{--<li class="nav-item">--}}

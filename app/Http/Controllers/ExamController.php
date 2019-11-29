@@ -129,7 +129,8 @@ class ExamController extends Controller
 
     public function examresult()
     {
-        return view ('admin.exam.examresult');
+        $repository = $this->repository;
+        return view ('admin.exam.examresult',compact('repository'));
     }
 
     public function setfinalresultrule()
