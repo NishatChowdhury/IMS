@@ -15,39 +15,39 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
-        <div class="card-header">
-            <h5 class="card-title">Student Details</h5>
-        </div>
-    </div>
+
     <div class="col-md-6">
+        <div class="card">
+        <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
+            <div class="card-header">
+                <h5 class="card-title">Student Details</h5>
+            </div>
+        </div>
         <div class="card-body">
 
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('academicYear', 'Academic Year',['class'=>'control-label' ]) }}
-                        {{ Form::select('year',$repository->sessions(), null, ['placeholder' => 'Select Academic year...','class'=>'form-control']) }}
+                        {{ Form::label('session_id', 'Academic Year',['class'=>'control-label' ]) }}
+                        {{ Form::select('session_id',$sessions, null, ['placeholder' => 'Select Academic year...','class'=>'form-control year']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{Form::label('className','Class',['class'=>'control-label'])}}
-                        {{ Form::select('className',$repository->classes(), null, ['placeholder' => 'Select Class Name...','class'=>'form-control']) }}
+                        {{ Form::label('class_id','Class',['class'=>'control-label'])}}
+                        {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
                     </div>
                 </div>
+
             </div>
 
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{Form::label('class_id','Class',['class'=>'control-label'])}}
-                        {{--<select name="class_id" class="class form-control col-md-12"></select>--}}
-                        {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
+                        {{ Form::label('section_id','Section',['class'=>'control-label']) }}
+                        {{ Form::select('section_id',$sections,null,['class'=>'form-control']) }}
                     </div>
                 </div>
-                {!! Form::hidden('section_id', null, ['id'=>'section']) !!}
-
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('group_id','Group',['class'=>'control-label']) }}
@@ -57,11 +57,10 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-lg-6 col-sm-12">
+                <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('section_id','Section',['class'=>'control-label']) }}
-                        {{--<select name="secton_id" class="section form-control col-md-12"></select>--}}
-                        {{ Form::select('section_id',$sections,null,['class'=>'form-control']) }}
+                        {{Form::label('name','Student\'s name',['class'=>'control-label'])}}
+                        {{ Form::text('name', null, ['placeholder' => 'Student\'s  Name...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -69,14 +68,14 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('rank','Rank',['class'=>'control-label']) }}
-                        {{ Form::text('rank',null,['class'=>'form-control', 'placeholder'=>'Student Rank']) }}
+                        {{Form::label('studentId','Student ID',['class'=>'control-label'])}}
+                        {{ Form::text('studentId',null, ['placeholder' => 'Student ID...','class'=>'form-control','readonly','id'=>'studentID']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('studentId','Student Id',['class'=>'control-label']) }}
-                        {{ Form::text('studentId',null,['class'=>'form-control', 'placeholder'=>'Student Card ID']) }}
+                        {{ Form::label('rank','Rank',['class'=>'control-label']) }}
+                        {{ Form::text('rank',null,['class'=>'form-control', 'placeholder'=>'Student Rank']) }}
                     </div>
                 </div>
             </div>
@@ -123,93 +122,127 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group files color">
                 {{  Form::label('stuPic', 'Student Picture', ['class' => 'control-label'])  }}
                 {{ Form::file('image',['class'=>'form-control', 'id'=>"file-input"]) }}
                 <div id="thumb-output"></div>
             </div>
-            <div class="form-group">
-                {{ Form::label('streetAddress','Address',['class'=>'control-label']) }}
-                {{ Form::textarea('address',null,['class'=>'form-control', 'rows'=>3, 'placeholder'=>'Address']) }}
-            </div>
+        </div>
+
         </div>
         <!-- /.card-body -->
     </div>
     <div class="col-md-6">
-        <div class="card-body">
+        <div class="card">
+            <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
+                <div class="card-header">
+                    <h5 class="card-title">Street Address</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    {{ Form::label('streetAddress','Address',['class'=>'control-label']) }}
+                    {{ Form::textarea('address',null,['class'=>'form-control', 'rows'=>1, 'placeholder'=>'Address']) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('area','Area / Town',['class'=>'control-label']) }}
+                    {{ Form::text('area',null,['class'=>'form-control', 'placeholder'=>'Area Town']) }}
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-group">
+                            {{ Form::label('postCode','Post / Zip Code',['class'=>'control-label']) }}
+                            {{ Form::text('zip',null,['class'=>'form-control', 'placeholder'=>'Post / Zip Code']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-group">
+                            {{ Form::label('division','Division',['class'=>'control-label']) }}
+                            {{ Form::select('division_id', $divisions, null, ['placeholder' => 'Select Division...','class'=>'form-control']) }}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-group">
+                            {{ Form::label('state','State',['class'=>'control-label']) }}
+                            {{ Form::text('state', null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-group">
+                            {{ Form::label('country','Country',['class'=>'control-label']) }}
+                            {{ Form::select('country_id', $countries, null, ['placeholder' => 'Select Country...','class'=>'form-control']) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="">
+                <div class="card">
+                    <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
+                        <div class="card-header">
+                            <h5 class="card-title">Contact Details</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ Form::label('contactMobile','Contact Mobile',['class'=>'control-label']) }}
+                                    {{ Form::text('mobile',null,['class'=>'form-control', 'placeholder'=>'Contact Mobile']) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ Form::label('email','E-mail',['class'=>'control-label']) }}
+                                    {{ Form::email('email',null,['class'=>'form-control', 'placeholder'=>'email@gmail.com']) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ Form::label('fatherMobile','Father Mobile',['class'=>'control-label']) }}
+                                    {{ Form::text('father_mobile',null,['class'=>'form-control', 'placeholder'=>'Father Mobile']) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ Form::label('motherMobile','Mother Mobile',['class'=>'control-label']) }}
+                                    {{ Form::text('motherMobile',null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            {{ Form::label('status','Status',['class'=>'control-label']) }}
+                            {{ Form::radio('status', 0, ['class'=>'form-control', false]) }} Inactive
+                            {{ Form::radio('status', 1, ['class'=>'form-control', true]) }} Active
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
             <div class="form-group">
-                {{ Form::label('area','Area / Town',['class'=>'control-label']) }}
-                {{ Form::text('area',null,['class'=>'form-control', 'placeholder'=>'Area Town']) }}
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('division','Division',['class'=>'control-label']) }}
-                        {{ Form::select('division_id', $divisions, null, ['placeholder' => 'Select Division...','class'=>'form-control']) }}
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('postCode','Post / Zip Code',['class'=>'control-label']) }}
-                        {{ Form::text('zip',null,['class'=>'form-control', 'placeholder'=>'Post / Zip Code']) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('country','Country',['class'=>'control-label']) }}
-                        {{ Form::select('country_id', $countries, null, ['placeholder' => 'Select Country...','class'=>'form-control']) }}
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('state','State',['class'=>'control-label']) }}
-                        {{ Form::text('state', null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('contactMobile','Contact Mobile',['class'=>'control-label']) }}
-                        {{ Form::text('mobile',null,['class'=>'form-control', 'placeholder'=>'Contact Mobile']) }}
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('email','E-mail',['class'=>'control-label']) }}
-                        {{ Form::email('email',null,['class'=>'form-control', 'placeholder'=>'email@gmail.com']) }}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('fatherMobile','Father Mobile',['class'=>'control-label']) }}
-                        {{ Form::text('father_mobile',null,['class'=>'form-control', 'placeholder'=>'Father Mobile']) }}
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="form-group">
-                        {{ Form::label('motherMobile','Mother Mobile',['class'=>'control-label']) }}
-                        {{ Form::text('motherMobile',null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                {{ Form::label('status','Status',['class'=>'control-label']) }}<br>
-                {{ Form::radio('status', 0, ['class'=>'form-control', false]) }} Inactive
-                {{ Form::radio('status', 1, ['class'=>'form-control', true]) }} Active
+                {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
             </div>
         </div>
-        <!-- /.card-body -->
-
-        <div class="form-group">
-            {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
-        </div>
-    </div>
 </div>
+</div>
+@section('script')
+<script>
+    $(document).on('change','.year', function () {
+        var year = $('.year').text();
+
+
+    });
+
+</script>
+@stop
