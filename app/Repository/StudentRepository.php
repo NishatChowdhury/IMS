@@ -12,9 +12,15 @@ namespace App\Repository;
 use App\AcademicClass;
 use App\Group;
 use App\Section;
+use App\Session;
 
 class StudentRepository
 {
+    public function sessions()
+    {
+        return Session::all()->pluck('year','id');
+    }
+
     public function classes()
     {
         return AcademicClass::all()->pluck('name','id');

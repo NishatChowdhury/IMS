@@ -98,12 +98,16 @@ Route::get('exam/seat-allocate','ExamController@seatAllocate');
 Route::get('exam/result-details','ExamController@resultDetails');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
+
+Route::get('exam/marks','ExamController@marks');
 //Exam management End
 
 //Communication Route by Rimon
-Route::get('communication/student-sms','CommunicationController@studentSms')->name('communication.student-sms');
-Route::get('communication/staff-sms','CommunicationController@staffSms')->name('communication.staff-sms');
-Route::get('communication/history-sms','CommunicationController@historySms')->name('communication.history-sms');
+Route::get('communication/student','CommunicationController@student')->name('communication.student');
+Route::get('communication/staff','CommunicationController@staff')->name('communication.staff');
+Route::get('communication/history','CommunicationController@history')->name('communication.history');
+
+Route::post('communication/send','CommunicationController@send');
 //End Communication Route
 
 Route::get('attendance/setting','ShiftController@index');
@@ -176,7 +180,7 @@ Route::post('institution/edit-subject','InstitutionController@edit_subject');
 Route::post('institution/update-subject','InstitutionController@update_subject');
 Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
 
-Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
+Route::get('institution/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
 Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
 Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
 Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
@@ -302,4 +306,25 @@ Route::get('rename-pic',function(){
             }
         }
     }
+});
+
+Route::get('sync-image-name',function(){
+    $students = \App\Student::query()->get();
+    foreach($students as $student){
+        $id = $student->studentId;
+        $student->update(['image'=>$id.'.jpg']);
+    }
+    dd('sync complete '.date('ymd'));
+});
+
+Route::get('add-zero-to-number',function (){
+    $students = \App\Student::query()->get();
+    foreach($students as $student){
+        $number = $student->mobile;
+        $firstLetter = substr($number,0,1);
+        if($firstLetter != 0){
+            $student->update(['mobile'=>'0'.$number]);
+        }
+    }
+    dd('sync complete '.date('ymd'));
 });

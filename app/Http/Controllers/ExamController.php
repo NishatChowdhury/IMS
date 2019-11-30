@@ -12,6 +12,7 @@ use App\Repository\ExamRepository;
 use App\Session;
 use App\Staff;
 use App\Student;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -70,7 +71,7 @@ class ExamController extends Controller
     }
 
     public function delete_exam($id){
-        $exam = Exam::findOrFail($id);
+        $exam = Exam::query()->findOrFail($id);
         $exam->delete();
         return redirect('exam/examination')->with('success', 'Exam Deleted Successfully');
     }
@@ -81,19 +82,21 @@ class ExamController extends Controller
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
         $schedules = ExamSchedule::all();
-        return view ('admin.exam.examitems', compact('sessions', 'exams', 'classes', 'schedules'));
+        $subjects = Subject::all()->pluck('name','id');
+        return view ('admin.exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
     }
 
     public function schedule(Request $request){
         //dd($request->all());
-        $session_id = $request->session_id ;
-        $exam_id = $request->exam_id ;
-        $class_id = $request->class_id ;
-        $exam_type = $request->exam_type ;
-        $subjects = AssignSubject::query()->where('class_id', $class_id)->get();
-        $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
-
-        return view('admin.exam.exam_schedule', compact('session_id', 'exam_id', 'class_id', 'exam_type', 'subjects', 'teachers'));
+//        $session_id = $request->session_id ;
+//        $exam_id = $request->exam_id ;
+//        $class_id = $request->class_id ;
+//        $exam_type = $request->exam_type ;
+//        $subjects = AssignSubject::query()->where('class_id', $class_id)->get();
+//        $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
+        ExamSchedule::query()->create($request->all());
+        //return view('admin.exam.exam_schedule', compact('session_id', 'exam_id', 'class_id', 'exam_type', 'subjects', 'teachers'));
+        return redirect('exam/examitems');
     }
 
     public function store_schedule(Request $request){
@@ -186,6 +189,16 @@ class ExamController extends Controller
     public function resultDetails()
     {
         return view('admin.exam.result-details');
+    }
+
+    public function marks()
+    {
+        $students = Student::query()
+            ->where('session_id',2)
+            ->where('class_id',9)
+           // ->where('group_id',1)
+            ->get();
+        return view('admin.exam.marks',compact('students'));
     }
 
 }

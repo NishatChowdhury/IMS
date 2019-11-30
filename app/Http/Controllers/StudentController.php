@@ -72,6 +72,7 @@ class StudentController extends Controller
             ->get(['session_classes.id', 'academic_classes.name', 'sections.id as section_id', 'session_classes.section']);
         return $classes;
     }
+
     public function create(){
         $sessions = Session::all()->pluck('year','id');
         $last_session_id = Session::query()->orderBy('id', 'desc')->value('id');
@@ -83,11 +84,12 @@ class StudentController extends Controller
         $countries = Country::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name','id');
         $sections = Section::all()->pluck('name','id');
-        return view('admin.student.add', compact('sessions', 'groups', 'classes', 'sections', 'genders', 'blood_groups', 'religions', 'divisions', 'countries'));
+        $repository = $this->repository;
+        return view('admin.student.add', compact('sessions', 'groups', 'classes', 'sections', 'genders', 'blood_groups', 'religions', 'divisions', 'countries','repository'));
     }
 
     public function store(Request $req){
-        //dd($req->all());
+        dd($req->all());
         $data = $req->all(); //Temporary
         $data['section_id'] = 1; //temporary
         if ($req->hasFile('image')){

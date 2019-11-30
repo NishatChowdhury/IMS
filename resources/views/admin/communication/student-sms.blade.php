@@ -28,6 +28,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            {{ Form::open(['action'=>'CommunicationController@student','method'=>'get']) }}
                             <div class="form-row">
                                 <div class="col">
                                     <label for="">Student ID</label>
@@ -36,21 +37,33 @@
                                     </div>
                                 </div>
                                 <div class="col">
+                                    <label for="">Session</label>
+                                    <div class="input-group">
+                                        {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
+                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <label for="">Class</label>
                                     <div class="input-group">
-                                        <select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>
+                                        {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
+                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">Section</label>
                                     <div class="input-group">
-                                        <select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>
+                                        {{--<select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>--}}
+                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">Group</label>
                                     <div class="input-group">
-                                        <select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>
+                                        {{--<select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>--}}
+                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+
                                     </div>
                                 </div>
 
@@ -61,9 +74,11 @@
                                 </div>
 
                             </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                     {{--description--}}
+                    {{ Form::open(['action'=>'CommunicationController@send','method'=>'post']) }}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -72,8 +87,8 @@
                                         <div class="col-md-5">
                                             <label for="">SMS Description</label>
                                             <div class="input-group">
-                                                <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="description" cols="50"></textarea>
-
+                                                <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50"></textarea>
+                                            {{ Form::submit('SEND',['class'=>'btn btn-primary']) }}
                                             </div>
                                             <p style="display: inline-block;padding: 5px;margin: 10px 0 0 0" class="bg-primary;"> Total Word Count :
                                                 <div class="length" style="display: inline-block"></div>
@@ -91,45 +106,50 @@
                                 <div class="card-body">
                                     <label for=""> Student List </label>
                                     <table id="" class="table table-bordered" style=>
-                                        <thead>
+                                        <thead class="thead-light">
                                         <tr>
-                                            <td>
+                                            <td colspan="3">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                    <input type="checkbox" class="form-check-input" checked id="select_all_head">
                                                     <label class="form-check-label" for="exampleCheck1">Select All</label>
+                                                    <span style="color:blue">Selected:<span id="check-box-length"></span></span>
                                                 </div>
                                             </td>
-                                            <th>ID</th>
-                                            <th>Student Image</th>
-                                            <th> </th>
-                                            <th> </th>
-                                            <th> </th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($students as $student)
                                         <tr>
                                             <td>
+                                                {{ Form::checkbox('id[]',$student->id,true,['class'=>'']) }}
                                             </td>
                                             <td>
+                                                <img src="{{ asset('assets/img/students/') }}/{{ $student->session_id }}/{{ $student->class_id }}/{{ $student->image }}" height="75" alt="">
                                             </td>
                                             <td>
-                                                <img src="" alt="">
+                                                ID : {{ $student->studentId }}<br>
+                                                Name : {{ $student->name }} ({{ $student->mobile }})<br>
+                                                Class : {{ $student->academicClass->name }} {{ $student->section->name ?? '' }} {{ $student->group->name ?? ''}}
                                             </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-
                                         </tr>
+                                        @endforeach
                                         </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" checked id="select_all_foot">
+                                                    <label class="form-check-label" for="exampleCheck1">Select All</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
@@ -151,4 +171,31 @@
            counter();
         });
     </script>
-    @endsection
+
+    <script>
+        $('#select_all_head,#select_all_foot').change(function() {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            if($(this).is(':checked')) {
+                checkboxes.prop('checked', true);
+            } else {
+                checkboxes.prop('checked', false);
+            }
+        });
+    </script>
+    <script>
+        $(document).change(function(){
+            var total = $("input[type=checkbox]:checked").length;
+            if($("#select_all_head").is(':checked') || $("#select_all_foot").is(':checked')){
+                total = total - 1;
+            }
+            $("#check-box-length").html(total);
+        });
+        $(document).ready(function(){
+            var total = $("input[type=checkbox]:checked").length;
+            $("#check-box-length").html(total - 1);
+        });
+    </script>
+
+
+
+@stop

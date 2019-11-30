@@ -1,0 +1,14 @@
+@media print {
+    body{
+        overflow: visible;
+    }
+    .card{
+        float: left !important;
+    }
+    .page-break{
+        overflow: visible;
+        page-break-after: always !important;
+        page-break-before: always !important;
+    }
+
+}

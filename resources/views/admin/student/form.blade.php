@@ -27,13 +27,13 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('academicYear', 'Academic Year',['class'=>'control-label' ]) }}
-                        {{ Form::select('year', ['2019' => 'Year 2019', '2020' => 'Year 2020'], null, ['placeholder' => 'Select Academic year...','class'=>'form-control']) }}
+                        {{ Form::select('year',$repository->sessions(), null, ['placeholder' => 'Select Academic year...','class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{Form::label('className','Class',['class'=>'control-label'])}}
-                        {{ Form::select('className', ['5' => 'Class 5', '6' => 'Class 6'], null, ['placeholder' => 'Select Class Name...','class'=>'form-control']) }}
+                        {{ Form::select('className',$repository->classes(), null, ['placeholder' => 'Select Class Name...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>

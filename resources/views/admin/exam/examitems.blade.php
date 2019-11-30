@@ -67,7 +67,6 @@
                                         <th>Start</th>
                                         <th>End</th>
                                         <th>Mark</th>
-                                        <th>Guard</th>
                                         <th>Type</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -76,15 +75,17 @@
                                 <tbody>
                                 @foreach($schedules as $schedule)
                                     <tr>
-                                        <td>{{\App\AcademicClass::query()->findOrFail($schedule->class_id)->name}}</td>
-                                        <td>{{\App\Subject::query()->FindOrFail($schedule->subject_id)->name}}</td>
-                                        <td>{{$schedule->date}}</td>
-                                        <td>{{$schedule->start}}</td>
-                                        <td>{{$schedule->end}}</td>
-                                        <td></td>
-                                        <td>{{\App\Staff::query()->findOrFail($schedule->teacher_id)->name}}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $schedule->academicClass }}</td>
+                                        <td>{{ $schedule->subject->name }}</td>
+                                        <td>{{ $schedule->date }}</td>
+                                        <td>{{ $schedule->start }}</td>
+                                        <td>{{ $schedule->end }}</td>
+                                        <td>{{ $schedule->mark }}</td>
+                                        <td>{{ $schedule->type }}</td>
+                                        <td>{{ $schedule->status }}</td>
+                                        <td>
+                                            <a href="{{ action('ExamController@marks') }}">Marks</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -357,7 +358,7 @@
                 <div class="modal-body">
                     {!! Form::open(['action'=>'ExamController@schedule', 'method'=>'post']) !!}
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Name*</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     {{ Form::select('session_id', $sessions, null, ['class'=>'form-control','placeholder' => 'Select Session']) }}
@@ -378,6 +379,44 @@
                                 <div class="input-group">
                                     {{ Form::select('class_id', $classes, null, ['class'=>'form-control', 'id'=>'class','placeholder' => 'Select Class']) }}
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Subject*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ Form::select('subject_id', $subjects, null, ['class'=>'form-control', 'id'=>'class','placeholder' => 'Select Subejct']) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Date*</label>
+                            <div class="col-sm-8">
+                                {{ Form::text('date',null,['class'=>'form-control']) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Time*</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ Form::text('start',null,['class'=>'form-control']) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Time*</label>
+                            <div class="col-sm-8">
+                                {{ Form::text('end',null,['class'=>'form-control']) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Marks</label>
+                            <div class="col-sm-8">
+                                {{ Form::text('marks',null,['class'=>'form-control']) }}
                             </div>
                         </div>
 

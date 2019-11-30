@@ -1,4 +1,5 @@
 @extends('layouts.fixed')
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -18,7 +19,6 @@
     </div>
     <!-- /.content-header -->
 
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -31,7 +31,8 @@
                         {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'files'=>true]) !!}
                           @include('admin.student.form')
                         {!! Form::close() !!}
-                    </div>                   <!-- /.card -->
+                    </div>
+                    <!-- /.card -->
 
                 </div>
                 <!--/.col (left) -->

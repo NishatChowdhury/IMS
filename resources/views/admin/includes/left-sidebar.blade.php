@@ -161,7 +161,7 @@
                     </li>
 
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/classes') }}">
+                        <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/class') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Classes</p>
                         </a>
@@ -311,8 +311,8 @@
                     {{--</li>--}}
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
-                <a href="#" class="nav-link {{ isActive(['extra*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['communication*']) }}">
+                <a href="#" class="nav-link {{ isActive(['communication*']) }}">
                     <i class="nav-icon fas fa-comments"></i>
                     <p>
                         Communication
@@ -321,19 +321,19 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{route('communication.student-sms')}}" class="nav-link {{ isActive('communication/student-sms') }}">
+                        <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Student SMS</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('communication.staff-sms')}}" class="nav-link {{ isActive('communication/staff-sms') }}">
+                        <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('communication/staff') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Staff SMS</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('communication.history-sms')}}" class="nav-link {{ isActive('communication/history-sms') }}">
+                        <a href="{{route('communication.history')}}" class="nav-link {{ isActive('communication/history') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>SMS History</p>
                         </a>
