@@ -103,11 +103,13 @@ Route::get('exam/marks','ExamController@marks');
 //Exam management End
 
 //Communication Route by Rimon
+Route::get('communication/quick','CommunicationController@quick')->name('communication.quick');
 Route::get('communication/student','CommunicationController@student')->name('communication.student');
 Route::get('communication/staff','CommunicationController@staff')->name('communication.staff');
 Route::get('communication/history','CommunicationController@history')->name('communication.history');
 
 Route::post('communication/send','CommunicationController@send');
+Route::post('communication/quick/send','CommunicationController@quickSend');
 //End Communication Route
 
 Route::get('attendance/setting','ShiftController@index');

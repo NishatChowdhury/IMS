@@ -321,6 +321,11 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
+                        <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('communication/quick') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Quick SMS</p>
+                        </a>
+                    </li>
                         <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Student SMS</p>

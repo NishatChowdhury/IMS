@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CommunicationHistory;
 use App\Repository\StudentRepository;
 use App\Student;
 use Exception;
@@ -51,6 +52,11 @@ class CommunicationController extends Controller
         return view('admin.communication.student-sms',compact('repository','students'));
     }
 
+    public function quick()
+    {
+        return view('admin.communication.quick');
+    }
+
     public function staff()
     {
         return view('admin.communication.staff-sms');
@@ -58,18 +64,23 @@ class CommunicationController extends Controller
 
     public function history()
     {
-        return view('admin.communication.history-sms');
+        $histories = CommunicationHistory::query()->latest()->paginate(50);
+        return view('admin.communication.history-sms',compact('histories'));
     }
 
     public function send(Request $request)
     {
         $ids = $request->get('id');
-        $request->number = Student::query()->whereIn('id',$ids)->pluck('mobile')->toArray();
+        $numbers = Student::query()->whereIn('id',$ids)->pluck('mobile')->toArray();
 
-        $api_key = "C20051365de1fe31bd00d3.94191772";
-        $contacts = $request->get('number');
-        $senderid = 8809601000500;
+        //$api_key = "C20051365de1fe31bd00d3.94191772";
+        $api_key = smsConfig('api_key');
+        $contacts = implode('+',$numbers);
+        //$contacts = $request->get('number');
+        //$senderid = 8809601000500;
+        $senderid = smsConfig('sender_id');
         $sms = $request->get('message');
+        //dd($contacts);
         $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".urlencode($contacts)."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
 
         $ch = curl_init();
@@ -79,18 +90,70 @@ class CommunicationController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_POST, 0);
 
-//        try{
-//            $output = $content=curl_exec($ch);
-//            print_r($output);
-//        }catch(Exception $ex){
-//            $output = "-100";
-//        }
-//        dd($output);
+        try{
+            $output = $content=curl_exec($ch);
+            print_r($output);
+        }catch(Exception $ex){
+            $output = "-100";
+        }
+
+        $data['type'] = 'Notice';
+        $data['user_id'] = auth()->id();
+        $data['destination_count'] = count($numbers);
+        $data['sms_count'] = $request->get('sms_count');
+        $data['numbers'] = $contacts;
+        $data['message'] = $sms;
+        $data['status'] = $output;
+        CommunicationHistory::query()->create($data);
+        //dd($output);
 
         Session::flash('success','SMS sent!');
 
         return redirect()->back();
     }
 
+    public function quickSend(Request $request)
+    {
+        //$ids = $request->get('id');
+        //$numbers = Student::query()->whereIn('id',$ids)->pluck('mobile')->toArray();
+
+        //$api_key = "C20051365de1fe31bd00d3.94191772";
+        $api_key = smsConfig('api_key');
+        //$contacts = implode('+',$numbers);
+        $contacts = $request->get('numbers');
+        //$senderid = 8809601000500;
+        $senderid = smsConfig('sender_id');
+        $sms = $request->get('message');
+        //dd($contacts);
+        $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".urlencode($contacts)."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$URL);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POST, 0);
+
+        try{
+            $output = $content=curl_exec($ch);
+            print_r($output);
+        }catch(Exception $ex){
+            $output = "-100";
+        }
+
+        $data['type'] = 'Quick';
+        $data['user_id'] = auth()->id();
+        $data['destination_count'] = count(explode('+',$contacts));
+        $data['sms_count'] = $request->get('sms_count');
+        $data['numbers'] = $contacts;
+        $data['message'] = $sms;
+        $data['status'] = $output;
+        CommunicationHistory::query()->create($data);
+        //dd($output);
+
+        Session::flash('success','SMS sent!');
+
+        return redirect()->back();
+    }
 
 }

@@ -87,12 +87,16 @@
                                         <div class="col-md-5">
                                             <label for="">SMS Description</label>
                                             <div class="input-group">
-                                                <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50"></textarea>
+                                                <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50" id="textarea"></textarea>
                                             {{ Form::submit('SEND',['class'=>'btn btn-primary']) }}
                                             </div>
-                                            <p style="display: inline-block;padding: 5px;margin: 10px 0 0 0" class="bg-primary;"> Total Word Count :
-                                                <div class="length" style="display: inline-block"></div>
+                                            <p>
+                                                <code>length : </code><span id="msgcount">0</span>/<span id="charcount">0</span>
+                                                {{ Form::hidden('sms_count',0,['id'=>'inputsmscount']) }}
                                             </p>
+                                            {{--<p style="display: inline-block;padding: 5px;margin: 10px 0 0 0" class="bg-primary;"> Total Word Count :--}}
+                                                {{--<div class="length" style="display: inline-block"></div>--}}
+                                            {{--</p>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +125,7 @@
                                         @foreach($students as $student)
                                         <tr>
                                             <td>
-                                                {{ Form::checkbox('id[]',$student->id,true,['class'=>'']) }}
+                                                {{ Form::checkbox('id[]',$student->id,true,['class'=>'checkbox']) }}
                                             </td>
                                             <td>
                                                 <img src="{{ asset('assets/img/students/') }}/{{ $student->session_id }}/{{ $student->class_id }}/{{ $student->image }}" height="75" alt="">
@@ -163,14 +167,23 @@
 
 @section('script')
     <script>
-        function counter(){
-            var text = $('.descriptionLen').val();
-            $(".length").text(text.length+1);
-        }
-        $(document).on('keydown change','.descriptionLen',function () {
-           counter();
-        });
+        $("#textarea").keyup(function(){
+            var textCount = $("#textarea").val().length;
+            $("#charcount").text(textCount);
+            $("#msgcount").text(Math.ceil(textCount/160));
+            $("#inputsmscount").val(Math.ceil(textCount/160));
+            //alert(textCount);
+        })
     </script>
+    {{--<script>--}}
+        {{--function counter(){--}}
+            {{--var text = $('.descriptionLen').val();--}}
+            {{--$(".length").text(text.length+1);--}}
+        {{--}--}}
+        {{--$(document).on('keydown change','.descriptionLen',function () {--}}
+           {{--counter();--}}
+        {{--});--}}
+    {{--</script>--}}
 
     <script>
         $('#select_all_head,#select_all_foot').change(function() {
@@ -184,15 +197,17 @@
     </script>
     <script>
         $(document).change(function(){
-            var total = $("input[type=checkbox]:checked").length;
-            if($("#select_all_head").is(':checked') || $("#select_all_foot").is(':checked')){
-                total = total - 1;
-            }
+            //var total = $("input[type=checkbox]:checked").length;
+            var total = $(".checkbox:checked").length;
+            // if($("#select_all_head").is(':checked') || $("#select_all_foot").is(':checked')){
+            //     total = total - 2;
+            // }
             $("#check-box-length").html(total);
         });
         $(document).ready(function(){
-            var total = $("input[type=checkbox]:checked").length;
-            $("#check-box-length").html(total - 1);
+            var total = $(".checkbox:checked").length;
+            // var total = $("input[type=checkbox]:checked").length;
+            $("#check-box-length").html(total);
         });
     </script>
 
