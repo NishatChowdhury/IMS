@@ -8,3 +8,8 @@ function siteConfig($col){
     $config = \App\SiteInformation::query()->first();
     return $config->$col;
 }
+
+function smsConfig($col){
+    $config = \App\CommunicationSetting::query()->first();
+    return $config->$col;
+}

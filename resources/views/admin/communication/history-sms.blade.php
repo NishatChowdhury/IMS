@@ -72,14 +72,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($histories as $history)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $history->created_at }}</td>
+                                    <td>{{ $history->type }}</td>
+                                    <td>{{ $history->user->name ?? '' }}</td>
+                                    <td><span title="{{ $history->numbers }}">{{ $d = $history->destination_count }}</span></td>
+                                    <td><span title="{{ $history->message }}">{{ $s = $history->sms_count }}</span></td>
+                                    <td>{{ $d * $s }}</td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
@@ -88,12 +90,13 @@
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                        </ul>
+                                        {{ $histories->links() }}
+                                        {{--<ul class="pagination">--}}
+                                            {{--<li class="page-item"><a class="page-link" href="#">First</a></li>--}}
+                                            {{--<li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
+                                            {{--<li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
+                                            {{--<li class="page-item"><a class="page-link" href="#">Last</a></li>--}}
+                                        {{--</ul>--}}
                                     </nav>
                                 </div>
                             </div>
