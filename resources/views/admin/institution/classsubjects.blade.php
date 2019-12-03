@@ -80,27 +80,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($assigned_sub as $sub)
+                                @foreach($subjects as $sub)
                                     <tr>
-                                        <td>{{$sub->subject->code}}</td>
-                                        <td>{{$sub->subject->name}}</td>
-                                        <td>{{$sub->subject->short_name}}</td>
-                                        <td>{{$sub->teacher->name}}</td>
-                                        <td>
-                                            {{$sub->objective_pass>0 ? 'Obj:('.$sub->objective_pass.')' : ''}}
-                                            {{$sub->written_pass>0? '| Wrtn:('.$sub->written_pass.')': ''}}
-                                            {{$sub->practical_pass>0? '| Prac:('.$sub->practical_pass.')': ''}}
-                                        </td>
+                                        <td>{{$sub->code}}</td>
+                                        <td>{{$sub->name}}</td>
+                                        <td>{{$subshort_name}}</td>
+                                        <td></td>
+                                        <td>Obj-{{$sub->objective_pass}}; Wrtn-{{$sub->written_pass}}</td>
                                         <td>{{$sub->is_optional?'Optional': 'Compulsory'}}</td>
                                         <td></td>
-                                        <td>
-                                            <a type="button" class="btn btn-info btn-sm edit" value='{{$sub->id}}' tyle="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
-                                            </a>
-                                            <a type="button" href="{{action('InstitutionController@delete_assigned',$sub->id)}}"
-                                               class="btn btn-danger btn-sm"
-                                               style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
-                                            </a>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -129,7 +118,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Class*</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    {!! Form::select('class_id', $classes, null, ['class'=>'form-control class_id']) !!}
+                                    {!! Form::select('class_id', $classes, null, ['class'=>'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -138,7 +127,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Subject*</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    {!! Form::select('subject_id', $subjects, null, ['class'=>'form-control subject_id']) !!}
+                                    {!! Form::select('subject_id', $subjects, null, ['class'=>'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -146,7 +135,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    {!! Form::select('teacher_id', $staffs, null, ['class'=>'form-control teacher_id']) !!}
+                                    {!! Form::select('teacher_id', $staffs, null, ['class'=>'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -155,7 +144,7 @@
                             <label for="" class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input name="is_optional" class="form-check-input is_optional" type="checkbox" value=1 id="defaultCheck1">
+                                    <input name="is_optional" class="form-check-input" type="checkbox" value=1 id="defaultCheck1">
                                 </div>
                                 <label class="form-check-label" for="defaultCheck1">Is Optional?</label>
                             </div>
@@ -164,7 +153,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Objective Pass Mark</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="number" name="objective_pass" class="form-control objective_pass">
+                                    <input type="number" name="objective_pass" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -172,7 +161,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Written Pass Mark</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="number" name="written_pass" class="form-control written_pass">
+                                    <input type="number" name="written_pass" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -180,7 +169,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Practical Pass Mark</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="number" name="practical_pass" class="form-control practical_pass">
+                                    <input type="number" name="practical_pass" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -188,14 +177,15 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Viva Pass Mark</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="number" name="viva_pass" class="form-control viva_pass">
+                                    <input type="number" name="viva_pass" class="form-control">
                                 </div>
                             </div>
                         </div>
-                        {!! Form::hidden('id',null,['class'=>'id']) !!}
+
                         <div class="form-group" style="float: right">
-                            <button type="submit" class="btn btn-success btn-sm pull-right"> <i class="fas fa-plus-circle"></i> Add</button>
+                            <button type="submit" class="btn btn-success btn-sm pull-right" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
+
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -262,29 +252,5 @@
             </div>
         </div>
     </div>
-@stop
 
-@section('script')
-    <script>
-        $(document).on('click','.edit', function () {
-           var id = $(this).attr('value');
-           $.ajax({
-               method : 'post',
-               url : '{{route('edit.assign')}}',
-               data: {id:id, _token:'{{csrf_token()}}'},
-               success:function (res) {
-                   $("#exampleModal").modal("show");
-                   $('.subject_id').val(res.subject_id);
-                   $('.class_id').val(res.class_id);
-                   $('.teacher_id').val(res.teacher_id);
-                   $('.is_optional').val(res.is_optional);
-                   $('.objective_pass').val(res.objective_pass);
-                   $('.written_pass').val(res.written_pass);
-                   $('.practical_pass').val(res.practical_pass);
-                   $('.viva_pass').val(res.viva_pass);
-                   $('.id').val(res.id);
-               }
-           });
-        });
-    </script>
 @stop
