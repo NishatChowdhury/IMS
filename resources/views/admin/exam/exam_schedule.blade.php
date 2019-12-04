@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Exam Schedules</h1>
+                    <h1>Exam Schedules : {{\App\Exam::FindOrfail($exam_id)->name}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -32,8 +32,12 @@
                     <table class="table-responsive table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th colspan="7" class="text-center"></th>
+                            </tr>
+                            <tr>
                                 <th>SL</th>
                                 <th class="text-center">Subject Name</th>
+                                <th class="text-center">Full Marks</th>
                                 <th class="text-center">Exam date</th>
                                 <th class="text-center">Exam Start</th>
                                 <th class="text-center">Exam End</th>
@@ -43,42 +47,47 @@
                         @php($i=1)
                     @foreach($subjects as $sub)
                     <tr>
-                            <td>{{$i++}}</td>
+                        <td class="text-center">{{$i++}}</td>
+                        <th class="text-center">{{$sub->subject->name}}</th>
+                        {!! Form::hidden('subject_id[]', $sub->id,[]) !!}
+                        <td>
+                            <div class="input-group">
+                                {{ Form::text('full_marks[]',null,['class'=>'form-control', 'aria-describedby'=>""]) }}
 
-                            <th class="text-center">{{$sub->subject->name}}</th>
-                            {!! Form::hidden('subject_id[]', $sub->id,[]) !!}
-                            <td>
-                                <div class="input-group">
-                                    {{ Form::text('date[]',null,['class'=>'form-control datePicker', 'aria-describedby'=>""]) }}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-calendar"></i></span>
-                                    </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                {{ Form::text('date[]',null,['class'=>'form-control datePicker', 'aria-describedby'=>""]) }}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-calendar"></i></span>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="input-group">
-                                    {{ Form::text('start[]',null,['class'=>'form-control', 'aria-describedby'=>""]) }}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
-                                    </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                {{ Form::text('start[]',null,['class'=>'form-control', 'aria-describedby'=>""]) }}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="input-group">
-                                    {{ Form::text('end[]',null,['class'=>'form-control', 'aria-describedby'=>""]) }}
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
-                                    </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                {{ Form::text('end[]',null,['class'=>'form-control', 'aria-describedby'=>""]) }}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock"></i></span>
                                 </div>
-                            </td>
-                            <td>
-                                {{ Form::select('teacher_id[]', $teachers, $sub->teacher_id, ['class'=>'form-control']) }}
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                        <td>
+                            {{ Form::select('teacher_id[]', $teachers, $sub->teacher_id, ['class'=>'form-control']) }}
+                        </td>
+                    </tr>
                     @endforeach
 
                     <tr>
-                        <td class="text-right" colspan="6">
+                        <td class="text-right" colspan="7">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                         </td>
                     </tr>

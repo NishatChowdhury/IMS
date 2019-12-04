@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 /** Dashboard Routes */
 Route::get('dashboard','DashboardController@index');
@@ -63,6 +64,12 @@ Route::get('/gallery','FrontController@gallery');
 Route::get('/album/{name}','FrontController@album');
 /*===== Route for Front-End Menu Bar END ====*/
 
+//Admission Route by Rimon
+Route::get('admission/exams','AdmissionController@admissionExams')->name('admission.exams');
+Route::get('admission/applicant','AdmissionController@admissionApplicant')->name('admission.applicant');
+Route::get('admission/examResult','AdmissionController@admissionExamResult')->name('admission.examResult');
+//End Admission Route
+
 //Attendance Route by Rimon
 Route::get('attendance','AttendanceController@index')->name('custom.view');
 Route::get('attendance/dashboard','AttendanceController@dashboard')->name('attendance.dashboard');
@@ -75,14 +82,35 @@ Route::post('/classStudentAttendance','AttendanceController@classAttendance')->n
 Route::post('/indTeacherAttendance','AttendanceController@individulTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
 
-//Exam Route by Rimon
+//Exam Route Start  by Rimon
 Route::get('exam/gradesystem','ExamController@gradesystem')->name('exam.gradesystem');
+//Grading System @MKH
+Route::post('exam/store-grade', 'ExamController@store_grade');
+Route::get('exam/delete-grade/{id}', 'ExamController@delete_grade');
 Route::get('exam/examination','ExamController@examination')->name('exam.examination');
+Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
+Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
-//Exam Route by Rimon
+Route::post('exam/make-schedule', 'ExamController@schedule');
+Route::post('exam/store-schedule', 'ExamController@store_schedule');
+Route::get('exam/admit-card','ExamController@admitCard');
+Route::get('exam/seat-allocate','ExamController@seatAllocate');
+Route::get('exam/result-details','ExamController@resultDetails');
+Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
+Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 
+Route::get('exam/marks','ExamController@marks');
+//Exam management End
 
+//Communication Route by Rimon
+Route::get('communication/quick','CommunicationController@quick')->name('communication.quick');
+Route::get('communication/student','CommunicationController@student')->name('communication.student');
+Route::get('communication/staff','CommunicationController@staff')->name('communication.staff');
+Route::get('communication/history','CommunicationController@history')->name('communication.history');
 
+Route::post('communication/send','CommunicationController@send');
+Route::post('communication/quick/send','CommunicationController@quickSend');
+//End Communication Route
 
 Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
@@ -129,7 +157,7 @@ Route::post('institution/edit-session', 'InstitutionController@edit_session');
 Route::post('institution/update-session', 'InstitutionController@update_session');
 Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
 
-    //Academic Classes $ Groups
+//Academic Classes $ Groups
 Route::get('institution/section-groups','InstitutionController@section_group')->name('section.group');
 Route::post('institution/create-section', 'InstitutionController@create_section');
 Route::post('institution/edit-section', 'InstitutionController@edit_section');
@@ -154,11 +182,12 @@ Route::post('institution/edit-subject','InstitutionController@edit_subject');
 Route::post('institution/update-subject','InstitutionController@update_subject');
 Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
 
-Route::get('institution/subjects/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
+Route::get('institution/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
 Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
+Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
-//End Institution Mgnt Route
-
 
 // smartrahat start
 Route::get('siteinfo','SiteInformationController@index');
@@ -193,8 +222,9 @@ Route::get('student/create','StudentController@create')->name('student.add');
 Route::post('student/store', 'StudentController@store');
 //End Students Route
 
-//Route::post('get-sectionByclass', 'StudentController@get_section');
-Route::get('get-ClassSectionBysession{id}', 'StudentController@get_class_section');
+/** Route for Apps start */
+Route::post('api/attendance','AndroidController@attendance');
+/** Route for Apps end */
 
 Route::get('migrate',function(){
     Artisan::call('migrate');
@@ -262,4 +292,41 @@ Route::get('download-attendances',function(){
 
 Route::get('test-download',function(){
     Artisan::call('CronJob:DownloadAttendances');
+});
+
+Route::get('rename-pic',function(){
+    $students = \App\Student::query()->where('class_id',3)->get();
+    foreach($students as $student){
+        $session = $student->session_id;
+        $class = $student->class_id;
+        $file = $student->studentId;
+        $isExist = Storage::disk('local')->exists('Shisu/'.$student->rank.'.jpg');
+        if($isExist){
+            $isDuplicate = Storage::disk('local')->exists('std/students/'.$session.'/'.$class.'/'.$file.'.jpg');
+            if(!$isDuplicate){
+                Storage::copy('Shisu/'.$student->rank.'.jpg', 'std/students/'.$session.'/'.$class.'/'.$file.'.jpg');
+            }
+        }
+    }
+});
+
+Route::get('sync-image-name',function(){
+    $students = \App\Student::query()->get();
+    foreach($students as $student){
+        $id = $student->studentId;
+        $student->update(['image'=>$id.'.jpg']);
+    }
+    dd('sync complete '.date('ymd'));
+});
+
+Route::get('add-zero-to-number',function (){
+    $students = \App\Student::query()->get();
+    foreach($students as $student){
+        $number = $student->mobile;
+        $firstLetter = substr($number,0,1);
+        if($firstLetter != 0){
+            $student->update(['mobile'=>'0'.$number]);
+        }
+    }
+    dd('sync complete '.date('ymd'));
 });

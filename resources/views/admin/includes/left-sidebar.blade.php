@@ -170,7 +170,7 @@
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('section.group')}}" class="nav-link {{ isActive('institution/section-groups') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Sections $ Groups</p>
+                            <p>Sections & Groups</p>
                         </a>
                     </li>
 

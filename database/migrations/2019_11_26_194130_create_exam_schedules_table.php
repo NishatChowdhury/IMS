@@ -19,6 +19,7 @@ class CreateExamSchedulesTable extends Migration
             $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('subject_id');
+            $table->integer('full_marks');
             $table->unsignedBigInteger('teacher_id')->nullable();
             $table->date('date')->nullable();
             $table->string('start')->nullable();
