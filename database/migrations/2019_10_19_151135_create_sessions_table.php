@@ -19,6 +19,7 @@ class CreateSessionsTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->string('description')->nullable();
+            $table->integer('active');
             $table->timestamps();
         });
     }

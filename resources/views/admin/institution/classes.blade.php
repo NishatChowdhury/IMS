@@ -77,13 +77,14 @@
                                         <td></td>
                                         <td></td>
                                         <td>
-                                            <a type="button" class="btn btn-info btn-sm edit" value='{{$class->id}}'
-                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
+                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm">Subjects</a>
+                                            <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'
+                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                             </a>
 
                                             <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}"
                                                class="btn btn-danger btn-sm delete_session"
-                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete
+                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>

@@ -86,16 +86,20 @@ class ExamController extends Controller
         return view ('admin.exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
     }
 
-    public function schedule(Request $request){
-        //dd($request->all());
-        $session_id = $request->session_id ;
-        $exam_id = $request->exam_id ;
-        $class_id = $request->class_id ;
-        $exam_type = $request->exam_type ;
+    public function schedule(Request $request,$examId){
+        //dd($examId);
+        $session_id = $request->session_id;
+        //$exam_id = $request->exam_id;
+        $class_id = $request->class_id;
+        $exam_type = $request->exam_type;
         $subjects = AssignSubject::query()->where('class_id', $class_id)->get();
         $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
 
-        return view('admin.exam.exam_schedule', compact('session_id', 'exam_id', 'class_id', 'exam_type', 'subjects', 'teachers'));
+        $schedules = ExamSchedule::all();
+        $sessions = Session::all()->pluck('year', 'id');
+        $exams = Exam::all()->pluck('name', 'id');
+        $classes = AcademicClass::all()->pluck('name', 'id');
+        return view('admin.exam.examitems', compact('session_id', 'examId','schedules','sessions','exams','classes', 'class_id', 'exam_type', 'subjects', 'teachers'));
     }
 
     public function store_schedule(Request $request){

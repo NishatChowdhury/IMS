@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Exam Schedules : {{\App\Exam::FindOrfail($exam_id)->name}}</h1>
+                    <h1>Exam Schedules : {{\App\Exam::query()->FindOrfail($examId)->name}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,7 +26,7 @@
             <div class="col-12">
                 {!! Form::open(['action'=>'ExamController@store_schedule', 'method'=>'post']) !!}
                     {!! Form::hidden('session_id', $session_id, []) !!}
-                    {!! Form::hidden('exam_id', $exam_id, []) !!}
+                    {!! Form::hidden('exam_id', $examId, []) !!}
                     {!! Form::hidden('class_id', $class_id, []) !!}
                     {!! Form::hidden('exam_type', $exam_type, []) !!}
                     <table class="table-responsive table-bordered table-hover">

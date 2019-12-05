@@ -180,12 +180,12 @@
                             <p>Subjects</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.classsubjects')}}" class="nav-link {{ isActive('institution/classsubjects') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Class Subjects</p>
-                        </a>
-                    </li>
+                    {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                        {{--<a href="{{route('institution.classsubjects')}}" class="nav-link {{ isActive('institution/classsubjects') }}">--}}
+                            {{--<i class="far fa-circle nav-icon"></i>--}}
+                            {{--<p>Class Subjects</p>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
 
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">
@@ -226,12 +226,12 @@
                             <p>Examinations</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('exam.examitems')}}" class="nav-link {{ isActive('exam/examitems') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Exam Schedules</p>
-                        </a>
-                    </li>
+                    {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                        {{--<a href="{{route('exam.examitems')}}" class="nav-link {{ isActive('exam/examitems') }}">--}}
+                            {{--<i class="far fa-circle nav-icon"></i>--}}
+                            {{--<p>Exam Schedules</p>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('exam.examresult')}}" class="nav-link {{ isActive('exam/examresult') }}">
                             <i class="far fa-circle nav-icon"></i>

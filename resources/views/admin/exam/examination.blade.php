@@ -74,19 +74,15 @@
                                                 $com = \App\Exam::find($exam->combined_exam_id2)->name;
                                                 echo ', '.$com;
                                             }
-                                        }
-
-                                        else{
+                                        }else{
                                             echo 'None';
                                         }
                                     @endphp
                                     </td>
                                     <td>{{ $exam->notify==1? "Notify" : "Dont Notify"}}</td>
                                     <td>
-                                        <a type="button" href="{{action('ExamController@delete_exam',$exam->id)}}"
-                                           class="btn btn-danger btn-sm"
-                                           style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
-                                        </a>
+                                        <a href="{{ action('ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm"><i class="far fa-calendar-alt"></i></a>
+                                        <a type="button" href="{{action('ExamController@delete_exam',$exam->id)}}" class="btn btn-danger btn-sm" style="margin-left: 5px;"><i class="fas fa-trash "></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

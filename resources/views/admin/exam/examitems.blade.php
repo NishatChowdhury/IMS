@@ -43,10 +43,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
+                                        <a href="{{ action('ExamScheduleController@create',$examId) }}" role="button" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</a>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Schedules" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-calendar"></i> </button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Schedules" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;" disabled> <i class="fa fa-calendar"></i> </button>
                                         {{--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocateseat" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Allocate Seat"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-server"></i> </button>--}}
                                         <a href="{{ action('ExamController@seatAllocate') }}" class="btn btn-info btn-sm" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"><i class="fa fa-server"></i></a>
                                         {{--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#admitcard" data-whatever="@mdo" data-placement="top" title="AdmitCard Preview"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-spinner"></i></button>--}}
@@ -74,10 +74,10 @@
                                 </thead>
                                 <tbody>
                                 @foreach($schedules as $schedule)
-                                    {{dd($schedule)}}
+                                    {{--{{dd($schedule)}}--}}
                                     <tr>
-                                        <td>{{ $schedule->academicClass }}</td>
-                                        <td>{{ $schedule->subject->name }}</td>
+                                        <td>{{ $schedule->academicClass->name }}</td>
+                                        <td>{{ $schedule->subject->name ?? '' }}</td>
                                         <td>{{ $schedule->date }}</td>
                                         <td>{{ $schedule->start }}</td>
                                         <td>{{ $schedule->end }}</td>
@@ -357,9 +357,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'ExamController@schedule', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>['ExamController@schedule',5], 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exam Name*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session*</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{ Form::select('session_id', $sessions, null, ['class'=>'form-control','placeholder' => 'Select Session']) }}

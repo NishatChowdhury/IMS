@@ -175,17 +175,21 @@ class InstitutionController extends Controller
     }
     /*Subjects End*/
 
-    public function classsubjects()
+    public function classSubjects($classId)
     {
+        $class = AcademicClass::query()->findOrFail($classId);
         $classes = AcademicClass::all()->pluck('name', 'id');
         $subjects = Subject::all()->pluck('name', 'id');
         $staffs = Staff::all()->pluck('name','id');
-        return view ('admin.institution.classsubjects', compact('classes', 'subjects','staffs'));
+        $assignedSubjects = AssignSubject::query()->where('class_id',$classId)->get();
+        return view ('admin.institution.classsubjects', compact('classes', 'subjects','staffs','assignedSubjects','class'));
     }
 
     public function assign_subject(Request $request){
+        //dd($request->all());
         AssignSubject::query()->create($request->all());
-        return redirect('institution/subjects/classsubjects')->with('success', 'Subjects assigned Successfully');
+        //return redirect('institution/subjects/classsubjects')->with('success', 'Subjects assigned Successfully');
+        return redirect()->back();
     }
 
     public function profile()

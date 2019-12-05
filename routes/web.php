@@ -91,7 +91,9 @@ Route::get('exam/examination','ExamController@examination')->name('exam.examinat
 Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
 Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
-Route::post('exam/make-schedule', 'ExamController@schedule');
+Route::get('exam/schedule/create/{exam}','ExamScheduleController@create');
+Route::post('exam/schedule/store','ExamScheduleController@store');
+Route::get('exam/schedule/{examId}', 'ExamController@schedule');
 Route::post('exam/store-schedule', 'ExamController@store_schedule');
 Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/seat-allocate','ExamController@seatAllocate');
@@ -175,6 +177,8 @@ Route::post('institution/store-class','InstitutionController@store_class');
 Route::post('institution/edit-SessionClass','InstitutionController@edit_SessionClass');
 Route::post('institution/update-SessionClass','InstitutionController@update_SessionClass');
 Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
+
+Route::get('institution/class/subject/{class}','InstitutionController@classSubjects');
 //Subjects
 Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::post('institution/create-subject','InstitutionController@create_subject');
@@ -182,10 +186,10 @@ Route::post('institution/edit-subject','InstitutionController@edit_subject');
 Route::post('institution/update-subject','InstitutionController@update_subject');
 Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
 
-Route::get('institution/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
+//Route::get('institution/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
 Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
+//Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
 Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
-Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
 Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 

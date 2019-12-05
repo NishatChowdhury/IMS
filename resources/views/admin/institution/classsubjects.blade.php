@@ -33,8 +33,8 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Eight</h5>
-                                            <p>VIII</p>
+                                            <h5 style="margin-bottom: 0px;">{{ $class->name }}</h5>
+                                            <p>{{ $class->short_name }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
                                             <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>1000</p>
+                                            <p>{{ $assignedSubjects->count() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,14 +80,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($subjects as $sub)
+                                @foreach($assignedSubjects as $sub)
                                     <tr>
-                                        <td>{{$sub->code}}</td>
-                                        <td>{{$sub->name}}</td>
-                                        <td>{{$subshort_name}}</td>
-                                        <td></td>
+                                        <td>{{$sub->subject->code}}</td>
+                                        <td>{{$sub->subject->name}}</td>
+                                        <td>{{$sub->subject->short_name}}</td>
+                                        <td>{{ $sub->staff }}</td>
                                         <td>Obj-{{$sub->objective_pass}}; Wrtn-{{$sub->written_pass}}</td>
-                                        <td>{{$sub->is_optional?'Optional': 'Compulsory'}}</td>
+                                        <td>{{$sub->is_optional ? 'YES' : 'NO'}}</td>
                                         <td></td>
                                         <td></td>
                                     </tr>
