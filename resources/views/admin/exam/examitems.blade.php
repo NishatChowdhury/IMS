@@ -85,7 +85,7 @@
                                         <td>{{ $schedule->type }}</td>
                                         <td>{{ $schedule->status }}</td>
                                         <td>
-                                            <a href="{{ action('ExamController@marks') }}">Marks</a>
+                                            <a href="{{ action('MarkController@index',$schedule->id) }}">Marks</a>
                                         </td>
                                     </tr>
                                 @endforeach

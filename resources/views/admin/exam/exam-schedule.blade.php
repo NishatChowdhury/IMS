@@ -43,10 +43,13 @@
                             <div class="">
                                 {{ Form::open(['action'=>['ExamScheduleController@create',5],'method'=>'get']) }}
                                 <div class="row">
+                                    <div class="col-md-4">
+                                        {{ Form::select('session_id',$sessions,null,['class'=>'form-control','placeholder'=>'Select a session']) }}
+                                    </div>
                                     <div class="col-md-6">
                                         {{ Form::select('class_id',$classes,null,['class'=>'form-control','placeholder'=>'Select a class']) }}
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <button type="submit" class="btn btn-primary">S</button>
                                     </div>
                                 </div>

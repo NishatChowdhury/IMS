@@ -34,6 +34,11 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
+                    {{ Form::open(['action'=>'MarkController@store','method'=>'post']) }}
+                    {{ Form::hidden('session_id',$schedule->session_id) }}
+                    {{ Form::hidden('class_id',$schedule->class_id) }}
+                    {{ Form::hidden('exam_id',$schedule->exam_id) }}
+                    {{ Form::hidden('subject_id',$schedule->subject_id) }}
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
@@ -54,31 +59,36 @@
                             <tbody>
                             @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->studentId }}</td>
                                     <td>
-                                        {{ $student->academicClass ? $student->academicClass->name : ''}}
+                                        {{ Form::hidden('student_id[]',$student->id) }}
+                                        {{ $student->student->studentId ?? $student->studentId }}
+                                    </td>
+                                    <td>
+                                        {{ $student->student->academicClass->name ?? $student->academicClass->name}}
                                         {{ $student->section ? $student->section->name : ''}}
                                         {{ $student->group ? $student->group->name : ''}}
                                     </td>
-                                    <td>Subject Code</td>
-                                    <td>Exam</td>
-                                    <td>{{ $student->rank }}</td>
-                                    <td>{{ $student->name }}</td>
+                                    <td>{{ $schedule->subject->name }}</td>
+                                    <td>{{ $schedule->exam->name }}</td>
+                                    <td>{{ $student->student->rank ?? $student->rank }}</td>
+                                    <td>{{ $student->student->name ?? $student->name }}</td>
                                     <td>100</td>
                                     <td>
-                                        {{ Form::text('objective',null,['class'=>'form-control']) }}
+                                        {{ Form::text('objective[]',$student->objective ?? null,['class'=>'form-control']) }}
                                     </td>
-                                    <td>{{ Form::text('written',null,['class'=>'form-control']) }}</td>
-                                    <td>{{ Form::text('practical',null,['class'=>'form-control']) }}</td>
-                                    <td>{{ Form::text('viva',null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::text('written[]',$student->written ?? null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::text('practical[]',$student->practical ?? null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::text('viva[]',$student->viva ?? null,['class'=>'form-control']) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="card-body">
+                        {{ Form::submit('Save Mark',['class'=>'btn btn-primary form-control']) }}
 {{--                        {{ $students->appends(Request::except('page'))->links() }}--}}
                     </div>
+                    {{ Form::close() }}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

@@ -18,21 +18,22 @@ class ExamScheduleController extends Controller
     public function create(Request $request,$exam)
     {
         $classes = AcademicClass::all()->pluck('name','id');
-        $session = Session::all()->where('active',1)->first();
+        $sessions = Session::all()->pluck('year','id');
 
         $class = $request->get('class_id');
+        $session = $request->get('session_id');
 
         if($class){
 
             $isExist = ExamSchedule::query()
-                ->where('session_id',$session->id)
+                ->where('session_id',$session)
                 ->where('class_id',$class)
                 ->where('exam_id',$exam)
                 ->exists();
 
             if($isExist){
                 $subjects = ExamSchedule::query()
-                    ->where('session_id',$session->id)
+                    ->where('session_id',$session)
                     ->where('class_id',$class)
                     ->where('exam_id',$exam)
                     ->get();
@@ -46,7 +47,7 @@ class ExamScheduleController extends Controller
             $subjects = [];
         }
 
-        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','session'));
+        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','sessions'));
     }
 
     public function store(Request $request)

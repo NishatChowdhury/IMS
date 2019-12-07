@@ -17,4 +17,9 @@ class ExamSchedule extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
 }

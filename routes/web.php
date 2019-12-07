@@ -101,7 +101,8 @@ Route::get('exam/result-details','ExamController@resultDetails');
 Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
 Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
 
-Route::get('exam/marks','ExamController@marks');
+Route::get('exam/marks/{schedule}','MarkController@index');
+Route::post('exam/mark/store','MarkController@store');
 //Exam management End
 
 //Communication Route by Rimon
