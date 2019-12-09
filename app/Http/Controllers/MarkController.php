@@ -36,8 +36,8 @@ class MarkController extends Controller
                 ->get();
         }else{
             $students = Student::query()
-                ->where('session_id',2)
-                ->where('class_id',9)
+                ->where('session_id',$schedule->session_id)
+                ->where('class_id',$schedule->class_id)
                 // ->where('group_id',1)
                 ->get();
         }

@@ -425,23 +425,5 @@
                     format: 'yyyy-mm-dd'
                 })
         });
-
-        /*$(document).on('change', '#class', function () {
-            var id = $(this).val();
-
-            $.ajax({
-                method: 'post',
-                url : '{{url('ajax/get_subject')}}',
-                data : {id:id, _token:"{{csrf_token()}}"},
-
-                success: function (respone) {
-                    console.log(respone);
-                    var html = '<option>Select Class</option>';
-                    $.each(subjeccts, function (idx, item) {
-                       html+= '<option value='+idx+'>'+item+'</option>';
-                    });
-                }
-            });
-        });*/
     </script>
 @stop

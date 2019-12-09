@@ -27,8 +27,22 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : </h3>
+                        <h3 class="card-title">
+                            <span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>
+                            <span>
+                                {{ $students->first()->student->academicClass->name ?? $students->first()->academicClass->name}}
+                                {{ $students->first()->section ? $students->first()->section->name : ''}}
+                                {{ $students->first()->group ? $students->first()->group->name : ''}}
+                            </span>|
+                            <span>
+                                {{ $schedule->subject->name }}
+                            </span>|
+                            <span>
+                                {{ $schedule->exam->name ?? '' }}
+                            </span>
+                        </h3>
                         <div class="card-tools">
+
                             <a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
                             <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
@@ -44,9 +58,9 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Class</th>
-                                <th>Subject Code</th>
-                                <th>Exam</th>
+                                {{--<th>Class</th>--}}
+                                {{--<th>Subject Code</th>--}}
+                                {{--<th>Exam</th>--}}
                                 <th>Roll</th>
                                 <th>Student</th>
                                 <th>Full Marks</th>
@@ -63,13 +77,13 @@
                                         {{ Form::hidden('student_id[]',$student->id) }}
                                         {{ $student->student->studentId ?? $student->studentId }}
                                     </td>
-                                    <td>
-                                        {{ $student->student->academicClass->name ?? $student->academicClass->name}}
-                                        {{ $student->section ? $student->section->name : ''}}
-                                        {{ $student->group ? $student->group->name : ''}}
-                                    </td>
-                                    <td>{{ $schedule->subject->name }}</td>
-                                    <td>{{ $schedule->exam->name }}</td>
+                                    {{--<td>--}}
+                                        {{--{{ $student->student->academicClass->name ?? $student->academicClass->name}}--}}
+                                        {{--{{ $student->section ? $student->section->name : ''}}--}}
+                                        {{--{{ $student->group ? $student->group->name : ''}}--}}
+                                    {{--</td>--}}
+                                    {{--<td>{{ $schedule->subject->name }}</td>--}}
+                                    {{--<td>{{ $schedule->exam->name ?? '' }}</td>--}}
                                     <td>{{ $student->student->rank ?? $student->rank }}</td>
                                     <td>{{ $student->student->name ?? $student->name }}</td>
                                     <td>100</td>

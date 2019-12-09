@@ -86,7 +86,20 @@
                                         <td>{{$sub->subject->name}}</td>
                                         <td>{{$sub->subject->short_name}}</td>
                                         <td>{{ $sub->staff }}</td>
-                                        <td>Obj-{{$sub->objective_pass}}; Wrtn-{{$sub->written_pass}}</td>
+                                        <td>
+                                            @if($sub->objective_pass)
+                                                Obj-{{$sub->objective_pass}};
+                                            @endif
+                                            @if($sub->written_pass)
+                                                Wrtn-{{$sub->written_pass}};
+                                            @endif
+                                            @if($sub->practical_pass)
+                                                Pra-{{ $sub->practical_pass }};
+                                            @endif
+                                            @if($sub->viva_pass)
+                                                Viva-{{ $sub->viva_pass }}
+                                            @endif
+                                        </td>
                                         <td>{{$sub->is_optional ? 'YES' : 'NO'}}</td>
                                         <td></td>
                                         <td></td>

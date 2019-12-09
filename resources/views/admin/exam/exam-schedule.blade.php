@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="">
-                                {{ Form::open(['action'=>['ExamScheduleController@create',5],'method'=>'get']) }}
+                                {{ Form::open(['action'=>['ExamScheduleController@create',$exam],'method'=>'get']) }}
                                 <div class="row">
                                     <div class="col-md-4">
                                         {{ Form::select('session_id',$sessions,null,['class'=>'form-control','placeholder'=>'Select a session']) }}
@@ -50,7 +50,7 @@
                                         {{ Form::select('class_id',$classes,null,['class'=>'form-control','placeholder'=>'Select a class']) }}
                                     </div>
                                     <div class="col-md-2">
-                                        <button type="submit" class="btn btn-primary">S</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
                                 {{ Form::close() }}
@@ -66,8 +66,8 @@
                                     <th>Code</th>
                                     <th>Subject</th>
                                     <th>Date</th>
-                                    <th>Start</th>
-                                    <th>End</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
                                     <th>Full Mark</th>
                                     <th>Type</th>
                                     <th>Status</th>
@@ -80,7 +80,7 @@
                                         <td>{{ $subject->subject->code ?? $subject->code }}</td>
                                         <td>
                                             {{ Form::hidden('exam_id',$exam) }}
-                                            {{ Form::hidden('session_id',$session->id) }}
+                                            {{ Form::hidden('session_id',$session) }}
                                             {{ Form::hidden('class_id',$class) }}
                                             {{ Form::hidden('subject_id[]',$subject->subject_id ?? $subject->id) }}
                                             {{ $subject->subject->name ?? $subject->name }}
@@ -92,7 +92,9 @@
                                         <td>{{ Form::select('type[]',['Written','MCQ','Practical','Viva'],$subject->type ?? null,['class'=>'form-control']) }}</td>
                                         <td>{{ $subject->status }}</td>
                                         <td>
-                                            <a href="{{ action('ExamController@marks') }}">Marks</a>
+                                            @if($subject->date != null)
+                                                <a href="{{ action('MarkController@index',$subject->id) }}">Marks</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,12 +108,12 @@
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     {{--<nav aria-label="Page navigation example">--}}
-                                        {{--<ul class="pagination">--}}
-                                            {{--<li class="page-item"><a class="page-link" href="#">First</a></li>--}}
-                                            {{--<li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
-                                            {{--<li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
-                                            {{--<li class="page-item"><a class="page-link" href="#">Last</a></li>--}}
-                                        {{--</ul>--}}
+                                    {{--<ul class="pagination">--}}
+                                    {{--<li class="page-item"><a class="page-link" href="#">First</a></li>--}}
+                                    {{--<li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
+                                    {{--<li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
+                                    {{--<li class="page-item"><a class="page-link" href="#">Last</a></li>--}}
+                                    {{--</ul>--}}
                                     {{--</nav>--}}
                                 </div>
                             </div>

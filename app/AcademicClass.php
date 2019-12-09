@@ -10,7 +10,13 @@ class AcademicClass extends Model
 
     protected $fillable = ['name', 'numeric_class'];
 
-//    public function classes(){
-//        $this->hasMany('App\SessionClass');
-//    }
+    public function students()
+    {
+        return $this->hasMany(Student::class,'class_id');
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(AssignSubject::class,'class_id');
+    }
 }

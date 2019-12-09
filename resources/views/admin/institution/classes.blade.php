@@ -73,11 +73,11 @@
                                         <td>{{ $class->id }}</td>
                                         <td>{{$class->name}}</td>
                                         <td>{{$class->numeric_class}}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $class->students->count() }}</td>
+                                        <td>{{ $class->subjects->count() }}</td>
                                         <td></td>
                                         <td>
-                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm">Subjects</a>
+                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
                                             <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                             </a>

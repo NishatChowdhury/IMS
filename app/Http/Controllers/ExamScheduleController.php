@@ -47,7 +47,7 @@ class ExamScheduleController extends Controller
             $subjects = [];
         }
 
-        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','sessions'));
+        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','sessions','session'));
     }
 
     public function store(Request $request)
