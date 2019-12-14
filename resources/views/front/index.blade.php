@@ -6,6 +6,8 @@
 
     @include('front.features')
 
+    @include('front.notice')
+
     @include('front.chairman')
 
     <hr>
