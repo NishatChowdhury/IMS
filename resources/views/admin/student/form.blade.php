@@ -15,7 +15,6 @@
 </div>
 
 <div class="row">
-
     <div class="col-md-6">
         <div class="card">
         <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
@@ -75,7 +74,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('rank','Rank',['class'=>'control-label']) }}
-                        {{ Form::text('rank',null,['class'=>'form-control', 'placeholder'=>'Student Rank']) }}
+                        {{ Form::text('rank',null,['class'=>'form-control', 'placeholder'=>'Student Rank','id'=>'rank']) }}
                     </div>
                 </div>
             </div>
@@ -238,10 +237,21 @@
 </div>
 @section('script')
 <script>
-    $(document).on('change','.year', function () {
-        var year = $('.year').text();
+    $(document).on('keyup','#rank', function () {
+        var academicYear = $('.year').val();
+        $.ajax({
+            url:"{{url('/load_student_id')}}",
+            type:'GET',
+            data:{academicYear:academicYear},
+            success:function (data) {
+                console.log(data);
+                $('#studentID').val(data);
 
-
+            }
+        });
+    });
+    $(document).ready( function() {
+        $('#alert_error').delay(3000).fadeOut();
     });
 
 </script>

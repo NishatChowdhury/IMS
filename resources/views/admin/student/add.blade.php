@@ -26,10 +26,19 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-light">
+                        @if(count($errors) >0)
+                            <div class="alert alert-danger" role="alert" id="alert_error">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'files'=>true]) !!}
-                          @include('admin.student.form')
+                        {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                            @include('admin.student.form')
                         {!! Form::close() !!}
                     </div>
                     <!-- /.card -->
@@ -71,5 +80,7 @@
             console.log(section_id);
             $('.section').html(section_id);
         });
+
+
     </script>
 @stop

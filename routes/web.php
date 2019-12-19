@@ -223,6 +223,7 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 //Students Route by babu
 Route::get('students','StudentController@index')->name('student.list');
 Route::get('student/create','StudentController@create')->name('student.add');
+Route::get('/load_student_id','studentController@loadStudentId');
 //@MKH
 Route::post('student/store', 'StudentController@store');
 //End Students Route

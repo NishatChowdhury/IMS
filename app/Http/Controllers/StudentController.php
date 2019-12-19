@@ -89,9 +89,23 @@ class StudentController extends Controller
     }
 
     public function store(Request $req){
-        dd($req->all());
-        $data = $req->all(); //Temporary
-        $data['section_id'] = 1; //temporary
+        $this->validate($req,[
+            'session_id'=>'required',
+            'class_id'=>'required',
+            'rank'=>'required',
+            'name'=>'required',
+            'gender'=>'required',
+            'father'=>'required',
+            'mother'=>'required',
+            'religion'=>'required',
+            'address'=>'required',
+            'mobile'=>'required',
+            'status'=>'required',
+        ],[
+
+        ]);
+        //dd($req->all());
+        $data = $req->all();
         if ($req->hasFile('image')){
             $image = $req->studentId.'.'.$req->file('image')->getClientOriginalExtension();
             $req->file('image')->move(public_path().'/assets/img/students/', $image);
@@ -102,7 +116,16 @@ class StudentController extends Controller
             Student::query()->create($data);
         }
 
-        return redirect('stu_add')->with('success','Student Added Successfully');
+        return redirect()->route('student.list')->with('success','Student Added Successfully');
+
+    }
+
+    public function loadStudentId(Request $request){
+        $academicYear = substr(trim(Session::query()->where('id',$request->academicYear)->first()->year),-2);
+        $incrementId = Student::query()->orderBy('id', 'DESC')->first()->id;
+        $increment = $incrementId+1;
+        $studentId = 'S'.''.$academicYear.''.$increment;
+        return $studentId;
 
     }
 }
