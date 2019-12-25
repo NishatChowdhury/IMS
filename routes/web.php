@@ -103,6 +103,8 @@ Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name(
 
 Route::get('exam/marks/{schedule}','MarkController@index');
 Route::post('exam/mark/store','MarkController@store');
+
+Route::get('exam/tabulationSheet','ExamController@tabulationSheet')->name('exam.tabulationSheet');
 //Exam management End
 
 //Communication Route by Rimon
@@ -224,6 +226,9 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 Route::get('students','StudentController@index')->name('student.list');
 Route::get('student/create','StudentController@create')->name('student.add');
 Route::get('/load_student_id','studentController@loadStudentId');
+//Students Route by Rimon
+Route::get('student/designStudentCard','StudentController@designStudentId')->name('student.designStudentCard');
+
 //@MKH
 Route::post('student/store', 'StudentController@store');
 //End Students Route

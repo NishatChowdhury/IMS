@@ -204,4 +204,10 @@ class ExamController extends Controller
         return view('admin.exam.marks',compact('students'));
     }
 
+    public function tabulationSheet()
+    {
+        return view('admin.exam.tabulation-sheet');
+    }
+
+
 }

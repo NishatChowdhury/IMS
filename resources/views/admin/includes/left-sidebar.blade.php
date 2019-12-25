@@ -137,7 +137,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('form/editor') }}">
+                        <a href="{{route('student.designStudentCard')}}" class="nav-link {{ isActive('student/designStudentCard') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Design ID Card</p>
                         </a>
@@ -245,6 +245,12 @@
                         </a>
                     </li>
 
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('exam.tabulationSheet')}}" class="nav-link {{ isActive('exam/tabulationSheet') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Tabulation Sheet</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item has-treeview {{ isActive(['page*']) }}">
