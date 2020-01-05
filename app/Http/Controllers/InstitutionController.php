@@ -15,14 +15,19 @@ use Illuminate\Support\Facades\Validator;
 
 class InstitutionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function academicyear()
     {
         $sessions = Session::all();
         return view ('admin.institution.academicyear', compact('sessions'));
     }
+
     public function academicyearstore(Request $request){
        return $request->all();
-
     }
 
     public function store_session(Request $request){
@@ -40,6 +45,7 @@ class InstitutionController extends Controller
                 'description' => $request->description,
             ];
         }*/
+        $request['active'] = 0;
         Session::query()->create($request->all());
         return redirect('institution/academicyear')->with('success', 'Academic year added successfully');
     }
@@ -189,6 +195,14 @@ class InstitutionController extends Controller
         //dd($request->all());
         AssignSubject::query()->create($request->all());
         //return redirect('institution/subjects/classsubjects')->with('success', 'Subjects assigned Successfully');
+        return redirect()->back();
+    }
+
+    public function unAssignSubject($id)
+    {
+        $subject = AssignSubject::query()->findOrFail($id);
+        $subject->delete();
+        \Illuminate\Support\Facades\Session::flash('success','Subject unmount successfully');
         return redirect()->back();
     }
 

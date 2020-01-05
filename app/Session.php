@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
-    protected $fillable = ['year', 'start', 'end', 'description'];
+    protected $fillable = ['year', 'start', 'end', 'description','active'];
 }
