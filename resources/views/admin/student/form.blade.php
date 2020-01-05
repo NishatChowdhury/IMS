@@ -82,8 +82,8 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('dateOfBirth','Date of Birth',['class'=>'control-label']) }}
-                        {{ Form::date('dateOfBirth',null,['class'=>'form-control', 'placeholder'=>'Date of Birht']) }}
+                        {{ Form::label('dob','Date of Birth',['class'=>'control-label']) }}
+                        {{ Form::date('dob',null,['class'=>'form-control', 'placeholder'=>'Date of Birth']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -116,8 +116,8 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
-                        {{ Form::label('religion','Religion',['class'=>'control-label']) }}
-                        {{ Form::select('religion', ['1' => 'Islam', '2' => 'Hindu','3'=>'Buddies'], null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
+                        {{ Form::label('religion_id','Religion',['class'=>'control-label']) }}
+                        {{ Form::select('religion_id', ['1' => 'Islam', '2' => 'Hindu','3'=>'Buddies'], null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -166,8 +166,8 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-group">
-                            {{ Form::label('state','State',['class'=>'control-label']) }}
-                            {{ Form::text('state', null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
+                            {{ Form::label('state_id','State',['class'=>'control-label']) }}
+                            {{ Form::text('state_id', null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12">
@@ -206,14 +206,14 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="form-group">
-                                    {{ Form::label('fatherMobile','Father Mobile',['class'=>'control-label']) }}
+                                    {{ Form::label('father_mobile','Father Mobile',['class'=>'control-label']) }}
                                     {{ Form::text('father_mobile',null,['class'=>'form-control', 'placeholder'=>'Father Mobile']) }}
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="form-group">
-                                    {{ Form::label('motherMobile','Mother Mobile',['class'=>'control-label']) }}
-                                    {{ Form::text('motherMobile',null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
+                                    {{ Form::label('mother_mobile','Mother Mobile',['class'=>'control-label']) }}
+                                    {{ Form::text('mother_mobile',null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
                                 </div>
                             </div>
                         </div>
@@ -253,6 +253,5 @@
     $(document).ready( function() {
         $('#alert_error').delay(3000).fadeOut();
     });
-
 </script>
 @stop

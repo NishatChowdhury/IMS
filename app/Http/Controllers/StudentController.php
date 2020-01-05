@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AcademicClass;
+use App\AssignSubject;
 use App\BloodGroup;
 use App\Country;
 use App\Division;
@@ -33,7 +34,7 @@ class StudentController extends Controller
 
     public function index(Request $request,Student $student){
         //dd($request->all());
-        $s = $student->newQuery();
+        $s = $student->newQuery()->where('session_id',activeYear());
         if($request->get('studentId')){
             $studentId = $request->get('studentId');
             $s->where('studentId',$studentId);
@@ -94,10 +95,10 @@ class StudentController extends Controller
             'class_id'=>'required',
             'rank'=>'required',
             'name'=>'required',
-            'gender'=>'required',
+            'gender_id'=>'required',
             'father'=>'required',
             'mother'=>'required',
-            'religion'=>'required',
+            'religion_id'=>'required',
             'address'=>'required',
             'mobile'=>'required',
             'status'=>'required',
@@ -127,5 +128,126 @@ class StudentController extends Controller
         $studentId = 'S'.''.$academicYear.''.$increment;
         return $studentId;
 
+    }
+
+    public function optional(Request $request, Student $student)
+    {
+        if($request->all()){
+            $s = $student->newQuery();
+            if($request->get('studentId')){
+                $studentId = $request->get('studentId');
+                $s->where('studentId',$studentId);
+            }
+            if($request->get('name')){
+                $name = $request->get('name');
+                $s->where('name','like','%'.$name.'%');
+            }
+            if($request->get('class_id')){
+                $class = $request->get('class_id');
+                $s->where('class_id',$class);
+            }
+            if($request->get('section_id')){
+                $section = $request->get('section_id');
+                $s->where('section_id',$section);
+            }
+            if($request->get('group_id')){
+                $group = $request->get('group_id');
+                $s->where('group_id',$group);
+            }
+
+            $students = $s->get();
+        }else{
+            $students = [];
+        }
+
+        $repository = $this->repository;
+
+        return view('admin.student.optional',compact('repository','students'));
+    }
+
+    public function assignOptional(Request $request)
+    {
+        $ids = $request->get('student_id');
+
+        foreach($ids as $key => $id){
+            $student = Student::query()->findOrFail($id);
+            $subject = $request->get('subject_id')[$key];
+            $student->update(['subject_id'=>$subject]);
+        }
+
+        \Illuminate\Support\Facades\Session::flash('success','Subject Assigned');
+
+        return redirect()->back();
+    }
+
+    public function promotion(Request $request, Student $student)
+    {
+        if($request->has('class_id')){
+            $s = $student->newQuery()->where('session_id',1);
+            if($request->get('studentId')){
+                $studentId = $request->get('studentId');
+                $s->where('studentId',$studentId);
+            }
+            if($request->get('name')){
+                $name = $request->get('name');
+                $s->where('name','like','%'.$name.'%');
+            }
+            if($request->get('class_id')){
+                $class = $request->get('class_id');
+                $s->where('class_id',$class);
+            }
+            if($request->get('section_id')){
+                $section = $request->get('section_id');
+                $s->where('section_id',$section);
+            }
+            if($request->get('group_id')){
+                $group = $request->get('group_id');
+                $s->where('group_id',$group);
+            }
+
+            $students = $s->get();
+        }else{
+            $students = collect();
+        }
+
+        $repository = $this->repository;
+        return view('admin.student.promotion',compact('students','repository'));
+    }
+
+    public function promote(Request $request)
+    {
+        $ids = $request->get('ids');
+
+        foreach($ids as $key => $id){
+            $student = Student::query()->findOrFail($id);
+            $data['name'] = $student->name;
+            $data['studentId'] = $student->studentId;
+            $data['session_id'] = $request->session_id;
+            $data['class_id'] = $request->class_id;
+            $data['section_id'] = $request->section_id;
+            $data['group_id'] = $request->group_id;
+            $data['rank'] = $request->get('rank')[$key];
+            $data['father'] = $student->father;
+            $data['mother'] = $student->mother;
+            $data['gender_id'] = $student->gender_id;
+            $data['mobile'] = $student->mobile;
+            $data['dob'] = $student->dob;
+            $data['blood_group_id'] = $student->blood_group_id;
+            $data['religion_id'] = $student->religion_id;
+            $data['image'] = $student->image;
+            $data['address'] = $student->address;
+            $data['area'] = $student->area;
+            $data['zip'] = $student->zip;
+            $data['state_id'] = $student->state_id;
+            $data['country_id'] = $student->country_id;
+            $data['email'] = $student->email;
+            $data['father_mobile'] = $student->father_mobile;
+            $data['mother_mobile'] = $student->mother_mobile;
+            $data['notification_type_id'] = $student->notification_type_id;
+            $data['status'] = $student->status;
+            Student::query()->create($data);
+        }
+
+        return redirect()->back();
     }
 }
