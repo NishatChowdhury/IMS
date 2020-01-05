@@ -237,7 +237,7 @@ Route::get('students','StudentController@index')->name('student.list');
 Route::get('student/create','StudentController@create')->name('student.add');
 Route::get('student/edit/{id}','StudentController@edit');
 Route::patch('student/{id}/update','StudentController@update');
-Route::patch('student/drop/{id}','StudentController@dropOut');
+Route::get('student/drop/{id}','StudentController@dropOut');
 Route::get('/load_student_id','studentController@loadStudentId');
 //Students Route by Rimon
 Route::get('student/designStudentCard','StudentController@designStudentId')->name('student.designStudentCard');

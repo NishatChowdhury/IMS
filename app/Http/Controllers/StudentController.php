@@ -297,6 +297,7 @@ class StudentController extends Controller
     public function dropOut($id)
     {
         $student = Student::query()->findOrFail($id);
-        dd($student);
+        $student->update(['status'=>2]);
+        return redirect()->back();
     }
 }

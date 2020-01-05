@@ -115,7 +115,12 @@
                                 <tr>
                                     <td>{{ $student->studentId }}</td>
                                     <td>{{ $student->rank }}</td>
-                                    <td>{{ $student->name }}</td>
+                                    <td>
+                                        {{ $student->name }}<br>
+                                        @if($student->status == 2)
+                                            <span style="color:red">Dropout</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         {{ $student->academicClass ? $student->academicClass->name : ''}}
                                         {{ $student->section ? $student->section->name : ''}}
@@ -128,7 +133,7 @@
                                     <td><img src="{{ asset('assets/img/students/'.$student->session_id.'/'.$student->class_id.'/'.$student->studentId.'.jpg') }}" height="100" alt=""></td>
                                     <td>
                                         <a href="{{ action('StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ action('StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i></a>
+                                        <a href="{{ action('StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm" title="DROPOUT"><i class="fas fa-sign-out-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
