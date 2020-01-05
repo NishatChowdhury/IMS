@@ -1,5 +1,7 @@
 <?php
 
+use App\Grade;
+use App\Student;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
@@ -97,9 +99,15 @@ Route::get('exam/schedule/{examId}', 'ExamController@schedule');
 Route::post('exam/store-schedule', 'ExamController@store_schedule');
 Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/seat-allocate','ExamController@seatAllocate');
-Route::get('exam/result-details','ExamController@resultDetails');
-Route::get('exam/examresult','ExamController@examresult')->name('exam.examresult');
-Route::get('exam/setfinalresultrule','ExamController@setfinalresultrule')->name('exam.setfinalresultrule');
+
+Route::get('exam/result-details/{id}','ResultController@resultDetails');
+Route::get('exam/final-result-details/{id}','ResultController@finalResultDetails');
+Route::get('exam/examresult','ResultController@index')->name('exam.examresult');
+Route::get('exam/generate-exam-result','ResultController@generateResult');
+
+Route::get('exam/setfinalresultrule','ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
+Route::get('exam/getfinalresultrule','ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
+Route::post('exam/final-result','ResultController@finalResultNew');
 
 Route::get('exam/marks/{schedule}','MarkController@index');
 Route::post('exam/mark/store','MarkController@store');
@@ -182,6 +190,7 @@ Route::post('institution/update-SessionClass','InstitutionController@update_Sess
 Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
 
 Route::get('institution/class/subject/{class}','InstitutionController@classSubjects');
+Route::delete('institution/class/subject/destroy/{id}','InstitutionController@unAssignSubject');
 //Subjects
 Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::post('institution/create-subject','InstitutionController@create_subject');
@@ -207,7 +216,8 @@ Route::patch('pages/{id}/update','PageController@update');
 
 Route::get('notices','NoticeController@index');
 Route::post('notice/store','NoticeController@store');
-Route::get('notice/edit/{id}','NoticeController@edit');
+Route::post('notice/edit-notice','NoticeController@edit');
+Route::patch('notice/update','NoticeController@update');
 
 Route::get('notice/category','NoticeCategoryController@index');
 Route::post('notice/category/store','NoticeCategoryController@store');
@@ -225,12 +235,19 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 //Students Route by babu
 Route::get('students','StudentController@index')->name('student.list');
 Route::get('student/create','StudentController@create')->name('student.add');
+Route::get('student/edit/{id}','StudentController@edit');
+Route::patch('student/{id}/update','StudentController@update');
+Route::patch('student/drop/{id}','StudentController@dropOut');
 Route::get('/load_student_id','studentController@loadStudentId');
 //Students Route by Rimon
 Route::get('student/designStudentCard','StudentController@designStudentId')->name('student.designStudentCard');
+Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
+Route::post('student/promote','StudentController@promote')->name('student.promote');
 
 //@MKH
 Route::post('student/store', 'StudentController@store');
+Route::get('student/optional','StudentController@optional');
+Route::post('student/optional/assign','StudentController@assignOptional');
 //End Students Route
 
 /** Route for Apps start */
@@ -341,3 +358,287 @@ Route::get('add-zero-to-number',function (){
     }
     dd('sync complete '.date('ymd'));
 });
+
+Route::get('delete-duplicate',function(){ //delete duplicate student from student database
+    $students = \App\Student::all();
+    foreach($students as $student){
+        $s = \App\Student::query()->where('studentId',$student->studentId)->count();
+        if($s > 1){
+            $student->delete();
+        }
+    }
+});
+
+Route::get('marks-student_id',function(){ //update student_id in marks table
+    $marks = \App\Mark::query()->where('student_id',0)->get();
+    foreach($marks as $mark){
+        $studentId = $mark->studentId;
+        $student = \App\Student::query()->where('studentId',$studentId)->first();
+        $id = $student ? $student->id : null;
+        $mark->update(['student_id'=>$id]);
+    }
+    dd('student id updated');
+});
+
+Route::get('total-marks',function(){ //addition of all type of exam in total_mark, grade & gpa
+    $marks = \App\Mark::query()
+        //->where('total_mark',0)
+            ->where('exam_id',4)
+        ->where('class_id',8)
+        ->where('section_id',5)
+        //->where('student_id',128)
+        //->where('subject_id',27)
+        ->get();
+
+    foreach ($marks as $mark){
+        $objective = $mark->objective;
+        $written = $mark->written;
+        $practical = $mark->practical;
+        $viva = $mark->viva;
+        $totalMark = $objective + $written + $practical + $viva;
+
+        $total = ($totalMark * 100)/$mark->full_mark;
+
+        $grade = Grade::query()
+            ->where('system',1)
+            ->where('mark_from','<=',(int)$total)
+            ->where('mark_to','>=',(int)$total)
+            ->first();
+
+        $mark->update(['total_mark'=>$totalMark,'gpa'=>$grade->point_from,'grade'=>$grade->grade]);
+    }
+    dd('total added');
+});
+
+Route::get('generate-exam-result',function(){ //generate exam result from marks table
+    $sessionId = 2;
+    $examId = 4;
+    $classId = 1;
+
+    $subjectCount = \App\Mark::query()
+        ->where('session_id',$sessionId)
+        ->where('exam_id',$examId)
+        ->where('class_id',$classId)
+        ->get()
+        ->groupBy('subject_id')
+        ->count();
+
+    $marks = \App\Mark::query()
+        ->where('session_id',$sessionId)
+        ->where('exam_id',$examId)
+        ->where('class_id',$classId)
+        ->get()
+        ->groupBy('student_id');
+
+    //dd($marks);
+    foreach($marks as $student => $mark){
+        $isFail = \App\Mark::query()
+            ->where('session_id',$sessionId)
+            ->where('exam_id',$examId)
+            ->where('class_id',$classId)
+            ->where('student_id',$student)
+            ->where('grade','F')
+            ->exists();
+        $data['session_id'] = $sessionId;
+        $data['exam_id'] = $examId;
+        $data['class_id'] = $classId;
+        $data['student_id'] = $mark->first()->student_id;
+        $data['total_mark'] = $mark->sum('total_mark');
+        $data['gpa'] = $isFail ? 0 : $mark->sum('gpa') / $subjectCount;
+        $grade = Grade::query()
+            ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
+            ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
+            ->first();
+        $data['grade'] = $isFail ? 'F' : $grade->grade;
+        $data['rank'] = null;
+
+        $result = \App\ExamResult::query()
+            ->where('session_id',$sessionId)
+            ->where('exam_id',$examId)
+            ->where('class_id',$classId)
+            ->where('student_id',$data['student_id'])
+            ->first();
+
+        if($result != null){
+            $result->update($data);
+        }else{
+            \App\ExamResult::query()->create($data);
+        }
+    }
+
+    /* update exam rank start */
+    $results = \App\ExamResult::query()
+        ->where('session_id',$sessionId)
+        ->where('exam_id',$examId)
+        ->where('class_id',$classId)
+        ->where('grade','<>','F')
+        ->orderByDesc('total_mark')
+        ->get();
+
+    foreach($results as $key => $result){
+        $rank = $key + 1;
+        $result->update(['rank'=>$rank]);
+    }
+    /* update exam rank end */
+
+    dd('result has been generated!');
+});
+
+Route::get('sync-sec',function(){
+    $marks = \App\FinalResult::query()->get();
+
+    foreach($marks as $mark){
+        $student = \App\Student::query()->findOrFail($mark->student_id);
+        $mark->update(['section_id'=>$student->section_id]);
+    }
+    dd('section id synced');
+});
+
+Route::get('sync-group',function(){
+    $marks = \App\FinalResult::query()->get();
+
+    foreach($marks as $mark){
+        $student = \App\Student::query()->findOrFail($mark->student_id);
+        $mark->update(['group_id'=>$student->group_id]);
+    }
+    dd('group id synced');
+});
+
+Route::get('upload-csv','ExamController@upload');
+Route::get('bulk-upload-csv','ExamController@bulkUpload');
+
+Route::post('upload-file','ExamController@file');
+Route::post('bulk-upload-file','ExamController@bulkFile');
+
+Route::get('calc-final-result',function(){
+    $sessionId = 2;
+    //$examId = 4;
+    $classId = 11;
+    //$sectionId = 1;
+    //$groupId = null;
+
+//    $subjectCount = Mark::query()
+//        ->where('session_id',$sessionId)
+//        ->where('exam_id',$examId)
+//        ->where('class_id',$classId)
+//        ->get()
+//        ->groupBy('subject_id')
+//        ->count();
+
+    if($classId == 1){
+        $subjectCount = 5;
+    }elseif($classId == 2){
+        $subjectCount = 6;
+    }elseif($classId == 3){
+        $subjectCount = 7;
+    }elseif($classId == 4){
+        $subjectCount = 7;
+    }elseif($classId == 5){
+        $subjectCount = 9;
+    }elseif($classId == 6){
+        $subjectCount = 8;
+    }elseif($classId == 7){
+        $subjectCount = 6;
+    }elseif($classId == 8){
+        $subjectCount = 9;
+    }elseif($classId == 9){
+        $subjectCount = 9;
+    }elseif($classId == 10){
+        $subjectCount = 7;
+    }elseif($classId == 11){
+        $subjectCount = 11;
+    }else{
+        $subjectCount = 11;
+    }
+
+    $marks = \App\FinalMark::query()
+        ->where('session_id',$sessionId)
+        //->where('exam_id',$examId)
+        ->where('class_id',$classId)
+        //->where('section_id',$sectionId)
+        //->where('group_id',$groupId)
+        ->get()
+        ->groupBy('student_id');
+
+    foreach($marks as $student => $mark){
+        $isFail = \App\FinalMark::query()
+            ->where('session_id',$sessionId)
+            //->where('exam_id',$examId)
+            ->where('class_id',$classId)
+            ->where('student_id',$student)
+            ->where('grade','F')
+            ->exists();
+
+
+        $data['session_id'] = $sessionId;
+        //$data['exam_id'] = $examId;
+        $data['class_id'] = $classId;
+        $data['student_id'] = $mark->first()->student_id;
+        $data['total_mark'] = $mark->sum('total_mark');
+
+        $optional = Student::query()->findOrFail($student)->subject_id;
+        $optionalMark = $mark->where('subject_id',$optional)->first()->gpa ?? 0;
+
+        $data['gpa'] = $isFail ? 0 : $mark->sum('gpa') / $subjectCount;
+
+        $grade = Grade::query()
+            ->where('system',2)
+            ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
+            ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
+            ->first();
+
+        if($optionalMark >= 2){
+            $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
+
+            $data['total_mark'] = $mark->sum('total_mark') - 40;
+
+            $grade = Grade::query()
+                ->where('system',2)
+                ->where('point_from','<=',$data['gpa'])
+                ->where('point_to','>=',$data['gpa'])
+                ->first();
+        }
+
+        if($grade){
+            $data['grade'] = $isFail ? 'F' : $grade->grade;
+        }else{
+            $data['grade'] = null;
+        }
+        $data['rank'] = null;
+
+        $result = \App\FinalResult::query()
+            ->where('session_id',$sessionId)
+            //->where('exam_id',$examId)
+            ->where('class_id',$classId)
+            ->where('student_id',$data['student_id'])
+            ->first();
+
+        if($result != null){
+            $result->update($data);
+        }else{
+            \App\FinalResult::query()->create($data);
+        }
+    }
+
+    /* update exam rank start */
+    $results = \App\FinalResult::query()
+        ->where('session_id',$sessionId)
+        //->where('exam_id',$examId)
+        ->where('class_id',$classId)
+        //->where('section_id',$sectionId)
+        //->where('group_id',$groupId)
+        //->where('grade','<>','F')
+        ->orderByDesc('gpa')
+        ->orderByDesc('total_mark')
+        ->get();
+
+    //dd($results);
+
+    foreach($results as $key => $result){
+        $rank = $key + 1;
+        $result->update(['rank'=>$rank]);
+    }
+    /* update exam rank end */
+
+});
+

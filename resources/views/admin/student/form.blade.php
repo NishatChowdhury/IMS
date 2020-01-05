@@ -28,13 +28,13 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('session_id', 'Academic Year',['class'=>'control-label' ]) }}
-                        {{ Form::select('session_id',$sessions, null, ['placeholder' => 'Select Academic year...','class'=>'form-control year']) }}
+                        {{ Form::select('session_id',$repository->sessions(), null, ['placeholder' => 'Select Academic year...','class'=>'form-control year']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('class_id','Class',['class'=>'control-label'])}}
-                        {{ Form::select('class_id', $classes, null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
+                        {{ Form::select('class_id', $repository->classes(), null, ['placeholder' => 'Select Class Name...','class'=>'form-control class']) }}
                     </div>
                 </div>
 
@@ -44,13 +44,13 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('section_id','Section',['class'=>'control-label']) }}
-                        {{ Form::select('section_id',$sections,null,['class'=>'form-control']) }}
+                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('group_id','Group',['class'=>'control-label']) }}
-                        {{ Form::select('group_id', $groups, null, ['placeholder' => 'Select Section...','class'=>'form-control']) }}
+                        {{ Form::select('group_id', $repository->groups(), null, ['placeholder' => 'Select Section...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('gender','Gender',['class'=>'control-label']) }}
-                        {{ Form::select('gender_id', $genders, null, ['placeholder' => 'Select Gender...','class'=>'form-control']) }}
+                        {{ Form::select('gender_id', $repository->genders(), null, ['placeholder' => 'Select Gender...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('bloodGroup','Blood Group',['class'=>'control-label']) }}
-                        {{ Form::select('blood_group_id', $blood_groups, null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
+                        {{ Form::select('blood_group_id', $repository->bloods(), null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -157,7 +157,7 @@
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-group">
                             {{ Form::label('division','Division',['class'=>'control-label']) }}
-                            {{ Form::select('division_id', $divisions, null, ['placeholder' => 'Select Division...','class'=>'form-control']) }}
+                            {{ Form::select('division_id', $repository->divisions(), null, ['placeholder' => 'Select Division...','class'=>'form-control']) }}
                         </div>
                     </div>
 
@@ -173,7 +173,7 @@
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-group">
                             {{ Form::label('country','Country',['class'=>'control-label']) }}
-                            {{ Form::select('country_id', $countries, null, ['placeholder' => 'Select Country...','class'=>'form-control']) }}
+                            {{ Form::select('country_id', $repository->countries(), null, ['placeholder' => 'Select Country...','class'=>'form-control']) }}
                         </div>
                     </div>
 

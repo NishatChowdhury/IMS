@@ -102,10 +102,10 @@
                                 <th>Rank</th>
                                 <th>Student</th>
                                 <th>Class</th>
-                                <th>Father</th>
-                                <th>Mother</th>
-                                <th>Outstanding</th>
-                                <th>Status</th>
+                                <th>Father/Mother</th>
+                                {{--<th>Mother</th>--}}
+                                {{--<th>Outstanding</th>--}}
+                                {{--<th>Status</th>--}}
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
@@ -121,12 +121,15 @@
                                         {{ $student->section ? $student->section->name : ''}}
                                         {{ $student->group ? $student->group->name : ''}}
                                     </td>
-                                    <td>{{ $student->father }}</td>
-                                    <td>{{ $student->mother }}</td>
-                                    <td>0.00%</td>
-                                    <td>{{ $student->status }}</td>
+                                    <td>{{ $student->father }}<br>{{ $student->mother }}</td>
+                                    {{--<td>{{ $student->mother }}</td>--}}
+                                    {{--<td>0.00%</td>--}}
+{{--                                    <td>{{ $student->status }}</td>--}}
                                     <td><img src="{{ asset('assets/img/students/'.$student->session_id.'/'.$student->class_id.'/'.$student->studentId.'.jpg') }}" height="100" alt=""></td>
-                                    <td>X</td>
+                                    <td>
+                                        <a href="{{ action('StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

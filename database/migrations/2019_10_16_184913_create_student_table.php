@@ -22,6 +22,7 @@ class CreateStudentTable extends Migration
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('group_id');
             $table->integer('rank')->nullable();
+            $table->unsignedBigInteger('subject_id')->nullable();
             $table->string('father');
             $table->string('mother');
             $table->unsignedBigInteger('gender_id');

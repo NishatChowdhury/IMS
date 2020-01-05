@@ -75,16 +75,16 @@ class StudentController extends Controller
     }
 
     public function create(){
-        $sessions = Session::all()->pluck('year','id');
-        $last_session_id = Session::query()->orderBy('id', 'desc')->value('id');
-        $groups = Group::all()->pluck('name', 'id');
-        $genders = Gender::all()->pluck('name', 'id');
-        $blood_groups = BloodGroup::all()->pluck('name', 'id');
-        $religions = Religion::all()->pluck('name', 'id');
-        $divisions= Division::all()->pluck('name', 'id');
-        $countries = Country::all()->pluck('name', 'id');
-        $classes = AcademicClass::all()->pluck('name','id');
-        $sections = Section::all()->pluck('name','id');
+//        $sessions = Session::all()->where('active',1)->pluck('year','id');
+//        $last_session_id = Session::query()->orderBy('id', 'desc')->value('id');
+//        $groups = Group::all()->pluck('name', 'id');
+//        $genders = Gender::all()->pluck('name', 'id');
+//        $blood_groups = BloodGroup::all()->pluck('name', 'id');
+//        $religions = Religion::all()->pluck('name', 'id');
+//        $divisions= Division::all()->pluck('name', 'id');
+//        $countries = Country::all()->pluck('name', 'id');
+//        $classes = AcademicClass::all()->pluck('name','id');
+//        $sections = Section::all()->pluck('name','id');
         $repository = $this->repository;
         return view('admin.student.add', compact('sessions', 'groups', 'classes', 'sections', 'genders', 'blood_groups', 'religions', 'divisions', 'countries','repository'));
     }
@@ -95,10 +95,10 @@ class StudentController extends Controller
             'class_id'=>'required',
             'rank'=>'required',
             'name'=>'required',
-            'gender_id'=>'required',
+            //'gender_id'=>'required',
             'father'=>'required',
             'mother'=>'required',
-            'religion_id'=>'required',
+            //'religion_id'=>'required',
             'address'=>'required',
             'mobile'=>'required',
             'status'=>'required',
@@ -119,6 +119,49 @@ class StudentController extends Controller
 
         return redirect()->route('student.list')->with('success','Student Added Successfully');
 
+    }
+
+    public function edit($id)
+    {
+        $student = Student::query()->findOrFail($id);
+        $repository = $this->repository;
+        return view('admin.student.edit',compact('student','repository'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $student = Student::query()->findOrFail($id);
+
+        $this->validate($request,[
+            'session_id'=>'required',
+            'class_id'=>'required',
+            'rank'=>'required',
+            'name'=>'required',
+            //'gender_id'=>'required',
+            'father'=>'required',
+            'mother'=>'required',
+            //'religion_id'=>'required',
+            'address'=>'required',
+            'mobile'=>'required',
+            'status'=>'required',
+        ],[
+
+        ]);
+        //dd($req->all());
+        $data = $request->all();
+        if ($request->hasFile('image')){
+            $image = $request->studentId.'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path().'/assets/img/students/', $image);
+            $data = $request->except('image');
+            $data['image'] = $image;
+            //Student::query()->create($data);
+        }else{
+            $student->update($data);
+        }
+
+        \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
+
+        return redirect('students');
     }
 
     public function loadStudentId(Request $request){
@@ -249,5 +292,11 @@ class StudentController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function dropOut($id)
+    {
+        $student = Student::query()->findOrFail($id);
+        dd($student);
     }
 }
