@@ -76,7 +76,7 @@
                                     <td>
                                         <a type="button" href="{{action('ExamController@delete_grade',$grade->id)}}"
                                            class="btn btn-danger btn-sm"
-                                           style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
+                                           style="margin-left: 5px;" title="Delete"> <i class="fas fa-trash "></i>
                                         </a>
                                     </td>
 
@@ -122,7 +122,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Result System</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="number" name="system" class="form-control" id="system" placeholder="1 / 2.....">
+                                    <input type="number" name="system" class="form-control" id="system" placeholder="1 / 2....." required>
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Mark From*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="number" name="mark_from" class="form-control" id="mark_from" placeholder="0">
+                                    <input type="number" name="mark_from" class="form-control" id="mark_from" placeholder="0" required>
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Mark To*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="number" name="mark_to" class="form-control" id="mark_to"  aria-describedby="" placeholder="0">
+                                    <input type="number" name="mark_to" class="form-control" id="mark_to"  aria-describedby="" placeholder="0" required>
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Point From</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" name="point_from" class="form-control" id="point_from"  aria-describedby="" placeholder="0">
+                                    <input type="text" name="point_from" class="form-control" id="point_from"  aria-describedby="" placeholder="0" required>
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Point To</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" name="point_to" class="form-control" id="point_to"  aria-describedby="" placeholder="0">
+                                    <input type="text" name="point_to" class="form-control" id="point_to"  aria-describedby="" placeholder="0" required>
                                     {{--{{ Form::text('title',null,['class'=>'form-control']) }}--}}
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Grade*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" name="grade" class="form-control" id="grade"  aria-describedby="" >
+                                    <input type="text" name="grade" class="form-control" id="grade"  aria-describedby=""  required>
                                 </div>
                             </div>
                         </div>

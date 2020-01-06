@@ -13,3 +13,8 @@ function smsConfig($col){
     $config = \App\CommunicationSetting::query()->first();
     return $config->$col;
 }
+
+function activeYear(){
+    $s = \App\Session::query()->where('active',1)->latest()->first();
+    return $s->id;
+}
