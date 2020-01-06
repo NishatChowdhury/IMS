@@ -23,8 +23,14 @@ class CreateExamSchedulesTable extends Migration
             $table->date('date')->nullable();
             $table->string('start')->nullable();
             $table->string('end')->nullable();
-            $table->integer('mark');
-            $table->string('exam_type')->nullable();
+            $table->integer('objective_full')->nullable();
+            $table->integer('objective_pass')->nullable();
+            $table->integer('written_full')->nullable();
+            $table->integer('written_pass')->nullable();
+            $table->integer('practical_full')->nullable();
+            $table->integer('practical_pass')->nullable();
+            $table->integer('viva_full')->nullable();
+            $table->integer('viva_pass')->nullable();
 
             $table->timestamps();
         });

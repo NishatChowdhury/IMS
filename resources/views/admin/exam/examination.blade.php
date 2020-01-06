@@ -55,34 +55,27 @@
                                 <thead>
                                 <tr>
                                     <th>Exam Name</th>
-                                    <th>Combined Exam</th>
-                                    <th>Notify Exam Result</th>
-                                    <th>Action</th>
+                                    <th>Academic Year</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th>Notify Exam</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($exams as $exam)
                                 <tr>
-                                    <td>{{$exam->name}}</td>
-                                    <td>
-                                    @php
-                                        if($exam->combined_exam_id1 != ''){
-                                            $com = \App\Exam::find($exam->combined_exam_id1)->name;
-                                            echo $com;
-
-                                            if($exam->combined_exam_id2 != ''){
-                                                $com = \App\Exam::find($exam->combined_exam_id2)->name;
-                                                echo ', '.$com;
-                                            }
-                                        }else{
-                                            echo 'None';
-                                        }
-                                    @endphp
-                                    </td>
-                                    <td>{{ $exam->notify==1? "Notify" : "Dont Notify"}}</td>
+                                    <td>{{ $exam->name }}</td>
+                                    <td>{{ $exam->session->year ?? '' }}</td>
+                                    <td>{{ $exam->start }}</td>
+                                    <td>{{ $exam->end }}</td>
+                                    <td>{{ $exam->status }}</td>
+                                    <td>{{ $exam->notify == 1 ? "Notify" : "Don't Notify" }}</td>
                                     <td>
                                         <a href="{{ action('ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
-                                        <a type="button" href="{{action('ExamController@delete_exam',$exam->id)}}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>
+                                        <a type="button" href="{{ action('ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>
+                                        <a href="{{ action('ResultController@generateResult') }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -133,11 +126,26 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select if Combined Exam</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Year</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    @php($all_exams = $exams->pluck('name', 'id'))
-                                    {!! Form::select('combined_exam_id[]', $all_exams, null, ['class'=>'form-control', 'multiple']) !!}
+                                    {{ Form::select('session_id',[2=>2019],null,['class'=>'form-control','readonly']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ Form::text('start',null,['class'=>'form-control datePicker', 'placeholder'=>'Starting Date']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ Form::text('end',null,['class'=>'form-control datePicker', 'placeholder'=>'Ending Date']) }}
                                 </div>
                             </div>
                         </div>
@@ -172,16 +180,18 @@
 @stop
 <!-- *** External JS File-->
 @section('plugin')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('/plugins/select2/select2.full.min.js') }}"></script>
     <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
 @stop
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.datePicker')
-                .datepicker({
-                    format: 'yyyy-mm-dd'
-                })
-        });
+        $('.datePicker')
+            .datepicker({
+                format: 'yyyy-mm-dd'
+            });
     </script>
 @stop

@@ -125,7 +125,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('form/advance') }}">
+                        <a href="{{ action('StudentController@optional') }}" class="nav-link {{ isActive('student/optional') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Optional Subject </p>
                         </a>
@@ -140,6 +140,12 @@
                         <a href="{{route('student.designStudentCard')}}" class="nav-link {{ isActive('student/designStudentCard') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Design ID Card</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('student.promotion')}}" class="nav-link {{ isActive('student/promotion') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Promotion</p>
                         </a>
                     </li>
                 </ul>
@@ -242,6 +248,12 @@
                         <a href="{{route('exam.setfinalresultrule')}}" class="nav-link {{ isActive('exam/setfinalresultrule') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Generate Final Result</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('exam.getfinalresultrule')}}" class="nav-link {{ isActive('exam/getfinalresultrule') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Final Result</p>
                         </a>
                     </li>
 

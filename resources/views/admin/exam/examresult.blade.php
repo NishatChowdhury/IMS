@@ -28,13 +28,19 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'ResultController@index','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
+                                    <label for="">Session</label>
+                                    <div class="input-group">
+                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <label for="">Exam Name</label>
                                     <div class="input-group">
-                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
+                                        {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -112,9 +118,9 @@
                                 <thead>
                                 <tr>
                                     <th>Student Name</th>
-                                    <th>Student ID Year</th>
+                                    <th>Student ID</th>
                                     <th>Class Name</th>
-                                    <th>Current Rank Date</th>
+                                    <th>Current Rank</th>
                                     <th>Exam Name</th>
                                     <th>Date</th>
                                     <th>Grade</th>
@@ -125,19 +131,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>laravel</td>
-                                    <td>123049</td>
-                                    <td>one</td>
-                                    <td>01</td>
-                                    <td>programming</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><a href="{{action('ExamController@resultDetails')}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
-                                </tr>
+                                @foreach($results as $result)
+                                    <tr>
+                                        <td>{{ $result->student->name ?? '' }}</td>
+                                        <td>{{ $result->student->studentId ?? '' }}</td>
+                                        <td>{{ $result->academicClass->name ?? '' }} {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
+                                        <td>{{ $result->student->rank ?? '' }}</td>
+                                        <td>{{ $result->exam->name ?? '' }}</td>
+                                        <td>{{ $result->exam->start }} <br> {{ $result->exam->end }}</td>
+                                        <td>{{ $result->grade }}</td>
+                                        <td>{{ $result->gpa < 1 ? 0 : $result->gpa }}</td>
+                                        <td>{{ $result->rank }}</td>
+                                        <td>{{ $result->total_mark }}</td>
+                                        <td><a href="{{action('ResultController@resultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">

@@ -85,7 +85,14 @@
                                         <td>{{ $schedule->type }}</td>
                                         <td>{{ $schedule->status }}</td>
                                         <td>
-                                            <a href="{{ action('MarkController@index',$schedule->id) }}">Marks</a>
+                                            {{--<label for="file">--}}
+                                            <a href="{{ action('MarkController@download',$schedule->id) }}" class="btn btn-success btn-sm"><i class="fas fa-file-download"></i></a>
+                                            <label for="file">
+                                                <a class="btn btn-success btn-sm" role="button" style="color:white"><i class="fas fa-file-upload"></i></a>
+                                            </label>
+                                            {{--</label>--}}
+                                            <a href="{{ action('MarkController@index',$schedule->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
+                                            <input type="file" name="file" id="file" style="display: none;">
                                         </td>
                                     </tr>
                                 @endforeach

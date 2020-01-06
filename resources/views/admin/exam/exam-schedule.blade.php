@@ -41,10 +41,10 @@
                                 </div>
                             </div>
                             <div class="">
-                                {{ Form::open(['action'=>['ExamScheduleController@create',$exam],'method'=>'get']) }}
+                                {{ Form::open(['action'=>['ExamScheduleController@create',$exam->id],'method'=>'get']) }}
                                 <div class="row">
                                     <div class="col-md-4">
-                                        {{ Form::select('session_id',$sessions,null,['class'=>'form-control','placeholder'=>'Select a session']) }}
+                                        {{ Form::select('session_id',$sessions,$exam->session_id,['class'=>'form-control','placeholder'=>'Select a session']) }}
                                     </div>
                                     <div class="col-md-6">
                                         {{ Form::select('class_id',$classes,null,['class'=>'form-control','placeholder'=>'Select a class']) }}
@@ -60,18 +60,23 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             {{ Form::open(['action'=>'ExamScheduleController@store','method'=>'post']) }}
-                            <table id="example2" class="table table-bordered table-hover">
+                            <table id="example2" class="table table-bordered table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>Code</th>
                                     <th>Subject</th>
-                                    <th>Date</th>
+                                    <th width="122px">Date</th>
                                     <th>Start Time</th>
                                     <th>End Time</th>
-                                    <th>Full Mark</th>
-                                    <th>Type</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Obj Full</th>
+                                    <th>Obj Pass</th>
+                                    <th>Wri Full</th>
+                                    <th>Wri Pass</th>
+                                    <th>Pra Full</th>
+                                    <th>Pra Pass</th>
+                                    {{--<th>Type</th>--}}
+                                    {{--<th>Status</th>--}}
+                                    {{--<th>Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -79,8 +84,8 @@
                                     <tr>
                                         <td>{{ $subject->subject->code ?? $subject->code }}</td>
                                         <td>
-                                            {{ Form::hidden('exam_id',$exam) }}
-                                            {{ Form::hidden('session_id',$session) }}
+                                            {{ Form::hidden('exam_id',$exam->id) }}
+                                            {{ Form::hidden('session_id',$exam->session_id) }}
                                             {{ Form::hidden('class_id',$class) }}
                                             {{ Form::hidden('subject_id[]',$subject->subject_id ?? $subject->id) }}
                                             {{ $subject->subject->name ?? $subject->name }}
@@ -88,14 +93,19 @@
                                         <td>{{ Form::text('date[]',$subject->date ?? null,['class'=>'form-control datePicker']) }}</td>
                                         <td>{{ Form::text('start[]',$subject->start ?? null,['class'=>'form-control']) }}</td>
                                         <td>{{ Form::text('end[]',$subject->end ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('mark[]',$subject->mark ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::select('type[]',['Written','MCQ','Practical','Viva'],$subject->type ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ $subject->status }}</td>
-                                        <td>
-                                            @if($subject->date != null)
-                                                <a href="{{ action('MarkController@index',$subject->id) }}">Marks</a>
-                                            @endif
-                                        </td>
+                                        <td>{{ Form::text('objective_full[]',$subject->objective_full ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::text('objective_pass[]',$subject->objective_pass ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::text('written_full[]',$subject->written_full ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::text('written_pass[]',$subject->written_pass ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::text('practical_full[]',$subject->practical_full ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::text('practical_pass[]',$subject->practical_pass ?? null,['class'=>'form-control']) }}</td>
+                                        {{--                                        <td>{{ Form::select('type[]',['Written','MCQ','Practical','Viva'],$subject->type ?? null,['class'=>'form-control']) }}</td>--}}
+                                        {{--                                        <td>{{ $subject->status }}</td>--}}
+                                        {{--<td>--}}
+                                            {{--@if($subject->date != null)--}}
+                                                {{--<a href="{{ action('MarkController@index',$subject->id) }}">Marks</a>--}}
+                                            {{--@endif--}}
+                                        {{--</td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
