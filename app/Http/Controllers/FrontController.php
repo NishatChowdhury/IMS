@@ -3,18 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\ExamResult;
 use App\Gallery;
 use App\GalleryCategory;
+use App\Mark;
 use App\Notice;
 use App\NoticeCategory;
 use App\Page;
+use App\Repository\FrontRepository;
 use App\Slider;
 use App\Staff;
+use App\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use mysql_xdevapi\Result;
 
 class FrontController extends Controller
 {
+    /**
+     * @var FrontRepository
+     */
+    private $repository;
+
+    public function __construct(FrontRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
         $sliders = Slider::all();
@@ -120,10 +135,36 @@ class FrontController extends Controller
 
 
 //RESULT -> --START
-    public function internal_exam()
+    public function internal_exam(Request $request)
     {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.internal-exam',compact('content'));
+        if($request->all()){
+            $sessionId = $request->get('session_id');
+            $examId = $request->get('exam_id');
+            $studentId = Student::query()
+                ->where('studentId',$request->get('student'))
+                ->pluck('id');
+
+            $result = ExamResult::query()
+                ->where('session_id',$sessionId)
+                ->where('exam_id',$examId)
+                ->where('student_id',$studentId)
+                ->first();
+
+            $marks = Mark::query()
+                ->where('session_id',$sessionId)
+                ->where('exam_id',$examId)
+                ->where('student_id',$studentId)
+                ->join('subjects','subjects.id','=','marks.subject_id')
+                ->select('marks.*','subjects.level')
+                ->orderBy('level')
+                ->get();
+        }else{
+            $result = null;
+            $marks = null;
+        }
+
+        $repository = $this->repository;
+        return view('front.pages.internal-exam',compact('result','marks','repository'));
     }
     public function public_exam()
     {

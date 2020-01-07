@@ -1,0 +1,19 @@
+.only-print{
+    display:none;
+}
+.no-print{
+    display:block;
+}
+
+@media print {
+    .no-print{
+        display:none;
+    }
+    .only-print{
+        display:block;
+    }
+    .padding-y-100{
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+}

@@ -17,6 +17,7 @@ class CreateAcademicClassesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->integer('numeric_class')->nullable();
+            $table->unsignedBigInteger('grade_id')->nullable();
             $table->timestamps();
         });
     }

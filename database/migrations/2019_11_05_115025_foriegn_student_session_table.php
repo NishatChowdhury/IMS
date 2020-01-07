@@ -14,7 +14,7 @@ class ForiegnStudentSessionTable extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->foreign('session_id')->references('id')->on('sessions');
+            //$table->foreign('session_id')->references('id')->on('sessions');
         });
     }
 
