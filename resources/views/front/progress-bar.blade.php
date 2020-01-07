@@ -1,4 +1,4 @@
-<section class="paddingTop-60 paddingBottom-100" data-dark-overlay="6" style="background:url(assets/img/college/2.jpg) no-repeat">
+<section class="paddingTop-60 paddingBottom-100" data-dark-overlay="6" style="background-color: #97a1aa;">
     <div class="container">
         <div class="row text-center text-white">
 
@@ -7,7 +7,7 @@
                     520
                 </h2>
                 <p class="lead">
-                    Online Courses
+                    Students
                 </p>
             </div>
 
@@ -16,7 +16,7 @@
                     690
                 </h2>
                 <p class="lead">
-                    Trusted Tutors
+                    Visitors
                 </p>
             </div>
 
@@ -25,7 +25,7 @@
                     235K
                 </h2>
                 <p class="lead">
-                    Online Students
+                   Attendance
                 </p>
             </div>
 
@@ -34,7 +34,7 @@
                     150K
                 </h2>
                 <p class="lead">
-                    Success Stories
+                    Teacher & Staff
                 </p>
             </div>
 

@@ -3,9 +3,9 @@
         <div class="row text-center">
             <div class="col-md-6 col-lg-4 marginTop-30">
                 <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
-                    <img src="assets/img/svg/1.png" alt="">
+                    <img src="assets/img/svg/3.png" alt="">
                     <h4 class="mt-2">
-                        Studying With Us
+                       Results
                     </h4>
                 </a>
             </div>
@@ -13,15 +13,15 @@
                 <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/2.png" alt="">
                     <h4 class="mt-2">
-                        Career Development
+                       Dairy
                     </h4>
                 </a>
             </div>
             <div class="col-md-6 col-lg-4 marginTop-30">
                 <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
-                    <img src="assets/img/svg/3.png" alt="">
+                    <img src="assets/img/svg/1.png" alt="">
                     <h4 class="mt-2">
-                        Research Center
+                       Calender
                     </h4>
                 </a>
             </div>
@@ -29,7 +29,7 @@
                 <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/4.png" alt="">
                     <h4 class="mt-2">
-                        News Room
+                        Syllabus
                     </h4>
                 </a>
             </div>
@@ -37,7 +37,7 @@
                 <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/5.png" alt="">
                     <h4 class="mt-2">
-                        Events
+                        Routine
                     </h4>
                 </a>
             </div>
@@ -45,7 +45,7 @@
                 <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/6.png" alt="">
                     <h4 class="mt-2">
-                        Book A Visit
+                        News
                     </h4>
                 </a>
             </div>
