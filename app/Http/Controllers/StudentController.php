@@ -14,9 +14,11 @@ use App\Repository\StudentRepository;
 use App\Section;
 use App\Session;
 use App\SessionClass;
+use App\State;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Symfony\Component\Console\Input\Input;
 
 class StudentController extends Controller
@@ -86,7 +88,7 @@ class StudentController extends Controller
 //        $classes = AcademicClass::all()->pluck('name','id');
 //        $sections = Section::all()->pluck('name','id');
         $repository = $this->repository;
-        return view('admin.student.add', compact('sessions', 'groups', 'classes', 'sections', 'genders', 'blood_groups', 'religions', 'divisions', 'countries','repository'));
+        return view('admin.student.add', compact('repository'));
     }
 
     public function store(Request $req){
@@ -166,9 +168,9 @@ class StudentController extends Controller
 
     public function loadStudentId(Request $request){
         $academicYear = substr(trim(Session::query()->where('id',$request->academicYear)->first()->year),-2);
-        $incrementId = Student::query()->orderBy('id', 'DESC')->first()->id;
-        $increment = $incrementId+1;
-        $studentId = 'S'.''.$academicYear.''.$increment;
+        $incrementId = Student::query()->max('id');
+        $increment = $incrementId + 1;
+        $studentId = 'S'.$academicYear.$increment;
         return $studentId;
 
     }
@@ -299,5 +301,79 @@ class StudentController extends Controller
         $student = Student::query()->findOrFail($id);
         $student->update(['status'=>2]);
         return redirect()->back();
+    }
+
+    public function export()
+    {
+        $table = Student::all()->where('session_id',2);
+        $filename = "students.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, [
+            'id',
+            'name',
+            'studentId',
+            'session_id',
+            'class_id',
+            'section_id',
+            'group_id',
+            'rank',
+            'father',
+            'mother',
+            'gender_id',
+            'mobile',
+            'dob',
+            'blood_group_id',
+            'religion_id',
+            'image',
+            'address',
+            'area',
+            'zip',
+            'state_id',
+            'country_id',
+            'email',
+            'father_mobile',
+            'mother_mobile',
+            'notification_type_id',
+            'status'
+        ]);
+
+        foreach($table as $row) {
+            fputcsv($handle, [
+                $row['id'],
+                $row['name'],
+                $row['studentId'],
+                Session::query()->findOrFail($row['session_id'])->year,
+                AcademicClass::query()->findOrNew($row['class_id'])->name,
+                Section::query()->findOrNew($row['section_id'])->name,
+                Group::query()->findOrNew($row['group_id'])->name,
+                $row['rank'],
+                $row['father'],
+                $row['mother'],
+                Gender::query()->findOrNew($row['gender_id'])->name,
+                $row['mobile'],
+                $row['dob'],
+                BloodGroup::query()->findOrNew($row['blood_group_id'])->name,
+                Religion::query()->findOrNew($row['religion_id'])->name,
+                $row['image'],
+                $row['address'],
+                $row['area'],
+                $row['zip'],
+                State::query()->findOrNew($row['state_id'])->name,
+                Country::query()->findOrNew($row['state_id'])->name,
+                $row['email'],
+                $row['father_mobile'],
+                $row['mother_mobile'],
+                $row['notification_type_id'],
+                $row['status'],
+            ]);
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        return Response::download($filename, 'students.csv', $headers);
     }
 }

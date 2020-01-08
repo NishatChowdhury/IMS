@@ -102,6 +102,7 @@ Route::get('exam/seat-allocate','ExamController@seatAllocate');
 
 Route::get('exam/result-details/{id}','ResultController@resultDetails');
 Route::get('exam/final-result-details/{id}','ResultController@finalResultDetails');
+Route::get('exam/result-details-all','ResultController@allDetails');
 Route::get('exam/examresult','ResultController@index')->name('exam.examresult');
 Route::get('exam/generate-exam-result','ResultController@generateResult');
 
@@ -110,6 +111,7 @@ Route::get('exam/getfinalresultrule','ResultController@getfinalresultrule')->nam
 Route::post('exam/final-result','ResultController@finalResultNew');
 
 Route::get('exam/marks/{schedule}','MarkController@index');
+Route::get('exam/mark/download/{schedule}','MarkController@download');
 Route::post('exam/mark/store','MarkController@store');
 
 Route::get('exam/tabulationSheet','ExamController@tabulationSheet')->name('exam.tabulationSheet');
@@ -238,7 +240,8 @@ Route::get('student/create','StudentController@create')->name('student.add');
 Route::get('student/edit/{id}','StudentController@edit');
 Route::patch('student/{id}/update','StudentController@update');
 Route::get('student/drop/{id}','StudentController@dropOut');
-Route::get('/load_student_id','studentController@loadStudentId');
+Route::get('student/export','StudentController@export');
+Route::get('/load_student_id','StudentController@loadStudentId');
 //Students Route by Rimon
 Route::get('student/designStudentCard','StudentController@designStudentId')->name('student.designStudentCard');
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
