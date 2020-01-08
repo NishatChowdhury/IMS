@@ -1,5 +1,7 @@
 @extends('layouts.fixed')
 
+@section('title','Student Registration')
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -58,7 +60,7 @@
             var id= $(this).val();
 
             $.ajax({
-                url: '{{url("get-ClassSectionBysession/")}}'+id,
+                url: '{{url("get-ClassSectionBySession/")}}'+id,
                 type: 'GET',
                 success:function (data) {
                     console.log(data);

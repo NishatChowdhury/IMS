@@ -123,7 +123,7 @@
             </div>
             <div class="form-group files color">
                 {{  Form::label('stuPic', 'Student Picture', ['class' => 'control-label'])  }}
-                {{ Form::file('image',['class'=>'form-control', 'id'=>"file-input"]) }}
+                {{ Form::file('pic',['class'=>'form-control', 'id'=>"file-input"]) }}
                 <div id="thumb-output"></div>
             </div>
         </div>

@@ -109,10 +109,10 @@ class StudentController extends Controller
         ]);
         //dd($req->all());
         $data = $req->all();
-        if ($req->hasFile('image')){
-            $image = $req->studentId.'.'.$req->file('image')->getClientOriginalExtension();
-            $req->file('image')->move(public_path().'/assets/img/students/', $image);
-            $data = $req->except('image');
+        if ($req->hasFile('pic')){
+            $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
+            $req->file('pic')->move(public_path().'/assets/img/students/', $image);
+            $data = $req->except('pic');
             $data['image'] = $image;
             Student::query()->create($data);
         }else{

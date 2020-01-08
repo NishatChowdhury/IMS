@@ -90,7 +90,7 @@
                         <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ $students->total() }}</h3>
                         <div class="card-tools">
                             <a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
-                            <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
+                            <a href="{{ action('StudentController@export') }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -130,7 +130,7 @@
                                     {{--<td>{{ $student->mother }}</td>--}}
                                     {{--<td>0.00%</td>--}}
 {{--                                    <td>{{ $student->status }}</td>--}}
-                                    <td><img src="{{ asset('assets/img/students/'.$student->session_id.'/'.$student->class_id.'/'.$student->studentId.'.jpg') }}" height="100" alt=""></td>
+                                    <td><img src="{{ asset('assets/img/students/'.$student->studentId.'.jpg') }}" height="100" alt=""></td>
                                     <td>
                                         <a href="{{ action('StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <a href="{{ action('StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm" title="DROPOUT"><i class="fas fa-sign-out-alt"></i></a>
