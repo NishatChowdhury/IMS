@@ -58,24 +58,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Button Text*</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                        {{ Form::text('button_text',null,['class'=>'form-control']) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Redirect URL</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                        {{ Form::text('redirect_url',null,['class'=>'form-control']) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -146,7 +128,7 @@
                                         <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
                                     </td>
                                     <td>
-                                        {{ Form::open(['action'=>['SliderController@destroy',$slider->id],'method'=>'delete']) }}
+                                        {{ Form::open(['action'=>['SliderController@destroy',$slider->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         {{ Form::close() }}
@@ -185,5 +167,10 @@
                     format: 'yyyy-mm-dd'
                 })
         });
+
+        function confirmDelete(){
+            var x = confirm('Are you sure you want to delete this slider image?');
+            return !!x;
+        }
     </script>
 @stop

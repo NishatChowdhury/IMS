@@ -24,9 +24,7 @@ class SliderController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'description' => 'required',
-            'button_text' => 'required',
-            'redirect_url' => 'required',
+            //'description' => 'required',
             'start' => 'required|date',
             'end' => 'required|date',
             'image' => 'required|max:2000'
@@ -38,10 +36,11 @@ class SliderController extends Controller
             $data = $request->except('image');
             $data['image'] = $name;
             $data['active'] = 1;
-            Slider::query()->create($data);
-        }else{
-            dd('two');
-            Slider::query()->create($request->all());
+            try{
+                Slider::query()->create($data);
+            }catch(\Exception $e){
+                dd($e);
+            }
         }
 
         return redirect('sliders');

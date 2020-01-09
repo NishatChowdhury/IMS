@@ -32,7 +32,11 @@ class FrontController extends Controller
 
     public function index()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::query()
+            ->where('start','<',Carbon::today())
+            ->where('end','>',Carbon::today())
+            ->where('active',1)
+            ->get();
         $content = Page::all();
         $teachers = Staff::all();
         return view('front.index',compact('sliders','content','teachers'));
