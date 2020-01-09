@@ -17,8 +17,6 @@ class CreateSliderTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->string('button_text')->nullable();
-            $table->string('redirect_url')->nullable();
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
             $table->string('image');

@@ -18,13 +18,13 @@ class CreateExamResultTable extends Migration
             $table->unsignedBigInteger('session_id');
             $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('section_id');
-            $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('section_id')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->unsignedBigInteger('student_id');
             $table->integer('total_mark');
             $table->float('gpa',4,2);
             $table->string('grade');
-            $table->integer('rank');
+            $table->integer('rank')->nullable();
             $table->timestamps();
         });
     }
