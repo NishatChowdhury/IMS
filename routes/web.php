@@ -244,6 +244,7 @@ Route::get('student/export','StudentController@export');
 Route::get('/load_student_id','StudentController@loadStudentId');
 //Students Route by Rimon
 Route::get('student/designStudentCard','StudentController@designStudentId')->name('student.designStudentCard');
+Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
 

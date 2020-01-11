@@ -303,6 +303,17 @@ class StudentController extends Controller
         return redirect()->back();
     }
 
+
+    public function testimonial()
+    {
+        return view('admin.student.testimonial');
+    }
+
+    public function designStudentId()
+    {
+        return view('admin.student.designStudentCard');
+    }
+
     public function export()
     {
         $table = Student::all()->where('session_id',2);

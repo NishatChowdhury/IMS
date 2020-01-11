@@ -13,13 +13,13 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <h2>
-                            <small class="d-block text-gray">Welcome to</small>
-                            <span class="text-primary">Educati</span> School
+                            <small class="d-block text-white">Welcome to</small>
+                            <span class="text-white">Educati</span> School
                         </h2>
-                        <p class="my-4">
+                        <p class="my-4 text-white">
                             Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clartas est consectetur adipi sicing elitsed kdo eusmod tempor cididunt wuti labore.
                         </p>
-                        <a href="#" class="btn btn-outline-primary">
+                        <a href="#" class="btn btn-outline-light">
                             Read More
                         </a>
                     </div>

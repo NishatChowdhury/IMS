@@ -131,7 +131,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('form/editor') }}">
+                        <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('student/testimonial') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Testimonial</p>
                         </a>
