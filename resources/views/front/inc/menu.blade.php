@@ -102,7 +102,7 @@
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Result</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list px-0" href="{{action('ResultController@finalResultNew')}}">Internal Result</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@internal_exam')}}">Internal Result</a></li>
                             <li><a class="nav-link__list px-0" href="{{action('FrontController@public_exam')}}">Public Examination</a></li>
                             <li><a class="nav-link__list px-0" href="{{action('FrontController@admission')}}">Online Admission</a></li>
                         </ul>
