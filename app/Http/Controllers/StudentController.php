@@ -36,7 +36,7 @@ class StudentController extends Controller
 
     public function index(Request $request,Student $student){
         //dd($request->all());
-        $s = $student->newQuery()->where('session_id',activeYear());
+        $s = $student->newQuery()->whereIn('session_id',activeYear());
         if($request->get('studentId')){
             $studentId = $request->get('studentId');
             $s->where('studentId',$studentId);
@@ -114,9 +114,17 @@ class StudentController extends Controller
             $req->file('pic')->move(public_path().'/assets/img/students/', $image);
             $data = $req->except('pic');
             $data['image'] = $image;
-            Student::query()->create($data);
+            try{
+                Student::query()->create($data);
+            }catch (\Exception $e){
+                dd($e);
+            }
         }else{
-            Student::query()->create($data);
+            try{
+                Student::query()->create($data);
+            }catch (\Exception $e){
+                dd($e);
+            }
         }
 
         return redirect()->route('student.list')->with('success','Student Added Successfully');
@@ -130,11 +138,11 @@ class StudentController extends Controller
         return view('admin.student.edit',compact('student','repository'));
     }
 
-    public function update($id, Request $request)
+    public function update($id, Request $req)
     {
         $student = Student::query()->findOrFail($id);
 
-        $this->validate($request,[
+        $this->validate($req,[
             'session_id'=>'required',
             'class_id'=>'required',
             'rank'=>'required',
@@ -150,13 +158,17 @@ class StudentController extends Controller
 
         ]);
         //dd($req->all());
-        $data = $request->all();
-        if ($request->hasFile('image')){
-            $image = $request->studentId.'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path().'/assets/img/students/', $image);
-            $data = $request->except('image');
+        $data = $req->all();
+        if ($req->hasFile('pic')){
+            $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
+            $req->file('pic')->move(public_path().'/assets/img/students/', $image);
+            $data = $req->except('pic');
             $data['image'] = $image;
-            //Student::query()->create($data);
+            try{
+                $student->update($data);
+            }catch (\Exception $e){
+                dd($e);
+            }
         }else{
             $student->update($data);
         }
