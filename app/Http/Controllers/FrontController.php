@@ -250,8 +250,8 @@ class FrontController extends Controller
 
     public function album($id)
     {
-        //$album = Album::query()->findOrFail($id);
+        $album = Album::query()->findOrFail($id);
         $images = Gallery::query()->where('album_id',$id)->get();
-        return view('front.pages.album',compact('images'));
+        return view('front.pages.album',compact('images','album'));
     }
 }

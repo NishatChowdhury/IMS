@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title',$album->name)
 
 @section('content')
 
@@ -13,13 +13,13 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
+                            <a href="{{ url('gallery') }}"> Gallery</a>
                         </li>
                         <li class="breadcrumb-item">
-                            Gallery
+                            {{ $album->name }}
                         </li>
                     </ol>
                 </div>

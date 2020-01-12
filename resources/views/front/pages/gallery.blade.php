@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','Gallery')
 
 @section('content')
 
@@ -13,13 +13,10 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            Gallery
+                            <a href="#"> Gallery</a>
                         </li>
                     </ol>
                 </div>
@@ -40,95 +37,20 @@
                                 {{ $category->name }}
                             </a>
                         @endforeach
-                        {{--<a class="nav-item nav-link" href="#" data-filter=".creative">--}}
-                            {{--Creative--}}
-                        {{--</a>--}}
-                        {{--<a class="nav-item nav-link" href="#" data-filter=".corporate">--}}
-                            {{--Corporate--}}
-                        {{--</a>--}}
-                        {{--<a class="nav-item nav-link" href="#" data-filter=".ui-ux">--}}
-                            {{--UI/UX--}}
-                        {{--</a>--}}
-                        {{--<a class="nav-item nav-link" href="#" data-filter=".web-design">--}}
-                            {{--Web Design--}}
-                        {{--</a>--}}
                     </ul>
                 </div> <!-- END col-12 -->
             </div> <!-- END row-->
             <div class="row isotop-filter">
                 @foreach($albums as $album)
-                    <div class="col-lg-4 col-md-6 marginTop-30 {{ $album->category->name }}">
+                    <div class="col-lg-2 col-md-3 marginTop-30 {{ $album->category->name }}">
                         <div class="media-viewer">
-                            <img class="media-viewer__media" src="assets/img/360x300/1.jpg" alt="">
-                            <div class="media-viewer__overlay bg-black-0_7 flex-center">
-                                <a href="assets/img/360x300/1.jpg" class="iconbox bg-white" data-fancybox="gallery">
-                                    <i class="ti-search"></i>
-                                </a>
-                            </div>
+                            <a href="{{ action('FrontController@album',$album->id) }}">
+                                <img class="" src="{{ asset('assets/img/album.png') }}" alt="" width="125"><br>
+                                <a href="{{ action('FrontController@album',$album->id) }}">{{ $album->name }}</a>
+                            </a>
                         </div>
-                        <p><a href="{{ action('FrontController@album',$album->id) }}">{{ $album->name }}</a></p>
                     </div>
                 @endforeach
-                {{--<div class="col-lg-4 col-md-6 marginTop-30 creative">--}}
-                    {{--<div class="media-viewer">--}}
-                        {{--<img class="media-viewer__media" src="assets/img/360x300/1.jpg" alt="">--}}
-                        {{--<div class="media-viewer__overlay bg-black-0_7 flex-center">--}}
-                            {{--<a href="assets/img/360x300/1.jpg" class="iconbox bg-white" data-fancybox="gallery">--}}
-                                {{--<i class="ti-search"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-lg-4 col-md-6 marginTop-30 corporate creative">--}}
-                    {{--<div class="media-viewer">--}}
-                        {{--<img class="media-viewer__media" src="assets/img/360x300/2.jpg" alt="">--}}
-                        {{--<div class="media-viewer__overlay bg-black-0_7 flex-center">--}}
-                            {{--<a href="assets/img/360x300/2.jpg" class="iconbox bg-white" data-fancybox="gallery">--}}
-                                {{--<i class="ti-search"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-lg-4 col-md-6 marginTop-30 ui-ux">--}}
-                    {{--<div class="media-viewer">--}}
-                        {{--<img class="media-viewer__media" src="assets/img/360x300/3.jpg" alt="">--}}
-                        {{--<div class="media-viewer__overlay bg-black-0_7 flex-center">--}}
-                            {{--<a href="assets/img/360x300/3.jpg" class="iconbox bg-white" data-fancybox="gallery">--}}
-                                {{--<i class="ti-search"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-lg-4 col-md-6 marginTop-30 web-design corporate">--}}
-                    {{--<div class="media-viewer">--}}
-                        {{--<img class="media-viewer__media" src="assets/img/360x300/4.jpg" alt="">--}}
-                        {{--<div class="media-viewer__overlay bg-black-0_7 flex-center">--}}
-                            {{--<a href="assets/img/360x300/4.jpg" class="iconbox bg-white" data-fancybox="gallery">--}}
-                                {{--<i class="ti-search"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-lg-4 col-md-6 marginTop-30 creative ui-ux">--}}
-                    {{--<div class="media-viewer">--}}
-                        {{--<img class="media-viewer__media" src="assets/img/360x300/5.jpg" alt="">--}}
-                        {{--<div class="media-viewer__overlay bg-black-0_7 flex-center">--}}
-                            {{--<a href="assets/img/360x300/5.jpg" class="iconbox bg-white" data-fancybox="gallery">--}}
-                                {{--<i class="ti-search"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-lg-4 col-md-6 marginTop-30 corporate web-design">--}}
-                    {{--<div class="media-viewer">--}}
-                        {{--<img class="media-viewer__media" src="assets/img/360x300/1.jpg" alt="">--}}
-                        {{--<div class="media-viewer__overlay bg-black-0_7 flex-center">--}}
-                            {{--<a href="assets/img/360x300/6.jpg" class="iconbox bg-white" data-fancybox="gallery">--}}
-                                {{--<i class="ti-search"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
             </div> <!-- END row-->
         </div> <!-- END container-->
     </section>

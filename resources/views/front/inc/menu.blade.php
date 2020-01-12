@@ -145,7 +145,7 @@
                     </div>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link no-caret" href="#">Gallery</a>
+                    <a class="nav-link no-caret" href="{{ action('FrontController@gallery') }}">Gallery</a>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
