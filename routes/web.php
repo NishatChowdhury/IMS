@@ -243,7 +243,7 @@ Route::get('student/drop/{id}','StudentController@dropOut');
 Route::get('student/export','StudentController@export');
 Route::get('/load_student_id','StudentController@loadStudentId');
 //Students Route by Rimon
-Route::get('student/designStudentCard','StudentController@designStudentId')->name('student.designStudentCard');
+Route::get('student/designStudentCard','IdCardController@index');
 Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
@@ -253,6 +253,10 @@ Route::post('student/store', 'StudentController@store');
 Route::get('student/optional','StudentController@optional');
 Route::post('student/optional/assign','StudentController@assignOptional');
 //End Students Route
+
+// ID Card Routes
+Route::post('student/card/pdf','IdCardController@pdf');
+// ID Card Routes
 
 /** Route for Apps start */
 Route::post('api/attendance','AndroidController@attendance');

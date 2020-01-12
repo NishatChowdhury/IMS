@@ -36,20 +36,20 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-header" style="background-color: #7f24ff;">
-                                       <div class="left" style="float: left;">
-                                           <img src="{{asset('assets/img/school.png')}}" alt="">
-                                       </div>
+                                        <div class="left" style="float: left;">
+                                            <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="75" alt="">
+                                        </div>
                                         <div class="right" style="float:right;">
-                                           <div class="scl-cd-dec" style="text-align: right; color: #ffffff;">
-                                               <h5>Chittagong Grammar <br> School </h5>
-                                               <p>Lorem ipsum dolor sit amet, <br>Lorem ipsum dolor.</p>
+                                            <div class="scl-cd-dec" style="text-align: right; color: #ffffff;">
+                                                <h5>{{ siteConfig('name') }}</h5>
+                                                <p>{{ siteConfig('address') }}</p>
 
-                                           </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
                                         <h3 class="card-title" style="margin-bottom: 10px;"> <strong>ID CARD</strong></h3>
-                                        <img style="border: 1px solid darkgray" src="{{asset('assets/img/school.png')}}" alt="">
+                                        <img style="border: 1px solid darkgray" src="{{asset('assets/img/students/S20701.jpg')}}" width="75" alt="">
                                         <h4 class="card-title text-bold">Student Name</h4>
                                         <div class="row">
                                             <div class="right" style="float:left; margin-top: 10px;">
@@ -89,7 +89,7 @@
                                         <div style="margin-top: 10px;">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p style="text-align: left"><strong>ID : example</strong></p>
+                                                    <p style="text-align: left"><strong>ID : S306319</strong></p>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p style="text-align: right;"><strong style="border-top: 1px solid red;">Principal</strong></p>
@@ -105,248 +105,174 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-row">
-                                    <div class="col-12">
-                                        <label for="">Institution Name </label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                            <div class="col-md-8">
+                                {{ Form::open(['action'=>'IdCardController@pdf','method'=>'post','class'=>'form-inline']) }}
+                                <div class="col-md-12">
+                                    <div class="form-row">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="nick" checked>
+                                                <label for="checkbox1">
+                                                    Nick Name
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Institution Name Font Size </label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="name" checked>
+                                                <label for="checkbox1">
+                                                    Name
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Institution Address </label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="father" checked>
+                                                <label for="checkbox1">
+                                                    Father Name
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Institution Address Font Size </label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="mother" checked>
+                                                <label for="checkbox1">
+                                                    Mother Name
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Card Body Holder </label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="class" checked>
+                                                <label for="checkbox1">
+                                                    Class
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Class </label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="section" checked>
+                                                <label for="checkbox1">
+                                                    Section
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Department</label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="group" checked>
+                                                <label for="checkbox1">
+                                                    Group
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Signatory</label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="blood" checked>
+                                                <label for="checkbox1">
+                                                    Blood Group
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Valid Till</label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="" name="" type="text">
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="contact" checked>
+                                                <label for="checkbox1">
+                                                    Contact
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="roll" checked>
+                                                <label for="checkbox1">
+                                                    Roll
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="department" checked>
+                                                <label for="checkbox1">
+                                                    Department
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="designation" checked>
+                                                <label for="checkbox1">
+                                                    Designation
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
-                                        </div>
-                                    </div><div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
-                                        </div>
-                                    </div><div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="largerCheckbox"
-                                                   name="checkBox2" checked>
-                                            <label for="checkbox1">
-                                                Show Student Nick Name
-                                            </label>
+                                        <div class="col-3">
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="largerCheckbox"
+                                                       name="checkBox2" checked>
+                                                <label for="checkbox1">
+                                                    Show Student Nick Name
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Header & Footer Background Color</h5>
-                                <div class="form-group">
-                                    <input type="text" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Header & Footer Background Color</h5>
+                                            <input type="text" name="bg-color" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Header & Footer Font Color</h5>
+                                            <input type="text" name="bg-font" id="hffc" class="form-control my-colorpicker1 colorpicker-element">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Card Body Header Font Color</h5>
+                                            <input type="text" name="card-header" id="cbhfc" class="form-control my-colorpicker1 colorpicker-element">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>User</h5>
+                                        <div class="form-group">
+                                            {{ Form::select('user',['1'=>'Teacher','2'=>'Student'],null,['class'=>'form-control','placeholder'=>'Select User (required)','required']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Class</h5>
+                                        <div class="form-group">
+                                            {{ Form::select('class',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class (required)','required']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Section</h5>
+                                        <div class="form-group">
+                                            {{ Form::select('section',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section (optional)']) }}
+                                        </div>
+                                    </div>
                                 </div>
-                                {{--<div>--}}
-                                    {{--<div class="col-12">--}}
-                                            {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                                {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                    {{--<li> <i class="fas fa-circle" style="color: #ffffff"></i> <span>  </span></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</label>--}}
-                                            {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                                {{--<input class="radio bgcolor"value="#fff" type="radio" name="bgcolor"><span style=""> White</span>--}}
-                                            {{--</label>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12">--}}
-                                            {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                                {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                    {{--<li> <i class="fas fa-circle" style="color: #000000"></i> <span>  </span></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</label>--}}
-                                            {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                                {{--<input class="radio  bgcolor" value="#000" type="radio" name="bgcolor"><span style=""> Black</span>--}}
-                                            {{--</label>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12">--}}
-                                        {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                            {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                {{--<li> <i class="fas fa-circle" style="color: #2faa20"></i> <span>  </span></li>--}}
-                                            {{--</ul>--}}
-                                        {{--</label>--}}
-                                        {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                            {{--<input class="radio  bgcolor" value="#2faa20" type="radio" name="bgcolor"><span style=""> Green</span>--}}
-                                        {{--</label>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Header & Footer Font Color</h5>
-                                <div class="form-group">
-                                    <input type="text" id="hffc" class="form-control my-colorpicker1 colorpicker-element">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success">Download PDF</button>
+                                    </div>
                                 </div>
-                                {{--<div>--}}
-                                    {{--<div class="col-12">--}}
-                                        {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                            {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                {{--<li> <i class="fas fa-circle" style="color: #ffffff"></i> <span>  </span></li>--}}
-                                            {{--</ul>--}}
-                                        {{--</label>--}}
-                                        {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                            {{--<input class="radio ffcolor" value= "#ffffff" type="radio" name="ffcolor"><span style=""> White</span>--}}
-                                        {{--</label>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12">--}}
-                                            {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                                {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                    {{--<li> <i class="fas fa-circle" style="color: #000000"></i> <span>  </span></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</label>--}}
-                                            {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                                {{--<input class="radio ffcolor" value="#000000" type="radio" name="ffcolor"><span style=""> Black</span>--}}
-                                            {{--</label>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12">--}}
-                                            {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                                {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                    {{--<li> <i class="fas fa-circle" style="color: #0d2bff"></i> <span>  </span></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</label>--}}
-                                            {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                                {{--<input class="radio ffcolor" value="#0d2bff" type="radio" name="ffcolor"><span style=""> Blue</span>--}}
-                                            {{--</label>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
+                                {{ Form::close() }}
 
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Card Body Header Font Color</h5>
-                                <div class="form-group">
-                                    <input type="text" id="cbhfc" class="form-control my-colorpicker1 colorpicker-element">
-                                </div>
-                                {{--<div>--}}
-                                    {{--<div class="col-12">--}}
-                                             {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                                 {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                    {{--<li> <i class="fas fa-circle" style="color: #2faa20"></i> <span>  </span></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</label>--}}
-                                            {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                                {{--<input class="radio hfcolor" value="#2faa20" type="radio" name="hfcolor"><span style=""> Green</span>--}}
-                                            {{--</label>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12">--}}
-                                            {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                                {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                    {{--<li> <i class="fas fa-circle" style="color: #000000"></i> <span>  </span></li>--}}
-                                                {{--</ul>--}}
-                                            {{--</label>--}}
-                                            {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                                {{--<input class="radio hfcolor" value="#000000" type="radio" name="hfcolor"><span style=""> Black</span>--}}
-                                            {{--</label>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12">--}}
-                                        {{--<label class="radio-inline" style="margin-left: 5px;">--}}
-                                            {{--<ul style="list-style: none; padding: 0px;">--}}
-                                                {{--<li> <i class="fas fa-circle" style="color: #ffb142"></i> <span>  </span></li>--}}
-                                            {{--</ul>--}}
-                                        {{--</label>--}}
-                                        {{--<label class="radio-inline" style="position: absolute; left: 40px; top: 2px;">--}}
-                                            {{--<input class="radio hfcolor" value="#ffb142" type="radio" name="hfcolor"><span style=""> </span>--}}
-                                        {{--</label>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -360,12 +286,12 @@
     <style>
         .checkbox {
             padding: 10px;
-            margin: 10px 0px;
+            margin: 10px 0;
         }
         input.largerCheckbox {
             width: 20px;
             height: 20px;
-            background-color: none;
+            background-color: transparent;
         }
         .checkbox label{
             position: absolute;
@@ -375,7 +301,7 @@
         .radio-inline input{
             width: 15px;
             height: 15px;
-            background-color: none;
+            background-color: transparent;
         }
         label span{
             margin-left: 15px;
@@ -385,7 +311,7 @@
         .table td, .table th {
             padding: 3px;
             vertical-align: top;
-            border-top: 0px;
+            border-top: 0;
         }
         .card-body{
             padding: 5px 10px;
@@ -407,17 +333,17 @@
             $(".card-title").css({"color":cbhfc});
         });
 
-//       $(document).on("click",".ffcolor",function () {
-//           var color = $(this).val();
-//
-//           $(".scl-cd-dec").css({"color":color});
-//       });
-//
-//       $(document).on("click",".hfcolor",function () {
-//           var color = $(this).val();
-//
-//           $(".").css({"background-color":color});
-//       });
+        //       $(document).on("click",".ffcolor",function () {
+        //           var color = $(this).val();
+        //
+        //           $(".scl-cd-dec").css({"color":color});
+        //       });
+        //
+        //       $(document).on("click",".hfcolor",function () {
+        //           var color = $(this).val();
+        //
+        //           $(".").css({"background-color":color});
+        //       });
 
 
         $(document).ready(function () {
@@ -426,7 +352,7 @@
     </script>
 
 
- @stop
+@stop
 
 
 @section('plugin')
