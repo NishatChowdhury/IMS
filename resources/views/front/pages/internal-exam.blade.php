@@ -30,6 +30,7 @@
     <!-- Search Panel Start -->
     <section class="padding-y-100 border-bottom no-print">
         <div class="container">
+
             {{ Form::open(['action'=>'FrontController@internal_exam','method'=>'get']) }}
             <div class="row align-items-center">
 
@@ -66,6 +67,20 @@
         </div> <!-- END container-->
     </section>
     <!-- Search Panel End -->
+
+    <section class="padding-y-100 border-bottom border-light">
+        <div class="container">
+            <div class="row" style="background: aliceblue;">
+                <div class="col-lg-10 mx-auto">
+                    <div class="my-4 text-center">
+                        @if(Session::has('msg'))
+                            <p><b>{{ Session::get('msg') }}</b></p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     @unless($result == null)
         <!-- Student Details Start -->
@@ -129,15 +144,15 @@
                             </table>
                         </div>
                     </div>
-                {{--</div> <!-- END row-->--}}
-            {{--</div> <!-- END container-->--}}
-        {{--</section> <!-- END section-->--}}
-        <!-- Student Details End -->
+                    {{--</div> <!-- END row-->--}}
+                    {{--</div> <!-- END container-->--}}
+                    {{--</section> <!-- END section-->--}}
+                <!-- Student Details End -->
 
-        <!-- Marks Start -->
-        {{--<section class="padding-y-100 border-bottom border-light">--}}
-            {{--<div class="container">--}}
-                {{--<div class="row">--}}
+                    <!-- Marks Start -->
+                    {{--<section class="padding-y-100 border-bottom border-light">--}}
+                    {{--<div class="container">--}}
+                    {{--<div class="row">--}}
                     {{--<div class="col-12 mb-5 text-center">--}}
                     {{--<h4>Table - <span class="text-primary">01</span></h4>--}}
                     {{--</div>--}}
@@ -173,7 +188,7 @@
                                             @if($mark->viva > 0)
                                                 Viva: {{ $mark->viva }}
                                             @endif
-                                                {{--<hr>--}}
+                                            {{--<hr>--}}
                                             {{--<span style="font-weight:bold">Total: {{ $mark->objective + $mark->written + $mark->practical + $mark->viva }}</span>--}}
                                         </td>
                                         <td>{{ $mark->grade }}</td>

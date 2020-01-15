@@ -6,6 +6,7 @@ use App\Album;
 use App\ExamResult;
 use App\Gallery;
 use App\GalleryCategory;
+use App\ImportantLink;
 use App\Mark;
 use App\Notice;
 use App\NoticeCategory;
@@ -45,7 +46,8 @@ class FrontController extends Controller
             ->get();
         $content = Page::all();
         $teachers = Staff::all();
-        return view('front.index',compact('sliders','content','teachers'));
+        $links = ImportantLink::all();
+        return view('front.index',compact('sliders','content','teachers','links'));
     }
 
     public function introduction()
@@ -134,12 +136,14 @@ class FrontController extends Controller
     public function teacher()
     {
         $content = Page::query()->where('name','teachers')->first();
-        return view('front.pages.teacher',compact('content'));
+        $teachers = Staff::query()->where('staff_type_id',2)->orderBy('code')->get();
+        return view('front.pages.teacher',compact('content','teachers'));
     }
     public function staff()
     {
         $content = Page::query()->where('name','staff')->first();
-        return view('front.pages.staff',compact('content'));
+        $staffs = Staff::query()->where('staff_type_id',1)->get();
+        return view('front.pages.staff',compact('content','staffs'));
     }
 //TEAM -> --END
 
@@ -153,6 +157,10 @@ class FrontController extends Controller
             $studentId = Student::query()
                 ->where('studentId',$request->get('student'))
                 ->pluck('id');
+
+            if($studentId->count() == 0){
+                return redirect()->back()->with('msg','NO STUDENT FOUND!');
+            }
 
             $result = ExamResult::query()
                 ->where('session_id',$sessionId)
