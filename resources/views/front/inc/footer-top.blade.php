@@ -38,7 +38,7 @@
                 <h4 class="h5 text-white">Important links</h4>
                 <div class="width-3rem bg-primary height-3 mt-3"></div>
                 <ul class="list-unstyled marginTop-40">
-                    @foreach($links as $link)
+                    @foreach(importantLinks() as $link)
                         <li class="mb-2"><a href="{{ $link->link }}">{{ $link->title }}</a></li>
                     @endforeach
                     {{--<li class="mb-2"><a href="page-about.html">About Us</a></li>--}}

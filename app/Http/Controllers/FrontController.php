@@ -222,7 +222,9 @@ class FrontController extends Controller
             ->where('start','<',Carbon::today())
             ->where('end','>',Carbon::today())
             ->orderByDesc('start')
-            ->paginate(5);
+            ->get();
+            //->paginate(5);
+
         $categories = NoticeCategory::all();
         return view('front.pages.notice',compact('notices','categories'));
     }
