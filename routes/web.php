@@ -242,11 +242,14 @@ Route::patch('student/{id}/update','StudentController@update');
 Route::get('student/drop/{id}','StudentController@dropOut');
 Route::get('student/export','StudentController@export');
 Route::get('/load_student_id','StudentController@loadStudentId');
+
 //Students Route by Rimon
 Route::get('student/designStudentCard','IdCardController@index');
 Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
+Route::get('student/links','LinkController@index')->name('student.likes');
+
 
 //@MKH
 Route::post('student/store', 'StudentController@store');
