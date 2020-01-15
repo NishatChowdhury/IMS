@@ -35,15 +35,18 @@
             </div>
 
             <div class="col-lg-2 col-md-6 mt-5">
-                <h4 class="h5 text-white">Quick links</h4>
+                <h4 class="h5 text-white">Important links</h4>
                 <div class="width-3rem bg-primary height-3 mt-3"></div>
                 <ul class="list-unstyled marginTop-40">
-                    <li class="mb-2"><a href="page-about.html">About Us</a></li>
-                    <li class="mb-2"><a href="page-contact.html">Contact Us</a></li>
-                    <li class="mb-2"><a href="page-sp-student-profile.html">Students</a></li>
-                    <li class="mb-2"><a href="page-sp-admission-apply.html">Admission</a></li>
-                    <li class="mb-2"><a href="page-events.html">Events</a></li>
-                    <li class="mb-2"><a href="blog-card.html">Latest News</a></li>
+                    @foreach($links as $link)
+                        <li class="mb-2"><a href="{{ $link->link }}">{{ $link->title }}</a></li>
+                    @endforeach
+                    {{--<li class="mb-2"><a href="page-about.html">About Us</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-contact.html">Contact Us</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-sp-student-profile.html">Students</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-sp-admission-apply.html">Admission</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-events.html">Events</a></li>--}}
+                    {{--<li class="mb-2"><a href="blog-card.html">Latest News</a></li>--}}
                 </ul>
             </div>
 

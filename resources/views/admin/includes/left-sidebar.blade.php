@@ -397,6 +397,12 @@
                         <p>Slider</p>
                         </a>
                     </li>
+                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('links') }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Important Links</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item has-treeview {{ isActive(['staff*']) }}">
