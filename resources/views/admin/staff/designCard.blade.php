@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Student | Design Student ID')
+@section('title','Employee | Design Employee ID')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -25,139 +25,139 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card" style="padding: 10px 10px;background-color:#ececec;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div style="float: right !important; margin-right: 20px; margin-bottom: 10px;">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                        {{--<div style="float: right !important; margin-right: 20px; margin-bottom: 10px;">--}}
+                        {{--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
                         <div class="row">
                             <div class="col-md-4">
-                              <div class="row">
-                                  <div class="col-12">
-                                      <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px; ">
-                                          <div class="card-header" style="padding: 0.2rem 0.25rem;">
-                                              <div class="row">
-                                                  <div class="col-md-3">
-                                                      <div class="left">
-                                                          <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="100%" style="border-radius: 50%;">
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-9">
-                                                      <div class="right">
-                                                          <div class="scl-cd-dec" style="font-size: 8px; padding-top: 6px;">
-                                                              <strong> <p>{{ siteConfig('name') }}  <br> </strong>
-                                                              {{ siteConfig('address') }}</p>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="card-body text-center">
-                                              <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
-                                              <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                              <h6 class="card-title text-bold"> Student Name </h6>
-                                              <div class="row">
-                                                  <div class="right" style="float:left; margin-top: 10px;">
-                                                      <div class="stu-cd-dec" style="text-align: left">
-                                                          <table class="table" style="font-size: 12px;">
-                                                              <tbody>
-                                                              <tr>
-                                                                  <td><strong> Name </strong></td>
-                                                                  <td>:</td>
-                                                                  <td><strong> Student Name </strong></td>
-                                                              </tr>
-                                                              <tr>
-                                                                  <td> Guardian </td>
-                                                                  <td>:</td>
-                                                                  <td>Lorem ipsum.</td>
-                                                              </tr>
-                                                              <tr>
-                                                                  <td> Class </td>
-                                                                  <td>:</td>
-                                                                  <td>Lorem ipsum.</td>
-                                                              </tr>
-                                                              <tr>
-                                                                  <td> Contact </td>
-                                                                  <td>:</td>
-                                                                  <td>Lorem ipsum.</td>
-                                                              </tr>
-                                                              <tr>
-                                                                  <td> Blood Group </td>
-                                                                  <td>:</td>
-                                                                  <td>Lorem ipsum.</td>
-                                                              </tr>
-                                                              </tbody>
-                                                          </table>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div style="margin-top: 10px;">
-                                                  <div class="row">
-                                                      <div class="col-md-6">
-                                                          <p class="card-title" style="text-align: left; font-size: 14px"> <strong>ID : S306319</strong> </p>
-                                                      </div>
-                                                      <div class="col-md-6">
-                                                          <p class="card-title" style="text-align: right; font-size: 14px"> <strong style="border-top: 1px solid red;">Principal</strong></p>
-                                                      </div>
-                                                  </div>
-                                              </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px; ">
+                                            <div class="card-header" style="padding: 0.2rem 0.25rem;">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="left">
+                                                            <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="100%" style="border-radius: 50%;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="right">
+                                                            <div class="scl-cd-dec" style="font-size: 8px; padding-top: 6px;">
+                                                                <p id="name"><strong>{{ siteConfig('name') }} </strong></p>
+                                                                <p id="address">{{ siteConfig('address') }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
+                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
+                                                <h6 class="card-title text-bold"> Student Name </h6>
+                                                <div class="row">
+                                                    <div class="right" style="float:left; margin-top: 10px;">
+                                                        <div class="stu-cd-dec" style="text-align: left">
+                                                            <table class="table" style="font-size: 12px;">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td><strong> Name </strong></td>
+                                                                    <td>:</td>
+                                                                    <td><strong> Student Name </strong></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> Guardian </td>
+                                                                    <td>:</td>
+                                                                    <td>Lorem ipsum.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> Class </td>
+                                                                    <td>:</td>
+                                                                    <td>Lorem ipsum.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> Contact </td>
+                                                                    <td>:</td>
+                                                                    <td>Lorem ipsum.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> Blood Group </td>
+                                                                    <td>:</td>
+                                                                    <td>Lorem ipsum.</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-top: 10px;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p class="card-title" style="text-align: left; font-size: 14px"> <strong>ID : S306319</strong> </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p class="card-title" style="text-align: right; font-size: 14px"> <strong style="border-top: 1px solid red;">Principal</strong></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                          </div>
-                                          <div class="card-footer" style="height: 40px;">
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-12" style="padding-top: 50px;">
-                                      <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
-                                          <div class="card-body text-center">
-                                              <div class="row">
-                                                  <div class="col-md-12">
-                                                      <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
-                                                          <ul style="margin: 0px !important; padding: 10px 15px !important;">
-                                                              <li>This card is valid till 31-Dec-2020</li>
-                                                              <li>This card is not transferable</li>
-                                                              <li>This finder of this card may please drop it to the nearest post office.</li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                              <div class="row">
-                                                 <div class="" style="margin-top: 20px;">
-                                                     <strong> <p>{{ siteConfig('name') }}  <br> </strong>
-                                                     {{ siteConfig('address') }}</p>
-                                                 </div>
-                                                  <div class="crd-add-dec text-bold" style="margin:5px 10px; text-align: left">
-                                                      <table class="table" style="font-size: 10px;">
-                                                          <tbody>
-                                                          <tr>
-                                                              <td> Phone </td>
-                                                              <td>:</td>
-                                                              <td id="bphone">+880 01714 000 000</td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td> Email </td>
-                                                              <td>:</td>
-                                                              <td id="bemail">Example99@gmail.com.</td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td> Website </td>
-                                                              <td>:</td>
-                                                              <td  id="bwebsite">www.example99.org</td>
-                                                          </tr>
-                                                          </tbody>
-                                                      </table>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+                                            </div>
+                                            <div class="card-footer" style="height: 40px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12" style="padding-top: 50px;">
+                                        <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
+                                            <div class="card-body text-center">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
+                                                            <ul style="margin: 0px !important; padding: 10px 15px !important;">
+                                                                <li>This card is valid till <span id="validity">31-Dec-2020</span></li>
+                                                                <li>This card is not transferable</li>
+                                                                <li>This finder of this card may please drop it to the nearest post office.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
+                                                <div class="row">
+                                                    <div class="" style="margin-top: 20px;">
+                                                        <strong> <p>{{ siteConfig('name') }}  <br> </strong>
+                                                        {{ siteConfig('address') }}</p>
+                                                    </div>
+                                                    <div class="crd-add-dec text-bold" style="margin:5px 10px; text-align: left">
+                                                        <table class="table" style="font-size: 10px;">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td> Phone </td>
+                                                                <td>:</td>
+                                                                <td id="bphone">+880 01714 000 000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> Email </td>
+                                                                <td>:</td>
+                                                                <td id="bemail">Example99@gmail.com.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> Website </td>
+                                                                <td>:</td>
+                                                                <td  id="bwebsite">www.example99.org</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['action'=>'IdCardController@pdf','method'=>'post']) }}
+                                {{ Form::open(['action'=>'IdCardController@staffPdf','method'=>'post']) }}
 
                                 <div class="card">
                                     <div class="card-body">
@@ -201,7 +201,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
-                                                       Class
+                                                        Class
                                                     </label>
                                                 </div>
                                             </div>
@@ -209,7 +209,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
-                                                       Section
+                                                        Section
                                                     </label>
                                                 </div>
                                             </div>
@@ -235,7 +235,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
-                                                      Contact/Phone
+                                                        Contact/Phone
                                                     </label>
                                                 </div>
                                             </div>
@@ -347,7 +347,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="address_size" type="text" class="form-control" placeholder="A. Size ...">
+                                                        <input name="name_size" id="nameSize" type="text" class="form-control" placeholder="A. Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -355,7 +355,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="title_size" type="text" class="form-control" placeholder="Title Size..">
+                                                        <input name="address_size" id="addressSize" type="text" class="form-control" placeholder="Title Size..">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -363,7 +363,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="body_size" type="text" class="form-control" placeholder="Body Size..">
+                                                        <input name="title_size" id="titleSize" type="text" class="form-control" placeholder="Body Size..">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -374,50 +374,50 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title"> Back Side</h5>
-                                       <div class="row">
-                                           <div class="col-lg-4">
-                                               <div class="form-group">
-                                                   <label for="exampleInputEmail1">Phone</label>
-                                                   <div class="input-group">
-                                                       <input name="bPhone" id="bPhone" type="number" class="form-control">
-                                                       <div class="input-group-prepend">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Phone</label>
+                                                    <div class="input-group">
+                                                        <input name="bPhone" id="bPhone" type="number" class="form-control">
+                                                        <div class="input-group-prepend">
                                                         <span class="input-group-text">
                                                           <input type="checkbox">
                                                         </span>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                               <!-- /input-group -->
-                                           </div>
-                                           <div class="col-lg-4">
-                                               <div class="form-group">
-                                                   <label for="exampleInputEmail1">Email</label>
-                                                   <div class="input-group">
-                                                       <input name="bemail" id="bEmail" type="email" class="form-control">
-                                                       <div class="input-group-prepend">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <div class="input-group">
+                                                        <input name="bemail" id="bEmail" type="email" class="form-control">
+                                                        <div class="input-group-prepend">
                                                         <span class="input-group-text">
                                                           <input type="checkbox">
                                                         </span>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                               <!-- /input-group -->
-                                           </div>
-                                           <div class="col-lg-4">
-                                               <div class="form-group">
-                                                   <label for="exampleInputEmail1">Website</label>
-                                                   <div class="input-group">
-                                                       <input name="bWebsite" id="bWebsite" type="text" class="form-control">
-                                                       <div class="input-group-prepend">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Website</label>
+                                                    <div class="input-group">
+                                                        <input name="bWebsite" id="bWebsite" type="text" class="form-control">
+                                                        <div class="input-group-prepend">
                                                         <span class="input-group-text">
                                                           <input type="checkbox">
                                                         </span>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                               <!-- /input-group -->
-                                           </div>
-                                       </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
@@ -427,7 +427,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('user',[1=>'Student',2=>'Teacher'],null,['class'=>'form-control','placeholder'=>'Select User','required']) }}
+                                                        {{ Form::select('user',[1=>'Teacher',2=>'Staff'],null,['class'=>'form-control','placeholder'=>'Select User','required']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -513,9 +513,17 @@
             var hffc = $("#hffc").val();
             var cbhfc = $("#cbhfc").val();
 
+            var nameSize = $("#nameSize").val();
+            var addressSize = $("#addressSize").val();
+            var titleSize = $("#titleSize").val();
+
             $(".card-header,.card-footer").css({"background-color":bghf});
             $(".scl-cd-dec").css({"color":hffc});
             $(".card-title").css({"color":cbhfc});
+
+            $("#name").css({"font-size":nameSize+"px"});
+            $("#address").css({"font-size":addressSize+"px"});
+            $(".card-title").css({"font-size":titleSize+"px"});
         });
 
         //       $(document).on("click",".ffcolor",function () {
@@ -540,7 +548,7 @@
                 format: 'yyyy-mm-dd'
             });
 
-           // Print entered text value
+            // Print entered text value
 
             $("#idTitle").on("input", function(){
                 // Print entered value in a div box
@@ -549,17 +557,17 @@
 
             $("#bPhone").on("input", function(){
                 // Print entered value in a div box
-               $("#bphone").text($(this).val());
-             });
+                $("#bphone").text($(this).val());
+            });
 
             $("#bEmail").on("input", function(){
-               // Print entered value in a div box
-               $("#bemail").text($(this).val());
+                // Print entered value in a div box
+                $("#bemail").text($(this).val());
             });
 
             $("#bWebsite").on("input", function(){
                 // Print entered value in a div box
-               $("#bwebsite").text($(this).val());
+                $("#bwebsite").text($(this).val());
             });
 
 

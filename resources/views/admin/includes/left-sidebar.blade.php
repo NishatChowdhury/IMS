@@ -265,8 +265,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['page*']) }}">
-                <a href="#" class="nav-link {{ isActive(['page*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['finance*']) }}">
+                <a href="#" class="nav-link {{ isActive(['finance*']) }}">
                     <i class="nav-icon fas fa-money-check-alt"></i>
                     <p>
                         Finance
@@ -275,7 +275,7 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('page/invoice') }}">
+                        <a href="#" class="nav-link {{ isActive('invoice') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Invoice</p>
                         </a>
@@ -442,6 +442,12 @@
                         <a href="{{route('staff.payslip')}}" class="nav-link {{ isActive('staff/payslip') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>PaySlip</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('IdCardController@staff') }}" class="nav-link {{ isActive('staff/idCard') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Design ID Card</p>
                         </a>
                     </li>
                     {{--<li class="nav-item">--}}

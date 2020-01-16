@@ -248,6 +248,8 @@ Route::get('student/testimonial','StudentController@testimonial')->name('student
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
 
+Route::get('staff/idCard','IdCardController@staff');
+Route::post('staff/idCard/pdf','IdCardController@staffPdf');
 
 //@MKH
 Route::post('student/store', 'StudentController@store');

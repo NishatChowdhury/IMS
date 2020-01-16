@@ -8,9 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-@foreach($students as $student)
-    <p>{{ $student->studentId }}</p>
-    <br>
-@endforeach
+
+<div class="col-md-12">
+    @foreach($staffs as $staff)
+        <p>{{ $card->bgcolor }}</p>
+        <p>{{ $staff->studentId }}</p>
+    @endforeach
+</div>
+
 </body>
 </html>
