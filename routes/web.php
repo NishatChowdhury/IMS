@@ -156,7 +156,7 @@ Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');
 Route::get('staff/staffadd','StaffController@addstaff')->name('staff.addstaff');
 Route::post('staff/store-staff','StaffController@store_staff');
 Route::get('staff/edit-staff/{id}','StaffController@edit_staff');
-Route::patch('staff/update-staff','StaffController@update_staff');
+Route::patch('staff/{id}/update-staff','StaffController@update_staff');
 Route::get('staff/delete-staff/{id}','StaffController@delete_staff');
 Route::get('staff/threshold','StaffController@threshold')->name('staff.threshold');
 Route::get('staff/kpi','StaffController@kpi')->name('staff.kpi');
@@ -240,7 +240,6 @@ Route::get('student/create','StudentController@create')->name('student.add');
 Route::get('student/edit/{id}','StudentController@edit');
 Route::patch('student/{id}/update','StudentController@update');
 Route::get('student/drop/{id}','StudentController@dropOut');
-Route::get('student/export','StudentController@export');
 Route::get('/load_student_id','StudentController@loadStudentId');
 
 //Students Route by Rimon
@@ -248,7 +247,6 @@ Route::get('student/designStudentCard','IdCardController@index');
 Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
-Route::get('student/links','LinkController@index')->name('student.likes');
 
 
 //@MKH
@@ -260,6 +258,12 @@ Route::post('student/optional/assign','StudentController@assignOptional');
 // ID Card Routes
 Route::post('student/card/pdf','IdCardController@pdf');
 // ID Card Routes
+
+// Important Links
+Route::get('settings/links','LinkController@index');
+Route::post('settings/link/store','LinkController@store');
+Route::delete('settings/link/delete/{id}','LinkController@destroy');
+// End Important Links
 
 /** Route for Apps start */
 Route::post('api/attendance','AndroidController@attendance');

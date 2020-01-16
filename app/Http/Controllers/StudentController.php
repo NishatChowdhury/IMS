@@ -58,6 +58,79 @@ class StudentController extends Controller
             $s->where('group_id',$group);
         }
 
+        if($request->has('csv')){
+            $table = $s->get();
+            $filename = "students.csv";
+            $handle = fopen($filename, 'w+');
+            fputcsv($handle, [
+                'id',
+                'name',
+                'studentId',
+                'session_id',
+                'class_id',
+                'section_id',
+                'group_id',
+                'rank',
+                'father',
+                'mother',
+                'gender_id',
+                'mobile',
+                'dob',
+                'blood_group_id',
+                'religion_id',
+                'image',
+                'address',
+                'area',
+                'zip',
+                'state_id',
+                'country_id',
+                'email',
+                'father_mobile',
+                'mother_mobile',
+                'notification_type_id',
+                'status'
+            ]);
+
+            foreach($table as $row) {
+                fputcsv($handle, [
+                    $row['id'],
+                    $row['name'],
+                    $row['studentId'],
+                    Session::query()->findOrFail($row['session_id'])->year,
+                    AcademicClass::query()->findOrNew($row['class_id'])->name,
+                    Section::query()->findOrNew($row['section_id'])->name,
+                    Group::query()->findOrNew($row['group_id'])->name,
+                    $row['rank'],
+                    $row['father'],
+                    $row['mother'],
+                    Gender::query()->findOrNew($row['gender_id'])->name,
+                    $row['mobile'],
+                    $row['dob'],
+                    BloodGroup::query()->findOrNew($row['blood_group_id'])->name,
+                    Religion::query()->findOrNew($row['religion_id'])->name,
+                    $row['image'],
+                    $row['address'],
+                    $row['area'],
+                    $row['zip'],
+                    State::query()->findOrNew($row['state_id'])->name,
+                    Country::query()->findOrNew($row['state_id'])->name,
+                    $row['email'],
+                    $row['father_mobile'],
+                    $row['mother_mobile'],
+                    $row['notification_type_id'],
+                    $row['status'],
+                ]);
+            }
+
+            fclose($handle);
+
+            $headers = array(
+                'Content-Type' => 'text/csv',
+            );
+
+            return Response::download($filename, 'students.csv', $headers);
+        }
+
         $students = $s->paginate(20);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
@@ -262,7 +335,7 @@ class StudentController extends Controller
                 $s->where('group_id',$group);
             }
 
-            $students = $s->get();
+            $students = $s->where('status',1)->get();
         }else{
             $students = collect();
         }
@@ -321,9 +394,11 @@ class StudentController extends Controller
         return view('admin.student.testimonial');
     }
 
-    public function export()
+    public function csv($s)
     {
-        $table = Student::all()->where('session_id',2);
+//        $table = Student::all()->where('session_id',2);
+        $table = $s->get();
+        //dd($table);
         $filename = "students.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, [
