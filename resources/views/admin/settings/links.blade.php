@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Slider</h1>
+                    <h1>Important Link</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -71,8 +71,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="container">
-                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
-                            <table>
+                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Importnt Links</h4>
+                            <table class="table table-condence">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -108,7 +108,7 @@
 @section('script')
     <script>
         function confirmDelete(){
-            var x = confirm('Are you sure you want to delete this slider image?');
+            var x = confirm('Are you sure you want to delete this link?');
             return !!x;
         }
     </script>
