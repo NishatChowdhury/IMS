@@ -46,9 +46,11 @@
                                                   </div>
                                                   <div class="col-md-9">
                                                       <div class="right">
-                                                          <div class="scl-cd-dec" style="font-size: 8px; padding-top: 6px;">
-                                                              <strong> <p>{{ siteConfig('name') }}  <br> </strong>
-                                                              {{ siteConfig('address') }}</p>
+                                                          <div class="scl-cd-dec" style="padding-top: 6px;">
+                                                              <h6 class="scl-cd-name"><strong> {{ siteConfig('name') }}</strong></h6>
+                                                              <p class="scl-cd-add">{{ siteConfig('address') }}</p>
+                                                              {{--<strong class=""> <p>{{ siteConfig('name') }}  <br> </strong>--}}
+                                                              {{--</p>--}}
                                                           </div>
                                                       </div>
                                                   </div>
@@ -99,7 +101,7 @@
                                                           <p class="card-title" style="text-align: left; font-size: 14px"> <strong>ID : S306319</strong> </p>
                                                       </div>
                                                       <div class="col-md-6">
-                                                          <p class="card-title" style="text-align: right; font-size: 14px"> <strong style="border-top: 1px solid red;">Principal</strong></p>
+                                                          <p id="idsignature" class="card-title text-bold" style="text-align: right; font-size: 14px"> <strong style="border-top: 1px solid red;">Principal</strong></p>
                                                       </div>
                                                   </div>
                                               </div>
@@ -289,10 +291,21 @@
                                                 <input id="idTitle" type="text" class="form-control"  placeholder="Title..">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input type="text" class="form-control" id="inputEmail4" placeholder="signature">
+                                                <input id="idSignature"  type="text" class="form-control"  placeholder="signature">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
+                                                        {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
+                                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                        <i class="far fa-calendar-alt"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -308,7 +321,7 @@
                                                         <input type="text" name="bgcolor" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                         <i class="fas fa-palette"></i>
                                                         </span>
                                                         </div>
                                                     </div>
@@ -322,7 +335,7 @@
                                                         <input type="text" name="bgfont" id="hffc" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <i class="fas fa-palette"></i>
                                                         </span>
                                                         </div>
                                                     </div>
@@ -337,7 +350,7 @@
                                                         <input type="text" name="titlecolor" id="cbhfc" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <i class="fas fa-palette"></i>
                                                         </span>
                                                         </div>
                                                     </div>
@@ -347,7 +360,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="address_size" type="text" class="form-control" placeholder="A. Size ...">
+                                                        <input name="address_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -355,7 +368,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="title_size" type="text" class="form-control" placeholder="Title Size..">
+                                                        <input name="address_size" type="text" class="form-control add-size" placeholder="Institute Address Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -363,7 +376,15 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="body_size" type="text" class="form-control" placeholder="Body Size..">
+                                                        <input name="title_size" type="text" class="form-control title-size" placeholder="Title Size..">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="body_size" type="text" class="form-control body-size" placeholder="Body Size..">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -501,6 +522,13 @@
         .card-body{
             padding: 5px 10px;
         }
+        .scl-cd-dec h6{
+            margin-bottom: 0px !important;
+            font-size: 10px;
+        }
+        .scl-cd-dec p{
+            font-size: 8px;
+        }
 
     </style>
 @stop
@@ -516,7 +544,42 @@
             $(".card-header,.card-footer").css({"background-color":bghf});
             $(".scl-cd-dec").css({"color":hffc});
             $(".card-title").css({"color":cbhfc});
+
+            //institute font size
+            var fins = $('.name-size').val();
+               $(".scl-cd-name").css({"font-size":fins+"px"}) ;
+            //institute address size
+            var fas = $('.add-size').val();
+               $(".scl-cd-add").css({"font-size":fas+"px"}) ;
+            //title size
+            var ts = $('.title-size').val();
+            $(".card-title").css({"font-size":ts+"px"}) ;
+            //body font size
+            var bs = $('.body-size').val();
+            $(".table").css({"font-size":bs+"px"}) ;
         });
+
+        //institute font size
+        $(document).on('keyup','.name-size',function () {
+            var fas = $(this).val();
+            $(".scl-cd-name").css({"font-size":fas+"px"}) ;
+        });
+        //institute address size
+        $(document).on('keyup','.add-size',function () {
+            var fas = $(this).val();
+            $(".scl-cd-add").css({"font-size":fas+"px"}) ;
+        });
+        //title size
+        $(document).on('keyup','.title-size',function () {
+            var fas = $(this).val();
+            $(".card-title").css({"font-size":fas+"px"}) ;
+        });
+        //card body size
+        $(document).on('keyup','.body-size',function () {
+            var fas = $(this).val();
+            $(".table").css({"font-size":fas+"px"}) ;
+        });
+
 
         //       $(document).on("click",".ffcolor",function () {
         //           var color = $(this).val();
@@ -560,6 +623,11 @@
             $("#bWebsite").on("input", function(){
                 // Print entered value in a div box
                $("#bwebsite").text($(this).val());
+            });
+
+            $("#idSignature").on("input", function(){
+                // Print entered value in a div box
+                $("#idsignature").text($(this).val());
             });
 
 
