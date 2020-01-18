@@ -44,10 +44,26 @@ class FrontController extends Controller
             })
             ->where('active',1)
             ->get();
+
         $content = Page::all();
         $teachers = Staff::all();
-        $links = ImportantLink::all();
-        return view('front.index',compact('sliders','content','teachers','links'));
+
+        $notices = Notice::query()
+            //->where('start','<',Carbon::today())
+            ->where('notice_type_id',2)
+            ->where(function($query){
+                $query->where('start','<',Carbon::today())->orWhere('start',null);
+            })
+            //->where('end','>',Carbon::today())
+            ->where(function($query){
+                $query->where('end','>',Carbon::today())->orWhere('end',null);
+            })
+            //->where('active',1)
+            ->orderByDesc('start')
+            ->take(5)
+            ->get();
+
+        return view('front.index',compact('sliders','content','teachers','notices'));
     }
 
     public function introduction()
@@ -218,12 +234,18 @@ class FrontController extends Controller
     public function notice()
     {
         $notices = Notice::query()
+            //->where('start','<',Carbon::today())
             ->where('notice_type_id',2)
-            ->where('start','<',Carbon::today())
-            ->where('end','>',Carbon::today())
+            ->where(function($query){
+                $query->where('start','<',Carbon::today())->orWhere('start',null);
+            })
+            //->where('end','>',Carbon::today())
+            ->where(function($query){
+                $query->where('end','>',Carbon::today())->orWhere('end',null);
+            })
+            //->where('active',1)
             ->orderByDesc('start')
             ->get();
-            //->paginate(5);
 
         $categories = NoticeCategory::all();
         return view('front.pages.notice',compact('notices','categories'));

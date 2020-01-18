@@ -29,11 +29,22 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : 1000</h3>
+                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : {{ $notices->count() }}</h3>
                             </div>
                             <div class="row">
                                 <div>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    @if($errors->any())
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -48,6 +59,7 @@
                                     <th>End Date </th>
                                     <th>Category</th>
                                     <th>Type</th>
+                                    <th>File</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -56,8 +68,8 @@
                                     <tr>
                                         <td>{{ $notice->title }}</td>
                                         <td>{{ substr(strip_tags($notice->description),0,99) }}</td>
-                                        <td>{{ $notice->start->format('Y-m-d') }}</td>
-                                        <td>{{ $notice->end->format('Y-m-d') }}</td>
+                                        <td>{{ $notice->start->format('Y-m-d') ?? '' }}</td>
+                                        <td>{{ $notice->end ? $notice->end->format('Y-m-d') : '' }}</td>
                                         <td>
                                             @if($notice->category)
                                                 {{ $notice->category->name }}
@@ -68,7 +80,11 @@
                                                 {{ $notice->type->name }}
                                             @endif
                                         </td>
-                                        <td><a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                                        <td><a href="{{ asset('assets/img/notices') }}/{{ $notice->file }}" class="btn btn-info btn-sm" target="_blank"><i class="fas fa-eye"></i></a></td>
+                                        <td>
+                                            {{--<a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
+                                            <a type="button"  class="btn btn-warning btn-sm edit_notice"  value='{{$notice->id}}'><i class="fas fa-edit"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -112,7 +128,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{ Form::select('notice_type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
+                                {{ Form::select('notice_type_id',$repository->types(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;','required']) }}
                             </div>
                         </div>
                     </div>
@@ -120,7 +136,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{ Form::select('notice_category_id',$repository->categories(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;']) }}
+                                {{ Form::select('notice_category_id',$repository->categories(),null,['id'=>'inputState','class'=>'form-control','style'=>'height: 35px !important;','required']) }}
                             </div>
                         </div>
                     </div>
@@ -129,7 +145,7 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::text('title',null,['class'=>'form-control']) }}
+                                {{ Form::text('title',null,['class'=>'form-control','required']) }}
                             </div>
                         </div>
                     </div>
@@ -138,7 +154,7 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<textarea type="text" class="form-control" rows="5" id=""> </textarea>--}}
-                                {{ Form::textarea('description',null,['class'=>'form-control','row'=>5]) }}
+                                {{ Form::textarea('description',null,['class'=>'form-control','row'=>5,'required']) }}
                             </div>
                         </div>
                     </div>
@@ -146,7 +162,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input name="start" class="form-control datePicker" aria-describedby="">
+                                <input name="start" class="form-control datePicker" aria-describedby="" required>
                                 {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
@@ -170,7 +186,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Notice file*</label>
                         <div class="col-sm-10">
                             <div class="form-group files color">
-                                <input type="file" class="form-control" multiple="">
+                                <input type="file" name="file" class="form-control" multiple="">
                             </div>
                         </div>
                     </div>
@@ -186,6 +202,101 @@
         </div>
     </div>
     <!-- /Pop Up Model for button End***-->
+
+    <!-- ***/ Pop Up Edit Model for button Start-->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Notice</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ Form::open(['action'=>'NoticeController@update','method'=>'patch','files'=>true]) }}
+                    {!! Form::hidden('notice_id', null,['id'=>'notice_id']) !!}
+                    {{--<form>--}}
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{ Form::select('notice_type_id',$repository->types(),null,['id'=>'notice_type_id','class'=>'form-control','style'=>'height: 35px !important;','required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category*</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{ Form::select('notice_category_id',$repository->categories(),null,['id'=>'notice_category_id','class'=>'form-control','style'=>'height: 35px !important;','required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title*</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+                                {{ Form::text('title',null,['class'=>'form-control','id'=>'title','required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{--<textarea type="text" class="form-control" rows="5" id=""> </textarea>--}}
+                                {{ Form::textarea('description',null,['class'=>'form-control','id'=>'description','row'=>5,'required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input name="start" class="form-control datePicker" id="start" aria-describedby="" required>
+                                {{--{{ Form::text('start',null,['class'=>'form-control']) }}--}}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="far fa-calendar-alt"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">End Date</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input name="end" class="form-control datePicker" id="end" aria-describedby="" required>
+                                {{--{{ Form::text('end',null,['class'=>'form-control']) }}--}}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="far fa-calendar-alt"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Notice file*</label>
+                        <div class="col-sm-10">
+                            <div class="form-group files color">
+                                <input type="file" class="form-control" id="file" multiple="">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: right">
+                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                    </div>
+                    {{--</form>--}}
+                    {{ Form::close() }}
+
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /Pop Up Edit Model for button End***-->
+
+
 @stop
 <!-- /Notices page inner Content End***-->
 
@@ -205,12 +316,38 @@
 
 @section('script')
     <script type="text/javascript">
+
         $(document).ready(function() {
-            $('.datePicker')
-                .datepicker({
-                    format: 'yyyy-mm-dd'
-                })
+            $('.datePicker').datepicker({
+                format: 'yyyy-mm-dd'
+            })
         });
+
+        $(document).on('click', '.edit_notice', function () {
+            $("#edit").modal("show");
+            var notice_id = $(this).attr('value');
+
+            $.ajax({
+                method:"post",
+                url:"{{ url('notice/edit-notice')}}",
+                data:{notice_id:notice_id,"_token":"{{ csrf_token() }}"},
+                dataType:"json",
+                success:function(e){
+                    console.log(e);
+                    $("#notice_id").val(e.id);
+                    $("#notice_type_id").val(e.notice_type_id);
+                    $("#notice_category_id").val(e.notice_category_id);
+                    $("#title").val(e.title);
+                    $("#description").val(e.description);
+                    $("#start").val(e.start);
+                    $("#end").val(e.end);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        });
+
     </script>
 @stop
 
