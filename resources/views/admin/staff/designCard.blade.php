@@ -288,20 +288,18 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <input id="idTitle" type="text" class="form-control"  placeholder="Title..">
+                                                <input id="idTitle" name="title" type="text" class="form-control"  placeholder="Title..">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input id="idSignature"  type="text" class="form-control"  placeholder="signature">
+                                                <input id="idSignature" name="signature"  type="text" class="form-control"  placeholder="signature">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input id="vtd" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
+                                                        <input id="vtd" name="validity" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
                                                         {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                        </span>
+                                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -320,9 +318,7 @@
                                                     <div class="input-group">
                                                         <input type="text" name="bgcolor" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                         <i class="fas fa-palette"></i>
-                                                        </span>
+                                                        <span class="input-group-text"><i class="fas fa-palette"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -360,7 +356,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="address_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
+                                                        <input name="name_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -448,30 +444,14 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('user',[1=>'Student',2=>'Teacher'],1,['class'=>'form-control','placeholder'=>'Select User','required']) }}
+                                                        {{ Form::select('user',[1=>'Teacher',2=>'Staff',3=>'ALL'],1,['class'=>'form-control','placeholder'=>'Select User','required']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <div class="input-group">
-                                                        {{ Form::select('class',$repository->classes(),1,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        {{ Form::select('section',$repository->sections(),1,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-info">PDF</button>
+                                                    <button type="submit" class="btn btn-info">View PDF</button>
                                                 </div>
                                             </div>
                                         </div>

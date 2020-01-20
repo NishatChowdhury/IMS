@@ -67,11 +67,15 @@ class IdCardController extends Controller
 
         if($request->user == 1){
             $staffs = Staff::query()->where('staff_type_id',1)->get();
-        }else{
+        }elseif($request->user == 2){
             $staffs = Staff::query()->where('staff_type_id',2)->get();
+
+        }else{
+            $staffs = Staff::query()->get();
         }
 
         $card = $request->all();
+        //dd($card);
 
 //        $total = DB::table('partial_shipments')
 //            ->where('lc_id', $request->lc)
