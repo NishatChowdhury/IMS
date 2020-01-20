@@ -57,7 +57,8 @@ class IdCardController extends Controller
 
         $pdf->setPaper('a4', 'portrait');
 
-        return $pdf->download('students.pdf');
+        //return $pdf->download('students.pdf'); // to download use download() function
+        return $pdf->stream(); // to display use stream() function
     }
 
     public function staffPdf(Request $request)
@@ -85,6 +86,7 @@ class IdCardController extends Controller
 
         $pdf->setPaper('a4', 'portrait');
 
-        return $pdf->download('staffs.pdf');
+        //return $pdf->download('staffs.pdf');
+        return $pdf->stream();
     }
 }
