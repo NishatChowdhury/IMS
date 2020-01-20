@@ -33,23 +33,24 @@
     <!-- stylesheet-->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/print.css?ver:1.1') }}">
 
 </head>
 
 <body>
 
 
-<header class="site-header bg-dark text-white-0_5">
+<header class="site-header bg-dark text-white-0_5 no-print">
     @include('front.inc.info-bar')
 </header><!-- END site header-->
 
 
 
-<nav class="ec-nav sticky-top bg-white">
+<nav class="ec-nav sticky-top bg-white no-print">
     @include('front.inc.menu')
 </nav> <!-- END ec-nav -->
 
-<div class="site-search">
+<div class="site-search no-print">
     <div class="site-search__close bg-black-0_8"></div>
     <form class="form-site-search" action="#" method="POST">
         <div class="input-group">
@@ -69,13 +70,13 @@
 
 
 
-<footer class="site-footer">
+<footer class="site-footer no-print">
     @include('front.inc.footer-top')
     @include('front.inc.footer-bottom')
 </footer> <!-- END site-footer -->
 
 
-<div class="scroll-top">
+<div class="scroll-top no-print">
     <i class="ti-angle-up"></i>
 </div>
 
