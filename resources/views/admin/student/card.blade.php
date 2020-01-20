@@ -8,7 +8,6 @@
     <title>Document</title>
     <style>
         .card{
-            padding: 7px 5px;
             box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
         }
         .card-head{

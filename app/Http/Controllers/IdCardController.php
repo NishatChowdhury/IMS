@@ -75,7 +75,6 @@ class IdCardController extends Controller
         }
 
         $card = $request->all();
-        //dd($card);
 
 //        $total = DB::table('partial_shipments')
 //            ->where('lc_id', $request->lc)
@@ -92,5 +91,7 @@ class IdCardController extends Controller
 
         //return $pdf->download('staffs.pdf');
         return $pdf->stream();
+
+        //return view('admin.staff.card',compact('staffs','card'));
     }
 }
