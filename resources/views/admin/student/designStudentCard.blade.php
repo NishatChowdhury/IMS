@@ -36,8 +36,8 @@
                             <div class="col-md-4">
                               <div class="row">
                                   <div class="col-12">
-                                      <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px; ">
-                                          <div class="card-header" style="padding: 0.2rem 0.25rem;">
+                                      <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
+                                          <div class="card-header" style="padding: 0.5rem 0.25rem;">
                                               <div class="row">
                                                   <div class="col-md-3">
                                                       <div class="left">
@@ -118,7 +118,7 @@
                                                   <div class="col-md-12">
                                                       <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
                                                           <ul style="margin: 0px !important; padding: 10px 15px !important;">
-                                                              <li>This card is valid till 31-Dec-2020</li>
+                                                              <li>This card is valid till <span class="valid-date">31-Dec-2020</span></li>
                                                               <li>This card is not transferable</li>
                                                               <li>This finder of this card may please drop it to the nearest post office.</li>
                                                           </ul>
@@ -296,7 +296,7 @@
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
+                                                        <input id="vtd" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
                                                         {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -540,10 +540,13 @@
             var bghf = $("#bghf").val();
             var hffc = $("#hffc").val();
             var cbhfc = $("#cbhfc").val();
+            var vtd = $("#vtd").val();
+
 
             $(".card-header,.card-footer").css({"background-color":bghf});
             $(".scl-cd-dec").css({"color":hffc});
             $(".card-title").css({"color":cbhfc});
+            $(".valid-date").text(vtd);
 
             //institute font size
             var fins = $('.name-size').val();
