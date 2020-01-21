@@ -61,9 +61,10 @@ class IdCardController extends Controller
         return $pdf->stream(); // to display use stream() function
     }
 
+
     public function staffPdf(Request $request)
     {
-        //dd($request->all());
+
 
         if($request->user == 1){
             $staffs = Staff::query()->where('staff_type_id',1)->get();
@@ -74,15 +75,17 @@ class IdCardController extends Controller
             $staffs = Staff::query()->get();
         }
 
-        $card = $request->all();
+        $card = $request->except('_token');
+        return view('admin.staff.card',compact('staffs','card'));
+
 
 //        $total = DB::table('partial_shipments')
 //            ->where('lc_id', $request->lc)
 //            ->selectRaw('count(*), sum(cont) as conts, sum(qty) as qtys, sum(qty * rate) as lc_values')
 //            ->get();
 
-        view()->share('card', (object)$card);
-        view()->share('staffs', $staffs);
+        /*view()->share('card', (object)$card);
+        view()->share('staffs', $staffs);*/
         //view()->share('total', $total);
 
         $pdf = PDF::loadView('admin.staff.card');
@@ -90,8 +93,7 @@ class IdCardController extends Controller
         $pdf->setPaper('a4', 'portrait');
 
         //return $pdf->download('staffs.pdf');
-        return $pdf->stream();
+        //return $pdf->stream();
 
-        //return view('admin.staff.card',compact('staffs','card'));
     }
 }

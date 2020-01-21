@@ -17,7 +17,8 @@ Route::get('/home', 'DashboardController@index')->name('home');
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
  */
-Route::get('/', 'FrontController@index');
+//Route::get('/', 'FrontController@index');
+Route::get('/', 'IdCardController@custom_staffPdf');
 
 //Institute -> About
 Route::get('/introduction','FrontController@introduction');
