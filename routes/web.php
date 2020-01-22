@@ -17,8 +17,8 @@ Route::get('/home', 'DashboardController@index')->name('home');
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
  */
-//Route::get('/', 'FrontController@index');
-Route::get('/', 'IdCardController@custom_staffPdf');
+Route::get('/', 'FrontController@index');
+//Route::get('/', 'IdCardController@custom_staffPdf');
 
 //Institute -> About
 Route::get('/introduction','FrontController@introduction');
@@ -34,22 +34,41 @@ Route::get('/building-room','FrontController@building_room');
 Route::get('/library','FrontController@library');
 Route::get('/transport','FrontController@transport');
 Route::get('/hostel','FrontController@hostel');
+Route::get('/land-information','FrontController@land_information');
 
 //Institute -> Academic
 Route::get('/class-routine','FrontController@class_routine');
 Route::get('/calender','FrontController@calender');
 Route::get('/syllabus','FrontController@syllabus');
+Route::get('/diary','FrontController@diary');
 Route::get('/performance','FrontController@performance');
+Route::get('/holiday','FrontController@holiday');
+
+//Institute -> Digital Campus
+Route::get('/multimedia-classroom','FrontController@multimedia_classroom');
+Route::get('/computer-lab','FrontController@computer_lab');
+Route::get('/science-lab','FrontController@science_lab');
 
 //TEAM
 Route::get('/managing-committee','FrontController@managing_committee');
 Route::get('/teacher','FrontController@teacher');
 Route::get('/staff','FrontController@staff');
+Route::get('/wapc','FrontController@wapc');
+Route::get('/tswt','FrontController@tswt');
+Route::get('/tci','FrontController@tci');
 
 //Result  (Front-End)
 Route::get('/internal-exam','FrontController@internal_exam');
 Route::get('/public-exam','FrontController@public_exam');
 Route::get('/admission','FrontController@admission');
+
+//INFORMATION
+Route::get('/sports-n-culture-program','FrontController@sports_n_culture_program');
+Route::get('/center-information','FrontController@center_information');
+Route::get('/scholarship-info','FrontController@scholarship_info');
+Route::get('/bncc','FrontController@bncc');
+Route::get('/scout','FrontController@scout');
+Route::get('/tender','FrontController@tender');
 
 //Attendance
 Route::get('/attendance-summery','FrontController@attendance_summery');
@@ -65,6 +84,12 @@ Route::get('/news-details/{id}','FrontController@newsDetails');
 //Gallery
 Route::get('/gallery','FrontController@gallery');
 Route::get('/album/{name}','FrontController@album');
+
+//Download
+Route::get('/download','FrontController@download');
+
+//Contact
+Route::get('/contact','FrontController@contact');
 /*===== Route for Front-End Menu Bar END ====*/
 
 //Admission Route by Rimon

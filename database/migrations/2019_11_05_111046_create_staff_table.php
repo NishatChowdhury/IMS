@@ -20,7 +20,7 @@ class CreateStaffTable extends Migration
             $table->string('father_husband');
             $table->string('mobile')->unique();
             $table->date('dob');
-            $table->string('nid')->unique();
+            $table->string('nid')->unique()->nullable();
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('blood_group_id');
             $table->string('image')->nullable();
@@ -31,8 +31,8 @@ class CreateStaffTable extends Migration
             $table->unsignedBigInteger('job_type_id');
             $table->unsignedBigInteger('staff_type_id');
             $table->string('joining');
-            $table->string('salary');
-            $table->string('bonus');
+            $table->string('salary')->nullable();
+            $table->string('bonus')->nullable();
             $table->timestamps();
         });
     }
