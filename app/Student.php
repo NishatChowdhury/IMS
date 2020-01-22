@@ -14,6 +14,7 @@ class Student extends Model
         'section_id',
         'group_id',
         'rank',
+        'subject_id',
         'father',
         'mother',
         'gender',

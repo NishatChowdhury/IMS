@@ -150,16 +150,6 @@ class StudentController extends Controller
     }
 
     public function create(){
-//        $sessions = Session::all()->where('active',1)->pluck('year','id');
-//        $last_session_id = Session::query()->orderBy('id', 'desc')->value('id');
-//        $groups = Group::all()->pluck('name', 'id');
-//        $genders = Gender::all()->pluck('name', 'id');
-//        $blood_groups = BloodGroup::all()->pluck('name', 'id');
-//        $religions = Religion::all()->pluck('name', 'id');
-//        $divisions= Division::all()->pluck('name', 'id');
-//        $countries = Country::all()->pluck('name', 'id');
-//        $classes = AcademicClass::all()->pluck('name','id');
-//        $sections = Section::all()->pluck('name','id');
         $repository = $this->repository;
         return view('admin.student.add', compact('repository'));
     }

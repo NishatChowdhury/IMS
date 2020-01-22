@@ -26,8 +26,8 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-light">
-                        @if(count($errors) >0)
-                            <div class="alert alert-danger" role="alert" id="alert_error">
+                        @if($errors->any())
+                            <div class="alert alert-danger" role="alert">
                                 <ul>
                                     @foreach($errors->all() as $error)
                                         <li>{{ $error }}</li>

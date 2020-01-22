@@ -250,8 +250,8 @@
             }
         });
     });
-    $(document).ready( function() {
-        $('#alert_error').delay(3000).fadeOut();
-    });
+    // $(document).ready( function() {
+    //     $('#alert_error').delay(3000).fadeOut();
+    // });
 </script>
 @stop
