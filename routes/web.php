@@ -197,6 +197,7 @@ Route::post('institution/store-session', 'InstitutionController@store_session');
 Route::post('institution/edit-session', 'InstitutionController@edit_session');
 Route::post('institution/update-session', 'InstitutionController@update_session');
 Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
+Route::patch('institution/status/{id}','InstitutionController@sessionStatus');
 
 //Academic Classes $ Groups
 Route::get('institution/section-groups','InstitutionController@section_group')->name('section.group');
@@ -295,6 +296,8 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 
 /** Route for Apps start */
 Route::post('api/attendance','AndroidController@attendance');
+Route::post('api/about','AndroidController@about');
+Route::post('api/president','AndroidController@president');
 /** Route for Apps end */
 
 Route::get('migrate',function(){
