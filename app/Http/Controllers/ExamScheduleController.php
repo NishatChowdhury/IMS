@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AcademicClass;
+use App\Exam;
 use App\ExamSchedule;
 use App\Session;
 use App\Subject;
@@ -15,27 +16,29 @@ class ExamScheduleController extends Controller
         $this->middleware('auth');
     }
 
-    public function create(Request $request,$exam)
+    public function create(Request $request,$examId)
     {
+        //dd($request->all());
+        $exam = Exam::query()->findOrFail($examId);
         $classes = AcademicClass::all()->pluck('name','id');
         $sessions = Session::all()->pluck('year','id');
 
         $class = $request->get('class_id');
-        $session = $request->get('session_id');
+        //$session = $request->get('session_id');
 
         if($class){
 
             $isExist = ExamSchedule::query()
-                ->where('session_id',$session)
+                ->where('session_id',$exam->session_id)
                 ->where('class_id',$class)
-                ->where('exam_id',$exam)
+                ->where('exam_id',$examId)
                 ->exists();
 
             if($isExist){
                 $subjects = ExamSchedule::query()
-                    ->where('session_id',$session)
+                    ->where('session_id',$exam->session_id)
                     ->where('class_id',$class)
-                    ->where('exam_id',$exam)
+                    ->where('exam_id',$examId)
                     ->get();
             }else{
                 $subjects = Subject::query()
@@ -47,7 +50,7 @@ class ExamScheduleController extends Controller
             $subjects = [];
         }
 
-        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','sessions','session'));
+        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','sessions'));
     }
 
     public function store(Request $request)
@@ -62,8 +65,12 @@ class ExamScheduleController extends Controller
             $data['date'] = $request->get('date')[$key];
             $data['start'] = $request->get('start')[$key];
             $data['end'] = $request->get('end')[$key];
-            $data['mark'] = $request->get('mark')[$key];
-            $data['type'] = $request->get('type')[$key];
+            $data['objective_full'] = $request->get('objective_full')[$key];
+            $data['objective_pass'] = $request->get('objective_pass')[$key];
+            $data['written_full'] = $request->get('written_full')[$key];
+            $data['written_pass'] = $request->get('written_pass')[$key];
+            $data['practical_full'] = $request->get('practical_full')[$key];
+            $data['practical_pass'] = $request->get('practical_pass')[$key];
 
             $schedule = ExamSchedule::query()
                 ->where('session_id',$request->get('session_id'))
@@ -74,8 +81,10 @@ class ExamScheduleController extends Controller
 
             if($schedule != null){
                 $schedule->update($data);
+                \Illuminate\Support\Facades\Session::flash('success','Exam Schedule updated successfully!');
             }else{
                 ExamSchedule::query()->create($data);
+                \Illuminate\Support\Facades\Session::flash('success','Exam Schedule created successfully!');
             }
 
         }

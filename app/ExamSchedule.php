@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamSchedule extends Model
 {
-    protected $fillable = ['session_id', 'exam_id', 'class_id', 'subject_id', 'mark', 'teacher_id', 'date', 'start', 'end', 'exam_type'];
+    protected $fillable = ['session_id', 'exam_id', 'class_id', 'subject_id', 'teacher_id', 'date', 'start', 'end', 'objective_full','objective_pass', 'written_full','written_pass', 'practical_full','practical_pass'];
 
     public function academicClass()
     {

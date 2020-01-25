@@ -20,6 +20,17 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <!-- Session Message Start -->
+    <section class="content">
+        <div class="container-fluid">
+            @if(\Illuminate\Support\Facades\Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ \Illuminate\Support\Facades\Session::get('success') }}
+                </div>
+            @endif
+        </div>
+    </section>
+    <!-- Session Message End -->
 
     <section class="content">
         <div class="container-fluid">
@@ -87,6 +98,8 @@
                                             {{ Form::hidden('exam_id',$exam->id) }}
                                             {{ Form::hidden('session_id',$exam->session_id) }}
                                             {{ Form::hidden('class_id',$class) }}
+                                            {{--{{ Form::hidden('section_id',$section) }}--}}
+                                            {{--{{ Form::hidden('group_id',$group) }}--}}
                                             {{ Form::hidden('subject_id[]',$subject->subject_id ?? $subject->id) }}
                                             {{ $subject->subject->name ?? $subject->name }}
                                         </td>
@@ -102,9 +115,9 @@
                                         {{--                                        <td>{{ Form::select('type[]',['Written','MCQ','Practical','Viva'],$subject->type ?? null,['class'=>'form-control']) }}</td>--}}
                                         {{--                                        <td>{{ $subject->status }}</td>--}}
                                         {{--<td>--}}
-                                            {{--@if($subject->date != null)--}}
-                                                {{--<a href="{{ action('MarkController@index',$subject->id) }}">Marks</a>--}}
-                                            {{--@endif--}}
+                                        {{--@if($subject->date != null)--}}
+                                        {{--<a href="{{ action('MarkController@index',$subject->id) }}">Marks</a>--}}
+                                        {{--@endif--}}
                                         {{--</td>--}}
                                     </tr>
                                 @endforeach
