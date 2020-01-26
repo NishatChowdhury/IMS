@@ -59,34 +59,69 @@
                                           <div class="card-body text-center">
                                               <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
                                               <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                              <h6 class="card-title text-bold"> Student Name </h6>
+                                              <h6 class="card-title text-bold nName"> Student Name </h6>
                                               <div class="row">
                                                   <div class="right" style="float:left; margin-top: 10px;">
                                                       <div class="stu-cd-dec" style="text-align: left">
                                                           <table class="table" style="font-size: 12px;">
                                                               <tbody>
-                                                              <tr>
+                                                              <tr class="tname">
                                                                   <td><strong> Name </strong></td>
                                                                   <td>:</td>
                                                                   <td><strong> Student Name </strong></td>
                                                               </tr>
-                                                              <tr>
-                                                                  <td> Guardian </td>
+                                                              <tr class="tfname">
+                                                                  <td> Father </td>
                                                                   <td>:</td>
                                                                   <td>Lorem ipsum.</td>
                                                               </tr>
-                                                              <tr>
+                                                              <tr class="tmname">
+                                                                  <td> Mother </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="tcname">
                                                                   <td> Class </td>
                                                                   <td>:</td>
                                                                   <td>Lorem ipsum.</td>
                                                               </tr>
-                                                              <tr>
+                                                              <tr class="tsname">
+                                                                  <td> Section </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="trname">
+                                                                  <td> Roll </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="tgname">
+                                                                  <td> Group </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="tbname">
+                                                                  <td> Blood Group </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="tpname">
                                                                   <td> Contact </td>
                                                                   <td>:</td>
                                                                   <td>Lorem ipsum.</td>
                                                               </tr>
-                                                              <tr>
-                                                                  <td> Blood Group </td>
+                                                              <tr class="tdname">
+                                                                  <td> Depertmant </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="tdobname">
+                                                                  <td> Date Of Birth </td>
+                                                                  <td>:</td>
+                                                                  <td>Lorem ipsum.</td>
+                                                              </tr>
+                                                              <tr class="taname">
+                                                                  <td> Admission Date </td>
                                                                   <td>:</td>
                                                                   <td>Lorem ipsum.</td>
                                                               </tr>
@@ -167,7 +202,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input nname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Nick Name
                                                     </label>
@@ -175,7 +210,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input full-name" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Name
                                                     </label>
@@ -183,7 +218,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input fname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Father
                                                     </label>
@@ -193,7 +228,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input mname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Mother
                                                     </label>
@@ -201,7 +236,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input cname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                        Class
                                                     </label>
@@ -209,7 +244,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input sname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                        Section
                                                     </label>
@@ -219,7 +254,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input gname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Group
                                                     </label>
@@ -227,7 +262,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input bname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Blood
                                                     </label>
@@ -235,7 +270,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input pname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                       Contact/Phone
                                                     </label>
@@ -245,7 +280,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input rname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Roll
                                                     </label>
@@ -253,17 +288,25 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input dname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Department
                                                     </label>
                                                 </div>
                                             </div>
+                                            {{--<div class="form-group col-md-4">--}}
+                                                {{--<div class="form-check">--}}
+                                                    {{--<input class="form-check-input" type="checkbox" id="gridCheck">--}}
+                                                    {{--<label class="form-check-label" for="gridCheck">--}}
+                                                        {{--Designation--}}
+                                                    {{--</label>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input dobname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
-                                                        Designation
+                                                       Date Of Birth
                                                     </label>
                                                 </div>
                                             </div>
@@ -271,17 +314,9 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input aname" type="checkbox" id="gridCheck">
                                                     <label class="form-check-label" for="gridCheck">
-                                                        Dob
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Joining
+                                                        Admission Date
                                                     </label>
                                                 </div>
                                             </div>
@@ -515,7 +550,7 @@
             top: -2px;
         }
         .table td, .table th {
-            padding: 3px;
+            padding: 1px;
             vertical-align: top;
             border-top: 0;
         }
@@ -535,6 +570,153 @@
 
 @section('script')
     <script>
+        $(function(){
+            $(".nName").css({"display":"none"});  // for nick name
+            $(".tname").css({"display":"block"});  // for name
+            $(".tfname").css({"display":"none"}); // for farther name
+            $(".tmname").css({"display":"none"}); // for mother name
+            $(".tcname").css({"display":"block"}); // for class name
+            $(".tsname").css({"display":"block"}); // for section name
+            $(".trname").css({"display":"block"}); // for roll name
+            $(".tgname").css({"display":"block"}); // for group name
+            $(".tbname").css({"display":"block"});   // for blood
+            $(".tpname").css({"display":"none"}); // for phone
+            $(".tdname").css({"display":"none"});  // for department
+            $(".tdobname").css({"display":"none"});  // for dob
+            $(".taname").css({"display":"none"}); // for admission
+        });
+        //nick name
+        $(document).on('click','.nname',function(){
+            var nName = $(this);
+            if (nName.is (':checked'))
+            {
+                $(".nName").css({"display":"block"})
+            }else{
+                $(".nName").css({"display":"none"})
+            }
+        });
+        //full name
+        $(document).on('click','.full-name',function(){
+            var tname = $(this);
+            if (tname.is (':checked'))
+            {
+                $(".tname").css({"display":"table-row"})
+            }else{
+                $(".tname").css({"display":"none"})
+            }
+        });
+        //father name
+        $(document).on('click','.fname',function(){
+            var tfname = $(this);
+            if (tfname.is (':checked'))
+            {
+                $(".tfname").css({"display":"table-row"})
+            }else{
+                $(".tfname").css({"display":"none"})
+            }
+        });
+        //mother name
+        $(document).on('click','.mname',function(){
+            var tmname = $(this);
+            if (tmname.is (':checked'))
+            {
+                $(".tmname").css({"display":"table-row"})
+            }else{
+                $(".tmname").css({"display":"none"})
+            }
+        });
+        //class name
+        $(document).on('click','.cname',function(){
+            var tcname = $(this);
+            if (tcname.is (':checked'))
+            {
+                $(".tcname").css({"display":"table-row"})
+            }else{
+                $(".tcname").css({"display":"none"})
+            }
+        });
+        //section name
+        $(document).on('click','.sname',function(){
+            var tsname = $(this);
+            if (tsname.is (':checked'))
+            {
+                $(".tsname").css({"display":"table-row"})
+            }else{
+                $(".tsname").css({"display":"none"})
+            }
+        });
+        //roll name
+        $(document).on('click','.rname',function(){
+            var trname = $(this);
+            if (trname.is (':checked'))
+            {
+                $(".trname").css({"display":"table-row"})
+            }else{
+                $(".trname").css({"display":"none"})
+            }
+        });
+        //group name
+        $(document).on('click','.gname',function(){
+            var tgname = $(this);
+            if (tgname.is (':checked'))
+            {
+                $(".tgname").css({"display":"table-row"})
+            }else{
+                $(".tgname").css({"display":"none"})
+            }
+        });
+        //blood name
+        $(document).on('click','.bname',function(){
+            var tbname = $(this);
+            if (tbname.is (':checked'))
+            {
+                $(".tbname").css({"display":"table-row"})
+            }else{
+                $(".tbname").css({"display":"none"})
+            }
+        });
+        //phone name
+        $(document).on('click','.pname',function(){
+            var tpname = $(this);
+            if (tpname.is (':checked'))
+            {
+                $(".tpname").css({"display":"table-row"})
+            }else{
+                $(".tpname").css({"display":"none"})
+            }
+        });
+        //dept name
+        $(document).on('click','.dname',function(){
+            var tdname = $(this);
+            if (tdname.is (':checked'))
+            {
+                $(".tdname").css({"display":"table-row"})
+            }else{
+                $(".tdname").css({"display":"none"})
+            }
+        });
+        //dop name
+        $(document).on('click','.dobname',function(){
+            var tdobname = $(this);
+            if (tdobname.is (':checked'))
+            {
+                $(".tdobname").css({"display":"table-row"})
+            }else{
+                $(".tdobname").css({"display":"none"})
+            }
+        });
+        //admission name
+        $(document).on('click','.aname',function(){
+            var taname = $(this);
+            if (taname.is (':checked'))
+            {
+                $(".taname").css({"display":"table-row"})
+            }else{
+                $(".taname").css({"display":"none"})
+            }
+        });
+
+
 
         $("body").click(function () {
             var bghf = $("#bghf").val();

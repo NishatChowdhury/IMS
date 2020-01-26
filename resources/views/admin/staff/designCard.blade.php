@@ -502,15 +502,15 @@
     <script>
         $(function(){
             $(".cname").css({"display":"none"});  // for nick name
-            $(".tname").css({"display":"none"});  // for name
+            $(".tname").css({"display":"block"});  // for name
             $(".tfname").css({"display":"none"}); // for farther name
             $(".tmname").css({"display":"none"}); // for mother name
             $(".tdob").css({"display":"none"});   // for dob
-            $(".tblood").css({"display":"none"}); // for blood
-            $(".tphone").css({"display":"none"}); // for phone
+            $(".tblood").css({"display":"block"}); // for blood
+            $(".tphone").css({"display":"block"}); // for phone
             $(".tdept").css({"display":"none"});  // for department
-            $(".tdgtn").css({"display":"none"});  // for designation
-            $(".tjoindate").css({"display":"none"}); // for joining
+            $(".tdgtn").css({"display":"block"});  // for designation
+            $(".tjoindate").css({"display":"block"}); // for joining
         });
         //nick name
         $(document).on('click','.nname',function(){
