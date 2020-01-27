@@ -4,11 +4,12 @@
     }
     .card{
         float: left !important;
+        display: block !important;
+        min-width: 100%;
     }
     .page-break{
         overflow: visible;
         page-break-after: always !important;
         page-break-before: always !important;
     }
-
 }

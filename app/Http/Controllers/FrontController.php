@@ -6,7 +6,6 @@ use App\Album;
 use App\ExamResult;
 use App\Gallery;
 use App\GalleryCategory;
-use App\ImportantLink;
 use App\Mark;
 use App\Notice;
 use App\NoticeCategory;
@@ -17,7 +16,7 @@ use App\Staff;
 use App\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use mysql_xdevapi\Result;
+use Illuminate\Support\Facades\Artisan;
 
 class FrontController extends Controller
 {
@@ -94,6 +93,7 @@ class FrontController extends Controller
         $content = Page::query()->where('name','president message')->first();
         return view('front.pages.president',compact('content'));
     }
+
 //Institute -> infrastructure ---Start
     public function building_room()
     {
@@ -118,6 +118,12 @@ class FrontController extends Controller
         $content = Page::query()->where('name','hotel')->first();
         return view('front.pages.hostel',compact('content'));
     }
+
+    public function land_information()
+    {
+        $content = Page::query()->where('name','land information')->first();
+        return view('front.pages.land-information',compact('content'));
+    }
 //Institute -> infrastructure ---Start
 
 //Institute -> Academic ---START
@@ -136,12 +142,40 @@ class FrontController extends Controller
         $content = Page::query()->where('name','syllabus')->first();
         return view('front.pages.syllabus',compact('content'));
     }
+    public function diary()
+    {
+        $content = Page::query()->where('name','diary')->first();
+        return view('front.pages.diary',compact('content'));
+    }
     public function performance()
     {
         $content = Page::query()->where('name','performance')->first();
         return view('front.pages.performance',compact('content'));
     }
+    public function holiday()
+    {
+        $content = Page::query()->where('name','annual holiday')->first();
+        return view('front.pages.annual-holiday',compact('content'));
+    }
 //Institute -> Academic ---END
+
+//Institute -> Digital Campus --START
+    public function multimedia_classroom()
+    {
+        $content = Page::query()->where('name','multimedia class room')->first();
+        return view('front.pages.multimedia-class-room',compact('content'));
+    }
+    public function computer_lab()
+    {
+        $content = Page::query()->where('name','computer lab')->first();
+        return view('front.pages.computer-lab',compact('content'));
+    }
+    public function science_lab()
+    {
+        $content = Page::query()->where('name','science lab')->first();
+        return view('front.pages.science-lab',compact('content'));
+    }
+//Institute -> Digital Campus ---END
 
 //TEAM -> --START
     public function managing_committee()
@@ -160,6 +194,21 @@ class FrontController extends Controller
         $content = Page::query()->where('name','staff')->first();
         $staffs = Staff::query()->where('staff_type_id',1)->get();
         return view('front.pages.staff',compact('content','staffs'));
+    }
+    public function wapc()
+    {
+        $content = Page::query()->where('name','wapc')->first();
+        return view('front.pages.wapc',compact('content'));
+    }
+    public function tswt()
+    {
+        $content = Page::query()->where('name','teacher staff welfare trust')->first();
+        return view('front.pages.tswt',compact('content'));
+    }
+    public function tci()
+    {
+        $content = Page::query()->where('name','teacher council information')->first();
+        return view('front.pages.teacher-council-information',compact('content'));
     }
 //TEAM -> --END
 
@@ -211,6 +260,39 @@ class FrontController extends Controller
         return view('front.pages.admission',compact('content'));
     }
 //RESULT -> --END
+
+//INFORMATION -> --START
+    public function sports_n_culture_program()
+    {
+        $content = Page::query()->where('name','sports and cultural program')->first();
+        return view('front.pages.sports-n-culture-program',compact('content'));
+    }
+    public function center_information()
+    {
+        $content = Page::query()->where('name','center information')->first();
+        return view('front.pages.center-information',compact('content'));
+    }
+    public function scholarship_info()
+    {
+        $content = Page::query()->where('name','scholarship info')->first();
+        return view('front.pages.scholarship-info',compact('content'));
+    }
+    public function bncc()
+    {
+        $content = Page::query()->where('name','bncc')->first();
+        return view('front.pages.bncc',compact('content'));
+    }
+    public function scout()
+    {
+        $content = Page::query()->where('name','scouts')->first();
+        return view('front.pages.scouts',compact('content'));
+    }
+    public function tender()
+    {
+        $content = Page::query()->where('name','tender')->first();
+        return view('front.pages.tender',compact('content'));
+    }
+//INFORMATION -> --END
 
 //ATTENDANCE -> --START
     public function attendance_summery()
@@ -292,4 +374,22 @@ class FrontController extends Controller
         $images = Gallery::query()->where('album_id',$id)->get();
         return view('front.pages.album',compact('images','album'));
     }
+    //Gallery -> END
+
+    // Download Start
+    public function download()
+    {
+        $content = Page::query()->where('name','download')->first();
+        return view('front.pages.download',compact('content'));
+    }
+    // Download ENd
+
+    // Contact Start
+    public function contact()
+    {
+        $content = Page::query()->where('name','contacts')->first();
+        return view('front.pages.contacts',compact('content'));
+    }
+    // Contact ENd
 }
+

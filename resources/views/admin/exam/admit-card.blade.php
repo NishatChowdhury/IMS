@@ -34,6 +34,13 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
+                                    <label for="">Examination</label>
+                                    <div class="input-group">
+                                        {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
+                                        {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Select Exam','required']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <label for="">Student ID</label>
                                     <div class="input-group">
                                         {{--<input class="form-control" placeholder="Student ID" name="studentId" type="text">--}}
@@ -88,32 +95,36 @@
                         @foreach($students as $student)
                             <div class="card-body page-break">
                                 <div class="row" style="padding-bottom: 50px;">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="logo" style="float: left">
                                             <img style="width: 100px; height: auto;" src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
+                                        <div class="scl-dev text-center">
+                                            <h4 style="color: #879BE8;">{{ siteConfig('name') }}</h4>
+                                            <p>{{ siteConfig('address') }}</p>
+                                        </div>
                                         <div class="admit-dec" style="text-align: center; color: #00cc66;">
                                             <h3> <span style="text-transform: uppercase;"> Admit Card </span> <br>
-                                                Annual Exam 2019
+                                                {{ $exam->name }}
                                             </h3>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="stuimg" style="float: right" >
-                                            <img style="width: 100px; height: auto;" src="{{ asset('assets/img/students') }}/{{ $student->session_id }}/{{ $student->class_id }}/{{ $student->studentId }}.jpg" alt="">
+                                            <img style="width: 100px; height: auto;" src="{{ asset('assets/img/students') }}/{{ $student->studentId }}.jpg" alt="">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="scl-dev">
-                                            <h4 style="color: #879BE8;">{{ siteConfig('name') }}</h4>
-                                            <p>{{ siteConfig('address') }}</p>
-                                        </div>
-                                    </div>
+                                    {{--<div class="col-md-8">--}}
+                                        {{--<div class="scl-dev">--}}
+                                            {{--<h4 style="color: #879BE8;">{{ siteConfig('name') }}</h4>--}}
+                                            {{--<p>{{ siteConfig('address') }}</p>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                     <div class="col-md-4">
                                         <div class="stu-dec">
                                             {{--<h4 style="color: #879BE8;">Muhaimin Sarwar rahi</h4>--}}
@@ -132,7 +143,7 @@
                                     </tr>
                                     <tr>
                                         <th>Class :</th>
-                                        <td> {{ $student->academicClass->name }}</td>
+                                        <td> {{ $student->classes->name }} - {{ $student->section->name ?? '' }}{{ $student->group->name ?? '' }}</td>
                                         <th>Rank :</th>
                                         <td> {{ $student->rank }}</td>
                                     </tr>
@@ -161,56 +172,30 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if($student->class_id == 1)
-                                        @include('admin.exam.routine.nursery')
-                                    @endif
-                                    @if($student->class_id == 2)
-                                        @include('admin.exam.routine.kg')
-                                    @endif
-                                    @if($student->class_id == 3)
-                                        @include('admin.exam.routine.1')
-                                    @endif
-                                    @if($student->class_id == 4)
-                                        @include('admin.exam.routine.2')
-                                    @endif
-                                    @if($student->class_id == 5)
-                                        @include('admin.exam.routine.3')
-                                    @endif
-                                    @if($student->class_id == 6)
-                                        @include('admin.exam.routine.4')
-                                    @endif
-                                    {{--@if($student->class_id == 7)--}}
-                                    {{--@include('admin.exam.routine.5')--}}
-                                    {{--@endif--}}
-                                    @if($student->class_id == 8)
-                                        @include('admin.exam.routine.6')
-                                    @endif
-                                    @if($student->class_id == 9)
-                                        @include('admin.exam.routine.7')
-                                    @endif
-                                    {{--@if($student->class_id == 10)--}}
-                                    {{--@include('admin.exam.routine.8')--}}
-                                    {{--@endif--}}
-                                    @if($student->class_id == 11)
-                                        @include('admin.exam.routine.9')
-                                    @endif
-                                    {{--@if($student->class_id == 12)--}}
-                                    {{--@include('admin.exam.routine.10')--}}
-                                    {{--@endif--}}
-                                    {{--<tr>--}}
-                                    {{--<td>English</td>--}}
-                                    {{--<td>27-11-19</td>--}}
-                                    {{--<td>10:00 AM</td>--}}
-                                    {{--<td>01:00 PM</td>--}}
-                                    {{--<td>100</td>--}}
-                                    {{--</tr>--}}
+                                    @foreach($schedules as $schedule)
+                                        <tr>
+                                            <td>{{ $schedule->subject->name }}</td>
+                                            <td>{{ $schedule->date }}</td>
+                                            <td>{{ $schedule->start }}</td>
+                                            <td>{{ $schedule->end }}</td>
+                                            <td>{{ $schedule->objective_full + $schedule->written_full + $schedule->practical_full + $schedule->viva_full }}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
+                                <div class="card-footer" style="margin-bottom: 10px;">
+                                    {{--<h4>Notes & Information</h4>--}}
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>বিঃদ্রঃ অনিবার্য কারণ বশতঃ পরীক্ষার সময়সূচী পরিবর্তন সাধনের ব্যাপারে কর্তৃপক্ষের সিদ্ধান্ত চুড়ান্ত। </p>
+                                        </div>
+                                        <div class="col-md-3" style="margin-top: 50px;border-top: 1px solid #333;text-align: center;font-weight: bold;">
+                                            Principal Signature
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer" style="margin-bottom: 10px;">
-                                {{--<h4>Notes & Information</h4>--}}
-                                <p>বিঃদ্রঃ অনিবার্য কারণ বশতঃ পরীক্ষার সময়সূচী পরিবর্তন সাধনের ব্যাপারে কর্তৃপক্ষের সিদ্ধান্ত চুড়ান্ত। </p>
-                            </div>
+
                         @endforeach
                     </div>
                 </div>
