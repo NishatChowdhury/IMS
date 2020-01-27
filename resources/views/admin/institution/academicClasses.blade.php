@@ -144,23 +144,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Class Name']) !!}
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="form-group row">--}}
+                        {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>--}}
+                        {{--<div class="col-sm-9">--}}
+                            {{--<div class="input-group">--}}
+                                {{--{!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Class Name']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::text('numeric_class', null, ['class'=>'form-control', 'placeholder'=>'E.g. 1/2/3']) !!}
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="form-group row">--}}
+                        {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>--}}
+                        {{--<div class="col-sm-9">--}}
+                            {{--<div class="input-group">--}}
+                                {{--{!! Form::text('numeric_class', null, ['class'=>'form-control', 'placeholder'=>'E.g. 1/2/3']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
 
                     <div style="float: right">
