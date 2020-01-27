@@ -122,7 +122,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{ $student->academicClass ? $student->academicClass->name : ''}}
+                                        {{ $student->classes->name ?? '' }}
                                         {{ $student->section ? $student->section->name : ''}}
                                         {{ $student->group ? $student->group->name : ''}}
                                     </td>

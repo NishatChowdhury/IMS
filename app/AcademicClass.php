@@ -8,15 +8,35 @@ class AcademicClass extends Model
 {
     protected $table = 'academic_classes';
 
-    protected $fillable = ['name', 'numeric_class'];
+    protected $fillable = ['session_id','class_id','section_id','group_id'];
+
+    public function sessions()
+    {
+        return $this->belongsTo(Session::class);
+    }
+
+    public function academicClasses()
+    {
+        return $this->belongsTo(Classes::class,'class_id');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 
     public function students()
     {
-        return $this->hasMany(Student::class,'class_id');
+        return $this->hasMany(Student::class,'academic_class_id');
     }
 
     public function subjects()
     {
-        return $this->hasMany(AssignSubject::class,'class_id');
+        return $this->hasMany(AssignSubject::class,'academic_class_id');
     }
 }

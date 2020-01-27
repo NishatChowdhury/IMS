@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Institution Mgnt | Classes')
+@section('title','Institution Mgnt | Academic Classes')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
                                             <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>1000</p>
+                                            <p>{{ $classes->count() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -68,11 +68,11 @@
                                 </thead>
                                 <tbody>
                                 @php($i = 0)
-                                @foreach($classes ?? '' as $class)
+                                @foreach($classes as $class)
                                     <tr>
                                         <td>{{ $class->id }}</td>
-                                        <td>{{ $class->name }}</td>
-                                        <td>{{ $class->numeric_class }}</td>
+                                        <td>{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</td>
+                                        <td>{{ $class->academicClasses->numeric_class ?? '' }}</td>
                                         <td>{{ $class->students->count() }}</td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td></td>
@@ -110,8 +110,40 @@
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['url'=>'institution/store-class', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'InstitutionController@storeAcademicClass', 'method'=>'post']) !!}
 
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::select('session_id',$repository->sessions(), null, ['class'=>'form-control', 'placeholder'=>'Select Session','required']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::select('class_id',$repository->classes(), null, ['class'=>'form-control', 'placeholder'=>'Select Class','required']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Section</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::select('section_id',$repository->sections(), null, ['class'=>'form-control', 'placeholder'=>'Select Section']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Group</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::select('group_id',$repository->groups(), null, ['class'=>'form-control', 'placeholder'=>'Select Group']) !!}
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
                         <div class="col-sm-9">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\BloodGroup;
+use App\Classes;
 use App\Country;
 use App\Division;
 use App\Gender;

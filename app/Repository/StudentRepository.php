@@ -12,6 +12,7 @@ namespace App\Repository;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\BloodGroup;
+use App\Classes;
 use App\Country;
 use App\Division;
 use App\Gender;
@@ -29,7 +30,7 @@ class StudentRepository
 
     public function classes()
     {
-        return AcademicClass::all()->pluck('name','id');
+        return Classes::all()->pluck('name','id');
     }
 
     public function sections()

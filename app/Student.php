@@ -9,6 +9,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'studentId',
+        'academic_class_id',
         'session_id',
         'class_id',
         'section_id',
@@ -39,6 +40,11 @@ class Student extends Model
     public function academicClass()
     {
         return $this->belongsTo(AcademicClass::class,'class_id');
+    }
+
+    public function classes()
+    {
+        return $this->belongsTo(Classes::class,'class_id');
     }
 
     public function section()

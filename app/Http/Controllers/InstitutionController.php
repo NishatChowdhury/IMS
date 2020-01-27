@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\AcademicClass;
 use App\AssignSubject;
+use App\Classes;
 use App\Group;
+use App\Repository\StudentRepository;
 use App\Section;
 use App\Session;
 use App\SessionClass;
@@ -15,9 +17,15 @@ use Illuminate\Support\Facades\Validator;
 
 class InstitutionController extends Controller
 {
-    public function __construct()
+    /**
+     * @var StudentRepository
+     */
+    private $repository;
+
+    public function __construct(StudentRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     public function academicyear()
@@ -65,6 +73,16 @@ class InstitutionController extends Controller
          $session = Session::query()->findOrFail($id);
          $session->delete();
          return redirect('institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
+    }
+
+    public function sessionStatus($id){
+         $session = Session::query()->findOrFail($id);
+         if($session->active == 0){
+             $session->update(['active'=>1]);
+         }else{
+             $session->update(['active'=>0]);
+         }
+         return redirect('institution/academicyear')->with('success', 'Status change successfully!');
     }
 
     public function section_group()
@@ -121,32 +139,45 @@ class InstitutionController extends Controller
     /*Institute >> Section-Groups End*/
 
 
-    public function classes()
+    public function academicClasses()
     {
         $classes = AcademicClass::all();
+        $repository = $this->repository;
+        return view ('admin.institution.academicClasses', compact('classes','repository'));
+    }
+
+    public function storeAcademicClass(Request $req){
+        //dd($req->all());
+        AcademicClass::query()->create($req->all());
+        return redirect('institution/academicClass');
+    }
+
+    public function classes()
+    {
+        $classes = Classes::all();
 
         return view ('admin.institution.classes', compact('classes'));
     }
 
     public function store_class(Request $req){
         //dd($req->all());
-        AcademicClass::query()->create($req->all());
+        Classes::query()->create($req->all());
         return redirect('institution/class');
     }
 
     public function edit_SessionClass(Request $req){
-        $class = AcademicClass::findOrFail($req->id);
+        $class = Classes::query()->findOrFail($req->id);
         return $class;
     }
 
     public function update_SessionClass(Request $req){
-        $class = AcademicClass::findOrFail($req->id);
+        $class = Classes::query()->findOrFail($req->id);
         $class->update($req->all());
         return redirect(route('institution.classes'))->with('success', 'Class has been Updated');
     }
 
     public function delete_SessionClass($id){
-        $class = AcademicClass::findOrFail($id);
+        $class = Classes::query()->findOrFail($id);
         $class->delete();
         return redirect('institution/class')->with('success', 'Class has been Deleted');
     }
@@ -187,7 +218,7 @@ class InstitutionController extends Controller
         $classes = AcademicClass::all()->pluck('name', 'id');
         $subjects = Subject::all()->pluck('name', 'id');
         $staffs = Staff::all()->pluck('name','id');
-        $assignedSubjects = AssignSubject::query()->where('class_id',$classId)->get();
+        $assignedSubjects = AssignSubject::query()->where('academic_class_id',$classId)->get();
         return view ('admin.institution.classsubjects', compact('classes', 'subjects','staffs','assignedSubjects','class'));
     }
 

@@ -8,7 +8,7 @@ class AssignSubject extends Model
 {
     protected $table = 'assign_subjects';
 
-    protected $fillable= ['class_id', 'subject_id', 'teacher_id', 'is_optional', 'objective_pass', 'written_pass', 'practical_pass', 'viva_pass'];
+    protected $fillable= ['academic_class_id','subject_id', 'teacher_id', 'is_optional', 'objective_pass', 'written_pass', 'practical_pass', 'viva_pass'];
 
     public function subject(){
         return $this->belongsTo(Subject::class);

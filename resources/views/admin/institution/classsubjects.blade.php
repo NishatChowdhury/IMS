@@ -33,8 +33,8 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">{{ $class->name }}</h5>
-                                            <p>{{ $class->short_name }}</p>
+                                            <h5 style="margin-bottom: 0px;">{{ $class->academicClasses->name }} - {{ $class->group->name }}</h5>
+                                            <p>{{ $class->academicClasses->short_name }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,11 @@
                                         </td>
                                         <td>{{$sub->is_optional ? 'YES' : 'NO'}}</td>
                                         <td></td>
-                                        <td></td>
+                                        <td>
+                                            {{ Form::open(['action'=>['InstitutionController@unAssignSubject',$sub->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                            {{ Form::close() }}
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -131,7 +135,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Class*</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    {!! Form::select('class_id', $classes, null, ['class'=>'form-control']) !!}
+                                    {!! Form::select('academic_class_id', $classes, $class->id, ['class'=>'form-control','readonly']) !!}
                                 </div>
                             </div>
                         </div>
@@ -266,4 +270,13 @@
         </div>
     </div>
 
+@stop
+
+@section('script')
+    <script>
+        function confirmDelete(){
+            var x = confirm('Are you sure, you want to unmount this subject?');
+            return !!x;
+        }
+    </script>
 @stop

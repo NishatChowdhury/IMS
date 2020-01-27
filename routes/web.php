@@ -1,5 +1,6 @@
 <?php
 
+use App\AcademicClass;
 use App\Grade;
 use App\Student;
 use Illuminate\Support\Facades\Artisan;
@@ -214,6 +215,8 @@ Route::get('institution/{id}/delete-group', 'InstitutionController@delete_grp');
 //Session-Class
 Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
 Route::post('institution/store-class','InstitutionController@store_class');
+Route::get('institution/academic-class','InstitutionController@academicClasses')->name('institution.academicClasses');
+Route::post('institution/store-academic-class','InstitutionController@storeAcademicClass');
 Route::post('institution/edit-SessionClass','InstitutionController@edit_SessionClass');
 Route::post('institution/update-SessionClass','InstitutionController@update_SessionClass');
 Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
@@ -295,6 +298,8 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 // End Important Links
 
 /** Route for Apps start */
+Route::post('api/login','AndroidController@login');
+
 Route::post('api/attendance','AndroidController@attendance');
 Route::post('api/about','AndroidController@about');
 Route::post('api/president','AndroidController@president');
@@ -686,5 +691,19 @@ Route::get('calc-final-result',function(){
     }
     /* update exam rank end */
 
+});
+
+Route::get('sync-academic-class-id',function(){
+    $students = Student::query()->get();
+    foreach($students as $student){
+        $id = AcademicClass::query()
+            ->where('session_id',$student->session_id)
+            ->where('class_id',$student->class_id)
+            ->where('section_id',$student->section_id)
+            ->where('group_id',$student->group_id)
+            ->first();
+
+        $student->update(['academic_class_id'=>$id->id]);
+    }
 });
 

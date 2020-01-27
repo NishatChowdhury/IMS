@@ -40,7 +40,6 @@
                                 <div class="col">
                                     <label for="">Date*</label>
                                     <div class="input-group">
-{{--                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
                                         {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}
                                     </div>
                                 </div>

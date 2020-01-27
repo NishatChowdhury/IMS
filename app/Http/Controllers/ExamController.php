@@ -35,7 +35,7 @@ class ExamController extends Controller
     public function gradesystem()
     {
         $gradings = Grade::all();
-       return view ('admin.exam.gradesystem', compact('gradings'));
+        return view ('admin.exam.gradesystem', compact('gradings'));
     }
 
     public function store_grade(Request $request){
@@ -79,6 +79,7 @@ class ExamController extends Controller
 
     public function schedule(Request $request,$examId){
         //dd($examId);
+        //dd('deprecated');
         $session_id = $request->session_id;
         //$exam_id = $request->exam_id;
         $class_id = $request->class_id;
@@ -86,7 +87,7 @@ class ExamController extends Controller
         $subjects = AssignSubject::query()->where('class_id', $class_id)->get();
         $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
 
-        $schedules = ExamSchedule::all();
+        $schedules = ExamSchedule::query()->where('exam_id',$examId)->get();
         $sessions = Session::all()->pluck('year', 'id');
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
@@ -94,7 +95,7 @@ class ExamController extends Controller
     }
 
     public function store_schedule(Request $request){
-        //dd($request->all());
+        dd('deprecated');
         $subjects = $request->subject_id;
 
         foreach($subjects as $idx => $sub){
@@ -136,6 +137,7 @@ class ExamController extends Controller
             $students = [];
         }else{
             $s = $student->newQuery();
+            $s->whereIn('session_id',activeYear())->where('status',1);
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
                 $s->where('studentId',$studentId);
@@ -158,10 +160,21 @@ class ExamController extends Controller
             }
 
             $students = $s->get();
+            $exam = Exam::query()->findOrFail($request->get('exam_id'));
+            $academicClass = AcademicClass::query()
+                ->where('class_id',$request->get('class_id'))
+                ->where('section_id',$request->get('section_id'))
+                ->where('group_id',$request->get('group_id'))
+                ->first();
+            $schedules = ExamSchedule::query()
+                ->where('exam_id',$request->get('exam_id'))
+                ->where('academic_class_id',$academicClass->id)
+                ->get();
         }
 
+
         $repository = $this->repository;
-        return view('admin.exam.admit-card',compact('repository','students'));
+        return view('admin.exam.admit-card',compact('repository','students','exam','schedules'));
     }
 
     public function seatAllocate(Request $request)
@@ -174,7 +187,7 @@ class ExamController extends Controller
         $students = Student::query()
             ->where('session_id',2)
             ->where('class_id',9)
-           // ->where('group_id',1)
+            // ->where('group_id',1)
             ->get();
         return view('admin.exam.marks',compact('students'));
     }
@@ -230,13 +243,29 @@ class ExamController extends Controller
                 $data['objective'] = (int)$col[1];
                 $data['written'] = (int)$col[2];
                 $data['practical'] = (int)$col[3];
-                //$data['viva'] = (int)$col[14];
+                $data['viva'] = 0;
 
-                $total = (int)$col[1] + (int)$col[2] + (int)$col[3];
+                $passMark = ExamSchedule::query()
+                    ->where('session_id',$data['session_id'])
+                    ->where('exam_id',$data['exam_id'])
+                    ->where('class_id',$data['class_id'])
+                    ->where('subject_id',$data['subject_id'])
+                    ->first();
 
-                $data['total_mark'] = $total;
-                $data['gpa'] = $this->gpa(100,$total,$data['grade_id']);
-                $data['grade'] = $this->grade(100,$total,$data['grade_id']);
+                if($passMark->objective_pass > $data['objective'] || $passMark->written_pass > $data['written'] || $passMark->practical_pass > $data['practical'] || $passMark->viva_pass > $data['viva']){
+                    $total = 0;
+
+                    $data['total_mark'] = $total;
+                    $data['gpa'] = 0;
+                    $data['grade'] = 'F';
+                }else{
+                    $total = (int)$col[1] + (int)$col[2] + (int)$col[3];
+
+                    $data['total_mark'] = $total;
+                    $data['gpa'] = $this->gpa(100,$total,$data['grade_id']);
+                    $data['grade'] = $this->grade(100,$total,$data['grade_id']);
+                }
+
 
                 if($isExist){
                     $isExist->update($data);

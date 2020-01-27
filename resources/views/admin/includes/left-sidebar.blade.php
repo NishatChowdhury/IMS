@@ -162,7 +162,14 @@
                     <li class="nav-item">
                         <a href="{{route('institution.academicyear')}}" class="nav-link {{ isActive('institution/academicyear') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Academic Year</p>
+                            <p>Sessions</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('institution.academicClasses')}}" class="nav-link {{ isActive('institution/academic-class') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Academic Classes</p>
                         </a>
                     </li>
 
@@ -224,6 +231,12 @@
                         <a href="{{route('exam.gradesystem')}}" class="nav-link {{ isActive('exam/gradesystem') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Grade System </p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('ExamController@admitCard') }}" class="nav-link {{ isActive('exam/admit-card') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Admit Card</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">

@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
-    protected $fillable = ['name', 'combined_exam_id1', 'combined_exam_id2', 'notify'];
+    protected $fillable = ['name','year','start','end','notify'];
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class);
+    }
 }
