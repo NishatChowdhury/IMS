@@ -186,7 +186,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input nname" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input nname" name="nikename" for="nikename" type="checkbox" id="nickname">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Nick Name
                                                     </label>
@@ -194,7 +194,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input full-name" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input full-name" name="fulname" for="fullname" type="checkbox" id="fullname">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Name
                                                     </label>
@@ -202,7 +202,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input fname" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input fname" for="fname" name="fname" type="checkbox" id="fname">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Father
                                                     </label>
@@ -212,7 +212,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input mname" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input mname" type="checkbox" for="mname" name="mname" id="mname">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Mother
                                                     </label>
@@ -220,7 +220,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dob" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input dob" type="checkbox" id="dob" name="dob" for="dob">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Dob
                                                     </label>
@@ -228,7 +228,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input blood" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input blood" type="checkbox" id="blood" for="blood" name="blood">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Blood
                                                     </label>
@@ -238,7 +238,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input phone" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input phone" type="checkbox" id="contact" name="contact" for="contact">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Contact/Phone
                                                     </label>
@@ -246,7 +246,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dept" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input dept" type="checkbox" id="dept" name="department" for="department">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Department
                                                     </label>
@@ -254,7 +254,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dgtn" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input dgtn" type="checkbox" id="designation" name="designation" for="designation">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Designation
                                                     </label>
@@ -264,7 +264,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input joindate" type="checkbox" id="gridCheck">
+                                                    <input class="form-check-input joindate" type="checkbox" id="joining" name="joining" for="joining">
                                                     <label class="form-check-label" for="gridCheck">
                                                         Joining
                                                     </label>
