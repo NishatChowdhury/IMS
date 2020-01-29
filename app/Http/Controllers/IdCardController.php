@@ -65,7 +65,7 @@ class IdCardController extends Controller
     public function staffPdf(Request $request)
     {
 
-
+        //dd($request->all());
         if($request->user == 1){
             $staffs = Staff::query()->where('staff_type_id',1)->get();
         }elseif($request->user == 2){
@@ -76,7 +76,7 @@ class IdCardController extends Controller
         }
 
         $card = $request->except('_token');
-        return view('admin.staff.card',compact('staffs','card'));
+        return view('admin.staff.card-new',compact('staffs','card'));
 
 
 //        $total = DB::table('partial_shipments')

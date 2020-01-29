@@ -186,8 +186,8 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input nname" name="nikename"  type="checkbox" id="nickname">
-                                                    <label class="form-check-label" for="nikename">
+                                                    <input class="form-check-input nname" name="nickname" type="checkbox" id="nickname">
+                                                    <label class="form-check-label" for="nickname">
                                                         Nick Name
                                                     </label>
                                                 </div>
@@ -429,7 +429,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('user',[1=>'Teacher',2=>'Staff',3=>'ALL'],1,['class'=>'form-control','placeholder'=>'Select User','required']) }}
+                                                        {{ Form::select('user',[2=>'Teacher',1=>'Staff',3=>'ALL'],1,['class'=>'form-control','placeholder'=>'Select User','required']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
