@@ -20,6 +20,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\Rule;
 use Symfony\Component\Console\Input\Input;
 
 class StudentController extends Controller
@@ -159,14 +160,8 @@ class StudentController extends Controller
         $this->validate($req,[
             'session_id'=>'required',
             'class_id'=>'required',
-            'rank'=>'required',
             'name'=>'required',
-            //'gender_id'=>'required',
-            'father'=>'required',
-            'mother'=>'required',
-            //'religion_id'=>'required',
-            'address'=>'required',
-            'mobile'=>'required',
+            'mobile'=>'required|unique:students',
             'status'=>'required',
         ],[
 
@@ -209,14 +204,8 @@ class StudentController extends Controller
         $this->validate($req,[
             'session_id'=>'required',
             'class_id'=>'required',
-            'rank'=>'required',
             'name'=>'required',
-            //'gender_id'=>'required',
-            'father'=>'required',
-            'mother'=>'required',
-            //'religion_id'=>'required',
-            'address'=>'required',
-            'mobile'=>'required',
+            'mobile'=>['required',Rule::unique('students')->ignore($student->id)],
             'status'=>'required',
         ],[
 
@@ -304,14 +293,14 @@ class StudentController extends Controller
     public function promotion(Request $request, Student $student)
     {
         if($request->has('class_id')){
-            $s = $student->newQuery()->where('session_id',1);
+            $s = $student->newQuery();
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
                 $s->where('studentId',$studentId);
             }
-            if($request->get('name')){
-                $name = $request->get('name');
-                $s->where('name','like','%'.$name.'%');
+            if($request->get('session_id')){
+                $session = $request->get('session_id');
+                $s->where('session_id',$session);
             }
             if($request->get('class_id')){
                 $class = $request->get('class_id');
