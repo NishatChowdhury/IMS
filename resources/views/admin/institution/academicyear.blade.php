@@ -27,17 +27,17 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
-                                        </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>1000</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="col-md-12">--}}
+                                    {{--<div class="dec-block">--}}
+                                        {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
+                                            {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="dec-block-dec" style="float:left;">--}}
+                                            {{--<h5 style="margin-bottom: 0px;">Total Found</h5>--}}
+                                            {{--<p>{{ $sessions->count() }}</p>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                             </div>
                             <div class="row">
                                 <div>
@@ -53,9 +53,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Academic Year Name</th>
-                                    <th>Start Date</th>
-                                    <th>End date</th>
-                                    <th>Descriptions</th>
+                                    <th>Duration</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -64,20 +64,28 @@
                                     <tr>
                                         <td>{{$session->id}}</td>
                                         <td>{{$session->year}}</td>
-                                        <td>{{$session->start}}</td>
-                                        <td>{{$session->end}}</td>
+                                        <td>{{$session->start}} - {{ $session->end }}</td>
                                         <td>{{$session->description}}</td>
                                         <td>
+                                            {{ Form::model($session,['action'=>['InstitutionController@sessionStatus',$session->id],'method'=>'patch','onsubmit'=>'return statusChange()']) }}
+                                            @if($session->active == 0)
+                                                <button class="btn btn-danger btn-sm">Inactive</button>
+                                            @else
+                                                <button class="btn btn-success btn-sm">Active</button>
+                                            @endif
+                                            {{ Form::close() }}
+                                        </td>
+                                        <td>
                                             {{ Form::open(['action'=>['InstitutionController@delete_session',$session->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a type="button" class="btn btn-info btn-sm edit_session" value='{{$session->id}}'
-                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>Edit
+                                            <a type="button" class="btn btn-warning btn-sm edit_session" value='{{$session->id}}'
+                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                             </a>
 
                                             {{--<a type="button" href="{{action('InstitutionController@delete_session', $session->id)}}"--}}
-                                               {{--class="btn btn-danger btn-sm delete_session"--}}
-                                               {{--style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete--}}
+                                            {{--class="btn btn-danger btn-sm delete_session"--}}
+                                            {{--style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete--}}
                                             {{--</a>--}}
-<button type="submit" class="btn btn-danger btn-sm" disabled="">Danger</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" disabled=""><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>web
@@ -104,7 +112,7 @@
                 <div class="modal-body">
                     {!! Form::open(['url'=>'institution/store-session', 'method'=>'post']) !!}
                     <div class="form-group row">
-                                {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::text('year', null, array_merge(['class' => 'form-control', 'placeholder'=>'ex-2017-2019'])) !!}
@@ -112,7 +120,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                                {!!  Form::label('Start Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('Start Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker'])) !!}
@@ -123,7 +131,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                                {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::text('end', null, array_merge(['class' => 'form-control datePicker'])) !!}
@@ -134,7 +142,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                            {!!  Form::label('Description', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('Description', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::textarea('description', null, array_merge(['class' => 'form-control','rows'=>'3'])) !!}
@@ -167,7 +175,7 @@
                     {!! Form::open(['url'=>'institution/update-session', 'method'=>'post']) !!}
                     {!! Form::hidden('session_id', null,['id'=>'session_id']) !!}
                     <div class="form-group row">
-                                {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::text('year', null, array_merge(['class' => 'form-control', 'id'=>'year', 'placeholder'=>'ex-2017-2019'])) !!}
@@ -186,7 +194,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                                {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('End Date', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::text('end', null, array_merge(['class' => 'form-control datePicker','id'=>'end'])) !!}
@@ -197,7 +205,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                                {!!  Form::label('Description', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
+                        {!!  Form::label('Description', null, ['class' => 'control-form-label, col-sm-2','style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {!!  Form::textarea('description', null, array_merge(['class' => 'form-control','id'=>'description','rows'=>'3'])) !!}
@@ -261,6 +269,11 @@
                     format: 'yyyy-mm-dd'
                 })
         });
+
+        function statusChange(){
+            var x = confirm('Are you sure, you want to change status?');
+            return !!x;
+        }
 
     </script>
 @stop
