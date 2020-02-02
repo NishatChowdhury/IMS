@@ -166,7 +166,16 @@ class StudentController extends Controller
         ],[
 
         ]);
+
         //dd($req->all());
+        $academicClassId = AcademicClass::query()
+            ->where('session_id',$req->session_id)
+            ->where('class_id',$req->class_id)
+            ->where('section_id',$req->section_id)
+            ->where('group_id',$req->group_id)
+            ->first();
+        $req['academic_class_id'] = $academicClassId;
+
         $data = $req->all();
         if ($req->hasFile('pic')){
             $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
@@ -210,7 +219,16 @@ class StudentController extends Controller
         ],[
 
         ]);
+
         //dd($req->all());
+        $academicClassId = AcademicClass::query()
+            ->where('session_id',$req->session_id)
+            ->where('class_id',$req->class_id)
+            ->where('section_id',$req->section_id)
+            ->where('group_id',$req->group_id)
+            ->first();
+        $req['academic_class_id'] = $academicClassId;
+
         $data = $req->all();
         if ($req->hasFile('pic')){
             $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
