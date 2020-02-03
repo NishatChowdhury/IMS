@@ -66,8 +66,8 @@ class StudentRepository
     public function optionals($class)
     {
         $subjects = AssignSubject::query()
-            ->where('class_id',$class)
-            ->where('is_optional',1)
+            ->where('academic_class_id',$class)
+            //->where('is_optional',1)
             ->pluck('subject_id');
 
         return Subject::query()->whereIn('id',$subjects)->pluck('name','id');

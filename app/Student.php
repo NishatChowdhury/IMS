@@ -39,7 +39,7 @@ class Student extends Model
 
     public function academicClass()
     {
-        return $this->belongsTo(AcademicClass::class,'class_id');
+        return $this->belongsTo(AcademicClass::class,'academic_class_id');
     }
 
     public function classes()

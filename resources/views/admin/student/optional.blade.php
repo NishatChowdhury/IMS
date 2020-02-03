@@ -117,14 +117,13 @@
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->studentId }}</td>
                                     <td>
-                                        {{ $student->academicClass ? $student->academicClass->name : ''}}
-                                        {{ $student->section ? $student->section->name : ''}}
-                                        {{ $student->group ? $student->group->name : ''}}
+                                        {{ $student->academicClass->academicClasses->name ?? '' }}
+                                        {{ $student->section ? $student->section->name : '' }}
+                                        {{ $student->group ? $student->group->name : '' }}
                                     </td>
                                     <td>
                                         {{ Form::hidden('student_id[]',$student->id) }}
-                                        {{ Form::select('subject_id[]',$repository->optionals($student->class_id),$student->subject_id,['class'=>'form-control sub']) }}
-
+                                        {{ Form::select('subject_id[]',$repository->optionals($student->academic_class_id),$student->subject_id,['class'=>'form-control sub']) }}
                                     </td>
                                 </tr>
                             @endforeach
