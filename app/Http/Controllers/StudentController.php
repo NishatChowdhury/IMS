@@ -214,7 +214,7 @@ class StudentController extends Controller
             'session_id'=>'required',
             'class_id'=>'required',
             'name'=>'required',
-            'mobile'=>['required',Rule::unique('students')->ignore($student->id)],
+            'mobile'=>'required',
             'status'=>'required',
         ],[
 

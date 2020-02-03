@@ -141,13 +141,12 @@ class InstitutionController extends Controller
 
     public function academicClasses()
     {
-        $classes = AcademicClass::all();
+        $classes = AcademicClass::all()->whereIn('session_id',activeYear());
         $repository = $this->repository;
         return view ('admin.institution.academicClasses', compact('classes','repository'));
     }
 
     public function storeAcademicClass(Request $req){
-        //dd($req->all());
         AcademicClass::query()->create($req->all());
         return redirect('institution/academic-class');
     }
@@ -215,16 +214,42 @@ class InstitutionController extends Controller
     public function classSubjects($classId)
     {
         $class = AcademicClass::query()->findOrFail($classId);
-        $classes = AcademicClass::all()->pluck('name', 'id');
-        $subjects = Subject::all()->pluck('name', 'id');
-        $staffs = Staff::all()->pluck('name','id');
+        //$classes = AcademicClass::all()->pluck('name', 'id');
+        $subjects = Subject::all();
+        //$staffs = Staff::all()->pluck('name','id');
         $assignedSubjects = AssignSubject::query()->where('academic_class_id',$classId)->get();
-        return view ('admin.institution.classsubjects', compact('classes', 'subjects','staffs','assignedSubjects','class'));
+        return view ('admin.institution.classsubjects', compact( 'subjects','assignedSubjects','class'));
     }
 
     public function assign_subject(Request $request){
-        //dd($request->all());
-        AssignSubject::query()->create($request->all());
+        //dd($request->subjects);
+
+        // delete unassigned subjects starts
+        $deletable = AssignSubject::query()
+            ->where('academic_class_id',$request->academic_class_id)
+            ->whereNotIn('subject_id',$request->subjects)
+            ->get();
+        foreach($deletable as $delete){
+            $delete->delete();
+        }
+        // delete unassigned subjects ends
+
+        foreach($request->subjects as $subject){
+            $data['academic_class_id'] = $request->academic_class_id;
+            $data['subject_id'] = $subject;
+
+            $isExist = AssignSubject::query()
+                ->where('academic_class_id',$request->academic_class_id)
+                ->where('subject_id',$subject)
+                ->exists();
+
+            if(!$isExist){
+                AssignSubject::query()->create($data);
+            }
+        }
+
+        //AssignSubject::query()->create($request->all());
+
         //return redirect('institution/subjects/classsubjects')->with('success', 'Subjects assigned Successfully');
         return redirect()->back();
     }

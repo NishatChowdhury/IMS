@@ -33,7 +33,7 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">{{ $class->academicClasses->name }} - {{ $class->group->name }}</h5>
+                                            <h5 style="margin-bottom: 0px;">{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</h5>
                                             <p>{{ $class->academicClasses->short_name }}</p>
                                         </div>
                                     </div>
@@ -130,77 +130,93 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        {!! Form::open(['action'=>'InstitutionController@assign_subject', 'method'=>'post', 'class'=>'form-control']) !!}
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Class*</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    {!! Form::select('academic_class_id', $classes, $class->id, ['class'=>'form-control','readonly']) !!}
-                                </div>
-                            </div>
-                        </div>
+{{--                        {{ Form::model($subject,['action'=>'InstitutionController@assign_subject']) }}--}}
 
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Subject*</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    {!! Form::select('subject_id', $subjects, null, ['class'=>'form-control']) !!}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    {!! Form::select('teacher_id', $staffs, null, ['class'=>'form-control']) !!}
-                                </div>
-                            </div>
-                        </div>
+{{--                        {{ Form::close() }}--}}
+                        {!! Form::open(['action'=>'InstitutionController@assign_subject', 'method'=>'post', 'class'=>'form-inline']) !!}
 
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label"></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input name="is_optional" class="form-check-input" type="checkbox" value=1 id="defaultCheck1">
-                                </div>
-                                <label class="form-check-label" for="defaultCheck1">Is Optional?</label>
+                        @foreach($subjects as $subject)
+{{--                            <div class="form-check form-check-inline">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">--}}
+{{--                                <label class="form-check-label" for="inlineCheckbox1">1</label>--}}
+{{--                            </div>--}}
+                        {{ Form::hidden('academic_class_id',$class->id) }}
+                        <div class="col-6">
+                            <div class="form-check form-check-inline mb-2" style="justify-content: normal">
+                                <input type="checkbox" name="subjects[]" value="{{ $subject->id }}" class="form-check-input sub" id="sub-{{ $subject->id }}">
+                                <label class="form-check-label" for="sub-{{ $subject->id }}">{{ $subject->name }}</label>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Objective Pass Mark</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" name="objective_pass" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Written Pass Mark</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" name="written_pass" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Practical Pass Mark</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" name="practical_pass" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Viva Pass Mark</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" name="viva_pass" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Class*</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    {!! Form::select('academic_class_id', $classes, $class->id, ['class'=>'form-control','readonly']) !!}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Select Subject*</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    {!! Form::select('subject_id', $subjects, null, ['class'=>'form-control']) !!}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Teacher*</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    {!! Form::select('teacher_id', $staffs, null, ['class'=>'form-control']) !!}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label"></label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input name="is_optional" class="form-check-input" type="checkbox" value=1 id="defaultCheck1">--}}
+{{--                                </div>--}}
+{{--                                <label class="form-check-label" for="defaultCheck1">Is Optional?</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Objective Pass Mark</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input type="number" name="objective_pass" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Written Pass Mark</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input type="number" name="written_pass" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Practical Pass Mark</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input type="number" name="practical_pass" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Viva Pass Mark</label>--}}
+{{--                            <div class="col-sm-9">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input type="number" name="viva_pass" class="form-control">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="form-group" style="float: right">
-                            <button type="submit" class="btn btn-success btn-sm pull-right" > <i class="fas fa-plus-circle"></i> Add</button>
+                            <button type="submit" class="btn btn-success btn-sm pull-right" > <i class="fas fa-plus-circle"></i> Assign Subjects</button>
                         </div>
 
                         {!! Form::close() !!}
