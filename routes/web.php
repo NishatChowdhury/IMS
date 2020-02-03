@@ -243,6 +243,9 @@ Route::post('institution/edit-assigned-subject','InstitutionController@edit_assi
 Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
 Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
 
+Route::get('institution/signature','InstitutionController@signature');
+Route::post('institution/sig','InstitutionController@sig');
+
 // smartrahat start
 Route::get('siteinfo','SiteInformationController@index');
 Route::patch('site-info/update','SiteInformationController@update');

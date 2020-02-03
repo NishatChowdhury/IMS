@@ -193,12 +193,12 @@
                             <p>Subjects</p>
                         </a>
                     </li>
-                    {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-                        {{--<a href="{{route('institution.classsubjects')}}" class="nav-link {{ isActive('institution/classsubjects') }}">--}}
-                            {{--<i class="far fa-circle nav-icon"></i>--}}
-                            {{--<p>Class Subjects</p>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('InstitutionController@signature') }}" class="nav-link {{ isActive('institution/signature') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Signature</p>
+                        </a>
+                    </li>
 
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">
@@ -310,6 +310,7 @@
                             <p>Quick SMS</p>
                         </a>
                     </li>
+                    <li>
                         <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Student SMS</p>

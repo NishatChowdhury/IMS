@@ -6114,13 +6114,6 @@ button.label-warning:hover {
     background-color: #d39e00!important
 }
 
-.alert-danger,
-.alert-error,
-.bg-danger,
-.label-danger {
-    background-color: #dc3545!important
-}
-
 a.alert-danger:focus,
 a.alert-danger:hover,
 a.alert-error:focus,
@@ -12986,17 +12979,6 @@ a.text-muted:hover {
 .label-warning,
 .label-warning a {
     color: #1f2d3d!important
-}
-
-.alert-danger,
-.alert-danger a,
-.alert-error,
-.alert-error a,
-.bg-danger,
-.bg-danger a,
-.label-danger,
-.label-danger a {
-    color: #fff!important
 }
 
 .bg-light,
@@ -19598,13 +19580,6 @@ button.label-warning:hover {
     background-color: #d39e00!important
 }
 
-.alert-danger,
-.alert-error,
-.bg-danger,
-.label-danger {
-    background-color: #dc3545!important
-}
-
 a.alert-danger:focus,
 a.alert-danger:hover,
 a.alert-error:focus,
@@ -26470,17 +26445,6 @@ a.text-muted:hover {
 .label-warning,
 .label-warning a {
     color: #1f2d3d!important
-}
-
-.alert-danger,
-.alert-danger a,
-.alert-error,
-.alert-error a,
-.bg-danger,
-.bg-danger a,
-.label-danger,
-.label-danger a {
-    color: #fff!important
 }
 
 .bg-light,

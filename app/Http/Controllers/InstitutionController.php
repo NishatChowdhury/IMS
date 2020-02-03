@@ -262,6 +262,21 @@ class InstitutionController extends Controller
         return redirect()->back();
     }
 
+    public function signature()
+    {
+        return view('admin.institution.signature');
+    }
+
+    public function sig(Request $request)
+    {
+        $this->validate($request,[
+            'signature' => 'required|mimetypes:image/png'
+        ]);
+        $image = 'signature.png';
+        $request->file('signature')->move(public_path().'/assets/img/signature/', $image);
+        return redirect()->back();
+    }
+
     public function profile()
     {
         return view ('admin.institution.profile');
