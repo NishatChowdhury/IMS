@@ -194,7 +194,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input full-name" name="fulname"  type="checkbox" id="fullname">
+                                                    <input class="form-check-input full-name" name="fulname" checked  type="checkbox" id="fullname">
                                                     <label class="form-check-label" for="fullname">
                                                         Name
                                                     </label>
@@ -228,7 +228,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input blood" type="checkbox" id="blood" name="blood">
+                                                    <input class="form-check-input blood" checked type="checkbox" id="blood" name="blood">
                                                     <label class="form-check-label" for="blood">
                                                         Blood
                                                     </label>
@@ -238,7 +238,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input phone" type="checkbox" id="contact" name="contact">
+                                                    <input class="form-check-input phone" checked type="checkbox" id="contact" name="contact">
                                                     <label class="form-check-label" for="contact">
                                                         Contact/Phone
                                                     </label>
@@ -254,7 +254,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dgtn" type="checkbox" id="designation" name="designation">
+                                                    <input class="form-check-input dgtn" checked type="checkbox" id="designation" name="designation">
                                                     <label class="form-check-label" for="designation">
                                                         Designation
                                                     </label>
@@ -264,7 +264,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input joindate" type="checkbox" id="joining" name="joining">
+                                                    <input class="form-check-input joindate" checked type="checkbox" id="joining" name="joining">
                                                     <label class="form-check-label" for="joining">
                                                         Joining
                                                     </label>

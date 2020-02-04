@@ -83,7 +83,7 @@
                                                               <tr class="tcname">
                                                                   <td> Class </td>
                                                                   <td>:</td>
-                                                                  <td>Lorem ipsum.</td>
+                                                                  <td> Seven </td>
                                                               </tr>
                                                               <tr class="tsname">
                                                                   <td> Section </td>
@@ -210,7 +210,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input full-name" type="checkbox" id="fullname" name="fullname">
+                                                    <input class="form-check-input full-name" checked type="checkbox" id="fullname" name="fullname">
                                                     <label class="form-check-label" for="fullname">
                                                         Name
                                                     </label>
@@ -236,7 +236,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input cname" type="checkbox" id="class" name="class">
+                                                    <input class="form-check-input cname" checked type="checkbox" id="class" name="class">
                                                     <label class="form-check-label" for="class">
                                                        Class
                                                     </label>
@@ -244,7 +244,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input sname" type="checkbox" id="section" name="section">
+                                                    <input class="form-check-input sname" checked type="checkbox" id="section" name="section">
                                                     <label class="form-check-label" for="section">
                                                        Section
                                                     </label>
@@ -254,7 +254,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input gname" type="checkbox" id="group" name="group">
+                                                    <input class="form-check-input gname" checked type="checkbox" id="group" name="group">
                                                     <label class="form-check-label" for="group">
                                                         Group
                                                     </label>
@@ -262,7 +262,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input bname" type="checkbox" id="blood" name="blood">
+                                                    <input class="form-check-input bname" checked type="checkbox" id="blood" name="blood">
                                                     <label class="form-check-label" for="blood">
                                                         Blood
                                                     </label>
@@ -280,7 +280,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input rname" type="checkbox" id="roll" name="roll">
+                                                    <input class="form-check-input rname" checked type="checkbox" id="roll" name="roll">
                                                     <label class="form-check-label" for="roll">
                                                         Roll
                                                     </label>
@@ -660,7 +660,7 @@
             var tgname = $(this);
             if (tgname.is (':checked'))
             {
-                $(".tgname").css({"display":"table-row"})
+                $(".tgname").css({"display":"inline"})
             }else{
                 $(".tgname").css({"display":"none"})
             }

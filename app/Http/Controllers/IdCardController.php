@@ -36,13 +36,14 @@ class IdCardController extends Controller
     public function pdf(Request $request)
     {
         //dd($request->all());
-        $data = Student::query()
+        $students = Student::query()
             ->where('class_id',$request->class)
             ->where('section_id',$request->section)
             ->take(10)
             ->get();
 
-        $card = $request->all();
+        $card = $request->except('_token');
+        return view('admin.student.card-new',compact('students','card'));
 
 //        $total = DB::table('partial_shipments')
 //            ->where('lc_id', $request->lc)
