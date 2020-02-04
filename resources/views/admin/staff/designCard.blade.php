@@ -147,7 +147,7 @@
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
                                                 <div class="row">
                                                     <div class="" style="margin-top: 20px;">
-                                                        <strong> <p>{{ siteConfig('name') }}  <br> </strong>
+                                                       <p> <strong> {{ siteConfig('name') }}  <br> </strong>
                                                         {{ siteConfig('address') }}</p>
                                                     </div>
                                                     <div class="crd-add-dec text-bold" style="margin:5px 10px; text-align: left">
@@ -384,7 +384,7 @@
                                                         <input name="bPhone" id="bPhone" type="number" class="form-control">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <input type="checkbox" name="bphonecheck">
                                                         </span>
                                                         </div>
                                                     </div>
@@ -398,7 +398,7 @@
                                                         <input name="bemail" id="bEmail" type="email" class="form-control">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <input type="checkbox" name="bemailcheck">
                                                         </span>
                                                         </div>
                                                     </div>
@@ -412,7 +412,7 @@
                                                         <input name="bWebsite" id="bWebsite" type="text" class="form-control">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <input type="checkbox" name="bwebsitecheck">
                                                         </span>
                                                         </div>
                                                     </div>

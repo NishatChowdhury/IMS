@@ -140,7 +140,6 @@
                                                       </div>
                                                   </div>
                                               </div>
-
                                           </div>
                                           <div class="card-footer" style="height: 40px;">
                                           </div>
@@ -163,7 +162,7 @@
                                               <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
                                               <div class="row">
                                                  <div class="" style="margin-top: 20px;">
-                                                     <strong> <p>{{ siteConfig('name') }}  <br> </strong>
+                                                      <p><strong>{{ siteConfig('name') }}  <br> </strong>
                                                      {{ siteConfig('address') }}</p>
                                                  </div>
                                                   <div class="crd-add-dec text-bold" style="margin:5px 10px; text-align: left">
@@ -323,15 +322,15 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <input id="idTitle" type="text" class="form-control"  placeholder="Title..">
+                                                <input id="idTitle" name="title" type="text" class="form-control"  placeholder="Title..">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input id="idSignature"  type="text" class="form-control"  placeholder="signature">
+                                                <input id="idSignature" name="signature" type="text" class="form-control"  placeholder="signature">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input id="vtd" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
+                                                        <input id="vtd" name="validity" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
                                                         {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -395,7 +394,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="address_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
+                                                        <input name="name_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -480,14 +479,14 @@
                                     <div class="card-body">
                                         <h5 class="card-title"> View Cards</h5>
                                         <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        {{ Form::select('user',[1=>'Student',2=>'Teacher'],null,['class'=>'form-control','placeholder'=>'Select User','required']) }}
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
+{{--                                            <div class="col">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <div class="input-group">--}}
+{{--                                                        {{ Form::select('user',[1=>'Student',2=>'Teacher'],null,['class'=>'form-control','placeholder'=>'Select User','required']) }}--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <!-- /input-group -->--}}
+{{--                                            </div>--}}
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -500,6 +499,14 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         {{ Form::select('section',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        {{ Form::select('group',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
