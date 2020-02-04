@@ -35,7 +35,7 @@ class CreateStudentTable extends Migration
             $table->string('area')->nullable();
             $table->string('zip')->nullable();
             //$table->integer('division_id')->unsigned()->nullable();
-            $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->string('email')->nullable();
             $table->string('father_mobile')->nullable();

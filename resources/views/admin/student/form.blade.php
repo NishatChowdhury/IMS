@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="form-group files color">
-                {{  Form::label('stuPic', 'Student Picture', ['class' => 'control-label'])  }}
+                {{ Form::label('stuPic', 'Student Picture', ['class' => 'control-label']) }}
                 {{ Form::file('pic',['class'=>'form-control', 'id'=>"file-input"]) }}
                 <div id="thumb-output"></div>
             </div>
@@ -166,8 +166,8 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-group">
-                            {{ Form::label('state_id','State',['class'=>'control-label']) }}
-                            {{ Form::text('state_id', null, ['placeholder' => 'Select State...','class'=>'form-control']) }}
+                            {{ Form::label('city_id','City',['class'=>'control-label']) }}
+                            {{ Form::select('city_id',[], null, ['placeholder' => 'Select City','class'=>'form-control']) }}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12">
