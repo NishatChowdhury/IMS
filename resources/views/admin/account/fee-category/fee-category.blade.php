@@ -1,23 +1,20 @@
 @extends('layouts.fixed')
-
-@section('title','Institution Mgnt | Academic Classes')
-
+@section('title','Account | Fee Setup')
 @section('content')
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Classes</h1>
+                    <h1>Account Section</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Institution Mgnt</a></li>
-                        <li class="breadcrumb-item active">Classes</li>
+                        <li class="breadcrumb-item"><a href="#">Finance</a></li>
+                        <li class="breadcrumb-item active">Fee Setup</li>
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
     <section class="content">
@@ -33,8 +30,8 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>{{ $classes->count() }}</p>
+                                            <h5 style="margin-bottom: 0px;">Total Fee Category</h5>
+                                            <p>1000</p>
                                         </div>
                                     </div>
                                 </div>
@@ -54,42 +51,48 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
+                            <table id="example2" class="table table-bordered table-striped table-sm">
+                                <thead class="thead-dark">
+                                <tr class="text-center">
                                     <th>SL</th>
-                                    <th>Class Name</th>
-                                    <th>Numeric Class</th>
-                                    <th>Total Student</th>
-                                    <th>Total Subject</th>
+                                    <th>Category Name</th>
+                                    <th>Short Description</th>
+                                    <th>Year</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php($i = 0)
-                                @foreach($classes as $class)
+                                    @php $i= 1; @endphp
+                                    @foreach($fee_categories as $fee_category)
+                                        <tr>
+                                            <td>{{$i++}}</td>
+                                            <td>{{ucwords($fee_category->name)}}</td>
+                                            <td>{{ucfirst($fee_category->description)}}</td>
+                                            <td style="text-align: center">{{$fee_category->session->year}}</td>
+                                            <td style="text-align: center;">
+                                                {{ Form::open(['method'=>'PUT','url'=>['fee-category/status/'.$fee_category->id],'style'=>'display:inline']) }}
+                                                    @if($fee_category->status == 1)
+                                                        {{ Form::submit('Active',['class'=>'btn btn-success btn-sm']) }}
+                                                    @else
+                                                        {{ Form::submit('In Active',['class'=>'btn btn-info btn-sm']) }}
+                                                    @endif
+                                                {{ Form::close() }}
+                                            </td>
+                                            <td style="text-align: center">
+                                                <a type="button" class="btn btn-warning btn-sm edit" value='{{$fee_category->id}}'
+                                                   style="margin-left: 10px;"> <i class="fas fa-edit"></i>
+                                                </a>
 
-                                    <tr>
-                                        <td>{{ $class->id }}</td>
-                                        <td>{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</td>
-                                        <td>{{ $class->academicClasses->numeric_class ?? '' }}</td>
-                                        <td>{{ $class->students->count() }}</td>
-                                        <td>{{ $class->subjects->count() }}</td>
-                                        <td></td>
-                                        <td>
-                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
-                                            <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'
-                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>
-                                            </a>
+                                                {{--<a type="button" href="{{action('FeeCategoryController@delete_fee_category', $fee_category->id)}}"--}}
+                                                   {{--class="btn btn-danger btn-sm delete_session"--}}
+                                                   {{--style="margin-left: 10px;"> <i class="fas fa-trash"></i>--}}
+                                                {{--</a>--}}
 
-                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}"
-                                               class="btn btn-danger btn-sm delete_session"
-                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -104,64 +107,42 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Fee Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['action'=>'InstitutionController@storeAcademicClass', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'fee-category/store', 'method'=>'post']) !!}
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                {!! Form::select('session_id',$repository->sessions(), null, ['class'=>'form-control', 'placeholder'=>'Select Session','required']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::select('class_id',$repository->classes(), null, ['class'=>'form-control', 'placeholder'=>'Select Class','required']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Section</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::select('section_id',$repository->sections(), null, ['class'=>'form-control', 'placeholder'=>'Select Section']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Group</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::select('group_id',$repository->groups(), null, ['class'=>'form-control', 'placeholder'=>'Select Group']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    {{--<div class="form-group row">--}}
-                        {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>--}}
-                        {{--<div class="col-sm-9">--}}
-                            {{--<div class="input-group">--}}
-                                {{--{!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Class Name']) !!}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                                {!! Form::select('session_id', $sessions, null, ['class'=>'form-control','placeholder' => 'Select Session']) !!}
 
-                    {{--<div class="form-group row">--}}
-                        {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>--}}
-                        {{--<div class="col-sm-9">--}}
-                            {{--<div class="input-group">--}}
-                                {{--{!! Form::text('numeric_class', null, ['class'=>'form-control', 'placeholder'=>'E.g. 1/2/3']) !!}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Category Name']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Description*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('description', null, ['class'=>'form-control', 'placeholder'=>'Short Description']) !!}
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div style="float: right">
@@ -181,29 +162,39 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Fee Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'InstitutionController@update_SessionClass', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'FeeCategoryController@update_fee_category', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                {!! Form::text('name', null, ['class'=>'form-control class_name', 'placeholder'=>'Class Name']) !!}
+                                {!! Form::select('session_id', $sessions, null, ['class'=>'form-control session_id','placeholder' => 'Select Session']) !!}
+
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                {!! Form::text('numeric_class', null, ['class'=>'form-control numeric_class', 'placeholder'=>'E.g. 1/2/3']) !!}
+                                {!! Form::text('name', null, ['class'=>'form-control name', 'placeholder'=>'Category Name']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Description*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::text('description', null, ['class'=>'form-control description', 'placeholder'=>'Short Description']) !!}
                             </div>
                         </div>
                     </div>
@@ -224,6 +215,7 @@
     <!-- ***/ Pop Up Model for button End-->
 @stop
 
+
 @section('script')
     <script>
         $(document).on('click', '.edit', function () {
@@ -232,14 +224,15 @@
 
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-SessionClass')}}",
+                url:"{{ url('fee-category/edit')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
                     console.log(response);
                     $("#id").val(response.id);
-                    $(".class_name").val(response.name);
-                    $(".numeric_class").val(response.numeric_class);
+                    $(".session_id").val(response.session_id);
+                    $(".name").val(response.name);
+                    $(".description").val(response.description);
 
 
                 },

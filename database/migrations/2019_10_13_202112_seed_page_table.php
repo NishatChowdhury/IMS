@@ -14,7 +14,7 @@ class SeedPageTable extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $pages = ['introduction','governing body','founder & donor','president message','principal message','building & rooms','library','transport','hotel','class routine','calendar','syllabus','performance','managing committee','teachers','staff','annual holiday','bncc','center information','computer lab','contacts','diary','download','land information','multimedia class room','scholarship info','science lab','scouts','sports and cultural program','teacher council information','tender','teacher staff welfare trust','wapc'];
+            $pages = ['introduction','governing body','founder & donor','president message','principal message','building & rooms','library','transport','hotel','class routine','calendar','syllabus','performance','managing committee','teachers','staff'];
             foreach($pages as $page){
                 $data['name'] = $page;
                 $data['content'] = '';

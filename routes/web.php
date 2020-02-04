@@ -287,8 +287,6 @@ Route::get('student/testimonial','StudentController@testimonial')->name('student
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
 
-Route::get('staff/idCard','IdCardController@staff');
-Route::post('staff/idCard/pdf','IdCardController@staffPdf');
 
 //@MKH
 Route::post('student/store', 'StudentController@store');
@@ -305,6 +303,43 @@ Route::get('settings/links','LinkController@index');
 Route::post('settings/link/store','LinkController@store');
 Route::delete('settings/link/delete/{id}','LinkController@destroy');
 // End Important Links
+
+//Account Section Star AR Babu
+//  Fee Category Start
+    Route::get('/fee-category/index','FeeCategoryController@index')->name('fee-category.index');
+    Route::post('fee-category/store','FeeCategoryController@store_fee_category')->name('fee-category.store');
+    Route::post('fee-category/edit','FeeCategoryController@edit_fee_category')->name('fee-category.edit');
+    Route::post('fee-category/update','FeeCategoryController@update_fee_category')->name('fee-category.update');
+    Route::get('fee-category/{id}/delete','FeeCategoryController@delete_fee_category')->name('fee-category.delete');
+    Route::put('fee-category/status/{id}','FeeCategoryController@status')->name('fee-category.status');
+//    Fee Category End
+
+//  Fee Setup Start
+    Route::get('fee-category/fee_setup','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
+    Route::post('fee_setup/store','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
+    Route::get('fee_setup/list','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
+    Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
+    Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
+//  Fee Setup End
+
+// Student Transport management Start
+    Route::get('fee-category/transport','TransportController@index')->name('transport.index');
+    Route::post('fee-category/transport','TransportController@store')->name('transport.store');
+    Route::post('fee-category/transport','TransportController@store')->name('transport.store');
+    Route::get('transport/edit/{id}','TransportController@edit')->name('transport.edit');
+    Route::patch('transport/update/{id}','TransportController@update')->name('transport.update');
+    Route::get('transport/student-list','TransportController@student_list')->name('transport.student-list');
+    Route::post('transport/assign','TransportController@transport_assign')->name('transport.assign');
+// Student Transport management End
+
+// Student Fee Collection start
+    Route::get('student/fee','FinanceController@index')->name('student.fee');
+
+
+// Student Fee Collection End
+
+//Account Section End
+
 
 /** Route for Apps start */
 Route::post('api/login','AndroidController@login');

@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row align-items-center">
 
-                {!! $content->where('name','introduction')->first()->content !!}
+                {!! $content->content !!}
 
             </div> <!-- END row-->
         </div> <!-- END container-->

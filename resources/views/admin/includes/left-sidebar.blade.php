@@ -278,8 +278,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['finance*']) }}">
-                <a href="#" class="nav-link {{ isActive(['finance*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['fee-category*']) }}">
+                <a href="#" class="nav-link {{ isActive(['fee-category*']) }}">
                     <i class="nav-icon fas fa-money-check-alt"></i>
                     <p>
                         Finance
@@ -288,11 +288,40 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('invoice') }}">
+                        <a href="{{route('fee-category.index')}}" class="nav-link {{ isActive('fee-category/index') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Invoice</p>
+                            <p>Fee Category</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Fee Setup</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Transport Location</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('transport.student-list')}}" class="nav-link {{ isActive('fee-category/transport') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Transport Fee Assign</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('student.fee')}}" class="nav-link {{ isActive('fee-category/student') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Studen Fee Collection</p>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
             <li class="nav-item has-treeview {{ isActive(['communication*']) }}">
@@ -456,12 +485,6 @@
                         <a href="{{route('staff.payslip')}}" class="nav-link {{ isActive('staff/payslip') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>PaySlip</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('IdCardController@staff') }}" class="nav-link {{ isActive('staff/idCard') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Design ID Card</p>
                         </a>
                     </li>
                     {{--<li class="nav-item">--}}

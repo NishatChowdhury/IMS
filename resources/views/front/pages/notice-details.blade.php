@@ -16,7 +16,7 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ url('notice') }}">Notice</a>
+                            <a href="#">Elements</a>
                         </li>
                         <li class="breadcrumb-item">
                             Notice Details
@@ -51,10 +51,8 @@
                         </h4>
                         <p>
                             {!! $notice->description !!}
+
                         </p>
-                        @if($notice->file)
-                        <a href="{{ asset('assets/img/notices') }}/{{ $notice->file }}" class="btn btn-primary mt-4" target="_blank"><i class="fas fa-download"></i></a>
-                        @endif
                         <a href="{{ action('FrontController@notice') }}" class="btn btn-primary mt-4">Back To Notices</a>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ class Student extends Model
         'subject_id',
         'father',
         'mother',
-        'gender',
+        'gender_id',
         'mobile',
         'dob',
         'blood_group_id',

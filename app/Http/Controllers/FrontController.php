@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class FrontController extends Controller
 {
-    /**
-     * @var FrontRepository
-     */
+
     private $repository;
 
     public function __construct(FrontRepository $repository)
@@ -43,26 +41,10 @@ class FrontController extends Controller
             })
             ->where('active',1)
             ->get();
-
         $content = Page::all();
         $teachers = Staff::all();
-
-        $notices = Notice::query()
-            //->where('start','<',Carbon::today())
-            ->where('notice_type_id',2)
-            ->where(function($query){
-                $query->where('start','<',Carbon::today())->orWhere('start',null);
-            })
-            //->where('end','>',Carbon::today())
-            ->where(function($query){
-                $query->where('end','>',Carbon::today())->orWhere('end',null);
-            })
-            //->where('active',1)
-            ->orderByDesc('start')
-            ->take(5)
-            ->get();
-
-        return view('front.index',compact('sliders','content','teachers','notices'));
+        $links = ImportantLink::all();
+        return view('front.index',compact('sliders','content','teachers','links'));
     }
 
     public function introduction()
@@ -316,18 +298,12 @@ class FrontController extends Controller
     public function notice()
     {
         $notices = Notice::query()
-            //->where('start','<',Carbon::today())
             ->where('notice_type_id',2)
-            ->where(function($query){
-                $query->where('start','<',Carbon::today())->orWhere('start',null);
-            })
-            //->where('end','>',Carbon::today())
-            ->where(function($query){
-                $query->where('end','>',Carbon::today())->orWhere('end',null);
-            })
-            //->where('active',1)
+            ->where('start','<',Carbon::today())
+            ->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->get();
+            //->paginate(5);
 
         $categories = NoticeCategory::all();
         return view('front.pages.notice',compact('notices','categories'));
