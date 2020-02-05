@@ -21,6 +21,17 @@
     </div>
     <!-- /.content-header -->
 
+    @if(session()->has('invoice'))
+
+        <script>
+
+          //  $(document).ready(function(){
+                var url = '{{ session("invoice") }}';
+                window.open(url);
+            //});
+
+        </script>
+    @endif
 
     <!-- /.Search-panel -->
     <section class="content">
@@ -34,28 +45,28 @@
                             <div class="form-row">
 
                                 {{--<div class="col">--}}
-                                    {{--<label for="">Name</label>--}}
-                                    {{--<div class="input-group">--}}
-                                        {{--{{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
-                                    {{--</div>--}}
+                                {{--<label for="">Name</label>--}}
+                                {{--<div class="input-group">--}}
+                                {{--{{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
                                 {{--<div class="col">--}}
-                                    {{--<label for="">Class</label>--}}
-                                    {{--<div class="input-group">--}}
-                                        {{--{{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
-                                    {{--</div>--}}
+                                {{--<label for="">Class</label>--}}
+                                {{--<div class="input-group">--}}
+                                {{--{{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
                                 {{--<div class="col">--}}
-                                    {{--<label for="">Section</label>--}}
-                                    {{--<div class="input-group">--}}
-                                        {{--{{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
-                                    {{--</div>--}}
+                                {{--<label for="">Section</label>--}}
+                                {{--<div class="input-group">--}}
+                                {{--{{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
                                 {{--<div class="col">--}}
-                                    {{--<label for="">Group</label>--}}
-                                    {{--<div class="input-group">--}}
-                                        {{--{{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
-                                    {{--</div>--}}
+                                {{--<label for="">Group</label>--}}
+                                {{--<div class="input-group">--}}
+                                {{--{{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
                                 <div class="col">
                                     <label for="">Student ID</label>
@@ -99,7 +110,7 @@
                     </div>
 
 
-                {!! Form::open() !!}
+                {!! Form::open(['url'=>'student/fee-store','method'=>'post']) !!}
                 <!-- Main content -->
                     <div class="invoice p-3 mb-3">
                         <!-- title row -->
@@ -133,6 +144,11 @@
                                     Phone: {{ $students !=null && $students->phone  ? $students->phone : '' }}<br>
                                     Email: {{ $students !=null && $students->email  ? $students->email : '' }}
                                 </address>
+                                {!! Form::hidden('student_id',$students !=null && $students->id  ? $students->id : '' ) !!}
+                                {!! Form::hidden('class_id',$students !=null && $students->class_id  ? $students->class_id : '' ) !!}
+                                {!! Form::hidden('section_id',$students !=null && $students->section_id  ? $students->section_id : '' ) !!}
+                                {!! Form::hidden('group_id',$students !=null && $students->group_id  ? $students->group_id : '' ) !!}
+                                {!! Form::hidden('session_id',$students !=null && $students->session_id  ? $students->session_id : '' ) !!}
                             </div>
                             <!-- /.col -->
                             <!-- /.col -->
@@ -154,31 +170,33 @@
                         <div class="row">
                             <div class="col-12 table-responsive">
                                 <table class="table table-striped table-sm">
-                                    <thead>
-                                    <tr style="text-align: center">
-                                        <th>Sl</th>
-                                        <th>Category Name</th>
-                                        <th>Description</th>
-                                        <th>Setup Amount</th>
-                                        <th>Paid Amount</th>
-                                    </tr>
+                                    <thead class="thead-dark">
+                                        <tr style="text-align: center">
+                                            <th>Sl</th>
+                                            <th>Category Name</th>
+                                            <th>Description</th>
+                                            <th>Setup Amount</th>
+                                            <th>Paid Amount</th>
+                                        </tr>
                                     </thead>
                                     @php $i=1; $total = $transport_amount = 0; @endphp
-                                    <tbody>
+                                    <tbody >
                                     @if($fee_setup)
-                                    @foreach($fee_setup->fee_categories  as $fee)
-                                        @php
-                                            $fee_amount = \App\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_setup->id)->first()->amount;
-                                            $total +=$fee_amount; @endphp
+                                        {!! Form::hidden('month', $fee_setup->month) !!}
+                                        @foreach($fee_setup->fee_categories  as $fee)
+                                            @php
+                                                $fee_amount = \App\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_setup->id)->first()->amount;
+                                                $total +=$fee_amount;
+                                            @endphp
 
-                                        <tr>
-                                            <td>{{$i++}}</td>
-                                            <td>{{ucfirst($fee->name)}}</td>
-                                            <td>{{$fee->description}}</td>
-                                            <td style="text-align: right">{!! Form::text('setup_amount[]', $fee_amount ,['class'=>'form-control setup_amount','style'=>'text-align:right','readonly']) !!}</td>
-                                            <td >{!! Form::text('paid_amount[]', 0 ,['class'=>'form-control amount','style'=>'text-align:right']) !!}</td>
-                                        </tr>
-                                    @endforeach
+                                            <tr>
+                                                <td>{{$i++}}</td>
+                                                <td>{{ucfirst($fee->name)}} {!! Form::hidden('category_id[]', $fee->id) !!}</td>
+                                                <td>{{$fee->description}}</td>
+                                                <td style="text-align: right">{!! Form::text('setup_amount', $fee_amount ,['class'=>'form-control setup_amount','style'=>'text-align:right','readonly']) !!}</td>
+                                                <td >{!! Form::text('amount[]',null,['class'=>'form-control amount','style'=>'text-align:right']) !!}</td>
+                                            </tr>
+                                        @endforeach
                                     @endif
                                     <tr>
                                         @if($transport_fee != null)
@@ -187,8 +205,16 @@
                                             <td>Transport Fee</td>
                                             <td><b>Location :</b> {{ucfirst($transport_fee->location->name)}}</td>
                                             <td style="text-align: right">{!! Form::text('setup_transport', $transport_amount ,['class'=>'form-control setup_amount','style'=>'text-align:right','readonly']) !!}</td>
-                                            <td>{!! Form::text('transport', 0 ,['class'=>'form-control amount','style'=>'text-align:right']) !!}</td>
+                                            <td>{!! Form::text('transport',null,['class'=>'form-control amount','style'=>'text-align:right']) !!}</td>
                                         @endif
+                                    </tr>
+                                    <tr>
+
+                                            <td></td>
+                                            <td>Paid Due</td>
+                                            <td>Paid Previous Due</td>
+                                            <td ></td>
+                                            <td>{!! Form::text('due_paid',null,['class'=>'form-control amount','style'=>'text-align:right']) !!}</td>
                                     </tr>
 
                                     </tbody>
@@ -201,22 +227,37 @@
                         <div class="row">
                             <!-- accepted payments column -->
                             <div class="col-6">
-                                {{--<p class="lead">Paid Status:</p>--}}
-                                    {{--<img src="../../dist/img/credit/visa.png" alt="Visa">--}}
-                                {{--<img src="../../dist/img/credit/mastercard.png" alt="Mastercard">--}}
-                                {{--<img src="../../dist/img/credit/american-express.png" alt="American Express">--}}
-                                {{--<img src="../../dist/img/credit/paypal2.png" alt="Paypal">--}}
-
-                                {{--<p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">--}}
-                                    {{--Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem--}}
-                                    {{--plugg--}}
-                                    {{--dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.--}}
-                                {{--</p>--}}
+                                <p class="lead">student payment Details:</p>
+                                <table class="table table-responsive-sm table-bordered table-sm" style="font-size: 12px">
+                                    <thead class="thead-dark">
+                                        <tr style="text-align: center">
+                                            <th>Date</th>
+                                            <th>Month</th>
+                                            <th>Inv. No</th>
+                                            <th>Total Amount</th>
+                                            <th>Paid Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       @foreach($payment_details as $payment_detail)
+                                           <tr>
+                                               <td>{{\Carbon\Carbon::parse($payment_detail->created_at)->format('m M Y')}}</td>
+                                               <td style="text-align: center">{{date("F", mktime(0, 0, 0, $payment_detail->month, 1))}}</td>
+                                               <td style="text-align: right">{{$payment_detail->id}}</td>
+                                               <td style="text-align: right">{{number_format(($payment_detail->setup_amount+$payment_detail->fine+$payment_detail->arrears)-$payment_detail->discount,2)}}</td>
+                                               <td style="text-align: right">{{number_format($payment_detail->paid_amount,2)}}</td>
+                                           </tr>
+                                       @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- /.col -->
                             <div class="col-6">
+                                @php
+                                   //dd(count($payment_details));
+                                    $arrears = count($payment_details) !=0 && $payment_details->last()->due  ? $payment_details->last()->due : 0;
+                                @endphp
                                 <p class="lead">Amount Calculation</p>
-
                                 <div class="table-responsive">
                                     <table class="table table-sm">
                                         <tr>
@@ -225,7 +266,7 @@
                                         </tr>
                                         <tr>
                                             <th>Previous Due </th>
-                                            <td>{!! Form::text('previous_due', 0 ,['class'=>'form-control previous_due','style'=>'text-align:right','readonly']) !!}</td>
+                                            <td>{!! Form::text('arrears', $arrears,['class'=>'form-control previous_due','style'=>'text-align:right','readonly']) !!}</td>
                                         </tr>
                                         <tr>
                                             <th>Discount </th>
@@ -237,15 +278,15 @@
                                         </tr>
                                         <tr>
                                             <th>Sub Total:</th>
-                                            <td>{!! Form::text('sub_total', 0 ,['class'=>'form-control sub_total','style'=>'text-align:right','readonly']) !!}</td>
+                                            <td>{!! Form::text('sub_total', $total+$transport_amount+$arrears ,['class'=>'form-control sub_total','style'=>'text-align:right','readonly']) !!}</td>
                                         </tr>
                                         <tr>
                                             <th>Paid Amount:</th>
-                                            <td>{!! Form::text('paid_amount', 0 ,['class'=>'form-control paid_amount','style'=>'text-align:right','id'=>'paid_amount']) !!}</td>
+                                            <td>{!! Form::text('paid_amount',null,['class'=>'form-control paid_amount','style'=>'text-align:right','id'=>'paid_amount','readonly']) !!}</td>
                                         </tr>
-                                        <tr>
+                                        <tr style="background: #ffa37a">
                                             <th>Dues:</th>
-                                            <td>{!! Form::text('dues', 0 ,['class'=>'form-control due','style'=>'text-align:right','readonly']) !!}</td>
+                                            <td>{!! Form::text('due', 0 ,['class'=>'form-control due','style'=>'text-align:right','readonly']) !!}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -258,8 +299,8 @@
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
                             <div class="col-12">
-                                <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                <button type="button" class="btn btn-success float-right"><i class="fas fa-credit-card"></i> Submit
+                                {{--<a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>--}}
+                                <button type="submit" class="btn btn-success float-right"><i class="fas fa-credit-card"></i> Submit
                                     Payment
                                 </button>
                                 {{--<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">--}}
@@ -283,14 +324,16 @@
 
         $(document).on("keyup",".amount",function(){
             var fee_amount = 0;
-           $('.amount').each(function () {
-               var data= $(this).val();
-               if($.isNumeric(data)){
+            $('.amount').each(function () {
+                var data= $(this).val();
+                if($.isNumeric(data)){
                     fee_amount +=parseFloat(data)
-               }
-           });
-           //console.log(fee_amount);
+                }
+            });
+            //console.log(fee_amount);
             $('#paid_amount').val(fee_amount);
+            var sub_total = Number($(".sub_total").val())-fee_amount;
+            $(".due").val(sub_total);
         });
 
         $(document).on('keyup','.discount',function () {
@@ -304,6 +347,10 @@
                 var sub_total = (fee_amount+previous_due)-discount;
                 //console.log(sub_total);
                 $('.sub_total').val(sub_total);
+                var paid_amount = $('#paid_amount').val();
+                var sub_total = Number($(".sub_total").val())-paid_amount;
+                $(".due").val(sub_total);
+
             }
         });
 
@@ -319,17 +366,13 @@
                 var sub_total = (fee_amount+previous_due+fine)-discount;
                 //console.log(sub_total);
                 $('.sub_total').val(sub_total);
+                var paid_amount = $('#paid_amount').val();
+                var sub_total = Number($(".sub_total").val())-paid_amount;
+                $(".due").val(sub_total);
             }
 
         });
 
-        $(document).on('change','.sub_total',function () {
-            var sub_total = parseInt($(this).val());
-            var paid_amount = parseInt($('.paid_amount').val());
-            if(sub_total > 0){
-                var due = sub_total-paid_amount;
-                $('.due').val(due);
-            }
-        });
+
     </script>
 @stop

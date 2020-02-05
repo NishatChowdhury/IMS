@@ -14,8 +14,8 @@ class ForiegnAssignSubjects extends Migration
     public function up()
     {
         Schema::table('assign_subjects', function (Blueprint $table) {
-            $table->foreign('academic_class_id')->references('id')->on('academic_classes')->onDelete('restrict');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('restrict');
+            //$table->foreign('academic_class_id')->references('id')->on('academic_classes')->onDelete('restrict');
+            //$table->foreign('subject_id')->references('id')->on('subjects')->onDelete('restrict');
         });
     }
 

@@ -17,4 +17,8 @@ class FeeCategory extends Model
         return $this->belongsToMany(FeeSetup::class,'fee_pivots')->withPivot('amount');
     }
 
+    public function student_payment(){
+        return $this->belongsToMany(StudentPayment::class,'payment_pivots')->withPivot('amount');
+    }
+
 }
