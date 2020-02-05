@@ -62,4 +62,21 @@ class Student extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
+    public function payable($id){
+        return StudentPayment::where('student_id',$id)->sum('setup_amount');
+    }
+
+    public function paid($id){
+        return StudentPayment::where('student_id',$id)->sum('paid_amount');
+    }
+
+    public function fine($id){
+        return StudentPayment::where('student_id',$id)->sum('fine');
+    }
+
+    public function discount($id){
+        return StudentPayment::where('student_id',$id)->sum('discount');
+    }
+
 }

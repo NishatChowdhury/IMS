@@ -365,8 +365,8 @@
                     {{--</li>--}}
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
-                <a href="#" class="nav-link {{ isActive(['extra*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['report*']) }}">
+                <a href="#" class="nav-link {{ isActive(['report*']) }}">
                     <i class="nav-icon fas fa-scroll"></i>
                     <p>
                         Reports
@@ -375,25 +375,25 @@
                 </a>
                 <ul class="nav nav-treeview"  style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('extra/404') }}">
+                        <a href="#" class="nav-link {{ isActive('report/404') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profit and Loss </p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/500') }}">
+                        <a href="#" class="nav-link {{ isActive('report/500') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Balance Sheet</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                        <a href="#" class="nav-link {{ isActive('report/blank') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Annual Payments</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                        <a href="{{route('report.student-fee')}}" class="nav-link {{ isActive('report/student-fee-report') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Fee Collection</p>
                         </a>

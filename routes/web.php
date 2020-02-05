@@ -336,10 +336,11 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
     Route::get('student/fee','FinanceController@index')->name('student.fee');
     Route::post('student/fee-store','financeController@store_payment')->name('student.fee-store');
     Route::get('student/fee-invoice/{id}','financeController@fee_invoice')->name('student.fee-invoice');
-
-
-
 // Student Fee Collection End
+
+// Student Fee Collection Report Start
+    Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
+// Student Fee Collection Report End
 
 //Account Section End
 
