@@ -27,19 +27,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
-                                        </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <div class="dec-block">--}}
+{{--                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
+{{--                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="dec-block-dec" style="float:left;">--}}
+{{--                                            <h5 style="margin-bottom: 0px;">Total Found</h5>--}}
+{{--                                            <p>00</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
@@ -55,7 +55,7 @@
                                 <thead>
                                 <tr>
                                     <th>Exam Name</th>
-                                    <th>Academic Year</th>
+                                    <th>Session</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Status</th>
@@ -73,9 +73,12 @@
                                     <td>{{ $exam->status }}</td>
                                     <td>{{ $exam->notify == 1 ? "Notify" : "Don't Notify" }}</td>
                                     <td>
+                                        {{ Form::open(['action'=>['ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
                                         <a href="{{ action('ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
-                                        <a type="button" href="{{ action('ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>
+{{--                                        <a type="button" href="{{ action('ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>--}}
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                                         <a href="{{ action('ResultController@generateResult') }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></a>
+                                        {{ Form::close() }}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -129,7 +132,7 @@
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Year</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    {{ Form::select('session_id',[2=>2019],null,['class'=>'form-control','readonly']) }}
+                                    {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control']) }}
                                 </div>
                             </div>
                         </div>
@@ -193,5 +196,11 @@
             .datepicker({
                 format: 'yyyy-mm-dd'
             });
+    </script>
+    <script>
+        function deleteConfirm(){
+            var x = confirm('Are you sure you want to delete this exam? All data regarding this exam will be erased!!!');
+            return !!x;
+        }
     </script>
 @stop

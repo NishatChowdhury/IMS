@@ -13,6 +13,7 @@ use App\Classes;
 use App\Exam;
 use App\Group;
 use App\Section;
+use App\Session;
 
 class ExamRepository
 {
@@ -34,5 +35,10 @@ class ExamRepository
     public function groups()
     {
         return Group::all()->pluck('name','id');
+    }
+
+    public function sessions()
+    {
+        return Session::all()->pluck('year','id');
     }
 }

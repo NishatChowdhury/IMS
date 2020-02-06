@@ -52,7 +52,8 @@ class ExamController extends Controller
     public function examination()
     {
         $exams = Exam::all();
-        return view ('admin.exam.examination', compact('exams'));
+        $repository = $this->repository;
+        return view ('admin.exam.examination', compact('exams','repository'));
     }
 
     public function store_exam(Request $request){
@@ -61,7 +62,7 @@ class ExamController extends Controller
 
     }
 
-    public function delete_exam($id){
+    public function destroy($id){
         $exam = Exam::query()->findOrFail($id);
         $exam->delete();
         return redirect('exam/examination')->with('success', 'Exam Deleted Successfully');
@@ -169,9 +170,9 @@ class ExamController extends Controller
             $schedules = ExamSchedule::query()
                 ->where('exam_id',$request->get('exam_id'))
                 ->where('academic_class_id',$academicClass->id)
+                ->orderBy('date')
                 ->get();
         }
-
 
         $repository = $this->repository;
         return view('admin.exam.admit-card',compact('repository','students','exam','schedules'));
@@ -405,7 +406,7 @@ class ExamController extends Controller
             $results = $r->orderBy('rank')->get();
             $subjects = $this->tabulationSubjects($request->get('class_id'),$request->get('group_id'));
         }else{
-            $results = null;
+            $results = collect();
             $subjects = null;
         }
         //dd($request->get('group_id').' '.$request->get('class_id'));
