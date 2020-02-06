@@ -59,9 +59,8 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Class Name</th>
-                                    <th>Numeric Class</th>
-                                    <th>Total Student</th>
-                                    <th>Total Subject</th>
+                                    <th>Students</th>
+                                    <th>Subjects</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -69,23 +68,20 @@
                                 <tbody>
                                 @php($i = 0)
                                 @foreach($classes as $class)
-
                                     <tr>
                                         <td>{{ $class->id }}</td>
                                         <td>{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</td>
-                                        <td>{{ $class->academicClasses->numeric_class ?? '' }}</td>
                                         <td>{{ $class->students->count() }}</td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td></td>
                                         <td>
+                                            <a href="{{ action('StudentController@downloadBlank',$class->id) }}" role="button" class="btn btn-primary btn-sm" title="Download CSV"><i class="fas fa-file-download"></i></a>
+                                            <a href="{{ action('StudentController@uploadStudent',$class->id) }}" role="button" class="btn btn-light btn-sm" title="Upload Student"><i class="fas fa-file-upload"></i></a>
                                             <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
-                                            <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'
-                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>
+                                            <a href="{{ action('ScheduleController@index',$class->id) }}" role="button" class="btn btn-success btn-sm" title="Class Schedule"><i class="fas fa-clock"></i></a>
+                                            <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'> <i class="fas fa-edit"></i>
                                             </a>
-
-                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}"
-                                               class="btn btn-danger btn-sm delete_session"
-                                               style="margin-left: 10px;"> <i class="fas fa-trash"></i>
+                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}" class="btn btn-danger btn-sm delete_session"> <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>

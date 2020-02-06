@@ -124,7 +124,7 @@ Route::post('exam/store-grade', 'ExamController@store_grade');
 Route::get('exam/delete-grade/{id}', 'ExamController@delete_grade');
 Route::get('exam/examination','ExamController@examination')->name('exam.examination');
 Route::post('exam/sotre-exam', 'ExamController@store_exam')->name('store.exam');
-Route::get('exam/delete-exam/{id}', 'ExamController@delete_exam');
+Route::delete('exam/destroy/{id}', 'ExamController@destroy');
 Route::get('exam/examitems','ExamController@examitems')->name('exam.examitems');
 Route::get('exam/schedule/create/{exam}','ExamScheduleController@create');
 Route::post('exam/schedule/store','ExamScheduleController@store');
@@ -229,6 +229,11 @@ Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_
 
 Route::get('institution/class/subject/{class}','InstitutionController@classSubjects');
 Route::delete('institution/class/subject/destroy/{id}','InstitutionController@unAssignSubject');
+
+//Class Schedule
+Route::get('institution/class/schedule/{class}','ScheduleController@index');
+Route::post('institution/class/schedule/store','ScheduleController@store');
+
 //Subjects
 Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
 Route::post('institution/create-subject','InstitutionController@create_subject');
@@ -287,6 +292,12 @@ Route::get('student/testimonial','StudentController@testimonial')->name('student
 Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
 Route::post('student/promote','StudentController@promote')->name('student.promote');
 
+Route::get('student/download-blank-csv/{academicClassId}','StudentController@downloadBlank');
+Route::get('student/upload-student/{academicClassId}','StudentController@uploadStudent');
+Route::post('student/up','StudentController@up');
+
+Route::get('staff/idCard','IdCardController@staff');
+Route::post('staff/idCard/pdf','IdCardController@staffPdf');
 
 //@MKH
 Route::post('student/store', 'StudentController@store');
@@ -753,5 +764,14 @@ Route::get('sync-academic-class-id',function(){
 
         $student->update(['academic_class_id'=>$id->id]);
     }
+});
+
+Route::get('sync-image-name',function(){
+    $students = Student::query()->get();
+    foreach($students as $student){
+        $image = $student->studentId.'.jpg';
+        $student->update(['image'=>$image]);
+    }
+    dd('sync complete');
 });
 

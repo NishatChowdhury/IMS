@@ -254,13 +254,13 @@ class InstitutionController extends Controller
         return redirect()->back();
     }
 
-    public function unAssignSubject($id)
-    {
-        $subject = AssignSubject::query()->findOrFail($id);
-        $subject->delete();
-        \Illuminate\Support\Facades\Session::flash('success','Subject unmount successfully');
-        return redirect()->back();
-    }
+//    public function unAssignSubject($id)
+//    {
+//        $subject = AssignSubject::query()->findOrFail($id);
+//        $subject->delete();
+//        \Illuminate\Support\Facades\Session::flash('success','Subject unmount successfully');
+//        return redirect()->back();
+//    }
 
     public function signature()
     {

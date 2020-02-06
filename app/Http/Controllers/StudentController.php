@@ -467,4 +467,88 @@ class StudentController extends Controller
 
         return Response::download($filename, 'students.csv', $headers);
     }
+
+    public function downloadBlank($academicClassId)
+    {
+        $academicClass = AcademicClass::query()->findOrFail($academicClassId);
+
+        $class = $academicClass->academicClasses->name;
+        $group = $academicClass->group->name ?? '';
+        $section = $academicClass->section->name ?? '';
+
+        $filename = $class.$section.$group.".csv";
+
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('id', 'name', 'studentId', 'academic_class_id','session_id','class_id','section_id','group_id','rank','father','mother','gender_id','mobile','dob','blood_group_id','religion_id','image','address','area','zip','city_id','country_id','email','father_mobile','mother_mobile'));
+
+//        foreach($table as $row) {
+//            fputcsv($handle, array($col['tweet_text'], $col['screen_name'], $col['name'], $col['created_at']));
+//        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        return Response::download($filename, $filename, $headers);
+    }
+
+    public function uploadStudent($academicClassId)
+    {
+        $academicClass = AcademicClass::query()->findOrFail($academicClassId);
+        return view('admin.student.upload',compact('academicClass'));
+    }
+
+    public function up(Request $request)
+    {
+        $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
+
+        $academicYear = substr(trim(Session::query()->where('id',$academicClass->session_id)->first()->year),-2);
+        $incrementId = Student::query()->max('id');
+        $increment = $incrementId + 1;
+        $studentId = 'S'.$academicYear.$increment;
+
+        //dd(file($request->file));
+        $file = file($request->file('file'));
+
+        $sl = 0;
+        foreach($file as $row){
+            if($sl != 0){
+                $col = explode(',',$row);
+
+                $data['name'] = $col[1];
+                $data['studentId'] = $studentId;
+                $data['academic_class_id'] = $request->get('academic_class_id');
+                $data['session_id'] = $academicClass->session_id;
+                $data['class_id'] = $academicClass->class_id;
+                $data['section_id'] = $academicClass->section_id;
+                $data['group_id'] = $academicClass->group_id;
+                $data['rank'] = $col[8];
+                $data['father'] = $col[9];
+                $data['mother'] = $col[10];
+                $data['gender_id'] = null;
+                $data['mobile'] = $col[12];
+                $data['dob'] = $col[13];
+                $data['blood_group_id'] = null;
+                $data['religion_id'] = null;
+                $data['image'] = $col[16];
+                $data['address'] = $col[17];
+                $data['area'] = $col[18];
+                $data['zip'] = $col[19];
+                $data['city_id'] = null;
+                $data['country_id'] = null;
+                $data['email'] = $col[22];
+                $data['father_mobile'] = $col[23];
+                $data['mother_mobile'] = $col[24];
+                $data['notification_type_id'] = 0;
+                $data['status'] = 1;
+
+                Student::query()->create($data);
+            }
+            $sl++;
+        }
+
+        return redirect('institution/academic-class');
+    }
 }

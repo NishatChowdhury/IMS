@@ -39,76 +39,77 @@
                 {{--</a>--}}
             {{--</li>--}}
             @cannot('cms')
-            <li class="nav-item has-treeview {{ isActive(['chart*']) }}">
-                <a href="#" class="nav-link {{ isActive(['chart*']) }}">
-                    <i class="nav-icon fas fa-user-plus"></i>
-                    <p>
-                        Admission
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="{{route('admission.exams')}}" class="nav-link {{ isActive('admission/exams') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Examinations</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('admission.applicant')}}" class="nav-link {{ isActive('admission/applicant') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Applicants</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('admission.examResult')}}" class="nav-link {{ isActive('admission/examResult') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Results</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item has-treeview {{ isActive('attendance*') }}">
-                <a href="#" class="nav-link {{ isActive('attendance*') }}">
-                    <i class="nav-icon fas fa-tree"></i>
-                    <p>
-                        Attendance
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('attendance/dashboard') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Setting</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('attendance.student')}}" class="nav-link {{ isActive('attendance/student') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Student Attendance</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('attendance.teacher')}}" class="nav-link {{ isActive('attendance/teacher') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Teacher Attendance</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('attendance.report') }}" class="nav-link {{ isActive('attendance/report') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Monthly Report</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                <li class="nav-item has-treeview {{ isActive(['chart*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['chart*']) }}">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Admission
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{route('admission.exams')}}" class="nav-link {{ isActive('admission/exams') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Examinations</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('admission.applicant')}}" class="nav-link {{ isActive('admission/applicant') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Applicants</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('admission.examResult')}}" class="nav-link {{ isActive('admission/examResult') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Results</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview {{ isActive('attendance*') }}">
+                    <a href="#" class="nav-link {{ isActive('attendance*') }}">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p>
+                            Attendance
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('attendance/dashboard') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Setting</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ route('attendance.student')}}" class="nav-link {{ isActive('attendance/student') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Student Attendance</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ route('attendance.teacher')}}" class="nav-link {{ isActive('attendance/teacher') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Teacher Attendance</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ route('attendance.report') }}" class="nav-link {{ isActive('attendance/report') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Monthly Report</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcannot
             <li class="nav-item has-treeview {{ isActive('student*') }}">
                 <a href="#" class="nav-link {{ isActive('student*') }}">
                     <i class="nav-icon fas fa-user-graduate"></i>
@@ -218,194 +219,195 @@
                     {{--</p>--}}
                 {{--</a>--}}
             {{--</li>--}}
-            <li class="nav-item has-treeview {{ isActive(['exam*']) }}">
-                <a href="#" class="nav-link {{ isActive(['exam*']) }}">
-                    <i class="nav-icon fas fa-diagnoses"></i>
-                    <p>
-                        Exam Mgmt
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="{{route('exam.gradesystem')}}" class="nav-link {{ isActive('exam/gradesystem') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Grade System </p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('ExamController@admitCard') }}" class="nav-link {{ isActive('exam/admit-card') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Admit Card</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('exam.examination')}}" class="nav-link {{ isActive('exam/examination') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Examinations</p>
-                        </a>
-                    </li>
-                    {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+            @cannot('cms')
+                <li class="nav-item has-treeview {{ isActive(['exam*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['exam*']) }}">
+                        <i class="nav-icon fas fa-diagnoses"></i>
+                        <p>
+                            Exam Mgmt
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{route('exam.gradesystem')}}" class="nav-link {{ isActive('exam/gradesystem') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Grade System </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('ExamController@admitCard') }}" class="nav-link {{ isActive('exam/admit-card') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Admit Card</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('exam.examination')}}" class="nav-link {{ isActive('exam/examination') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Examinations</p>
+                            </a>
+                        </li>
+                        {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
                         {{--<a href="{{route('exam.examitems')}}" class="nav-link {{ isActive('exam/examitems') }}">--}}
                             {{--<i class="far fa-circle nav-icon"></i>--}}
                             {{--<p>Exam Schedules</p>--}}
                         {{--</a>--}}
-                    {{--</li>--}}
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('exam.examresult')}}" class="nav-link {{ isActive('exam/examresult') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Exam Results</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('exam.setfinalresultrule')}}" class="nav-link {{ isActive('exam/setfinalresultrule') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Generate Final Result</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('exam.getfinalresultrule')}}" class="nav-link {{ isActive('exam/getfinalresultrule') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Final Result</p>
-                        </a>
-                    </li>
+                        {{--</li>--}}
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('exam.examresult')}}" class="nav-link {{ isActive('exam/examresult') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Exam Results</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('exam.setfinalresultrule')}}" class="nav-link {{ isActive('exam/setfinalresultrule') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Generate Final Result</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('exam.getfinalresultrule')}}" class="nav-link {{ isActive('exam/getfinalresultrule') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Final Result</p>
+                            </a>
+                        </li>
 
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('exam.tabulationSheet')}}" class="nav-link {{ isActive('exam/tabulationSheet') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Tabulation Sheet</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item has-treeview {{ isActive(['fee-category*']) }}">
-                <a href="#" class="nav-link {{ isActive(['fee-category*']) }}">
-                    <i class="nav-icon fas fa-money-check-alt"></i>
-                    <p>
-                        Finance
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="{{route('fee-category.index')}}" class="nav-link {{ isActive('fee-category/index') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fee Category</p>
-                        </a>
-                    </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('exam.tabulationSheet')}}" class="nav-link {{ isActive('exam/tabulationSheet') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tabulation Sheet</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview {{ isActive(['fee-category*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['fee-category*']) }}">
+                        <i class="nav-icon fas fa-money-check-alt"></i>
+                        <p>
+                            Finance
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{route('fee-category.index')}}" class="nav-link {{ isActive('fee-category/index') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Fee Category</p>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fee Setup</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Fee Setup</p>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Transport Location</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Transport Location</p>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('transport.student-list')}}" class="nav-link {{ isActive('fee-category/transport') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Transport Fee Assign</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{route('transport.student-list')}}" class="nav-link {{ isActive('fee-category/transport') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Transport Fee Assign</p>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('student.fee')}}" class="nav-link {{ isActive('fee-category/student') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Studen Fee Collection</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{route('student.fee')}}" class="nav-link {{ isActive('fee-category/student') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Studen Fee Collection</p>
+                            </a>
+                        </li>
 
-                </ul>
-            </li>
-            <li class="nav-item has-treeview {{ isActive(['communication*']) }}">
-                <a href="#" class="nav-link {{ isActive(['communication*']) }}">
-                    <i class="nav-icon fas fa-comments"></i>
-                    <p>
-                        Communication
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('communication/quick') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Quick SMS</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Student SMS</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('communication/staff') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Staff SMS</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('communication.history')}}" class="nav-link {{ isActive('communication/history') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>SMS History</p>
-                        </a>
-                    </li>
-                    {{--<li class="nav-item">--}}
-                    {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
-                    {{--<i class="far fa-circle nav-icon"></i>--}}
-                    {{--<p>Starter Page</p>--}}
-                    {{--</a>--}}
-                    {{--</li>--}}
-                </ul>
-            </li>
-            <li class="nav-item has-treeview {{ isActive(['report*']) }}">
-                <a href="#" class="nav-link {{ isActive(['report*']) }}">
-                    <i class="nav-icon fas fa-scroll"></i>
-                    <p>
-                        Reports
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview"  style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link {{ isActive('report/404') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Profit and Loss </p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('report/500') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Balance Sheet</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="#" class="nav-link {{ isActive('report/blank') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Annual Payments</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('report.student-fee')}}" class="nav-link {{ isActive('report/student-fee-report') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fee Collection</p>
-                        </a>
-                    </li>
-                    {{--<li class="nav-item">--}}
-                    {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
-                    {{--<i class="far fa-circle nav-icon"></i>--}}
-                    {{--<p>Starter Page</p>--}}
-                    {{--</a>--}}
-                    {{--</li>--}}
-                </ul>
-            </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview {{ isActive(['communication*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['communication*']) }}">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Communication
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('communication/quick') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Quick SMS</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Student SMS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('communication/staff') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Staff SMS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('communication.history')}}" class="nav-link {{ isActive('communication/history') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>SMS History</p>
+                            </a>
+                        </li>
+                        {{--<li class="nav-item">--}}
+                        {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
+                        {{--<i class="far fa-circle nav-icon"></i>--}}
+                        {{--<p>Starter Page</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['extra*']) }}">
+                        <i class="nav-icon fas fa-scroll"></i>
+                        <p>
+                            Reports
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"  style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{ isActive('extra/404') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Profit and Loss </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="#" class="nav-link {{ isActive('extra/500') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Balance Sheet</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Annual Payments</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Fee Collection</p>
+                            </a>
+                        </li>
+                        {{--<li class="nav-item">--}}
+                        {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
+                        {{--<i class="far fa-circle nav-icon"></i>--}}
+                        {{--<p>Starter Page</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                    </ul>
+                </li>
             @endcannot
             <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*']) }}">
                 <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*']) }}">
@@ -436,14 +438,14 @@
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Slider</p>
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Slider</p>
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('links') }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Important Links</p>
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Important Links</p>
                         </a>
                     </li>
                 </ul>
@@ -487,6 +489,13 @@
                             <p>PaySlip</p>
                         </a>
                     </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('IdCardController@staff') }}" class="nav-link {{ isActive('staff/idCard') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Design ID Card</p>
+                        </a>
+                    </li>
+
                     {{--<li class="nav-item">--}}
                     {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
                     {{--<i class="far fa-circle nav-icon"></i>--}}
@@ -556,19 +565,19 @@
 
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
             @cannot('cms')
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
 
-                    <i class="nav-icon fas fa-file-invoice-dollar"></i>
-                    <p>SC Invoices</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-file"></i>
-                    <p>Activities</p>
-                </a>
-            </li>
+                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                        <p>SC Invoices</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Activities</p>
+                    </a>
+                </li>
             @endcannot
             <li class="nav-item">
                 <a href="#" class="nav-link">
