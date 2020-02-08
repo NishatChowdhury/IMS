@@ -15,7 +15,7 @@ class ForeignFeesetupSessionClassFeecategoryTable extends Migration
     {
         Schema::table('fee_setups', function (Blueprint $table) {
             $table->foreign('session_id')->references('id')->on('sessions');
-            $table->foreign('class_id')->references('id')->on('classes');
+            //$table->foreign('class_id')->references('id')->on('classes');
 //            $table->foreign('category_id')->references('id')->on('fee_categories');
         });
     }

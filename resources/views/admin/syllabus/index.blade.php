@@ -62,14 +62,17 @@
                                     @foreach($syllabuses as $syllabus)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $syllabus->academicClass->classes->name }}</td>
-                                            <td>{{ $syllabus->session->year }}</td>
+                                            <td>{{ $syllabus->academicClass->academicClasses->name ?? '' }}</td>
+                                            <td>{{ $syllabus->session->year ?? '' }}</td>
                                             <td>{{ $syllabus->title}}</td>
                                             <td>
                                                 <a href="{{ asset('assets/syllabus') }}/{{ $syllabus->file }}" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('syllabus.delete',$syllabus->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete('Do you want to delete this Syllabus ?')"><i class="fas fa-trash"></i> </a>
+                                                {{ Form::open(['action'=>['SyllabusController@destroy',$syllabus->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+{{--                                                <a href="{{ route('syllabus.delete',$syllabus->id) }}" class="btn btn-danger btn-sm" onclick="confirm('Do you want to delete this Syllabus ?')"><i class="fas fa-trash"></i> </a>--}}
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                {{ Form::close() }}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -104,7 +107,7 @@
                                 <select name="academic_class_id" id="inputState" class="form-control" >
                                     <option value=""> -- Select Academic Class -- </option>
                                     @foreach($academic_class as $value)
-                                        <option value="{{ $value->id }}"> {{ $value->academicClasses->name }} {{$value->section->name}}</option>
+                                        <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }} {{$value->section->name ?? ''}}{{ $value->group->name ?? '' }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -145,20 +148,20 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">--}}
 @stop
 
 <!-- *** External JS File-->
 @section('plugin')
-    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+{{--    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>--}}
 @stop
 
 
 @section('script')
     <script>
         function confirmDelete(){
-            var x = confirm('Are you sure you want delete this image?');
+            var x = confirm('Are you sure you want delete this syllabus?');
             return !!x;
         }
     </script>

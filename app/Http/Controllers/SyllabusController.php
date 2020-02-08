@@ -49,7 +49,7 @@ class SyllabusController extends Controller
         }else{
             Syllabus::query()->create($request->all());
         }
-        return redirect('syllabus');
+        return redirect('syllabuses');
 
     }
 
@@ -59,6 +59,6 @@ class SyllabusController extends Controller
         File::delete('assets/syllabus/'.$syllabus->file);
         $syllabus->delete();
 
-        return redirect('syllabus');
+        return redirect('syllabuses');
     }
 }
