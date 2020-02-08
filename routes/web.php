@@ -355,6 +355,12 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 
 //Account Section End
 
+//Syllabus Section Start A R Babu
+    Route::get('syllabus','SyllabusController@index')->name('syllabus.index');
+    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
+    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
+//Syllabus Section End
+
 
 /** Route for Apps start */
 Route::post('api/login','AndroidController@login');

@@ -533,6 +533,28 @@
                     </li>
                 </ul>
             </li>
+
+            {{--Syllabus Section Start babu--}}
+            <li class="nav-item has-treeview {{ isActive(['syllabus*']) }}">
+                <a href="#" class="nav-link {{ isActive(['syllabus*']) }}">
+                    <i class="fas fa-book"></i>
+                    <p>
+                        Syllabus
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
+                        <a href="{{ route('syllabus.index') }}" class="nav-link {{ isActive('syllabus/syllabus') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Syllabus Management</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            {{--Syllabus Section End babu--}}
+
             <li class="nav-item has-treeview {{ isActive(['gallery*']) }}">
                 <a href="#" class="nav-link {{ isActive(['gallery*']) }}">
                     <i class="fas fa-camera-retro"></i>
