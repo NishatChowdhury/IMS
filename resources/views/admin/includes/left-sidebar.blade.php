@@ -409,8 +409,8 @@
                     </ul>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*']) }}">
-                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*']) }}">
+                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*','social*']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
                         Settings
@@ -446,6 +446,12 @@
                         <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('links') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Important Links</p>
+                        </a>
+                    </li>
+                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('social') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Social Links</p>
                         </a>
                     </li>
                 </ul>

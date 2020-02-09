@@ -16,6 +16,11 @@ function smsConfig($col){
     return $config->$col;
 }
 
+function socialConfig($col){
+    $config = \App\Social::query()->first();
+    return $config->$col;
+}
+
 function activeYear(){
     $s = \App\Session::query()->where('active',1)->pluck('id');
     return $s;

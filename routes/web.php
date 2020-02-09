@@ -361,6 +361,13 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
     Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
 
+//Social Links start
+    Route::get('socials','SocialController@index')->name('social.index');
+    Route::post('socials/update/{id}','SocialController@update')->name('social.store');
+//Social Links End
+
+
+
 
 /** Route for Apps start */
 Route::post('api/login','AndroidController@login');
