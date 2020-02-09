@@ -50,8 +50,8 @@
                                         <li><a class="nav-link__list" href="{{action('FrontController@building_room')}}"> Building & Rooms </a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@library')}}"> Library</a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@transport')}}"> Transport</a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@hostel')}}"> Hotel</a></li>
-                                        <li><a class="nav-link__list" href="#"> Land Information</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@hostel')}}"> Hostel</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@land_information') }}"> Land Information</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -63,9 +63,9 @@
                                         <li><a class="nav-link__list" href="{{action('FrontController@class_routine')}}"> Class Routine </a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@calender')}}">Academic Calender</a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@syllabus')}}"> Syllabus</a></li>
-                                        <li><a class="nav-link__list" href="#"> Diary</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@diary') }}"> Diary</a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@performance')}}"> Performance</a></li>
-                                        <li><a class="nav-link__list" href="#"> Annual Holiday List</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@holiday') }}"> Annual Holiday List</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -74,9 +74,9 @@
                                 <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Digital Campus </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="#"> Multimedia Class Room </a></li>
-                                        <li><a class="nav-link__list" href="#"> Computer Lab </a></li>
-                                        <li><a class="nav-link__list" href="#"> Science Lab </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@multimedia_classroom') }}"> Multimedia Class Room </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@computer_lab') }}"> Computer Lab </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@science_lab') }}"> Science Lab </a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -90,9 +90,9 @@
                             <li><a class="nav-link__list" href="{{action('FrontController@managing_committee')}}">Managing Committee</a></li>
                             <li><a class="nav-link__list" href="{{action('FrontController@teacher')}}">Teachers</a></li>
                             <li><a class="nav-link__list" href="{{action('FrontController@staff')}}">Staffs</a></li>
-                            <li><a class="nav-link__list" href="#">Women Abuse Prevention Committee(WAPC)</a></li>
-                            <li><a class="nav-link__list" href="#">Teacher & Staff Welfare Trust</a></li>
-                            <li><a class="nav-link__list" href="#">Teachers Council Information</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@wapc') }}">Women Abuse Prevention Committee(WAPC)</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@tswt') }}">Teacher & Staff Welfare Trust</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@tci') }}">Teachers Council Information</a></li>
 
                         </ul>
                     </div>
@@ -113,12 +113,12 @@
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Information</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list px-0" href="#">Sports & Cultural Program </a></li>
-                            <li><a class="nav-link__list px-0" href="#"> Centre Information </a></li>
-                            <li><a class="nav-link__list px-0" href="#"> Scholarship Info</a></li>
-                            <li><a class="nav-link__list px-0" href="#"> BNCC Info </a></li>
-                            <li><a class="nav-link__list px-0" href="#"> Rover Scouts </a></li>
-                            <li><a class="nav-link__list px-0" href="#"> Tender </a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@sports_n_culture_program') }}">Sports & Cultural Program </a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@center_information') }}"> Centre Information </a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@scholarship_info') }}"> Scholarship Info</a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@bncc') }}"> BNCC Info </a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@scout') }}"> Rover Scouts </a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@tender') }}"> Tender </a></li>
                         </ul>
                     </div>
                 </li>
@@ -149,11 +149,11 @@
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link no-caret" href="#">Download</a>
+                    <a class="nav-link no-caret" href="{{ action('FrontController@download') }}">Download</a>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link no-caret" href="#">Contacts</a>
+                    <a class="nav-link no-caret" href="{{ action('FrontController@contact') }}">Contacts</a>
                 </li>
 
             </ul>
