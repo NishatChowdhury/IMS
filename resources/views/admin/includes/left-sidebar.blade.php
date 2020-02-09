@@ -284,7 +284,7 @@
                     <a href="#" class="nav-link {{ isActive(['fee-category*']) }}">
                         <i class="nav-icon fas fa-money-check-alt"></i>
                         <p>
-                            Finance
+                            Accounts
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -449,7 +449,7 @@
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('social') }}">
+                        <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Social Links</p>
                         </a>

@@ -18,7 +18,7 @@ class FeeCategoryController extends Controller
     }
 
     public function index(){
-        $sessions = Session::query()->pluck('year','id');
+        $sessions = Session::query()->where('active',1)->pluck('year','id');
         $fee_categories = FeeCategory::all();
         return view('admin.account.fee-category.fee-category',compact('sessions','fee_categories'));
     }
@@ -27,7 +27,7 @@ class FeeCategoryController extends Controller
         $validate = $this->validate($request,[
             'session_id' => 'required',
             'name' => 'required',
-            'description' => 'required'
+            //'description' => 'required'
         ],[
             'name.required'=>'Name Field is Required'
         ]);
