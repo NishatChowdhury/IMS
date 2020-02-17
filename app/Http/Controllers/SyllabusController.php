@@ -17,9 +17,9 @@ class SyllabusController extends Controller
 
     public function index()
     {
-        $session = Session::query()->where('active',1)->first()->id;
-        $data['academic_class'] = AcademicClass::query()->where('session_id',$session)->get();
-        $data['syllabuses'] = Syllabus::query()->orderBy('session_id','desc')->orderBy('academic_class_id')->get();
+        //$session = Session::query()->where('active',1)->first()->id;
+        $data['academic_class'] = AcademicClass::query()->whereIn('session_id',activeYear())->get();
+        $data['syllabuses'] = Syllabus::query()->orderBy('academic_class_id')->get();
         return view('admin.syllabus.index')->with($data);
     }
 
@@ -55,7 +55,7 @@ class SyllabusController extends Controller
 
     public function destroy($id)
     {
-        $syllabus = Syllabus::findOrFail($id);
+        $syllabus = Syllabus::query()->findOrFail($id);
         File::delete('assets/syllabus/'.$syllabus->file);
         $syllabus->delete();
 

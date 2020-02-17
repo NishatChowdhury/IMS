@@ -16,7 +16,7 @@ class CreateSyllabiTable extends Migration
         Schema::create('syllabus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('academic_class_id');
-            $table->unsignedBigInteger('session_id');
+            //$table->unsignedBigInteger('session_id');
             $table->string('title')->nullable();
             $table->string('file');
             $table->timestamps();

@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : 1000</h3>
+                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $syllabuses->count() }}</h3>
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>
@@ -62,8 +62,8 @@
                                     @foreach($syllabuses as $syllabus)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $syllabus->academicClass->academicClasses->name ?? '' }}</td>
-                                            <td>{{ $syllabus->session->year ?? '' }}</td>
+                                            <td>{{ $syllabus->academicClass->academicClasses->name ?? '' }}&nbsp;{{ $syllabus->academicClass->section->name ?? '' }}{{ $syllabus->academicClass->group->name ?? '' }}</td>
+                                            <td>{{ $syllabus->academicClass->sessions->year ?? '' }}</td>
                                             <td>{{ $syllabus->title}}</td>
                                             <td>
                                                 <a href="{{ asset('assets/syllabus') }}/{{ $syllabus->file }}" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="session_id" class="form-control" value="{{$value->session_id}}">
+{{--                    <input type="hidden" name="session_id" class="form-control" value="{{$value->session_id}}">--}}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title</label>
                         <div class="col-sm-10">

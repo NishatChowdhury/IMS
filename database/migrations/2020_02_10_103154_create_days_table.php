@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ForiegnStudentSessionTable extends Migration
+class CreateDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class ForiegnStudentSessionTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            //$table->foreign('session_id')->references('id')->on('sessions');
+        Schema::create('days', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->unique();
+            $table->string('short_name')->unique();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class ForiegnStudentSessionTable extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->dropForeign(['session_id']);
-        });
+        Schema::dropIfExists('days');
     }
 }

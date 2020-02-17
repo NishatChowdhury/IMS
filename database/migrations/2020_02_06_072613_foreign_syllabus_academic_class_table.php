@@ -15,7 +15,7 @@ class ForeignSyllabusAcademicClassTable extends Migration
     {
         Schema::table('syllabus', function (Blueprint $table) {
             $table->foreign('academic_class_id')->references('id')->on('academic_classes')->onDelete('restrict');
-            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('restrict');
+            //$table->foreign('session_id')->references('id')->on('sessions')->onDelete('restrict');
         });
     }
 

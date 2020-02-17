@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ForeignStudentStateTable extends Migration
+class AddColumnFeeSetup extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class ForeignStudentStateTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->foreign('state_id')->references('id')->on('states');
+        Schema::table('fee_setups', function (Blueprint $table) {
+            $table->addColumn('biginteger','academic_class_id')->after('id')->nullable()->unsigned();
         });
     }
 
@@ -25,8 +25,8 @@ class ForeignStudentStateTable extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->dropForeign(['state_id']);
+        Schema::table('fee_setups', function (Blueprint $table) {
+            $table->dropColumn('academic_class_id');
         });
     }
 }
