@@ -25,8 +25,8 @@ class SliderController extends Controller
         $this->validate($request,[
             'title' => 'required',
             //'description' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date',
+            //'start' => 'sometimes|date',
+            //'end' => 'sometimes|date',
             'image' => 'required|max:2000'
         ]);
 

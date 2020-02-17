@@ -326,9 +326,9 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 //    Fee Category End
 
 //  Fee Setup Start
-    Route::get('fee-category/fee_setup','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
-    Route::post('fee_setup/store','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
-    Route::get('fee_setup/list','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
+    Route::get('fee-category/fee_setup/{classId}','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
+    Route::post('fee_setup/store/{classId}','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
+    Route::get('fee_setup/list/{classId}','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
     Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
     Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
@@ -345,8 +345,8 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 
 // Student Fee Collection start
     Route::get('student/fee','FinanceController@index')->name('student.fee');
-    Route::post('student/fee-store','financeController@store_payment')->name('student.fee-store');
-    Route::get('student/fee-invoice/{id}','financeController@fee_invoice')->name('student.fee-invoice');
+    Route::post('student/fee-store','FinanceController@store_payment')->name('student.fee-store');
+    Route::get('student/fee-invoice/{id}','FinanceController@fee_invoice')->name('student.fee-invoice');
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
@@ -375,6 +375,9 @@ Route::post('api/login','AndroidController@login');
 Route::post('api/attendance','AndroidController@attendance');
 Route::post('api/about','AndroidController@about');
 Route::post('api/president','AndroidController@president');
+Route::post('api/profile','AndroidController@profile');
+Route::post('api/teachers','AndroidController@teachers');
+Route::post('api/syllabus','AndroidController@syllabus');
 /** Route for Apps end */
 
 Route::get('migrate',function(){

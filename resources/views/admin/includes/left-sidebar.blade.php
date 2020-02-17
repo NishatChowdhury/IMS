@@ -168,13 +168,6 @@
                     </li>
 
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.academicClasses')}}" class="nav-link {{ isActive('institution/academic-class') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Academic Classes</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/class') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Classes</p>
@@ -185,6 +178,13 @@
                         <a href="{{route('section.group')}}" class="nav-link {{ isActive('institution/section-groups') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Sections & Groups</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('institution.academicClasses')}}" class="nav-link {{ isActive('institution/academic-class') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Academic Classes</p>
                         </a>
                     </li>
 
@@ -296,12 +296,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fee Setup</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Fee Setup</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="nav-item">
                             <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
@@ -395,7 +395,7 @@
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="#" class="nav-link {{ isActive('extra/blank') }}">
+                            <a href="{{ action('ReportController@student_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Fee Collection</p>
                             </a>
@@ -443,7 +443,7 @@
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('links') }}">
+                        <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Important Links</p>
                         </a>

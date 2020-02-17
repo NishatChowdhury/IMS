@@ -102,14 +102,12 @@
                     <div class="card">
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
-                            <table>
+                            <table class="table table-condense">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Button</th>
-                                    <th>URL</th>
                                     <th>Duration</th>
                                     <th>Image</th>
                                     <th>Action</th>
@@ -121,8 +119,6 @@
                                     <td>{{ $slider->id }}</td>
                                     <td>{{ $slider->title }}</td>
                                     <td>{{ $slider->description }}</td>
-                                    <td>{{ $slider->button_text }}</td>
-                                    <td>{{ $slider->redirect_url }}</td>
                                     <td>{{ $slider->start }}<br>{{ $slider->end }}</td>
                                     <td>
                                         <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
