@@ -66,11 +66,6 @@
     {{--</form>--}}
 {{--</div> <!-- END site-search-->--}}
 
-
-
-
-
-
 @yield('content')
 
 

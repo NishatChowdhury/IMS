@@ -12,7 +12,7 @@
                     </small>
                     Message
                 </h2>
-                {!! substr($content->where('name','president message')->first()->content,0,1000) !!}
+                {!! substr($content->where('name','principal message')->first()->content,0,1000) !!}
                 <a href="{{ action('FrontController@principal') }}">...more</a>
                 {{--<h2>--}}
                 {{--<small class="text-primary d-block">--}}
