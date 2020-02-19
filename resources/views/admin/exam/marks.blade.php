@@ -57,6 +57,7 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
+                                <th>SL</th>
                                 <th>Id</th>
                                 {{--<th>Class</th>--}}
                                 {{--<th>Subject Code</th>--}}
@@ -71,10 +72,12 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $x = 1 @endphp
                             @foreach($students as $student)
                                 <tr>
+                                    <td>{{ $x++ }}</td>
                                     <td>
-                                        {{ Form::hidden('student_id[]',$student->id) }}
+                                        {{ Form::hidden('student_id[]',$table == 'students' ? $student->id : $student->student_id) }}
                                         {{ $student->student->studentId ?? $student->studentId }}
                                     </td>
                                     {{--<td>--}}

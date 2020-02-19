@@ -145,6 +145,8 @@ Route::post('exam/final-result','ResultController@finalResultNew');
 
 Route::get('exam/marks/{schedule}','MarkController@index');
 Route::get('exam/mark/download/{schedule}','MarkController@download');
+Route::get('exam/mark/upload/{schedule}','MarkController@upload');
+Route::post('exam/mark/up','MarkController@up');
 Route::post('exam/mark/store','MarkController@store');
 
 Route::get('exam/tabulationSheet','ExamController@tabulationSheet')->name('exam.tabulationSheet');

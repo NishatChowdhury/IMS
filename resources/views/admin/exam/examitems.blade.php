@@ -76,7 +76,7 @@
                                 @foreach($schedules as $schedule)
                                     {{--{{dd($schedule)}}--}}
                                     <tr>
-                                        <td>{{ $schedule->academicClass->name }}</td>
+                                        <td>{{ $schedule->academicClass->academicClasses->name }}&nbsp;{{ $schedule->academicClass->group->name }}</td>
                                         <td>{{ $schedule->subject->name ?? '' }}</td>
                                         <td>{{ $schedule->date }}</td>
                                         <td>{{ $schedule->start }}</td>
@@ -87,12 +87,12 @@
                                         <td>
                                             {{--<label for="file">--}}
                                             <a href="{{ action('MarkController@download',$schedule->id) }}" class="btn btn-success btn-sm"><i class="fas fa-file-download"></i></a>
-                                            <label for="file">
-                                                <a class="btn btn-success btn-sm" role="button" style="color:white"><i class="fas fa-file-upload"></i></a>
-                                            </label>
+{{--                                            <label for="file">--}}
+                                                <a href="{{ action('MarkController@upload',$schedule->id) }}" class="btn btn-success btn-sm" role="button" style="color:white"><i class="fas fa-file-upload"></i></a>
+{{--                                            </label>--}}
                                             {{--</label>--}}
                                             <a href="{{ action('MarkController@index',$schedule->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
-                                            <input type="file" name="file" id="file" style="display: none;">
+{{--                                            <input type="file" name="file" id="file" style="display: none;">--}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -103,14 +103,14 @@
                                     <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                        </ul>
-                                    </nav>
+{{--                                    <nav aria-label="Page navigation example">--}}
+{{--                                        <ul class="pagination">--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">First</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </nav>--}}
                                 </div>
                             </div>
                         </div>
