@@ -30,9 +30,12 @@
                         <h3 class="card-title">
                             <span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>
                             <span>
-                                {{ $students->first()->student->academicClass->name ?? $students->first()->academicClass->name}}
-                                {{ $students->first()->section ? $students->first()->section->name : ''}}
-                                {{ $students->first()->group ? $students->first()->group->name : ''}}
+{{--                                {{ $students->first()->student->academicClass->name ?? $students->first()->academicClass->name}}--}}
+{{--                                {{ $students->first()->section ? $students->first()->section->name : ''}}--}}
+{{--                                {{ $students->first()->group ? $students->first()->group->name : ''}}--}}
+                                {{ $schedule->academicClass->academicClasses->name ?? '' }}
+                                {{ $schedule->academicClass->section->name ?? '' }}
+                                {{ $schedule->academicClass->group->name ?? '' }}
                             </span>|
                             <span>
                                 {{ $schedule->subject->name }}
@@ -43,14 +46,15 @@
                         </h3>
                         <div class="card-tools">
 
-                            <a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
+                            {{--                            <a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>--}}
                             <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     {{ Form::open(['action'=>'MarkController@store','method'=>'post']) }}
-                    {{ Form::hidden('session_id',$schedule->session_id) }}
-                    {{ Form::hidden('class_id',$schedule->class_id) }}
+                    {{--                    {{ Form::hidden('session_id',$schedule->session_id) }}--}}
+                    {{--                    {{ Form::hidden('class_id',$schedule->class_id) }}--}}
+                    {{ Form::hidden('academic_class_id',$schedule->academic_class_id) }}
                     {{ Form::hidden('exam_id',$schedule->exam_id) }}
                     {{ Form::hidden('subject_id',$schedule->subject_id) }}
                     <div class="card-body">
@@ -81,9 +85,9 @@
                                         {{ $student->student->studentId ?? $student->studentId }}
                                     </td>
                                     {{--<td>--}}
-                                        {{--{{ $student->student->academicClass->name ?? $student->academicClass->name}}--}}
-                                        {{--{{ $student->section ? $student->section->name : ''}}--}}
-                                        {{--{{ $student->group ? $student->group->name : ''}}--}}
+                                    {{--{{ $student->student->academicClass->name ?? $student->academicClass->name}}--}}
+                                    {{--{{ $student->section ? $student->section->name : ''}}--}}
+                                    {{--{{ $student->group ? $student->group->name : ''}}--}}
                                     {{--</td>--}}
                                     {{--<td>{{ $schedule->subject->name }}</td>--}}
                                     {{--<td>{{ $schedule->exam->name ?? '' }}</td>--}}
@@ -103,10 +107,10 @@
                     </div>
                     <div class="card-body">
                         {{ Form::submit('Save Mark',['class'=>'btn btn-primary form-control']) }}
-{{--                        {{ $students->appends(Request::except('page'))->links() }}--}}
+                        {{--                        {{ $students->appends(Request::except('page'))->links() }}--}}
                     </div>
-                    {{ Form::close() }}
-                    <!-- /.card-body -->
+                {{ Form::close() }}
+                <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>
