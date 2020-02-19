@@ -99,7 +99,7 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th></th>
+                                <th>{{ Form::checkbox('checkall',null,true,['id'=>'checkall']) }}</th>
                                 <th>Id</th>
                                 <th>Old Rank</th>
                                 <th>New Rank</th>
@@ -114,20 +114,21 @@
                             @foreach($students as $student)
                                 <tr>
                                     <th>
-                                        {{ Form::checkbox('ids[]',$student->id,true) }}
+                                        {{ Form::checkbox('ids[]',$student->id,true,['class'=>'checkbox']) }}
                                     </th>
                                     <td>{{ $student->studentId }}</td>
                                     <td>{{ $student->rank }}</td>
-                                    <td>{{ Form::text('rank[]',null,['class'=>'form-control','required']) }}</td>
+                                    <td>{{ Form::text('rank['.$student->id.']',null,['class'=>'form-control']) }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>
                                     {{ $student->academicClass ? $student->academicClass->name : ''}}
                                     {{ $student->section ? $student->section->name : ''}}
                                     {{ $student->group ? $student->group->name : ''}}
+
                                     </td>
                                     <td>{{ $student->father }}</td>
                                     <td>{{ $student->mother }}</td>
-                                    <td><img src="{{ asset('assets/img/students/'.$student->session_id.'/'.$student->class_id.'/'.$student->studentId.'.jpg') }}" height="100" alt=""></td>
+                                    <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -139,7 +140,7 @@
                             <div class="col">
                                 <label for="">Session</label>
                                 <div class="input-group">
-                                    {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
+                                    {{ Form::select('session_id',$repository->activeSessions(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
                                 </div>
                             </div>
                             <div class="col">
@@ -182,5 +183,9 @@
             var x = confirm('Are you sure, you want to promote these students?');
             return !!x;
         }
+
+        $("#checkall").click(function(){
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
     </script>
 @stop
