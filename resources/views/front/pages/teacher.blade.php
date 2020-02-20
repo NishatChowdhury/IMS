@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','Team | Teacher')
 
 @section('content')
 
@@ -34,7 +34,7 @@
                 @foreach($teachers as $teacher)
                     <div class="col-lg-3 col-md-6 marginTop-30">
                     <div class="card height-100p border border-light text-center">
-                        <img class="card-img-top" src="{{ asset('assets/img/staffs') }}/{{$teacher->image}}" alt="">
+                        <img class="card-img-top" src="{{ asset('assets/img/staffs') }}/{{$teacher->image}}" alt="" style="height: 300px">
                         <div class="card-body">
                             <h4>
                                 {{ ucfirst($teacher->name) }}
