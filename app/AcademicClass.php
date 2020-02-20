@@ -39,7 +39,10 @@ class AcademicClass extends Model
     {
         return $this->hasMany(AssignSubject::class,'academic_class_id');
     }
-
+    public function classes()
+    {
+        return $this->belongsTo(Classes::class,'class_id');
+    }
     public function fee_setup(){
         return $this->hasMany(FeeSetup::class,'class_id');
     }

@@ -368,6 +368,21 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
     Route::post('socials/update/{id}','SocialController@update')->name('social.store');
 //Social Links End
 
+//Contact page start
+    Route::get('message-index','MessagesController@index')->name('message.index');
+    Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
+    Route::post('message-view','MessagesController@view')->name('message.view');
+    Route::post('message-store','MessagesController@store')->name('message.store');
+//Contact Page end
+//Academic Calender Start
+    Route::get('academic-calender/index','AcademicCalenderController@index')->name('academic-calender.index');
+    Route::post('academic-calender/store','AcademicCalenderController@store')->name('academic-calender.store');
+    Route::post('academic-calender/edit','AcademicCalenderController@edit')->name('academic-calender.edit');
+    Route::post('academic-calender/update','AcademicCalenderController@update')->name('academic-calender.update');
+    Route::delete('academic-calender/{id}','AcademicCalenderController@destroy')->name('academic-calender.delete');
+    Route::put('academic-calender/status/{id}','AcademicCalenderController@status')->name('academic-calender.status');
+//Academic Calender End
+
 
 
 

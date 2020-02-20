@@ -409,7 +409,7 @@
                     </ul>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*','calender*']) }}">
                 <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*','social*']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
@@ -434,6 +434,12 @@
                         <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
+                        </a>
+                    </li>
+                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('AcademicCalenderController@index') }}" class="nav-link {{ isActive('calender') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Academic Calender</p>
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
@@ -612,6 +618,13 @@
                     <i class="nav-icon fas fa-life-ring"></i>
 
                     <p>Need Helps?</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('message.index') }}" class="nav-link {{ isActive('gallery/albums') }}">
+                    <i class="nav-icon far fa-envelope"></i>
+                    <p>Messages</p>
                 </a>
             </li>
             {{--<li class="nav-header">LABELS</li>--}}
