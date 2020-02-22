@@ -137,7 +137,7 @@ Route::get('exam/result-details/{id}','ResultController@resultDetails');
 Route::get('exam/final-result-details/{id}','ResultController@finalResultDetails');
 Route::get('exam/result-details-all','ResultController@allDetails');
 Route::get('exam/examresult','ResultController@index')->name('exam.examresult');
-Route::get('exam/generate-exam-result','ResultController@generateResult');
+Route::get('exam/generate-exam-result/{examID}','ResultController@generateResult');
 
 Route::get('exam/setfinalresultrule','ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
 Route::get('exam/getfinalresultrule','ResultController@getfinalresultrule')->name('exam.getfinalresultrule');

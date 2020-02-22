@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-body">
                         <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"><strong>{{ $card['title'] }}</strong></h6>
-                        <img src="{{asset('assets/img/students')}}/{{ $student->image }}" width="75" style="margin-bottom:10px">
+                        <img src="{{asset('assets/img/students')}}/{{ $student->image }}" width="75" alt="" style="margin-bottom:10px;border: 2px solid #000;min-height: 75px;">
                         @isset($card['nickname'])
                             <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->name }} </h6>
                         @endisset
@@ -57,7 +57,7 @@
                             @endisset
                             @isset($card['fname'])
                                 <tr>
-                                    <td> Father/Husband </td>
+                                    <td> Father </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->father }}</td>
                                 </tr>
@@ -151,7 +151,7 @@
             <div class="card-body">
                 <div class="back-top" style="font-size:15px">
                     <ul>
-                        {{--<li>This card is valid till 13.01.2020</li>--}}
+                        <li>This card is valid till {{ $card['validity'] }}</li>
                         <li>This card is not transferable</li>
                         <li>This finder of this card may please drop it to the nearest post office.</li>
                     </ul>
@@ -185,6 +185,29 @@
     </div>
     <p>&nbsp;</p>
 </div>
+
+<div class="row">
+    <div class="col-4">
+        <table>
+            <tr>
+                <td>Background Color</td>
+                <td>:</td>
+                <td>{{ $card['bgcolor'] }}</td>
+            </tr>
+            <tr>
+                <td>Background Font Color</td>
+                <td>:</td>
+                <td>{{ $card['bgfont'] }}</td>
+            </tr>
+            <tr>
+                <td>Title Color</td>
+                <td>:</td>
+                <td>{{ $card['titlecolor'] }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 
 </body>
 </html>

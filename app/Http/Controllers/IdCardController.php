@@ -37,12 +37,16 @@ class IdCardController extends Controller
     {
         //dd($request->all());
         $students = Student::query()
+            ->whereIn('session_id',activeYear())
             ->where('class_id',$request->class)
             ->where('section_id',$request->section)
-            ->take(10)
+            ->where('status','<>',2)
+            ->orderBy('rank')
+            //->take(10)
             ->get();
 
         $card = $request->except('_token');
+
         return view('admin.student.card-new',compact('students','card'));
 
 //        $total = DB::table('partial_shipments')

@@ -25,6 +25,13 @@ class StudentRepository
 {
     public function sessions()
     {
+        return Session::all()
+            //->where('active',1)
+            ->pluck('year','id');
+    }
+
+    public function activeSessions()
+    {
         return Session::all()->where('active',1)->pluck('year','id');
     }
 
