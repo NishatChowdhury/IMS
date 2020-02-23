@@ -6,6 +6,7 @@ use App\AcademicClass;
 use App\AssignSubject;
 use App\Exam;
 use App\ExamResult;
+use App\ExamSchedule;
 use App\FinalMark;
 use App\FinalResult;
 use App\FM;
@@ -39,29 +40,33 @@ class ResultController extends Controller
                     $query->where('studentId',$request->get('studentId'));
                 });
             }
-            if($request->get('session_id')){
-                $r->where('session_id',$request->get('session_id'));
-            }
+//            if($request->get('session_id')){
+//                $r->where('session_id',$request->get('session_id'));
+//            }
 
             if($request->get('exam_id')){
                 $r->where('exam_id',$request->get('exam_id'));
             }
 
             if($request->get('class_id')){
-                $r->where('class_id',$request->get('class_id'));
+                $r->where('academic_class_id',$request->get('class_id'));
             }
 
-            if($request->get('section_id')){
-                $r->whereHas('student',function($query)use($request){
-                    $query->where('section_id',$request->get('section_id'));
-                });
-            }
-
-            if($request->get('group_id')){
-                $r->whereHas('student',function($query)use($request){
-                    $query->where('group_id',$request->get('group_id'));
-                });
-            }
+//            if($request->get('class_id')){
+//                $r->where('class_id',$request->get('class_id'));
+//            }
+//
+//            if($request->get('section_id')){
+//                $r->whereHas('student',function($query)use($request){
+//                    $query->where('section_id',$request->get('section_id'));
+//                });
+//            }
+//
+//            if($request->get('group_id')){
+//                $r->whereHas('student',function($query)use($request){
+//                    $query->where('group_id',$request->get('group_id'));
+//                });
+//            }
 
             $results = $r->get();
         }else{
@@ -72,149 +77,114 @@ class ResultController extends Controller
         return view ('admin.exam.examresult',compact('repository','results'));
     }
 
-    public function generateResult()
+    public function generateResult($examId)
     {
         $method = 1;
 
         $sessionId = 1;
-        $examId = 1;
+        //$examId = 1;
         //$classId = 2;
         //$sectionId = 2;
         //$groupId = null;
 
         if($method == 1){
             $this->normalResult($sessionId,$examId);
-        }
+        }elseif($method == 2){
+            $classes = AcademicClass::all();
 
-        dd('slipped');
+            foreach($classes as $class){
 
-        $classes = AcademicClass::all();
-
-        foreach($classes as $class){
-            $subjectCount = Mark::query()
-                ->where('session_id',$sessionId)
-                ->where('exam_id',$examId)
-                ->where('class_id',$class->id)
-                ->get()
-                ->groupBy('subject_id')
-                ->count();
-
-            if($class->id == 1){
-                $subjectCount = 5;
-            }elseif($class->id == 2){
-                $subjectCount = 6;
-            }elseif($class->id == 3){
-                $subjectCount = 7;
-            }elseif($class->id == 4){
-                $subjectCount = 7;
-            }elseif($class->id == 5){
-                $subjectCount = 9;
-            }elseif($class->id == 6){
-                $subjectCount = 8;
-            }elseif($class->id == 7){
-                $subjectCount = 6;
-            }elseif($class->id == 8){
-                $subjectCount = 9;
-            }elseif($class->id == 9){
-                $subjectCount = 9;
-            }elseif($class->id == 10){
-                $subjectCount = 7;
-            }elseif($class->id == 11){
-                $subjectCount = 11;
-            }else{
-                $subjectCount = 11;
-            }
-
-            $marks = Mark::query()
-                ->where('session_id',$sessionId)
-                ->where('exam_id',$examId)
-                ->where('class_id',$class->id)
-                //->where('section_id',$sectionId)
-                //->where('group_id',$groupId)
-                ->get()
-                ->groupBy('student_id');
-
-            foreach($marks as $student => $mark){
-                $isFail = Mark::query()
-                    ->where('session_id',$sessionId)
+                $subjectCount = ExamSchedule::query()
+                    ->where('academic_class_id',$class->id)
                     ->where('exam_id',$examId)
-                    ->where('class_id',$class->id)
-                    ->where('student_id',$student)
-                    ->where('grade','F')
-                    ->exists();
+                    ->count();
 
+                $marks = Mark::query()
+                    ->where('academic_class_id',$class->id)
+                    ->where('exam_id',$examId)
+                    ->get()
+                    ->groupBy('student_id');
 
-                $data['session_id'] = $sessionId;
-                $data['exam_id'] = $examId;
-                $data['class_id'] = $class->id;
-                $data['student_id'] = $mark->first()->student_id;
-                $data['total_mark'] = $mark->sum('total_mark');
+                foreach($marks as $student => $mark){
 
-                $optional = Student::query()->findOrFail($student)->subject_id;
-                $optionalMark = $mark->where('subject_id',$optional)->first()->gpa ?? 0;
+                    $isFail = Mark::query()
+                        ->where('academic_class_id',$class->id)
+                        ->where('exam_id',$examId)
+                        ->where('student_id',$student)
+                        ->where('grade','F')
+                        ->exists();
 
-                $data['gpa'] = $isFail ? 0 : $mark->sum('gpa') / $subjectCount;
+                    $data['academic_class_id'] = $class->id;
+                    $data['session_id'] = $sessionId;
+                    $data['exam_id'] = $examId;
+                    $data['class_id'] = $class->id;
+                    $data['student_id'] = $student;
+                    $data['total_mark'] = $mark->sum('total_mark');
 
-                $grade = Grade::query()
-                    ->where('system',1)
-                    ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
-                    ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
-                    ->first();
+                    $optional = Student::query()->findOrFail($student)->subject_id;
+                    $optionalMark = $mark->where('subject_id',$optional)->first()->gpa ?? 0;
+                    //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
 
-                if($optionalMark >= 2){
-                    $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
-
-                    $data['total_mark'] = $mark->sum('total_mark') - 40;
+                    $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') / $subjectCount);
 
                     $grade = Grade::query()
-                        ->where('point_from','<=',$data['gpa'])
-                        ->where('point_to','>=',$data['gpa'])
+                        ->where('system',1)
+                        ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
+                        ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
                         ->first();
-                }
 
-                if($grade){
-                    $data['grade'] = $isFail ? 'F' : $grade->grade;
-                }else{
-                    $data['grade'] = null;
-                }
-                $data['rank'] = null;
+                    if($optionalMark >= 2){
+                        $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
 
-                $result = ExamResult::query()
-                    ->where('session_id',$sessionId)
+                        $data['total_mark'] = $mark->sum('total_mark') - 40;
+
+                        $grade = Grade::query()
+                            ->where('system',1)
+                            ->where('point_from','<=',$data['gpa'])
+                            ->where('point_to','>=',$data['gpa'])
+                            ->first();
+                    }
+
+                    if($grade){
+                        $data['grade'] = $isFail ? 'F' : $grade->grade;
+                    }else{
+                        $data['grade'] = null;
+                    }
+
+                    $data['rank'] = null;
+
+                    $result = ExamResult::query()
+                        ->where('academic_class_id',$class->id)
+                        ->where('exam_id',$examId)
+                        ->where('student_id',$data['student_id'])
+                        ->first();
+
+                    if($result != null){
+                        $result->update($data);
+                    }else{
+                        ExamResult::query()->create($data);
+                    }
+                }
+                /* update exam rank start */
+                $results = ExamResult::query()
+                    ->where('academic_class_id',$class->id)
                     ->where('exam_id',$examId)
-                    ->where('class_id',$class->id)
-                    ->where('student_id',$data['student_id'])
-                    ->first();
+                    ->where('group_id',null)
+                    ->orderByDesc('gpa')
+                    ->orderByDesc('total_mark')
+                    ->get();
 
-                if($result != null){
-                    $result->update($data);
-                }else{
-                    ExamResult::query()->create($data);
+                //dd($results);
+
+                foreach($results as $key => $result){
+                    $rank = $key + 1;
+                    $result->update(['rank'=>$rank]);
                 }
+                /* update exam rank end */
             }
-            /* update exam rank start */
-            $results = ExamResult::query()
-                ->where('session_id',$sessionId)
-                ->where('exam_id',$examId)
-                ->where('class_id',$class->id)
-                //->where('section_id',$sectionId)
-                ->where('group_id',null)
-                //->where('grade','<>','F')
-                ->orderByDesc('gpa')
-                ->orderByDesc('total_mark')
-                ->get();
-
-            //dd($results);
-
-            foreach($results as $key => $result){
-                $rank = $key + 1;
-                $result->update(['rank'=>$rank]);
-            }
-            /* update exam rank end */
         }
 
-
-
+        //dd('slipped');
 
         return redirect('exam/examresult');
     }
@@ -226,8 +196,9 @@ class ResultController extends Controller
         $marks = Mark::query()
             ->where('student_id',$result->student_id)
             ->where('exam_id',$result->exam_id)
-            ->where('class_id',$result->class_id)
-            ->where('session_id',$result->session_id)
+            //->where('class_id',$result->class_id)
+            //->where('session_id',$result->session_id)
+            ->where('academic_class_id',$result->academic_class_id)
             ->join('subjects','subjects.id','=','marks.subject_id')
             ->select('marks.*','subjects.level')
             ->orderBy('level')
@@ -613,33 +584,18 @@ class ResultController extends Controller
         $classes = AcademicClass::all();
 
         foreach($classes as $class){
-            if($class->id == 1){
-                $subjectCount = 6;
-            }elseif($class->id == 2){
-                $subjectCount = 6;
-            }else{
-                $subjectCount = 6;
-            }
+            $subjectCount = ExamSchedule::query()
+                ->where('academic_class_id',$class->id)
+                ->where('exam_id',$examId)
+                ->count();
 
             $marks = Mark::query()
-                ->where('session_id',$sessionId)
+                ->where('academic_class_id',$class->id)
                 ->where('exam_id',$examId)
-                ->where('class_id',$class->id)
-                //->where('section_id',$sectionId)
-                //->where('group_id',$groupId)
                 ->get()
                 ->groupBy('student_id');
 
             foreach($marks as $student => $mark){
-                $isFail = Mark::query()
-                    ->where('session_id',$sessionId)
-                    ->where('exam_id',$examId)
-                    ->where('class_id',$class->id)
-                    ->where('student_id',$student)
-                    ->where('grade','F')
-                    ->exists();
-
-
                 $data['session_id'] = $sessionId;
                 $data['exam_id'] = $examId;
                 $data['class_id'] = $class->id;
@@ -648,27 +604,49 @@ class ResultController extends Controller
                 $data['student_id'] = $mark->first()->student_id;
                 $data['total_mark'] = $mark->sum('total_mark');
 
-                $optional = Student::query()->findOrFail($student)->subject_id;
-                $optionalMark = $mark->where('subject_id',$optional)->first()->gpa ?? 0;
+                $optional = Student::query()->findOrFail($student);
 
-                $data['gpa'] = $isFail ? 0 : $mark->sum('gpa') / $subjectCount;
+                $isFail = Mark::query()
+                    //->where('session_id',$sessionId)
+                    ->where('exam_id',$examId)
+                    //->where('class_id',$class->id)
+                    ->where('student_id',$student)
+                    ->where('subject_id','<>',$optional->subject_id)
+                    ->where('grade','F')
+                    ->exists();
 
-                $grade = Grade::query()
-                    ->where('system',1)
-                    ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
-                    ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
-                    ->first();
+                if($optional){
+                    $optionalMark = $mark->where('subject_id',$optional->subject_id)->first()->gpa ?? 0;
+                    if($optionalMark >= 2){
+                        $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / ($subjectCount - 1);
 
-                if($optionalMark >= 2){
-                    $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
+                        $data['total_mark'] = $mark->sum('total_mark') - 40;
 
-                    $data['total_mark'] = $mark->sum('total_mark') - 40;
+                        $grade = Grade::query()
+                            ->where('point_from','<=',$data['gpa'])
+                            ->where('point_to','>=',$data['gpa'])
+                            ->first();
+                    }else{
+                        $data['gpa'] = $isFail ? 0 : $mark
+                                ->where('subject_id','<>',$optional->subject_id)
+                                ->sum('gpa') / $subjectCount;
+
+                        $grade = Grade::query()
+                            ->where('system',1)
+                            ->where('point_from','<=',$mark->where('subject_id','<>',$optional->subject_id)->sum('gpa') / $subjectCount)
+                            ->where('point_to','>=',$mark->where('subject_id','<>',$optional->subject_id)->sum('gpa') / $subjectCount)
+                            ->first();
+                    }
+                }else{
+                    $data['gpa'] = $isFail ? 0 : $mark->sum('gpa') / $subjectCount;
 
                     $grade = Grade::query()
-                        ->where('point_from','<=',$data['gpa'])
-                        ->where('point_to','>=',$data['gpa'])
+                        ->where('system',1)
+                        ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
+                        ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
                         ->first();
                 }
+
 
                 if($grade){
                     $data['grade'] = $isFail ? 'F' : $grade->grade;
@@ -678,9 +656,10 @@ class ResultController extends Controller
                 $data['rank'] = null;
 
                 $result = ExamResult::query()
-                    ->where('session_id',$sessionId)
+                    ->where('academic_class_id',$class->id)
+                    //->where('session_id',$sessionId)
                     ->where('exam_id',$examId)
-                    ->where('class_id',$class->id)
+                    //->where('class_id',$class->id)
                     ->where('student_id',$data['student_id'])
                     ->first();
 
@@ -690,28 +669,72 @@ class ResultController extends Controller
                     ExamResult::query()->create($data);
                 }
             }
+
+            /* update exam rank start */
+            $results = ExamResult::query()
+                ->where('academic_class_id',$class->id)
+                //->where('session_id',$sessionId)
+                ->where('exam_id',$examId)
+                //->where('class_id',$class->id)
+                //->where('section_id',$sectionId)
+                //->where('group_id',null)
+                //->where('grade','<>','F')
+                ->orderByDesc('gpa')
+                ->orderByDesc('total_mark')
+                ->get();
+
+            foreach($results as $key => $result){
+                $rank = $key + 1;
+                $result->update(['rank'=>$rank]);
+            }
+            /* update exam rank end */
+
         }
-        /* update exam rank start */
-        $results = ExamResult::query()
-            ->where('session_id',$sessionId)
-            ->where('exam_id',$examId)
-            ->where('class_id',$class->id)
-            //->where('section_id',$sectionId)
-            //->where('group_id',null)
-            //->where('grade','<>','F')
-            ->orderByDesc('gpa')
-            ->orderByDesc('total_mark')
-            ->get();
 
-        //dd($results);
+        return redirect('exam/examresult');
+    }
 
-        foreach($results as $key => $result){
-            $rank = $key + 1;
-            $result->update(['rank'=>$rank]);
+    public function allDetails(Request $request,ExamResult $examResult)
+    {
+        if($request->all()){
+            $r = $examResult->newQuery();
+
+            if($request->get('studentId')){
+                $r->whereHas('studentId',function($query)use($request){
+                    $query->where('studentId',$request->get('studentId'));
+                });
+            }
+
+            if($request->get('session_id')){
+                $r->where('session_id',$request->get('session_id'));
+            }
+
+            if($request->get('exam_id')){
+                $r->where('exam_id',$request->get('exam_id'));
+            }
+
+            if($request->get('class_id')){
+                $r->where('class_id',$request->get('class_id'));
+            }
+
+            if($request->get('section_id')){
+                $r->whereHas('student',function($query)use($request){
+                    $query->where('section_id',$request->get('section_id'));
+                });
+            }
+
+            if($request->get('group_id')){
+                $r->whereHas('student',function($query)use($request){
+                    $query->where('group_id',$request->get('group_id'));
+                });
+            }
+
+            $results = $r->get();
+        }else{
+            $results = [];
         }
-        /* update exam rank end */
 
-
-        return redirect()->back();
+        $repository = $this->repository;
+        return view('admin.exam.all-details',compact('results','repository'));
     }
 }

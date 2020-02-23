@@ -25,38 +25,39 @@
                             <table id="" class="table">
                                 <tr>
                                     <th>Student's Name : </th>
-                                    <td></td>
+                                    <td>{{ $result->student->name ?? '' }}</td>
                                     <th>Exam Name : </th>
-                                    <td></td>
+                                    <td>{{ $result->exam->name ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <th>StudentID : </th>
-                                    <td></td>
-                                    <th>Date :</th>
-                                    <td></td>
+                                    <td>{{ $result->student->studentId }}</td>
+                                    <th>Date : </th>
+                                    <td>{{ $result->exam->start }} - {{ $result->exam->end }}</td>
                                 </tr>
                                 <tr>
                                     <th>Class :</th>
-                                    <td></td>
+                                    <td>{{ $result->classes->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
                                     <th>Grade : </th>
-                                    <td></td>
+                                    <td>{{ $result->grade }}</td>
                                 </tr>
                                 <tr>
                                     <th>Current Rank :</th>
-                                    <td></td>
+                                    <td>{{ $result->student->rank }}</td>
                                     <th>Grade Point :</th>
-                                    <td></td>
+                                    <td>{{ $result->gpa }}</td>
                                 </tr>
                                 <tr>
                                     <th>Result Rank :</th>
-                                    <td></td>
+                                    <td>{{ $result->rank }}</td>
                                     <th>Total Marks :</th>
-                                    <td></td>
+                                    <td>{{ $result->total_mark }}</td>
                                 </tr>
                             </table>
 
-                            <div style="float: right;">
-                                <button type="button" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fa fa-cloud" aria-hidden="true"></i>  Pdf</button>
+                            <div style="float: right;" class="no-print">
+                                <a href="javascript:window.print()" role="button" class="btn btn-success btn-sm" title="PRINT"><i class="fas fa-print"></i></a>
+                                <a href="#" role="button" class="btn btn-danger btn-sm" title="Download PDF"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>
                             </div>
 
                             <table id="" class="table table-bordered" style="margin-top: 60px;">
@@ -66,21 +67,34 @@
                                     <th>Code</th>
                                     <th>Exam Mark</th>
                                     <th>Result Mark</th>
-                                    <th>Description</th>
                                     <th>Grade</th>
                                     <th>Grade point</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($marks as $mark)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $mark->subject->name }}</td>
+                                    <td>{{ $mark->subject->code }}</td>
+                                    <td>{{ $mark->full_mark }}</td>
+                                    <td>
+                                        @if($mark->objective > 0)
+                                            Objective: {{ $mark->objective }}<br>
+                                        @endif
+                                        @if($mark->written > 0)
+                                            Written: {{ $mark->written }}<br>
+                                        @endif
+                                        @if($mark->practical > 0)
+                                            Practical: {{ $mark->practical }}<br>
+                                        @endif
+                                        @if($mark->viva > 0)
+                                            Viva: {{ $mark->viva }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $mark->grade }}</td>
+                                    <td>{{ $mark->gpa }}</td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
 

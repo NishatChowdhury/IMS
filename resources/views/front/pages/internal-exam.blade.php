@@ -127,7 +127,7 @@
                                 <tr>
                                     <th>Class</th>
                                     <td>:</td>
-                                    <td>{{ $result->academicClass->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
+                                    <td>{{ $result->classes->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
                                     <td>Current Rank</td>
                                     <td>:</td>
                                     <td>{{ $result->student->rank ?? '' }}</td>

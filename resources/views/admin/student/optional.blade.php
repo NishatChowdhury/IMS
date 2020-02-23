@@ -21,7 +21,6 @@
     </div>
     <!-- /.content-header -->
 
-
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
@@ -105,7 +104,7 @@
                                 <th>Class</th>
                                 <th>
                                     @if($students != [])
-                                    {{ Form::select('sub',$repository->optionals($students->first()->class_id),null,['class'=>'form-control','id'=>'sub']) }}
+                                    {{ Form::select('sub',$repository->optionals($students->first()->academic_class_id),null,['class'=>'form-control','id'=>'sub']) }}
                                     @endif
                                 </th>
                             </tr>
@@ -123,7 +122,7 @@
                                     </td>
                                     <td>
                                         {{ Form::hidden('student_id[]',$student->id) }}
-                                        {{ Form::select('subject_id[]',$repository->optionals($student->academic_class_id),$student->subject_id,['class'=>'form-control sub']) }}
+                                        {{ Form::select('subject_id[]',$repository->optionals($student->academic_class_id),$student->subject_id,['class'=>'form-control sub','placeholder'=>'select subject']) }}
                                     </td>
                                 </tr>
                             @endforeach

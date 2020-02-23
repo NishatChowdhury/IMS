@@ -17,6 +17,7 @@ class CreateStudentTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('studentId');
+            $table->unsignedBigInteger('academic_class_id');
             $table->unsignedBigInteger('session_id');
             $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('section_id')->nullable();

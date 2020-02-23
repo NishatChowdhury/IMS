@@ -217,7 +217,7 @@ class FrontController extends Controller
                 ->first();
 
             $marks = Mark::query()
-                ->where('session_id',$sessionId)
+                //->where('session_id',$sessionId)
                 ->where('exam_id',$examId)
                 ->where('student_id',$studentId)
                 ->join('subjects','subjects.id','=','marks.subject_id')

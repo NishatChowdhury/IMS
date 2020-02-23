@@ -9,6 +9,7 @@
 namespace App\Repository;
 
 use App\AcademicClass;
+use App\Classes;
 use App\Exam;
 use App\Group;
 use App\Section;
@@ -16,6 +17,10 @@ use App\Session;
 
 class ResultRepository
 {
+    public function academicClasses()
+    {
+        return AcademicClass::query()->whereIn('session_id',activeYear())->get();
+    }
     public function sessions()
     {
         return Session::all()->pluck('year','id');
@@ -28,7 +33,7 @@ class ResultRepository
 
     public function classes()
     {
-        return AcademicClass::all()->pluck('name','id');
+        return Classes::all()->pluck('name','id');
     }
 
     public function sections()

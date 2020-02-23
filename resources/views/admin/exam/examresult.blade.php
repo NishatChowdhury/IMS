@@ -50,23 +50,34 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="class">Class</label>
                                     <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+{{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
+                                        <select name="class_id" id="class" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
-                                    </div>
-                                </div>
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Class</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Section</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Group</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
@@ -103,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Details Pdf </button>
+                                        <a role="button" href="{{ action('ResultController@allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> All Details </a>
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Notify</button>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Summery Pdf</button>
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> CSV</button>
