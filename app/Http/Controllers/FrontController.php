@@ -6,6 +6,7 @@ use App\Album;
 use App\ExamResult;
 use App\Gallery;
 use App\GalleryCategory;
+use App\ImportantLink;
 use App\Mark;
 use App\Notice;
 use App\NoticeCategory;

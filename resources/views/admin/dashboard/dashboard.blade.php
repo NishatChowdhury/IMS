@@ -56,7 +56,7 @@
                 <div class="col-sm-6 col-md-3">
                     <h3>Welcome </h3>
                     <a href="{{url('dashboard')}}">
-                        <span class="fa fa-home" style="font-size: 1.1em"> <h6 class="m-0 text-dark" style="display: inline-block"> Dashboard </h6> </span>
+                        <span class="fas fa-home" style="font-size: 1.1em"> <h6 class="m-0 text-dark" style="display: inline-block"> Dashboard </h6> </span>
                     </a>
                 </div><!-- /.col -->
                 <div class="col-md-5"></div>
