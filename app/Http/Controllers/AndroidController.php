@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Page;
+use App\SiteInformation;
+use App\Staff;
 use App\Student;
+use App\Syllabus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Exception;
@@ -13,24 +16,33 @@ class AndroidController extends Controller
 {
     public function login(Request $request)
     {
-        $number = $request->get('number');
+        $mobile = $request->get('mobile');
+        $studentId = $request->get('studentId');
         $otp = rand(1000,9999);
-        $student = Student::query()->where('number',$number)->exists();
+        $student = Student::query()
+            ->where('studentId',$studentId)
+            ->where('mobile',$mobile)
+            ->exists();
 
         if($student){
             //$message = "<#> Your otp verification code is ".$otp."\nLet's get started your journey with BodLai!!!\nPlease don't share this code with others dFPFWKrPd0B";
-            $message = "<#> আপনার ওটিপি ভেরিফিকেশন কোড ".$otp."\nআসুন সবাই বদলায় এর সফরে!!!\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
+            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
             //$message = 'test';
         }else{
-            Student::query()->create($request->all());
-            $message = "<#> আপনার ওটিপি ভেরিফিকেশন কোড ".$otp."\nআসুন সবাই বদলায় এর সফরে!!!\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
+            //Student::query()->create($request->all());
+            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
             //$message = 'test';
             //$message = "<#> Your otp verification code is ".$otp."\nLet's get started your journey with BodLai!!!\nPlease don't share this code with others dFPFWKrPd0B";
         }
 
-        $this->sms($number,$message);
+        $this->sms($mobile,$message);
 
         return ['otp_pin'=>$otp];
+    }
+
+    public function systemInfo()
+    {
+        return SiteInformation::query()->findOrFail(1);
     }
 
     public function attendance(Request $request)
@@ -63,6 +75,50 @@ class AndroidController extends Controller
     public function president()
     {
         return Page::query()->where('name','president message')->get('content');
+    }
+
+    public function profile(Request $request)
+    {
+        $studentId = $request->get('studentId');
+        return Student::query()->where('studentId',$studentId)->latest()->first();
+    }
+
+    public function teachers()
+    {
+        $teachers = Staff::query()->where('staff_type_id',2)->get();
+
+        $data = [];
+
+        foreach($teachers as $teacher){
+            $data[] = [
+                'name' => $teacher->name,
+                'father_husband' => $teacher->father_husband,
+                'mobile' => $teacher->mobile,
+                'dob' => $teacher->dob,
+                'nid' => $teacher->nid,
+                'gender' => $teacher->gender->name,
+                'blood' => $teacher->blood->name,
+                'image' => asset('assets/img/staffs').'/'.$teacher->image,
+                'mail' => $teacher->mail,
+                'code' => $teacher->code,
+                'title' => $teacher->title,
+                //['ole'] => $teacher->role->name,
+                //['ob_type'] => $teacher->jobType->name,
+                //['taff_type'] => $teacher->staffType->name,
+                'joining' => $teacher->joining,
+                'salary' => $teacher->salary,
+                'bonus' => $teacher->bonus,
+            ];
+        }
+
+        return $data;
+    }
+
+    public function syllabus(Request $request)
+    {
+        $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
+        $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
+        return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
     }
 
     public function sms($number,$message)

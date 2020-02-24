@@ -389,6 +389,7 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 /** Route for Apps start */
 Route::post('api/login','AndroidController@login');
 
+Route::post('api/system-info','AndroidController@systemInfo');
 Route::post('api/attendance','AndroidController@attendance');
 Route::post('api/about','AndroidController@about');
 Route::post('api/president','AndroidController@president');
@@ -466,7 +467,7 @@ Route::get('test-download',function(){
 });
 
 Route::get('rename-pic',function(){
-    $students = \App\Student::query()->where('class_id',3)->get();
+    $students = Student::query()->where('class_id',3)->get();
     foreach($students as $student){
         $session = $student->session_id;
         $class = $student->class_id;
@@ -482,7 +483,7 @@ Route::get('rename-pic',function(){
 });
 
 Route::get('sync-image-name',function(){
-    $students = \App\Student::query()->get();
+    $students = Student::query()->get();
     foreach($students as $student){
         $id = $student->studentId;
         $student->update(['image'=>$id.'.jpg']);
@@ -491,7 +492,7 @@ Route::get('sync-image-name',function(){
 });
 
 Route::get('add-zero-to-number',function (){
-    $students = \App\Student::query()->get();
+    $students = Student::query()->get();
     foreach($students as $student){
         $number = $student->mobile;
         $firstLetter = substr($number,0,1);
@@ -503,9 +504,9 @@ Route::get('add-zero-to-number',function (){
 });
 
 Route::get('delete-duplicate',function(){ //delete duplicate student from student database
-    $students = \App\Student::all();
+    $students = Student::all();
     foreach($students as $student){
-        $s = \App\Student::query()->where('studentId',$student->studentId)->count();
+        $s = Student::query()->where('studentId',$student->studentId)->count();
         if($s > 1){
             $student->delete();
         }
@@ -516,7 +517,7 @@ Route::get('marks-student_id',function(){ //update student_id in marks table
     $marks = \App\Mark::query()->where('student_id',0)->get();
     foreach($marks as $mark){
         $studentId = $mark->studentId;
-        $student = \App\Student::query()->where('studentId',$studentId)->first();
+        $student = Student::query()->where('studentId',$studentId)->first();
         $id = $student ? $student->id : null;
         $mark->update(['student_id'=>$id]);
     }
@@ -631,7 +632,7 @@ Route::get('sync-sec',function(){
     $marks = \App\FinalResult::query()->get();
 
     foreach($marks as $mark){
-        $student = \App\Student::query()->findOrFail($mark->student_id);
+        $student = Student::query()->findOrFail($mark->student_id);
         $mark->update(['section_id'=>$student->section_id]);
     }
     dd('section id synced');
@@ -641,7 +642,7 @@ Route::get('sync-group',function(){
     $marks = \App\FinalResult::query()->get();
 
     foreach($marks as $mark){
-        $student = \App\Student::query()->findOrFail($mark->student_id);
+        $student = Student::query()->findOrFail($mark->student_id);
         $mark->update(['group_id'=>$student->group_id]);
     }
     dd('group id synced');
