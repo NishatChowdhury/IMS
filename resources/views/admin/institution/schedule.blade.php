@@ -135,8 +135,8 @@
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Start* </label>
                             <div class="input-group">
-                                <input type="text" name="start" class="form-control datePicker" id=""
-                                       aria-describedby="" placeholder="yyyy-mm-dd">
+                                <input type="text" name="start" class="form-control timepicker" id=""
+                                       aria-describedby="" placeholder="10.00">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i
                                                 class="fa fa-clock nav-icon"></i></span>
@@ -146,8 +146,8 @@
                         <div class="form-group col-md-6">
                             <label for="inputPassword4"> End* </label>
                             <div class="input-group">
-                                <input type="text" name="end" class="form-control datePicker" id="" aria-describedby=""
-                                       placeholder="yyyy-mm-dd">
+                                <input type="text" name="end" class="form-control timepicker" id="" aria-describedby=""
+                                       placeholder="10.00">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2"> <i
                                                 class="fa fa-clock nav-icon"></i></span>
@@ -176,23 +176,28 @@
 
 
         $(document).ready(function () {
-            $('.datePicker')
-                .datepicker({
-                    format: 'yyyy-mm-dd'
-                });
+            $('.timepicker')
+                .timepicker({
+              format: 'h:mm p'
         });
+        });
+
     </script>
 @stop
 
 <!-- *** External CSS File-->
 @section('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+    <style>
+        .timepicker{
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('plugins/timepicker/bootstrap-timepicker.min.css') }}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 @stop
 
 <!-- *** External JS File-->
 @section('plugin')
-    <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
     <!-- bootstrap time picker -->
     <script src="{{ asset('plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
