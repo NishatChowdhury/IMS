@@ -176,10 +176,13 @@
 
 
         $(document).ready(function () {
-            $('.timepicker')
-                .timepicker({
-              format: 'h:mm p'
-        });
+//            $('.timepicker')
+//                .timepicker({
+//              format: 'h:mm p'
+//        });
+            $('.timepicker').timepicker({
+                timeFormat: 'h:mm'
+            });
         });
 
     </script>
@@ -192,13 +195,11 @@
             overflow: hidden;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('plugins/timepicker/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 @stop
 
 <!-- *** External JS File-->
 @section('plugin')
     <!-- bootstrap time picker -->
-    <script src="{{ asset('plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 @stop
