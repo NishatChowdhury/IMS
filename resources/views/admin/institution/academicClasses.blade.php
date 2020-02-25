@@ -61,7 +61,6 @@
                                     <th>Class Name</th>
                                     <th>Students</th>
                                     <th>Subjects</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -73,16 +72,16 @@
                                         <td>{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</td>
                                         <td>{{ $class->students->count() }}</td>
                                         <td>{{ $class->subjects->count() }}</td>
-                                        <td></td>
                                         <td>
+                                            {{ Form::open(['action'=>['InstitutionController@delete_SessionClass',$class->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <a href="{{ action('StudentController@downloadBlank',$class->id) }}" role="button" class="btn btn-primary btn-sm" title="Download CSV"><i class="fas fa-file-download"></i></a>
                                             <a href="{{ action('StudentController@uploadStudent',$class->id) }}" role="button" class="btn btn-light btn-sm" title="Upload Student"><i class="fas fa-file-upload"></i></a>
                                             <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
                                             <a href="{{ action('ScheduleController@index',$class->id) }}" role="button" class="btn btn-success btn-sm" title="Class Schedule"><i class="fas fa-clock"></i></a>
-                                            <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'> <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}" class="btn btn-danger btn-sm delete_session"> <i class="fas fa-trash"></i>
-                                            </a>
+                                            <a href="{{ action('FeeCategoryController@list_fee_setup',$class->id) }}" class="btn btn-dark btn-sm"><i class="fas fa-funnel-dollar"></i></a>
+                                            <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}' title="Edit"> <i class="fas fa-edit"></i></a>
+                                            <button type="submit" disabled class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
+                                            {{ Form::close() }}
                                         </td>
                                     </tr>
                                 @endforeach

@@ -132,7 +132,7 @@ class InstitutionController extends Controller
     }
 
     public function delete_grp($id){
-        $group= Group::query()->findOrFail($id)->first();
+        $group = Group::query()->findOrFail($id)->first();
         $group->delete();
         return redirect('institution/section-groups')->with('success', 'Group deleted successfully');
     }
@@ -222,7 +222,6 @@ class InstitutionController extends Controller
     }
 
     public function assign_subject(Request $request){
-        //dd($request->subjects);
 
         // delete unassigned subjects starts
         $deletable = AssignSubject::query()

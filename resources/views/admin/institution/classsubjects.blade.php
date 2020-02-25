@@ -57,9 +57,9 @@
                                     <div style="float: left;">
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Subject</button>
                                     </div>
-                                    <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> Class Schedule</button>
-                                    </div>
+{{--                                    <div style="float: right;">--}}
+{{--                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> Class Schedule</button>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
