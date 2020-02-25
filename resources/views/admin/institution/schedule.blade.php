@@ -29,11 +29,13 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
+                                        <div class="ec-block-icon"
+                                             style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;">
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</h5>
+                                            <h5 style="margin-bottom: 0px;">{{ $class->academicClasses->name ?? '' }}
+                                                - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</h5>
                                             <p>{{ $class->academicClasses->short_name }}</p>
                                         </div>
                                     </div>
@@ -43,7 +45,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> Class Schedule</button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                data-target="#schedule" data-whatever="@mdo"
+                                                style="margin-top: 10px; margin-left: 10px; float: right !important;"><i
+                                                    class="fas fa-plus-circle"></i> Class Schedule
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -52,18 +58,18 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
-{{--                                <thead>--}}
-{{--                                    <tr>--}}
-{{--                                        <th></th>--}}
-{{--                                        <th>1st</th>--}}
-{{--                                        <th>2nd</th>--}}
-{{--                                        <th>3rd</th>--}}
-{{--                                        <th>4th</th>--}}
-{{--                                        <th>5th</th>--}}
-{{--                                        <th>6th</th>--}}
-{{--                                        <th>7th</th>--}}
-{{--                                    </tr>--}}
-{{--                                </thead>--}}
+                                {{--                                <thead>--}}
+                                {{--                                    <tr>--}}
+                                {{--                                        <th></th>--}}
+                                {{--                                        <th>1st</th>--}}
+                                {{--                                        <th>2nd</th>--}}
+                                {{--                                        <th>3rd</th>--}}
+                                {{--                                        <th>4th</th>--}}
+                                {{--                                        <th>5th</th>--}}
+                                {{--                                        <th>6th</th>--}}
+                                {{--                                        <th>7th</th>--}}
+                                {{--                                    </tr>--}}
+                                {{--                                </thead>--}}
                                 <tbody>
                                 @foreach($schedules as $day => $schedule)
                                     <tr>
@@ -86,7 +92,8 @@
     </section>
 
     <!-- ***/ Pop Up Model for Add Class Schedule -->
-    <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
@@ -128,25 +135,30 @@
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Start* </label>
                             <div class="input-group">
-                                <input type="text" name="start" class="form-control" id="" aria-describedby="" placeholder="10.00" >
+                                <input type="text" name="start" class="form-control datePicker" id=""
+                                       aria-describedby="" placeholder="yyyy-mm-dd">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
+                                    <span class="input-group-text" id="inputGroupPrepend2"> <i
+                                                class="fa fa-clock nav-icon"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4"> End* </label>
                             <div class="input-group">
-                                <input type="text" name="end" class="form-control" id="" aria-describedby="" placeholder="10.00">
+                                <input type="text" name="end" class="form-control datePicker" id="" aria-describedby=""
+                                       placeholder="yyyy-mm-dd">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>
+                                    <span class="input-group-text" id="inputGroupPrepend2"> <i
+                                                class="fa fa-clock nav-icon"></i></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn-sm" > <i class="fas fa-plus-circle"></i> Add Schedule</button>
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add Schedule
+                    </button>
                 </div>
                 {{ Form::close() }}
             </div>
@@ -157,9 +169,31 @@
 
 @section('script')
     <script>
-        function confirmDelete(){
+        function confirmDelete() {
             var x = confirm('Are you sure, you want to unmount this Schedule?');
             return !!x;
         }
+
+
+        $(document).ready(function () {
+            $('.datePicker')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+        });
     </script>
+@stop
+
+<!-- *** External CSS File-->
+@section('style')
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+@stop
+
+<!-- *** External JS File-->
+@section('plugin')
+    <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+    <!-- bootstrap time picker -->
+    <script src="{{ asset('plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 @stop
