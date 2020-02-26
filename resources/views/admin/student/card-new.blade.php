@@ -26,15 +26,15 @@
 
 </head>
 <body>
-@foreach($students->chunk(3) as $chunk)
-    <div class="row" style="margin: 25px;">
+@foreach($students->chunk(4) as $key => $chunk)
+    <div class="row" style="margin: 25px; {{ ($key+1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach($chunk as $student)
-            <div class="col-4" {{--style="max-width:260px; max-height:375px"--}}>
-                <div class="card text-center" style="width: 18rem;height:25rem">
+            <div class="col-3" {{--style="max-width:260px; max-height:375px"--}}>
+                <div class="card text-center" style="width: 2.17in;height:3.42in">
                     <div class="card-header" style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
                         <div class="row">
                             <div class="col-md-2">
-                                <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="50">
+                                <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="30">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="scl-cd-name" style="font-size:{{ $card['name_size'] !=null ? $card['name_size'] :  0}}px"><strong> {{ siteConfig('name') }}</strong></h6>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="card-body">
                         <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"><strong>{{ $card['title'] }}</strong></h6>
-                        <img src="{{asset('assets/img/students')}}/{{ $student->image }}" width="75" alt="" style="margin-bottom:10px;border: 2px solid #000;min-height: 75px;">
+                        <img src="{{asset('assets/img/students')}}/{{ $student->image }}" width="40" alt="" style="margin-bottom:10px;border: 2px solid #000;min-height: 40px;">
                         @isset($card['nickname'])
                             <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->name }} </h6>
                         @endisset
@@ -76,7 +76,7 @@
                                 <tr>
                                     <td> Class </td>
                                     <td>&nbsp;:&nbsp;</td>
-                                    <td>{{ $student->classes->name ?? '' }}&nbsp;{{ $student->group->name ?? '' }}{{ $student->section->name ?? '' }}</td>
+                                    <td>{{ $student->classes->name ?? '' }}&nbsp;{{ $student->group->name ?? '' }}&nbsp;{{ $student->section->name ?? '' }}</td>
                                 </tr>
                             @endisset
                             @isset($card['roll'])
@@ -125,9 +125,9 @@
                         </table>
 
                     </div>
-                    <div class="card-footer" style="float:right;background-color:white;border:none">
+                    <div class="card-footer" style="float:right;background-color:transparent;border:none">
                         <div class="col-5" style="float: right;">
-                            <img src="{{ asset('assets/img/signature/signature.png') }}" width="75" alt="">
+                            <img src="{{ asset('assets/img/signature/signature.png') }}" width="40" alt="">
                         </div>
                     </div>
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
@@ -149,11 +149,11 @@
 
 
 <div class="row" style="margin: 25px;">
-    <div class="col-4" style="max-width:260px; max-height:375px">
-        <div class="card" style="width: 18rem;">
+    <div class="col-3" style="max-width:260px; max-height:375px">
+        <div class="card" style="width: 2.17in;height:3.42in">
             <div class="card-body">
-                <div class="back-top" style="font-size:15px">
-                    <ul>
+                <div class="back-top" style="font-size:12px">
+                    <ul style="padding-left: 15px;padding-top:15px">
                         <li>This card is valid till {{ $card['validity'] }}</li>
                         <li>This card is not transferable</li>
                         <li>This finder of this card may please drop it to the nearest post office.</li>
@@ -164,7 +164,7 @@
                     <h6 class="scl-cd-name" style=""><strong> {{ siteConfig('name') }}</strong></h6>
                     <p class="scl-cd-add" style="font-size:15px">{{ siteConfig('address') }}</p>
                 </div>
-                <div class="back-bottom" style="font-size:15px">
+                <div class="back-bottom" style="font-size:12px">
                     <table class="table">
                         <tr>
                             <td>Phone</td>
