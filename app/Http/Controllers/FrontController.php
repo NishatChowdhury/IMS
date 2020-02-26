@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\ClassSchedule;
 use App\ExamResult;
 use App\Gallery;
 use App\GalleryCategory;
@@ -112,8 +113,15 @@ class FrontController extends Controller
 //Institute -> Academic ---START
     public function class_routine()
     {
-        $content = Page::query()->where('name','class routine')->first();
-        return view('front.pages.class-routine',compact('content'));
+        $classes = ClassSchedule::query()
+            //->where('academic_class_id',$classId)
+            ->get()
+            //->sortBy('start')
+            //->groupBy('day_id')
+            //->sortBy('day_id')
+            ->groupBy('academic_class_id');
+
+        return view('front.pages.class-routine',compact('content','classes'));
     }
     public function calender()
     {

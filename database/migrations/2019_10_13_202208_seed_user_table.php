@@ -14,7 +14,7 @@ class SeedUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $data['name'] = 'Mohammed Rahat Hossain';
+            $data['name'] = 'Administrator';
             $data['module'] = 0;
             $data['email'] = 'admin@gmail.com';
             $data['password'] = bcrypt('admin123');
