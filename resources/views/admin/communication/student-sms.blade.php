@@ -128,12 +128,12 @@
                                                 {{ Form::checkbox('id[]',$student->id,true,['class'=>'checkbox']) }}
                                             </td>
                                             <td>
-                                                <img src="{{ asset('assets/img/students/') }}/{{ $student->session_id }}/{{ $student->class_id }}/{{ $student->image }}" height="75" alt="">
+                                                <img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="75" alt="">
                                             </td>
                                             <td>
                                                 ID : {{ $student->studentId }}<br>
                                                 Name : {{ $student->name }} ({{ $student->mobile }})<br>
-                                                Class : {{ $student->academicClass->name }} {{ $student->section->name ?? '' }} {{ $student->group->name ?? ''}}
+                                                Class : {{ $student->academicClass->academicClasses->name ?? '' }} {{ $student->section->name ?? '' }} {{ $student->group->name ?? ''}}
                                             </td>
                                         </tr>
                                         @endforeach

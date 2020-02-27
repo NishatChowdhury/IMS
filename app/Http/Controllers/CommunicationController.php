@@ -25,29 +25,32 @@ class CommunicationController extends Controller
 
     public function student(Request $request, Student $student)
     {
-        $s = $student->newQuery();
-        if($request->get('studentId')){
-            $studentId = $request->get('studentId');
-            $s->where('studentId',$studentId);
+        if($request->all()){
+            $s = $student->newQuery();
+            if($request->get('studentId')){
+                $studentId = $request->get('studentId');
+                $s->where('studentId',$studentId);
+            }
+            if($request->get('session_id')){
+                $session = $request->get('session_id');
+                $s->where('session_id',$session);
+            }
+            if($request->get('class_id')){
+                $class = $request->get('class_id');
+                $s->where('class_id',$class);
+            }
+            if($request->get('section_id')){
+                $section = $request->get('section_id');
+                $s->where('section_id',$section);
+            }
+            if($request->get('group_id')){
+                $group = $request->get('group_id');
+                $s->where('group_id',$group);
+            }
+            $students = $s->get();
+        }else{
+            $students = [];
         }
-        if($request->get('session_id')){
-            $session = $request->get('session_id');
-            $s->where('session_id',$session);
-        }
-        if($request->get('class_id')){
-            $class = $request->get('class_id');
-            $s->where('class_id',$class);
-        }
-        if($request->get('section_id')){
-            $section = $request->get('section_id');
-            $s->where('section_id',$section);
-        }
-        if($request->get('group_id')){
-            $group = $request->get('group_id');
-            $s->where('group_id',$group);
-        }
-
-        $students = $s->get();
         $repository = $this->repository;
         return view('admin.communication.student-sms',compact('repository','students'));
     }
@@ -81,14 +84,15 @@ class CommunicationController extends Controller
         $senderid = smsConfig('sender_id');
         $sms = $request->get('message');
         //dd($contacts);
-        $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".urlencode($contacts)."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
+        $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".$contacts."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$URL);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt ($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/html; charset=UTF-8']);
+        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt ($ch, CURLOPT_URL, $URL);
+        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
 
         try{
             $output = $content=curl_exec($ch);
@@ -128,11 +132,12 @@ class CommunicationController extends Controller
         $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".urlencode($contacts)."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$URL);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt ($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/html; charset=UTF-8']);
+        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt ($ch, CURLOPT_URL, $URL);
+        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
 
         try{
             $output = $content=curl_exec($ch);
