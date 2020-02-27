@@ -16,6 +16,7 @@ use App\Repository\FrontRepository;
 use App\Slider;
 use App\Staff;
 use App\Student;
+use App\Syllabus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -130,8 +131,9 @@ class FrontController extends Controller
     }
     public function syllabus()
     {
-        $content = Page::query()->where('name','syllabus')->first();
-        return view('front.pages.syllabus',compact('content'));
+        //$content = Page::query()->where('name','syllabus')->first();
+        $syllabuses = Syllabus::all();
+        return view('front.pages.syllabus',compact('syllabuses'));
     }
     public function diary()
     {
