@@ -22,14 +22,18 @@
         .card-footer{
             padding: 0;
         }
+        .col-2-5{
+            flex: 0 0 20% !important;
+            max-width: 20% !important;
+        }
     </style>
 
 </head>
 <body>
-@foreach($students->chunk(4) as $key => $chunk)
-    <div class="row" style="margin: 25px; {{ ($key+1) % 4 == 0 ? 'page-break-after: always' : '' }}">
+@foreach($students->chunk(5) as $key => $chunk)
+    <div class="row" style="{{ ($key+1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach($chunk as $student)
-            <div class="col-3" {{--style="max-width:260px; max-height:375px"--}}>
+            <div class="col-3 col-2-5" {{--style="max-width:260px; max-height:375px"--}}>
                 <div class="card text-center" style="width: 2.17in;height:3.42in">
                     <div class="card-header" style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
                         <div class="row">
@@ -143,13 +147,13 @@
                 </div>
             </div>
         @endforeach
-        <p>&nbsp;</p>
+{{--        <p>&nbsp;</p>--}}
     </div>
 @endforeach
 
 
-<div class="row" style="margin: 25px;">
-    <div class="col-3" style="max-width:260px; max-height:375px">
+<div class="row">
+    <div class="col-3 col-2-5" style="max-width:260px; max-height:375px">
         <div class="card" style="width: 2.17in;height:3.42in">
             <div class="card-body">
                 <div class="back-top" style="font-size:12px">
