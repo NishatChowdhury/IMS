@@ -151,6 +151,20 @@ class InstitutionController extends Controller
         return redirect('institution/academic-class');
     }
 
+    public function editAcademicClass(Request $request)
+    {
+       $data = AcademicClass::query()->findOrFail($request->id);
+       return $data;
+    }
+
+    public function updateAcademicClass(Request $request)
+    {
+        $data = AcademicClass::query()->findOrFail($request->id);
+        $data->update($request->all());
+        return redirect('institution/academic-class');
+
+    }
+
     public function classes()
     {
         $classes = Classes::all();

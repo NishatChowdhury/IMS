@@ -99,7 +99,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Academic Class</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -176,36 +176,50 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Academic Class</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'InstitutionController@update_SessionClass', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'InstitutionController@updateAcademicClass', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
-
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                {!! Form::text('name', null, ['class'=>'form-control class_name', 'placeholder'=>'Class Name']) !!}
+                                {!! Form::select('session_id',$repository->sessions(), null, ['class'=>'form-control session_id', 'placeholder'=>'Select Session','required']) !!}
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                {!! Form::text('numeric_class', null, ['class'=>'form-control numeric_class', 'placeholder'=>'E.g. 1/2/3']) !!}
+                                {!! Form::select('class_id',$repository->classes(), null, ['class'=>'form-control class_id', 'placeholder'=>'Select Class','required']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Section</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::select('section_id',$repository->sections(), null, ['class'=>'form-control section_id', 'placeholder'=>'Select Section']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Group</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                {!! Form::select('group_id',$repository->groups(), null, ['class'=>'form-control group_id', 'placeholder'=>'Select Group']) !!}
                             </div>
                         </div>
                     </div>
 
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success btn-sm">
+                        <button type="submit" class="btn btn-warning btn-sm">
                             <i class="fas fa-plus-circle"></i> Update
                         </button>
                     </div>
@@ -227,15 +241,16 @@
 
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-SessionClass')}}",
+                url:"{{ url('institution/edit-AcademicClass')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
                     console.log(response);
                     $("#id").val(response.id);
-                    $(".class_name").val(response.name);
-                    $(".numeric_class").val(response.numeric_class);
-
+                    $(".session_id").val(response.session_id);
+                    $(".class_id").val(response.class_id);
+                    $(".section_id").val(response.section_id);
+                    $(".group_id").val(response.group_id);
 
                 },
                 error:function(err){

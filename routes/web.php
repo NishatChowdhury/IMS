@@ -225,6 +225,8 @@ Route::get('institution/class','InstitutionController@classes')->name('instituti
 Route::post('institution/store-class','InstitutionController@store_class');
 Route::get('institution/academic-class','InstitutionController@academicClasses')->name('institution.academicClasses');
 Route::post('institution/store-academic-class','InstitutionController@storeAcademicClass');
+Route::post('institution/edit-AcademicClass','InstitutionController@editAcademicClass');
+Route::post('institution/update-AcademicClass','InstitutionController@updateAcademicClass');
 Route::post('institution/edit-SessionClass','InstitutionController@edit_SessionClass');
 Route::post('institution/update-SessionClass','InstitutionController@update_SessionClass');
 Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
