@@ -80,7 +80,15 @@
                                 <tr>
                                     <td> Class </td>
                                     <td>&nbsp;:&nbsp;</td>
-                                    <td>{{ $student->classes->name ?? '' }}&nbsp;{{ $student->group->name ?? '' }}&nbsp;{{ $student->section->name ?? '' }}</td>
+                                    <td>
+                                        {{ $student->classes->name ?? '' }}&nbsp;
+                                        @if($card['group'])
+                                            {{ $student->group->name ?? '' }}&nbsp;
+                                        @endif
+                                        @if($card['section'])
+                                            {{ $student->section->name ?? '' }}
+                                        @endif
+                                    </td>
                                 </tr>
                             @endisset
                             @isset($card['roll'])
@@ -147,7 +155,7 @@
                 </div>
             </div>
         @endforeach
-{{--        <p>&nbsp;</p>--}}
+        {{--        <p>&nbsp;</p>--}}
     </div>
 @endforeach
 

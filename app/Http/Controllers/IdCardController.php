@@ -33,17 +33,24 @@ class IdCardController extends Controller
         return view('admin.staff.designCard',compact('repository'));
     }
 
-    public function pdf(Request $request)
+    public function pdf(Request $request, Student $student)
     {
         //dd($request->all());
-        $students = Student::query()
-            ->whereIn('session_id',activeYear())
-            ->where('class_id',$request->class)
-            ->where('section_id',$request->section)
-            ->where('status','<>',2)
-            ->orderBy('rank')
-            //->take(10)
-            ->get();
+        $std = $student->newquery();
+
+        $std->whereIn('session_id',activeYear());
+
+        if($request->class){
+            $std->where('class_id',$request->class);
+        }
+        if($request->section){
+            $std->where('section_id',$request->section);
+        }
+        if($request->group){
+            $std->where('group_id',$request->group);
+        }
+
+        $students = $std->where('status','<>',2)->orderBy('rank')->get();
 
         $card = $request->except('_token');
 
