@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Sports & Cultural Program)
+@section('title','Sports & Cultural Program')
 
 @section('content')
 
@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Admission</h2>
+                    <h2>{{ strtoupper($content->name) }}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">

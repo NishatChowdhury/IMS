@@ -16,10 +16,10 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
+                            <a href="#"> Attendance</a>
                         </li>
                         <li class="breadcrumb-item">
-                            About us
+                            {{ ucfirst($content->name) }}
                         </li>
                     </ol>
                 </div>

@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>{{ strtoupper($content->name) }}</h2>
+                    <h2>Contact Us</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
@@ -19,7 +19,7 @@
                             <a href="#"> Elements</a>
                         </li>
                         <li class="breadcrumb-item">
-                            About us
+                            Contact Us
                         </li>
                     </ol>
                 </div>
@@ -70,8 +70,6 @@
                 </div>
 
 
-
-
                 <section class="padding-y-100 bg-light-v2">
                     <div class="container">
                         <div class="row">
@@ -108,12 +106,7 @@
                     </div> <!-- END container-->
                 </section>
 
-
-
-
-
                 <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>
-
 
 
 {{--            </div> <!-- END row-->--}}

@@ -34,7 +34,7 @@
                 @foreach($classes as $cls)
                     <div class="col-12 mb-5 text-center">
                         <h6>
-                            {{ $cls->first()->academicClass->academicClasses->name }}&nbsp;
+                            {{ $cls->first()->academicClass->academicClasses->name ?? '' }}&nbsp;
                             <span class="text-primary">
                                 {{ $cls->first()->academicClass->section->name ?? '' }}
                                 {{ $cls->first()->academicClass->group->name ?? '' }}

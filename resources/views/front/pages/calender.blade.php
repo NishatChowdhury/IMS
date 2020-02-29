@@ -13,13 +13,13 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">Institute</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
+                            <a href="#"> Academics</a>
                         </li>
                         <li class="breadcrumb-item">
-                            About us
+                            {{ ucfirst($content->name) }}
                         </li>
                     </ol>
                 </div>
