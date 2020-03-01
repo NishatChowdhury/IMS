@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicCalender;
 use App\Album;
 use App\ClassSchedule;
 use App\ExamResult;
@@ -127,7 +128,9 @@ class FrontController extends Controller
     public function calender()
     {
         $content = Page::query()->where('name','calendar')->first();
-        return view('front.pages.calender',compact('content'));
+        $data = AcademicCalender::query()->orderBy('start')->get();
+
+        return view('front.pages.calender',compact('content','data'));
     }
     public function syllabus()
     {
