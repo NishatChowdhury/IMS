@@ -136,7 +136,19 @@ class MarkController extends Controller
                 $data['grade'] = $this->grade($data['total_mark']);
                 $data['grade_id'] = 1;
 
-                Mark::query()->create($data);
+                $mark = Mark::query()
+                    ->where('student_id',$col[3])
+                    ->where('academic_class_id',$schedule->academic_class_id)
+                    ->where('exam_id',$schedule->exam_id)
+                    ->where('subject_id',$schedule->subject_id)
+                    ->first();
+
+                if($mark){
+                    $mark->update($data);
+                }else{
+                    Mark::query()->create($data);
+                }
+
             }
             $sl++;
         }
