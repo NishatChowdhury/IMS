@@ -41,14 +41,17 @@
                                 <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="30">
                             </div>
                             <div class="col-md-10">
-                                <h6 class="scl-cd-name" style="font-size:{{ $card['name_size'] !=null ? $card['name_size'] :  0}}px"><strong> {{ siteConfig('name') }}</strong></h6>
-                                <p class="scl-cd-add" style="font-size:{{ $card['address_size'] !=null ? $card['address_size']:0 }}px">{{ siteConfig('address') }}</p>
+                                <h6 class="scl-cd-name" style="font-size:{{ $card['name_size'] !=null ? $card['name_size'] :  0}}px;margin-bottom: 0;"><strong> {{ siteConfig('name') }}</strong></h6>
                             </div>
+                        </div>
+                        <div>
+                            <p class="scl-cd-add" style="font-size:{{ $card['address_size'] !=null ? $card['address_size']:0 }}px;margin-bottom: 0;">{{ siteConfig('address') }}</p>
+
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"><strong>{{ $card['title'] }}</strong></h6>
-                        <img src="{{asset('assets/img/students')}}/{{ $student->image }}" width="40" alt="" style="margin-bottom:10px;border: 2px solid #000;min-height: 40px;">
+                        <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px;margin-bottom: 0"><strong>{{ $card['title'] }}</strong></h6>
+                        <img src="{{asset('assets/img/students')}}/{{ $student->image }}" width="70" alt="" style="border: 2px solid #000;min-height: 70px;max-height: 90px">
                         @isset($card['nickname'])
                             <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->name }} </h6>
                         @endisset
