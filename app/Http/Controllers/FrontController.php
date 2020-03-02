@@ -123,7 +123,7 @@ class FrontController extends Controller
             //->sortBy('day_id')
             ->groupBy('academic_class_id');
 
-        return view('front.pages.class-routine',compact('content','classes'));
+        return view('front.pages.class-routine',compact('classes'));
     }
     public function calender()
     {
@@ -227,7 +227,7 @@ class FrontController extends Controller
                 ->where('session_id',$sessionId)
                 ->where('exam_id',$examId)
                 ->where('student_id',$studentId)
-                ->first();
+                ->latest()->first();
 
             $marks = Mark::query()
                 //->where('session_id',$sessionId)

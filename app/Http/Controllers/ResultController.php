@@ -40,9 +40,6 @@ class ResultController extends Controller
                     $query->where('studentId',$request->get('studentId'));
                 });
             }
-//            if($request->get('session_id')){
-//                $r->where('session_id',$request->get('session_id'));
-//            }
 
             if($request->get('exam_id')){
                 $r->where('exam_id',$request->get('exam_id'));
@@ -51,22 +48,6 @@ class ResultController extends Controller
             if($request->get('class_id')){
                 $r->where('academic_class_id',$request->get('class_id'));
             }
-
-//            if($request->get('class_id')){
-//                $r->where('class_id',$request->get('class_id'));
-//            }
-//
-//            if($request->get('section_id')){
-//                $r->whereHas('student',function($query)use($request){
-//                    $query->where('section_id',$request->get('section_id'));
-//                });
-//            }
-//
-//            if($request->get('group_id')){
-//                $r->whereHas('student',function($query)use($request){
-//                    $query->where('group_id',$request->get('group_id'));
-//                });
-//            }
 
             $results = $r->get();
         }else{
@@ -714,19 +695,7 @@ class ResultController extends Controller
             }
 
             if($request->get('class_id')){
-                $r->where('class_id',$request->get('class_id'));
-            }
-
-            if($request->get('section_id')){
-                $r->whereHas('student',function($query)use($request){
-                    $query->where('section_id',$request->get('section_id'));
-                });
-            }
-
-            if($request->get('group_id')){
-                $r->whereHas('student',function($query)use($request){
-                    $query->where('group_id',$request->get('group_id'));
-                });
+                $r->where('academic_class_id',$request->get('class_id'));
             }
 
             $results = $r->get();

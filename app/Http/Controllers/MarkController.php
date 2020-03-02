@@ -127,6 +127,7 @@ class MarkController extends Controller
                 $data['subject_id'] = $schedule->subject_id;
                 $data['student_id'] = $col[3];
                 //$data['studentId'] = $academicClass->class_id;
+                $data['full_mark'] = $schedule->objective_full + $schedule->written_full + $schedule->practical_full + $schedule->viva_full;
                 $data['objective'] = (int)$col[4];
                 $data['written'] = (int)$col[5];
                 $data['practical'] = (int)$col[6];

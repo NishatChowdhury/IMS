@@ -59,7 +59,6 @@ class ExamController extends Controller
     public function store_exam(Request $request){
         Exam::query()->create($request->all());
         return redirect('exam/examination')->with('success', 'Exam Added Successfully');
-
     }
 
     public function destroy($id){
@@ -92,6 +91,7 @@ class ExamController extends Controller
         $sessions = Session::all()->pluck('year', 'id');
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
+
         return view('admin.exam.examitems', compact('session_id', 'examId','schedules','sessions','exams','classes', 'class_id', 'exam_type', 'subjects', 'teachers'));
     }
 
@@ -175,7 +175,7 @@ class ExamController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.exam.admit-card',compact('repository','students','exam','schedules'));
+        return view('admin.exam.admit-card',compact('repository','students'));
     }
 
     public function seatAllocate(Request $request)

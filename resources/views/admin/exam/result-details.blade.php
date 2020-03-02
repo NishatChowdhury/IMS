@@ -37,7 +37,7 @@
                                 </tr>
                                 <tr>
                                     <th>Class :</th>
-                                    <td>{{ $result->classes->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
+                                    <td>{{ academicClass($result->academic_class_id) }}</td>
                                     <th>Grade : </th>
                                     <td>{{ $result->grade }}</td>
                                 </tr>

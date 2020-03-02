@@ -398,6 +398,8 @@ Route::post('api/president','AndroidController@president');
 Route::post('api/profile','AndroidController@profile');
 Route::post('api/teachers','AndroidController@teachers');
 Route::post('api/syllabus','AndroidController@syllabus');
+Route::post('api/notices','AndroidController@notices');
+Route::post('api/class-routines','AndroidController@classRoutine');
 /** Route for Apps end */
 
 Route::get('migrate',function(){
@@ -809,5 +811,17 @@ Route::get('sync-image-name',function(){
         $student->update(['image'=>$image]);
     }
     dd('sync complete');
+});
+
+Route::get('sync-exam-full-mark',function(){
+    $marks = \App\Mark::query()->get();
+
+    foreach($marks as $mark){
+        $schedule = \App\ExamSchedule::query()->where('exam_id',$mark->exam_id)->where('subject_id',$mark->subject_id)->first();
+        $full = $schedule->objective_full + $schedule->written_full + $schedule->practical_full + $schedule->viva_full;
+        $mark->update(['full_mark'=>$full]);
+    }
+
+    dd('data synced successfully!');
 });
 

@@ -29,3 +29,11 @@ function activeYear(){
 function importantLinks(){
     return ImportantLink::all();
 }
+
+function academicClass($id){
+    $academicClass = \App\AcademicClass::query()->findOrFail($id);
+    $className = $academicClass->academicClasses->name ?? '';
+    $section = $academicClass->section->name ?? '';
+    $group = $academicClass->group->name ?? '';
+    return $className.' '.$section.$group;
+}

@@ -44,21 +44,13 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="class">Class</label>
                                     <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+                                        <select name="class_id" id="class" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
@@ -120,7 +112,7 @@
                                     </tr>
                                     <tr>
                                         <th>Class :</th>
-                                        <td>{{ $result->classes->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
+                                        <td>{{ academicClass($result->academic_class_id) }}</td>
                                         <th>Grade : </th>
                                         <td>{{ $result->grade }}</td>
                                     </tr>
@@ -138,16 +130,13 @@
                                     </tr>
                                 </table>
 
-                                {{--<div style="float: right;" class="no-print">--}}
-                                {{--<a href="javascript:window.print()" role="button" class="btn btn-success btn-sm" title="PRINT"><i class="fas fa-print"></i></a>--}}
-                                {{--<a href="#" role="button" class="btn btn-danger btn-sm" title="Download PDF"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>--}}
-                                {{--</div>--}}
                                 @php
                                     $marks = App\Mark::query()
                                         ->where('student_id',$result->student_id)
                                         ->where('exam_id',$result->exam_id)
-                                        ->where('class_id',$result->class_id)
-                                        ->where('session_id',$result->session_id)
+                                        ->where('academic_class_id',$result->academic_class_id)
+                                        //->where('class_id',$result->class_id)
+                                        //->where('session_id',$result->session_id)
                                         ->join('subjects','subjects.id','=','marks.subject_id')
                                         ->select('marks.*','subjects.level')
                                         ->orderBy('level')
