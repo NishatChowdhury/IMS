@@ -21,6 +21,7 @@ class ResultRepository
     {
         return AcademicClass::query()->whereIn('session_id',activeYear())->get();
     }
+
     public function sessions()
     {
         return Session::all()->pluck('year','id');

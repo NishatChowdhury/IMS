@@ -17,6 +17,11 @@ use App\Session;
 
 class ExamRepository
 {
+    public function academicClasses()
+    {
+        return AcademicClass::query()->whereIn('session_id',activeYear())->get();
+    }
+
     public function exams()
     {
         return Exam::all()->pluck('name','id');

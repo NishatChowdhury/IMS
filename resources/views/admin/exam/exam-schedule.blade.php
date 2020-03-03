@@ -58,7 +58,11 @@
                                         {{ Form::select('session_id',$sessions,$exam->session_id,['class'=>'form-control','placeholder'=>'Select a session']) }}
                                     </div>
                                     <div class="col-md-6">
-                                        {{ Form::select('class_id',$classes,null,['class'=>'form-control','placeholder'=>'Select a class']) }}
+                                        <select name="class_id" id="class" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>

@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use App\AcademicClass;
 use App\Exam;
 use App\ExamSchedule;
+use App\Repository\ExamRepository;
 use App\Session;
 use App\Subject;
 use Illuminate\Http\Request;
 
 class ExamScheduleController extends Controller
 {
-    public function __construct()
+    /**
+     * @var ExamRepository
+     */
+    private $repository;
+
+    public function __construct(ExamRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     public function create(Request $request,$examId)
@@ -22,6 +29,7 @@ class ExamScheduleController extends Controller
         $exam = Exam::query()->findOrFail($examId);
         $classes = AcademicClass::all()->pluck('name','id');
         $sessions = Session::all()->pluck('year','id');
+        $repository = $this->repository;
 
         $class = $request->get('class_id');
         //$session = $request->get('session_id');
@@ -50,7 +58,7 @@ class ExamScheduleController extends Controller
             $subjects = [];
         }
 
-        return view('admin.exam.exam-schedule',compact('classes','class','subjects','exam','sessions'));
+        return view('admin.exam.exam-schedule',compact('repository','class','subjects','exam','sessions'));
     }
 
     public function store(Request $request)
