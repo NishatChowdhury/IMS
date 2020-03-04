@@ -133,6 +133,15 @@ Route::post('exam/store-schedule', 'ExamController@store_schedule');
 Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/seat-allocate','ExamController@seatAllocate');
 
+// Exam Seat Plan Start
+    Route::get('exam/seat-plan/{examId}','ExamSeatPlanController@seatPlan');
+    Route::post('exam/check-roll','ExamSeatPlanController@CheckRoll');
+    Route::post('exam/store-seat-plan','ExamSeatPlanController@storeSeatPlan');
+    Route::get('exam/pdf-seat-plan/{id}','ExamSeatPlanController@pdfSeatPlan');
+    Route::delete('exam/destroy-seat-plan/{id}','ExamSeatPlanController@destroy');
+
+// Exam Seat Plan End
+
 Route::get('exam/result-details/{id}','ResultController@resultDetails');
 Route::get('exam/final-result-details/{id}','ResultController@finalResultDetails');
 Route::get('exam/result-details-all','ResultController@allDetails');
@@ -418,17 +427,17 @@ Route::get('download-attendances',function(){
 
     $data2=array(
         "get_log"=>array(
-            "user_name" => "akschool",
+            "user_name" => "ccs",
             //"user_name" => "chakariacambrian",
-            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
-            //"auth"=>"3efd234cefa324567a342deafd32672", //cambrian
+            //"auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
+            "auth"=>"3efd234cefa324567a342deafd32672", //cambrian
             "log"=>array(
-                "date1"=>date('2019-07-23'),
+                "date1"=>date('2020-01-01'),
                 "date2"=>date('Y-m-d')
             )
         )
     );
-
+    //dd($data2);
     $url_send ="https://rumytechnologies.com/rams/api";
     $str_data = json_encode($data2);
 
@@ -445,7 +454,7 @@ Route::get('download-attendances',function(){
     $result = (curl_exec($ch));
 
     $getvalue = json_decode($result);
-
+    dd($getvalue->log);
     foreach($getvalue->log as $row){
 
         ini_set('max_execution_time',30);

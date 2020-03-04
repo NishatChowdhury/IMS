@@ -74,6 +74,8 @@
                                     <td>{{ $exam->notify == 1 ? "Notify" : "Don't Notify" }}</td>
                                     <td>
                                         {{ Form::open(['action'=>['ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
+                                        <a href="{{ action('ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
+
                                         <a href="{{ action('ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
 {{--                                        <a type="button" href="{{ action('ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>--}}
                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>

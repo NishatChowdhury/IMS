@@ -23,11 +23,11 @@
             margin-top: 50px;
         }
 
-        .card-header{
-            height: 77px;
-            padding: 2px 10px;
-            background: #00a65a !important;
-        }
+        /*.card-header{*/
+        /*height: 77px;*/
+        /*padding: 2px 10px;*/
+        /*background: #00a65a !important;*/
+        /*}*/
 
         .account{
             background-color: #fff4f3;
@@ -50,18 +50,19 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-    <div class="content-body">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2" style="padding: 10px 6px; background-color: #c3cdde">
-                <div class="col-sm-6 col-md-3">
-                    <h3>Welcome </h3>
-                    <a href="{{url('dashboard')}}">
-                        <span class="fas fa-home" style="font-size: 1.1em"> <h6 class="m-0 text-dark" style="display: inline-block"> Dashboard </h6> </span>
-                    </a>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Welcome</h1>
                 </div><!-- /.col -->
-                <div class="col-md-5"></div>
-                <div class="col-sm-6 col-md-4 pull-right" style="text-align: right">
-                    <h1 class="m-0 text-dark">Dashboard</h1>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -71,290 +72,505 @@
     <!-- Main content -->
     <div class="content-body">
         {{--Section of Statistics Start --}}
-        <div class="container-fluid statistics">
-            <div class="row" style="border-bottom: 1px solid #838383; padding: 8px; margin-bottom: 5px">
-                <span class="fas fa-address-card container-fluid" style="font-size: 1.5em">
-                    <h3 style="display: inline-block">Statistics</h3>
-                </span>
-            </div>
+        <div class="container-fluid">
+            <!-- Info boxes -->
             <div class="row">
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <i class="fas fa-address-card"></i>
-                            <h3 class="card-title" style="display: inline-block">Total Student</h3>
-                            <h6> *** </h6>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fa fa-graduation-cap"></i></span>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                            </div>
+                        <div class="info-box-content">
+                            <span class="info-box-text">STUDENTS</span>
+                            <span class="info-box-number">{{ $students }}</span>
                         </div>
-                        <div class="card-body">
-                            <canvas id="pieChart" style="height: 265px;"></canvas>
-                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.card -->
+                    <!-- /.info-box -->
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <i class="fab fa-adn"></i>
-                            <h3 class="card-title" style="display: inline-block">Attendances </h3>
-                            <h6> {{date('F')}}</h6>
-                            <h6> Marked : 000000</h6>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                            </div>
+                        <div class="info-box-content">
+                            <span class="info-box-text">TEACHERS</span>
+                            <span class="info-box-number">{{ $teachers }}</span>
                         </div>
-                        <div class="card-body">
-                            <canvas id="pieChart2" style="height: 265px;"></canvas>
-                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.card -->
+                    <!-- /.info-box -->
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <i class="fab fa-accusoft"></i>
-                            <h3 class="card-title" style="display: inline-block">Exam Result</h3>
-                            <h6> Latest Exam </h6>
+                <!-- /.col -->
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                            </div>
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa fa-university"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">CLASS</span>
+                            <span class="info-box-number">{{ $classes }}</span>
                         </div>
-                        <div class="card-body">
-                            <canvas id="pieChart3" style="height: 265px;"></canvas>
-                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.card -->
+                    <!-- /.info-box -->
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <i class="fab fa-accusoft"></i>
-                            <h3 class="card-title" style="display: inline-block"> Fee Status</h3>
-                            <h6>{{date('F')}}</h6>
-                            <h6> 0.00% </h6>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                            </div>
+                        <div class="info-box-content">
+                            <span class="info-box-text">OTHERS</span>
+                            <span class="info-box-number">2,000</span>
                         </div>
-                        <div class="card-body">
-                            <canvas id="pieChart4" style="height: 265px;"></canvas>
-                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.card -->
+                    <!-- /.info-box -->
                 </div>
-            </div>
-        </div>
-        {{--Section of Statistics Start --}}
-
-        {{--Section of Total Account (Receive/Payable) Start --}}
-        <div class="row account">
-            <div class="col-md-6 total-rcv col-sm-12 col-xs-12 ">
-                <div class="row"  style="border-bottom: 1px solid #838383; padding: 8px; margin-bottom: 5px">
-                    <span class="fas fa-address-card container-fluid" style="font-size: 1em">
-                        <h5 style="display: inline-block">Total Receivable</h5>
-                    </span>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <i class="fas fa-address-card"></i>
-                                <h3 class="card-title" style="display: inline-block">Total Student</h3>
-                                <h6> *** </h6>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="barChart" style="height: 265px;"></canvas>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <i class="fab fa-adn"></i>
-                                <h3 class="card-title" style="display: inline-block">Attendances </h3>
-                                <h6> {{date('F')}}</h6>
-                                <h6> Marked : 000000</h6>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="pieChart2" style="height: 265px;"></canvas>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
+                <!-- /.col -->
             </div>
 
-            <div class="col-md-6 total-pay col-sm-12 col-xs-12">
-                <div class="row"  style="border-bottom: 1px solid #ffffff; padding: 8px; margin-bottom: 5px">
-                    <span class="fas fa-address-card container-fluid" style="font-size: 1em">
-                        <h5 style="display: inline-block">Total Payable</h5>
-                    </span>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="card card-primary">
-                            <div class="card-header" style="background-color: #444e26 !important;">
-                                <i class="fas fa-address-card"></i>
-                                <h3 class="card-title" style="display: inline-block">Total Student</h3>
-                                <h6> *** </h6>
+            <div class="row">
+                {{--Student Attendence Start--}}
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Daily Student Attendence</h5>
 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fas fa-wrench"></i>
                                     </button>
-                                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="" style="height: 265px;"></canvas>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="card card-primary">
-                            <div class="card-header" style="background-color: #444e26 !important;">
-                                <i class="fab fa-adn"></i>
-                                <h3 class="card-title" style="display: inline-block">Attendances </h3>
-                                <h6> {{date('F')}}</h6>
-                                <h6> Marked : 000000</h6>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="pieChart2" style="height: 265px;"></canvas>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{--Section of Total Receive/Payable END --}}
-
-        {{--Section of cash flow Start --}}
-        <div class="row cash-flow">
-            <div class="col-md-9 col-sm-12 col-xs-12 total-rcv">
-                <div class="row"  style="border-bottom: 1px solid #838383; padding: 8px; margin-bottom: 5px">
-                    <span class="fas fa-address-card container-fluid" style="font-size: 1em">
-                        <h5 style="display: inline-block">Caash Flow</h5>
-                    </span>
-                </div>
-                <div class="row">
-                    <div class="container">
-                        <div class="col-md-12 col-sm-12 col-xs-12 ">
-                            <div class="card card-info">
-                                <div class="card_header">
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                        <a href="#" class="dropdown-item">Action</a>
+                                        <a href="#" class="dropdown-item">Another action</a>
+                                        <a href="#" class="dropdown-item">Something else here</a>
+                                        <a class="dropdown-divider"></a>
+                                        <a href="#" class="dropdown-item">Separated link</a>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <canvas id="lineChart" style="height: 265px;"></canvas>
-                                </div>
+                                <button type="button" class="btn btn-tool" data-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <!-- /.card -->
                         </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Class Wise Student Attendence</strong>
+                                    </p>
+
+                                    <div class="progress-group">
+                                        Add Products to Cart
+                                        <span class="float-right"><b>160</b>/200</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+
+                                    <div class="progress-group">
+                                        Complete Purchase
+                                        <span class="float-right"><b>310</b>/400</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        <span class="progress-text">Visit Premium Page</span>
+                                        <span class="float-right"><b>480</b>/800</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        Send Inquiries
+                                        <span class="float-right"><b>250</b>/500</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
                     </div>
+                    <!-- /.card -->
                 </div>
-            </div>
+                {{--Student Attendence End--}}
 
-            <div class="col-md-3 total-pay col-sm-12 col-xs-12 ">
-                <div class="row"  style="border-bottom: 1px solid #ffffff; padding: 8px; margin-bottom: 5px">
-                    <span class="fas fa-address-card container-fluid" style="font-size: 1em">
-                        <h5 style="display: inline-block">Cash Summery</h5>
-                    </span>
-                </div>
+                {{--Teacher Attendence Start--}}
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Daily Teacher Attendence</h5>
 
-                <div class="row">
-                    <div class="container">
-                        <div class="col-md-12 col-sm-12 col-xs-12 ">
-                            <div class="card card-primary">
-                                <div class="card_header">
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fas fa-wrench"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                        <a href="#" class="dropdown-item">Action</a>
+                                        <a href="#" class="dropdown-item">Another action</a>
+                                        <a href="#" class="dropdown-item">Something else here</a>
+                                        <a class="dropdown-divider"></a>
+                                        <a href="#" class="dropdown-item">Separated link</a>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <canvas id="lineChart" style="height: 265px;"></canvas>
-                                </div>
+                                <button type="button" class="btn btn-tool" data-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <!-- /.card -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Teacher Attendence</strong>
+                                    </p>
+
+                                    <div class="progress-group">
+                                        Add Products to Cart
+                                        <span class="float-right"><b>160</b>/200</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+
+                                    <div class="progress-group">
+                                        Complete Purchase
+                                        <span class="float-right"><b>310</b>/400</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        <span class="progress-text">Visit Premium Page</span>
+                                        <span class="float-right"><b>480</b>/800</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        Send Inquiries
+                                        <span class="float-right"><b>250</b>/500</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                {{--Teacher Attendence End--}}
+            </div>
+            <!-- /.row -->
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-8">
+                    {{--Class Routin Start--}}
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="ion ion-clipboard mr-1"></i>
+                                   Class Routin
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <ul class="todo-list">
+                                    <li>
+                                        <!-- drag handle -->
+                                        <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                        <!-- checkbox -->
+                                        <input type="checkbox" value="" name="">
+                                        <!-- todo text -->
+                                        <span class="text">Design a nice theme</span>
+                                        <!-- Emphasis label -->
+                                        <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                                        <!-- General tools such as edit or delete-->
+                                        <div class="tools">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                        <input type="checkbox" value="" name="">
+                                        <span class="text">Make the theme responsive</span>
+                                        <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                                        <div class="tools">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                        <input type="checkbox" value="" name="">
+                                        <span class="text">Let theme shine like a star</span>
+                                        <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
+                                        <div class="tools">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                        <input type="checkbox" value="" name="">
+                                        <span class="text">Let theme shine like a star</span>
+                                        <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                                        <div class="tools">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                        <input type="checkbox" value="" name="">
+                                        <span class="text">Check your messages and notifications</span>
+                                        <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
+                                        <div class="tools">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                        <input type="checkbox" value="" name="">
+                                        <span class="text">Let theme shine like a star</span>
+                                        <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
+                                        <div class="tools">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    {{--Class Routin Section End--}}
+                </div>
+
+                <div class="col-md-4">
+                    <!-- Info Boxes Style 2 -->
+                    <div class="info-box mb-3 bg-warning">
+                        <span class="info-box-icon"><i class="fa fa-male"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Male Student</span>
+                            <span class="info-box-number">{{ $studentMale }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box mb-3 bg-success">
+                        <span class="info-box-icon"><i class="fa fa-female"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Female Student</span>
+                            <span class="info-box-number">{{ $studentFemale }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box mb-3 bg-danger">
+                        <span class="info-box-icon"><i class="fa fa-mars"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Male Teacher</span>
+                            <span class="info-box-number">{{ $teacherMale }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box mb-3 bg-info">
+                        <span class="info-box-icon"><i class="fa fa-venus"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Female Teacher</span>
+                            <span class="info-box-number">{{ $teacherFemale }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+
+            <div class="row">
+                {{--Academic Calender Section Start--}}
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="ion ion-clipboard mr-1"></i>
+                                Academic Calender
+                            </h3>
+
+                            <div class="card-tools">
+                                <ul class="pagination pagination-sm">
+                                    {{ $calenders->links() }}
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                                @if($calenders->count() > 0)
+                                    <table class="table table-condensed">
+                                        <thead class="thead-dark text-center">
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Star</th>
+                                                <th>End</th>
+                                                <th>Day</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($calenders as $calender)
+                                            <tr >
+                                                <td>
+                                                    {{ $calender->name }}
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($calender->start)->format('d M') }}
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($calender->end)->format('d M') }}
+                                                </td>
+                                                <td>
+
+                                                    @php
+                                                        $start = \Carbon\Carbon::parse($calender->start);
+                                                        $end = \Carbon\Carbon::parse($calender->end);
+                                                        $days = $start->diff($end);
+                                                        //echo $days->days;
+                                                        //$total +=$days->days;
+                                                    @endphp
+                                                    <small class="badge badge-primary">
+                                                        <i class="far fa-clock"></i> {{ $days->days  }}
+                                                    </small>
+                                                </td>
+                                            </tr>
+
+                                        @endforeach
+                                        </tbody>
+
+                                    </table>
+
+                                @else
+                                    <h2>Data Not Found</h2>
+                                @endif
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        {{--Section of cash flow End --}}
+                {{--Academic Calender Section End--}}
 
-        {{--Section of Statistics Start --}}
-        <div class="container-fluid atten-dtl">
-            <div class="row" style="border-bottom: 1px solid #838383; padding: 8px; margin-bottom: 5px">
-                <span class="fas fa-address-card container-fluid" style="font-size: 1.5em">
-                    <h3 style="display: inline-block">Class Attendances</h3>
-                </span>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 table-responsive table-bordered table-striped">
-                    <table class="" style="width: 100%">
-                       <thead class="text-center">
-                            <tr>
-                                <th>Class</th>
-                                <th>Date</th>
-                                <th>Day</th>
-                                <th>Status</th>
-                                <th>Present</th>
-                                <th>Absent</th>
-                                <th>Action</th>
-                            </tr>
-                       </thead>
-                        <tbody>
+                {{--Academic Notice Board Start--}}
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="ion ion-clipboard mr-1"></i>
+                                Notice Board
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <ul class="todo-list">
+                                @if($notices->count() > 0)
+                                    @foreach($notices as $notice)
+                                        <li>
+                                            <!-- drag handle -->
+                                            <span class="handle">
+                                              <i class="fas fa-ellipsis-v"></i>
+                                              <i class="fas fa-ellipsis-v"></i>
+                                            </span>
 
-                        </tbody>
-                    </table>
+                                            <span class="text">{{ $notice->title }}</span>
+                                            <!-- Emphasis label -->
+                                            <small class="badge badge-success"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($notice->start)->format('d F Y') }}</small>
+                                            <!-- General tools such as edit or delete-->
+                                            <div class="tools">
+                                                <a href="#"><i class="fas fa-eye"></i></a>
+                                            </div>
+                                </li>
+                                    @endforeach
+                                @else
+                                    <li>
+                                         <span class="handle">
+                                              <i class="fas fa-ellipsis-v"></i>
+                                              <i class="fas fa-ellipsis-v"></i>
+                                         </span>
+                                        <span class="text"> Notice Data Not Found</span>
+                                    </li>
+                                @endif
 
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {{--Section of Statistics Start --}}
+                {{--Academic Notice Board end--}}
 
-    </div>{{--content-body DIV END--}}
+
+
+            </div>
+
+        </div>
+
+    </div>
+    {{--content-body DIV END--}}
 @stop
 
 @section('plugin')
@@ -433,51 +649,51 @@
                 ]
             };
 
-           var areaChartOptions = {
-               //Boolean - If we should show the scale at all
-               showScale               : true,
-               //Boolean - Whether grid lines are shown across the chart
-               scaleShowGridLines      : false,
-               //String - Colour of the grid lines
-               scaleGridLineColor      : 'rgba(0,0,0,.05)',
-               //Number - Width of the grid lines
-               scaleGridLineWidth      : 1,
-               //Boolean - Whether to show horizontal lines (except X axis)
-               scaleShowHorizontalLines: true,
-               //Boolean - Whether to show vertical lines (except Y axis)
-               scaleShowVerticalLines  : true,
-               //Boolean - Whether the line is curved between points
-               bezierCurve             : true,
-               //Number - Tension of the bezier curve between points
-               bezierCurveTension      : 0.3,
-               //Boolean - Whether to show a dot for each point
-               pointDot                : false,
-               //Number - Radius of each point dot in pixels
-               pointDotRadius          : 4,
-               //Number - Pixel width of point dot stroke
-               pointDotStrokeWidth     : 1,
-               //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-               pointHitDetectionRadius : 20,
-               //Boolean - Whether to show a stroke for datasets
-               datasetStroke           : true,
-               //Number - Pixel width of dataset stroke
-               datasetStrokeWidth      : 2,
-               //Boolean - Whether to fill the dataset with a color
-               datasetFill             : true,
-               //String - A legend template
-     maintainAspectRatio     : true,
-     //Boolean - whether to make the chart responsive to window resizing
-     responsive              : true
-   };
+            var areaChartOptions = {
+                //Boolean - If we should show the scale at all
+                showScale               : true,
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines      : false,
+                //String - Colour of the grid lines
+                scaleGridLineColor      : 'rgba(0,0,0,.05)',
+                //Number - Width of the grid lines
+                scaleGridLineWidth      : 1,
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines  : true,
+                //Boolean - Whether the line is curved between points
+                bezierCurve             : true,
+                //Number - Tension of the bezier curve between points
+                bezierCurveTension      : 0.3,
+                //Boolean - Whether to show a dot for each point
+                pointDot                : false,
+                //Number - Radius of each point dot in pixels
+                pointDotRadius          : 4,
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth     : 1,
+                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                pointHitDetectionRadius : 20,
+                //Boolean - Whether to show a stroke for datasets
+                datasetStroke           : true,
+                //Number - Pixel width of dataset stroke
+                datasetStrokeWidth      : 2,
+                //Boolean - Whether to fill the dataset with a color
+                datasetFill             : true,
+                //String - A legend template
+                maintainAspectRatio     : true,
+                //Boolean - whether to make the chart responsive to window resizing
+                responsive              : true
+            };
 
-   //-------------
-   //- LINE CHART -
-   //--------------
-   var lineChartCanvas          = $('#lineChart').get(0).getContext('2d');
-   var lineChart                = new Chart(lineChartCanvas);
-   var lineChartOptions         = areaChartOptions;
-   lineChartOptions.datasetFill = false;
-   lineChart.Line(areaChartData, lineChartOptions);
+            //-------------
+            //- LINE CHART -
+            //--------------
+            var lineChartCanvas          = $('#lineChart').get(0).getContext('2d');
+            var lineChart                = new Chart(lineChartCanvas);
+            var lineChartOptions         = areaChartOptions;
+            lineChartOptions.datasetFill = false;
+            lineChart.Line(areaChartData, lineChartOptions);
 
             //-------------
             //- PIE CHART -
@@ -776,13 +992,13 @@
                 //String - A legend template
                 legendTemplate          : '<ul class="%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++)' +
                 '{%><li><span style="background-color:%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%>=datasets[i].label%><%}%></li><%}%></ul>',
-      //Boolean - whether to make the chart responsive
-      responsive              : true,
-      maintainAspectRatio     : true
-    };
+                //Boolean - whether to make the chart responsive
+                responsive              : true,
+                maintainAspectRatio     : true
+            };
 
-    barChartOptions.datasetFill = false;
-    barChart.Bar(barChartData, barChartOptions)
-  })
-  </script>
+            barChartOptions.datasetFill = false;
+            barChart.Bar(barChartData, barChartOptions)
+        })
+    </script>
 @stop

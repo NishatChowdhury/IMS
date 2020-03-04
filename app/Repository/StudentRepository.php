@@ -35,6 +35,10 @@ class StudentRepository
         return Session::all()->where('active',1)->pluck('year','id');
     }
 
+    public function academicClasses()
+    {
+        return AcademicClass::query()->whereIn('session_id',activeYear())->get();
+    }
     public function classes()
     {
         return Classes::all()->pluck('name','id');
@@ -69,6 +73,7 @@ class StudentRepository
     {
         return Country::all()->pluck('name', 'id');
     }
+
 
     public function optionals($class)
     {
