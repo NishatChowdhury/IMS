@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-6 col-lg-4 marginTop-30">
-                <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
+                <a href="{{ action('FrontController@internal_exam') }}" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/3.png" alt="">
                     <h4 class="mt-2">
                        Results
@@ -26,7 +26,7 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4 marginTop-30">
-                <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
+                <a href="{{ action('FrontController@syllabus') }}" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/4.png" alt="">
                     <h4 class="mt-2">
                         Syllabus
@@ -34,7 +34,7 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4 marginTop-30">
-                <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
+                <a href="{{ action('FrontController@class_routine') }}" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/5.png" alt="">
                     <h4 class="mt-2">
                         Routine
