@@ -27,25 +27,17 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ExamController@tabulationSheet','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>['ResultController@tabulation',2],'role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="class">Class</label>
                                     <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+                                        <select name="class_id" id="class" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
@@ -69,19 +61,24 @@
 
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="scl-dec" style="padding-left: 300px;">
-                                        <div class="logo" style="float: left">
-                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt="logo" height="100">
-                                        </div>
-                                        <div class="scl-name" style="float: left; padding-left:50px; padding-top: 20px; text-align: center;">
-                                            <h2>{{ siteConfig('name') }}</h2>
-                                            <h4>Result Sheet of Yearly</h4>
-                                            <hr>
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="col">
+                                    <div class="scl-dec">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <div class="logo">
+                                                    <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt="logo" height="100">
+                                                </div>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="scl-name text-center">
+                                                    <h2>{{ siteConfig('name') }}</h2>
+                                                    <h4>{{ $results->first()->exam->name }}</h4>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -90,8 +87,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="head" style="text-align: center;">
-                                        <h3>Class {{ $results->first()->student->academicClass->name }}
-                                            ({{ $results->first()->student->section->name ?? '' }}{{ $results->first()->student->group->name ?? '' }})</h3>
+                                        <h4>Class {{ $results->first()->academicClass->academicClasses->name }}
+                                            ({{ $results->first()->academicClass->section->name ?? '' }}{{ $results->first()->academicClass->group->name ?? '' }})</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -117,10 +114,12 @@
                                                         <td>{{ $result->student->rank }}</td>
                                                         @foreach($subjects as $subject)
                                                             <td>
-                                                                {{ \App\FinalMark::query()
+                                                                {{ \App\Mark::query()
                                                                 //->where('class_id',$result->class_id)
                                                                 //->where('section_id',$result->section_id)
                                                                 //->where('group_id',$result->group_id)
+                                                                ->where('academic_class_id',$result->academic_class_id)
+                                                                ->where('exam_id',$result->exam_id)
                                                                 ->where('subject_id',$subject->subject_id)
                                                                 ->where('student_id',$result->student_id)
                                                                 ->first()

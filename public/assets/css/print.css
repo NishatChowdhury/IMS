@@ -16,4 +16,18 @@
         padding-bottom: 0 !important;
         padding-top: 0 !important;
     }
+
+    body{
+        overflow: visible;
+    }
+    .card{
+        float: left !important;
+        display: block !important;
+        min-width: 100%;
+    }
+    .page-break{
+        overflow: visible;
+        page-break-after: always !important;
+        /*page-break-before: always !important;*/
+    }
 }

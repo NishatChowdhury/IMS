@@ -610,12 +610,12 @@ class ResultController extends Controller
                     }else{
                         $data['gpa'] = $isFail ? 0 : $mark
                                 ->where('subject_id','<>',$optional->subject_id)
-                                ->sum('gpa') / $subjectCount;
+                                ->sum('gpa') / ($subjectCount - 1);
 
                         $grade = Grade::query()
                             ->where('system',1)
-                            ->where('point_from','<=',$mark->where('subject_id','<>',$optional->subject_id)->sum('gpa') / $subjectCount)
-                            ->where('point_to','>=',$mark->where('subject_id','<>',$optional->subject_id)->sum('gpa') / $subjectCount)
+                            ->where('point_from','<=',$mark->where('subject_id','<>',$optional->subject_id)->sum('gpa') / ($subjectCount - 1))
+                            ->where('point_to','>=',$mark->where('subject_id','<>',$optional->subject_id)->sum('gpa') / ($subjectCount - 1))
                             ->first();
                     }
                 }else{
@@ -705,5 +705,26 @@ class ResultController extends Controller
 
         $repository = $this->repository;
         return view('admin.exam.all-details',compact('results','repository'));
+    }
+
+    public function tabulation($examID,Request $request)
+    {
+        if($request->has('class_id')){
+            //$exam = Exam::query()->findOrFail($examID);
+            $results = ExamResult::query()->where('exam_id',$examID)->where('academic_class_id',$request->get('class_id'))->orderBy('rank')->get();
+
+            //$subjects = $this->tabulationSubjects($request->get('class_id'),$request->get('group_id'));
+            $subjects = ExamSchedule::query()
+                ->where('academic_class_id',$request->get('class_id'))
+                ->where('exam_id',$examID)
+                ->get();
+        }else{
+            $results = collect();
+            $subjects = null;
+        }
+        //dd($request->get('group_id').' '.$request->get('class_id'));
+        $results = $results->count() == 0 ? null : $results;
+        $repository = $this->repository;
+        return view('admin.exam.tabulation',compact('repository','results','subjects','examID'));
     }
 }

@@ -72,7 +72,7 @@
     <!-- /.Search-panel -->
 
     @foreach($results as $result)
-        <section class="content">
+        <section class="content" style="page-break-after: always">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
