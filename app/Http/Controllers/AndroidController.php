@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\ClassSchedule;
+use App\Notice;
+use App\NoticeCategory;
 use App\Page;
 use App\SiteInformation;
 use App\Staff;
@@ -119,6 +122,34 @@ class AndroidController extends Controller
         $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
         $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
         return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
+    }
+
+    public function notices()
+    {
+        $categories = NoticeCategory::all()->pluck('name','id');
+        $notices = Notice::query()->where('notice_type_id',2)->get();
+        return ['categories'=>$categories,'notices'=>$notices];
+    }
+
+    public function classRoutine()
+    {
+        $routines = ClassSchedule::all();
+
+        $data = [];
+
+        foreach($routines as $routine){
+            $data[] = [
+                'class_name' => 1,
+                'name' => $routine->name,
+                'subject' => $routine->subject->name,
+                'teacher' => $routine->teacher->name ?? '',
+                'day' => $routine->day->short_name,
+                'start' => $routine->start,
+                'end' => $routine->end,
+            ];
+        }
+
+        return $data;
     }
 
     public function sms($number,$message)
