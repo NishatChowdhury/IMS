@@ -77,6 +77,7 @@
                                         <a href="{{ action('ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
 
                                         <a href="{{ action('ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
+                                        <a href="{{ action('ResultController@tabulation',$exam->id) }}" class="btn btn-dark btn-sm" title="Tabulation Sheet"><i class="fas fa-list-ol"></i></a>
 {{--                                        <a type="button" href="{{ action('ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>--}}
                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                                         <a href="{{ action('ResultController@generateResult',$exam->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></a>

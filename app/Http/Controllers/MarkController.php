@@ -7,6 +7,7 @@ use App\Grade;
 use App\Mark;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class MarkController extends Controller
@@ -133,8 +134,15 @@ class MarkController extends Controller
                 $data['practical'] = (int)$col[6];
                 $data['viva'] = (int)$col[7];
                 $data['total_mark'] = (int)$col[4] + (int)$col[5] + (int)$col[6] + (int)$col[7];
-                $data['gpa'] = $this->gpa($data['total_mark']);
-                $data['grade'] = $this->grade($data['total_mark']);
+
+                if($schedule->objective_pass > $data['objective'] || $schedule->written_pass > $data['written'] || $schedule->practical_pass > $data['practical'] || $schedule->viva_pass > $data['viva']){
+                    $data['gpa'] = 0;
+                    $data['grade'] = 'F';
+                }else{
+                    $data['gpa'] = $this->gpa($data['total_mark']);
+                    $data['grade'] = $this->grade($data['total_mark']);
+                }
+
                 $data['grade_id'] = 1;
 
                 $mark = Mark::query()
@@ -161,6 +169,12 @@ class MarkController extends Controller
     {
         $students = $request->get('student_id');
 
+        $schedule = ExamSchedule::query()
+            ->where('exam_id',$request->get('exam_id'))
+            ->where('subject_id',$request->get('subject_id'))
+            ->where('academic_class_id',$request->get('academic_class_id'))
+            ->first();
+
         foreach($students as $key => $student){
             $data['session_id'] = $request->get('session_id');
             $data['class_id'] = $request->get('class_id');
@@ -171,14 +185,24 @@ class MarkController extends Controller
             $data['written'] = $request->get('written')[$key];
             $data['practical'] = $request->get('practical')[$key];
             $data['viva'] = $request->get('viva')[$key];
-            $data['full_mark'] = ExamSchedule::query()->where('exam_id',$request->get('exam_id'))->where('subject_id',$request->get('subject_id'))->where('session_id',$request->get('session_id'))->where('class_id',$request->get('class_id'))->first()->mark;
+            $data['full_mark'] = ExamSchedule::all()->where('exam_id',$request->get('exam_id'))->where('subject_id',$request->get('subject_id'))->where('academic_class_id',$request->get('academic_class_id'))->sum(function($t){return $t->objective_full + $t->written_full;});
             $data['total_mark'] = $request->get('objective')[$key] + $request->get('written')[$key] + $request->get('practical')[$key] + $request->get('viva')[$key];
-            $data['gpa'] = $this->gpa($data['total_mark']);
-            $data['grade'] = $this->grade($data['total_mark']);
+
+            if($schedule->objective_pass > $data['objective'] || $schedule->written_pass > $data['written'] || $schedule->practical_pass > $data['practical'] || $schedule->viva_pass > $data['viva']){
+                $data['gpa'] = 0;
+                $data['grade'] = 'F';
+            }else{
+                $data['gpa'] = $this->gpa($data['total_mark']);
+                $data['grade'] = $this->grade($data['total_mark']);
+            }
+
+            //$data['gpa'] = $this->gpa($data['total_mark']);
+            //$data['grade'] = $this->grade($data['total_mark']);
 
             $marks = Mark::query()
-                ->where('session_id',$request->get('session_id'))
-                ->where('class_id',$request->get('class_id'))
+                //->where('session_id',$request->get('session_id'))
+                //->where('class_id',$request->get('class_id'))
+                ->where('academic_class_id',$request->get('academic_class_id'))
                 ->where('exam_id',$request->get('exam_id'))
                 ->where('subject_id',$request->get('subject_id'))
                 ->where('student_id',$request->get('student_id')[$key])
