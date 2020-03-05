@@ -19,11 +19,11 @@ class DashboardController extends Controller
     {
         $data =[];
 
-       $data['students']    = Student::query()->whereIn('session_id',activeYear())->where('status',0)->count('id');
+       $data['students']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->count();
 
-       $data['studentMale']    = Student::query()->whereIn('session_id',activeYear())->where('status',0)->where('gender_id',1)->count('id');
+       $data['studentMale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',1)->count('id');
 
-       $data['studentFemale']    = Student::query()->whereIn('session_id',activeYear())->where('status',0)->where('gender_id',2)->count('id');
+       $data['studentFemale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',2)->count('id');
 
        $data['teachers']    = Staff::query()->where('staff_type_id',2)->count('id');
 
