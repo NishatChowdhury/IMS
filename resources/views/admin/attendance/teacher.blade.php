@@ -111,21 +111,13 @@
                                             @csrf
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    {{ Form::label('Teacher Card ID') }}
-                                                    <select name="teacherCardId" class="form-control select2">
-
-                                                        <option value="" selected>Slect Teacher Card ID</option>
-                                                            @foreach($teachers as $teacher)
-                                                                <option value= " {{ $teacher->code }} "> {{$teacher->name}} - {{ $teacher->code }}</option>
-                                                            @endforeach
-
-                                                    </select>
+                                                    {{ Form::label('USER') }}
+                                                    {{ Form::select('user',[0=>'ALL',1=>'STAFF',2=>'TEACHER'],null,['class'=>'form-control']) }}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Date range button:</label>
+                                                    <label>Date</label>
                                                     <div class="form-group">
-                                                        <input type="text" name="dateRangeTeacher" id="" class="form-control daterange-btn" autocomplete="off">
-
+                                                        {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}
                                                     </div>
                                                 </div>
 
@@ -204,30 +196,27 @@
                                                     }
                                                 }
                                             @endphp
-
                                         </td>
-                                        <td>
-
-                                        </td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
+{{--                            <div class="row" style="margin-top: 10px">--}}
+{{--                                <div class="col-sm-12 col-md-9">--}}
+{{--                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-12 col-md-3">--}}
+{{--                                    <nav aria-label="Page navigation example">--}}
+{{--                                        <ul class="pagination">--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">First</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </nav>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -250,6 +239,7 @@
     <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('/plugins/select2/select2.full.min.js') }}"></script>
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
 
 @stop
 
@@ -257,41 +247,30 @@
 @section('script')
     <script>
 
-        $("#indAttendanceTeacher").submit(function (e) {
-            e.preventDefault();
-
-            $.ajax({
-                method: $(this).attr('method'),
-                url : $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType:'html',
-                success:function (res) {
-                    $("#indTeacher").html(res);
-                    console.log(res);
-                }
+        $('.datePicker')
+            .datepicker({
+                format: 'yyyy-mm-dd'
             });
-        });
+
+        // $("#indAttendanceTeacher").submit(function (e) {
+        //     e.preventDefault();
+        //
+        //     $.ajax({
+        //         method: $(this).attr('method'),
+        //         url : $(this).attr('action'),
+        //         data: $(this).serialize(),
+        //         dataType:'html',
+        //         success:function (res) {
+        //             $("#indTeacher").html(res);
+        //             console.log(res);
+        //         }
+        //     });
+        // });
 
 
         //Date range as a button
         $(function () {
             $('.select2').select2();
         });
-        $('.daterange-btn').daterangepicker(
-            {
-                format : 'YYYY-MM-DD',
-                ranges   : {
-                    'Today'       : [moment(), moment()],
-                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate  : moment()
-            }
-
-        );
     </script>
 @stop
