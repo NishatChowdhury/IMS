@@ -21,8 +21,24 @@ class ShiftController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'grace' => 'required',
+            'late_fee' => 'required',
+            'absent_fee' => 'required',
+        ]);
         Shift::query()->create($request->all());
         Session::flash('success','Shift add successfully');
         return redirect('attendance/setting');
+    }
+
+    public function destroy($id)
+    {
+        $shift = Shift::query()->findOrFail($id);
+        $shift->delete();
+        Session::flash('success','Shift deleted successfully!');
+        return redirect()->back();
     }
 }

@@ -22,7 +22,7 @@
     </section>
 
     <!-- /.Search-panel -->
-    <section class="content">
+    <section class="content no-print">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -46,19 +46,11 @@
                                 <div class="col">
                                     <label for="">Class*</label>
                                     <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+                                        <select name="class_id" id="class" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
@@ -87,8 +79,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-center">
+                                {{ $academicClass->academicClasses->name ?? '' }} {{ $academicClass->section->name ?? '' }} {{ $academicClass->group->name ?? '' }}
+                                <br>
+                                {{ $today ?? '' }}
+                            </h4>
+                        </div>
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-12 text-center">
                                 <div class="row" style="padding: 10px;">
                                     <div class="col-md-2">
                                         <div class="dec-block">
@@ -96,7 +95,7 @@
                                                 {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
                                             {{--</div>--}}
                                             <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Total Found</h5>
+                                                <h5 style="margin-bottom: 0px; font-weight: bold">Total</h5>
                                                 <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($attendances) }}</span></p>
                                             </div>
                                         </div>
@@ -118,7 +117,7 @@
                                                 {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
                                             {{--</div>--}}
                                             <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Late Present</h5>
+                                                <h5 style="margin-bottom: 0px; font-weight: bold">Late</h5>
                                                 <p><span class="badge badge-primary" style="color: black; padding: 5px 45px; font-size: 18px">00</span></p>
                                             </div>
                                         </div>
@@ -145,14 +144,25 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-2">
+                                        <div class="dec-block">
+                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >--}}
+                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+                                            {{--</div>--}}
+                                            <div class="dec-block-dec" style="float:left;">
+                                                <h5 style="margin-bottom: 0px; font-weight: bold">Leave</h5>
+                                                <p><span class="badge badge-dark" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div style="padding-top: 40px;">
-                                    <button type="button" class="btn btn-info  btn-sm" style=" padding: .25rem 0.9rem; margin-right: 10px"> <i class="fas fa-cloud-download-alt"></i> Pdf </button>
-                                    <button type="button" class="btn btn-info  btn-sm" style=" padding: .25rem 0.9rem;"> <i class="fas fa-cloud-download-alt"></i> Csv </button>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-2">--}}
+{{--                                <div style="padding-top: 40px;">--}}
+{{--                                    <button type="button" class="btn btn-info  btn-sm" style=" padding: .25rem 0.9rem; margin-right: 10px"> <i class="fas fa-cloud-download-alt"></i> Pdf </button>--}}
+{{--                                    <button type="button" class="btn btn-info  btn-sm" style=" padding: .25rem 0.9rem;"> <i class="fas fa-cloud-download-alt"></i> Csv </button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="card-body" style="padding: 1.00rem;">
                             <table id="example2" class="table table-bordered table-hover">
@@ -161,12 +171,12 @@
                                     <th>Rank</th>
                                     <th>Student</th>
                                     <th>Card</th>
-                                    <th>Date </th>
-                                    <th>Class</th>
+{{--                                    <th>Date </th>--}}
+{{--                                    <th>Class</th>--}}
                                     {{--<th>Subject</th>--}}
                                     {{--<th>Teacher</th>--}}
-                                    <th>Enter Time</th>
-                                    <th>Exit Time</th>
+                                    <th>Entry</th>
+                                    <th>Exit</th>
                                     <th>Status</th>
                                     <th>Is Notified</th>
                                 </tr>
@@ -187,15 +197,8 @@
                                         {{--@endif--}}
                                         </td>
                                         <td>{{ $attn->card }}</td>
-                                        <td>{{ $attn->date }}</td>
-                                        <td>
-                                            {{ $attn->class }}
-                                            {{--@if($attn->student)--}}
-                                                {{--@if($attn->student->academicClass)--}}
-                                                    {{--{{ $attn->student->academicClass->name }}--}}
-                                                {{--@endif--}}
-                                            {{--@endif--}}
-                                        </td>
+{{--                                        <td>{{ $attn->date }}</td>--}}
+{{--                                        <td>{{ $attn->class }}</td>--}}
                                         {{--<td></td>--}}
                                         {{--<td></td>--}}
                                         <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter->format('h:i:s A') }}</td>

@@ -3,6 +3,7 @@
 use App\AcademicClass;
 use App\Grade;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
@@ -134,11 +135,11 @@ Route::get('exam/admit-card','ExamController@admitCard');
 Route::get('exam/seat-allocate','ExamController@seatAllocate');
 
 // Exam Seat Plan Start
-    Route::get('exam/seat-plan/{examId}','ExamSeatPlanController@seatPlan');
-    Route::post('exam/check-roll','ExamSeatPlanController@CheckRoll');
-    Route::post('exam/store-seat-plan','ExamSeatPlanController@storeSeatPlan');
-    Route::get('exam/pdf-seat-plan/{id}','ExamSeatPlanController@pdfSeatPlan');
-    Route::delete('exam/destroy-seat-plan/{id}','ExamSeatPlanController@destroy');
+Route::get('exam/seat-plan/{examId}','ExamSeatPlanController@seatPlan');
+Route::post('exam/check-roll','ExamSeatPlanController@CheckRoll');
+Route::post('exam/store-seat-plan','ExamSeatPlanController@storeSeatPlan');
+Route::get('exam/pdf-seat-plan/{id}','ExamSeatPlanController@pdfSeatPlan');
+Route::delete('exam/destroy-seat-plan/{id}','ExamSeatPlanController@destroy');
 
 // Exam Seat Plan End
 
@@ -174,6 +175,7 @@ Route::post('communication/quick/send','CommunicationController@quickSend');
 
 Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
+Route::delete('attendance/shift/delete/{id}','ShiftController@destroy');
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
@@ -331,68 +333,68 @@ Route::delete('settings/link/delete/{id}','LinkController@destroy');
 
 //Account Section Star AR Babu
 //  Fee Category Start
-    Route::get('/fee-category/index','FeeCategoryController@index')->name('fee-category.index');
-    Route::post('fee-category/store','FeeCategoryController@store_fee_category')->name('fee-category.store');
-    Route::post('fee-category/edit','FeeCategoryController@edit_fee_category')->name('fee-category.edit');
-    Route::post('fee-category/update','FeeCategoryController@update_fee_category')->name('fee-category.update');
-    Route::get('fee-category/{id}/delete','FeeCategoryController@delete_fee_category')->name('fee-category.delete');
-    Route::put('fee-category/status/{id}','FeeCategoryController@status')->name('fee-category.status');
+Route::get('/fee-category/index','FeeCategoryController@index')->name('fee-category.index');
+Route::post('fee-category/store','FeeCategoryController@store_fee_category')->name('fee-category.store');
+Route::post('fee-category/edit','FeeCategoryController@edit_fee_category')->name('fee-category.edit');
+Route::post('fee-category/update','FeeCategoryController@update_fee_category')->name('fee-category.update');
+Route::get('fee-category/{id}/delete','FeeCategoryController@delete_fee_category')->name('fee-category.delete');
+Route::put('fee-category/status/{id}','FeeCategoryController@status')->name('fee-category.status');
 //    Fee Category End
 
 //  Fee Setup Start
-    Route::get('fee-category/fee_setup/{classId}','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
-    Route::post('fee_setup/store/{classId}','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
-    Route::get('fee_setup/list/{classId}','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
-    Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
-    Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
+Route::get('fee-category/fee_setup/{classId}','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
+Route::post('fee_setup/store/{classId}','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
+Route::get('fee_setup/list/{classId}','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
+Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
+Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
 
 // Student Transport management Start
-    Route::get('fee-category/transport','TransportController@index')->name('transport.index');
-    Route::post('fee-category/transport','TransportController@store')->name('transport.store');
-    Route::post('fee-category/transport','TransportController@store')->name('transport.store');
-    Route::get('transport/edit/{id}','TransportController@edit')->name('transport.edit');
-    Route::patch('transport/update/{id}','TransportController@update')->name('transport.update');
-    Route::get('transport/student-list','TransportController@student_list')->name('transport.student-list');
-    Route::post('transport/assign','TransportController@transport_assign')->name('transport.assign');
+Route::get('fee-category/transport','TransportController@index')->name('transport.index');
+Route::post('fee-category/transport','TransportController@store')->name('transport.store');
+Route::post('fee-category/transport','TransportController@store')->name('transport.store');
+Route::get('transport/edit/{id}','TransportController@edit')->name('transport.edit');
+Route::patch('transport/update/{id}','TransportController@update')->name('transport.update');
+Route::get('transport/student-list','TransportController@student_list')->name('transport.student-list');
+Route::post('transport/assign','TransportController@transport_assign')->name('transport.assign');
 // Student Transport management End
 
 // Student Fee Collection start
-    Route::get('student/fee','FinanceController@index')->name('student.fee');
-    Route::post('student/fee-store','FinanceController@store_payment')->name('student.fee-store');
-    Route::get('student/fee-invoice/{id}','FinanceController@fee_invoice')->name('student.fee-invoice');
+Route::get('student/fee','FinanceController@index')->name('student.fee');
+Route::post('student/fee-store','FinanceController@store_payment')->name('student.fee-store');
+Route::get('student/fee-invoice/{id}','FinanceController@fee_invoice')->name('student.fee-invoice');
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
-    Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
+Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
 // Student Fee Collection Report End
 
 //Account Section End
 
 //Syllabus Section Start A R Babu
-    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
-    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
-    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
+Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
+Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
+Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
 
 //Social Links start
-    Route::get('socials','SocialController@index')->name('social.index');
-    Route::post('socials/update/{id}','SocialController@update')->name('social.store');
+Route::get('socials','SocialController@index')->name('social.index');
+Route::post('socials/update/{id}','SocialController@update')->name('social.store');
 //Social Links End
 
 //Contact page start
-    Route::get('message-index','MessagesController@index')->name('message.index');
-    Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
-    Route::post('message-view','MessagesController@view')->name('message.view');
-    Route::post('message-store','MessagesController@store')->name('message.store');
+Route::get('message-index','MessagesController@index')->name('message.index');
+Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
+Route::post('message-view','MessagesController@view')->name('message.view');
+Route::post('message-store','MessagesController@store')->name('message.store');
 //Contact Page end
 //Academic Calender Start
-    Route::get('academic-calender/index','AcademicCalenderController@index')->name('academic-calender.index');
-    Route::post('academic-calender/store','AcademicCalenderController@store')->name('academic-calender.store');
-    Route::post('academic-calender/edit','AcademicCalenderController@edit')->name('academic-calender.edit');
-    Route::post('academic-calender/update','AcademicCalenderController@update')->name('academic-calender.update');
-    Route::delete('academic-calender/{id}','AcademicCalenderController@destroy')->name('academic-calender.delete');
-    Route::put('academic-calender/status/{id}','AcademicCalenderController@status')->name('academic-calender.status');
+Route::get('academic-calender/index','AcademicCalenderController@index')->name('academic-calender.index');
+Route::post('academic-calender/store','AcademicCalenderController@store')->name('academic-calender.store');
+Route::post('academic-calender/edit','AcademicCalenderController@edit')->name('academic-calender.edit');
+Route::post('academic-calender/update','AcademicCalenderController@update')->name('academic-calender.update');
+Route::delete('academic-calender/{id}','AcademicCalenderController@destroy')->name('academic-calender.delete');
+Route::put('academic-calender/status/{id}','AcademicCalenderController@status')->name('academic-calender.status');
 //Academic Calender End
 
 
@@ -418,6 +420,7 @@ Route::get('migrate',function(){
 });
 Route::get('reboot',function(){
     Artisan::call('config:cache');
+    Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
 });
@@ -426,37 +429,52 @@ Route::get('download-attendances',function(){
 
     date_default_timezone_set('Asia/Dhaka');
 
-    $data2=array(
-        "get_log"=>array(
-//            "user_name" => "akschool",
-            "user_name" => "ccs",
-//            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
-            "auth"=>"3efd234cefa324567a342deafd32672", //cambrian
-            "log"=>array(
-                "date1"=>date('Y-m-d'),
-                "date2"=>date('Y-m-d')
-            )
-        )
-    );
+//    $data2=array(
+//        "get_log"=>array(
+//            "operation" => "fetch_unsent_log",
+////            "user_name" => "akschool",
+//            "user_name" => "chakariacambrian",
+////            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
+//            "auth"=>"3efd234cefa324567a342deafd32672", //cambrian
+//            "log"=>array(
+//                "date1"=>date('Y-m-d'),
+//                "date2"=>date('Y-m-d')
+//            )
+//        )
+//    );
 
-    $url_send ="https://rumytechnologies.com/rams/api";
-    $str_data = json_encode($data2);
-    //dd($data2);
-    $ch = curl_init($url_send);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($str_data))
-    );
+    $data = [
+        "operation" => env('STELLAR_OPERATION',''),
+        "user_name" => env('STELLAR_USERNAME',''),
+        "auth" => env('STELLAR_AUTH',''),
+        "access_id" => env('STELLAR_ACCESS_ID',''),
+        "start_date" => Carbon::today()->format('Y-m-d'),
+        "end_date" => Carbon::today()->format('Y-m-d'),
+        "start_time" => Carbon::createFromTime(00,00,00)->format('H:i:s'),
+        "end_time" => Carbon::createFromTime(23,59,59)->format('H:i:s')
+    ];
 
-    $result = (curl_exec($ch));
+    $datapayload = json_encode($data);
+
+    $api_request = curl_init('https://rumytechnologies.com/rams/json_api');
+    curl_setopt($api_request, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($api_request, CURLINFO_HEADER_OUT, true);
+    curl_setopt($api_request, CURLOPT_POST, true);
+    curl_setopt($api_request, CURLOPT_POSTFIELDS, $datapayload);
+    curl_setopt($api_request, CURLOPT_HTTPHEADER, array(
+            'Content-Type:application/json',
+            'Content-Length: ' . strlen($datapayload))
+    );
+    $result = curl_exec($api_request);
+    //$replace_syntax = str_replace('{"log":',"",$result);
 
     $getvalue = json_decode($result);
 
-    //dd($getvalue->log);
+    //dd($data);
+    dd($result);
+
+    dd($getvalue->log);
+
     foreach($getvalue->log as $row){
 
         ini_set('max_execution_time',30);
@@ -542,7 +560,7 @@ Route::get('marks-student_id',function(){ //update student_id in marks table
 Route::get('total-marks',function(){ //addition of all type of exam in total_mark, grade & gpa
     $marks = \App\Mark::query()
         //->where('total_mark',0)
-            ->where('exam_id',4)
+        ->where('exam_id',4)
         ->where('class_id',8)
         ->where('section_id',5)
         //->where('student_id',128)

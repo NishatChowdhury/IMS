@@ -1,6 +1,7 @@
 @extends('layouts.fixed')
 
 @section('title','Attendance | Monthly Report')
+
 @section('style')
     <style>
         @media (min-width: 992px) {
@@ -12,7 +13,8 @@
             }
         }
     </style>
-@endsection
+@stop
+
 @section('content')
 
     <!-- Content Header (Page header) -->
@@ -37,50 +39,47 @@
             <div class="card card-default">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            {{  Form::open(['id'=>'resultSearchForm']) }}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{ Form::label('user','User',['class'=>'control-label']) }}
-                                        {{ Form::select('user', ['1' => 'Student', '2' => 'Teacher'], null, ['placeholder' => 'Select User...','class'=>'form-control select2']) }}
+                        <div class="col-md-9">
+                            {{ Form::open(['action'=>'AttendanceController@report','method'=>'get']) }}
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="">User</label>
+                                        <div class="input-group">
+                                            {{ Form::select('user',[1=>'Student',2=>'Employee'],null,['class'=>'form-control','placeholder'=>'Select Session']) }}
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        {{ Form::label('month','Month',['class'=>'control-label']) }}
-                                        {{ Form::selectMonth('month',null,['class'=>'form-control select2','id'=>'month']) }}
+                                    <div class="col">
+                                        <label for="">Year</label>
+                                        <div class="input-group">
+                                            {{ Form::selectRange('year',2020,2021,null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
+                                        </div>
                                     </div>
-
-
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{ Form::label('year','Year',['class'=>'control-label']) }}
-                                        {{ Form::selectRange('year',\Carbon\Carbon::now()->format('Y'),2018,null,['class'=>'form-control','id'=>'year']) }}
+                                    <div class="col">
+                                        <label for="">Month</label>
+                                        <div class="input-group">
+                                            {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month']) }}
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        {{ Form::label('class') }}
-                                            <select name="academicClass" class="form-control select2">
-                                                <option value="" selected>Slect Academic Class</option>
-                                                @foreach($allClasses as $allClass)
-                                                    <option value= "{{$allClass->id}}"> {{ $allClass->name }} </option>
+                                    <div class="col">
+                                        <label for="class">Class</label>
+                                        <div class="input-group">
+                                            <select name="class_id" id="class" class="form-control">
+                                                @foreach($repository->academicClasses() as $class)
+                                                    <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
                                     </div>
-                                    {{--<div class="form-group">--}}
-                                        {{--{{ Form::label('group','Group',['class'=>'control-label']) }}--}}
-                                        {{--{{ Form::select('group', ['1' => 'Science', '2' => 'Business'], null, ['placeholder' => 'Select Class Group...','class'=>'form-control select2']) }}--}}
-                                    {{--</div>--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--{{ Form::label('section','Section',['class'=>'control-label']) }}--}}
-                                        {{--{{ Form::select('section', ['6' => 'A', '2' => 'B'], null, ['placeholder' => 'Select Class Section...','class'=>'form-control select2']) }}--}}
-                                    {{--</div>--}}
-                                </div>
-                                <div class="form-group">
-                                    {{ Form::submit('Generate',['class'=>'btn btn-success float-md-right']) }}
+
+                                    <div class="col-1" style="padding-top: 32px;">
+                                        <div class="input-group">
+                                            <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-
                             {{ Form::close() }}
 
                         </div>
@@ -100,6 +99,7 @@
         </div>
     </section>
 
+    @if(count($students) > 0)
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -113,7 +113,40 @@
                         <div class="card-body">
                             <div class="att-table">
                                 <table class="table table-bordered table-responsive" id="atn_result_show">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Roll</th>
+                                        <th style="padding-left: 10px">Name</th>
+                                        @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
+                                            <th style="padding-left: 10px">{{ $i }}</th>
+                                        @endfor
+                                    </tr>
+                                    </thead>
+                                    <tbody id="atn_result_show">
+                                    @foreach($students as $student)
+                                        {{--            {{dd($student)}}--}}
+                                        <tr>
+                                            <th>{{ $student->rank }}</th>
+                                            <th>{{ $student->name }}</th>
+                                            @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
+                                                @if($i < 10)
+                                                    @php $i = '0'.$i @endphp
+                                                @endif
+                                                <td>
+                                                    @php
+                                                        $attn = \App\Attendance::query()->where('registration_id', $student->studentId)->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')->min('access_date');
+                                                    @endphp
+                                                    @if($attn == null)
+                                                        <span style="color:white; background: red" class="badge">A</span>
+                                                    @else
+                                                        <span style="color:white; background: green" class="badge">P</span>
+                                                    @endif
+                                                </td>
+                                            @endfor
+                                        </tr>
+                                    @endforeach
 
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -126,6 +159,7 @@
             <div ><h4 id="erro-box" style="text-align: center; color:red; display: none" >Attendance Not Found</h4></div>
         </div><!-- /.container-fluid -->
     </section>    <!-- /.content -->
+    @endif
 @stop
 @section('script')
     <script>

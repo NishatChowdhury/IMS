@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AcademicClass;
 use App\Attendance;
+use App\Classes;
 use App\Repository\AttendanceRepository;
 use App\Staff;
 use App\Student;
@@ -39,13 +40,13 @@ class AttendanceController extends Controller
         $today_date = date('Y-m-d');
         $students = Student::query()->get('studentId');
         $total_attendance = $i = 0;
-            foreach ($students as $student){
-                $total_attendances[$i] = Attendance::query()->where('access_date', 'like','%'.$today_date.'%')->where('registration_id', $student->studentId)->first();
-                    if($total_attendances[$i] != null){
-                        $total_attendance++;
-                    }
-                    $i++;
+        foreach ($students as $student){
+            $total_attendances[$i] = Attendance::query()->where('access_date', 'like','%'.$today_date.'%')->where('registration_id', $student->studentId)->first();
+            if($total_attendances[$i] != null){
+                $total_attendance++;
             }
+            $i++;
+        }
 //      total  Students present attendance count end
 
 //      total Students absent count start
@@ -56,20 +57,21 @@ class AttendanceController extends Controller
 //      Total Teacher Present Attendance Count Start
         $teachers = Staff::query()->whereNotNull('role_id')->get('role_id');
         $total_attendance_teacher = $n =0;
-            foreach ($teachers as $teacher){
-                $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
-                if($total_attendance_teachers[$n] != null){
-                    $total_attendance_teacher++;
-                }
-                $i++;
+        foreach ($teachers as $teacher){
+            $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
+            if($total_attendance_teachers[$n] != null){
+                $total_attendance_teacher++;
             }
+            $i++;
+        }
         $total_teacher = count($teachers);
         $total_absents_teacher = $total_teacher - $total_attendance_teacher;
 //      Total Teacher Present Attendance Count End
 
 //        Class wish attendance list start
         $academicClasses = AcademicClass::query()->get();
-        $class_attendances = DB::select("SELECT COUNT(*) AS totalScan, class_id , c.name FROM students, academic_classes as c WHERE students.class_id=c.id AND studentId in (SELECT DISTINCT registration_id FROM attendances WHERE access_date LIKE '".$today_date."%') GROUP BY students.class_id");
+//        $class_attendances = DB::select("SELECT COUNT(*) AS totalScan, class_id , c.name FROM students, academic_classes as c WHERE students.class_id=c.id AND studentId in (SELECT DISTINCT registration_id FROM attendances WHERE access_date LIKE '".$today_date."%') GROUP BY students.class_id");
+        $class_attendances = [];
 
 //        Class wish attendance list end
 
@@ -104,27 +106,74 @@ class AttendanceController extends Controller
 
     }
 
-    public function teacher()
+    public function teacher(Request $request)
     {
-        $today_date = date('Y-m-d');
-        $teachers = Staff::query()->where('role_id',2)->get();
-        //dd($teachers);
-        $total_attendance_teacher = $n =0;
-        foreach ($teachers as $teacher){
-            $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->code)->first();
-            if($total_attendance_teachers[$n] != null){
-                $total_attendance_teacher++;
+
+        if($request->has('staff_type_id') && $request->has('date')){
+            $staffs = Staff::query()
+                ->where('staff_type_id',$request->get('staff_type_id'))
+                ->orderBy('code')
+                ->get();
+
+            $date = $request->get('date');
+
+            $attend = [];
+            foreach($staffs as $staff){
+                $attn = Attendance::query()
+                    ->where('registration_id',$staff->card_id)
+                    ->where('access_date','like','%'.$date.'%')
+                    ->get();
+
+                if($attn->count() > 0){
+                    $attend[] = (object)[
+                        'name'=>$staff->name,
+                        'card'=>$staff->card_id,
+                        'designation' => $staff->title,
+                        //'date'=>$request->date,
+                        'enter'=>Carbon::parse($attn->first()->access_date)->format('H:i:s'),
+                        'exit'=>Carbon::parse($attn->last()->access_date)->format('H:i:s'),
+                        'status'=>'P',
+                        'is_notified'=>''
+                    ];
+                }else{
+                    $attend[] = (object)[
+                        'name'=>$staff->name,
+                        'card'=>$staff->card_id,
+                        'designation' => $staff->title,
+                        //'date'=>$request->date,
+                        'enter'=>'-',
+                        'exit'=>'-',
+                        'status'=>'A',
+                        'is_notified'=>''
+                    ];
+                    //dd($attendances);
+                }
             }
-            $n++;
+        }else{
+            $attend = [];
+            $staffs = [];
+            $date = '';
         }
-        $total_teacher = count($teachers);
-        $total_absents_teacher = $total_teacher - $total_attendance_teacher;
 
-        $teachers_data =DB::select(DB::raw("SELECT attendances.registration_id, staffs.role_id, attendances.access_date, staffs.name FROM attendances INNER JOIN staffs ON attendances.registration_id=staffs.card_id WHERE attendances.access_date like'".$today_date."%'"));
+//        $today_date = date('Y-m-d');
+//        $teachers = Staff::query()->get();
+//        //dd($teachers);
+//        $total_attendance_teacher = $n =0;
+//        foreach ($teachers as $teacher){
+//            $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
+//            if($total_attendance_teachers[$n] != null){
+//                $total_attendance_teacher++;
+//            }
+//            $n++;
+//        }
+//        $total_teacher = count($teachers);
+//        $total_absents_teacher = $total_teacher - $total_attendance_teacher;
+//
+//        $teachers_data =DB::select(DB::raw("SELECT attendances.registration_id, staffs.role_id, attendances.access_date, staffs.name FROM attendances INNER JOIN staffs ON attendances.registration_id=staffs.card_id WHERE attendances.access_date like'".$today_date."%'"));
+//
+//        $teacher_late_data = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('access_date', '<' ,$today_date.' 09:00:00')->get();
 
-        $teacher_late_data = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('access_date', '<' ,$today_date.' 09:00:00')->get();
-
-        return view('admin.attendance.teacher', compact('today_date','teachers_data','total_attendance_teacher','total_absents_teacher','teachers'));
+        return view('admin.attendance.teacher', compact('attend','staffs','date'));
     }
 
 //    public function setting()
@@ -155,19 +204,24 @@ class AttendanceController extends Controller
         }
         if($request->get('class_id')){
             $class = $request->get('class_id');
-            $s->where('class_id',$class);
+            $s->where('academic_class_id',$class);
+
+            $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
+        }else{
+            $academicClass = '';
         }
-        if($request->get('section_id')){
-            $section = $request->get('section_id');
-            $s->where('section_id',$section);
-        }
-        if($request->get('group_id')){
-            $group = $request->get('group_id');
-            $s->where('group_id',$group);
-        }
+//        if($request->get('section_id')){
+//            $section = $request->get('section_id');
+//            $s->where('section_id',$section);
+//        }
+//        if($request->get('group_id')){
+//            $group = $request->get('group_id');
+//            $s->where('group_id',$group);
+//        }
 
         $students = $s
             //->whereIn('studentId',['S194300','S194278'])
+            ->orderBy('rank')
             ->get();
         //dd($students);
 
@@ -218,14 +272,38 @@ class AttendanceController extends Controller
         $attendances = collect($attend);
         //$attendances = [];
 
-        return view('admin.attendance.student',compact('attendances','repository'));
+        return view('admin.attendance.student',compact('attendances','repository','academicClass','today'));
     }
 
-    public function report(){
+    public function report(Request $request){
 
-        $allClasses = AcademicClass::query()->get(['id','name']);
+        $allClasses = Classes::query()->get(['id','name']);
 
-        return view('admin.attendance.report',compact('allClasses'));
+        if($request->has('class_id') && $request->has('year') && $request->has('month')){
+            $students = Student::query()
+                ->where('academic_class_id', $request->class_id)
+                ->orderBy('rank')
+                ->get();
+            $month = $request->month;
+            $year = $request->year;
+            $date = Carbon::createFromDate($year,$month)->format('Y-m');
+            $attn = [];
+
+            foreach($students as $student){
+                $attn[] = Attendance::query()
+                    ->where('registration_id',$student->studentId)
+                    ->where('access_date','like',$date.'%')
+                    ->get();
+            }
+        }else{
+            $students = [];
+            $month = 0;
+            $year = 0;
+        }
+
+        $repository = $this->repository;
+
+        return view('admin.attendance.report',compact('allClasses','repository','year','month','students'));
     }
 
     public function individulAttendance(Request $request){
@@ -270,8 +348,6 @@ class AttendanceController extends Controller
         $students = Student::query()->where('class_id', $class_id)->get();
 
         return view('admin.attendance.classAttendance',compact('students','start', 'end'));
-
-
     }
 
 

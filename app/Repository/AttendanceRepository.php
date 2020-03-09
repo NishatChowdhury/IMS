@@ -8,25 +8,29 @@
 
 namespace App\Repository;
 
-
 use App\AcademicClass;
 use App\Group;
 use App\Section;
 
 class AttendanceRepository
 {
-    public function classes()
+    public function academicClasses()
     {
-        return AcademicClass::all()->pluck('name','id');
+        return AcademicClass::query()->whereIn('session_id',activeYear())->get();
     }
 
-    public function sections()
-    {
-        return Section::all()->pluck('name','id');
-    }
-
-    public function groups()
-    {
-        return Group::all()->pluck('name','id');
-    }
+//    public function classes()
+//    {
+//        return AcademicClass::all()->pluck('name','id');
+//    }
+//
+//    public function sections()
+//    {
+//        return Section::all()->pluck('name','id');
+//    }
+//
+//    public function groups()
+//    {
+//        return Group::all()->pluck('name','id');
+//    }
 }

@@ -87,19 +87,25 @@
                                     <th>Grace</th>
                                     <th>Late Fee</th>
                                     <th>Absent Fee</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($shifts as $shift)
-                                <tr>
-                                    <td>{{ $shift->id }}</td>
-                                    <td>{{ $shift->name }}</td>
-                                    <td>{{ $shift->start }}</td>
-                                    <td>{{ $shift->end }}</td>
-                                    <td>{{ $shift->grace }}</td>
-                                    <td>{{ $shift->late_fee }}</td>
-                                    <td>{{ $shift->absent_fee }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $shift->id }}</td>
+                                        <td>{{ $shift->name }}</td>
+                                        <td>{{ $shift->start }}</td>
+                                        <td>{{ $shift->end }}</td>
+                                        <td>{{ $shift->grace }}</td>
+                                        <td>{{ $shift->late_fee }}</td>
+                                        <td>{{ $shift->absent_fee }}</td>
+                                        <td>
+                                            {{ Form::open(['action'=>['ShiftController@destroy',$shift->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -134,7 +140,7 @@
                             <div class="">
                                 <input type="text" name="name" class="form-control" id=""  aria-describedby="" >
                                 {{--<div class="input-group-prepend">--}}
-                                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
+                                {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
                                 {{--</div>--}}
                             </div>
                         </div>
@@ -167,7 +173,7 @@
                             <div class="">
                                 <input type="text" name="grace" class="form-control">
                                 {{--<div class="input-group-prepend">--}}
-                                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
+                                {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
                                 {{--</div>--}}
                             </div>
                         </div>
@@ -273,3 +279,11 @@
     <!-- /Attendance setting add new form End*** -->
 @stop
 
+@section('script')
+    <script>
+        function deleteConfirm() {
+            var x = confirm('Are you sure you wan to delete this shift?');
+            return !!x;
+        }
+    </script>
+@stop
