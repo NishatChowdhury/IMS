@@ -114,7 +114,7 @@ Route::get('attendance/report','AttendanceController@report')->name('attendance.
 Route::post('/get_attendance_monthly', 'AttendanceController@getAttendanceMonthly');
 Route::post('/indStudentAttendance','AttendanceController@individulAttendance')->name('student.indAttendance');
 Route::post('/classStudentAttendance','AttendanceController@classAttendance')->name('student.classAttendance');
-Route::post('/indTeacherAttendance','AttendanceController@individulTeacherAttendance')->name('teacher.indAttendance');
+Route::post('/indTeacherAttendance','AttendanceController@individualTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
 
 //Exam Route Start  by Rimon
@@ -441,7 +441,7 @@ Route::get('download-attendances',function(){
 
     $url_send ="https://rumytechnologies.com/rams/api";
     $str_data = json_encode($data2);
-
+    //dd($data2);
     $ch = curl_init($url_send);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
@@ -456,7 +456,7 @@ Route::get('download-attendances',function(){
 
     $getvalue = json_decode($result);
 
-    dd($getvalue->log);
+    //dd($getvalue->log);
     foreach($getvalue->log as $row){
 
         ini_set('max_execution_time',30);

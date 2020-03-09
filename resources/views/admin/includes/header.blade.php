@@ -129,11 +129,12 @@
             <img src="{{ asset('dist/img/user.png') }}" style="height:33.33px; margin-right:5px;" class="img-circle elevation-2" alt="User Image">
             <span class="hidden-xs">{{ Auth::user()->name }}</span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="background-color: #007bff">
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="background-color: #ffffff; padding: 5px; border-radius: 10px">
             <li class="user-header">
-                <img class="user-hd-img"  src="{{ asset('dist/img/user.png') }}" class="img-cir" alt="User Image">
+                <img class="user-hd-img"  src="{{ asset('dist/img/user.png') }}" class="img-cir" alt="User Image" style="text-align: center; max-height: 80px;">
                 <p class="user-hd-text">
-                    {{ Auth::user()->name }} - {{ Auth::user()->role_id }} <br>
+                    {{ strtoupper(Auth::user()->name) }} <br>
+                    {{ Auth::user()->role_id }} <br>
                     <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                 </p>
             </li>
@@ -155,10 +156,10 @@
             <!-- Menu Footer-->
             <li class="user-footer">
                 <div class="pull-left">
-                    <a href="{{ action('UserController@profile') }}" class="btn btn-default btn-flat">Profile</a>
+                    <a href="{{ action('UserController@profile') }}" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                    <a class="btn btn-danger btn-flat" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}

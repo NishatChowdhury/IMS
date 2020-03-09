@@ -107,7 +107,8 @@ class AttendanceController extends Controller
     public function teacher()
     {
         $today_date = date('Y-m-d');
-        $teachers = Staff::query()->get();
+        $teachers = Staff::query()->where('role_id',2)->get();
+        //dd($teachers);
         $total_attendance_teacher = $n =0;
         foreach ($teachers as $teacher){
             $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->code)->first();
@@ -119,8 +120,7 @@ class AttendanceController extends Controller
         $total_teacher = count($teachers);
         $total_absents_teacher = $total_teacher - $total_attendance_teacher;
 
-
-        $teachers_data =DB::select(DB::raw("SELECT attendances.registration_id, staffs.role_id, attendances.access_date, staffs.name FROM attendances INNER JOIN staffs ON attendances.registration_id=staffs.role_id WHERE attendances.access_date like'".$today_date."%'"));
+        $teachers_data =DB::select(DB::raw("SELECT attendances.registration_id, staffs.role_id, attendances.access_date, staffs.name FROM attendances INNER JOIN staffs ON attendances.registration_id=staffs.card_id WHERE attendances.access_date like'".$today_date."%'"));
 
         $teacher_late_data = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('access_date', '<' ,$today_date.' 09:00:00')->get();
 
@@ -214,7 +214,6 @@ class AttendanceController extends Controller
                 //dd($attendances);
             }
         }
-
         $repository = $this->repository;
         $attendances = collect($attend);
         //$attendances = [];
@@ -238,25 +237,25 @@ class AttendanceController extends Controller
         $std = Student::query()->where('studentId',$student_id)->first();
         if ($std){
             $attendances =Attendance::query()->where('registration_id',$student_id)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
-                return \Carbon\Carbon::parse($date->access_date)->format('Y-m-d');
+                return Carbon::parse($date->access_date)->format('Y-m-d');
             });
         }
-
-
         return view('admin.attendance.individualStudentAttendance',compact('std','attendances'));
     }
 
-    public function individulTeacherAttendance(Request $request)
+    public function individualTeacherAttendance(Request $request)
     {
+        //dd($request->teacherCardId);
         $explode = explode(' - ',$request->dateRangeTeacher);
-        $start = $explode[0];
-        $end = $explode[1];
+        $start = Carbon::parse($explode[0])->format('Y-m-d H:i:s');
+        $end = Carbon::parse($explode[1])->format('Y-m-d H:i:s');
         $teacherCardId = $request->teacherCardId;
-        $teachers = Staff::query()->where('code', $teacherCardId)->first();
+        $teachers = Staff::query()->where('card_id', $teacherCardId)->first();
         if ($teachers){
             $attendances = Attendance::query()->where('registration_id',$teacherCardId)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
-                return \Carbon\Carbon::parse($date->access_date)->format('Y-m-d');
+                return Carbon::parse($date->access_date)->format('Y-m-d H:i:s');
             });
+
         }
 
         return view('admin.attendance.individualTeacherAttendance',compact('teachers','attendances'));
