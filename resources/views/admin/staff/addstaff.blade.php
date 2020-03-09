@@ -78,6 +78,16 @@
                                                     <td>
                                                         <div class="card-body">
                                                             <div class="form-group row col-md-12">
+                                                                <label for="inputEmail4">Card ID</label>
+                                                                <div class="input-group ">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                    </div>
+                                                                    <input id="text" name="card_id" class="form-control" aria-describedby="" value="{{$info->card_id ?? ''}}">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row col-md-12">
                                                                 <label for="inputEmail4">Email</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
