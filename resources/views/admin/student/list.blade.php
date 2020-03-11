@@ -132,6 +132,7 @@
 {{--                                    <td>{{ $student->status }}</td>--}}
                                     <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
+                                        <a href="{{ action('StudentController@studentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                         <a href="{{ action('StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <a href="{{ action('StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm" title="DROPOUT"><i class="fas fa-sign-out-alt"></i></a>
                                     </td>

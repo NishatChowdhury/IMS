@@ -16,4 +16,9 @@ class StudentPayment extends Model
     public function student(){
         return $this->belongsTo(Student::class,'student_id');
     }
+
+    public function sessions()
+    {
+        return $this->belongsTo(Session::class,'session_id');
+    }
 }

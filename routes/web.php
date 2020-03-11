@@ -295,107 +295,112 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 // smartrahat end
 
 //Students Route by babu
-Route::get('students','StudentController@index')->name('student.list');
-Route::get('student/create','StudentController@create')->name('student.add');
-Route::get('student/edit/{id}','StudentController@edit');
-Route::patch('student/{id}/update','StudentController@update');
-Route::get('student/drop/{id}','StudentController@dropOut');
-Route::get('/load_student_id','StudentController@loadStudentId');
+    Route::get('students','StudentController@index')->name('student.list');
+    Route::get('student/create','StudentController@create')->name('student.add');
+    Route::get('student/edit/{id}','StudentController@edit');
+    Route::patch('student/{id}/update','StudentController@update');
+    Route::get('student/drop/{id}','StudentController@dropOut');
+    Route::get('/load_student_id','StudentController@loadStudentId');
 
 //Students Route by Rimon
-Route::get('student/designStudentCard','IdCardController@index');
-Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
-Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
-Route::post('student/promote','StudentController@promote')->name('student.promote');
+    Route::get('student/designStudentCard','IdCardController@index');
+    Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
+    Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
+    Route::post('student/promote','StudentController@promote')->name('student.promote');
 
-Route::get('student/download-blank-csv/{academicClassId}','StudentController@downloadBlank');
-Route::get('student/upload-student/{academicClassId}','StudentController@uploadStudent');
-Route::post('student/up','StudentController@up');
+    Route::get('student/download-blank-csv/{academicClassId}','StudentController@downloadBlank');
+    Route::get('student/upload-student/{academicClassId}','StudentController@uploadStudent');
+    Route::post('student/up','StudentController@up');
 
-Route::get('staff/idCard','IdCardController@staff');
-Route::post('staff/idCard/pdf','IdCardController@staffPdf');
+    Route::get('staff/idCard','IdCardController@staff');
+    Route::post('staff/idCard/pdf','IdCardController@staffPdf');
 
 //@MKH
-Route::post('student/store', 'StudentController@store');
-Route::get('student/optional','StudentController@optional');
-Route::post('student/optional/assign','StudentController@assignOptional');
+    Route::post('student/store', 'StudentController@store');
+    Route::get('student/optional','StudentController@optional');
+    Route::post('student/optional/assign','StudentController@assignOptional');
 //End Students Route
 
 // ID Card Routes
-Route::post('student/card/pdf','IdCardController@pdf');
+    Route::post('student/card/pdf','IdCardController@pdf');
 // ID Card Routes
 
 // Important Links
-Route::get('settings/links','LinkController@index');
-Route::post('settings/link/store','LinkController@store');
-Route::delete('settings/link/delete/{id}','LinkController@destroy');
+    Route::get('settings/links','LinkController@index');
+    Route::post('settings/link/store','LinkController@store');
+    Route::delete('settings/link/delete/{id}','LinkController@destroy');
 // End Important Links
 
 //Account Section Star AR Babu
 //  Fee Category Start
-Route::get('/fee-category/index','FeeCategoryController@index')->name('fee-category.index');
-Route::post('fee-category/store','FeeCategoryController@store_fee_category')->name('fee-category.store');
-Route::post('fee-category/edit','FeeCategoryController@edit_fee_category')->name('fee-category.edit');
-Route::post('fee-category/update','FeeCategoryController@update_fee_category')->name('fee-category.update');
-Route::get('fee-category/{id}/delete','FeeCategoryController@delete_fee_category')->name('fee-category.delete');
-Route::put('fee-category/status/{id}','FeeCategoryController@status')->name('fee-category.status');
+    Route::get('/fee-category/index','FeeCategoryController@index')->name('fee-category.index');
+    Route::post('fee-category/store','FeeCategoryController@store_fee_category')->name('fee-category.store');
+    Route::post('fee-category/edit','FeeCategoryController@edit_fee_category')->name('fee-category.edit');
+    Route::post('fee-category/update','FeeCategoryController@update_fee_category')->name('fee-category.update');
+    Route::get('fee-category/{id}/delete','FeeCategoryController@delete_fee_category')->name('fee-category.delete');
+    Route::put('fee-category/status/{id}','FeeCategoryController@status')->name('fee-category.status');
 //    Fee Category End
 
 //  Fee Setup Start
-Route::get('fee-category/fee_setup/{classId}','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
-Route::post('fee_setup/store/{classId}','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
-Route::get('fee_setup/list/{classId}','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
-Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
-Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
+    Route::get('fee-category/fee_setup/{classId}','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
+    Route::post('fee_setup/store/{classId}','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
+    Route::get('fee_setup/list/{classId}','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
+    Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
+    Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
 
 // Student Transport management Start
-Route::get('fee-category/transport','TransportController@index')->name('transport.index');
-Route::post('fee-category/transport','TransportController@store')->name('transport.store');
-Route::post('fee-category/transport','TransportController@store')->name('transport.store');
-Route::get('transport/edit/{id}','TransportController@edit')->name('transport.edit');
-Route::patch('transport/update/{id}','TransportController@update')->name('transport.update');
-Route::get('transport/student-list','TransportController@student_list')->name('transport.student-list');
-Route::post('transport/assign','TransportController@transport_assign')->name('transport.assign');
+    Route::get('fee-category/transport','TransportController@index')->name('transport.index');
+    Route::post('fee-category/transport','TransportController@store')->name('transport.store');
+    Route::post('fee-category/transport','TransportController@store')->name('transport.store');
+    Route::get('transport/edit/{id}','TransportController@edit')->name('transport.edit');
+    Route::patch('transport/update/{id}','TransportController@update')->name('transport.update');
+    Route::get('transport/student-list','TransportController@student_list')->name('transport.student-list');
+    Route::post('transport/assign','TransportController@transport_assign')->name('transport.assign');
 // Student Transport management End
 
 // Student Fee Collection start
-Route::get('student/fee','FinanceController@index')->name('student.fee');
-Route::post('student/fee-store','FinanceController@store_payment')->name('student.fee-store');
-Route::get('student/fee-invoice/{id}','FinanceController@fee_invoice')->name('student.fee-invoice');
+    Route::get('student/fee','FinanceController@index')->name('student.fee');
+    Route::post('student/fee-store','FinanceController@store_payment')->name('student.fee-store');
+    Route::get('student/fee-invoice/{id}','FinanceController@fee_invoice')->name('student.fee-invoice');
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
-Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
+    Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
 // Student Fee Collection Report End
 
 //Account Section End
 
 //Syllabus Section Start A R Babu
-Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
-Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
-Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
+    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
+    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
+    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
 
 //Social Links start
-Route::get('socials','SocialController@index')->name('social.index');
-Route::post('socials/update/{id}','SocialController@update')->name('social.store');
+    Route::get('socials','SocialController@index')->name('social.index');
+    Route::post('socials/update/{id}','SocialController@update')->name('social.store');
 //Social Links End
 
 //Contact page start
-Route::get('message-index','MessagesController@index')->name('message.index');
-Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
-Route::post('message-view','MessagesController@view')->name('message.view');
-Route::post('message-store','MessagesController@store')->name('message.store');
+    Route::get('message-index','MessagesController@index')->name('message.index');
+    Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
+    Route::post('message-view','MessagesController@view')->name('message.view');
+    Route::post('message-store','MessagesController@store')->name('message.store');
 //Contact Page end
 //Academic Calender Start
-Route::get('academic-calender/index','AcademicCalenderController@index')->name('academic-calender.index');
-Route::post('academic-calender/store','AcademicCalenderController@store')->name('academic-calender.store');
-Route::post('academic-calender/edit','AcademicCalenderController@edit')->name('academic-calender.edit');
-Route::post('academic-calender/update','AcademicCalenderController@update')->name('academic-calender.update');
-Route::delete('academic-calender/{id}','AcademicCalenderController@destroy')->name('academic-calender.delete');
-Route::put('academic-calender/status/{id}','AcademicCalenderController@status')->name('academic-calender.status');
+    Route::get('academic-calender/index','AcademicCalenderController@index')->name('academic-calender.index');
+    Route::post('academic-calender/store','AcademicCalenderController@store')->name('academic-calender.store');
+    Route::post('academic-calender/edit','AcademicCalenderController@edit')->name('academic-calender.edit');
+    Route::post('academic-calender/update','AcademicCalenderController@update')->name('academic-calender.update');
+    Route::delete('academic-calender/{id}','AcademicCalenderController@destroy')->name('academic-calender.delete');
+    Route::put('academic-calender/status/{id}','AcademicCalenderController@status')->name('academic-calender.status');
 //Academic Calender End
+
+//Student profile start
+    Route::get('student-profile/{studentId}','StudentController@studentProfile')->name('student.profile');
+    Route::get('staff-profile/{staffId}','StaffController@staffProfile')->name('staff.profile');
+//Student profile end
 
 
 

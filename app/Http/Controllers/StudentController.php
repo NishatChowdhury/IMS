@@ -17,6 +17,7 @@ use App\Session;
 use App\SessionClass;
 use App\State;
 use App\Student;
+use App\StudentPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -227,7 +228,7 @@ class StudentController extends Controller
             ->where('section_id',$req->section_id)
             ->where('group_id',$req->group_id)
             ->first();
-        $req['academic_class_id'] = $academicClassId;
+        $req['academic_class_id'] = $academicClassId->id;
 
         $data = $req->all();
         if ($req->hasFile('pic')){
@@ -550,5 +551,13 @@ class StudentController extends Controller
         }
 
         return redirect('institution/academic-class');
+    }
+
+    public function studentProfile($studentId)
+    {
+        $student = Student::query()->findOrFail($studentId);
+        $payments = StudentPayment::query()->where('session_id',activeYear())->where('student_id',$studentId)->get();
+
+        return view('admin.student.studentProfile',compact('student','payments'));
     }
 }

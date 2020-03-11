@@ -54,6 +54,7 @@ class StaffController extends Controller
             $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
             $data = $req->except('image');
             $data['image'] = $image;
+            //dd($data);
             Staff::query()->create($data);
             //dd('added');
         }else{
@@ -123,6 +124,12 @@ class StaffController extends Controller
     public function payslip()
     {
         return view ('admin.staff.payslip');
+    }
+
+    public function staffProfile($staffId)
+    {
+        $staff = Staff::query()->findOrFail($staffId);
+        return view('admin.staff.staffProfile',compact('staff'));
     }
 
 }
