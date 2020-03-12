@@ -2,6 +2,7 @@
 
 use App\AcademicClass;
 use App\Grade;
+use App\RawAttendance;
 use App\Student;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
@@ -430,33 +431,87 @@ Route::get('reboot',function(){
     Artisan::call('view:clear');
 });
 
+Route::get('process-attendances',function(){
+    $start = Carbon::today()->startOfDay();
+    $end = Carbon::today()->endOfDay();
+    $raw = RawAttendance::query()->whereBetween('access_date',[$start,$end])->get();
+    foreach($raw as $attendance){
+        dd($attendance);
+    }
+});
+
+Route::get('download-raw-attendances',function(){
+    date_default_timezone_set('Asia/Dhaka');
+
+    $data2=array(
+        "get_log"=>array(
+//            "user_name" => "akschool",
+            "operation" => env('STELLAR_OPERATION',''),
+            "user_name" => env('STELLAR_USERNAME',''),
+//            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
+            "auth" => env('STELLAR_AUTH',''), //cambrian
+            "access_id" => env('STELLAR_ACCESS_ID',''),
+            "log" => array(
+                "date1"=>date('Y-m-d'),
+                "date2"=>date('Y-m-d')
+            )
+        )
+    );
+
+    $url_send ="https://rumytechnologies.com/rams/api";
+    $str_data = json_encode($data2);
+
+    $ch = curl_init($url_send);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($str_data))
+    );
+
+    $result = (curl_exec($ch));
+
+    $getvalue = json_decode($result);
+
+    foreach($getvalue->log as $row){
+
+        ini_set('max_execution_time',30);
+
+        $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
+
+        if(!$isExists){
+            $attendance = new \App\RawAttendance();
+            $attendance->registration_id = $row->registration_id;
+            $attendance->unit_name = $row->unit_name;
+            $attendance->user_name = $row->user_name;
+            $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+            $attendance->access_id = $row->access_id;
+            $attendance->department = $row->department;
+            $attendance->unit_id = $row->unit_id;
+            $attendance->card = $row->card;
+
+            $attendance->save();
+        }
+    }
+
+    dd('data saved successfully');
+});
+
 Route::get('download-attendances',function(){
 
     date_default_timezone_set('Asia/Dhaka');
 
-//    $data2=array(
-//        "get_log"=>array(
-//            "operation" => "fetch_unsent_log",
-////            "user_name" => "akschool",
-//            "user_name" => "chakariacambrian",
-////            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
-//            "auth"=>"3efd234cefa324567a342deafd32672", //cambrian
-//            "log"=>array(
-//                "date1"=>date('Y-m-d'),
-//                "date2"=>date('Y-m-d')
-//            )
-//        )
-//    );
-
     $data = [
         "operation" => env('STELLAR_OPERATION',''),
         "user_name" => env('STELLAR_USERNAME',''),
-        "auth" => env('STELLAR_AUTH',''),
-        "access_id" => env('STELLAR_ACCESS_ID',''),
+        "auth_code" => env('STELLAR_AUTH_CODE',''),
         "start_date" => Carbon::today()->format('Y-m-d'),
         "end_date" => Carbon::today()->format('Y-m-d'),
         "start_time" => Carbon::createFromTime(00,00,00)->format('H:i:s'),
-        "end_time" => Carbon::createFromTime(23,59,59)->format('H:i:s')
+        "end_time" => Carbon::createFromTime(23,59,59)->format('H:i:s'),
+        "access_id" => env('STELLAR_ACCESS_ID',''),
     ];
 
     $datapayload = json_encode($data);
@@ -476,7 +531,7 @@ Route::get('download-attendances',function(){
     $getvalue = json_decode($result);
 
     //dd($data);
-    dd($result);
+    //dd($result);
 
     dd($getvalue->log);
 
@@ -484,7 +539,7 @@ Route::get('download-attendances',function(){
 
         ini_set('max_execution_time',30);
 
-        $attendance = new \App\Attendance();
+        $attendance = new \App\RawAttendance();
         $attendance->registration_id = $row->registration_id;
         $attendance->unit_name = $row->unit_name;
         $attendance->user_name = $row->user_name;

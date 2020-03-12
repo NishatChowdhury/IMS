@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Attendance;
+use App\RawAttendance;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class DownloadAttendances extends Command
@@ -40,33 +42,30 @@ class DownloadAttendances extends Command
     {
         date_default_timezone_set('Asia/Dhaka');
 
-        $data2=array(
-            "get_log"=>array(
-                "user_name" => "akschool",
-                //"user_name" => "chakariacambrian",
-                "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
-                //"auth"=>"3efd234cefa324567a342deafd32672", //cambrian
-                "log"=>array(
-                    "date1"=>date('2019-07-23'),
-                    "date2"=>date('Y-m-d')
-                )
-            )
+        $data = [
+            "operation" => env('STELLAR_OPERATION',''),
+            "user_name" => env('STELLAR_USERNAME',''),
+            "auth_code" => env('STELLAR_AUTH_CODE',''),
+            "start_date" => Carbon::today()->format('Y-m-d'),
+            "end_date" => Carbon::today()->format('Y-m-d'),
+            "start_time" => Carbon::createFromTime(00,00,00)->format('H:i:s'),
+            "end_time" => Carbon::createFromTime(23,59,59)->format('H:i:s'),
+            "access_id" => env('STELLAR_ACCESS_ID',''),
+        ];
+
+        $datapayload = json_encode($data);
+
+        $api_request = curl_init('https://rumytechnologies.com/rams/json_api');
+        curl_setopt($api_request, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($api_request, CURLINFO_HEADER_OUT, true);
+        curl_setopt($api_request, CURLOPT_POST, true);
+        curl_setopt($api_request, CURLOPT_POSTFIELDS, $datapayload);
+        curl_setopt($api_request, CURLOPT_HTTPHEADER, array(
+                'Content-Type:application/json',
+                'Content-Length: ' . strlen($datapayload))
         );
-
-        $url_send ="https://rumytechnologies.com/rams/api";
-        $str_data = json_encode($data2);
-
-        $ch = curl_init($url_send);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($str_data))
-        );
-
-        $result = (curl_exec($ch));
+        $result = curl_exec($api_request);
+        //$replace_syntax = str_replace('{"log":',"",$result);
 
         $getvalue = json_decode($result);
 
@@ -74,18 +73,23 @@ class DownloadAttendances extends Command
 
             ini_set('max_execution_time',30);
 
-            $attendance = new Attendance();
-            $attendance->registration_id = $row->registration_id;
-            $attendance->unit_name = $row->unit_name;
-            $attendance->user_name = $row->user_name;
-            $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
-            $attendance->access_id = $row->access_id;
-            $attendance->department = $row->department;
-            $attendance->unit_id = $row->unit_id;
-            $attendance->card = $row->card;
+            $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
 
-            $attendance->save();
+            if(!$isExists){
+                $attendance = new \App\RawAttendance();
+                $attendance->registration_id = $row->registration_id;
+                $attendance->unit_name = $row->unit_name;
+                $attendance->user_name = $row->user_name;
+                $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+                $attendance->access_id = $row->access_id;
+                $attendance->department = $row->department;
+                $attendance->unit_id = $row->unit_id;
+                $attendance->card = $row->card;
 
+                $attendance->save();
+            }
         }
+
+        dd('data saved successfully');
     }
 }
