@@ -83,7 +83,7 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
                                                                     </div>
-                                                                    <input id="text" name="card_id" class="form-control" aria-describedby="" value="{{$info->card_id ?? ''}}">
+                                                                    <input id="text" name="card_id" class="form-control" aria-describedby="" value="{{ $info->card_id ?? '' }}">
                                                                 </div>
                                                             </div>
 
@@ -93,17 +93,19 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
                                                                     </div>
-                                                                    <input id="email" name="mail" class="form-control" aria-describedby="" value="{{$info->mail ?? ''}}">
+                                                                    {{ Form::text('email',null,['class'=>'form-control','aria-describedby'=>'']) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Code</label>
-                                                                    <input type="text" name="code" class="form-control" id="" placeholder="" required value="{{$info->code ?? ''}}">
+                                                                    {{--                                                                    <input type="text" name="code" class="form-control" id="" placeholder="" required value="{{$info->code ?? ''}}">--}}
+                                                                    {{ Form::number('code',null,['class'=>'form-control']) }}
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Job Title</label>
-                                                                    <input type="text" name="title" class="form-control" id="" placeholder="" required value="{{$info->title ?? ''}}">
+                                                                    {{--                                                                    <input type="text" name="title" class="form-control" id="" placeholder="" required value="{{$info->title ?? ''}}">--}}
+                                                                    {{ Form::text('title',null,['class'=>'form-control']) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
@@ -157,7 +159,8 @@
                                                                                 <i class="fa fa-money nav-icon"></i> Tk
                                                                             </span>
                                                                             </div>
-                                                                            <input id="" name="salary" class="form-control" aria-describedby="" value="{{$info->salary ?? ''}}">
+                                                                            {{--                                                                            <input id="" name="salary" class="form-control" aria-describedby="" value="{{$info->salary ?? ''}}">--}}
+                                                                            {{ Form::number('salary',null,['class'=>'form-control']) }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -168,7 +171,8 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-money nav-icon"></i> Tk </span>
                                                                             </div>
-                                                                            <input id="" name="bonus" class="form-control" aria-describedby="" value="{{$info->bonus ?? ''}}">
+                                                                            {{--                                                                            <input id="" name="bonus" class="form-control" aria-describedby="" value="{{$info->bonus ?? ''}}">--}}
+                                                                            {{ Form::number('bonus',null,['class'=>'form-control']) }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -195,15 +199,24 @@
                                                     <td>
                                                         <div class="card-body">
                                                             <div class="form-group row col-md-12">
-                                                                <label for="inputEmail4">Name*</label>
+                                                                <label for="inputEmail4">Full Name*</label>
                                                                 <div class="input-group ">
-                                                                    <input id="" name="name" class="form-control" aria-describedby="" required value="{{$info->name ?? ''}}">
+                                                                    {{--                                                                    <input id="" name="name" class="form-control" aria-describedby="" required value="{{$info->name ?? ''}}">--}}
+                                                                    {{ Form::text('name',null,['class'=>'form-control']) }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row col-md-12">
+                                                                <label for="nick">Nick Name</label>
+                                                                <div class="input-group ">
+                                                                    {{--                                                                    <input id="" name="name" class="form-control" aria-describedby="" required value="{{$info->name ?? ''}}">--}}
+                                                                    {{ Form::text('nickname',null,['class'=>'form-control']) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Father/Husband's Name</label>
-                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="" value="{{$info->father_husband ?? ''}}">
+                                                                    {{--                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="" value="{{$info->father_husband ?? ''}}">--}}
+                                                                    {{ Form::text('father_husband',null,['class'=>'form-control']) }}
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <div class="form-group">
@@ -212,7 +225,8 @@
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-phone"></i></span>
                                                                             </div>
-                                                                            <input id="mobile" name="mobile" class="form-control" aria-describedby="" required value="{{$info->mobile ?? ''}}">
+                                                                            {{--                                                                            <input id="mobile" name="mobile" class="form-control" aria-describedby="" required value="{{$info->mobile ?? ''}}">--}}
+                                                                            {{ Form::text('mobile',null,['class'=>'form-control']) }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -232,7 +246,8 @@
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">National ID</label>
-                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">
+                                                                    {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                    {{ Form::text('nid',null,['class'=>'form-control']) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
