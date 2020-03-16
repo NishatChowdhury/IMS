@@ -47,6 +47,6 @@ class GalleryController extends Controller
         $image = Gallery::query()->findOrFail($id);
         File::delete('assets/img/gallery/'.$image->album_id.'/'.$image->image);
         $image->delete();
-        return redirect('gallery/image');
+        return redirect('syllabus');
     }
 }

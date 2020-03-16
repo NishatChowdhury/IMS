@@ -41,7 +41,7 @@ class ExamSeatPlanController extends Controller
     public function pdfSeatPlan($id)
     {
        $seatData = ExamSeatPlan::query()->findOrFail($id);
-       $students = Student::query()->where('academic_class_id',$seatData->academic_class_id)->where('status',0)->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])->get();
+       $students = Student::query()->where('academic_class_id',$seatData->academic_class_id)->where('status',1)->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])->get();
        //dd($students);
         return view('admin.exam.pdf-seat-plan',compact('students','seatData'));
     }
@@ -56,7 +56,7 @@ class ExamSeatPlanController extends Controller
         $rankFrom   =   $request->rollFrom;
         $rankTo     =   $request->rollTo;
 
-        $countRank  = Student::query()->where('academic_class_id',$classId)->where('status',0)->whereBetween('rank',[$rankFrom,$rankTo])->count('id');
+        $countRank  = Student::query()->where('academic_class_id',$classId)->where('status',1)->whereBetween('rank',[$rankFrom,$rankTo])->count('id');
         return $countRank;
 
     }

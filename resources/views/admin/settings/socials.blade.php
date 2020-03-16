@@ -74,7 +74,7 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="container">
-                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Socials Link</h4>
+                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Social Links</h4>
                             <table class="table table-striped table-hover table-sm">
                                 <thead>
                                     <tr>

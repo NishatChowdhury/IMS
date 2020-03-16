@@ -13,10 +13,10 @@
             font-family: Arial;
         }
         tr{
-            padding-bottom: 20px;
+            padding-bottom: 18px;
         }
         th{
-            font-size: 20px;
+            font-size: 18px;
         }
 
     </style>
@@ -27,12 +27,13 @@
     <div class="row" style="{{ ($key+1) % 5 == 0 ? 'page-break-after: always' : '' }}">
         @foreach($chunk as $student)
             <div style="padding: 10px; margin-left: 80px">
-                <div class="card" style="width: 4.30in;height:2.50in; border: 2px solid black; border-style: double;">
+                <div class="card" style="width: 4.30in;height:2.80in; border: 2px solid black; border-style: double;">
                     <div class="card-header text-center">
-                        <h6 style="font-weight: bold;">{{ strtoupper($seatData->exam->name) }}</h6>
+                        <h5 class="card-title" style="font-weight: bold;">{{ strtoupper(siteConfig('name')) }}</h5>
                     </div>
                     <div class="card-body">
-                        {{--<h5 class="card-title text-center" style="color: #05052e;font-weight: bold; border-radius: 5px; border: 2px solid black">EXAM SEAT PLAN</h5>--}}
+                        <h5 class="card-title text-center" style="color: #05052e;font-weight: bold; border-radius: 5px; border: 2px solid black">{{ strtoupper($seatData->exam->name) }}</h5>
+                        {{--<h5 class="card-title" style="font-weight: bold;"></h5>--}}
                         <table>
 
                             <tbody>

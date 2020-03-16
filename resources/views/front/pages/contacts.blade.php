@@ -40,7 +40,7 @@
                                     <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-mobile"></i></span>
                                     <div class="media-body ml-3">
                                         <h5 class="mb-0">{{ siteConfig('phone') }}</h5>
-                                        <p>Call Us (8AM-10PM)</p>
+                                        <p>Call Us (9AM-10PM)</p>
                                     </div>
                                 </div>
                             </div>
@@ -49,8 +49,8 @@
                                 <div class="media">
                                     <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-email"></i></span>
                                     <div class="media-body ml-3">
-                                        <a href="mailto:support@echotheme.com" class="h5">{{ siteConfig('email') }}</a>
-                                        <p>Call Us (8AM-10PM)</p>
+                                        <a href="" class="h5">{{ siteConfig('email') }}</a>
+                                        <p>Call Us (9AM-10PM)</p>
                                     </div>
                                 </div>
                             </div>
@@ -80,22 +80,43 @@
                                 <div class="width-4rem height-4 bg-primary my-2 mx-auto rounded"></div>
                             </div>
                             <div class="col-12 text-center">
-                                <form action="" method="POST" class="card p-4 p-md-5 shadow-v1">
+                                <div id="success">
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <form action="{{ action('MessagesController@store') }}" method="POST" class="card p-4 p-md-5 shadow-v1">
+                                    @csrf
 {{--                                    <p class="lead mt-2">--}}
 {{--                                        Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clear <br> tasest consectetur adipi sicing elitsed eusmod tempor cididunt.--}}
 {{--                                    </p>--}}
                                     <div class="row mt-5 mx-0">
                                         <div class="col-md-4 mb-4">
-                                            <input type="text" class="form-control" placeholder="Name" required>
+                                            <input type="text" name="name" class="form-control" placeholder="Name" required>
+                                            @if($errors->has('name'))
+                                                <p class="danger" style="font-size: 12px; color: red">{{ $errors->first('name') }}</p>
+                                            @endif
                                         </div>
                                         <div class="col-md-4 mb-4">
-                                            <input type="email" class="form-control" placeholder="Email" required>
+                                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                            @if($errors->has('email'))
+                                                <p class='is-invalid' style="font-size: 12px; color: red">{{ $errors->first('email') }}</p>
+                                            @endif
                                         </div>
                                         <div class="col-md-4 mb-4">
-                                            <input type="email" class="form-control" placeholder="Phone number">
+                                            <input type="text" name="phone" class="form-control" placeholder="Phone number" required>
+                                            @if($errors->has('phone'))
+                                                <p class="help is-danger" style="font-size: 12px; color: red">{{ $errors->first('phone') }}</p>
+                                            @endif
                                         </div>
                                         <div class="col-12">
-                                            <textarea type="email" class="form-control" placeholder="Message" rows="7"></textarea>
+                                            <textarea  name="message" class="form-control" placeholder="Message" rows="7" required></textarea>
+                                            @if($errors->has('message'))
+                                                <p class="help is-danger" style="font-size: 12px; color: red">{{ $errors->first('message') }}</p>
+                                            @endif
                                             <button type="submit" class="btn btn-primary mt-4">Send Message</button>
                                         </div>
                                     </div>
@@ -113,4 +134,12 @@
 {{--        </div> <!-- END container-->--}}
 {{--    </section>--}}
 
+@stop
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#success').fadeOut(3000);
+        });
+    </script>
 @stop

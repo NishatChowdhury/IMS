@@ -102,7 +102,6 @@ class FeeCategoryController extends Controller
                     'month' => $value
                 ]);
                 $thirdCol = [];
-
                 foreach ($request->category_id as $key1=>$category){
                     if ($request->amount[$key1] !=0){
                         $thirdCol[$category] = [ "amount"=>$request->amount[$key1] ];
@@ -126,7 +125,7 @@ class FeeCategoryController extends Controller
                                     ->where('session_id',$session_id)
                                     ->where('class_id',$class_id)
                                     ->get();
-        return view('admin.account.fee-setup.list',compact(['fee_lists']));
+        return view('admin.account.fee-setup.list',compact('fee_lists'));
     }
 
     public function show_fee_setup($id){
