@@ -44,7 +44,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('section_id','Section',['class'=>'control-label']) }}
-                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control']) }}
+                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -218,11 +218,10 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             {{ Form::label('status','Status',['class'=>'control-label']) }}
-                            {{ Form::radio('status', 0, ['class'=>'form-control', false]) }} Inactive
-                            {{ Form::radio('status', 1, ['class'=>'form-control', true]) }} Active
+                            {{ Form::radio('status', 0, false, ['id'=>'inactive']) }}&nbsp;{{ Form::label('inactive','Inactive') }}
+                            {{ Form::radio('status', 1, true, ['id'=>'active']) }}&nbsp;{{ Form::label('active','Active') }}
                         </div>
                     </div>
                 </div>
@@ -235,23 +234,20 @@
         </div>
 </div>
 </div>
-@section('script')
-<script>
-    $(document).on('keyup','#rank', function () {
-        var academicYear = $('.year').val();
-        $.ajax({
-            url:"{{url('/load_student_id')}}",
-            type:'GET',
-            data:{academicYear:academicYear},
-            success:function (data) {
-                console.log(data);
-                $('#studentID').val(data);
+{{--@section('script')--}}
+{{--<script>--}}
+    {{--$(document).on('keyup','#rank', function () {--}}
+    {{--    var academicYear = $('.year').val();--}}
+    {{--    $.ajax({--}}
+    {{--        url:"{{url('/load_student_id')}}",--}}
+    {{--        type:'GET',--}}
+    {{--        data:{academicYear:academicYear},--}}
+    {{--        success:function (data) {--}}
+    {{--            console.log(data);--}}
+    {{--            $('#studentID').val(data);--}}
 
-            }
-        });
-    });
-    // $(document).ready( function() {
-    //     $('#alert_error').delay(3000).fadeOut();
-    // });
-</script>
-@stop
+    {{--        }--}}
+    {{--    });--}}
+    {{--});--}}
+{{--</script>--}}
+{{--@stop--}}

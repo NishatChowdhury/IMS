@@ -1,5 +1,7 @@
 @extends('layouts.fixed')
 
+@section('title','Edit Student')
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">

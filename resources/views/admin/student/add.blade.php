@@ -83,6 +83,18 @@
             $('.section').html(section_id);
         });
 
+        $(document).on('keyup','#rank', function () {
+            var academicYear = $('.year').val();
+            $.ajax({
+                url:"{{url('/load_student_id')}}",
+                type:'GET',
+                data:{academicYear:academicYear},
+                success:function (data) {
+                    console.log(data);
+                    $('#studentID').val(data);
 
+                }
+            });
+        });
     </script>
 @stop
