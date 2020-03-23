@@ -1,6 +1,7 @@
 <?php
 
 use App\AcademicClass;
+use App\ExamResult;
 use App\Grade;
 use App\RawAttendance;
 use App\Student;
@@ -689,7 +690,7 @@ Route::get('generate-exam-result',function(){ //generate exam result from marks 
         $data['grade'] = $isFail ? 'F' : $grade->grade;
         $data['rank'] = null;
 
-        $result = \App\ExamResult::query()
+        $result = ExamResult::query()
             ->where('session_id',$sessionId)
             ->where('exam_id',$examId)
             ->where('class_id',$classId)
@@ -699,12 +700,12 @@ Route::get('generate-exam-result',function(){ //generate exam result from marks 
         if($result != null){
             $result->update($data);
         }else{
-            \App\ExamResult::query()->create($data);
+            ExamResult::query()->create($data);
         }
     }
 
     /* update exam rank start */
-    $results = \App\ExamResult::query()
+    $results = ExamResult::query()
         ->where('session_id',$sessionId)
         ->where('exam_id',$examId)
         ->where('class_id',$classId)
@@ -877,6 +878,20 @@ Route::get('calc-final-result',function(){
     }
     /* update exam rank end */
 
+});
+
+Route::get('sync-academic-class-id-results',function(){
+    $students = ExamResult::query()->get();
+    foreach($students as $student){
+        $id = AcademicClass::query()
+            ->where('session_id',$student->session_id)
+            ->where('class_id',$student->class_id)
+            ->where('section_id',$student->section_id)
+            ->where('group_id',$student->group_id)
+            ->first();
+
+        $student->update(['academic_class_id'=>$id->id]);
+    }
 });
 
 Route::get('sync-academic-class-id',function(){

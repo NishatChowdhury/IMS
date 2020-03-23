@@ -55,17 +55,17 @@
                     <div class="col">
                         {{ Form::model($user,['action'=>'UserController@password','method'=>'patch']) }}
                         <div class="card">
-                            <div class="card-header text-center">Account Information</div>
+                            <div class="card-header text-center">Change Password</div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">New Password</label>
                                     <input type="password" name="password" class="form-control" id="password">
                                     @if($errors->first('password'))
                                         <small class="text-danger">{{ $errors->first('password') }}</small>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="password-confirm">Confirm Password</label>
+                                    <label for="password-confirm">Confirm New Password</label>
                                     <input type="password" name="password_confirmation" class="form-control" id="password-confirm">
                                 </div>
                             </div>
