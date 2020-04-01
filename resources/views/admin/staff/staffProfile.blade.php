@@ -210,7 +210,6 @@
                         <!-- /.card-body -->
                     </div>
                     <br>
-                    <!-- /.card -->
 
                     <!-- About Me Box -->
                     <div class="card card-primary">
