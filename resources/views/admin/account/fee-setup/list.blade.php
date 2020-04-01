@@ -34,11 +34,11 @@
                             <div class="row" style="margin-bottom: 15px">
                                 <div class="col-md-12">
                                     <div style="float: left;">
-                                        <button type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-eye"></i> Academic Class</button>
+                                        <a href="{{ action('FeeCategoryController@fee_setup',$academicClass->id) }}" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-eye"></i> Setup Monthly Fee</a>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 10px; float: right !important;">  Session :  {{$fee_lists->first()->session->year}}</button>
-                                        <button type="button" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 10px; float: right !important;"> Class : {{$fee_lists->first()->academicClass->name}} </button>
+                                        <button type="button" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 10px; float: right !important;"> Session : {{ $academicClass->sessions->year ?? '' }} </button>
+                                        <button type="button" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 10px; float: right !important;">  Class :  {{ $academicClass->academicClasses->name }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -55,29 +55,29 @@
                                     </thead>
                                     @php $i=1 @endphp
                                     <tbody>
-                                        @foreach($fee_lists as $fee_list)
-                                            <tr>
-                                                <td>{{$i++}}</td>
-                                                <td>{{ date("F", mktime(0, 0, 0,$fee_list->month, 1))}}</td>
-                                                <td >
-                                                    @foreach($fee_list->fee_categories as $fee)
-                                                        <button type="button" class="btn btn-outline-success btn-sm">
-                                                            {{$fee->name }} -
-                                                            <span class="badge badge-warning">
+                                    @foreach($fee_lists as $fee_list)
+                                        <tr>
+                                            <td>{{$i++}}</td>
+                                            <td>{{ date("F", mktime(0, 0, 0,$fee_list->month, 1))}}</td>
+                                            <td >
+                                                @foreach($fee_list->fee_categories as $fee)
+                                                    <button type="button" class="btn btn-outline-success btn-sm">
+                                                        {{$fee->name }} -
+                                                        <span class="badge badge-warning">
                                                                 {{ \App\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_list->id)->first()->amount  }}
                                                             </span>
-                                                        </button>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    <a type="button" href="{{route('fee-setup.show',$fee_list->id)}}" class="btn btn-warning btn-sm edit" value='' style="margin-left: 10px;"> <i class="fas fa-edit"></i></a>
-                                                    <a type="button" href=""
-                                                       class="btn btn-danger btn-sm delete_session"
-                                                       style="margin-left: 10px;"> <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    </button>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <a type="button" href="{{route('fee-setup.show',$fee_list->id)}}" class="btn btn-warning btn-sm edit" value='' style="margin-left: 10px;"> <i class="fas fa-edit"></i></a>
+                                                <a type="button" href=""
+                                                   class="btn btn-danger btn-sm delete_session"
+                                                   style="margin-left: 10px;"> <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

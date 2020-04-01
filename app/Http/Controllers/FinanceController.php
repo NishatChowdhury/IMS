@@ -13,6 +13,7 @@ use App\Repository\StudentRepository;
 class FinanceController extends Controller
 {
     private $repository;
+
     public function __construct(StudentRepository $repository)
     {
         $this->repository = $repository;
@@ -20,17 +21,22 @@ class FinanceController extends Controller
 
     public function index(Request $request)
     {
-        $students = Student::query()->where('studentId',$request->studentId)->first();
-        if($students){
-            $fee_setup = FeeSetup::query()->where('class_id',$students->class_id)->where('session_id',$students->session_id)->where('month',$request->month)->first();
-            $transport_fee = Transport::query()->where('student_id',$students->id)->where('status',1)->first();
-            $payment_details = StudentPayment::query()->where('student_id',$students->id)->orderBy('created_at')->get();
+        $student = Student::query()->where('studentId',$request->studentId)->first();
+        if($student){
+            $fee_setup = FeeSetup::query()
+                //->where('class_id',$student->class_id)
+                //->where('session_id',$student->session_id)
+                ->where('academic_class_id',$student->academic_class_id)
+                ->where('month',$request->month)
+                ->first();
+            $transport_fee = Transport::query()->where('student_id',$student->id)->where('status',1)->first();
+            $payment_details = StudentPayment::query()->where('student_id',$student->id)->orderBy('created_at')->get();
         }else{
             $fee_setup =[];
             $transport_fee =[];
             $payment_details =[];
         }
-        return view('admin.account.fee-collection.student-fee',compact('students','fee_setup','transport_fee','payment_details'));
+        return view('admin.account.fee-collection.student-fee',compact('student','fee_setup','transport_fee','payment_details'));
     }
 
     public function store_payment(Request $request)
