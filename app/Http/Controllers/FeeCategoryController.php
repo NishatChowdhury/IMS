@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicClass;
 use App\FeeCategory;
 use App\FeePivot;
 use App\FeeSetup;
@@ -69,17 +70,19 @@ class FeeCategoryController extends Controller
     }
 
 //    Fee Setup Start
-    public function fee_setup()
+    public function fee_setup($classId)
     {
-        $class_id = 1;
         $session = Session::query()->orderBy('id','desc')->first();
-        $feeSetups = FeeSetup::query()->where('session_id',$session->id)->where('class_id',$class_id)->get(['month']);
-        $feeCategories = FeeCategory::query()->where('status',1)->where('session_id',$session->id)->get();
+        $feeSetups = FeeSetup::query()->where('session_id',$session->id)->where('class_id',$classId)->get(['month']);
+        $feeCategories = FeeCategory::query()
+            ->where('status',1)
+            //->where('session_id',$session->id)
+            ->get();
 
-        return view('admin.account.fee-setup.add-fee-setup',compact('feeCategories','feeSetups'));
+        return view('admin.account.fee-setup.add-fee-setup',compact('feeCategories','feeSetups','classId'));
     }
 
-    public function store_fee_setup(Request $request)
+    public function store_fee_setup(Request $request,$classId)
     {
         $this->validate($request,
             [
@@ -89,16 +92,21 @@ class FeeCategoryController extends Controller
                 'month.required' => 'Select Month'
             ]);
 
-        $class_id = 1;
-        $session_id = Session::query()->orderBy('id','desc')->first()->id;
+        //$class_id = 1;
+        //$session_id = Session::query()->orderBy('id','desc')->first()->id;
         foreach ($request->month as $key=>$value)
         {
 
-            $moth_exist = FeeSetup::query()->where('session_id',$session_id)->where('class_id',$class_id)->where('month',$value)->first();
+            $moth_exist = FeeSetup::query()
+                //->where('session_id',$session_id)
+                ->where('academic_class_id',$classId)
+                ->where('month',$value)
+                ->first();
+
             if(!$moth_exist){
-                $feeSetup =  FeeSetup::create([
-                    'session_id'=>$session_id,
-                    'class_id'=>$class_id,
+                $feeSetup =  FeeSetup::query()->create([
+                    //'session_id'=>$session_id,
+                    'academic_class_id'=>$classId,
                     'month' => $value
                 ]);
                 $thirdCol = [];
@@ -107,32 +115,40 @@ class FeeCategoryController extends Controller
                         $thirdCol[$category] = [ "amount"=>$request->amount[$key1] ];
                     }
                 }
-                 $feeSetup->fee_categories()->attach($thirdCol);
+                $feeSetup->fee_categories()->attach($thirdCol);
             }else{
                 return redirect()->back()->withErrors('Month Fee Setup Already Exits');
             }
         }
 
-        return redirect(route('fee-setup.list'))->with('success', 'Fee Setup added successfully');
+        return redirect()->back()->with('success', 'Fee Setup added successfully');
 
     }
 
-    public function list_fee_setup()
+    public function list_fee_setup($classId)
     {
-        $class_id = 1;
-        $session_id = Session::query()->orderBy('id','desc')->first()->id;
+        //$class_id = 1;
+
+        $academicClass = AcademicClass::query()->findOrFail($classId);
+
+        //$session_id = Session::query()->orderBy('id','desc')->first()->id;
+
         $fee_lists = FeeSetup::query()
-                                    ->where('session_id',$session_id)
-                                    ->where('class_id',$class_id)
-                                    ->get();
-        return view('admin.account.fee-setup.list',compact('fee_lists'));
+            //->where('session_id',$session_id)
+            //->where('class_id',$classId)
+            ->where('academic_class_id',$classId)
+            ->get();
+        return view('admin.account.fee-setup.list',compact('fee_lists','academicClass'));
     }
 
     public function show_fee_setup($id){
-        $class_id = 1;
+        $class_id = 3;
         $data['session'] = Session::query()->orderBy('id','desc')->first();
-        $data['feeCategories'] = FeeCategory::query()->where('status',1)->where('session_id',$data['session']->id)->get();
-        $data['fee_setup'] = FeeSetup::where('id',$id)->get();
+        $data['feeCategories'] = FeeCategory::query()
+            ->where('status',1)
+            //->where('session_id',$data['session']->id)
+            ->get();
+        $data['fee_setup'] = FeeSetup::query()->findOrFail($id);
         return view('admin.account.fee-setup.edit-fee-setup')->with($data);
     }
 

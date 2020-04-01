@@ -1,5 +1,6 @@
 <?php
 
+use App\Religion;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,9 +15,9 @@ class SeedReligionsTable extends Migration
     public function up()
     {
         Schema::table('religions', function (Blueprint $table) {
-            $religions = ['Muslim','Hindu','Buddhist','Christian','Other'];
+            $religions = ['Islam','Hinduism','Buddhism','Christianity','Other'];
             foreach($religions as $religion){
-                \App\Religion::query()->create(['name'=>$religion]);
+                Religion::query()->create(['name'=>$religion]);
             }
         });
     }

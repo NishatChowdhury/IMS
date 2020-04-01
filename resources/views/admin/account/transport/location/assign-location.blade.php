@@ -125,7 +125,6 @@
                                     <td>
                                         {{ Form::hidden('student_id[]',$student->id) }}
                                         {{ Form::select('location_id[]',$trnsport_fee,null,['class'=>'form-control sub','placeholder' => 'Select Location']) }}
-
                                     </td>
                                 </tr>
                             @endforeach

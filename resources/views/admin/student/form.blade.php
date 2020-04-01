@@ -117,7 +117,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <div class="form-group">
                         {{ Form::label('religion_id','Religion',['class'=>'control-label']) }}
-                        {{ Form::select('religion_id', ['1' => 'Islam', '2' => 'Hindu','3'=>'Buddies'], null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
+                        {{ Form::select('religion_id', $repository->religions(), null, ['placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@ use App\Country;
 use App\Division;
 use App\Gender;
 use App\Group;
+use App\Religion;
 use App\Section;
 use App\Session;
 use App\Subject;
@@ -72,6 +73,11 @@ class StudentRepository
     public function countries()
     {
         return Country::all()->pluck('name', 'id');
+    }
+
+    public function religions()
+    {
+        return Religion::all()->pluck('name','id');
     }
 
 

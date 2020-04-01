@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Location Assign')
+@section('title','Fee Collection')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -138,17 +138,17 @@
                             <div class="col-sm-4 invoice-col">
                                 Student Details
                                 <address>
-                                    <strong>{{ $students !=null && $students->name  ? $students->name : '' }}</strong><br>
-                                    <b>ID :</b> {{ $students !=null && $students->studentId  ? $students->studentId : '' }}<br>
-                                    <b>Class:</b> {{ $students !=null && $students->class_id  ? $students->classes->name : '' }} || <b>Section :</b> {{ $students !=null && $students->section_id  ? $students->section->name : '' }} <br>
-                                    Phone: {{ $students !=null && $students->phone  ? $students->phone : '' }}<br>
-                                    Email: {{ $students !=null && $students->email  ? $students->email : '' }}
+                                    <strong>{{ $student !=null && $student->name  ? $student->name : '' }}</strong><br>
+                                    <b>ID :</b> {{ $student !=null && $student->studentId  ? $student->studentId : '' }}<br>
+                                    <b>Class:</b> {{ $student !=null && $student->class_id  ? $student->classes->name : '' }} || <b>Section :</b> {{ $student !=null && $student->section_id  ? $student->section->name : '' }} <br>
+                                    Phone: {{ $student !=null && $student->phone  ? $student->phone : '' }}<br>
+                                    Email: {{ $student !=null && $student->email  ? $student->email : '' }}
                                 </address>
-                                {!! Form::hidden('student_id',$students !=null && $students->id  ? $students->id : '' ) !!}
-                                {!! Form::hidden('class_id',$students !=null && $students->class_id  ? $students->class_id : '' ) !!}
-                                {!! Form::hidden('section_id',$students !=null && $students->section_id  ? $students->section_id : '' ) !!}
-                                {!! Form::hidden('group_id',$students !=null && $students->group_id  ? $students->group_id : '' ) !!}
-                                {!! Form::hidden('session_id',$students !=null && $students->session_id  ? $students->session_id : '' ) !!}
+                                {!! Form::hidden('student_id',$student !=null && $student->id  ? $student->id : '' ) !!}
+                                {!! Form::hidden('class_id',$student !=null && $student->class_id  ? $student->class_id : '' ) !!}
+                                {!! Form::hidden('section_id',$student !=null && $student->section_id  ? $student->section_id : '' ) !!}
+                                {!! Form::hidden('group_id',$student !=null && $student->group_id  ? $student->group_id : '' ) !!}
+                                {!! Form::hidden('session_id',$student !=null && $student->session_id  ? $student->session_id : '' ) !!}
                             </div>
                             <!-- /.col -->
                             <!-- /.col -->
@@ -158,8 +158,8 @@
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
                                 <b>Invoice #007612</b><br>
-                                <b>Pay Date:</b> 2/22/2014 <br>
-                                <b>Pay Month:</b> January
+                                <b>Pay Date:</b> {{ \Carbon\Carbon::today()->format('d-m-Y') }} <br>
+                                <b>Pay Month:</b> {{ \Carbon\Carbon::createFromDate(null,3,null)->format('F') }}
                             </div>
 
                         </div>

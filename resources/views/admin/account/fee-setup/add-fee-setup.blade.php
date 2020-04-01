@@ -1,5 +1,7 @@
 @extends('layouts.fixed')
+
 @section('title','Account | Fee Setup')
+
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
@@ -35,7 +37,7 @@
                                     </ul>
                                 </div>
                             @endif
-                                {{ Form::model($fee_setup = new \App\FeeSetup(),['route'=>'fee-setup.store','method'=>'POST']) }}
+                                {{ Form::model($fee_setup = new \App\FeeSetup(),['route'=>['fee-setup.store',$classId],'method'=>'POST']) }}
                                 @include('admin.account.fee-setup.form')
                                 <div class="from-group">
                                     {{ Form::button('SAVE',['type'=>'submit','class'=>'btn btn-primary']) }}

@@ -12,7 +12,7 @@ class AcademicClass extends Model
 
     public function sessions()
     {
-        return $this->belongsTo(Session::class);
+        return $this->belongsTo(\App\Session::class,'session_id');
     }
 
     public function academicClasses()
