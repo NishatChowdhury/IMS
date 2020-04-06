@@ -39,83 +39,15 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Short Description</th>
-                                    <th>Start Date</th>
-                                    <th>End Date </th>
-                                    <th>Category</th>
-                                    <th>Type</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($notices as $notice)
-                                    <tr>
-                                        <td>{{ $notice->title }}</td>
-                                        <td>{{ substr(strip_tags($notice->description),0,99) }}</td>
-                                        <td>{{ $notice->start->format('Y-m-d') }}</td>
-                                        <td>{{ $notice->end->format('Y-m-d') }}</td>
-                                        <td>
-                                            @if($notice->category)
-                                                {{ $notice->category->name }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($notice->type)
-                                                {{ $notice->type->name }}
-                                            @endif
-                                        </td>
-                                        <td><a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
+                            {{ Form::model($notice,['action'=>['NoticeController@update',$notice->id],'method'=>'patch','files'=>true]) }}
+                            @include('admin.notice.form')
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ***/ Pop Up Model for button Start-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Notice</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {{ Form::open(['action'=>'NoticeController@store','method'=>'post','files'=>true]) }}
-                    @include('admin.notice.form')
-                    {{ Form::close() }}
-
-                </div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-    </div>
-    <!-- /Pop Up Model for button End***-->
 @stop
 <!-- /Notices page inner Content End***-->
 

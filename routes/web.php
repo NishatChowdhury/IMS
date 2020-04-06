@@ -3,6 +3,7 @@
 use App\AcademicClass;
 use App\ExamResult;
 use App\Grade;
+use App\Mark;
 use App\RawAttendance;
 use App\Student;
 use Carbon\Carbon;
@@ -280,8 +281,8 @@ Route::patch('pages/{id}/update','PageController@update');
 
 Route::get('notices','NoticeController@index');
 Route::post('notice/store','NoticeController@store');
-Route::post('notice/edit-notice','NoticeController@edit');
-Route::patch('notice/update','NoticeController@update');
+Route::get('notice/edit/{id}','NoticeController@edit');
+Route::patch('notice/{id}/update','NoticeController@update');
 
 Route::get('notice/category','NoticeCategoryController@index');
 Route::post('notice/category/store','NoticeCategoryController@store');
@@ -608,7 +609,7 @@ Route::get('delete-duplicate',function(){ //delete duplicate student from studen
 });
 
 Route::get('marks-student_id',function(){ //update student_id in marks table
-    $marks = \App\Mark::query()->where('student_id',0)->get();
+    $marks = Mark::query()->where('student_id',0)->get();
     foreach($marks as $mark){
         $studentId = $mark->studentId;
         $student = Student::query()->where('studentId',$studentId)->first();
@@ -619,7 +620,7 @@ Route::get('marks-student_id',function(){ //update student_id in marks table
 });
 
 Route::get('total-marks',function(){ //addition of all type of exam in total_mark, grade & gpa
-    $marks = \App\Mark::query()
+    $marks = Mark::query()
         //->where('total_mark',0)
         ->where('exam_id',4)
         ->where('class_id',8)
@@ -653,7 +654,7 @@ Route::get('generate-exam-result',function(){ //generate exam result from marks 
     $examId = 4;
     $classId = 1;
 
-    $subjectCount = \App\Mark::query()
+    $subjectCount = Mark::query()
         ->where('session_id',$sessionId)
         ->where('exam_id',$examId)
         ->where('class_id',$classId)
@@ -661,7 +662,7 @@ Route::get('generate-exam-result',function(){ //generate exam result from marks 
         ->groupBy('subject_id')
         ->count();
 
-    $marks = \App\Mark::query()
+    $marks = Mark::query()
         ->where('session_id',$sessionId)
         ->where('exam_id',$examId)
         ->where('class_id',$classId)
@@ -670,7 +671,7 @@ Route::get('generate-exam-result',function(){ //generate exam result from marks 
 
     //dd($marks);
     foreach($marks as $student => $mark){
-        $isFail = \App\Mark::query()
+        $isFail = Mark::query()
             ->where('session_id',$sessionId)
             ->where('exam_id',$examId)
             ->where('class_id',$classId)
@@ -880,6 +881,21 @@ Route::get('calc-final-result',function(){
 
 });
 
+Route::get('sync-academic-class-id-marks',function(){
+    $students = Mark::query()->get();
+    foreach($students as $student){
+        $id = Student::query()
+            ->findOrFail($student->student_id);
+            //->where('session_id',$student->session_id)
+            //->where('class_id',$student->class_id)
+            //->where('section_id',$student->section_id)
+            //->where('group_id',$student->group_id)
+            //->first();
+
+        $student->update(['academic_class_id'=>$id->academic_class_id]);
+    }
+});
+
 Route::get('sync-academic-class-id-results',function(){
     $students = ExamResult::query()->get();
     foreach($students as $student){
@@ -918,7 +934,7 @@ Route::get('sync-image-name',function(){
 });
 
 Route::get('sync-exam-full-mark',function(){
-    $marks = \App\Mark::query()->get();
+    $marks = Mark::query()->get();
 
     foreach($marks as $mark){
         $schedule = \App\ExamSchedule::query()->where('exam_id',$mark->exam_id)->where('subject_id',$mark->subject_id)->first();

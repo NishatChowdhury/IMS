@@ -34,4 +34,22 @@ class NoticeController extends Controller
         $request->session()->flash('success','Notice published successfully!');
         return redirect('notices');
     }
+
+    public function edit($id)
+    {
+        $notices = [];
+        $notice = Notice::query()->findOrFail($id);
+        $repository = $this->repositories;
+        return view('admin.notice.edit',compact('notice','repository','notices'));
+    }
+
+    public function update($id, Request $request)
+    {
+        //dd($request->all());
+        $notice = Notice::query()->findOrFail($id);
+        $notice->update($request->all());
+        //Notice::query()->create($request->all());
+        $request->session()->flash('success','Notice updated successfully!');
+        return redirect('notices');
+    }
 }

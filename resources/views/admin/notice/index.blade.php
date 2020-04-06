@@ -56,8 +56,8 @@
                                     <tr>
                                         <td>{{ $notice->title }}</td>
                                         <td>{{ substr(strip_tags($notice->description),0,99) }}</td>
-                                        <td>{{ $notice->start->format('Y-m-d') }}</td>
-                                        <td>{{ $notice->end->format('Y-m-d') }}</td>
+                                        <td>{{ $notice->start ? $notice->start->format('Y-m-d') : 'undefined' }}</td>
+                                        <td>{{ $notice->end ? $notice->end->format('Y-m-d') : 'undefined' }}</td>
                                         <td>
                                             @if($notice->category)
                                                 {{ $notice->category->name }}

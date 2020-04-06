@@ -39,11 +39,15 @@
                             </li>
                             <li class="list-inline-item mr-3">
                                 <i class="ti-time mr-1"></i>
-                                {{ $notice->start->format('F Y, d') }}
+                                @if($notice->start)
+                                    {{ $notice->start->format('F Y, d') }}
+                                @else
+                                    {{ $notice->created_at->format('F Y, d') }}
+                                @endif
                             </li>
                             {{--<li class="list-inline-item mr-3">--}}
-                                {{--<i class="ti-location-pin mr-1"></i>--}}
-                                {{--Room:102, block: A, New auditorium building--}}
+                            {{--<i class="ti-location-pin mr-1"></i>--}}
+                            {{--Room:102, block: A, New auditorium building--}}
                             {{--</li>--}}
                         </ul>
                         <h4 class="mb-4">

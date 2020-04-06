@@ -33,43 +33,50 @@
             </span>
                     </div>
 
-                    <div class="p-4 border-bottom wow fadeInUp">
-                        <p class="text-primary mb-1">
-                            July 02, 2018
-                        </p>
-                        <a href="#">
-                            Maximizing potential through individual attention.
-                        </a>
-                    </div>
+                    @foreach($notices as $notice)
+                        <div class="p-4 border-bottom wow fadeInUp">
+                            <p class="text-primary mb-1">
+                                @if($notice->start)
+                                    {{ $notice->start->format('Y-m-d') }}
+                                @else
+                                    {{ $notice->created_at->format('Y-m-d') }}
+                                @endif
+                            </p>
+                            <a href="{{ action('FrontController@noticeDetails',$notice->id) }}">
+                                {{ substr(strip_tags($notice->description),0,99) }}
+                            </a>
+                        </div>
+                    @endforeach
 
-                    <div class="p-4 border-bottom wow fadeInUp">
-                        <p class="text-primary mb-1">
-                            July 17, 2018
-                        </p>
-                        <a href="#">
-                            Nullam quis ante etiam sit amet eget eros faucibus
-                        </a>
-                    </div>
+                    {{--                    <div class="p-4 border-bottom wow fadeInUp">--}}
+                    {{--                        <p class="text-primary mb-1">--}}
+                    {{--                            July 17, 2018--}}
+                    {{--                        </p>--}}
+                    {{--                        <a href="#">--}}
+                    {{--                            Nullam quis ante etiam sit amet eget eros faucibus--}}
+                    {{--                        </a>--}}
+                    {{--                    </div>--}}
 
-                    <div class="p-4 border-bottom wow fadeInUp">
-                        <p class="text-primary mb-1">
-                            June 08, 2018
-                        </p>
-                        <a href="#">
-                            Adsing eusmo tempor indeduny
-                        </a>
-                    </div>
+                    {{--                    <div class="p-4 border-bottom wow fadeInUp">--}}
+                    {{--                        <p class="text-primary mb-1">--}}
+                    {{--                            June 08, 2018--}}
+                    {{--                        </p>--}}
+                    {{--                        <a href="#">--}}
+                    {{--                            Adsing eusmo tempor indeduny--}}
+                    {{--                        </a>--}}
+                    {{--                    </div>--}}
 
-                    <div class="p-4 border-bottom wow fadeInUp">
-                        <p class="text-primary mb-1">
-                            June 20, 2018
-                        </p>
-                        <a href="#">
-                            Nullam quis ante etiam sit amet eget eros faucibus
-                        </a>
-                    </div>
+                    {{--                    <div class="p-4 border-bottom wow fadeInUp">--}}
+                    {{--                        <p class="text-primary mb-1">--}}
+                    {{--                            June 20, 2018--}}
+                    {{--                        </p>--}}
+                    {{--                        <a href="#">--}}
+                    {{--                            Nullam quis ante etiam sit amet eget eros faucibus--}}
+                    {{--                        </a>--}}
+                    {{--                    </div>--}}
+
                     <div class="p-4">
-                        <a href="#" class="btn btn-link pl-0">
+                        <a href="{{ action('FrontController@notice') }}" class="btn btn-link pl-0">
                             View All Notices
                         </a>
                     </div>
@@ -77,4 +84,4 @@
             </div>
         </div> <!-- END row-->
     </div> <!-- END container-->
-</section
+</section>
