@@ -370,6 +370,7 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 
 // Student Fee Collection Report Start
     Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
+    Route::get('report/student-monthly-fee-report','ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
 // Student Fee Collection Report End
 
 //Account Section End
@@ -404,8 +405,6 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
     Route::get('student-profile/{studentId}','StudentController@studentProfile')->name('student.profile');
     Route::get('staff-profile/{staffId}','StaffController@staffProfile')->name('staff.profile');
 //Student profile end
-
-
 
 
 /** Route for Apps start */

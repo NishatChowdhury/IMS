@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\FeePivot;
+use App\FeeSetup;
 use App\Student;
 use App\StudentPayment;
 use Illuminate\Http\Request;
@@ -19,6 +21,7 @@ class ReportController extends Controller
 
     public function student_fee_report(Request $request, Student $student)
     {
+
         if($request->all()){
             $s = $student->newQuery();
             if($request->get('studentId')){
@@ -61,6 +64,40 @@ class ReportController extends Controller
         $repository = $this->repository;
 
         return view('admin.account.report.student-fee-report',compact('repository','students'));
+    }
+
+    public function student_monthly_fee_report(Request $request, Student $student)
+    {
+        $monthId = $request->month;
+        if($request->all()){
+            $s = $student->newQuery();
+            if($request->get('class_id')){
+                $class = $request->get('class_id');
+                $s->where('class_id',$class);
+            }
+            if($request->get('section_id')){
+                $section = $request->get('section_id');
+                $s->where('section_id',$section);
+            }
+            if($request->get('group_id')){
+                $group = $request->get('group_id');
+                $s->where('group_id',$group);
+            }
+            $students = $s->get();
+        }else{
+            $students = [];
+        }
+
+        $monthSetup=0;
+        if($monthId){
+
+            $monthSetupId = FeeSetup::query()->where('session_id',activeYear())->where('month',$monthId)->first()->id ?? '';
+            $monthSetup = FeePivot::query()->where('fee_setup_id',$monthSetupId)->sum('amount');
+        }
+
+        $repository = $this->repository;
+
+        return view('admin.account.report.student-monthly-fee-report',compact('repository','students','monthId','monthSetup'));
     }
 
 }

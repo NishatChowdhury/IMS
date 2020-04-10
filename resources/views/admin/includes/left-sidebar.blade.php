@@ -320,7 +320,7 @@
                         <li class="nav-item">
                             <a href="{{route('student.fee')}}" class="nav-link {{ isActive('fee-category/student') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Studen Fee Collection</p>
+                                <p>Student Fee Collection</p>
                             </a>
                         </li>
 
@@ -398,6 +398,12 @@
                             <a href="{{ action('ReportController@student_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Fee Collection</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('ReportController@student_monthly_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Monthly Fee Report</p>
                             </a>
                         </li>
                         {{--<li class="nav-item">--}}
