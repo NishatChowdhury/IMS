@@ -36,7 +36,7 @@
                                 <div class="col">
                                     <label for="">Room</label>
                                     <div class="input-group">
-                                        {{ Form::text('room',null,['class'=>'form-control room','placeholder'=>'Room No']) }}
+                                        {{ Form::text('room',null,['class'=>'form-control room','placeholder'=>'Room No','required']) }}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -121,7 +121,7 @@
                                         <tr class="text-center">
                                             <td>{{ $seat->room }}</td>
                                             <td>{{ $seat->academicClasses->academicClasses->name }}</td>
-                                            <td>{{ $seat->academicClasses->section->name }}</td>
+                                            <td>{{ $seat->academicClasses->section->name ?? '' }}</td>
                                             <td>{{ $seat->roll_form }}</td>
                                             <td>{{ $seat->roll_to }}</td>
                                             <td>{{ $seat->count }}</td>

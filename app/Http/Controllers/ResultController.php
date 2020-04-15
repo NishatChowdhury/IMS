@@ -628,7 +628,6 @@ class ResultController extends Controller
                         ->first();
                 }
 
-
                 if($grade){
                     $data['grade'] = $isFail ? 'F' : $grade->grade;
                 }else{

@@ -23,11 +23,13 @@
     .card{
         float: left !important;
         display: block !important;
-        min-width: 100%;
+        min-width: 100% !important;
+        width: 100% !important;
     }
     .page-break{
-        overflow: visible;
+        overflow: visible !important;
         page-break-after: always !important;
+        break-after: page;
         /*page-break-before: always !important;*/
     }
 }

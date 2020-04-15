@@ -74,9 +74,7 @@
                                     <td>{{$grade->grade}}</td>
                                     <td>{{$grade->comment}}</td>
                                     <td>
-                                        <a type="button" href="{{action('ExamController@delete_grade',$grade->id)}}"
-                                           class="btn btn-danger btn-sm"
-                                           style="margin-left: 5px;" title="Delete"> <i class="fas fa-trash "></i>
+                                        <a type="button" href="{{action('ExamController@delete_grade',$grade->id)}}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"> <i class="fas fa-trash "></i>
                                         </a>
                                     </td>
 
@@ -84,21 +82,21 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
+{{--                            <div class="row" style="margin-top: 10px">--}}
+{{--                                <div class="col-sm-12 col-md-9">--}}
+{{--                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-12 col-md-3">--}}
+{{--                                    <nav aria-label="Page navigation example">--}}
+{{--                                        <ul class="pagination">--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">First</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
+{{--                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </nav>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -186,7 +184,7 @@
                         <div style="float: right; margin-right: 75px;">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div class="modal-footer"></div>
             </div>

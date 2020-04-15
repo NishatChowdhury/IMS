@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
                                             <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>00</p>
+                                            <p>{{ $exams->count() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -43,6 +43,7 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
+                            {{ Form::open(['action'=>'ResultController@finalResultNew','method'=>'post']) }}
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -56,24 +57,29 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($exams as $exam)
                                 <tr>
+                                    <td>{{ $exam->name }}</td>
+                                    <td>{{ $exam->session->year }}</td>
+                                    <td>{{ $exam->start }}</td>
+                                    <td>{{ $exam->end }}</td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        {{ Form::text($exam->id,null,['class'=>'form-control']) }}
+                                    </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: right; margin-top: 20px;">
-                                        <button type="button" class="btn btn-success btn-sm"> <i class="fas fa-plus-circle"></i> Save </button>
+                                        <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-plus-circle"></i> Save </button>
                                     </div>
                                 </div>
                             </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>

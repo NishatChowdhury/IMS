@@ -58,7 +58,7 @@
                                         {{ Form::select('session_id',$sessions,$exam->session_id,['class'=>'form-control','placeholder'=>'Select a session']) }}
                                     </div>
                                     <div class="col-md-6">
-                                        <select name="class_id" id="class" class="form-control">
+                                        <select name="academic_class_id" id="class" class="form-control">
                                             @foreach($repository->academicClasses() as $class)
                                                 <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                             @endforeach
@@ -101,7 +101,7 @@
                                         <td>
                                             {{ Form::hidden('exam_id',$exam->id) }}
                                             {{ Form::hidden('session_id',$exam->session_id) }}
-                                            {{ Form::hidden('class_id',$class) }}
+                                            {{ Form::hidden('academic_class_id',$class->id) }}
                                             {{--{{ Form::hidden('section_id',$section) }}--}}
                                             {{--{{ Form::hidden('group_id',$group) }}--}}
                                             {{ Form::hidden('subject_id[]',$subject->subject_id ?? $subject->id) }}

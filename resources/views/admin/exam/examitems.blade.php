@@ -76,7 +76,7 @@
                                 @foreach($schedules as $schedule)
                                     {{--{{dd($schedule)}}--}}
                                     <tr>
-                                        <td>{{ $schedule->academicClass->academicClasses->name }}&nbsp;{{ $schedule->academicClass->group->name }}</td>
+                                        <td>{{ academicClass($schedule->academic_class_id) }}</td>
                                         <td>{{ $schedule->subject->name ?? '' }}</td>
                                         <td>{{ $schedule->date }}</td>
                                         <td>{{ $schedule->start }}</td>

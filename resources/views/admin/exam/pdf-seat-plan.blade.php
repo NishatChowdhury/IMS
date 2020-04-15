@@ -23,11 +23,11 @@
 
 </head>
 <body>
-@foreach($students->chunk(2) as $key => $chunk)
-    <div class="row" style="{{ ($key+1) % 5 == 0 ? 'page-break-after: always' : '' }}">
+@foreach($students->chunk(3) as $key => $chunk)
+    <div class="row mb-4" style="{{ ($key+1) % 5 == 0 ? 'page-break-after: always' : '' }}">
         @foreach($chunk as $student)
-            <div style="padding: 10px; margin-left: 80px">
-                <div class="card" style="width: 4.30in;height:2.80in; border: 2px solid black; border-style: double;">
+            <div class="col-4">
+                <div class="card" style="border: 2px solid black;">
                     <div class="card-header text-center">
                         <h5 class="card-title" style="font-weight: bold;">{{ strtoupper(siteConfig('name')) }}</h5>
                     </div>

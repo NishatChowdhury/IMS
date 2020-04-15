@@ -1,6 +1,7 @@
 <?php
 
 use App\ImportantLink;
+use App\Session;
 
 function isActive($path, $active = 'active menu-open'){
     return call_user_func_array('Request::is', (array)$path) ? $active : '';
@@ -22,8 +23,7 @@ function socialConfig($col){
 }
 
 function activeYear(){
-    $s = \App\Session::query()->where('active',1)->pluck('id');
-    return $s;
+    return Session::query()->where('active',1)->pluck('id');
 }
 
 function importantLinks(){

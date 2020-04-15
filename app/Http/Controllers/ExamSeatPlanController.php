@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class ExamSeatPlanController extends Controller
 {
     protected $repository;
+
     public function __construct(StudentRepository $repository)
     {
         $this->middleware('auth');
@@ -18,7 +19,7 @@ class ExamSeatPlanController extends Controller
 
     public function seatPlan($examId)
     {
-        $id=$examId;
+        $id = $examId;
         $repository = $this->repository;
         $data = ExamSeatPlan::query()->orderBy('room')->get();
         return view('admin.exam.seatplan',compact('repository','id','data'));
@@ -32,17 +33,18 @@ class ExamSeatPlanController extends Controller
                 'room'  => 'required',
                 'count' => 'required',
             ]);
-       $data = ExamSeatPlan::create($request->all());
 
-       return redirect()->back();
+        ExamSeatPlan::create($request->all());
+
+        return redirect()->back();
 
     }
 
     public function pdfSeatPlan($id)
     {
-       $seatData = ExamSeatPlan::query()->findOrFail($id);
-       $students = Student::query()->where('academic_class_id',$seatData->academic_class_id)->where('status',1)->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])->get();
-       //dd($students);
+        $seatData = ExamSeatPlan::query()->findOrFail($id);
+        $students = Student::query()->where('academic_class_id',$seatData->academic_class_id)->where('status',1)->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])->get();
+        //dd($students);
         return view('admin.exam.pdf-seat-plan',compact('students','seatData'));
     }
 

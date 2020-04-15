@@ -43,7 +43,7 @@ class MarkController extends Controller
         }else{
             $students = Student::query()
                 ->where('session_id',$schedule->session_id)
-                ->where('class_id',$schedule->class_id)
+                ->where('academic_class_id',$schedule->academic_class_id)
                 ->orderBy('rank')
                 // ->where('group_id',1)
                 ->get();
@@ -59,19 +59,16 @@ class MarkController extends Controller
 
         $table = Student::query()->where('academic_class_id',$schedule->academic_class_id)->get();
 
-        $filename = $schedule->academicClass->academicClasses->name.$schedule->academicClass->group->name.$schedule->subject->short_name.".csv";
+        $group = $schedule->academicClass->group != null ? $schedule->academicClass->group->name : '';
+        $section = $schedule->academicClass->section != null ? $schedule->academicClass->section->name : '';
+        $filename = $schedule->academicClass->academicClasses->name.$group.$section.$schedule->subject->short_name.".csv";
+
         $handle = fopen($filename, 'w+');
         fputcsv($handle, [
             'roll',
             'name',
-            //'session_id',
-            //'exam_id',
-            //'class_id',
-            //'section_id',
             'class',
-            //'subject_id',
             'student_id',
-            //'full_mark',
             'objective',
             'written',
             'practical',
@@ -82,14 +79,8 @@ class MarkController extends Controller
             fputcsv($handle, [
                 $row['rank'],
                 $row['name'],
-                //$row['session_id'],
-                //$row['exam_id'],
-                //$row['class_id'],
-                //$row['section_id'],
                 $row['academic_class_id'],
-                //$row['subject_id'],
                 $row['id'],
-                //$row['full_mark'],
                 $row['objective'],
                 $row['written'],
                 $row['practical'],

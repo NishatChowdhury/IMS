@@ -17,7 +17,9 @@ use App\Session;
 use App\Staff;
 use App\Student;
 use App\Subject;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ExamController extends Controller
 {
@@ -84,7 +86,7 @@ class ExamController extends Controller
         //$exam_id = $request->exam_id;
         $class_id = $request->class_id;
         $exam_type = $request->exam_type;
-        $subjects = AssignSubject::query()->where('class_id', $class_id)->get();
+        $subjects = AssignSubject::query()->where('academic_class_id', $class_id)->get();
         $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
 
         $schedules = ExamSchedule::query()->where('exam_id',$examId)->get();
@@ -130,12 +132,14 @@ class ExamController extends Controller
      * @param Student $student
      * @param Request $request
      * Created by smartrahat
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function admitCard(Student $student, Request $request)
     {
         if($request->all() == []){
             $students = [];
+            $exam = null;
+            $schedules = [];
         }else{
             $s = $student->newQuery();
             $s->whereIn('session_id',activeYear())->where('status',1);
@@ -175,7 +179,7 @@ class ExamController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.exam.admit-card',compact('repository','students'));
+        return view('admin.exam.admit-card',compact('repository','students','exam','schedules'));
     }
 
     public function seatAllocate(Request $request)
