@@ -55,8 +55,9 @@
                         </h4>
                         <p>
                             {!! $notice->description !!}
-
                         </p>
+{{--                        <img src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" alt="" class="img-fluid">--}}
+                        <embed src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf">
                         <a href="{{ action('FrontController@notice') }}" class="btn btn-primary mt-4">Back To Notices</a>
                     </div>
                 </div>

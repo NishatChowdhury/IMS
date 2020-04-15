@@ -29,8 +29,19 @@ class NoticeController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
-        Notice::query()->create($request->all());
+        if($request->has('file')){
+            $file = date('YmdHis').'.'.$request->file('file')->getClientOriginalExtension();
+            $request->file('file')->move(public_path().'/assets/files/notice/', $file);
+            $data = $request->except('file');
+            $data['file'] = $file;
+            try{
+                Notice::query()->create($data);
+            }catch (\Exception $e){
+                dd($e);
+            }
+        }else{
+            Notice::query()->create($request->except('file'));
+        }
         $request->session()->flash('success','Notice published successfully!');
         return redirect('notices');
     }
@@ -47,7 +58,21 @@ class NoticeController extends Controller
     {
         //dd($request->all());
         $notice = Notice::query()->findOrFail($id);
-        $notice->update($request->all());
+
+        if($request->has('file')){
+            $file = date('YmdHis').'.'.$request->file('file')->getClientOriginalExtension();
+            $request->file('file')->move(public_path().'/assets/files/notice/', $file);
+            $data = $request->except('file');
+            $data['file'] = $file;
+            try{
+                $notice->update($data);
+            }catch (\Exception $e){
+                dd($e);
+            }
+        }else{
+            $notice->update($request->all());
+        }
+
         //Notice::query()->create($request->all());
         $request->session()->flash('success','Notice updated successfully!');
         return redirect('notices');

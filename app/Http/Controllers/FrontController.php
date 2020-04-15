@@ -48,7 +48,8 @@ class FrontController extends Controller
         $content = Page::all();
         $teachers = Staff::all();
         $links = ImportantLink::all();
-        return view('front.index',compact('sliders','content','teachers','links'));
+        $notices = Notice::all()->take(5);
+        return view('front.index',compact('sliders','content','teachers','links','notices'));
     }
 
     public function introduction()
@@ -313,8 +314,8 @@ class FrontController extends Controller
     {
         $notices = Notice::query()
             ->where('notice_type_id',2)
-            ->where('start','<',Carbon::today())
-            ->where('end','>',Carbon::today())
+            //->where('start','<',Carbon::today())
+            //->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->get();
             //->paginate(5);
@@ -333,8 +334,8 @@ class FrontController extends Controller
     {
         $newses = Notice::query()
             ->where('notice_type_id',1)
-            ->where('start','<',Carbon::today())
-            ->where('end','>',Carbon::today())
+            //->where('start','<',Carbon::today())
+            //->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->paginate(5);
         $categories = NoticeCategory::all();

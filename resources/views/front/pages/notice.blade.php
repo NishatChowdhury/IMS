@@ -34,29 +34,35 @@
                 <div class="col-lg-9 mt-5">
 
                     @foreach($notices as $notice)
-                    <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
-                        <div class="media align-items-center">
-                            <div class="text-center border-right pr-4">
-                                <strong class="text-primary font-size-38">
-                                    {{ $notice->start->format('d') }}
-                                </strong>
-                                <p class="mb-0 text-gray">
-                                    {{--Aug, 2018--}}
-                                    {{ $notice->start->format('M, Y') }}
-                                </p>
+                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
+                            <div class="media align-items-center">
+                                <div class="text-center border-right pr-4">
+                                    <strong class="text-primary font-size-38">
+                                        @if($notice->start)
+                                            {{ $notice->start->format('d') }}
+                                        @endif
+                                    </strong>
+                                    <p class="mb-0 text-gray">
+                                        @if($notice->start)
+                                            {{ $notice->start->format('M, Y') }}
+                                        @endif
+                                    </p>
+                                </div>
+                                <div class="media-body p-4">
+                                    <p class="mb-1 text-gray">
+                                        <i class="ti-file"></i>
+                                        Event
+                                    </p>
+                                    <a href="{{ action('FrontController@noticeDetails',$notice->id) }}" class="h5">
+                                        {{ $notice->title }}
+                                    </a>
+                                </div>
                             </div>
-                            <div class="media-body p-4">
-                                <p class="mb-1 text-gray">
-                                    <i class="ti-file"></i>
-                                    Event
-                                </p>
-                                <a href="{{ action('FrontController@noticeDetails',$notice->id) }}" class="h5">
-                                    {{ $notice->title }}
-                                </a>
-                            </div>
+                            @if($notice->file)
+                                <a href="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>
+                            @endif
+                            <a href="{{action('FrontController@noticeDetails',$notice->id)}}" class="btn btn-outline-primary">Read More</a>
                         </div>
-                        <a href="{{action('FrontController@noticeDetails',$notice->id)}}" class="btn btn-outline-primary">Read More</a>
-                    </div>
                     @endforeach
 
                     <div class="text-center mt-5">
@@ -106,32 +112,32 @@
 
 
     {{--<section class="padding-y-100 border-bottom">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row align-items-center">--}}
+    {{--<div class="container">--}}
+    {{--<div class="row align-items-center">--}}
 
-                {{--<table class="table table-bordered">--}}
-                    {{--<thead>--}}
-                    {{--<tr>--}}
-                        {{--<th>SL</th>--}}
-                        {{--<th>Date</th>--}}
-                        {{--<th>Title</th>--}}
-                        {{--<th></th>--}}
-                    {{--</tr>--}}
-                    {{--</thead>--}}
-                    {{--<tbody>--}}
-                    {{--@foreach($notices as $notice)--}}
-                        {{--<tr>--}}
-                            {{--<td></td>--}}
-                            {{--<td>{{ $notice->start }}</td>--}}
-                            {{--<td>{{ $notice->title }}</td>--}}
-                            {{--<td></td>--}}
-                        {{--</tr>--}}
-                    {{--@endforeach--}}
-                    {{--</tbody>--}}
-                {{--</table>--}}
+    {{--<table class="table table-bordered">--}}
+    {{--<thead>--}}
+    {{--<tr>--}}
+    {{--<th>SL</th>--}}
+    {{--<th>Date</th>--}}
+    {{--<th>Title</th>--}}
+    {{--<th></th>--}}
+    {{--</tr>--}}
+    {{--</thead>--}}
+    {{--<tbody>--}}
+    {{--@foreach($notices as $notice)--}}
+    {{--<tr>--}}
+    {{--<td></td>--}}
+    {{--<td>{{ $notice->start }}</td>--}}
+    {{--<td>{{ $notice->title }}</td>--}}
+    {{--<td></td>--}}
+    {{--</tr>--}}
+    {{--@endforeach--}}
+    {{--</tbody>--}}
+    {{--</table>--}}
 
-            {{--</div> <!-- END row-->--}}
-        {{--</div> <!-- END container-->--}}
+    {{--</div> <!-- END row-->--}}
+    {{--</div> <!-- END container-->--}}
     {{--</section>--}}
 
 @stop
