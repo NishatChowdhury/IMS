@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CommunicationHistory;
 use App\Repository\StudentRepository;
+use App\Staff;
 use App\Student;
 use Exception;
 use Illuminate\Http\Request;
@@ -60,9 +61,10 @@ class CommunicationController extends Controller
         return view('admin.communication.quick');
     }
 
-    public function staff()
+    public function staff(Request $request)
     {
-        return view('admin.communication.staff-sms');
+        $staffs = Staff::query()->where('staff_type_id',$request->staff_type_id)->get();
+        return view('admin.communication.staff-sms',compact('staffs'));
     }
 
     public function history()
@@ -74,7 +76,12 @@ class CommunicationController extends Controller
     public function send(Request $request)
     {
         $ids = $request->get('id');
-        $numbers = Student::query()->whereIn('id',$ids)->pluck('mobile')->toArray();
+        $group = $request->get('group');
+        if($group == 'staff'){
+            $numbers = Staff::query()->whereIn('id',$ids)->pluck('mobile')->toArray();
+        }else{
+            $numbers = Student::query()->whereIn('id',$ids)->pluck('mobile')->toArray();
+        }
 
         //$api_key = "C20051365de1fe31bd00d3.94191772";
         $api_key = smsConfig('api_key');

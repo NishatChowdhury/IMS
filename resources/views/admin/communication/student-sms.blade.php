@@ -87,6 +87,7 @@
                                         <div class="col-md-5">
                                             <label for="">SMS Description</label>
                                             <div class="input-group">
+                                                {{ Form::hidden('group','student') }}
                                                 <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50" id="textarea"></textarea>
                                             {{ Form::submit('SEND',['class'=>'btn btn-primary']) }}
                                             </div>
