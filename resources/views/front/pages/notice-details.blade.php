@@ -57,8 +57,11 @@
                             {!! $notice->description !!}
                         </p>
 {{--                        <img src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" alt="" class="img-fluid">--}}
-                        <embed src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf">
+                        <embed src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf" style="width: 100%;height: 500px">
                         <a href="{{ action('FrontController@notice') }}" class="btn btn-primary mt-4">Back To Notices</a>
+                        @if($notice->file)
+                            <a href="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-3 mt-5">

@@ -47,7 +47,8 @@
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
-                                {{ Form::select('id',$pages,null,['class'=>'form-control select2']) }}
+{{--                                {{ Form::select('id',$pages,null,['class'=>'form-control','readonly']) }}--}}
+                                {{ Form::text('id',$page->name,['class'=>'form-control','readonly']) }}
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Content*</label>
@@ -93,52 +94,39 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="http://localhost/adminlte-alpha/public/plugins/select2/select2.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">--}}
 @stop
 
 @section('plugin')
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
     {{--<script src= "{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>--}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+    {{--<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>--}}
+    <script src="{{ asset('plugins/ckeditor5/build/ckeditor.js') }}"></script>
+
 @stop
 
 @section('script')
     <script>
         //Initialize Select2 Elements
         $('.select2').select2();
-
-        // $(document).ready(function() {
-        //     $("#content").Editor();
-        // });
-
-        // $(function () {
-        //     // Replace the <textarea id="editor1"> with a CKEditor
-        //     // instance, using default configuration.
-        //     ClassicEditor
-        //         .create(document.querySelector('#editor1'))
-        //         .then(function (editor) {
-        //             // The editor instance
-        //         })
-        //         .catch(function (error) {
-        //             console.error(error)
-        //         });
-        //
-        //     // bootstrap WYSIHTML5 - text editor
-        //
-        //     $('.textarea').wysihtml5({
-        //         toolbar: { fa: true }
-        //     })
-        // })
     </script>
     <script>
-        // import Image from '@ckeditor/ckeditor5-image/src/image';
-        // import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
-        // import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
-        // import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
-        // import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
         ClassicEditor
-            .create( document.querySelector( '#editor1' ))
+            .create( document.querySelector( '#editor1' ),{
+                toolbar: [ 'heading', '|', 'bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', 'blockQuote','|','imageUpload','insertTable'],
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
+                    ]
+                },
+                image: {
+                    toolbar: [ 'imageTextAlternative' ]
+                }
+            })
             .then( editor => {
                 console.log( editor );
             } )

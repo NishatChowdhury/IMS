@@ -1,3 +1,6 @@
+@php
+  $intro = $content->where('name','introduction')->first();
+@endphp
 <section class="padding-y-100" style="background-color: rgba(88,203,83,0.7);">
     <div class="container">
         <div class="row">
@@ -5,21 +8,22 @@
                 <div class="row align-items-center">
                     <div class="col-md-6 my-5">
                         <div class="position-relative">
-                            <img class="rounded w-100" src="assets/img/360x400/1.jpg" alt="">
-                            <a href="https://www.youtube.com/watch?v=7e90gBu4pas" data-fancybox class="iconbox iconbox-lg bg-white position-absolute absolute-center">
-                                <i class="ti-control-play text-primary"></i>
-                            </a>
+                            <img class="rounded w-100" src="{{ asset('assets/img/pages') }}/{{ $intro->image }}" alt="">
+{{--                            <a href="https://www.youtube.com/watch?v=7e90gBu4pas" data-fancybox class="iconbox iconbox-lg bg-white position-absolute absolute-center">--}}
+{{--                                <i class="ti-control-play text-primary"></i>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
                     <div class="col-md-6 mt-4">
-                        <h2>
-                            <small class="d-block text-white">Welcome to</small>
-                            <span class="text-white">Educati</span> School
-                        </h2>
-                        <p class="my-4 text-white">
-                            Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clartas est consectetur adipi sicing elitsed kdo eusmod tempor cididunt wuti labore.
-                        </p>
-                        <a href="#" class="btn btn-outline-light">
+                        {!! substr($intro->content,0,1000) !!}
+{{--                        <h2>--}}
+{{--                            <small class="d-block text-white">Welcome to</small>--}}
+{{--                            <span class="text-white">Educati</span> School--}}
+{{--                        </h2>--}}
+{{--                        <p class="my-4 text-white">--}}
+{{--                            Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clartas est consectetur adipi sicing elitsed kdo eusmod tempor cididunt wuti labore.--}}
+{{--                        </p>--}}
+                        <a href="{{ action('FrontController@introduction') }}" class="btn btn-outline-light">
                             Read More
                         </a>
                     </div>
