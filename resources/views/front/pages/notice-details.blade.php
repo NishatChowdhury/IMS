@@ -53,11 +53,13 @@
                         <h4 class="mb-4">
                             {{ $notice->title }}
                         </h4>
-                        <p>
-                            {!! $notice->description !!}
+                        <p id="url">
+                            {{ $notice->description }}
                         </p>
 {{--                        <img src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" alt="" class="img-fluid">--}}
+                        @if($notice->file)
                         <embed src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf" style="width: 100%;height: 500px">
+                        @endif
                         <a href="{{ action('FrontController@notice') }}" class="btn btn-primary mt-4">Back To Notices</a>
                         @if($notice->file)
                             <a href="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>
@@ -87,4 +89,14 @@
             </div> <!-- END row-->
         </div> <!-- END container-->
     </section>
+@stop
+
+@section('script')
+    <script>
+            var text=document.getElementById("url").innerText;
+            var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+            var text1=text.replace(exp, "<a href='$1'>$1</a>");
+            var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+            document.getElementById("url").innerHTML=text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
+    </script>
 @stop

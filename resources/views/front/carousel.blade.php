@@ -66,3 +66,22 @@
         <i class="ti-angle-right iconbox bg-black-0_5 hover:primary"></i>
     </a>
 </div>
+<marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+    <ul>
+        @foreach($notices as $notice)
+        <li><a href="{{ action('FrontController@noticeDetails',$notice->id) }}">{{ $notice->title }}</a>@if($notice->start)[{{ $notice->start->format('Y-m-d') }}]@endif</li>
+        @endforeach
+    </ul>
+</marquee>
+
+@section('style')
+    <style>
+        marquee ul li {
+            float: left;
+            padding-right: 1.5rem;
+            list-style: disclosure-closed inside;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+@stop

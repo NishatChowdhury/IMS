@@ -48,7 +48,7 @@ class FrontController extends Controller
         $content = Page::all();
         $teachers = Staff::all();
         $links = ImportantLink::all();
-        $notices = Notice::all()->take(5);
+        $notices = Notice::all()->sortByDesc('start')->take(5);
         return view('front.index',compact('sliders','content','teachers','links','notices'));
     }
 
