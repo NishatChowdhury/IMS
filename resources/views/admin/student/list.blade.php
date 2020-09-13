@@ -45,6 +45,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
+                                    <label for="">Session</label>
+                                    <div class="input-group">
+                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <label for="">Class</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}

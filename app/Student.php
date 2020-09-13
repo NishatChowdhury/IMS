@@ -35,7 +35,17 @@ class Student extends Model
         'father_mobile',
         'mother_mobile',
         'notification_type_id',
-        'status'
+        'status',
+        'bcn',
+        'father_occupation',
+        'mother_occupation',
+        'other_guardian',
+        'guardian_national_id',
+        'yearly_income',
+        'guardian_address',
+        'bank_slip',
+        'ssc_roll',
+        'location_id'
     ];
 
     public function academicClass()
@@ -86,6 +96,11 @@ class Student extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 
     public function payable($id){
