@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\BloodGroup;
+use App\City;
 use App\Classes;
 use App\Country;
 use App\Division;
@@ -15,7 +16,7 @@ use App\Repository\StudentRepository;
 use App\Section;
 use App\Session;
 use App\SessionClass;
-use App\State;
+//use App\State;
 use App\Student;
 use App\StudentPayment;
 use Illuminate\Http\Request;
@@ -40,6 +41,7 @@ class StudentController extends Controller
     public function index(Request $request,Student $student){
         //dd($request->all());
         $s = $student->newQuery()->whereIn('session_id',activeYear());
+
         if($request->get('studentId')){
             $studentId = $request->get('studentId');
             $s->where('studentId',$studentId);
@@ -47,6 +49,10 @@ class StudentController extends Controller
         if($request->get('name')){
             $name = $request->get('name');
             $s->where('name','like','%'.$name.'%');
+        }
+        if($request->get('session_id')){
+            $session = $request->get('session_id');
+            $s->where('session_id',$session);
         }
         if($request->get('class_id')){
             $class = $request->get('class_id');
@@ -85,7 +91,7 @@ class StudentController extends Controller
                 'address',
                 'area',
                 'zip',
-                'state_id',
+                'city_id',
                 'country_id',
                 'email',
                 'father_mobile',
@@ -115,7 +121,7 @@ class StudentController extends Controller
                     $row['address'],
                     $row['area'],
                     $row['zip'],
-                    State::query()->findOrNew($row['state_id'])->name,
+                    City::query()->findOrNew($row['city_id'])->name,
                     Country::query()->findOrNew($row['state_id'])->name,
                     $row['email'],
                     $row['father_mobile'],
@@ -134,7 +140,7 @@ class StudentController extends Controller
             return Response::download($filename, 'students.csv', $headers);
         }
 
-        $students = $s->paginate(20);
+        $students = $s->orderBy('rank')->paginate(20);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
     }
@@ -162,7 +168,9 @@ class StudentController extends Controller
             'session_id'=>'required',
             'class_id'=>'required',
             'name'=>'required',
-            'mobile'=>'required|unique:students',
+            'rank' => 'required|numeric',
+            'studentId' => 'required',
+            //'mobile'=>'required|unique:students',
             'status'=>'required',
         ],[
 
@@ -175,7 +183,8 @@ class StudentController extends Controller
             ->where('section_id',$req->section_id)
             ->where('group_id',$req->group_id)
             ->first();
-        $req['academic_class_id'] = $academicClassId;
+
+        $req['academic_class_id'] = $academicClassId->id ?? null;
 
         $data = $req->all();
         if ($req->hasFile('pic')){
@@ -212,11 +221,13 @@ class StudentController extends Controller
         $student = Student::query()->findOrFail($id);
 
         $this->validate($req,[
-            'session_id'=>'required',
-            'class_id'=>'required',
-            'name'=>'required',
-            'mobile'=>'required',
-            'status'=>'required',
+            'session_id' => 'required',
+            'class_id' => 'required',
+            'name' => 'required',
+            'rank' => 'required|numeric',
+            'studentId' => 'required',
+            'mobile' => 'required',
+            'status' => 'required',
         ],[
 
         ]);
@@ -228,9 +239,11 @@ class StudentController extends Controller
             ->where('section_id',$req->section_id)
             ->where('group_id',$req->group_id)
             ->first();
-        $req['academic_class_id'] = $academicClassId->id;
+
+        $req['academic_class_id'] = $academicClassId->id ?? null;
 
         $data = $req->all();
+        //dd($data);
         if ($req->hasFile('pic')){
             $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
             $req->file('pic')->move(public_path().'/assets/img/students/', $image);
@@ -248,6 +261,7 @@ class StudentController extends Controller
         \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
 
         return redirect('students');
+//        return redirect()->back();
     }
 
     public function loadStudentId(Request $request){
@@ -256,7 +270,6 @@ class StudentController extends Controller
         $increment = $incrementId + 1;
         $studentId = 'S'.$academicYear.$increment;
         return $studentId;
-
     }
 
     public function optional(Request $request, Student $student)
@@ -271,18 +284,22 @@ class StudentController extends Controller
                 $name = $request->get('name');
                 $s->where('name','like','%'.$name.'%');
             }
-            if($request->get('class_id')){
-                $class = $request->get('class_id');
-                $s->where('class_id',$class);
+            if($request->get('academic_class_id')){
+                $academicClass = $request->get('academic_class_id');
+                $s->where('academic_class_id',$academicClass);
             }
-            if($request->get('section_id')){
-                $section = $request->get('section_id');
-                $s->where('section_id',$section);
-            }
-            if($request->get('group_id')){
-                $group = $request->get('group_id');
-                $s->where('group_id',$group);
-            }
+//            if($request->get('class_id')){
+//                $class = $request->get('class_id');
+//                $s->where('class_id',$class);
+//            }
+//            if($request->get('section_id')){
+//                $section = $request->get('section_id');
+//                $s->where('section_id',$section);
+//            }
+//            if($request->get('group_id')){
+//                $group = $request->get('group_id');
+//                $s->where('group_id',$group);
+//            }
 
             $students = $s->get();
         }else{
@@ -349,13 +366,22 @@ class StudentController extends Controller
 
         foreach($ids as $key => $id){
             $student = Student::query()->findOrFail($id);
+
+            $academicClassId = AcademicClass::query()
+                ->where('session_id',$request->session_id)
+                ->where('class_id',$request->class_id)
+                ->where('section_id',$request->section_id)
+                ->where('group_id',$request->group_id)
+                ->first();
+
             $data['name'] = $student->name;
             $data['studentId'] = $student->studentId;
+            $data['academic_class_id'] = $academicClassId->id ?? null;
             $data['session_id'] = $request->session_id;
             $data['class_id'] = $request->class_id;
             $data['section_id'] = $request->section_id;
             $data['group_id'] = $request->group_id;
-            $data['rank'] = $request->get('rank')[$key];
+            $data['rank'] = $request->get('rank')[$id];
             $data['father'] = $student->father;
             $data['mother'] = $student->mother;
             $data['gender_id'] = $student->gender_id;
@@ -450,7 +476,7 @@ class StudentController extends Controller
                 $row['address'],
                 $row['area'],
                 $row['zip'],
-                State::query()->findOrNew($row['state_id'])->name,
+                City::query()->findOrNew($row['city_id'])->name,
                 Country::query()->findOrNew($row['state_id'])->name,
                 $row['email'],
                 $row['father_mobile'],
@@ -480,7 +506,7 @@ class StudentController extends Controller
         $filename = $class.$section.$group.".csv";
 
         $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('id', 'name', 'studentId', 'academic_class_id','session_id','class_id','section_id','group_id','rank','father','mother','gender_id','mobile','dob','blood_group_id','religion_id','image','address','area','zip','city_id','country_id','email','father_mobile','mother_mobile'));
+        fputcsv($handle, array('id', 'name', 'studentId','rank','father','mother','gender_id','mobile','dob','blood_group_id','religion_id','image','address','area','zip','city_id','country_id','email','father_mobile','mother_mobile'));
 
 //        foreach($table as $row) {
 //            fputcsv($handle, array($col['tweet_text'], $col['screen_name'], $col['name'], $col['created_at']));
@@ -525,23 +551,23 @@ class StudentController extends Controller
                 $data['class_id'] = $academicClass->class_id;
                 $data['section_id'] = $academicClass->section_id;
                 $data['group_id'] = $academicClass->group_id;
-                $data['rank'] = $col[8];
-                $data['father'] = $col[9];
-                $data['mother'] = $col[10];
+                $data['rank'] = $col[3];
+                $data['father'] = $col[4];
+                $data['mother'] = $col[5];
                 $data['gender_id'] = null;
-                $data['mobile'] = $col[12];
-                $data['dob'] = $col[13];
+                $data['mobile'] = $col[7];
+                $data['dob'] = $col[8];
                 $data['blood_group_id'] = null;
                 $data['religion_id'] = null;
-                $data['image'] = $col[16];
-                $data['address'] = $col[17];
-                $data['area'] = $col[18];
-                $data['zip'] = $col[19];
+                $data['image'] = $col[11];
+                $data['address'] = $col[12];
+                $data['area'] = $col[13];
+                $data['zip'] = $col[14];
                 $data['city_id'] = null;
                 $data['country_id'] = null;
-                $data['email'] = $col[22];
-                $data['father_mobile'] = $col[23];
-                $data['mother_mobile'] = $col[24];
+                $data['email'] = $col[17];
+                $data['father_mobile'] = $col[18];
+                $data['mother_mobile'] = $col[19];
                 $data['notification_type_id'] = 0;
                 $data['status'] = 1;
 
