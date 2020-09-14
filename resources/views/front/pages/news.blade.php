@@ -32,7 +32,7 @@
             @foreach($newses as $news)
                 <div class="list-card align-items-center shadow-v1 marginTop-30">
                     <div class="col-lg-4 px-lg-4 my-4">
-                        <img class="w-100" src="{{ asset('assets/img/360x220/1.jpg') }}" alt="">
+                        <img class="w-100" src="{{ asset('assets/files/notice') }}/{{ $news->file }}" alt="">
                     </div>
                     <div class="col-lg-8 paddingRight-30 my-4">
                         <div class="media justify-content-between">

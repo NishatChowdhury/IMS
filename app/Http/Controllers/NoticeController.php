@@ -77,4 +77,12 @@ class NoticeController extends Controller
         $request->session()->flash('success','Notice updated successfully!');
         return redirect('notices');
     }
+
+    public function destroy($id)
+    {
+        $notice = Notice::query()->findOrFail($id);
+        $notice->delete();
+        \Illuminate\Support\Facades\Session::flash('success','Notice Deleted successfully');
+        return redirect()->back();
+    }
 }

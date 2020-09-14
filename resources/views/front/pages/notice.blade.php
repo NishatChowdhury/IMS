@@ -38,12 +38,12 @@
                             <div class="media align-items-center">
                                 <div class="text-center border-right pr-4">
                                     <strong class="text-primary font-size-38">
-                                        @if($notice->start)
+                                        @if($notice->start != null)
                                             {{ $notice->start->format('d') }}
                                         @endif
                                     </strong>
                                     <p class="mb-0 text-gray">
-                                        @if($notice->start)
+                                        @if($notice->start != null)
                                             {{ $notice->start->format('M, Y') }}
                                         @endif
                                     </p>

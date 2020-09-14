@@ -32,6 +32,7 @@
             <div class="row">
                 <div class="col-lg-9 mt-5">
                     <div class="card align-items-start shadow-v1 p-5">
+                        <img src="{{ asset('assets/files/notice') }}/{{ $news->file }}" alt="">
                         <ul class="list-inline text-gray">
                             <li class="list-inline-item mr-3">
                                 <i class="ti-file mr-1"></i>
@@ -63,12 +64,6 @@
                                 @foreach($categories as $category)
                                 <li class="mb-3"><a href="">{{ $category->name }} ({{ $category->notices->count() }})</a></li>
                                 @endforeach
-                                {{--<li class="mb-3"><a href="">Web Development (28)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Mobile Apps (4)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Business (10)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">IT &amp; Software (22)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Data Science (6)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Design (16) </a></li>--}}
                             </ul>
                         </div>
                     </div>

@@ -68,7 +68,12 @@
                                                 {{ $notice->type->name }}
                                             @endif
                                         </td>
-                                        <td><a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                                        <td>
+                                            {{ Form::model($notice,['action'=>['NoticeController@destroy',$notice->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            {{ Form::submit('X',['class'=>'btn btn-danger btn-sm']) }}
+                                            {{ Form::close() }}
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -194,7 +199,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
-
 @stop
 
 <!-- *** External JS File-->
@@ -211,6 +215,12 @@
                     format: 'yyyy-mm-dd'
                 })
         });
+    </script>
+    <script>
+        function confirmDelete(){
+            let x = confirm('Are you sure you want to delete this notice?');
+            return !!x;
+        }
     </script>
 @stop
 

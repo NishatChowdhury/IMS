@@ -10,56 +10,36 @@
         </div> <!-- END row-->
         <div class="row">
             <div class="col-lg-6">
+                @foreach($newses as $news)
                 <div class="list-card align-items-center marginTop-30">
                     <div class="col-md-4 px-md-0">
-                        <img class="w-100" src="assets/img/262x230/1.jpg" alt="">
+                        <img class="w-100" src="{{ asset('assets/files/notice') }}/{{ $news->file }}" alt="">
                     </div>
                     <div class="col-md-8 p-4">
-                        <p class="text-primary">June 9, 2018</p>
-                        <a href="#" class="h5">
-                            Kudiyattam: Sanskrit Theater by the Napathya Troupe
+                        <p class="text-primary">{{ $news->start->format('F d, Y') }}</p>
+                        <a href="{{ action('FrontController@newsDetails',$news->id) }}" class="h5">
+                            {{ $news->title }}
                         </a>
                     </div>
                 </div>
-                <div class="list-card align-items-center marginTop-30">
-                    <div class="col-md-4 px-md-0">
-                        <img class="w-100" src="assets/img/262x230/2.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 p-4">
-                        <p class="text-primary">June 12, 2018</p>
-                        <a href="#" class="h5">
-                            How to become a math super hero by
-                        </a>
-                    </div>
-                </div>
-                <div class="list-card align-items-center marginTop-30">
-                    <div class="col-md-4 px-md-0">
-                        <img class="w-100" src="assets/img/262x230/3.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 p-4">
-                        <p class="text-primary">June 17, 2018</p>
-                        <a href="#" class="h5">
-                            Increase your English skill with Anthony Brooks
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="col-lg-6 marginTop-30">
                 <div class="card">
-                    <img class="card-img-top" src="assets/img/555x490/2.jpg" alt="">
+                    <img class="card-img-top" src="{{ asset('assets/files/notice') }}/{{ $latestNews->file }}" alt="">
                     <div class="card-body">
                         <p class="text-primary">
-                            20 July 2018
+                            {{ $latestNews->start->format('F d, Y') }}
                         </p>
                         <h4>
                             <a href="#">
-                                Hidden in Plain Sight: Family Secrets and American History
+                                {{ $latestNews->title }}
                             </a>
                         </h4>
                         <p>
-                            Investig ationes demons trave wanrunt the lectore legere kliushy was aequod legunt saeph claritas.
+                            {{ $latestNews->description }}
                         </p>
-                        <a href="#" class="btn btn-outline-primary">
+                        <a href="{{ action('FrontController@newsDetails',$latestNews) }}" class="btn btn-outline-primary">
                             Read More
                         </a>
                     </div>
