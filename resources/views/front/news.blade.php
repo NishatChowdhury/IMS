@@ -24,6 +24,8 @@
                 </div>
                 @endforeach
             </div>
+
+            @if($latestNews)
             <div class="col-lg-6 marginTop-30">
                 <div class="card">
                     <img class="card-img-top" src="{{ asset('assets/files/notice') }}/{{ $latestNews->file }}" alt="">
@@ -45,6 +47,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div> <!-- END row-->
     </div> <!-- END container-->
 </section>

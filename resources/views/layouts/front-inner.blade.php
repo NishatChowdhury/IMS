@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/print.css?ver:1.1') }}">
 
+    @yield('style')
+
 </head>
 
 <body>

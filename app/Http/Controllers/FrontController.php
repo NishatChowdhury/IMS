@@ -3,24 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\AcademicCalender;
+use App\AdmissionFee;
 use App\Album;
+use App\AppliedStudent;
+use App\Bank;
+use App\Classes;
 use App\ClassSchedule;
 use App\ExamResult;
 use App\Gallery;
 use App\GalleryCategory;
+use App\Group;
 use App\ImportantLink;
 use App\Mark;
+use App\MeritList;
 use App\Notice;
 use App\NoticeCategory;
 use App\Page;
 use App\Repository\FrontRepository;
+use App\Session;
 use App\Slider;
 use App\Staff;
 use App\Student;
 use App\Syllabus;
+use App\UpcomingEvent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
@@ -49,7 +58,14 @@ class FrontController extends Controller
         $teachers = Staff::all();
         $links = ImportantLink::all();
         $notices = Notice::all()->sortByDesc('start')->take(5);
-        return view('front.index',compact('sliders','content','teachers','links','notices'));
+        $events = UpcomingEvent::query()
+            ->where('date','>',Carbon::yesterday())
+            ->orderBy('date')
+            ->take(3)
+            ->get();
+        $newses = Notice::query()->where('notice_type_id',1)->orderByDesc('start')->skip(1)->take(3)->get();
+        $latestNews = Notice::query()->where('notice_type_id',1)->orderByDesc('start')->first();
+        return view('front.index',compact('sliders','content','teachers','links','notices','events','newses','latestNews'));
     }
 
     public function introduction()
@@ -318,7 +334,7 @@ class FrontController extends Controller
             //->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->get();
-            //->paginate(5);
+        //->paginate(5);
 
         $categories = NoticeCategory::all();
         return view('front.pages.notice',compact('notices','categories'));
@@ -381,6 +397,130 @@ class FrontController extends Controller
         $content = Page::query()->where('name','contacts')->first();
         return view('front.pages.contacts',compact('content'));
     }
-    // Contact ENd
+    // Contact End
+
+    public function validateAdmission()
+    {
+        return view('front.admission.validate-admission');
+    }
+
+    public function admissionForm(Request $request)
+    {
+        $this->validate($request,[
+            'ssc_roll' => 'required|numeric|exists:merit_lists'
+        ]);
+
+        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+
+        $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
+
+        $compulsory = DB::table('online_subjects')
+            ->where('type',1)
+            ->pluck('name','id');
+        $selective = DB::table('online_subjects')
+            ->where('type','like','%2%')
+            ->where('group_id',$group)
+            ->pluck('name','id');
+        $optional = DB::table('online_subjects')
+            ->where('type','like','%3%')
+            ->where('group_id',$group)
+            ->pluck('name','id');
+
+        $repository = $this->repository;
+
+        if($student){
+            if($student->approved){
+                return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
+            }
+            return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
+        }
+
+        return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
+    }
+
+    public function admissionSuccess(Request $request)
+    {
+        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+
+        return view('front.admission.admission-success',compact('student'));
+    }
+
+    public function studentForm(Request $request)
+    {
+        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+
+        $subjects = json_decode($student->subjects);
+
+        return view('front.admission.student-form',compact('student','subjects'));
+    }
+
+    public function invoice(Request $request)
+    {
+        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+
+        $categories = AdmissionFee::query()->where('group_id',$student->group_id)->get();
+
+        $banks = Bank::all();
+
+        $bank = Bank::query()->first();
+
+        return view('front.admission.invoice',compact('categories','student','banks','bank'));
+    }
+
+    public function bankSlip(Request $request)
+    {
+        $student = Student::query()
+            ->where('ssc_roll',$request->get('ssc_roll'))
+            ->first();
+
+        return view('front.admission.bank-slip',compact('student'));
+    }
+
+    public function loadStudentInfo(Request $request){
+        //$academicYear = substr(trim(Session::query()->where('id',$request->academicYear)->first()->year),-2);
+        $academicYear = 2020;
+        $incrementId = Student::query()->max('id');
+        $increment = $incrementId + 1;
+        $studentId = 'S'.$academicYear.$increment;
+
+        $ssc_roll = $request->get('ssc_roll');
+
+        $student = MeritList::query()->where('ssc_roll',$ssc_roll)->first();
+        $name = $student->name;
+        $session_id = $student->session_id;
+        $class_id = $student->class_id;
+        $group_id = $student->group_id;
+
+        $session = Session::query()->findOrFail($session_id)->year;
+        $classes = Classes::query()->findOrFail($class_id)->name;
+        $groups = Group::query()->findOrFail($group_id)->name;
+
+        return response([
+            'studentId' => $studentId,
+            'ssc_roll' => $ssc_roll,
+            'name' => $name,
+            'session_id' => $session_id,
+            'class_id' => $class_id,
+            'group_id' => $group_id,
+            'session' => $session,
+            'classes' => $classes,
+            'groups' => $groups,
+            'ssc_year' => $student->passing_year,
+            'ssc_board' => $student->board,
+        ]);
+    }
+
+    public function events()
+    {
+        $event = UpcomingEvent::query()->latest('date')->first();
+        $events = UpcomingEvent::query()->latest('date')->get()->skip(1);
+        return view('front.pages.events',compact('event','events'));
+    }
+
+    public function event($id)
+    {
+        $event = UpcomingEvent::query()->findOrFail($id);
+        return view('front.pages.event',compact('event'));
+    }
 }
 
