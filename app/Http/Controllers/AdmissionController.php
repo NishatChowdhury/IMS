@@ -133,6 +133,21 @@ class AdmissionController extends Controller
             $s->where('group_id',$request->get('group_id'));
         }
 
+        if($request->has('status') && $request->get('status') != null){
+            $status = $request->get('status');
+            if($status == 0){
+                $s->whereDoesntHave('applied');
+            }elseif($status == 2){
+                $s->whereHas('applied',function($query){
+                    $query->where('approved',1);
+                });
+            }else{
+                $s->whereHas('applied',function($query){
+                    $query->where('approved',null);
+                });
+            }
+        }
+
         $applied = AppliedStudent::query()->count();
         $approved = AppliedStudent::query()->where('approved',1)->count();
 

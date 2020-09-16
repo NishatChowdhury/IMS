@@ -50,12 +50,12 @@
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
                                 </div>
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">Submitted/Not Submitted</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        {{ Form::select('is_submit',[0=>'Not Submitted',1=>'Submitted'],null,['class'=>'form-control','placeholder'=>'Select Option']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
+                                <div class="col">
+                                    <label for="">Status</label>
+                                    <div class="input-group">
+                                        {{ Form::select('status',[0=>'Not Submitted',1=>'Submitted',2=>'Approved'],null,['class'=>'form-control','placeholder'=>'Select Option']) }}
+                                    </div>
+                                </div>
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
                                         <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>

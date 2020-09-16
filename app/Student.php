@@ -119,4 +119,9 @@ class Student extends Model
         return StudentPayment::where('student_id',$id)->sum('discount');
     }
 
+    public function admission()
+    {
+        return $this->belongsTo(AppliedStudent::class,'ssc_roll','ssc_roll');
+    }
+
 }
