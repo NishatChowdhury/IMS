@@ -2,7 +2,7 @@
     display:none;
 }
 .no-print{
-    display:block;
+    /*display:block;*/
 }
 
 @media print {

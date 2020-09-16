@@ -39,8 +39,8 @@
                 {{--</a>--}}
             {{--</li>--}}
             @cannot('cms')
-                <li class="nav-item has-treeview {{ isActive(['chart*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['chart*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admission*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admission*']) }}">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
                             Admission
@@ -64,6 +64,18 @@
                             <a href="{{route('admission.examResult')}}" class="nav-link {{ isActive('admission/examResult') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Results</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{action('AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admission/browse-merit-list') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Browse Merit List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{action('AdmissionController@uploadMeritList')}}" class="nav-link {{ isActive('admission/upload-merit-list') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Upload Merit List</p>
                             </a>
                         </li>
                     </ul>
@@ -149,6 +161,12 @@
                             <p>Promotion</p>
                         </a>
                     </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('StudentController@tod') }}" class="nav-link {{ isActive('student/tod') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Tod List</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item has-treeview {{ isActive(['institution*']) }}">
@@ -201,12 +219,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Profile</p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                        <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Profile</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </li>
             {{--<li class="nav-header">EXAMPLES</li>--}}
@@ -321,6 +339,13 @@
                             <a href="{{route('student.fee')}}" class="nav-link {{ isActive('fee-category/student') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Student Fee Collection</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('fee-category/student') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Chart of Accounts</p>
                             </a>
                         </li>
 
@@ -522,8 +547,8 @@
                     {{--</li>--}}
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['notice*']) }}">
-                <a href="#" class="nav-link {{ isActive(['notice*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['notice*','event*']) }}">
+                <a href="#" class="nav-link {{ isActive(['notice*','event*']) }}">
                     <i class="fas fa-bullhorn"></i>
                     <p>
                         Notice
@@ -547,6 +572,10 @@
                         <a href="{{ action('NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Type</p>
+                        </a>
+                        <a href="{{ action('UpcomingEventController@index') }}" class="nav-link {{ isActive(['event*']) }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Upcoming Events</p>
                         </a>
                     </li>
                 </ul>
@@ -627,12 +656,12 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="{{ route('message.index') }}" class="nav-link {{ isActive('gallery/albums') }}">
-                    <i class="nav-icon far fa-envelope"></i>
-                    <p>Messages</p>
-                </a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a href="{{ route('message.index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
+{{--                    <i class="nav-icon far fa-envelope"></i>--}}
+{{--                    <p>Messages</p>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             {{--<li class="nav-header">LABELS</li>--}}
             {{--<li class="nav-item">--}}
                 {{--<a href="#" class="nav-link">--}}
