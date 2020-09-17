@@ -16,6 +16,7 @@ class OnlineSubjectsTable extends Migration
         Schema::create('online_subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');
+            $table->string('code2');
             $table->string('name');
             $table->integer('type')->comment('1 = compulsory, 2 = selective, 3 = 4th subject');
             $table->unsignedBigInteger('group_id')->nullable();
