@@ -167,6 +167,12 @@
                             <p>Tod List</p>
                         </a>
                     </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('StudentController@esif') }}" class="nav-link {{ isActive('student/esif') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>eSIF</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item has-treeview {{ isActive(['institution*']) }}">
