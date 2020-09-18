@@ -355,7 +355,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('fee-category/student') }}">
+                            <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chart of Accounts</p>
                             </a>
