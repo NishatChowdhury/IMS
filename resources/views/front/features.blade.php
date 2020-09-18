@@ -18,10 +18,10 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4 marginTop-30">
-                <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
+                <a href="{{ action('FrontController@validateAdmission') }}" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/1.png" alt="">
                     <h4 class="mt-2">
-                       Calender
+                       Online Admission
                     </h4>
                 </a>
             </div>
