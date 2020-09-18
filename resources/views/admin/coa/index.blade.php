@@ -33,55 +33,30 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <a href="{{ action('ChartOfAccountController@create') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Name</th>
-                                    <th>Parent</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @php $x = 1 @endphp
-                                @foreach($chartOfAccounts as $coa)
-                                <tr>
-                                    <td>{{ $x++ }}</td>
-                                    <td>{{ $coa->name }}</td>
-                                    <td>{{ $coa->parent->name }} <b>[{{ $coa->parent->parent->name }}]</b></td>
-                                    <td>{{ $coa->is_active == 1 ? 'Active' : 'Inactive' }}</td>
-                                    <td>
-                                        {{ Form::open(['action'=>['ChartOfAccountController@destroy',$coa->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                        <a href="{{ action('ChartOfAccountController@edit',$coa->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                        {{ Form::close() }}
-                                    </td>
-                                </tr>
-                                @endforeach
-{{--                                @foreach($coa as $grandParent)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ $grandParent->name }}</td>--}}
-{{--                                        <td>--}}
-{{--                                            <ul>--}}
-{{--                                                @foreach($grandParent->children as $parents)--}}
-{{--                                                    <li>{{ $parents->name }}</li>--}}
-{{--                                                    <ol>--}}
-{{--                                                        @foreach($parents->children as $child)--}}
-{{--                                                            <li>{{ $child->name }}</li>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </ol>--}}
-{{--                                                @endforeach--}}
-{{--                                            </ul>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                    @endforeach--}}
+                                @foreach($coa as $grandParent)
+                                    <tr>
+                                        <td>{{ $grandParent->name }}</td>
+                                        <td>
+                                            <ul>
+                                                @foreach($grandParent->children as $parents)
+                                                    <li>{{ $parents->name }}</li>
+                                                    <ol>
+                                                        @foreach($parents->children as $child)
+                                                            <li>{{ $child->name }}</li>
+                                                        @endforeach
+                                                    </ol>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                     </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
@@ -89,7 +64,14 @@
                                     <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
-                                    {{ $chartOfAccounts->links() }}
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +108,7 @@
     </script>
     <script>
         function confirmDelete(){
-            let x = confirm('Are you sure you want to delete this account head?');
+            let x = confirm('Are you sure you want to delete this notice?');
             return !!x;
         }
     </script>
