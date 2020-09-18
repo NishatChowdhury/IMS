@@ -586,4 +586,44 @@ class StudentController extends Controller
 
         return view('admin.student.studentProfile',compact('student','payments'));
     }
+
+    public function tod(Request $request)
+    {
+        if($request->has('session_id') && $request->has('class_id')){
+            $students = Student::query()->where('session_id',$request->get('session_id'))->where('class_id',$request->get('class_id'))->get();
+        }else{
+            $students = [];
+        }
+
+        $repository = $this->repository;
+        return view('admin.student.tod',compact('students','repository'));
+    }
+
+    public function esif(Request $request)
+    {
+        if($request->has('session_id') && $request->has('class_id')){
+            $students = Student::query()->where('session_id',$request->get('session_id'))->where('class_id',$request->get('class_id'))->get();
+        }else{
+            $students = [];
+        }
+
+        $repository = $this->repository;
+        return view('admin.student.esif',compact('students','repository'));
+    }
+
+    public function images(Request $request)
+    {
+        if($request->has('session_id') && $request->has('class_id') && $request->has('group_id')){
+            $students = Student::query()
+                ->where('session_id',$request->get('session_id'))
+                ->where('class_id',$request->get('class_id'))
+                ->where('group_id',$request->get('group_id'))
+                ->get();
+        }else{
+            $students = [];
+        }
+
+        $repository = $this->repository;
+        return view('admin.student.images',compact('students','repository'));
+    }
 }

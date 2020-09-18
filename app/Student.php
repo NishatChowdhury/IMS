@@ -104,19 +104,19 @@ class Student extends Model
     }
 
     public function payable($id){
-        return StudentPayment::where('student_id',$id)->sum('setup_amount');
+        return StudentPayment::query()->where('student_id',$id)->sum('setup_amount');
     }
 
     public function paid($id){
-        return StudentPayment::where('student_id',$id)->sum('paid_amount');
+        return StudentPayment::query()->where('student_id',$id)->sum('paid_amount');
     }
 
     public function fine($id){
-        return StudentPayment::where('student_id',$id)->sum('fine');
+        return StudentPayment::query()->where('student_id',$id)->sum('fine');
     }
 
     public function discount($id){
-        return StudentPayment::where('student_id',$id)->sum('discount');
+        return StudentPayment::query()->where('student_id',$id)->sum('discount');
     }
 
     public function admission()

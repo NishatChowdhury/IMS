@@ -5,6 +5,7 @@ Route::group(['prefix'=>'admin'],function(){
     //Student Routes
     Route::get('student/tod','StudentController@tod');
     Route::get('student/esif','StudentController@esif');
+    Route::get('student/images','StudentController@images');
     //Student Routes End
 
     //Accounts

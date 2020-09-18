@@ -122,8 +122,8 @@
                     </ul>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive('student*') }}">
-                <a href="#" class="nav-link {{ isActive('student*') }}">
+            <li class="nav-item has-treeview {{ isActive('admin/student*') }}">
+                <a href="#" class="nav-link {{ isActive('admin/student*') }}">
                     <i class="nav-icon fas fa-user-graduate"></i>
                     <p>
                         Student Mgmt
@@ -162,15 +162,21 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('StudentController@tod') }}" class="nav-link {{ isActive('student/tod') }}">
+                        <a href="{{ action('StudentController@tod') }}" class="nav-link {{ isActive('admin/student/tod*') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Tod List</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('StudentController@esif') }}" class="nav-link {{ isActive('student/esif') }}">
+                        <a href="{{ action('StudentController@esif') }}" class="nav-link {{ isActive('admin/student/esif*') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>eSIF</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('StudentController@images') }}" class="nav-link {{ isActive('admin/student/images*') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Images</p>
                         </a>
                     </li>
                 </ul>

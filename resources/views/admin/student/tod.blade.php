@@ -24,7 +24,7 @@
 
 
     <!-- /.Search-panel -->
-    <section class="content">
+    <section class="content no-print">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -33,18 +33,6 @@
                         {{ Form::open(['action'=>'StudentController@tod','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Student ID</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Name</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="col">
                                     <label for="">Session</label>
                                     <div class="input-group">
@@ -57,19 +45,6 @@
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Section</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Group</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
                                         <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
@@ -96,8 +71,6 @@
                     <div class="card-header">
                         <h3 class="card-title">Total Found : {{ count($students) }}</h3>
                         <div class="card-tools">
-                            <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
-                            <a href="{{ \Illuminate\Support\Facades\Request::fullUrlWithQuery(['csv' => 'csv']) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -135,24 +108,26 @@
                                     </td>
                                     <td>
                                         ROLL: {{ $student->ssc_roll }}<br>
-                                        REG : {{ $student->admission->ssc_registration }}<br>
-                                        SESS: {{ $student->admission->ssc_session }}
+                                        REG : {{ $student->admission->ssc_registration ?? '' }}<br>
+                                        SESS: {{ $student->admission->ssc_session ?? '' }}
                                     </td>
                                     <td>
-                                        {{ $student->admission->ssc_year }}<br>
-                                        {{ $student->admission->ssc_board }}
+                                        {{ $student->admission->ssc_year ?? '' }}<br>
+                                        {{ $student->admission->ssc_board ??'' }}
                                     </td>
                                     <td>
-                                        {{ $student->admission->created_at->format('d/m/Y') }}<br>
-                                        {{ $student->classes->name }}<br>
-                                        {{ $student->group->name }}, {{ $student->rank }}
+                                        {{ $student->admission ? $student->admission->created_at->format('d/m/Y') : '' }}<br>
+                                        {{ $student->classes->name ?? '' }}<br>
+                                        {{ $student->group->name ?? '' }}, {{ $student->rank ?? '' }}
                                     </td>
                                     <td>
+                                        @if($student->admission)
                                         @foreach(json_decode($student->admission->subjects) as $subjects)
                                             @foreach($subjects as $subject)
                                                 {{ \App\OnlineSubject::query()->findOrNew($subject)->code }}, {{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }},
                                             @endforeach
                                         @endforeach
+                                        @endif
                                     </td>
                                     <td></td>
                                 </tr>
