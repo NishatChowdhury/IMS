@@ -33,7 +33,7 @@
                                     <div class="col">
                                         <label for="">Staff ID</label>
                                         <div class="input-group">
-                                            <input class="form-control" placeholder="Student ID" name="studentId" type="text">
+                                            <input class="form-control" placeholder="Staff ID" name="code" type="text">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -45,19 +45,13 @@
                                     <div class="col">
                                         <label for="">Staff Type</label>
                                         <div class="input-group">
-                                            <select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>
+                                            {{ Form::select('staff_type_id',[1=>'teacher',2=>'staff'],null,['class'=>'form-control','placeholder'=>'Staff Type']) }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="">Job Type</label>
                                         <div class="input-group">
-                                            <select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">Group</label>
-                                        <div class="input-group">
-                                            <select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>
+                                            {{ Form::select('job_type_id',[1=>'Permanent',2=>'Temporary'],null,['class'=>'form-control']) }}
                                         </div>
                                     </div>
 
@@ -93,8 +87,8 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>1000</p>
+                                            <h5 style="margin-bottom: 0;">Total Found</h5>
+                                            <p>{{ $staffs->count() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +127,7 @@
                                     <td>{{$staff->name}}</td>
                                     <td>{{$staff->title}}</td>
                                     <td>{{$staff->staff_type_id}}</td>
-                                    <td>{{$staff->mail}}</td>
+                                    <td>{{$staff->email}}</td>
                                     <td>{{$staff->mobile}}</td>
                                     <td>
                                         <a href="{{ url('staff-profile',$staff->id) }}" class="btn btn-success btn-sm" ><i class="fas fa-eye"></i> </a>

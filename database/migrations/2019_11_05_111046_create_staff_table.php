@@ -24,7 +24,7 @@ class CreateStaffTable extends Migration
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('blood_group_id');
             $table->string('image')->nullable();
-            $table->string('mail')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('code')->unique();
             $table->string('title');
             $table->unsignedBigInteger('role_id');

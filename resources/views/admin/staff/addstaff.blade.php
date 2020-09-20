@@ -89,7 +89,7 @@
 
                                                             <div class="form-group row col-md-12">
                                                                 <label for="inputEmail4">Email</label>
-                                                                <div class="input-group ">
+                                                                <div class="input-group has-error">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
                                                                     </div>
