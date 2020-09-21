@@ -80,13 +80,16 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div class="row">
-                            @foreach($students as $student)
-                                <div class="col-2">
-                                    <img src="{{ asset('assets/img/students') }}/{{ $student->image }}" alt="" class="img-thumbnail" height="135">
+                            @foreach($students->chunk(18) as $chunks)
+                                <div class="row" style="page-break-after: always">
+                                    @foreach($chunks as $student)
+                                        <div class="col-2">
+                                            <img src="{{ asset('assets/img/students') }}/{{ $student->image }}" alt="" class="img-thumbnail" height="135">
+                                            <p class="text-sm text-center">{{ $student->rank > 0 ? $student->rank : $student->name }}</p>
+                                        </div>
+                                    @endforeach
                                 </div>
                             @endforeach
-                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
