@@ -46,19 +46,19 @@
                                     <div class="col">
                                         <label for="">User</label>
                                         <div class="input-group">
-                                            {{ Form::select('user',[1=>'Student',2=>'Employee'],null,['class'=>'form-control','placeholder'=>'Select Session']) }}
+                                            {{ Form::select('user',[1=>'Student',2=>'Employee'],null,['class'=>'form-control','placeholder'=>'Select Session','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="">Year</label>
                                         <div class="input-group">
-                                            {{ Form::selectRange('year',2020,2021,null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
+                                            {{ Form::selectRange('year',2020,2021,null,['class'=>'form-control','placeholder'=>'Session','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="">Month</label>
                                         <div class="input-group">
-                                            {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month']) }}
+                                            {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
@@ -66,6 +66,7 @@
                                         <div class="input-group">
                                             <select name="class_id" id="class" class="form-control">
                                                 @foreach($repository->academicClasses() as $class)
+                                                    <option value="">Select Class</option>
                                                     <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                                 @endforeach
                                             </select>
@@ -134,7 +135,12 @@
                                                 @endif
                                                 <td>
                                                     @php
-                                                        $attn = \App\Attendance::query()->where('registration_id', $student->studentId)->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')->min('access_date');
+                                                        $attn = \App\RawAttendance::query()
+                                                                    ->where(function($query)use($student){
+                                                                        $query->where('registration_id',$student->studentId)->orWhere('registration_id',$student->card_id);
+                                                                    })
+                                                                    ->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
+                                                                    ->min('access_date');
                                                     @endphp
                                                     @if($attn == null)
                                                         <span style="color:white; background: red" class="badge">A</span>

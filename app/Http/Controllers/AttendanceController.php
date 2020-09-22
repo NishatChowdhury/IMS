@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AcademicClass;
 use App\Attendance;
 use App\Classes;
+use App\RawAttendance;
 use App\Repository\AttendanceRepository;
 use App\Staff;
 use App\Student;
@@ -41,7 +42,7 @@ class AttendanceController extends Controller
         $students = Student::query()->get('studentId');
         $total_attendance = $i = 0;
         foreach ($students as $student){
-            $total_attendances[$i] = Attendance::query()->where('access_date', 'like','%'.$today_date.'%')->where('registration_id', $student->studentId)->first();
+            $total_attendances[$i] = RawAttendance::query()->where('access_date', 'like','%'.$today_date.'%')->where('registration_id', $student->studentId)->first();
             if($total_attendances[$i] != null){
                 $total_attendance++;
             }
@@ -58,7 +59,7 @@ class AttendanceController extends Controller
         $teachers = Staff::query()->whereNotNull('role_id')->get('role_id');
         $total_attendance_teacher = $n =0;
         foreach ($teachers as $teacher){
-            $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
+            $total_attendance_teachers[$n] = RawAttendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
             if($total_attendance_teachers[$n] != null){
                 $total_attendance_teacher++;
             }
@@ -119,7 +120,7 @@ class AttendanceController extends Controller
 
             $attend = [];
             foreach($staffs as $staff){
-                $attn = Attendance::query()
+                $attn = RawAttendance::query()
                     ->where('registration_id',$staff->card_id)
                     ->where('access_date','like','%'.$date.'%')
                     ->get();
@@ -232,7 +233,7 @@ class AttendanceController extends Controller
 
         $attend = [];
         foreach($students as $student){
-            $attn = Attendance::query()
+            $attn = RawAttendance::query()
                 ->where('access_date','like','%'.$today.'%')
                 ->where('registration_id',$student->studentId)
                 ->get();
@@ -279,27 +280,49 @@ class AttendanceController extends Controller
 
         $allClasses = Classes::query()->get(['id','name']);
 
-        if($request->has('class_id') && $request->has('year') && $request->has('month')){
-            $students = Student::query()
-                ->where('academic_class_id', $request->class_id)
-                ->orderBy('rank')
-                ->get();
+        if($request->get('user') == 2){
+            $students = Staff::query()->get();
+
             $month = $request->month;
             $year = $request->year;
             $date = Carbon::createFromDate($year,$month)->format('Y-m');
             $attn = [];
 
             foreach($students as $student){
-                $attn[] = Attendance::query()
-                    ->where('registration_id',$student->studentId)
+                $attn[] = RawAttendance::query()
+                    ->where('registration_id',$student->card_id)
                     ->where('access_date','like',$date.'%')
                     ->get();
+            }
+        }elseif($request->get('user') == 1){
+            if($request->has('class_id') && $request->has('year') && $request->has('month')){
+                $students = Student::query()
+                    ->where('academic_class_id', $request->class_id)
+                    ->orderBy('rank')
+                    ->get();
+                $month = $request->month;
+                $year = $request->year;
+                $date = Carbon::createFromDate($year,$month)->format('Y-m');
+                $attn = [];
+
+                foreach($students as $student){
+                    $attn[] = RawAttendance::query()
+                        ->where('registration_id',$student->studentId)
+                        ->where('access_date','like',$date.'%')
+                        ->get();
+                }
+            }else{
+                $students = [];
+                $month = 0;
+                $year = 0;
             }
         }else{
             $students = [];
             $month = 0;
             $year = 0;
         }
+
+
 
         $repository = $this->repository;
 

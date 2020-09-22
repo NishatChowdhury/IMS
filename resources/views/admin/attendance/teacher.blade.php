@@ -32,7 +32,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     {{ Form::label('USER') }}
-                                    {{ Form::select('staff_type_id',[0=>'ALL',1=>'STAFF',2=>'TEACHER'],null,['class'=>'form-control']) }}
+                                    {{ Form::select('staff_type_id',[0=>'Select User',1=>'STAFF',2=>'TEACHER'],null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group">
                                     <label>Date</label>
