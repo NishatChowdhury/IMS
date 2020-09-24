@@ -169,3 +169,11 @@
     <!-- /.content -->
 
 @stop
+
+@section('style')
+    <style>
+        tbody td{
+            text-transform: uppercase;
+        }
+    </style>
+@stop

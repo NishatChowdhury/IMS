@@ -75,7 +75,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped table-sm">
+                        <table id="example1" class="table table-bordered table-striped table-sm text-sm">
                             <thead class="thead-light">
                             <tr>
                                 <th>SL No.</th>
@@ -86,7 +86,7 @@
                                 <th>SUBJECTS NAME WITH CODE WHICH ARE APPROVED BY THE BOARD. (EXAMPLE: BENGALI-101,102)</th>
                                 <th>REMARK</th>
                             </tr>
-                            <tr>
+                            <tr class="text-center">
                                 <th>1</th>
                                 <th>2</th>
                                 <th>3</th>
@@ -118,15 +118,15 @@
                                     <td>
                                         {{ $student->admission ? $student->admission->created_at->format('d/m/Y') : '' }}<br>
                                         {{ $student->classes->name ?? '' }}<br>
-                                        {{ $student->group->name ?? '' }}, {{ $student->rank ?? '' }}
+                                        {{ $student->group->name ?? '' }}, {{ $student->rank ?? 0 }}
                                     </td>
                                     <td>
                                         @if($student->admission)
-                                        @foreach(json_decode($student->admission->subjects) as $subjects)
-                                            @foreach($subjects as $subject)
-                                                {{ \App\OnlineSubject::query()->findOrNew($subject)->code }}, {{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }},
+                                            @foreach(json_decode($student->admission->subjects) as $subjects)
+                                                @foreach($subjects as $subject)
+                                                    <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
+                                                @endforeach
                                             @endforeach
-                                        @endforeach
                                         @endif
                                     </td>
                                     <td></td>
@@ -145,4 +145,18 @@
     </section>
     <!-- /.content -->
 
+@stop
+
+@section('style')
+    <style>
+        td .subjects:after{
+            content: ",";
+        }
+        td .subjects:last-child:after{
+            content: ""
+        }
+        tbody td{
+            text-transform: uppercase;
+        }
+    </style>
 @stop
