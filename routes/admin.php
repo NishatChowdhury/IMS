@@ -2,6 +2,10 @@
 
 Route::group(['prefix'=>'admin'],function(){
 
+    Route::get('transactions','TransactionController@index');
+    Route::get('transaction/create','TransactionController@create');
+    Route::post('transaction/store','TransactionController@store');
+
     //Student Routes
     Route::get('student/tod','StudentController@tod');
     Route::get('student/esif','StudentController@esif');
@@ -19,6 +23,7 @@ Route::group(['prefix'=>'admin'],function(){
 
     //Admission Routes
     Route::post('admission/store','AdmissionController@store');
+    Route::post('admission/unapprove/{roll}','AdmissionController@unapprove');
     //Admission Routes Ends
 
 //Upcoming Events

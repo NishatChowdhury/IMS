@@ -125,7 +125,11 @@
                                     </td>
                                     <td>
                                         @if($stdnt)
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#studentModal" onclick="studentView({{$student->ssc_roll}})"><span class="fas fa-eye"></span></button>
+                                        {{ Form::open(['action'=>['AdmissionController@unapprove',$student->ssc_roll],'method'=>'post','onsubmit'=>'return confirmUnApprove()']) }}
+                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#studentModal" onclick="studentView({{$student->ssc_roll}})" title="Approve"><span class="fas fa-eye"></span></button>
+
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Disapprove"><span class="fas fa-ban"></span></button>
+                                            {{ Form::close() }}
                                         @endif
                                     </td>
                                 </tr>
@@ -195,6 +199,12 @@
                 $("#applied-student-view").html(e);
                 $("#loader").hide();
             })
+        }
+    </script>
+    <script>
+        function confirmUnApprove(){
+            var x = confirm('Are you sure you want to disapprove this student?');
+            return !!x;
         }
     </script>
 @stop
