@@ -546,3 +546,14 @@ Route::get('sync-fake-attn',function(){
     }
     dd('done. please, check');
 });
+
+Route::get('change-duplicate-id',function(){
+    $studentId = \App\AppliedStudent::query()->get('studentId')->toArray();
+    //dd($studentId);
+    foreach($studentId as $id){
+        $appliedStudent = \App\AppliedStudent::query()->where('studentId',$id)->get();
+        if($appliedStudent->count() > 1){
+            dd($appliedStudent);
+        }
+    }
+});
