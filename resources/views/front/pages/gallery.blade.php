@@ -34,23 +34,25 @@
                         </a>
                         @foreach($categories as $category)
                             <a class="nav-item nav-link" href="#" data-filter=".{{ $category->name }}">
-                                {{ $category->name }}
+                                {{ $category != null ? $category->name :''}}
                             </a>
                         @endforeach
                     </ul>
                 </div> <!-- END col-12 -->
             </div> <!-- END row-->
             <div class="row isotop-filter">
-                @foreach($albums as $album)
-                    <div class="col-lg-2 col-md-3 marginTop-30 {{ $album->category->name }}">
-                        <div class="media-viewer">
-                            <a href="{{ action('FrontController@album',$album->id) }}">
-                                <img class="" src="{{ asset('assets/img/album.png') }}" alt="" width="125"><br>
-                                <a href="{{ action('FrontController@album',$album->id) }}">{{ $album->name }}</a>
-                            </a>
+                @if($albums)
+                    @foreach($albums as $album)
+                        <div class="col-lg-2 col-md-3 marginTop-30 {{ $album ? $album->category ? $album->category->name : '':''}}">
+                            <div class="media-viewer">
+                                <a href="{{ action('FrontController@album',$album->id) }}">
+                                    <img class="" src="{{ asset('assets/img/album.png') }}" alt="" width="125"><br>
+                                    <a href="{{ action('FrontController@album',$album->id) }}">{{ $album->name }}</a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div> <!-- END row-->
         </div> <!-- END container-->
     </section>

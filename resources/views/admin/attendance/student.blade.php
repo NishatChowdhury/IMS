@@ -206,6 +206,29 @@
                                         <td>
                                             {{--{{ $attn->student->status }}--}}
                                             {{ $attn->status }}
+
+
+                                            <br>----------------------<br>
+{{--                                            Start by Ahmed--}}
+                                            <br>----------------------<br>
+
+{{--                                            {{ $attn->enter == '-' ? '-' : $attn->enter->format('h:i:s A') > 9.15 ? 'A' : 'P' }}--}}
+                                            @if ($attn->enter != '-' AND $attn->exit != '-')
+
+
+                                            {{ $attn->exit == '-' ? '-' : $attn->exit->format('h:i:s A') }}
+                                                <br>
+                                           .... Enter TSTMP{{ date_timestamp_get($attn->enter)}} <br>
+                                                EXIT TSTMP{{ date_timestamp_get($attn->exit)}}<br>
+                                                shift TSTMP
+
+{{--                                                {{$attn->student ? $attn->student->shift_id : '' }}<br>--}}
+
+                                                {{$attn->student }}<br>
+
+
+
+                                            @endif
                                         </td>
                                         <td></td>
                                     </tr>
