@@ -102,7 +102,7 @@
                     <div class="card">
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
-                            <table class="table table-condense">
+                            <table class="table table-condensed">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
