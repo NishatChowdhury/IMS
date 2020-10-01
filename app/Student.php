@@ -45,7 +45,8 @@ class Student extends Model
         'guardian_address',
         'bank_slip',
         'ssc_roll',
-        'location_id'
+        'location_id',
+        'shift_id',
     ];
 
     public function academicClass()
@@ -123,5 +124,13 @@ class Student extends Model
     {
         return $this->belongsTo(AppliedStudent::class,'ssc_roll','ssc_roll');
     }
+
+    public function shift()
+    {
+        return $this->belongsTo(Shift::class,'shift_id');
+    }
+
+
+
 
 }

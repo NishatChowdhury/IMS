@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>{{ strtoupper($content->name) }}</h2>
+                    <h2>{{ $content !=null ? strtoupper($content->name) : ''}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row align-items-center">
 
-                {!! $content->content !!}
+                {!! $content !=null ? $content->content : ''!!}
 
             </div> <!-- END row-->
         </div> <!-- END container-->
