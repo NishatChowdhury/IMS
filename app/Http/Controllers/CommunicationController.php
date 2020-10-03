@@ -92,6 +92,7 @@ class CommunicationController extends Controller
         $sms = $request->get('message');
         //dd($contacts);
         $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".$contacts."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
+        //$URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".urlencode($contacts)."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
 
         $ch = curl_init();
         curl_setopt ($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/html; charset=UTF-8']);
@@ -101,12 +102,12 @@ class CommunicationController extends Controller
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
         curl_exec($ch);
 
-        try{
-            $output = $content=curl_exec($ch);
-            print_r($output);
-        }catch(Exception $ex){
-            $output = "-100";
-        }
+//        try{
+//            $output = $content=curl_exec($ch);
+//            print_r($output);
+//        }catch(Exception $ex){
+//            $output = "-100";
+//        }
 
         $data['type'] = 'Notice';
         $data['user_id'] = auth()->id();
@@ -114,7 +115,7 @@ class CommunicationController extends Controller
         $data['sms_count'] = $request->get('sms_count');
         $data['numbers'] = $contacts;
         $data['message'] = $sms;
-        $data['status'] = $output;
+        $data['status'] = '1';
         CommunicationHistory::query()->create($data);
         //dd($output);
 
@@ -146,12 +147,12 @@ class CommunicationController extends Controller
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
         curl_exec($ch);
 
-        try{
-            $output = $content=curl_exec($ch);
-            print_r($output);
-        }catch(Exception $ex){
-            $output = "-100";
-        }
+//        try{
+//            $output = $content=curl_exec($ch);
+//            print_r($output);
+//        }catch(Exception $ex){
+//            $output = "-100";
+//        }
 
         $data['type'] = 'Quick';
         $data['user_id'] = auth()->id();
@@ -159,7 +160,7 @@ class CommunicationController extends Controller
         $data['sms_count'] = $request->get('sms_count');
         $data['numbers'] = $contacts;
         $data['message'] = $sms;
-        $data['status'] = $output;
+        $data['status'] = '1';
         CommunicationHistory::query()->create($data);
         //dd($output);
 
