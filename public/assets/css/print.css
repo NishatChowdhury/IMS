@@ -1,5 +1,5 @@
 .only-print{
-    display:none;
+    display:none !important;
 }
 .no-print{
     /*display:block;*/
