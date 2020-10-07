@@ -44,7 +44,8 @@ class StudentController extends Controller
 
         if($request->get('studentId')){
             $studentId = $request->get('studentId');
-            $s->where('studentId',$studentId);
+            //$s->where('studentId',$studentId);
+            $s->where('ssc_roll',$studentId);
         }
         if($request->get('name')){
             $name = $request->get('name');
@@ -140,7 +141,7 @@ class StudentController extends Controller
             return Response::download($filename, 'students.csv', $headers);
         }
 
-        $students = $s->orderBy('rank')->paginate(20);
+        $students = $s->orderBy('rank')->paginate(100);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
     }
@@ -590,7 +591,11 @@ class StudentController extends Controller
     public function tod(Request $request)
     {
         if($request->has('session_id') && $request->has('class_id')){
-            $students = Student::query()->where('session_id',$request->get('session_id'))->where('class_id',$request->get('class_id'))->get();
+            $students = Student::query()
+                ->where('session_id',$request->get('session_id'))
+                ->where('class_id',$request->get('class_id'))
+                ->orderBy('rank')
+                ->get();
         }else{
             $students = [];
         }
@@ -601,14 +606,23 @@ class StudentController extends Controller
 
     public function esif(Request $request)
     {
-        if($request->has('session_id') && $request->has('class_id')){
-            $students = Student::query()->where('session_id',$request->get('session_id'))->where('class_id',$request->get('class_id'))->get();
+        if($request->has('session_id') && $request->has('class_id') && $request->has('group_id')){
+            $group = Group::query()->findOrFail($request->get('group_id'));
+            $class = Classes::query()->findOrFail($request->get('class_id'));
+            $students = Student::query()
+                ->where('session_id',$request->get('session_id'))
+                ->where('class_id',$request->get('class_id'))
+                ->where('group_id',$request->get('group_id'))
+                ->orderBy('rank')
+                ->get();
         }else{
             $students = [];
+            $group = null;
+            $class = null;
         }
 
         $repository = $this->repository;
-        return view('admin.student.esif',compact('students','repository'));
+        return view('admin.student.esif',compact('students','repository','group','class'));
     }
 
     public function images(Request $request)

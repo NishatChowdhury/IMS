@@ -80,6 +80,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @if(!is_array($students))
                             @foreach($students->chunk(18) as $chunks)
                                 <div class="row" style="page-break-after: always">
                                     @foreach($chunks as $student)
@@ -90,6 +91,7 @@
                                     @endforeach
                                 </div>
                             @endforeach
+                        @endif
                     </div>
                     <!-- /.card-body -->
                 </div>
