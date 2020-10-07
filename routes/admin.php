@@ -39,4 +39,10 @@ Route::group(['prefix'=>'admin'],function(){
     //Applied Student
     Route::post('applied-student/view','AppliedStudentController@studentView');
     //Applied Student Ends
+
+    //Holiday Setup
+    Route::get('holidays','HolidayController@index')->name('attendance.holiday');
+    Route::post('holiday/store','HolidayController@store');
+    Route::delete('holiday/delete/{id}','HolidayController@destroy');
+    //Holiday Setup
 });
