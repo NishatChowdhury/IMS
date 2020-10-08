@@ -14,7 +14,7 @@ class CreateHolidayDurationTable extends Migration
     public function up()
     {
         Schema::create('holiday_durations', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('holiday_id');
             $table->date('date');
             $table->timestamps();

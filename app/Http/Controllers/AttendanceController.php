@@ -299,7 +299,7 @@ class AttendanceController extends Controller
                 $students = Student::query()
                     ->where('academic_class_id', $request->class_id)
                     ->orderBy('rank')
-                    ->get();
+                    ->get()->take(1);
                 $month = $request->month;
                 $year = $request->year;
                 $date = Carbon::createFromDate($year,$month)->format('Y-m');

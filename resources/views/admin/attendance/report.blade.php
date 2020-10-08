@@ -133,6 +133,9 @@
                                                 @if($i < 10)
                                                     @php $i = '0'.$i @endphp
                                                 @endif
+{{--                                                @if($month < 10)--}}
+{{--                                                    @php $month = '0'.$month @endphp--}}
+{{--                                                @endif--}}
                                                 <td>
                                                     @php
                                                         $attn = \App\RawAttendance::query()
@@ -141,12 +144,19 @@
                                                                     })
                                                                     ->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->min('access_date');
+
+                                                    $isHoliday = \App\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
                                                     @endphp
                                                     @if($attn == null)
-                                                        <span style="color:white; background: red" class="badge">A</span>
+                                                        @if($isHoliday)
+                                                            <span style="color:white; background: darkviolet" class="badge">H</span>
+                                                        @else
+                                                            <span style="color:white; background: red" class="badge">A</span>
+                                                        @endif
                                                     @else
                                                         <span style="color:white; background: green" class="badge">P</span>
                                                     @endif
+                                                    {{ $year.'-'.$month.'-'.$i }}
                                                 </td>
                                             @endfor
                                         </tr>
