@@ -35,16 +35,6 @@
         </div>
     @endif
 
-    @if(\Illuminate\Support\Facades\Session::has('success'))
-        <div class="container">
-            <div class="card border-success">
-                <div class="card-body">
-                    <p class="text-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</p>
-                </div>
-            </div>
-        </div>
-    @endif
-
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
@@ -94,10 +84,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    {{ Form::open(['action'=>'HolidayController@store','method'=>'post']) }}
+                                    {{ Form::model($holiday,['action'=>['HolidayController@update',$holiday->id],'method'=>'patch']) }}
                                     <div class="form-group">
                                         <label for="email">Name</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" placeholder="Holiday Name" name="name" type="text">
+                                        <input class="form-control @error('name') is-invalid @enderror" placeholder="Holiday Name" name="name" type="text" value="{{ $holiday->name }}">
                                         <div class="invalid-feedback">
                                             @error('name') {{ $message }} @enderror
                                         </div>
@@ -105,11 +95,11 @@
                                     <div class="form-group">
                                         <label for="">Start Date</label>
                                         <div class="input-group">
-                                            <input class="form-control datePicker @error('start') is-invalid @enderror" name="start" type="text">
+                                            <input class="form-control datePicker @error('start') is-invalid @enderror" name="start" type="text" value="{{ $holiday->duration->count() > 0 ? $holiday->duration->first()->date : '' }}">
                                             <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend2">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
+                                                <span class="input-group-text" id="inputGroupPrepend2">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
                                             </div>
                                             <div class="invalid-feedback">
                                                 @error('start') {{ $message }} @enderror
@@ -119,11 +109,11 @@
                                     <div class="form-group">
                                         <label for="">End Date</label>
                                         <div class="input-group">
-                                            <input class="form-control datePicker @error('end') is-invalid @enderror" name="end" type="text">
+                                            <input class="form-control datePicker @error('end') is-invalid @enderror" name="end" type="text" value="{{ $holiday->duration->count() > 0 ? $holiday->duration->last()->date : '' }}">
                                             <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend2">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
+                                                <span class="input-group-text" id="inputGroupPrepend2">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
                                             </div>
                                             <div class="invalid-feedback">
                                                 @error('end') {{ $message }} @enderror

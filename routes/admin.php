@@ -43,6 +43,8 @@ Route::group(['prefix'=>'admin'],function(){
     //Holiday Setup
     Route::get('holidays','HolidayController@index')->name('attendance.holiday');
     Route::post('holiday/store','HolidayController@store');
+    Route::get('holiday/edit/{id}','HolidayController@edit');
+    Route::patch('holiday/{id}/update','HolidayController@update');
     Route::delete('holiday/delete/{id}','HolidayController@destroy');
     //Holiday Setup
 });
