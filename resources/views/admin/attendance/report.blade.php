@@ -65,8 +65,8 @@
                                         <label for="class">Class</label>
                                         <div class="input-group">
                                             <select name="class_id" id="class" class="form-control">
+                                                <option value="">Select Class</option>
                                                 @foreach($repository->academicClasses() as $class)
-                                                    <option value="">Select Class</option>
                                                     <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                                 @endforeach
                                             </select>
@@ -143,20 +143,40 @@
                                                                         $query->where('registration_id',$student->studentId)->orWhere('registration_id',$student->card_id);
                                                                     })
                                                                     ->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
-                                                                    ->min('access_date');
+                                                                    ->get();
 
-                                                    $isHoliday = \App\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
+                                                    $isHoliday = App\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
+
+                                                    $shiftInTime = App\Shift::query()->first()->start;
+                                                    $shiftOutTime = App\Shift::query()->first()->end;
+                                                    $grace = App\Shift::query()->first()->grace;
+
+                                                    $shiftInTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftInTime)->addMinutes($grace);
+                                                    $shiftOutTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftOutTime);
+                                                    if($attn->count() > 0){
+                                                        $enter = $attn->first()->access_date;
+                                                        $exit = $attn->last()->access_date;
+
+                                                       $isLate = $enter > $shiftInTime;
+                                                       $isEarly = $exit < $shiftOutTime;
+                                                    }
+
                                                     @endphp
-                                                    @if($attn == null)
+                                                    @if($attn->count() > 0)
+                                                        @if($isLate)
+                                                            <span style="color:white; background: deepskyblue" class="badge">D</span>
+                                                        @elseif($isEarly)
+                                                            <span style="color:white; background: Orange" class="badge">E</span>
+                                                        @else
+                                                            <span style="color:white; background: green" class="badge">P</span>
+                                                        @endif
+                                                    @else
                                                         @if($isHoliday)
                                                             <span style="color:white; background: darkviolet" class="badge">H</span>
                                                         @else
                                                             <span style="color:white; background: red" class="badge">A</span>
                                                         @endif
-                                                    @else
-                                                        <span style="color:white; background: green" class="badge">P</span>
                                                     @endif
-                                                    {{ $year.'-'.$month.'-'.$i }}
                                                 </td>
                                             @endfor
                                         </tr>
