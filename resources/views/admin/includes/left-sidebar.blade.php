@@ -95,12 +95,35 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Setting</p>
+                        <li class="nav-item has-treeview {{ isActive('attendance*') }}">
+                            <a href="#" class="nav-link {{ isActive('attendance*') }}">
+                                <i class="nav-icon fas fa-tree"></i>
+                                <p>
+                                    Setting
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
                             </a>
+                            <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Attendance Setting</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('WeeklyOffController@index') }}" class="nav-link {{ isActive('attendance/weeklyOff') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Weekly Off</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+{{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                            <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Setting</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                             <a href="{{ route('attendance.student')}}" class="nav-link {{ isActive('attendance/student') }}">
                                 <i class="far fa-circle nav-icon"></i>
