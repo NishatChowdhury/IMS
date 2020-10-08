@@ -185,6 +185,13 @@ Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
 Route::delete('attendance/shift/delete/{id}','ShiftController@destroy');
 
+//Weekly Off Setting starts by Nishat
+Route::get('attendance/weeklyOff','WeeklyOffController@index');
+Route::post('attendance/weeklyOff/store','WeeklyOffController@store');
+Route::delete('attendance/weeklyOff/delete/{id}','WeeklyOffController@destroy');
+//Weekly Off Setting ends by Nishat
+
+
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
 //Route::get('settings/notice','SettingsController@notice')->name('settings.notice');
