@@ -15,7 +15,7 @@ class SocialController extends Controller
 
     public function update(Request $request,$id)
     {
-        $data = Social::findOrFail($id);
+        $data = Social::query()->findOrFail($id);
         $data->update($request->all());
         return redirect()->route('social.index');
     }

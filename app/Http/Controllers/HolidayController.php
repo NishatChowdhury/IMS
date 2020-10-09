@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Holiday;
-use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use phpDocumentor\Reflection\Types\Object_;
 
 class HolidayController extends Controller
 {

@@ -97,7 +97,7 @@
                         </li>
                         <li class="nav-item has-treeview {{ isActive('attendance*') }}">
                             <a href="#" class="nav-link {{ isActive('attendance*') }}">
-                                <i class="nav-icon fas fa-tree"></i>
+                                <i class="nav-icon far fa-circle"></i>
                                 <p>
                                     Setting
                                     <i class="fas fa-angle-left right"></i>
@@ -106,13 +106,13 @@
                             <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far nav-icon"></i>
                                         <p>Attendance Setting</p>
                                     </a>
                                 </li>
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ action('WeeklyOffController@index') }}" class="nav-link {{ isActive('attendance/weeklyOff') }}">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far nav-icon"></i>
                                         <p>Weekly Off</p>
                                     </a>
                                 </li>
@@ -140,6 +140,12 @@
                             <a href="{{ route('attendance.report') }}" class="nav-link {{ isActive('attendance/report') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Monthly Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('attendance/report') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Holiday Settings</p>
                             </a>
                         </li>
                     </ul>
@@ -378,6 +384,13 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{ action('TransactionController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Transaction</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chart of Accounts</p>
@@ -608,6 +621,14 @@
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Type</p>
                         </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('NoticeCategoryController@index') }}" class="nav-link {{ isActive(['notices']) }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>News</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('UpcomingEventController@index') }}" class="nav-link {{ isActive(['event*']) }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Upcoming Events</p>

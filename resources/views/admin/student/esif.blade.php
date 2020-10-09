@@ -24,7 +24,7 @@
 
 
     <!-- /.Search-panel -->
-    <section class="content">
+    <section class="content no-print">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -33,18 +33,6 @@
                         {{ Form::open(['action'=>'StudentController@esif','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">Student ID</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">Name</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
                                 <div class="col">
                                     <label for="">Session</label>
                                     <div class="input-group">
@@ -57,19 +45,12 @@
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">Section</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">Group</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-
+                                <div class="col">
+                                    <label for="">Group</label>
+                                    <div class="input-group">
+                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
+                                    </div>
+                                </div>
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
                                         <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
@@ -86,6 +67,13 @@
         </div>
     </section>
     <!-- /.Search-panel -->
+
+@if($class && $group)
+    <div class="only-print text-center">
+        <h3>{{ siteConfig('name') }}</h3>
+        <p>EIIN: {{ siteConfig('eiin') }} | Class: {{ $class->name }} | Group: {{ $group->name }}</p>
+    </div>
+@endif
 
 
     <!-- Main content -->
@@ -111,6 +99,7 @@
                                 <th>OPT SUB</th>
                                 <th>PASS YEAR <br> ROLL NO <br> BOARD <br> REG NO</th>
                                 <th>PHOTO</th>
+                                <th class="only-print">STUDENT SIGNATURE</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -135,13 +124,13 @@
                                     <td>
                                         @foreach(json_decode($student->admission->subjects) as $subjects)
                                             @foreach($subjects as $subject)
-                                                {{ \App\OnlineSubject::query()->findOrNew($subject)->code }}, {{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }},
+                                                <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                             @endforeach
                                         @endforeach
                                     </td>
                                     <td>
                                         @foreach(json_decode($student->admission->subjects)->optional as $subjects)
-                                                {{ \App\OnlineSubject::query()->findOrNew($subject)->code }}, {{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }},
+                                            <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                         @endforeach
                                     </td>
                                     <td>
@@ -153,6 +142,7 @@
                                     <td>
                                         <img src="{{ asset('assets/img/students') }}/{{ $student->image }}" alt="" height="75">
                                     </td>
+                                    <td class="only-print"></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -172,6 +162,26 @@
 
 @section('style')
     <style>
+        tbody td{
+            text-transform: uppercase;
+        }
+
+        @media print {
+            @page{
+                margin: 15mm 5mm;
+            }
+            body{
+                font-size: .8rem;
+            }
+        }
+    </style>
+    <style>
+        td .subjects:after{
+            content: ",";
+        }
+        td .subjects:last-child:after{
+            content: ""
+        }
         tbody td{
             text-transform: uppercase;
         }
