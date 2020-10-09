@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Session;
+use App\weeklyOff;
 use Illuminate\Http\Request;
 
 class WeeklyOffController extends Controller
@@ -13,15 +15,24 @@ class WeeklyOffController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
-        //
+        $inputValue = $request->all();
+
+        $request->validate([
+            'show_option' =>'required'
+        ]);
+
+        $arrayTostring = implode(',', $request->input('show_option'));
+        $inputValue['show_option'] = $arrayTostring;
+        $success = weeklyOff::create($inputValue);
+        if ($success){
+            Session::flash('status', 'success');
+        }
+        else{
+            Session::flash('error','something went wrong');
+        }
+        return redirect()->back();
     }
 
 
