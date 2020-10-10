@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Session;
 use App\weeklyOff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class WeeklyOffController extends Controller
 {
 
     public function index()
     {
-        return view('admin.attendance.weeklyOffSetting');
+        $weeklyOffs = json_decode(weeklyOff::query()->firstOrNew()->show_option);
+        if(!$weeklyOffs) $weeklyOffs = []; // return empty array if no record in database
+        return view('admin.attendance.weeklyOffSetting',compact('weeklyOffs'));
     }
 
 
@@ -23,9 +25,9 @@ class WeeklyOffController extends Controller
             'show_option' =>'required'
         ]);
 
-        $arrayTostring = implode(',', $request->input('show_option'));
-        $inputValue['show_option'] = $arrayTostring;
-        $success = weeklyOff::create($inputValue);
+        $arrayToJson = json_encode($request->get('show_option'));
+        $inputValue['show_option'] = $arrayToJson;
+        $success = weeklyOff::query()->create($inputValue);
         if ($success){
             Session::flash('status', 'success');
         }
