@@ -31,38 +31,39 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Select Off Day/Days:</h3>
                                 </div>
-                                <form role="form">
+                                <form role="form" action="{{ route('weeklyOff.store') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                                    {{ csrf_field() }} {{ method_field('POST') }}
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input saturday" type="checkbox" id="saturday" name="saturday">
-                                                        <label class="form-check-label" for="saturday">
+                                                        <input class="form-check-input" value="1" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Saturday
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input sunday" type="checkbox" id="sunday" name="sunday">
-                                                        <label class="form-check-label" for="sunday">
+                                                        <input class="form-check-input" value="2" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Sunday
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input monday" type="checkbox" id="monday" name="monday">
-                                                        <label class="form-check-label" for="monday">
+                                                        <input class="form-check-input" value="3" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Monday
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input tuesday" type="checkbox" id="tuesday" name="tuesday">
-                                                        <label class="form-check-label" for="tuesday">
+                                                        <input class="form-check-input" value="4" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Tuesday
                                                         </label>
                                                     </div>
@@ -71,26 +72,32 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input wednesday" type="checkbox" id="wednesday" name="wednesday">
-                                                        <label class="form-check-label" for="wednesday">
+                                                        <input class="form-check-input" value="5" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Wednesday
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input thursday" type="checkbox" id="thursday" name="thursday">
-                                                        <label class="form-check-label" for="thursday">
+                                                        <input class="form-check-input" value="6" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Thursday
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input friday" type="checkbox" id="friday" name="friday">
-                                                        <label class="form-check-label" for="friday">
+                                                        <input class="form-check-input" value="7" type="checkbox" name="show_option[]">
+                                                        <label class="form-check-label" for="">
                                                             Friday
                                                         </label>
+{{--                                                            @if--}}
+{{--                                                            ($errors->has('show_option'))--}}
+{{--                                                            <span class="invalid-feedback">--}}
+{{--                                                                {{$errors->first('show_option')}}--}}
+{{--                                                            </span>--}}
+{{--                                                            @endif--}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,6 +106,7 @@
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
+
                                 </form>
                             </div>
                             <!-- /.card -->
