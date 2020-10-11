@@ -145,6 +145,7 @@
                                                                     ->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->get();
 
+                                                    $isWeeklyOff = \App\weeklyOff::query()->where('show_option','like','%'.Carbon\Carbon::make($year.'-'.$month.'-'.$i)->dayOfWeekIso.'%')->exists();
                                                     $isHoliday = App\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
 
                                                     $shiftInTime = App\Shift::query()->first()->start;
@@ -171,7 +172,9 @@
                                                             <span style="color:white; background: green" class="badge">P</span>
                                                         @endif
                                                     @else
-                                                        @if($isHoliday)
+                                                        @if($isWeeklyOff)
+                                                            <span style="color:white; background: greenyellow" class="badge">W</span>
+                                                        @elseif($isHoliday)
                                                             <span style="color:white; background: darkviolet" class="badge">H</span>
                                                         @else
                                                             <span style="color:white; background: red" class="badge">A</span>
