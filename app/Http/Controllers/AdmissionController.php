@@ -31,68 +31,74 @@ class AdmissionController extends Controller
     {
         $ssc_roll = $request->get('ssc_roll');
 
-        $student = AppliedStudent::query()->where('ssc_roll',$ssc_roll)->first();
+        $rolls = AppliedStudent::query()->get('ssc_roll')->toArray();
 
-        $academicClassId = AcademicClass::query()
-            ->where('session_id',$student->session_id)
-            ->where('class_id',$student->class_id)
-            ->where('group_id',$student->group_id)
-            ->where('section_id',$student->section_id)
-            ->first();
+        //dd($rolls);
 
-        $optional = json_decode($student->subjects)->optional[0];
+        foreach($rolls as $ssc_roll){
+            $student = AppliedStudent::query()->where('ssc_roll',$ssc_roll)->first();
 
-        $data = [
-            'name' => $student->name,
-            'studentId' => $student->studentId,
-            'academic_class_id' => $academicClassId->id,
-            'session_id' => $student->session_id,
-            'class_id' => $student->class_id,
-            'section_id' => $student->section_id,
-            'group_id' => $student->group_id,
-            'rank' => 0,
-            'subject_id' => $optional,
-            'father' => $student->father,
-            'mother' => $student->mother,
-            'gender_id' => $student->gender_id,
-            'mobile' => $student->mobile,
-            'dob' => $student->dob,
-            'blood_group_id' => $student->blood_group_id,
-            'religion_id' => $student->religion_id,
-            'image' => $student->image,
-            'address' => $student->pre_house_number.', '.$student->pre_road,
-            'area' => $student->pre_village,
-            'zip' => $student->pre_post_code,
-            'city_id' => null,
-            'country_id' => 1,
-            'email' => $student->email,
-            'father_mobile' => $student->guardian_mobile,
-            'mother_mobile' => null,
-            'notification_type_id' => null,
-            'status' => 1,
-            'bcn' => null,
-            'father_occupation' => null,
-            'mother_occupation' => null,
-            'other_guardian' => null,
-            'guardian_national_id' => null,
-            'yearly_income' => null,
-            'guardian_address' => null,
-            'bank_slip' => null,
-            'ssc_roll' => $student->ssc_roll,
-            'location_id' => $student->location_id,
-        ];
+            $academicClassId = AcademicClass::query()
+                ->where('session_id',$student->session_id)
+                ->where('class_id',$student->class_id)
+                ->where('group_id',$student->group_id)
+                ->where('section_id',$student->section_id)
+                ->first();
 
-        $isExist = Student::query()->where('ssc_roll',$student->ssc_roll)->exists();
+            $optional = json_decode($student->subjects)->optional[0];
 
-        if($isExist){
-            $s = Student::query()->where('ssc_roll',$student->ssc_roll)->first();
-            $s->update();
-        }else{
-            Student::query()->create($data);
-            $student->update(['approved'=>1]);
-            $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
-            if($admission_sms) {
-                $this->sms($data);
+            $data = [
+                'name' => $student->name,
+                'studentId' => $student->studentId,
+                'academic_class_id' => $academicClassId->id,
+                'session_id' => $student->session_id,
+                'class_id' => $student->class_id,
+                'section_id' => $student->section_id,
+                'group_id' => $student->group_id,
+                'rank' => 0,
+                'subject_id' => $optional,
+                'father' => $student->father,
+                'mother' => $student->mother,
+                'gender_id' => $student->gender_id,
+                'mobile' => $student->mobile,
+                'dob' => $student->dob,
+                'blood_group_id' => $student->blood_group_id,
+                'religion_id' => $student->religion_id,
+                'image' => $student->image,
+                'address' => $student->pre_house_number.', '.$student->pre_road,
+                'area' => $student->pre_village,
+                'zip' => $student->pre_post_code,
+                'city_id' => null,
+                'country_id' => 1,
+                'email' => $student->email,
+                'father_mobile' => $student->guardian_mobile,
+                'mother_mobile' => null,
+                'notification_type_id' => null,
+                'status' => 1,
+                'bcn' => null,
+                'father_occupation' => null,
+                'mother_occupation' => null,
+                'other_guardian' => null,
+                'guardian_national_id' => null,
+                'yearly_income' => null,
+                'guardian_address' => null,
+                'bank_slip' => null,
+                'ssc_roll' => $student->ssc_roll,
+                'location_id' => $student->location_id,
+            ];
+
+            $isExist = Student::query()->where('ssc_roll',$student->ssc_roll)->exists();
+
+            if($isExist){
+                $s = Student::query()->where('ssc_roll',$student->ssc_roll)->first();
+                $s->update();
+            }else{
+                Student::query()->create($data);
+                $student->update(['approved'=>1]);
+                $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
+                //if($admission_sms) {
+                    //$this->sms($data);
+                //}
             }
         }
 
@@ -197,6 +203,15 @@ class AdmissionController extends Controller
 
        \Illuminate\Support\Facades\Session::flash('success','Merit List Uploaded Successfully');
 
+        return redirect()->back();
+    }
+
+    public function unapprove($roll)
+    {
+        //dd($roll);
+        //549069
+        $student = AppliedStudent::query()->where('ssc_roll',$roll)->first();
+        $student->update(['approved'=>null]);
         return redirect()->back();
     }
 

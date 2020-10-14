@@ -119,7 +119,7 @@
                             <tbody>
                             @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->studentId }}</td>
+                                    <td>{{ $student->studentId }}<br>{{ $student->ssc_roll }}</td>
                                     <td>{{ $student->rank }}</td>
                                     <td>
                                         {{ $student->name }}<br>
