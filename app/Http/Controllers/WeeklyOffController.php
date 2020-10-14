@@ -11,7 +11,14 @@ class WeeklyOffController extends Controller
 
     public function index()
     {
-        return view('admin.attendance.weeklyOffSetting');
+//        $weeklyOff = weeklyOff::pluck('show_option')->first();
+        $weeklyOff = weeklyOff::pluck('show_option');
+        $weeklyOffId = weeklyOff::pluck('id');
+        $all = weeklyOff::all();
+
+//        dd($all->id);
+
+        return view('admin.attendance.weeklyOffSetting',compact('weeklyOff','weeklyOffId','all'));
     }
 
 
@@ -26,31 +33,23 @@ class WeeklyOffController extends Controller
         $arrayTostring = implode(',', $request->input('show_option'));
         $inputValue['show_option'] = $arrayTostring;
         $success = weeklyOff::create($inputValue);
-        if ($success){
-            Session::flash('status', 'success');
-        }
-        else{
-            Session::flash('error','something went wrong');
-        }
         return redirect()->back();
+
     }
 
-
-    public function show($id)
+    public function edit($item)
     {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
+        $finds = weeklyOff::find($item)->first();
+        $offDay =explode(",",$finds->show_option);
+        return view('admin.attendance.EditWeeklyOffSetting',compact('offDay'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $finds = weeklyOff::find($item)->first();
+        $offDay =explode(",",$finds->show_option);
+        return view('admin.attendance.EditWeeklyOffSetting',compact('offDay'));
     }
 
 

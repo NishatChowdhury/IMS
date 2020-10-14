@@ -38,7 +38,8 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="saturday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="saturday" type="checkbox" name="show_option[]"
+                                                            {{in_array("saturday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
                                                             Saturday
                                                         </label>
@@ -46,7 +47,8 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="sunday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="sunday" type="checkbox" name="show_option[]"
+                                                            {{in_array("sunday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
                                                             Sunday
                                                         </label>
@@ -54,7 +56,9 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="monday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="monday" type="checkbox" name="show_option[]"
+                                                            {{in_array("monday",$offDay) ? "checked" : ""}}>
+
                                                         <label class="form-check-label" for="">
                                                             Monday
                                                         </label>
@@ -62,7 +66,8 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="tuesday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="tuesday" type="checkbox" name="show_option[]"
+                                                            {{in_array("tuesday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
                                                             Tuesday
                                                         </label>
@@ -72,7 +77,8 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="wednesday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="wednesday" type="checkbox" name="show_option[]"
+                                                            {{in_array("wednesday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
                                                             Wednesday
                                                         </label>
@@ -80,7 +86,8 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="thursday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="thursday" type="checkbox" name="show_option[]"
+                                                            {{in_array("thursday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
                                                             Thursday
                                                         </label>
@@ -88,7 +95,8 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="friday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="friday" type="checkbox" name="show_option[]"
+                                                            {{in_array("friday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
                                                             Friday
                                                         </label>
@@ -98,18 +106,8 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-
-
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <br>
-                                        <br>
-                                        @foreach ($all as $item)
-                                        <h3 style="background-color: #0c5460;padding-top: 5px;padding-bottom: 5px;color: white;text-align: center">Existing Weekly Off Of the School: <span style="margin-left: 5px">{{$item->show_option}}</span> </h3>
-                                        <h3>Wanna Customize?</h3>
-                                            <a href="{{ route('weeklyOff.edit',$item->id) }}" class="btn btn-xs btn-info ">Edit</a>
-                                        @endforeach
                                     </div>
-
                                 </form>
                             </div>
                             <!-- /.card -->
@@ -119,4 +117,19 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @stop
