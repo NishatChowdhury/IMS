@@ -37,21 +37,17 @@
 
     @yield('style')
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
 </head>
 
 <body>
-<div id="app">
+
 {{--<nav class="ec-nav bg-white">--}}
     {{--@include('front.inc.header')--}}
 {{--</nav> <!-- END ec-nav -->--}}
 
 <header class="site-header bg-dark text-white-0_5">
-{{--    @include('front.inc.info-bar')--}}
-    <info-bar></info-bar>
-{{--    @include('front.inc.title-bar')--}}
-    <title-bar></title-bar>
+    @include('front.inc.info-bar')
+    @include('front.inc.title-bar')
 </header><!-- END site header-->
 
 
@@ -85,13 +81,7 @@
     <i class="ti-angle-up"></i>
 </div>
 
-</div>
-
-<script src="{{ asset('js/app.js') }}"></script>
-
-<script type="application/javascript" src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
-<script type="application/javascript" src="{{ asset('assets/js/scripts.js') }}"></script>
-
-
+<script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
 </body>
 </html>

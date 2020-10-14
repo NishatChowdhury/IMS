@@ -13,4 +13,8 @@ class ChartOfAccount extends Model
         return $this->belongsTo(CoaParent::class,'coa_parent_id');
     }
 
+    function scopeActive($coa){
+        return $coa->whereIsActive(1)->get();
+    }
+
 }

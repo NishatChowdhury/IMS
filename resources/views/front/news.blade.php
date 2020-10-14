@@ -39,7 +39,7 @@
                             </a>
                         </h4>
                         <p>
-                            {{ substr($latestNews->description,0,100) }}
+                            {{ $latestNews->description }}
                         </p>
                         <a href="{{ action('FrontController@newsDetails',$latestNews) }}" class="btn btn-outline-primary">
                             Read More

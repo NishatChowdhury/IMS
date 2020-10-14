@@ -158,13 +158,5 @@
         tbody td{
             text-transform: uppercase;
         }
-        @media print {
-            @page{
-                margin: 15mm 5mm;
-            }
-            body{
-                font-size: .8rem;
-            }
-        }
     </style>
 @stop

@@ -47,7 +47,6 @@
                                     <label for="">Class*</label>
                                     <div class="input-group">
                                         <select name="class_id" id="class" class="form-control">
-                                            <option value="">Select Class</option>
                                             @foreach($repository->academicClasses() as $class)
                                                 <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                             @endforeach
@@ -204,7 +203,33 @@
                                         {{--<td></td>--}}
                                         <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter->format('h:i:s A') }}</td>
                                         <td class="text-center">{{ $attn->exit == '-' ? '-' : $attn->exit->format('h:i:s A') }}</td>
-                                        <td>{{ $attn->status }}</td>
+                                        <td>
+                                            {{--{{ $attn->student->status }}--}}
+                                            {{ $attn->status }}
+
+
+                                            <br>----------------------<br>
+{{--                                            Start by Ahmed--}}
+                                            <br>----------------------<br>
+
+{{--                                            {{ $attn->enter == '-' ? '-' : $attn->enter->format('h:i:s A') > 9.15 ? 'A' : 'P' }}--}}
+                                            @if ($attn->enter != '-' AND $attn->exit != '-')
+
+
+                                            {{ $attn->exit == '-' ? '-' : $attn->exit->format('h:i:s A') }}
+                                                <br>
+                                           .... Enter TSTMP{{ date_timestamp_get($attn->enter)}} <br>
+                                                EXIT TSTMP{{ date_timestamp_get($attn->exit)}}<br>
+                                                shift TSTMP
+
+{{--                                                {{$attn->student ? $attn->student->shift_id : '' }}<br>--}}
+
+                                                {{$attn->student }}<br>
+
+
+
+                                            @endif
+                                        </td>
                                         <td></td>
                                     </tr>
                                 @endforeach

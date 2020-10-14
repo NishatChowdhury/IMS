@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\AcademicClass;
 use App\Attendance;
 use App\Classes;
-use App\HolidayDuration;
 use App\RawAttendance;
 use App\Repository\AttendanceRepository;
-use App\Shift;
 use App\Staff;
 use App\Student;
-use App\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -180,6 +177,11 @@ class AttendanceController extends Controller
         return view('admin.attendance.teacher', compact('attend','staffs','date'));
     }
 
+//    public function setting()
+//    {
+//        return view('admin.attendance.setting');
+//    }
+
     public function student(Student $student, Request $request)
     {
         if($request->all() == []){
@@ -247,7 +249,7 @@ class AttendanceController extends Controller
                     'teacher'=>'Teacher',
                     'enter'=>$attn->first()->access_date,
                     'exit'=>$attn->last()->access_date,
-                    'status'=>$this->status($today,$attn->first()->access_date,$attn->last()->access_date),
+                    'status'=>'P',
                     'is_notified'=>'Is Notified'
                 ];
             }else{
@@ -261,7 +263,7 @@ class AttendanceController extends Controller
                     'teacher'=>'Teacher',
                     'enter'=>'-',
                     'exit'=>'-',
-                    'status'=>$this->status($today),
+                    'status'=>'A',
                     'is_notified'=>'Is Notified'
                 ];
                 //dd($attendances);
@@ -371,56 +373,6 @@ class AttendanceController extends Controller
         return view('admin.attendance.classAttendance',compact('students','start', 'end'));
     }
 
-    public function status($date, $enter = null, $exit = null)
-    {
-        if(!$enter && !$exit){
-            $isHoliday = HolidayDuration::query()->whereDate('date',$date)->exists();
-
-            $dayOfWeekIso = Carbon::parse($date)->dayOfWeekIso;
-            $isWeeklyOff = weeklyOff::query()->where('show_option','like','%'.$dayOfWeekIso.'%')->exists();
-
-            if($isWeeklyOff){
-                $status = 'W';
-            }elseif($isHoliday){
-                $status = 'H';
-            }else{
-                $status = 'A';
-            }
-
-        }else{
-            $shiftInTime = Shift::query()->first()->start;
-            $shiftOutTime = Shift::query()->first()->end;
-            $grace = Shift::query()->first()->grace;
-
-            $shiftInTime = Carbon::make($date.' '.$shiftInTime)->addMinutes($grace);
-            $shiftOutTime = Carbon::make($date.' '.$shiftOutTime);
-
-            $isLate = $enter > $shiftInTime;
-            $isEarly = $exit < $shiftOutTime;
-
-            if($isLate){
-                $status = 'D';
-            }elseif($isEarly){
-                $status = 'E';
-            }else{
-                $status = 'P';
-            }
-        }
-
-
-
-//        if($isHoliday){
-//            $status = 'H';
-//        }elseif($isLate){
-//            $status = 'D';
-//        }elseif($isEarly){
-//            $status = 'E';
-//        }else{
-//            $status = !$enter && !$exit ? 'A' : 'P';
-//        }
-
-        return $status;
-    }
 
 
 }

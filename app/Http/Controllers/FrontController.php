@@ -522,28 +522,5 @@ class FrontController extends Controller
         $event = UpcomingEvent::query()->findOrFail($id);
         return view('front.pages.event',compact('event'));
     }
-
-    // API for Vue
-    public function infoBar()
-    {
-        $info = [
-            'email' => siteConfig('email'),
-            'phone' => siteConfig('phone'),
-            'eiin' => siteConfig('eiin'),
-            'code' => siteConfig('institute_code')
-        ];
-
-        return response($info);
-    }
-    public function titleBar()
-    {
-        $info = [
-            'name' => siteConfig('name'),
-            'bn' => siteConfig('bn'),
-            'logo' => siteConfig('logo'),
-        ];
-
-        return response($info);
-    }
 }
 
