@@ -23,7 +23,7 @@ class ReportController extends Controller
     {
 
         if($request->all()){
-            $s = $student->newQuery();
+            $s = $student->newQuery()->whereIn('session_id',activeYear());
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
                 $s->where('studentId',$studentId);

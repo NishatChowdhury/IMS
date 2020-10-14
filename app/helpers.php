@@ -14,7 +14,7 @@ function siteConfig($col){
 
 function smsConfig($col){
     $config = \App\CommunicationSetting::query()->first();
-    return $config->$col;
+    return $config ? $config->$col : false;
 }
 
 function socialConfig($col){
@@ -36,4 +36,9 @@ function academicClass($id){
     $section = $academicClass->section->name ?? '';
     $group = $academicClass->group->name ?? '';
     return $className.' '.$section.$group;
+}
+
+function inWord($number){
+    $f = new NumberFormatter("en",NumberFormatter::SPELLOUT);
+    return $f->format($number);
 }
