@@ -11,6 +11,7 @@ use App\Repository\AttendanceRepository;
 use App\Shift;
 use App\Staff;
 use App\Student;
+use App\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -178,6 +179,11 @@ class AttendanceController extends Controller
 
         return view('admin.attendance.teacher', compact('attend','staffs','date'));
     }
+
+//    public function setting()
+//    {
+//        return view('admin.attendance.setting');
+//    }
 
     public function student(Student $student, Request $request)
     {
@@ -375,7 +381,12 @@ class AttendanceController extends Controller
         if(!$enter && !$exit){
             $isHoliday = HolidayDuration::query()->whereDate('date',$date)->exists();
 
-            if($isHoliday){
+            $dayOfWeekIso = Carbon::parse($date)->dayOfWeekIso;
+            $isWeeklyOff = weeklyOff::query()->where('show_option','like','%'.$dayOfWeekIso.'%')->exists();
+
+            if($isWeeklyOff){
+                $status = 'W';
+            }elseif($isHoliday){
                 $status = 'H';
             }else{
                 $status = 'A';

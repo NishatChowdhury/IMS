@@ -455,3 +455,7 @@ Route::get('event/{id}','FrontController@event');
 Route::post('admission-form-submit','AppliedStudentController@store');
 Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 /** Applied Student */
+
+// Imam Hasan Journal Routes
+Route::resource('journals', "JournalController");
+// Imam Hasan Journal Routes

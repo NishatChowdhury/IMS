@@ -38,7 +38,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="saturday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="6" type="checkbox" name="show_option[]" {{ in_array(6,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Saturday
                                                         </label>
@@ -46,7 +46,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="sunday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="7" type="checkbox" name="show_option[]" {{ in_array(7,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Sunday
                                                         </label>
@@ -54,7 +54,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="monday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="1" type="checkbox" name="show_option[]" {{ in_array(1,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Monday
                                                         </label>
@@ -62,7 +62,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="tuesday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="2" type="checkbox" name="show_option[]" {{ in_array(2,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Tuesday
                                                         </label>
@@ -72,7 +72,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="wednesday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="3" type="checkbox" name="show_option[]" {{ in_array(3,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Wednesday
                                                         </label>
@@ -80,7 +80,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="thursday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="4" type="checkbox" name="show_option[]" {{ in_array(4,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Thursday
                                                         </label>
@@ -88,10 +88,16 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="friday" type="checkbox" name="show_option[]">
+                                                        <input class="form-check-input" value="5" type="checkbox" name="show_option[]" {{ in_array(5,$weeklyOffs) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="">
                                                             Friday
                                                         </label>
+{{--                                                            @if--}}
+{{--                                                            ($errors->has('show_option'))--}}
+{{--                                                            <span class="invalid-feedback">--}}
+{{--                                                                {{$errors->first('show_option')}}--}}
+{{--                                                            </span>--}}
+{{--                                                            @endif--}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,4 +125,19 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @stop
