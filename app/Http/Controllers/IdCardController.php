@@ -49,6 +49,10 @@ class IdCardController extends Controller
         if($request->group){
             $std->where('group_id',$request->group);
         }
+        if($request->ranks){
+            $ranks = explode(',',$request->ranks);
+            $std->whereIn('rank',$ranks);
+        }
 
         $students = $std->where('status','<>',2)->orderBy('rank')->get();
 
@@ -82,12 +86,12 @@ class IdCardController extends Controller
             $staffs = Staff::query()->where('staff_type_id',1)->get();
         }elseif($request->user == 2){
             $staffs = Staff::query()->where('staff_type_id',2)->get();
-
         }else{
             $staffs = Staff::query()->get();
         }
 
         $card = $request->except('_token');
+
         return view('admin.staff.card-new',compact('staffs','card'));
 
 

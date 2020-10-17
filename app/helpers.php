@@ -16,7 +16,7 @@ function siteConfig($col){
 
 function smsConfig($col){
     $config = \App\CommunicationSetting::query()->first();
-    return $config->$col;
+    return $config ? $config->$col : false;
 }
 
 function socialConfig($col){
@@ -46,4 +46,8 @@ function journal_no(){
 
 function dateToRead($date){
     return date('d-m-yy', strtotime($date));
+}
+function inWord($number){
+    $f = new NumberFormatter("en",NumberFormatter::SPELLOUT);
+    return $f->format($number);
 }

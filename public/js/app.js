@@ -37707,10 +37707,7 @@ var render = function() {
               _c("div", { staticClass: "navbar-brand ml-5" }, [
                 _c(
                   "a",
-                  {
-                    staticClass: "logo-default",
-                    attrs: { href: "http://localhost/wpschool/public" }
-                  },
+                  { staticClass: "logo-default", attrs: { href: _vm.asset } },
                   [
                     _c("img", {
                       attrs: {

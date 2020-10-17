@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\AcademicCalender;
 use App\AcademicClass;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Repository\StudentRepository;
+use Illuminate\Validation\ValidationException;
 
 class AcademicCalenderController extends Controller
 {
@@ -25,6 +27,8 @@ class AcademicCalenderController extends Controller
 
     /**
      * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
@@ -34,13 +38,13 @@ class AcademicCalenderController extends Controller
             'name'     =>  'required',
             'start'     =>  'required'
         ],[]);
-        AcademicCalender::create($request->all());
+        AcademicCalender::query()->create($request->all());
+        return redirect()->back();
     }
 
     public function edit(Request $request)
     {
-        $data = AcademicCalender::findOrFail($request->id);
-        return $data;
+        return AcademicCalender::query()->findOrFail($request->id);
     }
 
     public function update(Request $request)

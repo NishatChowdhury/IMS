@@ -22,4 +22,9 @@ class ClassSchedule extends Model
     {
         return $this->belongsTo(Day::class);
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Staff::class,'teacher_id');
+    }
 }

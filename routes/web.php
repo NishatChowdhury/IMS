@@ -1,12 +1,12 @@
 <?php
 
-use App\Mark;
+use App\AcademicClass;
+use App\ExamResult;
 use App\Grade;
+use App\Mark;
+use App\RawAttendance;
 use App\Student;
 use Carbon\Carbon;
-use App\ExamResult;
-use App\AcademicClass;
-use App\RawAttendance;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
@@ -184,6 +184,13 @@ Route::post('communication/quick/send','CommunicationController@quickSend');
 Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
 Route::delete('attendance/shift/delete/{id}','ShiftController@destroy');
+
+//Weekly Off Setting starts by Nishat
+Route::get('attendance/weeklyOff','WeeklyOffController@index');
+Route::post('attendance/weeklyOff/store','WeeklyOffController@store')->name('weeklyOff.store');
+Route::delete('attendance/weeklyOff/delete/{id}','WeeklyOffController@destroy');
+//Weekly Off Setting ends by Nishat
+
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');

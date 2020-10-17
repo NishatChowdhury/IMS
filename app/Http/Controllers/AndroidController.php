@@ -28,14 +28,9 @@ class AndroidController extends Controller
             ->exists();
 
         if($student){
-            //$message = "<#> Your otp verification code is ".$otp."\nLet's get started your journey with BodLai!!!\nPlease don't share this code with others dFPFWKrPd0B";
             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
-            //$message = 'test';
         }else{
-            //Student::query()->create($request->all());
             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
-            //$message = 'test';
-            //$message = "<#> Your otp verification code is ".$otp."\nLet's get started your journey with BodLai!!!\nPlease don't share this code with others dFPFWKrPd0B";
         }
 
         $this->sms($mobile,$message);
