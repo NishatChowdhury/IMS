@@ -27,8 +27,7 @@ class JournalController extends Controller
      */
     public function create()
     {
-        $coa = ChartOfAccount::active();
-        return view('admin.journals.create', compact('coa'));
+        return view('admin.journals.create');
     }
 
     /**
@@ -39,7 +38,7 @@ class JournalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return dd($request->all());
     }
 
     /**
