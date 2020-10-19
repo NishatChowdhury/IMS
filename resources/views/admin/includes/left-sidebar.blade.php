@@ -704,6 +704,27 @@
                     </a>
                 </li>
             @endcannot
+            <li class="nav-item has-treeview {{ isActive(['journals*']) }}">
+                <a href="#" class="nav-link {{ isActive(['journals*']) }}">
+                    <i class="fas fa-camera-retro"></i>
+                    <p>
+                        Accounting
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
+                        <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Journal List</p>
+                        </a>
+                        <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Journal List</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-life-ring"></i>

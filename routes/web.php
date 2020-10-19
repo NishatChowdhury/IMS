@@ -457,5 +457,5 @@ Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 /** Applied Student */
 
 // Imam Hasan Journal Routes
-Route::resource('journals', "JournalController");
+Route::resource('journals', "JournalController")->middleware('auth');
 // Imam Hasan Journal Routes

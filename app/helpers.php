@@ -1,7 +1,9 @@
 <?php
 
-use App\ImportantLink;
+use App\Journal;
 use App\Session;
+use App\ImportantLink;
+use Illuminate\Support\Str;
 
 function isActive($path, $active = 'active menu-open'){
     return call_user_func_array('Request::is', (array)$path) ? $active : '';
@@ -38,6 +40,13 @@ function academicClass($id){
     return $className.' '.$section.$group;
 }
 
+function journal_no(){
+  return Journal::latest()->first() ? Str::padLeft(Journal::latest()->first()->journal_no + 1, 5, '0') : Str::padLeft(1,5,'0');
+}
+
+function dateToRead($date){
+    return date('d-m-yy', strtotime($date));
+}
 function inWord($number){
     $f = new NumberFormatter("en",NumberFormatter::SPELLOUT);
     return $f->format($number);

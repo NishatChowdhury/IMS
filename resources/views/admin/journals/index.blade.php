@@ -4,5 +4,5 @@
 @section('title','Institution Mgnt | Journal')
 
 @section('content')
-
+    @livewire('list-journal');
 @endsection

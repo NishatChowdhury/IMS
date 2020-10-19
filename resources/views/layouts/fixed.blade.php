@@ -26,7 +26,7 @@
 {{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-
+    @livewireStyles
     @yield('style')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -86,6 +86,7 @@
 
 @yield('script')
 
+@livewireScripts
 <script>
    /* $(".nano").nanoScroller({
         preventPageScrolling: true,
