@@ -54,7 +54,7 @@
                                     <tr>
                                         <td>{{dateToRead($journal->created_at)}}</td>
                                         <td>{{$journal->description}}</td>
-                                        <td>{{$journal->coa->name}}</td>
+                                        <td><a href="{{route('journals.edit', $journal->id)}}">{{$journal->coa->name}} <i class="fa fa-pen text-info"></i></a></td>
                                         <td>{{$journal->debit_credit == 0 ? "Debit" : "Credit"}}</td>
                                         <td class="text-center"> {{$journal->journal_no}}</td>
                                         <td class="text-right">{{number_format($journal->debit_credit == 0 ? $journal->amount : 0 ,2)}}</td>

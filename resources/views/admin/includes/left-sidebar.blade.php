@@ -720,7 +720,7 @@
                         </a>
                         <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Journal List</p>
+                            <p>Add Journal</p>
                         </a>
                     </li>
                 </ul>
