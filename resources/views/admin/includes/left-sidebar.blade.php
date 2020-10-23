@@ -685,6 +685,18 @@
                             <p>Image Album</p>
                         </a>
                     </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('PlaylistController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Playlists</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Videos</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -716,7 +728,7 @@
                     <li class="nav-item" >
                         <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Journal List</p>
+                            <p>Create Journal</p>
                         </a>
                         <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
                             <i class="far fa-circle nav-icon"></i>

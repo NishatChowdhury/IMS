@@ -36,6 +36,16 @@ Route::group(['prefix'=>'admin'],function(){
     Route::delete('event/destroy/{id}','UpcomingEventController@destroy');
 //Upcoming Events Ends
 
+    //Playlists
+    Route::get('playlists','PlaylistController@index');
+    Route::post('playlist/store','PlaylistController@store');
+    Route::delete('playlist/destroy/{id}','PlaylistController@destroy');
+    //Playlists Ends
+
+    //Videos
+    Route::get('videos','VideoController@index');
+    //Videos End
+
     //Applied Student
     Route::post('applied-student/view','AppliedStudentController@studentView');
     //Applied Student Ends
