@@ -25,4 +25,11 @@ class PlaylistController extends Controller
         Session::flash('success','Playlist has been created');
         return redirect()->back();
     }
+
+    public function show($id)
+    {
+        $playlist = Playlist::query()->findOrFail($id);
+        //$videos = $playlist->videos;
+        return view('admin.playlist.videos',compact('playlist'));
+    }
 }

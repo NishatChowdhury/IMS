@@ -39,11 +39,14 @@ Route::group(['prefix'=>'admin'],function(){
     //Playlists
     Route::get('playlists','PlaylistController@index');
     Route::post('playlist/store','PlaylistController@store');
+    Route::get('playlist/show/{id}','PlaylistController@show');
     Route::delete('playlist/destroy/{id}','PlaylistController@destroy');
     //Playlists Ends
 
     //Videos
     Route::get('videos','VideoController@index');
+    Route::post('video/store','VideoController@store');
+    Route::delete('video/destroy/{id}','VideoController@destroy');
     //Videos End
 
     //Applied Student

@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Playlists')
+@section('title','Videos')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -41,21 +41,19 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name </th>
+                                    <th>Title</th>
                                     <th>Videos</th>
-                                    <th>Created at</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($playlists as $playlist)
+                                @foreach($playlist->videos as $video)
                                     <tr>
-                                        <th>{{ $playlist->id }}</th>
-                                        <td>{{ $playlist->name }}</td>
-                                        <td>{{ $playlist->videos->count() }} Video(s)</td>
-                                        <td>{{ $playlist->created_at }}</td>
+                                        <th>{{ $video->id }}</th>
+                                        <td>{{ $video->title }}</td>
+                                        <td>{!! $video->code !!}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['PlaylistController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['VideoController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             {{ Form::close() }}
                                         </td>
@@ -82,13 +80,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'PlaylistController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'VideoController@store','method'=>'post']) }}
+                    {{ Form::hidden('playlist_id',$playlist->id) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::text('name',null,['class'=>'form-control']) }}
+                                {{ Form::text('title',null,['class'=>'form-control']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+                                {{ Form::textarea('code',null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
@@ -113,7 +121,7 @@
 @section('script')
     <script>
         function confirmDelete(){
-            var x = confirm('Are you sure you want to delete this playlist? All albums and images in this playlist will also be deleted!!!');
+            var x = confirm('Are you sure you want to delete this playlist? All albums and images in this video will also be deleted!!!');
             return !!x;
         }
     </script>

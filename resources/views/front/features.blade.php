@@ -42,10 +42,10 @@
                 </a>
             </div>
             <div class="col-md-6 col-lg-4 marginTop-30">
-                <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
+                <a href="{{ action('FrontController@playlists') }}" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="assets/img/svg/6.png" alt="">
                     <h4 class="mt-2">
-                        News
+                        Video Gallery
                     </h4>
                 </a>
             </div>

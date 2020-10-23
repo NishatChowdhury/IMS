@@ -19,6 +19,7 @@ use App\MeritList;
 use App\Notice;
 use App\NoticeCategory;
 use App\Page;
+use App\Playlist;
 use App\Repository\FrontRepository;
 use App\Session;
 use App\Slider;
@@ -521,6 +522,18 @@ class FrontController extends Controller
     {
         $event = UpcomingEvent::query()->findOrFail($id);
         return view('front.pages.event',compact('event'));
+    }
+
+    public function playlists()
+    {
+        $playlists = Playlist::query()->paginate(25);
+        return view('front.pages.playlists',compact('playlists'));
+    }
+
+    public function playlist($id)
+    {
+        $playlist = Playlist::query()->findOrFail($id);
+        return view('front.pages.playlist',compact('playlist'));
     }
 
     // API for Vue

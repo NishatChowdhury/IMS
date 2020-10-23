@@ -57,6 +57,7 @@
                                         <td>
                                             {{ Form::open(['action'=>['PlaylistController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <a href="{{ action('PlaylistController@show',$playlist->id) }}">videos</a>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>
