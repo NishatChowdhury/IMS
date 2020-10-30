@@ -28,6 +28,5 @@
                     format: 'yyyy-mm-dd'
                 })
         });
-
     </script>
 @stop

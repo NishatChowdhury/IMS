@@ -52,32 +52,36 @@ class EditJournal extends Component
                 return $journal['amount'];
             }
         });
-        if($total_credit !== $total_debit || $total_credit == 0 || $total_debit == 0){
-            $this->error_message = 'Debit and Credit Amount must be equal and greater than 0';
-            return;
+        if($this->allJournals){
+            if($total_credit !== $total_debit || $total_credit == 0 || $total_debit == 0){
+                $this->error_message = 'Debit and Credit Amount must be equal and greater than 0';
+                return;
+            }
         }
         DB::transaction(function () {
-            foreach($this->allJournals as $journal){
-                if(isset($journal['id'])){
-                    Journal::find($journal['id'])->update(
-                        [
-                            'description' => $journal['description'],
-                            'chart_of_account_id' => $journal['chart_of_account_id'],
-                            'amount' => $journal['amount'],
-                            'debit_credit' => $journal['debit_credit'],
-                            'journal_no' =>  $this->journal_no
-                        ]
-                    );
-                }else{
-                    Journal::Create(
-                        [
-                            'description' => $journal['description'],
-                            'chart_of_account_id' => $journal['chart_of_account_id'],
-                            'amount' => $journal['amount'],
-                            'debit_credit' => $journal['debit_credit'],
-                            'journal_no' =>  $this->journal_no
-                        ]
-                    );
+            if($this->allJournals){
+                foreach($this->allJournals as $journal){
+                    if(isset($journal['id'])){
+                        Journal::find($journal['id'])->update(
+                            [
+                                'description' => $journal['description'],
+                                'chart_of_account_id' => $journal['chart_of_account_id'],
+                                'amount' => $journal['amount'],
+                                'debit_credit' => $journal['debit_credit'],
+                                'journal_no' =>  $this->journal_no
+                            ]
+                        );
+                    }else{
+                        Journal::Create(
+                            [
+                                'description' => $journal['description'],
+                                'chart_of_account_id' => $journal['chart_of_account_id'],
+                                'amount' => $journal['amount'],
+                                'debit_credit' => $journal['debit_credit'],
+                                'journal_no' =>  $this->journal_no
+                            ]
+                        );
+                    }
                 }
             }
             if($this->deleted_ids){
