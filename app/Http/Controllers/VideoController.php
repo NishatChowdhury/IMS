@@ -12,4 +12,11 @@ class VideoController extends Controller
         Video::query()->create($request->all());
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        $video = Video::query()->findOrFail($id);
+        $video->delete();
+        return redirect()->back();
+    }
 }
