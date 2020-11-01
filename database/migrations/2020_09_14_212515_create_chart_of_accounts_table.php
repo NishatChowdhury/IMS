@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateChartOfAccountsTable extends Migration
 {
@@ -20,6 +21,24 @@ class CreateChartOfAccountsTable extends Migration
             $table->integer('is_active');
             $table->timestamps();
         });
+        DB::table('chart_of_accounts')->insert(
+            ['name' => 'cash', 'coa_parent_id' => 0, 'is_active' => 1]
+        ); 
+        DB::table('chart_of_accounts')->insert(
+            ['name' => 'purchase', 'coa_parent_id' => 0, 'is_active' => 1]
+        );
+        DB::table('chart_of_accounts')->insert(
+            ['name' => 'furniture', 'coa_parent_id' => 0, 'is_active' => 1]
+        ); 
+        DB::table('chart_of_accounts')->insert(
+            ['name' => 'sales', 'coa_parent_id' => 0, 'is_active' => 1]
+        );
+        DB::table('chart_of_accounts')->insert(
+            ['name' => 'accounts receivable', 'coa_parent_id' => 0, 'is_active' => 1]
+        ); 
+        DB::table('chart_of_accounts')->insert(
+            ['name' => 'accounts payable', 'coa_parent_id' => 0, 'is_active' => 1]
+        );
     }
 
     /**

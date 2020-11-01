@@ -451,6 +451,11 @@ Route::get('events','FrontController@events');
 Route::get('event/{id}','FrontController@event');
 /** Event Ends */
 
+/** Playlist Start */
+Route::get('playlists','FrontController@playlists');
+Route::get('playlist/{id}','FrontController@playlist');
+/** Playlist Ends */
+
 /** Applied Student */
 Route::post('admission-form-submit','AppliedStudentController@store');
 Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');

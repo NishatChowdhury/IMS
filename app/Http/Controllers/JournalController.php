@@ -38,7 +38,7 @@ class JournalController extends Controller
      */
     public function store(Request $request)
     {
-        return dd($request->all());
+        // return dd($request->all());
     }
 
     /**
@@ -60,7 +60,7 @@ class JournalController extends Controller
      */
     public function edit(Journal $journal)
     {
-        return view('journals.edit', compact('journal'));
+        return view('admin.journals.edit', compact('journal'));
     }
 
     /**

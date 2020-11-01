@@ -42,7 +42,7 @@
                             @endif
                             <div class="row">
                                 <div>
-                                    <button type="button" wire:click.prevent="addJournal" id="add_new_entry" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add new Entry</button>
+                                    <button type="button" wire:click.prevent="addJournal" id="add_new_entry" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>Add new Entry</button>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                             <select wire:model.lazy="allJournals.{{$index}}.chart_of_account_id" class="form-control" required>
                                                     <option selected="selected" value="">Select COA</option>
                                                     @forelse($coas as $coa)
-                                                        <option selected="selected" value="{{$coa->id}}">{{$coa->name}}</option>
+                                                        <option selected="selected" value="{{$coa->id}}">{{strtoupper($coa->name)}}</option>
                                                     @empty
 
                                                     @endforelse
@@ -104,7 +104,8 @@
                                     <tr>
                                         <td colspan="5" class="text-right">
                                             <div class="card-body">
-                                            <input class="btn btn-info" type="submit" value="Register Journals">
+                                            <input class="btn btn-info" type="submit" value="Update Journals">
+                                            <a href="{{route('journals.index')}}" class="btn btn-danger" >Cencel Update</a>
                                             </div>                                            
                                         </td>
                                     </tr>
