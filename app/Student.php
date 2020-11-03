@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    protected $dates = ['dob'];
+
     protected $fillable = [
         'name',
         'studentId',
