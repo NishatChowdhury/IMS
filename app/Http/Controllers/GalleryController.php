@@ -30,12 +30,13 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('image')){
-            $name = time().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path().'/assets/img/gallery/'.$request->album_id.'/', $name);
-            $data = $request->except('image');
-            $data['image'] = $name;
-            //dd($data);
-            Gallery::query()->create($data);
+            foreach($request->file('image') as $img){
+                $name = time().'.'.$img->getClientOriginalExtension();
+                $img->move(public_path().'/assets/img/gallery/'.$request->album_id.'/', $name);
+                $data = $request->except('image');
+                $data['image'] = $name;
+                Gallery::query()->create($data);
+            }
         }else{
             Gallery::query()->create($request->all());
         }
@@ -47,6 +48,6 @@ class GalleryController extends Controller
         $image = Gallery::query()->findOrFail($id);
         File::delete('assets/img/gallery/'.$image->album_id.'/'.$image->image);
         $image->delete();
-        return redirect('syllabus');
+        return redirect('gallery/image');
     }
 }
