@@ -192,6 +192,14 @@ Route::get('attendance/weeklyOff/edit/{id}','WeeklyOffController@edit')->name('w
 Route::delete('attendance/weeklyOff/delete/{id}','WeeklyOffController@destroy');
 //Weekly Off Setting ends by Nishat
 
+//leave management starts by Nishat
+Route::get('attendance/leaveManagement','LeaveManagementController@index');
+Route::get('attendance/leaveManagement/add','LeaveManagementController@add')->name('leaveManagement.add');
+Route::post('attendance/leaveManagement/store','LeaveManagementController@store')->name('leaveManagement.store');
+Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edit')->name('leaveManagement.edit');
+Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
+//leave management ends by Nishat
+
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');
@@ -464,3 +472,4 @@ Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 // Imam Hasan Journal Routes
 Route::resource('journals', "JournalController")->middleware('auth');
 // Imam Hasan Journal Routes
+
