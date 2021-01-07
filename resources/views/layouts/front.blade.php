@@ -17,7 +17,6 @@
 
     <!-- Favicon and Apple Icons-->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}">
-    {{--<link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}">--}}
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon/114x114.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/img/favicon/96x96.png') }}">
 
@@ -34,64 +33,111 @@
     <!-- stylesheet-->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/print.css?ver:1.1') }}">
 
     @yield('style')
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
+    @if(theme() == 1)
+        <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
+    @endif
 
 </head>
 
 <body>
 <div id="app">
-{{--<nav class="ec-nav bg-white">--}}
+    {{--<nav class="ec-nav bg-white">--}}
     {{--@include('front.inc.header')--}}
-{{--</nav> <!-- END ec-nav -->--}}
+    {{--</nav> <!-- END ec-nav -->--}}
 
-<header class="site-header bg-dark text-white-0_5">
-{{--    @include('front.inc.info-bar')--}}
-    <info-bar></info-bar>
-{{--    @include('front.inc.title-bar')--}}
-    <title-bar></title-bar>
-</header><!-- END site header-->
-
-
-
-<nav class="ec-nav sticky-top bg-white">
-    @include('front.inc.menu')
-</nav> <!-- END ec-nav -->
-
-{{--<div class="site-search">--}}
-    {{--<div class="site-search__close bg-black-0_8"></div>--}}
-    {{--<form class="form-site-search" action="#" method="POST">--}}
-        {{--<div class="input-group">--}}
-            {{--<input type="text" placeholder="Search" class="form-control py-3 border-white" required="">--}}
-            {{--<div class="input-group-append">--}}
-                {{--<button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</form>--}}
-{{--</div> <!-- END site-search-->--}}
-
-@yield('content')
+    <header class="site-header bg-dark text-white-0_5">
+        {{--    @include('front.inc.info-bar')--}}
+        <info-bar></info-bar>
+        {{--    @include('front.inc.title-bar')--}}
+        <title-bar></title-bar>
+    </header><!-- END site header-->
 
 
-<footer class="site-footer">
-    @include('front.inc.footer-top')
-    @include('front.inc.footer-bottom')
-</footer> <!-- END site-footer -->
+
+    <nav class="ec-nav sticky-top bg-white no-print">
+        {{--    @include('front.inc.menu')--}}
+        @include('front.inc.dynamic-menu')
+    </nav> <!-- END ec-nav -->
+
+    <div class="site-search">
+        <div class="site-search__close bg-black-0_8"></div>
+        <form class="form-site-search" action="#" method="POST">
+            <div class="input-group">
+                <input type="text" placeholder="Search" class="form-control py-3 border-white" required="">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div> <!-- END site-search-->
+
+    @yield('content')
 
 
-<div class="scroll-top">
-    <i class="ti-angle-up"></i>
+    <footer class="site-footer">
+        @include('front.inc.footer-top')
+        @include('front.inc.footer-bottom')
+    </footer> <!-- END site-footer -->
+
+
+    <div class="scroll-top">
+        <i class="ti-angle-up"></i>
+    </div>
+
 </div>
 
-</div>
+@if(URL::current() == 'https://bnsck.edu.bd')
+    <!-- Modal -->
+    <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" src="https://bnsck.edu.bd/assets/img/sliders/1607323840126093523_281142773336442_6581619394230561706_n.png" alt="">
+                </div>
+                {{--                <div class="modal-footer">--}}
+                {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                {{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
+                {{--                </div>--}}
+            </div>
+        </div>
+    </div>
+    {{--    <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">--}}
+    {{--        <div class="modal-dialog modal-dialog-centered modal-lg">--}}
+    {{--            <div class="modal-content">--}}
+    {{--                <div class="modal-header">--}}
+    {{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+    {{--                </div>--}}
+    {{--                <div class="modal-body">--}}
+    {{--                    <img class="img-fluid" src="https://bnsck.edu.bd/assets/img/sliders/1607323840126093523_281142773336442_6581619394230561706_n.png" alt="">--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+@endif
 
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
 
-<script type="application/javascript" src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
-<script type="application/javascript" src="{{ asset('assets/js/scripts.js') }}"></script>
+<script>
+    $('#popupModal').modal('show');
 
+    // var myModal = new bootstrap.Modal(document.getElementById('popupModal'), {
+    //     keyboard: false
+    // })
+    // myModal.show();
+</script>
 
 </body>
 </html>

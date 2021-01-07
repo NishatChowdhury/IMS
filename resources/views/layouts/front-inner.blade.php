@@ -7,16 +7,16 @@
     <title>@yield('title')</title>
 
     <!-- SEO Meta-->
-    <meta name="description" content="Education software by Web Limited Ltd.">
-    <meta name="keywords" content="HTML5 Education theme, responsive HTML5 theme, bootstrap 4, Clean Theme">
-    <meta name="author" content="smartrahat">
+    <meta name="description" content="IMS software for educational institute">
+    <meta name="keywords" content="web point ltd,school,college,ims,software">
+    <meta name="author" content="web point ltd">
 
     <!-- viewport scale-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}">
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon/114x114.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/img/favicon/96x96.png') }}">
 
@@ -37,53 +37,61 @@
 
     @yield('style')
 
+    <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
+
 </head>
 
 <body>
 
+<div id="app">
 
-<header class="site-header bg-dark text-white-0_5 no-print">
-    @include('front.inc.info-bar')
-</header><!-- END site header-->
+    <header class="site-header bg-dark text-white-0_5 no-print">
+        {{--    @include('front.inc.info-bar')--}}
+        <info-bar></info-bar>
+    </header><!-- END site header-->
 
 
 
-<nav class="ec-nav sticky-top bg-white no-print">
-    @include('front.inc.menu')
-</nav> <!-- END ec-nav -->
+    <nav class="ec-nav sticky-top bg-white no-print">
+{{--        @include('front.inc.menu')--}}
+        @include('front.inc.dynamic-menu')
+    </nav> <!-- END ec-nav -->
 
-<div class="site-search no-print">
-    <div class="site-search__close bg-black-0_8"></div>
-    <form class="form-site-search" action="#" method="POST">
-        <div class="input-group">
-            <input type="text" placeholder="Search" class="form-control py-3 border-white" required="">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>
+    <div class="site-search no-print">
+        <div class="site-search__close bg-black-0_8"></div>
+        <form class="form-site-search" action="#" method="POST">
+            <div class="input-group">
+                <input type="text" placeholder="Search" class="form-control py-3 border-white" required="">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>
+                </div>
             </div>
-        </div>
-    </form>
-</div> <!-- END site-search-->
+        </form>
+    </div> <!-- END site-search-->
 
 
 
 
-@yield('content')
+    @yield('content')
 
 
 
 
-<footer class="site-footer no-print">
-    @include('front.inc.footer-top')
-    @include('front.inc.footer-bottom')
-</footer> <!-- END site-footer -->
+    <footer class="site-footer no-print">
+        @include('front.inc.footer-top')
+        @include('front.inc.footer-bottom')
+    </footer> <!-- END site-footer -->
 
 
-<div class="scroll-top no-print">
-    <i class="ti-angle-up"></i>
+    <div class="scroll-top no-print">
+        <i class="ti-angle-up"></i>
+    </div>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    @yield('script')
+
 </div>
-
-<script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
-<script src="{{ asset('assets/js/scripts.js') }}"></script>
-@yield('script')
 </body>
 </html>

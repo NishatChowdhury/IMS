@@ -11221,15 +11221,15 @@ label:not(.form-check-label):not(.custom-file-label) {
     max-width: 200px
 }
 
-.card-primary:not(.card-outline) .card-header {
-    background-color: #007bff;
-    border-bottom: 0
-}
+/*.card-primary:not(.card-outline) .card-header {*/
+/*    background-color: #007bff;*/
+/*    border-bottom: 0*/
+/*}*/
 
-.card-primary:not(.card-outline) .card-header,
-.card-primary:not(.card-outline) .card-header a {
-    color: #fff
-}
+/*.card-primary:not(.card-outline) .card-header,*/
+/*.card-primary:not(.card-outline) .card-header a {*/
+/*    color: #fff*/
+/*}*/
 
 .card-primary.card-outline {
     border-top: 3px solid #007bff
@@ -11732,18 +11732,18 @@ label:not(.form-check-label):not(.custom-file-label) {
     display: block
 }
 
-.btn-default {
-    background-color: #f4f4f4;
-    color: #444;
-    border-color: #ddd
-}
+/*.btn-default {*/
+/*    background-color: #f4f4f4;*/
+/*    color: #444;*/
+/*    border-color: #ddd*/
+/*}*/
 
-.btn-default.hover,
-.btn-default:active,
-.btn-default:hover {
-    color: #222;
-    background-color: #e7e7e7
-}
+/*.btn-default.hover,*/
+/*.btn-default:active,*/
+/*.btn-default:hover {*/
+/*    color: #222;*/
+/*    background-color: #e7e7e7*/
+/*}*/
 
 .btn-app {
     border-radius: 3px;
@@ -24582,15 +24582,15 @@ label:not(.form-check-label):not(.custom-file-label) {
     max-width: 200px
 }
 
-.card-primary:not(.card-outline) .card-header {
-    background-color: #007bff;
-    border-bottom: 0
-}
+/*.card-primary:not(.card-outline) .card-header {*/
+/*    background-color: #007bff;*/
+/*    border-bottom: 0*/
+/*}*/
 
-.card-primary:not(.card-outline) .card-header,
-.card-primary:not(.card-outline) .card-header a {
-    color: #fff
-}
+/*.card-primary:not(.card-outline) .card-header,*/
+/*.card-primary:not(.card-outline) .card-header a {*/
+/*    color: #fff*/
+/*}*/
 
 .card-primary.card-outline {
     border-top: 3px solid #007bff
@@ -25093,18 +25093,18 @@ label:not(.form-check-label):not(.custom-file-label) {
     display: block
 }
 
-.btn-default {
-    background-color: #f4f4f4;
-    color: #444;
-    border-color: #ddd
-}
+/*.btn-default {*/
+/*    background-color: #f4f4f4;*/
+/*    color: #444;*/
+/*    border-color: #ddd*/
+/*}*/
 
-.btn-default.hover,
-.btn-default:active,
-.btn-default:hover {
-    color: #222;
-    background-color: #e7e7e7
-}
+/*.btn-default.hover,*/
+/*.btn-default:active,*/
+/*.btn-default:hover {*/
+/*    color: #222;*/
+/*    background-color: #e7e7e7*/
+/*}*/
 
 .btn-app {
     border-radius: 3px;

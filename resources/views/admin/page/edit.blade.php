@@ -49,12 +49,17 @@
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
 {{--                                {{ Form::select('id',$pages,null,['class'=>'form-control','readonly']) }}--}}
                                 {{ Form::text('id',$page->name,['class'=>'form-control','readonly']) }}
+
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Content*</label>
 {{--                                <textarea name="content" id="txtEditor">{{ $page->content }}</textarea>--}}
                                 <span class="col-md-12"></span>
-                                {{ Form::textarea('content',null,['id'=>'editor1','class'=>'form-control']) }}
+{{--                                {{ Form::textarea('content',null,['id'=>'editor1','class'=>'form-control']) }}--}}
+
+{{--                                <textarea name="content" id="formsummernote" cols="30" rows="10"></textarea>--}}
+                                {{ Form::textarea('content',null,['id'=>'formsummernote','cols'=>30,'rows'=>10]) }}
+
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>
@@ -63,14 +68,14 @@
                                     {{ Form::text('order',null,['class'=>'form-control']) }}
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group files color">
-                                        <input type="file" name="image" class="form-control" multiple="">
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>--}}
+{{--                                <div class="col-sm-10">--}}
+{{--                                    <div class="form-group files color">--}}
+{{--                                        <input type="file" name="image" class="form-control" multiple="">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                         <!-- /.card-body -->
 
@@ -94,7 +99,9 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="http://localhost/adminlte-alpha/public/plugins/select2/select2.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote.css') }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">--}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
 @stop
 
 @section('plugin')
@@ -102,36 +109,65 @@
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
     {{--<script src= "{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>--}}
     {{--<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>--}}
-    <script src="{{ asset('plugins/ckeditor5/build/ckeditor.js') }}"></script>
+{{--    <script src="{{ asset('plugins/ckeditor5/build/ckeditor.js') }}"></script>--}}
+{{--    <script src="{{ asset('plugins/summernote/summernote.js') }}"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 @stop
 
 @section('script')
+{{--    <script>--}}
+{{--        //Initialize Select2 Elements--}}
+{{--        $('.select2').select2();--}}
+{{--    </script>--}}
+{{--    <script>--}}
+{{--        ClassicEditor--}}
+{{--            .create( document.querySelector( '#editor1' ),{--}}
+{{--                toolbar: [ 'heading', '|', 'bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', 'blockQuote','|','imageUpload','insertTable'],--}}
+{{--                heading: {--}}
+{{--                    options: [--}}
+{{--                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },--}}
+{{--                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },--}}
+{{--                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },--}}
+{{--                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }--}}
+{{--                    ]--}}
+{{--                },--}}
+{{--                image: {--}}
+{{--                    toolbar: [ 'imageTextAlternative' ]--}}
+{{--                }--}}
+{{--            })--}}
+{{--            .then( editor => {--}}
+{{--                console.log( editor );--}}
+{{--            } )--}}
+{{--            .catch( error => {--}}
+{{--                console.error( error );--}}
+{{--            } );--}}
+{{--    </script>--}}
+
     <script>
-        //Initialize Select2 Elements
-        $('.select2').select2();
-    </script>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor1' ),{
-                toolbar: [ 'heading', '|', 'bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', 'blockQuote','|','imageUpload','insertTable'],
-                heading: {
-                    options: [
-                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
-                    ]
-                },
-                image: {
-                    toolbar: [ 'imageTextAlternative' ]
-                }
-            })
-            .then( editor => {
-                console.log( editor );
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
+        /**
+         *  Document   : summernote-init.js
+         *  Author     : redstar
+         *  Description: script for set summernote properties
+         *
+         **/
+        // $('#summernote').summernote({
+        //     placeholder: '',
+        //     tabsize: 2,
+        //     tooltip: false,
+        //     height: 150
+        // });
+        // $('#formsummernote').summernote({
+        //     placeholder: '',
+        //     tabsize: 2,
+        //     tooltip: false,
+        //     height: 500
+        // });
+        $('#formsummernote').summernote({
+            placeholder: '',
+            tabsize: 2,
+            //tooltip: false,
+            height: 500,
+        });
     </script>
 @stop

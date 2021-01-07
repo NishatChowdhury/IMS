@@ -16,7 +16,7 @@
 }
 
 
-// nav full width when mobile 
+// nav full width when mobile
 .ec-nav {
   .container {
     position: relative;
@@ -53,7 +53,7 @@
   }
 }
 
-////// Dropdown control 
+////// Dropdown control
 
 .nav-item__has-dropdown {
   position: relative;
@@ -68,7 +68,7 @@
   }
 }
 
-// dropdown menu appearance 
+// dropdown menu appearance
 .dropdown-menu__inner {
   padding: px-to-rem(5) px-to-rem(30);
 }
@@ -120,7 +120,7 @@
 }
 
 
-// Mega menu control 
+// Mega menu control
 .nav-item__has-megamenu {
   .dropdown-menu {
     width: 100%;
@@ -128,7 +128,7 @@
   }
 }
 
-// Mega menu width control 
+// Mega menu width control
 .megamenu-col{
   @media(min-width:992px){
     &-1 {
@@ -150,7 +150,7 @@
 }
 
 
-/// dropdown arrow control 
+/// dropdown arrow control
 .nav-link__list{
   &.dropdown-toggle{
     &:after {
@@ -166,7 +166,7 @@
 
 
 
-/////// Nav toolbar 
+/////// Nav toolbar
 .nav-toolbar{
    .navbar-nav {
     flex-direction: row;
@@ -204,22 +204,22 @@
   }
   .btn {
     background: color(primary, base);
-    border: 1px solid color(primary, base) !important; 
+    border: 1px solid color(primary, base) !important;
     border-radius: 0;
     color: #fff;
     padding-left: 15px;
     padding-right: 15px;
-  } 
+  }
 }
   .ect-search-form__field {
     padding: 12px;
-    border: 1px solid color(primary, base) !important; 
+    border: 1px solid color(primary, base) !important;
   }
- 
 
 
 
-// 
+
+//
 .dropdown-cart{
   left: auto;
   right: -20px;
@@ -285,7 +285,7 @@
   padding: 10px;
   background: map-get($theme-colors, primary);
   width: 45px;
-  height: 40px; 
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -494,8 +494,8 @@
                     </ul>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*','calender*']) }}">
-                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*','social*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*','calender*','theme']) }}">
+                <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*','social*','theme']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
                         Settings
@@ -509,12 +509,12 @@
                             <p>Site Basic Info </p>
                         </a>
                     </li>
-                    {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-                        {{--<a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">--}}
-                            {{--<i class="far fa-circle nav-icon"></i>--}}
-                            {{--<p>Notice Management </p>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('menus') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Site Menu</p>
+                        </a>
+                    </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
                             <i class="far fa-circle nav-icon"></i>
@@ -543,6 +543,12 @@
                         <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Social Links</p>
+                        </a>
+                    </li>
+                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('ThemeController@index') }}" class="nav-link {{ isActive('themes') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Theme</p>
                         </a>
                     </li>
                 </ul>
@@ -697,12 +703,12 @@
                             <p>Playlists</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Videos</p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Videos</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </li>
 
@@ -734,7 +740,7 @@
                     <li class="nav-item" >
                         <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Create Journal</p>
+                            <p>Journals</p>
                         </a>
                         <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
                             <i class="far fa-circle nav-icon"></i>

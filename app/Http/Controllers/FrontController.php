@@ -15,6 +15,7 @@ use App\GalleryCategory;
 use App\Group;
 use App\ImportantLink;
 use App\Mark;
+use App\Menu;
 use App\MeritList;
 use App\Notice;
 use App\NoticeCategory;
@@ -536,6 +537,19 @@ class FrontController extends Controller
         return view('front.pages.playlist',compact('playlist'));
     }
 
+    public function page($uri)
+    {
+        $content = Menu::query()->where('uri',$uri)->first();
+        if($content->type == 3){
+            $categories = GalleryCategory::all();
+            $albums = Album::all();
+            $teachers = Staff::query()->orderBy('code')->get();
+            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers'));
+        }
+        $page = $content->page;
+        return view('front.pages.page',compact('page'));
+    }
+
     // API for Vue
     public function infoBar()
     {
@@ -551,9 +565,17 @@ class FrontController extends Controller
     public function titleBar()
     {
         $info = [
+            'bg_color' => themeConfig('header_background'),
             'name' => siteConfig('name'),
+            'name_size' => siteConfig('name_size'),
+            'name_font' => siteConfig('name_font'),
+            'name_color' => siteConfig('name_color'),
             'bn' => siteConfig('bn'),
+            'bn_size' => siteConfig('bn_size'),
+            'bn_font' => siteConfig('bn_font'),
+            'bn_color' => siteConfig('bn_color'),
             'logo' => siteConfig('logo'),
+            'logo_height' => siteConfig('logo_height')
         ];
 
         return response($info);
