@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
@@ -16,6 +17,18 @@ class PageController extends Controller
     {
         $pages = Page::query()->paginate(15);
         return view('admin.settings.configuredPage',compact('pages'));
+    }
+
+    public function create()
+    {
+        return view('admin.page.create');
+    }
+
+    public function store(Request $request)
+    {
+        Page::query()->create($request->all());
+        Session::flash('success','Page created successfully');
+        return redirect('admin/pages');
     }
 
     public function edit($id)
@@ -39,6 +52,6 @@ class PageController extends Controller
             $page->update($request->all());
         }
 
-        return redirect('pages');
+        return redirect('admin/pages');
     }
 }

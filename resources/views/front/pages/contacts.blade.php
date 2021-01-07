@@ -127,7 +127,9 @@
                     </div> <!-- END container-->
                 </section>
 
-                <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.5279357171717!2d92.2227251144799!3d22.52188804050705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad4c086d55fa3b%3A0xf40280cc8e7352d7!2sBangladesh%20Navy%20School%20and%20College%20Kaptai!5e0!3m2!1sen!2sbd!4v1608817408082!5m2!1sen!2sbd" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+{{--                <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>--}}
 
 
 {{--            </div> <!-- END row-->--}}

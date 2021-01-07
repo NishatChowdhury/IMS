@@ -18,7 +18,7 @@ class MenuController extends Controller
     {
         $parents = Menu::all()->pluck('name','id');
         $pages = Page::all()->pluck('name','id');
-        $systemPages = [];
+        $systemPages = [null,'Contact','Gallery','Teacher List'];
         $menus = Menu::query()
             ->where('menu_id',null)
             ->orderBy('order')
