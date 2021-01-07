@@ -664,7 +664,7 @@ Route::get('sync-studentId',function(){
     }
 });
 
-Route::get('copy-student-to-student-login',function(){
+Route::get('system/copy-student-to-student-login',function(){
     $students = Student::query()->get();
     foreach($students as $student){
         $data = [

@@ -39,6 +39,10 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    @if(theme() == 1)
+        <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
+    @endif
+
 </head>
 
 <body>
@@ -56,8 +60,9 @@
 
 
 
-    <nav class="ec-nav sticky-top bg-white">
-        @include('front.inc.menu')
+    <nav class="ec-nav sticky-top bg-white no-print">
+{{--        @include('front.inc.menu')--}}
+        @include('front.inc.dynamic-menu')
     </nav> <!-- END ec-nav -->
 
     {{--<div class="site-search">--}}

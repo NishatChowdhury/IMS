@@ -43,7 +43,7 @@
                                 <li class="list-inline-item m-2">
                                     <i class="ti-heart text-primary"></i>
                                     <span class="d-block">DOB</span>
-                                    <span class="h6">{{ $student->dob->format('Y-m-d') }}</span>
+                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -65,28 +65,33 @@
                         </div>
                         <div class="card-footer">
                             <p>
-                                Social Profile:
+                                Quick Action:
                             </p>
                             <ul class="list-inline mb-0">
+{{--                                <li class="list-inline-item">--}}
+{{--                                    <a href="#" class="btn btn-outline-facebook iconbox iconbox-sm">--}}
+{{--                                        <i class="ti-facebook"></i>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li class="list-inline-item">--}}
+{{--                                    <a href="#" class="btn btn-outline-twitter iconbox iconbox-sm">--}}
+{{--                                        <i class="ti-twitter"></i>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li class="list-inline-item">--}}
+{{--                                    <a href="#" class="btn btn-outline-google-plus iconbox iconbox-sm">--}}
+{{--                                        <i class="ti-google"></i>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
                                 <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline-facebook iconbox iconbox-sm">
-                                        <i class="ti-facebook"></i>
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm"  href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" title="Logout">
+                                        <i class="ti-control-stop"></i>
                                     </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline-twitter iconbox iconbox-sm">
-                                        <i class="ti-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline-google-plus iconbox iconbox-sm">
-                                        <i class="ti-google"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline-linkedin iconbox iconbox-sm">
-                                        <i class="ti-linkedin"></i>
-                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -98,13 +103,19 @@
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#Tabs_1-1" role="tab" aria-selected="true">
                                     <i class="ti-download mr-1"></i>
-                                    Purchase Courses
+                                    Attendance
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#Tabs_1-2" role="tab" aria-selected="true">
                                     <i class="ti-heart mr-1"></i>
-                                    Wishlist
+                                    Result
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#Tabs_1-2" role="tab" aria-selected="true">
+                                    <i class="ti-heart mr-1"></i>
+                                    Payment
                                 </a>
                             </li>
                         </ul>
@@ -115,53 +126,23 @@
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Order ID</th>
                                             <th scope="col">Date</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">In Time</th>
+                                            <th scope="col">Out Time</th>
+                                            <th scope="col">Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($period as $day)
                                         <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">#00004673</th>
-                                            <td>01 Aug 2018</td>
-                                            <td>$49</td>
+                                            <th scope="row" class="text-dark font-weight-semiBold">{{ $day->format('Y-m-d') }}</th>
+                                            <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>
+                                            <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-link">View</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">#05604673</th>
-                                            <td>07 Aug 2018</td>
-                                            <td>$300</td>
-                                            <td>
-                                                <a href="#" class="btn btn-link">View</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">#07O4673</th>
-                                            <td>16 Aug 2018</td>
-                                            <td>$34</td>
-                                            <td>
-                                                <a href="#" class="btn btn-link">View</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">#06454673</th>
-                                            <td>24 Aug 2018</td>
-                                            <td>$10</td>
-                                            <td>
-                                                <a href="#" class="btn btn-link">View</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">#0000435</th>
-                                            <td>28 Aug 2018</td>
-                                            <td>$199</td>
-                                            <td>
-                                                <a href="#" class="btn btn-link">View</a>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
