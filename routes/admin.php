@@ -60,4 +60,17 @@ Route::group(['prefix'=>'admin'],function(){
     Route::patch('holiday/{id}/update','HolidayController@update');
     Route::delete('holiday/delete/{id}','HolidayController@destroy');
     //Holiday Setup
+
+
+        // Imam Hasan Journal Routes
+    Route::resource('journals', "JournalController")->middleware('auth');
+    // Imam Hasan Journal Routes
+
+    // accounting Reports by Imam Hasan\
+    Route::get('balance-sheet', "AccountingController@balance_sheet")->name('balance_sheet');
+    // accounting Reports by Imam Hasan
+
+    // Route for test
+    Route::view('bl', 'admin.reports.balance_sheet');
+    // Route for test
 });

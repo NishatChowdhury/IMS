@@ -17,29 +17,56 @@ class SeedCoaParentsTable extends Migration
     {
         Schema::table('coa_parents', function (Blueprint $table) {
             $cats = [
+                // Asset Side
                 [
-                    'coa_grand_parent_id' => 1,
-                    'name'=>'Asset Accounts',
+                    'coa_grand_parent_id' => 1, //Asset Accounts
+                    'name'=>'Current Assets',
                     'side'=>'Dr',
                 ],
                 [
-                    'coa_grand_parent_id' => 1,
-                    'name'=>'Liability Accounts',
-                    'side'=>'Cr',
-                ],
-                [
-                    'coa_grand_parent_id' => 1,
-                    'name'=>'Equity Accounts',
-                    'side'=>'Cr',
-                ],
-                [
-                    'coa_grand_parent_id' => 2,
-                    'name'=>'Revenue Accounts',
+                    'coa_grand_parent_id' => 1, //Asset Accounts
+                    'name'=>'Long Term Investments',
                     'side'=>'Dr',
                 ],
                 [
-                    'coa_grand_parent_id' => 2,
-                    'name'=>'Expense Accounts',
+                    'coa_grand_parent_id' => 1, //Asset Accounts
+                    'name'=>'Fixed Assets',
+                    'side'=>'Dr',
+                ],
+                [
+                    'coa_grand_parent_id' =>1, //Asset Accounts
+                    'name'=>'Intengible Assets',
+                    'side'=>'Dr',
+                ],
+                [
+                    'coa_grand_parent_id' =>1, //Asset Accounts
+                    'name'=>'Other Assets',
+                    'side'=>'Dr',
+                ],
+                // Libility Side
+                [
+                    'coa_grand_parent_id' =>2, // Liability Accounts
+                    'name'=>'Current liabilities',
+                    'side'=>'Cr',
+                ],
+                [
+                    'coa_grand_parent_id' =>2, // Liability Accounts
+                    'name'=>'Long Term liabilities',
+                    'side'=>'Cr',
+                ],
+                [
+                    'coa_grand_parent_id' =>3, // Equity Accounts
+                    'name'=>'Stock Holders\' Equity',
+                    'side'=>'Cr',
+                ],
+                [
+                    'coa_grand_parent_id' =>4, // Revenue Accounts
+                    'name'=>'Revenue',
+                    'side'=>'Cr',
+                ],
+                [
+                    'coa_grand_parent_id' =>5, // Expense Accounts
+                    'name'=>'Expense',
                     'side'=>'Cr',
                 ],
             ];

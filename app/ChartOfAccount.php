@@ -17,4 +17,8 @@ class ChartOfAccount extends Model
         return $coa->whereIsActive(1)->get();
     }
 
+    function journals(){
+        return $this->hasMany(Journal::class);
+    }
+
 }

@@ -733,6 +733,10 @@
                         <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Journal</p>
+                        </a> 
+                        <a href="{{ route('balance_sheet') }}" class="nav-link {{ isActive('balance-sheet') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Balance Sheet</p>
                         </a>
                     </li>
                 </ul>

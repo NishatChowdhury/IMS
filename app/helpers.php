@@ -51,3 +51,16 @@ function inWord($number){
     $f = new NumberFormatter("en",NumberFormatter::SPELLOUT);
     return $f->format($number);
 }
+
+function coa_balance($coa){
+    return $coa->journals->where('debit_credit',0)->sum('amount')-$coa->journals->where('debit_credit',1)->sum('amount');
+}
+/**
+ * @param int $capital
+ * @param int $income
+ * @param int $expense
+ * 
+ */
+function capital_coa_balance($capital, $income, $expense){
+    return ($capital + $income - $expense);
+}

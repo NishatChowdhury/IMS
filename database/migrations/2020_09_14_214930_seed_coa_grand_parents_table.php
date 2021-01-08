@@ -15,7 +15,23 @@ class SeedCoaGrandParentsTable extends Migration
     public function up()
     {
         Schema::table('coa_grand_parents', function (Blueprint $table) {
-            $cats = ['Balance Sheet Accounts','Profit & Loss Accounts'];
+            $cats = [
+                [
+                    'name'=>'Asset Accounts',
+                ],
+                [
+                    'name'=>'Liability Accounts',
+                ],
+                [
+                    'name'=>'Equity Accounts',
+                ],
+                [
+                    'name'=>'Revenue Accounts',
+                ],
+                [
+                    'name'=>'Expense Accounts',
+                ],
+            ];
             foreach ($cats as $cat){
                 DB::table('coa_grand_parents')->insert(['name'=>$cat]);
             }
