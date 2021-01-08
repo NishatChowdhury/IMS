@@ -640,4 +640,10 @@ class StudentController extends Controller
         $repository = $this->repository;
         return view('admin.student.images',compact('students','repository'));
     }
+
+//    public function profile()
+//    {
+//        $student = Student::query()->findOrFail(1);
+//        return view('student.profile',compact('student'));
+//    }
 }

@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="navbar p-0 navbar-expand-lg">
         {{--<div class="navbar-brand ml-5">--}}
-            {{--<a class="logo-default" href="index.html"><img alt="" src="assets/img/logo-black.png"></a>--}}
-            {{--<a class="logo-default" href="{{ url('/') }}"><img alt="" src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="75" height="75"></a>--}}
+        {{--<a class="logo-default" href="index.html"><img alt="" src="assets/img/logo-black.png"></a>--}}
+        {{--<a class="logo-default" href="{{ url('/') }}"><img alt="" src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="75" height="75"></a>--}}
         {{--</div>--}}
         <span aria-expanded="false" class="navbar-toggler ml-auto collapsed" data-target="#ec-nav__collapsible" data-toggle="collapse">
         <div class="hamburger hamburger--spin js-hamburger">
@@ -13,7 +13,6 @@
       </span>
         <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible">
             <ul class="nav navbar-nav ec-nav__navbar ml-auto">
-
                 <li class="nav-item nav-item__has-megamenu megamenu-col-2">
                     <a class="nav-link" href="{{action('FrontController@index')}}" >Home</a>
                 </li>
@@ -26,7 +25,7 @@
                                 <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> About Institute </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@introduction') }}"> Introduction </a></li>
+                                        <li><a class="nav-link__list" href="{{ url('introduction') }}"> Introduction </a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@governing_body')}}"> Governing Body</a></li>
                                         <li><a class="nav-link__list" href="{{action('FrontController@donor')}}"> Founder & Donor</a></li>
                                     </ul>

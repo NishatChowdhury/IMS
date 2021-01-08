@@ -20,6 +20,7 @@ use App\Group;
 use App\Religion;
 use App\Section;
 use App\Session;
+use App\Student;
 use App\Subject;
 
 class StudentRepository
@@ -34,6 +35,11 @@ class StudentRepository
     public function activeSessions()
     {
         return Session::all()->where('active',1)->pluck('year','id');
+    }
+
+    public function names()
+    {
+        return Student::all()->pluck('name','id');
     }
 
     public function academicClasses()

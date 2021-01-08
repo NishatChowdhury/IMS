@@ -32,7 +32,7 @@
                             {{--</div>--}}
                             <div class="row">
                                 <div>
-                                    <button type="button" class="btn btn-info btn-sm" disabled data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                    <a class="btn btn-info btn-sm" href="{{ action('PageController@create') }}" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>

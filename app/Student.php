@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    protected $dates = ['dob'];
+
     protected $fillable = [
         'name',
         'studentId',
@@ -130,7 +132,9 @@ class Student extends Model
         return $this->belongsTo(Shift::class,'shift_id');
     }
 
-
+    public function attendances(){
+        return $this->hasMany(RawAttendance::class,'registration_id','studentId');
+    }
 
 
 }

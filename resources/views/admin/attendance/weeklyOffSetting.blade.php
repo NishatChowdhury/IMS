@@ -104,7 +104,16 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
+
+
                                         <button type="submit" class="btn btn-primary">Save</button>
+                                        <br>
+                                        <br>
+                                        @foreach ($all as $item)
+                                        <h3 style="background-color: #0c5460;padding-top: 5px;padding-bottom: 5px;color: white;text-align: center">Existing Weekly Off Of the School: <span style="margin-left: 5px">{{$item->show_option}}</span> </h3>
+                                        <h3>Wanna Customize?</h3>
+                                            <a href="{{ route('weeklyOff.edit',$item->id) }}" class="btn btn-xs btn-info ">Edit</a>
+                                        @endforeach
                                     </div>
 
                                 </form>

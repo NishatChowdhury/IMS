@@ -73,4 +73,35 @@ Route::group(['prefix'=>'admin'],function(){
     // Route for test
     Route::view('bl', 'admin.reports.balance_sheet');
     // Route for test
+    /** Menu Routes Starts */
+    Route::get('menus','MenuController@index');
+    Route::post('menu/store','MenuController@store')->name('menu.store');
+    Route::get('menu/edit','MenuController@edit')->name('menu.edit');
+    Route::patch('menu/{id}/update','MenuController@update')->name('menu.update');
+    Route::delete('menu/destroy/{id}','MenuController@destroy');
+    /** Menu Routes Ends */
+
+    Route::get('pages','PageController@index');
+    Route::get('page/create','PageController@create');
+    Route::post('page/store','PageController@store');
+    Route::get('page/edit/{id}','PageController@edit');
+    Route::patch('pages/{id}/update','PageController@update');
+
+    Route::get('siteinfo','SiteInformationController@index')->name('siteinfo');
+    Route::patch('site-info/update','SiteInformationController@update');
+    Route::patch('site-info/logo','SiteInformationController@logo');
+
+    Route::get('sliders','SliderController@index');
+    Route::post('slider/store','SliderController@store');
+    Route::delete('slider/destroy/{id}','SliderController@destroy');
+
+    Route::get('students','StudentController@index')->name('student.list');
+    Route::get('student/create','StudentController@create')->name('student.add');
+    Route::get('student/edit/{id}','StudentController@edit');
+    Route::patch('student/{id}/update','StudentController@update');
+    Route::get('student/drop/{id}','StudentController@dropOut');
+    Route::get('/load_student_id','StudentController@loadStudentId');
+    Route::get('/load_online_student_info','FrontController@loadStudentInfo');
+
+    Route::get('themes','ThemeController@index');
 });

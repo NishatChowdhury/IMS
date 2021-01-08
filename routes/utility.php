@@ -1,20 +1,30 @@
 <?php
 
 use App\AcademicClass;
+use App\AppliedStudent;
+use App\BloodGroup;
 use App\ExamResult;
+use App\ExamSchedule;
+use App\FinalMark;
+use App\FinalResult;
+use App\Gender;
 use App\Grade;
 use App\Mark;
 use App\RawAttendance;
+use App\Religion;
 use App\Student;
+use App\StudentLogin;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-Route::get('migrate',function(){
+Route::get('system/migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
-Route::get('reboot',function(){
+Route::get('system/reboot',function(){
     Artisan::call('config:cache');
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
@@ -37,11 +47,11 @@ Route::get('download-raw-attendances',function(){
     $data2=array(
         "get_log"=>array(
 //            "user_name" => "akschool",
-            "operation" => env('STELLAR_OPERATION',''),
-            "user_name" => env('STELLAR_USERNAME',''),
+            "operation" => env('STELLAR_OPERATION','fetch_log'),
+            "user_name" => env('STELLAR_USERNAME','cgs'),
 //            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
-            "auth" => env('STELLAR_AUTH',''), //cambrian
-            "access_id" => env('STELLAR_ACCESS_ID',''),
+            "auth" => env('STELLAR_AUTH','3efd234cefa324567a342deafd32672'), //cambrian
+            //"access_id" => env('STELLAR_ACCESS_ID',''),
             "log" => array(
                 "date1"=>date('Y-m-d'),
                 "date2"=>date('Y-m-d')
@@ -66,6 +76,8 @@ Route::get('download-raw-attendances',function(){
 
     $getvalue = json_decode($result);
 
+    dd($getvalue);
+
     foreach($getvalue->log as $row){
 
         ini_set('max_execution_time',30);
@@ -73,7 +85,7 @@ Route::get('download-raw-attendances',function(){
         $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
 
         if(!$isExists){
-            $attendance = new \App\RawAttendance();
+            $attendance = new RawAttendance();
             $attendance->registration_id = $row->registration_id;
             $attendance->unit_name = $row->unit_name;
             $attendance->user_name = $row->user_name;
@@ -95,14 +107,14 @@ Route::get('download-attendances',function(){
     date_default_timezone_set('Asia/Dhaka');
 
     $data = [
-        "operation" => env('STELLAR_OPERATION',''),
-        "user_name" => env('STELLAR_USERNAME',''),
-        "auth_code" => env('STELLAR_AUTH_CODE',''),
-        "start_date" => Carbon::today()->format('Y-m-d'),
-        "end_date" => Carbon::today()->format('Y-m-d'),
+        "operation" => env('STELLAR_OPERATION','fetch_log'),
+        "user_name" => env('STELLAR_USERNAME','cgs'),
+        "auth_code" => env('STELLAR_AUTH_CODE','3efd234cefa324567a342deafd32672'),
+        "start_date" => Carbon::today()->format('2020-11-01'),
+        "end_date" => Carbon::today()->format('2020-11-30'),
         "start_time" => Carbon::createFromTime(00,00,00)->format('H:i:s'),
         "end_time" => Carbon::createFromTime(23,59,59)->format('H:i:s'),
-        "access_id" => env('STELLAR_ACCESS_ID',''),
+        //"access_id" => env('STELLAR_ACCESS_ID',''),
     ];
 
     $datapayload = json_encode($data);
@@ -121,7 +133,7 @@ Route::get('download-attendances',function(){
 
     $getvalue = json_decode($result);
 
-    //dd($data);
+    dd($getvalue);
     //dd($result);
 
     dd($getvalue->log);
@@ -130,7 +142,7 @@ Route::get('download-attendances',function(){
 
         ini_set('max_execution_time',30);
 
-        $attendance = new \App\RawAttendance();
+        $attendance = new RawAttendance();
         $attendance->registration_id = $row->registration_id;
         $attendance->unit_name = $row->unit_name;
         $attendance->user_name = $row->user_name;
@@ -148,6 +160,18 @@ Route::get('download-attendances',function(){
 
 Route::get('test-download',function(){
     Artisan::call('CronJob:DownloadAttendances');
+});
+
+Route::get('test-attendance-sms',function(){
+    Artisan::call('CronJob:AttendanceSMS');
+});
+
+Route::get('test-absent-sms',function(){
+    Artisan::call('CronJob:AbsentSMS');
+});
+
+Route::get('test-generate-attendance',function(){
+    Artisan::call('CronJob:GenerateAttendances');
 });
 
 Route::get('rename-pic',function(){
@@ -313,7 +337,7 @@ Route::get('generate-exam-result',function(){ //generate exam result from marks 
 });
 
 Route::get('sync-sec',function(){
-    $marks = \App\FinalResult::query()->get();
+    $marks = FinalResult::query()->get();
 
     foreach($marks as $mark){
         $student = Student::query()->findOrFail($mark->student_id);
@@ -323,7 +347,7 @@ Route::get('sync-sec',function(){
 });
 
 Route::get('sync-group',function(){
-    $marks = \App\FinalResult::query()->get();
+    $marks = FinalResult::query()->get();
 
     foreach($marks as $mark){
         $student = Student::query()->findOrFail($mark->student_id);
@@ -379,7 +403,7 @@ Route::get('calc-final-result',function(){
         $subjectCount = 11;
     }
 
-    $marks = \App\FinalMark::query()
+    $marks = FinalMark::query()
         ->where('session_id',$sessionId)
         //->where('exam_id',$examId)
         ->where('class_id',$classId)
@@ -389,7 +413,7 @@ Route::get('calc-final-result',function(){
         ->groupBy('student_id');
 
     foreach($marks as $student => $mark){
-        $isFail = \App\FinalMark::query()
+        $isFail = FinalMark::query()
             ->where('session_id',$sessionId)
             //->where('exam_id',$examId)
             ->where('class_id',$classId)
@@ -434,7 +458,7 @@ Route::get('calc-final-result',function(){
         }
         $data['rank'] = null;
 
-        $result = \App\FinalResult::query()
+        $result = FinalResult::query()
             ->where('session_id',$sessionId)
             //->where('exam_id',$examId)
             ->where('class_id',$classId)
@@ -444,12 +468,12 @@ Route::get('calc-final-result',function(){
         if($result != null){
             $result->update($data);
         }else{
-            \App\FinalResult::query()->create($data);
+            FinalResult::query()->create($data);
         }
     }
 
     /* update exam rank start */
-    $results = \App\FinalResult::query()
+    $results = FinalResult::query()
         ->where('session_id',$sessionId)
         //->where('exam_id',$examId)
         ->where('class_id',$classId)
@@ -526,7 +550,7 @@ Route::get('sync-exam-full-mark',function(){
     $marks = Mark::query()->get();
 
     foreach($marks as $mark){
-        $schedule = \App\ExamSchedule::query()->where('exam_id',$mark->exam_id)->where('subject_id',$mark->subject_id)->first();
+        $schedule = ExamSchedule::query()->where('exam_id',$mark->exam_id)->where('subject_id',$mark->subject_id)->first();
         $full = $schedule->objective_full + $schedule->written_full + $schedule->practical_full + $schedule->viva_full;
         $mark->update(['full_mark'=>$full]);
     }
@@ -548,12 +572,113 @@ Route::get('sync-fake-attn',function(){
 });
 
 Route::get('change-duplicate-id',function(){
-    $studentId = \App\AppliedStudent::query()->get('studentId')->toArray();
+    $studentId = AppliedStudent::query()->get('studentId')->toArray();
     //dd($studentId);
     foreach($studentId as $id){
-        $appliedStudent = \App\AppliedStudent::query()->where('studentId',$id)->get();
+        $appliedStudent = AppliedStudent::query()->where('studentId',$id)->get();
         if($appliedStudent->count() > 1){
             dd($appliedStudent);
         }
     }
+});
+
+Route::get('upload-students',function(){
+    return view('utilities.upload-students');
+});
+Route::post('upload-student-csv',function(Request $request){
+    $file = file($request->file('file'));
+    $sl = 0;
+    //dd($file);
+    foreach($file as $row){
+
+        if ($sl!=0){
+
+            $col = explode(',',$row);
+
+            $nextStudentID = Student::query()->max('id')+1;
+            $genderId = Gender::query()->where('name',$col[12])->first()->id ?? null;
+            $bloodGroupId = BloodGroup::query()->where('name',$col[15])->first()->id ?? null;
+            $religionId = Religion::query()->where('name',$col[16])->first()->id ?? null;
+
+            $data['id'] = $col[0];
+            $data['name'] = $col[1];
+            $data['studentId'] = 'S'.$nextStudentID;
+            $data['academic_class_id'] = AcademicClass::query()->where('session_id',$col[4])->where('class_id',$col[5])->first()->id;
+            $data['session_id'] = $col[4];
+            $data['class_id'] = $col[5];
+            $data['section_id'] = null;
+            //$data['section_id'] = $col[6];
+            $data['group_id'] = $col[7];
+            $data['rank'] = $col[8];
+            $data['subject_id'] = null;
+            $data['father'] = $col[10];
+            $data['mother'] = $col[11];
+            $data['gender_id'] = $genderId;
+            $data['mobile'] = $col[13];
+            $data['dob'] = $col[14];
+            $data['blood_group_id'] = $bloodGroupId;
+            $data['religion_id'] = $religionId;
+            $data['image'] = $col[17];
+            $data['address'] = $col[18];
+            $data['area'] = $col[19];
+            $data['zip'] = $col[20];
+            $data['city_id'] = null;
+            $data['country_id'] = null;
+            $data['email'] = $col[23];
+            $data['father_mobile'] = '0'.$col[24];
+            $data['mother_mobile'] = '0'.(int)$col[25];
+            $data['notification_type_id'] = null;
+            $data['status'] = 1;
+            $data['created_at'] = Carbon::now();
+            $data['updated_at'] = Carbon::now();
+
+            $isExist = Student::query()
+                ->where('session_id',$data['session_id'])
+                ->where('class_id',$data['class_id'])
+                ->where('section_id',$data['section_id'])
+                ->where('rank',$data['rank'])
+                ->first();
+
+            if($isExist){
+                $isExist->update($data);
+            }else{
+                Student::query()->create($data);
+            }
+
+        }
+
+        $sl++;
+
+    }
+
+    Session::flash('success','Data inserted!');
+
+    return redirect()->back();
+});
+
+Route::get('sync-studentId',function(){
+    $students = Student::query()->get();
+    foreach($students as $student){
+        $id = $student->id;
+        $student->update(['studentId'=>'S2020'.str_pad($id,5,'0',STR_PAD_LEFT)]);
+    }
+});
+
+Route::get('system/copy-student-to-student-login',function(){
+    $students = Student::query()->get();
+    foreach($students as $student){
+        $data = [
+            'name' => $student->name,
+            'student_id' => $student->id,
+            'studentId' => $student->studentId,
+            'password' => bcrypt('student123'),
+        ];
+
+        $isExist = StudentLogin::query()->where('student_id',$student->id)->exists();
+
+        if(!$isExist){
+            StudentLogin::query()->create($data);
+        }
+    }
+    dd('data copied');
 });

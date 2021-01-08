@@ -136,7 +136,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>
                         <div class="col-sm-10">
                             <div class="form-group files color">
-                                <input type="file" name="image" class="form-control" multiple="">
+                                <input type="file" name="image[]" class="form-control" multiple="">
                             </div>
                         </div>
                     </div>

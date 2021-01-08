@@ -31,6 +31,9 @@ Route::patch('user/password','UserController@password');
 Route::get('/', 'FrontController@index');
 //Route::get('/', 'IdCardController@custom_staffPdf');
 
+//Route::get('{uri}','FrontController@page');
+Route::get('{uri}','FrontController@page');
+
 //Institute -> About
 Route::get('/introduction','FrontController@introduction');
 Route::get('/governing-body','FrontController@governing_body');
@@ -188,8 +191,17 @@ Route::delete('attendance/shift/delete/{id}','ShiftController@destroy');
 //Weekly Off Setting starts by Nishat
 Route::get('attendance/weeklyOff','WeeklyOffController@index');
 Route::post('attendance/weeklyOff/store','WeeklyOffController@store')->name('weeklyOff.store');
+Route::get('attendance/weeklyOff/edit/{id}','WeeklyOffController@edit')->name('weeklyOff.edit');
 Route::delete('attendance/weeklyOff/delete/{id}','WeeklyOffController@destroy');
 //Weekly Off Setting ends by Nishat
+
+//leave management starts by Nishat
+Route::get('attendance/leaveManagement','LeaveManagementController@index');
+Route::get('attendance/leaveManagement/add','LeaveManagementController@add')->name('leaveManagement.add');
+Route::post('attendance/leaveManagement/store','LeaveManagementController@store')->name('leaveManagement.store');
+Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edit')->name('leaveManagement.edit');
+Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
+//leave management ends by Nishat
 
 
 //Settings Route by Rimon
@@ -283,13 +295,7 @@ Route::get('institution/signature','InstitutionController@signature');
 Route::post('institution/sig','InstitutionController@sig');
 
 // smartrahat start
-Route::get('siteinfo','SiteInformationController@index');
-Route::patch('site-info/update','SiteInformationController@update');
-Route::patch('site-info/logo','SiteInformationController@logo');
 
-Route::get('pages','PageController@index');
-Route::get('page/edit/{id}','PageController@edit');
-Route::patch('pages/{id}/update','PageController@update');
 
 Route::get('notices','NoticeController@index');
 Route::post('notice/store','NoticeController@store');
@@ -305,19 +311,10 @@ Route::get('notice/type','NoticeTypeController@index');
 Route::post('notice/type/store','NoticeTypeController@store');
 Route::get('notice/type/edit/{id}','NoticeTypeController@edit');
 
-Route::get('sliders','SliderController@index');
-Route::post('slider/store','SliderController@store');
-Route::delete('slider/destroy/{id}','SliderController@destroy');
 // smartrahat end
 
 //Students Route by babu
-    Route::get('students','StudentController@index')->name('student.list');
-    Route::get('student/create','StudentController@create')->name('student.add');
-    Route::get('student/edit/{id}','StudentController@edit');
-    Route::patch('student/{id}/update','StudentController@update');
-    Route::get('student/drop/{id}','StudentController@dropOut');
-    Route::get('/load_student_id','StudentController@loadStudentId');
-    Route::get('/load_online_student_info','FrontController@loadStudentInfo');
+
 
 //Students Route by Rimon
     Route::get('student/designStudentCard','IdCardController@index');
@@ -416,7 +413,7 @@ Route::delete('slider/destroy/{id}','SliderController@destroy');
 //Academic Calender End
 
 //Student profile start
-    Route::get('student-profile/{studentId}','StudentController@studentProfile')->name('student.profile');
+    Route::get('admin/student-profile/{studentId}','StudentController@studentProfile')->name('admin.student.profile');
     Route::get('staff-profile/{staffId}','StaffController@staffProfile')->name('staff.profile');
 //Student profile end
 
@@ -459,3 +456,11 @@ Route::get('playlist/{id}','FrontController@playlist');
 Route::post('admission-form-submit','AppliedStudentController@store');
 Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 /** Applied Student */
+
+// Imam Hasan Journal Routes
+Route::resource('journals', "JournalController")->middleware('auth');
+// Imam Hasan Journal Routes
+
+//if(isMenu()){
+//    Route::get('{uri}','FrontController@page');
+//}
