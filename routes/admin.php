@@ -65,6 +65,9 @@ Route::group(['prefix'=>'admin'],function(){
         // Imam Hasan Journal Routes
     Route::resource('journals', "JournalController")->middleware('auth');
     // Imam Hasan Journal Routes
+    // Imam Hasan Journal Routes
+    Route::resource('journals', "JournalController")->middleware('auth');
+// Imam Hasan Journal Routes
 
     // accounting Reports by Imam Hasan\
     Route::get('balance-sheet', "AccountingController@balance_sheet")->name('balance_sheet');
@@ -102,6 +105,13 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('student/drop/{id}','StudentController@dropOut');
     Route::get('/load_student_id','StudentController@loadStudentId');
     Route::get('/load_online_student_info','FrontController@loadStudentInfo');
+
+    Route::get('features','FeatureController@index');
+    Route::get('feature/create','FeatureController@create');
+    Route::post('feature/store','FeatureController@store');
+    Route::get('feature/edit/{id}','FeatureController@edit');
+    Route::patch('feature/{id}/update','FeatureController@update');
+    Route::delete('feature/destroy/{id}','FeatureController@destroy');
 
     Route::get('themes','ThemeController@index');
 });
