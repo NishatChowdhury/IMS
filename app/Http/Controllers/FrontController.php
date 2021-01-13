@@ -10,6 +10,7 @@ use App\Bank;
 use App\Classes;
 use App\ClassSchedule;
 use App\ExamResult;
+use App\Feature;
 use App\Gallery;
 use App\GalleryCategory;
 use App\Group;
@@ -67,7 +68,10 @@ class FrontController extends Controller
             ->get();
         $newses = Notice::query()->where('notice_type_id',1)->orderByDesc('start')->skip(1)->take(3)->get();
         $latestNews = Notice::query()->where('notice_type_id',1)->orderByDesc('start')->first();
-        return view('front.index',compact('sliders','content','teachers','links','notices','events','newses','latestNews'));
+        $features = Feature::query()->where('active',1)->take(6)->get();
+
+        //return view('front.index-navy');
+        return view('front.index',compact('sliders','content','teachers','links','notices','events','newses','latestNews','features'));
     }
 
     public function introduction()

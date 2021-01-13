@@ -521,6 +521,12 @@
                             <p>Page Mgmt</p>
                         </a>
                     </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Feature</p>
+                        </a>
+                    </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('AcademicCalenderController@index') }}" class="nav-link {{ isActive('calender') }}">
                             <i class="far fa-circle nav-icon"></i>
@@ -745,7 +751,7 @@
                         <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Journal</p>
-                        </a> 
+                        </a>
                         <a href="{{ route('balance_sheet') }}" class="nav-link {{ isActive('balance-sheet') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Balance Sheet</p>
