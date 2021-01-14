@@ -4755,14 +4755,6 @@ input[type=submit].btn-block {
     border-radius: 0
 }
 
-.alert {
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem
-}
-
 .alert-heading {
     color: inherit
 }
@@ -4810,12 +4802,6 @@ input[type=submit].btn-block {
 
 .alert-secondary .alert-link {
     color: #202326
-}
-
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb
 }
 
 .alert-success hr {
@@ -5946,12 +5932,6 @@ a.bg-secondary:hover,
 button.bg-secondary:focus,
 button.bg-secondary:hover {
     background-color: #545b62!important
-}
-
-.alert-success,
-.bg-success,
-.label-success {
-    background-color: #28a745!important
 }
 
 a.alert-success:focus,
@@ -11841,10 +11821,6 @@ label:not(.form-check-label):not(.custom-file-label) {
     text-decoration: underline
 }
 
-.alert-success {
-    border-color: #23923d
-}
-
 .alert-danger,
 .alert-error {
     border-color: #d32535
@@ -12843,15 +12819,6 @@ a.text-muted:hover {
 
 .bg-secondary,
 .bg-secondary a {
-    color: #fff!important
-}
-
-.alert-success,
-.alert-success a,
-.bg-success,
-.bg-success a,
-.label-success,
-.label-success a {
     color: #fff!important
 }
 
@@ -18116,14 +18083,6 @@ input[type=submit].btn-block {
     border-radius: 0
 }
 
-.alert {
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem
-}
-
 .alert-heading {
     color: inherit
 }
@@ -18171,12 +18130,6 @@ input[type=submit].btn-block {
 
 .alert-secondary .alert-link {
     color: #202326
-}
-
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb
 }
 
 .alert-success hr {
@@ -19307,12 +19260,6 @@ a.bg-secondary:hover,
 button.bg-secondary:focus,
 button.bg-secondary:hover {
     background-color: #545b62!important
-}
-
-.alert-success,
-.bg-success,
-.label-success {
-    background-color: #28a745!important
 }
 
 a.alert-success:focus,
@@ -25202,10 +25149,6 @@ label:not(.form-check-label):not(.custom-file-label) {
     text-decoration: underline
 }
 
-.alert-success {
-    border-color: #23923d
-}
-
 .alert-danger,
 .alert-error {
     border-color: #d32535
@@ -26204,15 +26147,6 @@ a.text-muted:hover {
 
 .bg-secondary,
 .bg-secondary a {
-    color: #fff!important
-}
-
-.alert-success,
-.alert-success a,
-.bg-success,
-.bg-success a,
-.label-success,
-.label-success a {
     color: #fff!important
 }
 

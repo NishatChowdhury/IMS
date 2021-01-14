@@ -15,7 +15,7 @@
                 @foreach($pages as $page)
                 <optgroup label="{{ $page->name }}">
                     @foreach($page->children as $child)
-                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                    <option value="{{ $child->id }}" {{ $feature->page_id == $child->id ? 'selected' : '' }}>{{ $child->name }}</option>
                     @endforeach
                 </optgroup>
                 @endforeach
@@ -25,9 +25,14 @@
 </div>
 <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Thumbnail(70X70)*</label>
-    <div class="col-sm-10">
+    <div class="col-sm-5">
         <div class="form-group files color">
             <input type="file" name="image" class="form-control" multiple="">
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}" class="img-thumbnail mx-auto d-block" alt="" width="150">
         </div>
     </div>
 </div>

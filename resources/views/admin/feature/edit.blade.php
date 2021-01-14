@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Create Upcoming Event')
+@section('title','Edit Feature Service')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Feature</h1>
+                    <h1>Edit Feature</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Feature</a></li>
-                        <li class="breadcrumb-item active">Create</li>
+                        <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ Form::model($feature = new \App\Feature,['action'=>'FeatureController@store','method'=>'store','files'=>true]) }}
+                            {{ Form::model($feature,['action'=>['FeatureController@update',$feature->id],'method'=>'patch','files'=>true]) }}
                             @include('admin.feature.form')
                             {{ Form::close() }}
                         </div>
