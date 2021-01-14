@@ -114,4 +114,23 @@ Route::group(['prefix'=>'admin'],function(){
     Route::delete('feature/destroy/{id}','FeatureController@destroy');
 
     Route::get('themes','ThemeController@index');
+
+    // smartrahat start
+
+
+    Route::get('notices','NoticeController@index');
+    Route::post('notice/store','NoticeController@store');
+    Route::get('notice/edit/{id}','NoticeController@edit');
+    Route::patch('notice/{id}/update','NoticeController@update');
+    Route::delete('notice/destroy/{id}','NoticeController@destroy');
+
+    Route::get('notice/category','NoticeCategoryController@index');
+    Route::post('notice/category/store','NoticeCategoryController@store');
+    Route::get('notice/category/edit/{id}','NoticeCategoryController@edit');
+
+    Route::get('notice/type','NoticeTypeController@index');
+    Route::post('notice/type/store','NoticeTypeController@store');
+    Route::get('notice/type/edit/{id}','NoticeTypeController@edit');
+
+// smartrahat end
 });

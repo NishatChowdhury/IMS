@@ -43,7 +43,7 @@ class NoticeController extends Controller
             Notice::query()->create($request->except('file'));
         }
         $request->session()->flash('success','Notice published successfully!');
-        return redirect('notices');
+        return redirect('admin/notices');
     }
 
     public function edit($id)
@@ -75,7 +75,7 @@ class NoticeController extends Controller
 
         //Notice::query()->create($request->all());
         $request->session()->flash('success','Notice updated successfully!');
-        return redirect('notices');
+        return redirect('admin/notices');
     }
 
     public function destroy($id)
