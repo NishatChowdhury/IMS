@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Add Leave')
+@section('title','Add Purpose')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add New Leave</li>
+                        <li class="breadcrumb-item active">Add New Purpose of Leave</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -36,37 +36,19 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'LeaveManagementController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!!  Form::open(['action'=>'LeavePurposeController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
 
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('student_name', 'Student Id',['class'=>'control-label' ]) }}
-                                        {{ Form::text('student_name', null, ['placeholder' => 'Enter Student Name...','class'=>'form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <div class="form-group">
-                                        {{ Form::label('start_date','Start Date',['class'=>'control-label']) }}
-                                        {{ Form::date('start_date',null,['class'=>'form-control', 'placeholder'=>'Start Date','id'=>'start_date']) }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <div class="form-group">
-                                        {{ Form::label('end_date','End Date',['class'=>'control-label']) }}
-                                        {{ Form::date('end_date',null,['class'=>'form-control', 'placeholder'=>'End Date','id'=>'end_date']) }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <div class="form-group">
-                                        {{ Form::label('leave_purpose_id','Leave Purpose',['class'=>'control-label']) }}
-                                        {{ Form::select('leave_purpose_id',$leave_purpose,null,['class'=>'form-control', 'placeholder'=>'Select Leave Purpose:','id'=>'leave_purpose_id']) }}
+                                        {{ Form::label('leave_purpose', 'Leave Purpose',['class'=>'control-label' ]) }}
+                                        {{ Form::text('leave_purpose', null, ['placeholder' => 'Enter Purpose','class'=>'form-control']) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
+                                {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success ']) !!}
                             </div>
                         </div>
 

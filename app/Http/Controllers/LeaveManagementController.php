@@ -21,15 +21,14 @@ class LeaveManagementController extends Controller
     public function index()
     {
         $allData = StudentLeave::orderBy('id','desc')->get();
-//        dd($allData);
         return view('admin.leaveManagement.view-leave',compact('allData'));
     }
 
 
     public function add()
     {
-        $repository = $this->repository;
-        return view('admin.leaveManagement.add-leave',compact('repository'));
+        $leave_purpose = leavePurpose::pluck('leave_purpose');
+        return view('admin.leaveManagement.add-leave',compact('leave_purpose'));
     }
 
 
