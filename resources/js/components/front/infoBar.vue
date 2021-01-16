@@ -25,7 +25,7 @@
             </ul>
             <ul class="list-inline mb-0">
                 <li class="list-inline-item mr-0 p-md-3 p-2 border-right border-left border-white-0_1">
-                    <a :href="'/login'">Login</a>
+                    <a :href="'student/login'">Login</a>
                 </li>
             </ul>
         </div> <!-- END END row-->
@@ -44,8 +44,8 @@ export default {
     },
     created() {
         this.axios
-            //.get('http://localhost/wpschool/public/api/info-bar')
-            .get('http://'+location.host+'/api/info-bar')
+            .get('/api/info-bar')
+            //.get('http://'+location.host+'/api/info-bar')
             .then(response => {
                 this.info = response.data;
                 console.log(response.data)
