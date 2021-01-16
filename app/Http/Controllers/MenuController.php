@@ -18,7 +18,13 @@ class MenuController extends Controller
     {
         $parents = Menu::all()->pluck('name','id');
         $pages = Page::all()->pluck('name','id');
-        $systemPages = [null,'Contact','Gallery','Teacher List'];
+        $systemPages = [
+            'contacts' => 'Contacts',
+            'gallery' => 'Gallery',
+            'notice' => 'Notice',
+            'internal-result' => 'Internal Result',
+            'teacher' => 'Teacher',
+        ];
         $menus = Menu::query()
             ->where('menu_id',null)
             ->orderBy('order')
@@ -42,6 +48,7 @@ class MenuController extends Controller
             'contacts' => 'Contacts',
             'gallery' => 'Gallery',
             'notice' => 'Notice',
+            'internal-result'=>'Internal Result',
             'teacher' => 'Teacher',
         ];
         $menus = Menu::query()

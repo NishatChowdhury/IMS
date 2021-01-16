@@ -541,16 +541,34 @@ class FrontController extends Controller
         return view('front.pages.playlist',compact('playlist'));
     }
 
-    public function page($uri)
+    public function page($uri,Request $request)
     {
         $content = Menu::query()->where('uri',$uri)->first();
         if($content->type == 3){
             $categories = GalleryCategory::all();
             $albums = Album::all();
             $teachers = Staff::query()->orderBy('code')->get();
-            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers'));
+
+            $repository = $this->repository;
+
+            if($content->system_page === 'notice'){
+                $notices = Notice::query()
+                    ->where('notice_type_id',2)
+                    ->orderByDesc('start')
+                    ->get();
+                $categories = NoticeCategory::all();
+            }
+
+            if($content->system_page === 'internal-result'){
+                $this->internal_exam($request);
+            }
+
+            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','repository'));
         }
         $page = $content->page;
+
+        $page = $page ?? new Page;
+
         return view('front.pages.page',compact('page'));
     }
 
