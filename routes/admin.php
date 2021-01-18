@@ -133,4 +133,11 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('notice/type/edit/{id}','NoticeTypeController@edit');
 
 // smartrahat end
+
+    //Weekly Off Setting starts by Nishat
+    Route::get('attendance/weeklyOff','WeeklyOffController@index');
+    Route::post('attendance/weeklyOff/store','WeeklyOffController@store')->name('weeklyOff.store');
+    Route::get('attendance/weeklyOff/edit/{id}','WeeklyOffController@edit')->name('weeklyOff.edit');
+    Route::delete('attendance/weeklyOff/delete/{id}','WeeklyOffController@destroy');
+//Weekly Off Setting ends by Nishat
 });

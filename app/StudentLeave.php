@@ -9,5 +9,5 @@ class StudentLeave extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['student_name','start_date','end_date','leave_purpose_id'];
+    protected $fillable = ['student_id','start_date','end_date','leave_purpose_id'];
 }

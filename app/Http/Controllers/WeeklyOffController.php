@@ -12,16 +12,17 @@ class WeeklyOffController extends Controller
     public function index()
     {
         $weeklyOffs = json_decode(weeklyOff::query()->firstOrNew()->show_option);
-        if(!$weeklyOffs) $weeklyOffs = []; // return empty array if no record in database
-        return view('admin.attendance.weeklyOffSetting',compact('weeklyOffs'));
+        if(!$weeklyOffs){
+            $weeklyOffs = []; // return empty array if no record in database
+            $all = weeklyOff::all();
+            return view('admin.attendance.weeklyOffSetting',compact('weeklyOffs','all'));
+        }
 //        $weeklyOff = weeklyOff::pluck('show_option')->first();
-        $weeklyOff = weeklyOff::pluck('show_option');
-        $weeklyOffId = weeklyOff::pluck('id');
+        $weeklyOff = weeklyOff::all()->pluck('show_option');
+        $weeklyOffId = weeklyOff::all()->pluck('id');
         $all = weeklyOff::all();
 
-//        dd($all->id);
-
-        return view('admin.attendance.weeklyOffSetting',compact('weeklyOff','weeklyOffId','all'));
+        return view('admin.attendance.weeklyOffSetting',compact('weeklyOff','weeklyOffId','all','weeklyOffs'));
     }
 
 

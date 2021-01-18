@@ -42,8 +42,8 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('student_name', 'Student Id',['class'=>'control-label' ]) }}
-                                        {{ Form::text('student_name', null, ['placeholder' => 'Enter Student Name...','class'=>'form-control']) }}
+                                        {{ Form::label('student_id', 'Student Id',['class'=>'control-label' ]) }}
+                                        {{ Form::text('student_id', null, ['placeholder' => 'Enter Student Name...','class'=>'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-sm-12">
