@@ -11,10 +11,10 @@ class CreateStudentLeavesTable extends Migration
     {
         Schema::create('student_leaves', function (Blueprint $table) {
             $table->id();
-            $table->string('student_name');
+            $table->string('student_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('leave_purpose_id');
+            $table->string('leave_purpose');
             $table->timestamps();
         });
     }

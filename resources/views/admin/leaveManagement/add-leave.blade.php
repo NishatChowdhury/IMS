@@ -42,8 +42,8 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('student_name', 'Student Id',['class'=>'control-label' ]) }}
-                                        {{ Form::text('student_name', null, ['placeholder' => 'Enter Student Name...','class'=>'form-control']) }}
+                                        {{ Form::label('student_id', 'Student Id',['class'=>'control-label' ]) }}
+                                        {{ Form::text('student_id', null, ['placeholder' => 'Enter Student ID...','class'=>'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -60,8 +60,8 @@
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('leave_purpose_id','Leave Purpose',['class'=>'control-label']) }}
-                                        {{ Form::select('leave_purpose_id',$leave_purpose,null,['class'=>'form-control', 'placeholder'=>'Select Leave Purpose:','id'=>'leave_purpose_id']) }}
+                                        {{ Form::label('leave_purpose','Leave Purpose',['class'=>'control-label']) }}
+                                        {{ Form::select('leave_purpose',$leave_purpose,null,['class'=>'form-control', 'placeholder'=>'Select Leave Purpose:','id'=>'leave_purpose']) }}
                                     </div>
                                 </div>
                             </div>
