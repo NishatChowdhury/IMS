@@ -101,6 +101,12 @@
                                 <p>Leave Management</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ action('LeavePurposeController@index') }}" class="nav-link {{ isActive('attendance/leavePurpose') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Leave Purpose</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview {{ isActive('attendance*') }}">
                             <a href="#" class="nav-link {{ isActive('attendance*') }}">
                                 <i class="nav-icon far fa-circle"></i>

@@ -203,6 +203,14 @@ Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edi
 Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
 //leave management ends by Nishat
 
+//leave purpose starts by Nishat
+Route::get('attendance/leavePurpose','LeavePurposeController@index');
+Route::get('attendance/leavePurpose/add','LeavePurposeController@add')->name('leavePurpose.add');
+Route::post('attendance/leavePurpose/store','LeavePurposeController@store')->name('leavePurpose.store');
+Route::get('attendance/leavePurpose/edit/{id}','LeavePurposeController@edit')->name('leavePurpose.edit');
+Route::delete('attendance/leavePurpose/delete/{id}','LeavePurposeController@destroy');
+//leave purpose ends by Nishat
+
 
 //Settings Route by Rimon
 Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.basicInfo');

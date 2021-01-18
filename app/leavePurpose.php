@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudentLeave extends Model
+class leavePurpose extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['student_name','start_date','end_date','leave_purpose_id'];
+    protected $fillable = ['leave_purpose'];
 }
