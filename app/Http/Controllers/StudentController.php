@@ -206,7 +206,7 @@ class StudentController extends Controller
             }
         }
 
-        return redirect()->route('student.list')->with('success','Student Added Successfully');
+        return redirect('admin/students')->with('success','Student Added Successfully');
 
     }
 

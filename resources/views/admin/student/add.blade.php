@@ -86,7 +86,7 @@
         $(document).on('keyup','#rank', function () {
             var academicYear = $('.year').val();
             $.ajax({
-                url:"{{url('/load_student_id')}}",
+                url:"{{url('admin/load_student_id')}}",
                 type:'GET',
                 data:{academicYear:academicYear},
                 success:function (data) {
