@@ -35,7 +35,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Serial</th>
-                                <th>Student Name</th>
+                                <th>Student ID</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Purpose</th>
@@ -46,10 +46,10 @@
                             @foreach($allData as $key => $value)
                                 <tr class="{{$value->id}}">
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $value->student_name }}</td>
+                                    <td>{{ $value->student_id }}</td>
                                     <td>{{ $value->start_date }}</td>
                                     <td>{{ $value->end_date }}</td>
-                                    <td>{{ $value->leave_purpose_id }}</td>
+                                    <td>{{ $value->leave_purpose }}</td>
                                     <td>
                                         <a href="{{ action('LeaveManagementController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
