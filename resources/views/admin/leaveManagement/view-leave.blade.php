@@ -8,6 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Student</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -34,10 +35,10 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>Serial</th>
-                                <th>Student ID</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>Leave ID</th>
+                                <th>Student Name</th>
+                                <th>Date</th>
+                                <th>Total</th>
                                 <th>Purpose</th>
                                 <th>Action</th>
                             </tr>
@@ -45,11 +46,16 @@
                             <tbody>
                             @foreach($allData as $key => $value)
                                 <tr class="{{$value->id}}">
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $value->student_id }}</td>
-                                    <td>{{ $value->start_date }}</td>
-                                    <td>{{ $value->end_date }}</td>
-                                    <td>{{ $value->leave_purpose }}</td>
+                                    <td>{{ $value->id }}</td>
+                                    <td>
+                                        {{ $value->student->name }}<br>
+                                        <i class="text-secondary">ID: {{ $value->student->studentId }}</i>
+                                    </td>
+                                    <td>{{ $value->start_date }} - {{ $value->end_date }}</td>
+                                    <td>{{ $value->start_date->diffInDays($value->end_date->addDay()) }}</td>
+                                    <td>
+                                        {{ $value->purpose->leave_purpose }}
+                                    </td>
                                     <td>
                                         <a href="{{ action('LeaveManagementController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>

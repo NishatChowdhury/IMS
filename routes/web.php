@@ -441,6 +441,8 @@ Route::post('admission-form-submit','AppliedStudentController@store');
 Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 /** Applied Student */
 
+
+
 //if(isMenu()){
 //    Route::get('{uri}','FrontController@page');
 //}

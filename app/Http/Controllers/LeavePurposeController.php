@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\leavePurpose;
+use App\LeavePurpose;
 use Illuminate\Http\Request;
 
 class LeavePurposeController extends Controller
@@ -17,7 +17,7 @@ class LeavePurposeController extends Controller
 
     public function store(Request $request)
     {
-        leavePurpose::query()->create($request->all());
+        LeavePurpose::query()->create($request->all());
         return redirect('attendance/leavePurpose');
     }
 

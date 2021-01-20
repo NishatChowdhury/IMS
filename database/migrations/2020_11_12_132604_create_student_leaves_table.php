@@ -14,7 +14,7 @@ class CreateStudentLeavesTable extends Migration
             $table->string('student_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('leave_purpose');
+            $table->unsignedBigInteger('leave_purpose_id');
             $table->timestamps();
         });
     }
