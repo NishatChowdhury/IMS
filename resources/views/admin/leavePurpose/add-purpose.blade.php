@@ -52,6 +52,33 @@
                             </div>
                         </div>
 
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#SL</th>
+                                        <th class="text-center">Purpose</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                @php $i = 1; @endphp
+                                @foreach($leave_purposes as $purpose)
+                                    <tr>
+                                        <td class="text-center"> {{ $i++ }}</td>
+                                        <td class="text-center"> {{ $purpose->leave_purpose }} </td>
+                                        <td class="text-center">
+                                            {{ Form::open(['route'=>['leavePurpose.delete',$purpose->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fas fa-trash"></i>
+                                            </button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+
 
                         {!! Form::close() !!}
                     </div>

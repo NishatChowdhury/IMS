@@ -10,9 +10,9 @@ class LeavePurposeController extends Controller
 
     public function index()
     {
-        return view('admin.leavePurpose.add-purpose');
+        $leave_purposes = leavePurpose::all();
+        return view('admin.leavePurpose.add-purpose',compact('leave_purposes'));
     }
-
 
 
     public function store(Request $request)
@@ -22,26 +22,10 @@ class LeavePurposeController extends Controller
     }
 
 
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
     public function destroy($id)
     {
-        //
+        $leave_purpose = leavePurpose::query()->findOrFail($id);
+        $leave_purpose->delete();
+        return redirect('attendance/leavePurpose');
     }
 }
