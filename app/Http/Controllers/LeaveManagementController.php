@@ -20,16 +20,14 @@ class LeaveManagementController extends Controller
 
     public function index()
     {
-        $allData = StudentLeave::orderBy('id','desc')->get();
-//        dd($allData);
+        $allData = StudentLeave::all();
         return view('admin.leaveManagement.view-leave',compact('allData'));
     }
 
 
     public function add()
     {
-        $leave_purpose = leavePurpose::pluck('leave_purpose','id');
-//        dd($leave_purpose);
+        $leave_purpose = leavePurpose::pluck('leave_purpose');
         return view('admin.leaveManagement.add-leave',compact('leave_purpose'));
     }
 
@@ -40,23 +38,6 @@ class LeaveManagementController extends Controller
         return redirect('attendance/leaveManagement');
     }
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     public function destroy($id)
     {
