@@ -12,15 +12,18 @@ namespace App\Repository;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\BloodGroup;
+use App\City;
 use App\Classes;
 use App\Country;
 use App\Division;
 use App\Gender;
 use App\Group;
+use App\leavePurpose;
 use App\Religion;
 use App\Section;
 use App\Session;
 use App\Student;
+use App\StudentLeave;
 use App\Subject;
 
 class StudentRepository
@@ -74,6 +77,11 @@ class StudentRepository
     public function divisions()
     {
         return Division::all()->pluck('name', 'id');
+    }
+
+    public function cities()
+    {
+        return City::all()->pluck('name', 'id');
     }
 
     public function countries()

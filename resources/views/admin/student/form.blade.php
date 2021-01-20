@@ -167,7 +167,7 @@
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-group">
                             {{ Form::label('city_id','City',['class'=>'control-label']) }}
-                            {{ Form::select('city_id',[], null, ['placeholder' => 'Select City','class'=>'form-control']) }}
+                            {{ Form::select('city_id',$repository->cities(), null, ['placeholder' => 'Select City','class'=>'form-control']) }}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12">
