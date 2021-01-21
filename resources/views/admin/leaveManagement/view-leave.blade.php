@@ -36,7 +36,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Leave ID</th>
-                                <th>Student Name</th>
+                                <th>Student ID</th>
                                 <th>Date</th>
                                 <th>Total</th>
                                 <th>Purpose</th>
@@ -48,8 +48,8 @@
                                 <tr class="{{$value->id}}">
                                     <td>{{ $value->id }}</td>
                                     <td>
-                                        {{ $value->student->name }}<br>
-                                        <i class="text-secondary">ID: {{ $value->student->studentId }}</i>
+                                        {{ $value->student_id }}<br>
+{{--                                    <i class="text-secondary">ID: {{ $value->student->studentId }}</i>--}}
                                     </td>
                                     <td>{{ $value->start_date }} - {{ $value->end_date }}</td>
                                     <td>{{ $value->start_date->diffInDays($value->end_date->addDay()) }}</td>
