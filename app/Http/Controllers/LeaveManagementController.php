@@ -23,7 +23,7 @@ class LeaveManagementController extends Controller
 
     public function index()
     {
-        $allData = StudentLeave::all();
+        $allData = StudentLeave::all()->groupBy('leaveId');
         return view('admin.leaveManagement.view-leave',compact('allData'));
     }
 
@@ -37,10 +37,12 @@ class LeaveManagementController extends Controller
 
     public function store(Request $request)
     {
-        $student_id = $request->get('student_id');
+        $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
+        //$request['student_id'] = $student->id;
+        //$student_id = $request->get('student_id');
         $start = $request->get('start_date');
         $end = $request->get('end_date');
-        $leave_purpose_id = $request->get('leave_purpose_id');
+        //$leave_purpose_id = $request->get('leave_purpose_id');
 
         if(!$end){
             $end = $start;
@@ -52,15 +54,13 @@ class LeaveManagementController extends Controller
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
-            DB::table('student_leaves')->insert(
-                [
-                    'student_id' => $student_id,
-                    'date' => $d,
-                    'start_date' => $start,
-                    'end_date' => $end,
-                    'leave_purpose_id' =>$leave_purpose_id
-                ]
-            );
+            $data = [
+                'leaveId' => date('ymdHi'),
+                'student_id' => $student->id,
+                'date' => $d,
+                'leave_purpose_id' => $request->get('leave_purpose_id'),
+            ];
+            StudentLeave::query()->create($data);
         }
 
         Session::flash('success','Leave has been entered!');

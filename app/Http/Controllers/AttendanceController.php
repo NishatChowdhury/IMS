@@ -11,6 +11,7 @@ use App\Repository\AttendanceRepository;
 use App\Shift;
 use App\Staff;
 use App\Student;
+use App\StudentLeave;
 use App\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -243,31 +244,31 @@ class AttendanceController extends Controller
 
             if($attn->count() > 0){
                 $attend[] = (object)[
-                    'student'=>$student->name,
-                    'card'=>$student->studentId,
-                    'rank'=>$student->rank,
-                    'date'=>$today,
-                    'class'=>$student->academicClass->name,
-                    'subject'=>'Subject',
-                    'teacher'=>'Teacher',
-                    'enter'=>$attn->first()->access_date,
-                    'exit'=>$attn->last()->access_date,
-                    'status'=>$this->status($today,$attn->first()->access_date,$attn->last()->access_date),
-                    'is_notified'=>'Is Notified'
+                    'student' => $student->name,
+                    'card' => $student->studentId,
+                    'rank' => $student->rank,
+                    'date' => $today,
+                    'class' => $student->academicClass->name,
+                    'subject' => 'Subject',
+                    'teacher' => 'Teacher',
+                    'enter' => $attn->first()->access_date,
+                    'exit' => $attn->last()->access_date,
+                    'status' => $this->status($student->id,$today,$attn->first()->access_date,$attn->last()->access_date),
+                    'is_notified' => 'Is Notified'
                 ];
             }else{
                 $attend[] = (object)[
-                    'student'=>$student->name,
-                    'card'=>$student->studentId,
-                    'rank'=>$student->rank,
-                    'date'=>$today,
-                    'class'=>$student->academicClass->name,
-                    'subject'=>'Subject',
-                    'teacher'=>'Teacher',
-                    'enter'=>'-',
-                    'exit'=>'-',
-                    'status'=>$this->status($today),
-                    'is_notified'=>'Is Notified'
+                    'student' => $student->name,
+                    'card' => $student->studentId,
+                    'rank' => $student->rank,
+                    'date' => $today,
+                    'class' => $student->academicClass->name,
+                    'subject' => 'Subject',
+                    'teacher' => 'Teacher',
+                    'enter' => '-',
+                    'exit' => '-',
+                    'status' => $this->status($student->id,$today),
+                    'is_notified' => 'Is Notified'
                 ];
                 //dd($attendances);
             }
@@ -325,14 +326,12 @@ class AttendanceController extends Controller
             $year = 0;
         }
 
-
-
         $repository = $this->repository;
 
         return view('admin.attendance.report',compact('allClasses','repository','year','month','students'));
     }
 
-    public function individulAttendance(Request $request){
+    public function individualAttendance(Request $request){
         $explode = explode(' - ',$request->dateRangeStudent);
         $start = $explode[0];
         $end = $explode[1];
@@ -340,7 +339,7 @@ class AttendanceController extends Controller
 
         $std = Student::query()->where('studentId',$student_id)->first();
         if ($std){
-            $attendances =Attendance::query()->where('registration_id',$student_id)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
+            $attendances = Attendance::query()->where('registration_id',$student_id)->whereBetween('access_date',[$start,$end])->get()->groupBy(function($date) {
                 return Carbon::parse($date->access_date)->format('Y-m-d');
             });
         }
@@ -366,7 +365,6 @@ class AttendanceController extends Controller
     }
 
     public function classAttendance(Request $request){
-        //dd('Under Construction');
         $explode = explode(' - ',$request->dateRangeClass);
         $start = $explode[0];
         $end = $explode[1];
@@ -376,7 +374,7 @@ class AttendanceController extends Controller
         return view('admin.attendance.classAttendance',compact('students','start', 'end'));
     }
 
-    public function status($date, $enter = null, $exit = null)
+    public function status($studentId, $date, $enter = null, $exit = null)
     {
         if(!$enter && !$exit){
             $isHoliday = HolidayDuration::query()->whereDate('date',$date)->exists();
@@ -384,10 +382,17 @@ class AttendanceController extends Controller
             $dayOfWeekIso = Carbon::parse($date)->dayOfWeekIso;
             $isWeeklyOff = weeklyOff::query()->where('show_option','like','%'.$dayOfWeekIso.'%')->exists();
 
+            $inLeave = StudentLeave::query()
+                ->where('student_id',$studentId)
+                ->where('date',$date)
+                ->exists();
+
             if($isWeeklyOff){
                 $status = 'W';
             }elseif($isHoliday){
                 $status = 'H';
+            }elseif($inLeave){
+                $status = 'L';
             }else{
                 $status = 'A';
             }
@@ -411,18 +416,6 @@ class AttendanceController extends Controller
                 $status = 'P';
             }
         }
-
-
-
-//        if($isHoliday){
-//            $status = 'H';
-//        }elseif($isLate){
-//            $status = 'D';
-//        }elseif($isEarly){
-//            $status = 'E';
-//        }else{
-//            $status = !$enter && !$exit ? 'A' : 'P';
-//        }
 
         return $status;
     }

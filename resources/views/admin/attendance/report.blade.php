@@ -88,9 +88,10 @@
                             <div>
                                 <ul style="list-style: none">
                                     <li> <i class="fas fa-circle" style="color: #008000"></i> <span> P - Present </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> L - Late </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> D - Late/Delay </span></li>
                                     <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> R - Left without completing the day </span></li>
                                     <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> A - Absent </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #878484"></i> <span> L - Leave </span></li>
                                 </ul>
                             </div>
                         </div>
@@ -147,6 +148,7 @@
 
                                                     $isWeeklyOff = \App\weeklyOff::query()->where('show_option','like','%'.Carbon\Carbon::make($year.'-'.$month.'-'.$i)->dayOfWeekIso.'%')->exists();
                                                     $isHoliday = App\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
+                                                    $inLeave = \App\StudentLeave::query()->where('student_id',$student->id)->where('date',$year.'-'.$month.'-'.$i)->exists();
 
                                                     $shiftInTime = App\Shift::query()->first()->start;
                                                     $shiftOutTime = App\Shift::query()->first()->end;
@@ -176,6 +178,8 @@
                                                             <span style="color:white; background: greenyellow" class="badge">W</span>
                                                         @elseif($isHoliday)
                                                             <span style="color:white; background: darkviolet" class="badge">H</span>
+                                                        @elseif($inLeave)
+                                                            <span style="color:white; background: #878484" class="badge">L</span>
                                                         @else
                                                             <span style="color:white; background: red" class="badge">A</span>
                                                         @endif

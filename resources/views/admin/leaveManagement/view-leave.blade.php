@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Student</h1>
+                    <h1 class="m-0 text-dark">Leave Management</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,8 +27,8 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                            <h3 class="card-title">Manage Employee Leave</h3>
-                            <a href="{{ route('leaveManagement.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> Add Employee Leave</a>
+                            <h3 class="card-title">Manage Leave</h3>
+                            <a href="{{ route('leaveManagement.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add Leave</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -36,7 +36,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Leave ID</th>
-                                <th>Student ID</th>
+                                <th>Student Name</th>
                                 <th>Date</th>
                                 <th>Total</th>
                                 <th>Purpose</th>
@@ -45,19 +45,19 @@
                             </thead>
                             <tbody>
                             @foreach($allData as $key => $value)
-                                <tr class="{{$value->id}}">
-                                    <td>{{ $value->id }}</td>
+                                <tr>
+                                    <td>{{ $value->first()->leaveId }}</td>
                                     <td>
-                                        {{ $value->student_id }}<br>
-{{--                                    <i class="text-secondary">ID: {{ $value->student->studentId }}</i>--}}
+                                        {{ $value->first()->student->name }}<br>
+                                    <i class="text-secondary">ID: {{ $value->first()->student->studentId }}</i>
                                     </td>
-                                    <td>{{ $value->start_date }} - {{ $value->end_date }}</td>
-                                    <td>{{ $value->start_date->diffInDays($value->end_date->addDay()) }}</td>
+                                    <td>{{ $value->first()->date->format('Y-m-d') }} - {{ $value->last()->date->format('Y-m-d') }}</td>
+                                    <td>{{ $value->count() }}</td>
                                     <td>
-                                        {{ $value->purpose->leave_purpose }}
+                                        {{ $value->first()->purpose->leave_purpose }}
                                     </td>
                                     <td>
-                                        <a href="{{ action('LeaveManagementController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('LeaveManagementController@edit',$value->first()->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

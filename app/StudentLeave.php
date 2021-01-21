@@ -10,18 +10,24 @@ class StudentLeave extends Model
 {
     use HasFactory;
 
-    protected $dates = ['start_date','end_date'];
+    protected $dates = ['date'];
 
-    protected $fillable = ['student_id','date','start_date','end_date','leave_purpose_id'];
+    protected $fillable = ['leaveId','student_id','date','leave_purpose_id'];
 
-
+    /**
+     * A leave is belongs to a leave purpose
+     * @return BelongsTo
+     */
     public function purpose(): BelongsTo
     {
         return $this->belongsTo(LeavePurpose::class,'leave_purpose_id');
     }
 
-
-    public function student()
+    /**
+     * A leave is belongs to leave purpose
+     * @return BelongsTo
+     */
+    public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
     }
