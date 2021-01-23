@@ -176,7 +176,7 @@ Route::get('exam/tabulationSheet','ExamController@tabulationSheet')->name('exam.
 
 //Communication Route by Rimon
 Route::get('communication/quick','CommunicationController@quick')->name('communication.quick');
-Route::get('communication/student','CommunicationController@student')->name('communication.student');
+Route::get('communication/student','CommunicationController@student')->name('communication.studenlt');
 Route::get('communication/staff','CommunicationController@staff')->name('communication.staff');
 Route::get('communication/history','CommunicationController@history')->name('communication.history');
 
@@ -203,6 +203,24 @@ Route::post('attendance/leavePurpose/store','LeavePurposeController@store')->nam
 Route::get('attendance/leavePurpose/edit/{id}','LeavePurposeController@edit')->name('leavePurpose.edit');
 Route::post('attendance/leavePurpose/delete/{id}','LeavePurposeController@destroy')->name('leavePurpose.delete');
 //leave purpose ends by Nishat
+
+//library management starts by Nishat
+Route::get('library/bookCategory','BookCategoryController@index');
+Route::get('library/bookCategory/add','BookCategoryController@add')->name('bookCategory.add');
+Route::post('library/bookCategory/store','BookCategoryController@store')->name('bookCategory.store');
+Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
+Route::post('library/bookCategory/delete/{id}','BookCategoryController@destroy')->name('bookCategory.delete');
+
+Route::get('library/books','NewBookController@index');
+Route::get('library/books/add','NewBookController@add')->name('newBook.add');
+Route::post('library/books/store','NewBookController@store')->name('newBook.store');
+Route::get('library/books/edit/{id}','NewBookController@edit')->name('newBook.edit');
+Route::post('library/books/delete/{id}','NewBookController@destroy')->name('newBook.delete');
+
+
+
+
+//library management ends by Nishat
 
 
 //Settings Route by Rimon

@@ -163,6 +163,39 @@
                     </ul>
                 </li>
             @endcannot
+
+
+{{--            library management starts here--}}
+            <li class="nav-item has-treeview {{ isActive('library*') }}">
+                <a href="#" class="nav-link {{ isActive('library*') }}">
+{{--                    <i class="nav-icon fas fa-user-graduate"></i>--}}
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                        Library Management
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
+                        <a href="{{ action('BookCategoryController@index') }}" class="nav-link {{ isActive('library/bookCategory') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Book Category </p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
+                        <a href="{{ action('NewBookController@index') }}" class="nav-link {{ isActive('library/books') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Books </p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+{{--            library management ends here--}}
+
+
+
             <li class="nav-item has-treeview {{ isActive('admin/student*') }}">
                 <a href="#" class="nav-link {{ isActive('admin/student*') }}">
                     <i class="nav-icon fas fa-user-graduate"></i>
@@ -426,12 +459,12 @@
                                 <p>Quick SMS</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Student SMS</p>
-                            </a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Student SMS</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                             <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('communication/staff') }}">
                                 <i class="far fa-circle nav-icon"></i>
