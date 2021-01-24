@@ -33,7 +33,7 @@ class SiteInformationController extends Controller
         $info = SiteInformation::query()->first();
         $info->update($request->all());
         Session::flash('success','Information Saved Successfully!');
-        return redirect('siteinfo');
+        return redirect('admin/siteinfo');
     }
 
     public function logo(Request $request)
@@ -51,6 +51,6 @@ class SiteInformationController extends Controller
 
         Session::flash('success','Image has been uploaded!');
 
-        return redirect('siteinfo');
+        return redirect('admin/siteinfo');
     }
 }

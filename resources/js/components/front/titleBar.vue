@@ -1,18 +1,20 @@
 <template>
     <div>
-        <section class="" data-primary-overlay="7" style="background-color: #38c773">
-            <div class="container">
+        <section class="" data-primary-overlay="0" :style="'background-color:'+title.bg_color+';'">
+            <div class="container text-sm-center">
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="navbar-brand ml-5">
+                    <div class="col-md-3">
+                        <div class="navbar-brand">
 <!--                            <a class="logo-default" :href="'/'"><img alt="" :src="'http://'+asset+'/assets/img/logos/'+title.logo" width="75" height="75"></a>-->
-                            <a class="logo-default" :href="asset"><img alt="" :src="'http://'+asset+'/assets/img/logos/'+title.logo" width="75" height="75"></a>
+                            <a class="logo-default" :href="asset">
+                                <img alt="" :src="'/assets/img/logos/'+title.logo" :height="title.logo_height">
+                            </a>
                         </div>
                     </div>
-                    <div class="col-10 text-white">
+                    <div class="col-md-9 text-blue">
                         <h2 class="mb-4">
-                            {{ title.name }}<br>
-                            {{ title.bn }}
+                            <span :style="'color:'+title.name_color+';font-size:'+title.name_size+'px;font-family:'+title.name_font+';'">{{ title.name }}</span><br>
+                            <span :style="'color:'+title.bn_color+';font-size:'+title.bn_size+'px;font-family:'+title.bn_font+';'">{{ title.bn }}</span>
                         </h2>
                     </div>
                 </div> <!-- END row-->
@@ -31,8 +33,8 @@ export default {
     },
     created() {
         this.axios
-            .get('http://'+location.host+'/api/title-bar')
-            //.get('http://localhost/wpschool/public/api/title-bar')
+            //.get('http://'+location.host+'/api/title-bar')
+            .get('/api/title-bar')
             .then(response => {
                 this.title = response.data;
                 console.log(response.data)

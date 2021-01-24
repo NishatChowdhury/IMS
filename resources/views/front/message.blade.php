@@ -6,14 +6,14 @@
                 <img src="{{ asset('assets/img/pages/') }}/{{ $content->where('name','principal message')->first()->image }}" alt="">
             </div>
             <div class="col-md-6 mt-3">
-                <h2>
-                    <small class="text-primary d-block">
-                        Principal / Head Teacher
-                    </small>
-                    Message
-                </h2>
-                {!! substr($content->where('name','principal message')->first()->content,0,1000) !!}
-                <a href="{{ action('FrontController@principal') }}">...more</a>
+{{--                <h2>--}}
+{{--                    <small class="text-warning d-block">--}}
+{{--                        Principal Message--}}
+{{--                    </small>--}}
+{{--                    Principal Message--}}
+{{--                </h2>--}}
+                {!! substr($content->where('name','principal message')->first()->content,0,2000) !!}
+                <a href="{{ action('FrontController@page','message-from-principal') }}">...more</a>
                 {{--<h2>--}}
                 {{--<small class="text-primary d-block">--}}
                 {{--Hello, and--}}

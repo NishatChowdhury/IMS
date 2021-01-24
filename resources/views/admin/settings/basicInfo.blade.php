@@ -48,15 +48,66 @@
                                     <label for="title">Title</label>
                                     {{ Form::text('title',null,['class'=>'form-control']) }}
                                 </div>
+{{--                                <div class="form-group col-md-6">--}}
+{{--                                    <label for="name">Name</label>--}}
+{{--                                    {{ Form::text('name',null,['class'=>'form-control']) }}--}}
+{{--                                </div>--}}
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Name</label>
                                     {{ Form::text('name',null,['class'=>'form-control']) }}
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Name Font</label>
+                                    {{ Form::text('name_font',null,['class'=>'form-control']) }}
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputAddress">বাংলা নাম</label>
-                                {{ Form::text('bn',null,['class'=>'form-control']) }}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="title">Name Size</label>
+                                    {{ Form::text('name_size',null,['class'=>'form-control']) }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Name Color</label>
+                                    <div class="input-group my-colorpicker2">
+                                        {{ Form::text('name_color',null,['class'=>'form-control']) }}
+                                        <div class="input-group-append input-group-addon">
+                                            <span class="input-group-text">
+                                                <i></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">বাংলা নাম</label>
+                                    {{ Form::text('bn',null,['class'=>'form-control']) }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">বাংলা নাম  ফন্ট</label>
+                                    {{ Form::text('bn_font',null,['class'=>'form-control']) }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">বাংলা নাম  সাইজ</label>
+                                    {{ Form::text('bn_size',null,['class'=>'form-control']) }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">বাংলা নাম  রঙ</label>
+                                    <div class="input-group my-colorpicker2">
+                                    {{ Form::text('bn_color',null,['class'=>'form-control my-colorpicker1']) }}
+                                        <div class="input-group-append input-group-addon">
+                                            <span class="input-group-text">
+                                                <i></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 {{ Form::text('address',null,['class'=>'form-control']) }}
@@ -81,7 +132,7 @@
                                     {{ Form::text('email',null,['class'=>'form-control']) }}
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-group text-center">
                                 {{ Form::submit('SAVE',['class'=>'btn btn-success']) }}
                                 {{ Form::reset('RESET',['class'=>'btn btn-warning']) }}
                             </div>
@@ -101,8 +152,8 @@
                             {{ Form::model($info,['action'=>'SiteInformationController@logo','method'=>'patch','files'=>true]) }}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="title">Logo Text Top 550 X 140</label>
-                                    <input type="text" class="form-control" id="" placeholder="type..">
+                                    <label for="title">Logo Height</label>
+                                    {{ Form::text('logo_height',null,['class'=>'form-control','placeholder'=>'Logo Height']) }}
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="name">Logo Text Bottom</label>
@@ -129,8 +180,24 @@
 @stop
 <!--Site info Inner Content End***-->
 
+@section('plugin-css')
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
+@stop
 
+@section('plugin')
+    <!-- bootstrap color picker -->
+    <script src="{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+@stop
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+@stop
+
+@section('script')
+    <script>
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker();
+        $('.my-colorpicker2').colorpicker();
+    </script>
 @stop

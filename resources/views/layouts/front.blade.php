@@ -39,6 +39,8 @@
 
     {{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
     @if(theme() == 1)
+        <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">
+    @elseif(theme() == 2)
         <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
     @endif
 
@@ -89,7 +91,6 @@
         <i class="ti-angle-up"></i>
     </div>
 
-</div>
 
 @if(URL::current() == 'https://bnsck.edu.bd')
     <!-- Modal -->
@@ -105,25 +106,9 @@
                 <div class="modal-body">
                     <img class="img-fluid" src="https://bnsck.edu.bd/assets/img/sliders/1607323840126093523_281142773336442_6581619394230561706_n.png" alt="">
                 </div>
-                {{--                <div class="modal-footer">--}}
-                {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                {{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
-                {{--                </div>--}}
             </div>
         </div>
     </div>
-    {{--    <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">--}}
-    {{--        <div class="modal-dialog modal-dialog-centered modal-lg">--}}
-    {{--            <div class="modal-content">--}}
-    {{--                <div class="modal-header">--}}
-    {{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-body">--}}
-    {{--                    <img class="img-fluid" src="https://bnsck.edu.bd/assets/img/sliders/1607323840126093523_281142773336442_6581619394230561706_n.png" alt="">--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
 @endif
 
 <script src="{{ asset('js/app.js') }}"></script>
@@ -132,12 +117,8 @@
 
 <script>
     $('#popupModal').modal('show');
-
-    // var myModal = new bootstrap.Modal(document.getElementById('popupModal'), {
-    //     keyboard: false
-    // })
-    // myModal.show();
 </script>
+</div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<div class="footer-top bg-dark text-white-0_6 pt-5 paddingBottom-100">
+<div class="footer-top bg-inner text-white-0_6 pt-5 paddingBottom-100">
     <div class="container">
         <div class="row">
 
@@ -6,7 +6,7 @@
                 <img src="assets/img/logo-white.png" alt="Logo">
                 <div class="margin-y-40">
                     <p>
-                        Nunc placerat mi id nisi interdm they mtolis. Praesient is haretra justo ught scel erisque placer.
+                        WP-IMS is a latest technology of educational institute’s digitization. This is the fastest and most intelligent application ever made in Bangladesh.
                     </p>
                 </div>
                 <ul class="list-inline">

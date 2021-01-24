@@ -12,6 +12,8 @@ use App\SiteInformation;
 use App\Theme;
 use App\weeklyOff;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
+use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
 
 function isActive($path, $active = 'active menu-open'){
@@ -61,7 +63,6 @@ function inWord($number){
     return $f->format($number);
 }
 
-<<<<<<< HEAD
 function coa_balance($coa){
     return $coa->journals->where('debit_credit',0)->sum('amount')-$coa->journals->where('debit_credit',1)->sum('amount');
 }
@@ -69,12 +70,12 @@ function coa_balance($coa){
  * @param int $capital
  * @param int $income
  * @param int $expense
- * 
+ *
  */
 function capital_coa_balance($capital, $income, $expense){
     return ($capital + $income - $expense);
 }
-=======
+
 function minTime($studentId,$date){
     $a = RawAttendance::query()
         ->where('registration_id',$studentId)
@@ -119,15 +120,18 @@ function isMenu(): bool
 }
 
 /** Get current theme id */
-function theme(){
+function theme(): HigherOrderBuilderProxy
+{
     $setting = SiteInformation::query()->first();
     return $setting->theme_id;
 }
 
-/** Get current theme */
+/** Get current theme
+ * @param $col
+ * @return HigherOrderBuilderProxy|HigherOrderCollectionProxy|mixed
+ */
 function themeConfig($col){
     $setting = SiteInformation::query()->first();
     $config = Theme::query()->findOrFail($setting->theme_id);
     return $config->$col;
 }
->>>>>>> 21c4dacf90db112f5369616d182308627854d0dd

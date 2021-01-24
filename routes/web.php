@@ -196,31 +196,7 @@ Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edi
 Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
 //leave management ends by Nishat
 
-//leave purpose starts by Nishat
-Route::get('attendance/leavePurpose','LeavePurposeController@index');
-Route::get('attendance/leavePurpose/add','LeavePurposeController@add')->name('leavePurpose.add');
-Route::post('attendance/leavePurpose/store','LeavePurposeController@store')->name('leavePurpose.store');
-Route::get('attendance/leavePurpose/edit/{id}','LeavePurposeController@edit')->name('leavePurpose.edit');
-Route::post('attendance/leavePurpose/delete/{id}','LeavePurposeController@destroy')->name('leavePurpose.delete');
-//leave purpose ends by Nishat
 
-//library management starts by Nishat
-Route::get('library/bookCategory','BookCategoryController@index');
-Route::get('library/bookCategory/add','BookCategoryController@add')->name('bookCategory.add');
-Route::post('library/bookCategory/store','BookCategoryController@store')->name('bookCategory.store');
-Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
-Route::post('library/bookCategory/delete/{id}','BookCategoryController@destroy')->name('bookCategory.delete');
-
-Route::get('library/books','NewBookController@index');
-Route::get('library/books/add','NewBookController@add')->name('newBook.add');
-Route::post('library/books/store','NewBookController@store')->name('newBook.store');
-Route::get('library/books/edit/{id}','NewBookController@edit')->name('newBook.edit');
-Route::post('library/books/delete/{id}','NewBookController@destroy')->name('newBook.delete');
-
-
-
-
-//library management ends by Nishat
 
 
 //Settings Route by Rimon
@@ -387,12 +363,6 @@ Route::post('institution/sig','InstitutionController@sig');
 // Student Fee Collection Report End
 
 //Account Section End
-
-//Syllabus Section Start A R Babu
-    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
-    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
-    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
-//Syllabus Section End
 
 //Social Links start
     Route::get('socials','SocialController@index')->name('social.index');

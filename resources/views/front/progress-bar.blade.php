@@ -1,10 +1,10 @@
-<section class="paddingTop-60 paddingBottom-100" data-dark-overlay="6" style="background-color: #97a1aa;">
+<section class="paddingTop-60 paddingBottom-100 bg-inner" data-dark-overlay="6" style="background-color: rgb(151, 161, 170);">
     <div class="container">
         <div class="row text-center text-white">
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".1">
-                <h2 class="h1 text-primary">
-                    520
+                <h2 class="h1 text-warning">
+                    {{ \App\Student::all()->count() }}
                 </h2>
                 <p class="lead">
                     Students
@@ -12,16 +12,16 @@
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".2">
-                <h2 class="h1 text-primary">
-                    690
+                <h2 class="h1 text-warning">
+                    {{ \App\AcademicClass::all()->count() }}
                 </h2>
                 <p class="lead">
-                    Visitors
+                    Classes
                 </p>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".3">
-                <h2 class="h1 text-primary">
+                <h2 class="h1 text-warning">
                     235K
                 </h2>
                 <p class="lead">
@@ -30,11 +30,11 @@
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".4">
-                <h2 class="h1 text-primary">
-                    150K
+                <h2 class="h1 text-warning">
+                    {{ \App\Staff::all()->count() }}
                 </h2>
                 <p class="lead">
-                    Teacher & Staff
+                    Teachers & Staff
                 </p>
             </div>
 

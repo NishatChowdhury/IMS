@@ -1,0 +1,50 @@
+.bg-navy{
+    background-color: #49688e !important;
+    color: #ffffff !important;
+}
+
+.bg-navy-1{
+    background-color: #090a30 !important;
+    color: #ffffff !important;
+}
+
+.bg-navy-2{
+    background-color: #294a70 !important;
+    color: #ffffff !important;
+}
+
+.bg-blue{
+    background-color: #101250 !important;
+}
+/** #4660ee **/
+
+.text-blue, .text-blue h2{
+    color: #22246c !important;
+}
+
+a:hover{
+    color: #ffcb00 !important;
+}
+
+.ec-nav .nav-link{
+    color: #ffffff !important;
+}
+
+.nav-item__has-dropdown .dropdown-menu{
+    border-top: 3px solid #0064ff !important;
+}
+
+.hover\:primary:hover{
+    background: #ffcb00 !important;
+    color: #fff !important;
+}
+
+.hamburger{
+    background-color: #49688e !important
+}
+
+@media screen and (max-width:992px){
+    .when-collapsed {
+        background: #49688e !important
+    }
+}
