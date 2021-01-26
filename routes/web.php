@@ -188,14 +188,6 @@ Route::get('attendance/setting','ShiftController@index');
 Route::post('attendance/shift/store','ShiftController@store');
 Route::delete('attendance/shift/delete/{id}','ShiftController@destroy');
 
-//leave management starts by Nishat
-Route::get('attendance/leaveManagement','LeaveManagementController@index');
-Route::get('attendance/leaveManagement/add','LeaveManagementController@add')->name('leaveManagement.add');
-Route::post('attendance/leaveManagement/store','LeaveManagementController@store')->name('leaveManagement.store');
-Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edit')->name('leaveManagement.edit');
-Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
-//leave management ends by Nishat
-
 
 
 
@@ -363,6 +355,12 @@ Route::post('institution/sig','InstitutionController@sig');
 // Student Fee Collection Report End
 
 //Account Section End
+
+//Syllabus Section Start A R Babu
+    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
+    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
+    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
+//Syllabus Section End
 
 //Social Links start
     Route::get('socials','SocialController@index')->name('social.index');

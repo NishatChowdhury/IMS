@@ -49,6 +49,13 @@
                                         {{ Form::text('book_title', null, ['placeholder' => 'Enter Book Title','class'=>'form-control']) }}
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        {{ Form::label('book_code', 'Book Code',['class'=>'control-label' ]) }}
+                                        {{ Form::text('book_code', null, ['placeholder' => 'Enter Book Code(Ex: History01)','class'=>'form-control']) }}
+                                    </div>
+                                </div>
+
 
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">

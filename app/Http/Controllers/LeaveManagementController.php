@@ -38,19 +38,14 @@ class LeaveManagementController extends Controller
     public function store(Request $request)
     {
         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
-        //$request['student_id'] = $student->id;
-        //$student_id = $request->get('student_id');
         $start = $request->get('start_date');
         $end = $request->get('end_date');
-        //$leave_purpose_id = $request->get('leave_purpose_id');
 
         if(!$end){
             $end = $start;
         }
 
         $period = CarbonPeriod::create($start,$end);
-//        dd($period);
-//        $holiday = StudentLeave::query()->create($request->only('student_id'));
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
@@ -66,14 +61,6 @@ class LeaveManagementController extends Controller
         Session::flash('success','Leave has been entered!');
         return redirect('attendance/leaveManagement');
 
-
-
-
-//        $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
-//        $request['student_id'] = $student->id;
-//        StudentLeave::query()->create($request->all());
-//        Session::flash('success','Leave has been entered!');
-//        return redirect('attendance/leaveManagement');
     }
 
 

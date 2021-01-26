@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BookCategory;
 use App\NewBook;
+use App\Student;
 use Illuminate\Http\Request;
 
 class NewBookController extends Controller
@@ -13,6 +14,54 @@ class NewBookController extends Controller
     {
         $allData = NewBook::all();
         return view('admin.AddBook.view-book',compact('allData'));
+    }
+
+    public function show()
+    {
+        $allBooks = NewBook::all();
+        return view('admin.AddBook.allBooks',compact('allBooks'));
+
+    }
+    public function search(Request $request)
+    {
+        $text = $request->text;
+        $all_books = NewBook::query()
+            ->where('book_title', 'LIKE', "%{$text}%")
+            ->get();
+
+        $html ="";
+
+        foreach($all_books as $key =>$books){
+            $sl = $key+1;
+            $html.="<tr class='{{$books->id}}'>";
+            $html.="<td>{$sl}</td>";
+            $html.="<td>{$books->book_title}</td>";
+            $html.="<td>{$books->author_name}</td>";
+            $html.="<td>{$books->description}</td>";
+            $html.="<td>{$books->category->book_category}</td>";
+            $html.="<td><a class='btn btn-success' role='button'>{$books->no_of_issue}</a></td>";
+            $html.="<td><a class='btn btn-warning'> <i class='fa-edit fas'></i></a> <a class='btn btn-danger'> <i class='fa-edit fas'></i></a></td>";
+            $html.="</tr>";
+        }
+
+        return $html;
+    }
+
+    public function issueReturnBook()
+    {
+        $studentID = Student::all()->pluck('studentId','id');
+        $bookCode =  NewBook::all()->pluck('book_code','id');
+        return view('admin.issue-return-books.issue-return-books',compact('studentID','bookCode'));
+    }
+
+    public function issueBookStore(Request $request)
+    {
+
+    }
+
+    public function returnBookStore(Request $request)
+    {
+
     }
 
 
