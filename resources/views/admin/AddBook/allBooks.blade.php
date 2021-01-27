@@ -52,6 +52,48 @@
         </div>
     </section>
 
+{{--    Modal Starts here--}}
+{{--    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">--}}
+{{--        <div class="modal-dialog">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title" id="ModalLabel">Modal title</h5>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">&times;</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                {{ Form::open(['route'=>'issueBook.store']) }}--}}
+{{--                <div class="modal-body">--}}
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>--}}
+{{--                        <div class="col-sm-8">--}}
+{{--                            <div class="input-group">--}}
+{{--                                {{ Form::select('student_id',$studentID,null,['class'=>'form-control','placeholder'=>'Select Student ID']) }}--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="book_code" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>--}}
+{{--                        <div class="col-sm-8">--}}
+{{--                            <div class="input-group">--}}
+{{--                                {{ Form::select('book_code',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+{{--                    <button type="submit" class="btn btn-primary">Save changes</button>--}}
+{{--                </div>--}}
+{{--                {{ Form::close() }}--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--Modal Ends Here--}}
+
+
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -81,6 +123,9 @@
                                     <td><a class="btn btn-success">{{  $value->no_of_issue }} </a></td>
                                     <td>
                                         {{ Form::open(['route'=>['newBook.delete',$value->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal" onclick="loadForm({{$value->id}})">
+                                            <i class="fas fa-info"></i>
+                                        </button>
                                         <a href="{{ action('NewBookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fa fas fa-trash"></i>
@@ -100,6 +145,49 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+
+{{--Modal Starts Here--}}
+
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="model-header">
+                    <h5 class="modal-title" id="modalLabel">Issue A Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{ Form::open(['route'=>'issueBook.store']) }}
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                {{ Form::select('student_id',$studentID,null,['class'=>'form-control','id'=>'student_id','placeholder'=>'Select Student ID']) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="book_code" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Book ID</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                {{ Form::select('book_code',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Issue Book</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+
+{{--Modal Starts Here--}}
+
     @section('script')
         <script>
             $('#book_title').keyup(function () {
@@ -114,6 +202,20 @@
                     }
                 })
             });
+        </script>
+
+        <script>
+            function loadForm(id){
+                var token = "{{ csrf_token() }}";
+                $.ajax({
+                    url:"{{ route('issueBook.index') }}",
+                    data: {_token:token,id:id},
+                    type: 'get'
+                }).done(function(e){
+                    $("#edit-form").remove();
+                    $("#model-header").after(e);
+                })
+            }
         </script>
     @stop
 @stop

@@ -195,8 +195,9 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('library/books/delete/{id}','NewBookController@destroy')->name('newBook.delete');
 
 
-    Route::get('library/issue_return_books','NewBookController@issueReturnBook');
+    Route::get('library/issue_books','NewBookController@issueBook')->name('issueBook.index');
     Route::post('library/issue-books/store','NewBookController@issueBookStore')->name('issueBook.store');
+    Route::get('library/return_books','NewBookController@returnBook')->name('returnBook.index');
     Route::post('library/return-books/store','NewBookController@returnBookStore')->name('returnBook.store');
 
 //library management ends by Nishat

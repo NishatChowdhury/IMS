@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BookCategory;
+use App\IssueBook;
 use App\NewBook;
 use App\Student;
 use Illuminate\Http\Request;
@@ -18,9 +19,10 @@ class NewBookController extends Controller
 
     public function show()
     {
+        $studentID = Student::all()->pluck('studentId','id');
+        $bookCode =  NewBook::all()->pluck('book_code','id');
         $allBooks = NewBook::all();
-        return view('admin.AddBook.allBooks',compact('allBooks'));
-
+        return view('admin.AddBook.allBooks',compact('allBooks','studentID','bookCode'));
     }
     public function search(Request $request)
     {
@@ -47,16 +49,25 @@ class NewBookController extends Controller
         return $html;
     }
 
-    public function issueReturnBook()
+    public function issueBook()
     {
         $studentID = Student::all()->pluck('studentId','id');
         $bookCode =  NewBook::all()->pluck('book_code','id');
-        return view('admin.issue-return-books.issue-return-books',compact('studentID','bookCode'));
+        return view('admin.AddBook.allBooks',compact('studentID','bookCode'));
     }
 
     public function issueBookStore(Request $request)
     {
+//        dd($request->all());
+        IssueBook::query()->create($request->all());
+        return redirect('library/allBooks');
+    }
 
+    public function returnBook()
+    {
+        $studentID = Student::all()->pluck('studentId','id');
+        $bookCode =  NewBook::all()->pluck('book_code','id');
+        return view('admin.return-books.return-books',compact('studentID','bookCode'));
     }
 
     public function returnBookStore(Request $request)

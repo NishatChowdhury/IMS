@@ -195,15 +195,15 @@
                     <li class="nav-item">
                         <a href="{{ action('NewBookController@show') }}" class="nav-link {{ isActive('library/allBooks') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>All Books In Library</p>
+                            <p>All Books</p>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@issueReturnBook') }}" class="nav-link {{ isActive('library/issue_return_books') }}">
+                        <a href="{{ action('NewBookController@returnBook') }}" class="nav-link {{ isActive('library/return_books') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Issue/Return Books</p>
+                            <p>Return Books</p>
                         </a>
                     </li>
                 </ul>
