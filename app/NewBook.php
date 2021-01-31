@@ -18,4 +18,22 @@ class NewBook extends Model
         return $this->belongsTo(BookCategory::class,'category_id');
     }
 
+    /**
+     * A book has many issues
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function issue()
+    {
+        return $this->hasMany(IssueBook::class,'book_id')->where('is_return',0);
+    }
+
+    /**
+     * A book has many returns
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function return()
+    {
+        return $this->hasMany(IssueBook::class,'book_id')->where('is_return',1);
+    }
+
 }

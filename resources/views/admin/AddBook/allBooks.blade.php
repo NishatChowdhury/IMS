@@ -52,48 +52,6 @@
         </div>
     </section>
 
-{{--    Modal Starts here--}}
-{{--    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">--}}
-{{--        <div class="modal-dialog">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h5 class="modal-title" id="ModalLabel">Modal title</h5>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                {{ Form::open(['route'=>'issueBook.store']) }}--}}
-{{--                <div class="modal-body">--}}
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>--}}
-{{--                        <div class="col-sm-8">--}}
-{{--                            <div class="input-group">--}}
-{{--                                {{ Form::select('student_id',$studentID,null,['class'=>'form-control','placeholder'=>'Select Student ID']) }}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="book_code" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>--}}
-{{--                        <div class="col-sm-8">--}}
-{{--                            <div class="input-group">--}}
-{{--                                {{ Form::select('book_code',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="modal-footer">--}}
-{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                    <button type="submit" class="btn btn-primary">Save changes</button>--}}
-{{--                </div>--}}
-{{--                {{ Form::close() }}--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--Modal Ends Here--}}
-
-
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -108,6 +66,7 @@
                                 <th>Author Name</th>
                                 <th>Description</th>
                                 <th>Category</th>
+                                <th>Total</th>
                                 <th>Available</th>
                                 <th>Action</th>
                             </tr>
@@ -120,7 +79,8 @@
                                     <td>{{  $value->author_name }}</td>
                                     <td>{{  $value->description }}</td>
                                     <td>{{  $value->category->book_category }}</td>
-                                    <td><a class="btn btn-success">{{  $value->no_of_issue }} </a></td>
+                                    <td><a class="btn btn-success">{{  $total = $value->no_of_issue }} </a></td>
+                                    <td><a class="btn btn-success">{{  $total - $value->issue->count() + $value->return->count() }} </a></td>
                                     <td>
                                         {{ Form::open(['route'=>['newBook.delete',$value->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal" onclick="loadForm({{$value->id}})">
@@ -163,16 +123,16 @@
                         <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                {{ Form::select('student_id',$studentID,null,['class'=>'form-control','id'=>'student_id','placeholder'=>'Select Student ID']) }}
+                                {{ Form::select('student_id',$studentID,null,['class'=>'form-control select2','id'=>'student_id','placeholder'=>'Select Student ID']) }}
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="book_code" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Book ID</label>
+                        <label for="book_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Book ID</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                {{ Form::select('book_code',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}
+                                {{ Form::select('book_id',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}
                             </div>
                         </div>
                     </div>
@@ -201,6 +161,12 @@
                         $('#search').html(data);
                     }
                 })
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('.select2').select2();
             });
         </script>
 

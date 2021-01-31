@@ -17,6 +17,13 @@ class NewBookController extends Controller
         return view('admin.AddBook.view-book',compact('allData'));
     }
 
+    public function add()
+    {
+        $category = BookCategory::all()->pluck('book_category','id');
+        return view('admin.AddBook.add-book',compact('category'));
+    }
+
+
     public function show()
     {
         $studentID = Student::all()->pluck('studentId','id');
@@ -24,6 +31,7 @@ class NewBookController extends Controller
         $allBooks = NewBook::all();
         return view('admin.AddBook.allBooks',compact('allBooks','studentID','bookCode'));
     }
+
     public function search(Request $request)
     {
         $text = $request->text;
@@ -42,7 +50,11 @@ class NewBookController extends Controller
             $html.="<td>{$books->description}</td>";
             $html.="<td>{$books->category->book_category}</td>";
             $html.="<td><a class='btn btn-success' role='button'>{$books->no_of_issue}</a></td>";
-            $html.="<td><a class='btn btn-warning'> <i class='fa-edit fas'></i></a> <a class='btn btn-danger'> <i class='fa-edit fas'></i></a></td>";
+            $html.="<td>
+                        <a class='btn btn-primary' > <i class='fa-info fas '></i></a> 
+                        <a class='btn btn-warning'> <i class='fa-edit fas'></i></a> 
+                        <a class='btn btn-danger'> <i class='fa fas fa-trash'></i></a>
+                    </td>";
             $html.="</tr>";
         }
 
@@ -58,28 +70,30 @@ class NewBookController extends Controller
 
     public function issueBookStore(Request $request)
     {
-//        dd($request->all());
-        IssueBook::query()->create($request->all());
-        return redirect('library/allBooks');
+        $issueBook = new IssueBook;
+        $issueBook->student_id = $request->student_id;
+        $issueBook->book_id = $request->book_id;
+        $issueBook->is_return = 0;
+        $issueBook->save();
+        return redirect('admin/library/allBooks');
     }
 
     public function returnBook()
     {
         $studentID = Student::all()->pluck('studentId','id');
         $bookCode =  NewBook::all()->pluck('book_code','id');
-        return view('admin.return-books.return-books',compact('studentID','bookCode'));
+        $issuedData = IssueBook::all()->where('is_return','0');
+        return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
     }
 
     public function returnBookStore(Request $request)
     {
-
-    }
-
-
-    public function add()
-    {
-        $category = BookCategory::all()->pluck('book_category','id');
-        return view('admin.AddBook.add-book',compact('category'));
+        $returnBook = new IssueBook;
+        $returnBook->student_id = $request->student_id;
+        $returnBook->book_id = $request->book_id;
+        $returnBook->is_return = 1;
+        $returnBook->save();
+        return redirect('admin/library/allBooks');
     }
 
 
@@ -90,22 +104,10 @@ class NewBookController extends Controller
     }
 
 
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
     public function destroy($id)
     {
         $books = NewBook::query()->findOrFail($id);
         $books->delete();
-        return redirect('library/books');
+        return redirect('admin/library/books');
     }
 }
