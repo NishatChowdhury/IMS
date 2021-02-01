@@ -14,22 +14,22 @@ class NewBookController extends Controller
     public function index()
     {
         $allData = NewBook::all();
-        return view('admin.AddBook.view-book',compact('allData'));
+        return view('admin.book.view-book',compact('allData'));
     }
 
     public function add()
     {
         $category = BookCategory::all()->pluck('book_category','id');
-        return view('admin.AddBook.add-book',compact('category'));
+        return view('admin.book.add-book',compact('category'));
     }
 
 
     public function show()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('book_code','id');
+        $bookCode =  NewBook::all()->pluck('book_title','id');
         $allBooks = NewBook::all();
-        return view('admin.AddBook.allBooks',compact('allBooks','studentID','bookCode'));
+        return view('admin.book.allBooks',compact('allBooks','studentID','bookCode'));
     }
 
     public function search(Request $request)
@@ -51,8 +51,8 @@ class NewBookController extends Controller
             $html.="<td>{$books->category->book_category}</td>";
             $html.="<td><a class='btn btn-success' role='button'>{$books->no_of_issue}</a></td>";
             $html.="<td>
-                        <a class='btn btn-primary' > <i class='fa-info fas '></i></a> 
-                        <a class='btn btn-warning'> <i class='fa-edit fas'></i></a> 
+                        <a class='btn btn-primary' > <i class='fa-info fas '></i></a>
+                        <a class='btn btn-warning'> <i class='fa-edit fas'></i></a>
                         <a class='btn btn-danger'> <i class='fa fas fa-trash'></i></a>
                     </td>";
             $html.="</tr>";
@@ -61,11 +61,12 @@ class NewBookController extends Controller
         return $html;
     }
 
-    public function issueBook()
+    public function issueBook(Request $request)
     {
-        $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('book_code','id');
-        return view('admin.AddBook.allBooks',compact('studentID','bookCode'));
+        $students = Student::all()->pluck('studentId','id');
+        //$bookCode =  NewBook::all()->pluck('book_code','id');
+        $book = NewBook::query()->findOrFail($request->get('id'));
+        return view('admin.book._issue-book',compact('students','book'));
     }
 
     public function issueBookStore(Request $request)
@@ -81,7 +82,7 @@ class NewBookController extends Controller
     public function returnBook()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('book_code','id');
+        $bookCode =  NewBook::all()->pluck('book_title','id');
         $issuedData = IssueBook::all()->where('is_return','0');
         return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
     }
@@ -100,7 +101,7 @@ class NewBookController extends Controller
     public function store(Request $request)
     {
         NewBook::query()->create($request->all());
-        return redirect('library/books');
+        return redirect('admin/library/books');
     }
 
 

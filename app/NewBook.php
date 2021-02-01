@@ -5,12 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class NewBook extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['book_title','book_code','author_name','description','category_id','no_of_issue'];
+    protected $fillable = ['title','book_code','author','description','category_id','no_of_issue'];
 
 
     public function category(): BelongsTo
@@ -20,7 +21,7 @@ class NewBook extends Model
 
     /**
      * A book has many issues
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function issue()
     {
@@ -29,7 +30,7 @@ class NewBook extends Model
 
     /**
      * A book has many returns
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function return()
     {

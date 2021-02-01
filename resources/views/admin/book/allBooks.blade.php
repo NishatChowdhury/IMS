@@ -75,8 +75,8 @@
                             @foreach($allBooks as $key => $value)
                                 <tr class="{{$value->id}}">
                                     <td>{{  $key+1 }}</td>
-                                    <td>{{  $value->book_title }}</td>
-                                    <td>{{  $value->author_name }}</td>
+                                    <td>{{  $value->title }}</td>
+                                    <td>{{  $value->author }}</td>
                                     <td>{{  $value->description }}</td>
                                     <td>{{  $value->category->book_category }}</td>
                                     <td><a class="btn btn-success">{{  $total = $value->no_of_issue }} </a></td>
@@ -117,27 +117,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{ Form::open(['route'=>'issueBook.store']) }}
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                {{ Form::select('student_id',$studentID,null,['class'=>'form-control select2','id'=>'student_id','placeholder'=>'Select Student ID']) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="book_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Book ID</label>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                {{ Form::select('book_id',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
+            {{ Form::open(['route'=>'issueBook.store','id'=>'issue-form']) }}
+                <img src="{{ asset('assets/img/loader.gif') }}" class="mx-auto d-block" id="loader-gif" alt="" style="display: none;">
+                    <!-- Issue form will appear here -->
+                <div class="modal-footer" id="model-footer">
                     <button type="submit" class="btn btn-primary">Issue Book</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
@@ -146,7 +129,8 @@
         </div>
     </div>
 
-    {{--Modal Starts Here--}}
+    {{--Modal Ends Here--}}
+@stop
 
     @section('script')
         <script>
@@ -176,13 +160,21 @@
                 $.ajax({
                     url:"{{ route('issueBook.index') }}",
                     data: {_token:token,id:id},
-                    type: 'get'
+                    type: 'get',
+                    beforeSend: function(){
+                        $("#modal-body").remove();
+                        $("#loader-gif").addClass('d-block').show();
+                    }
                 }).done(function(e){
-                    $("#edit-form").remove();
-                    $("#model-header").after(e);
+                    //$("#modal-body").remove();
+                    //$("#edit-form").remove();
+                    // $("#model-header").after(e);
+                    // $("#modal-body").append(e);
+                    $("#model-footer").before(e);
+                    $('.select2').select2(); // load select two one appended form
+                    $("#loader-gif").removeClass('d-block').hide(); // hide the loader image after successfully append result
                 })
             }
         </script>
     @stop
-@stop
 
