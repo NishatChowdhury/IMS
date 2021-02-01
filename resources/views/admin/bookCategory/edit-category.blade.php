@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Add Category')
+@section('title','Edit Category')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add New Category</li>
+                        <li class="breadcrumb-item active">Edit Category</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -39,50 +39,22 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'BookCategoryController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!!  Form::model($category,['action'=>['BookCategoryController@update',$category->id],'method'=>'patch']) !!}
 
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
                                         {{ Form::label('book_category', 'Book Category',['class'=>'control-label' ]) }}
-                                        {{ Form::text('book_category', null, ['placeholder' => 'Enter Category','class'=>'form-control']) }}
+                                        {{ Form::select('book_category',$repository->bookCategories(), null, ['placeholder' => 'Enter Category','class'=>'form-control']) }}
+
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success ']) !!}
+                                {!! Form::submit('Update', ['class' => 'form-control, btn btn-success ']) !!}
                             </div>
                         </div>
-
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">#SL</th>
-                                        <th class="text-center">Category Name</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                @php $i = 1; @endphp
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td class="text-center"> {{ $i++ }}</td>
-                                        <td class="text-center"> {{ $category->book_category }} </td>
-                                        <td class="text-center">
-                                            {{ Form::open(['route'=>['bookCategory.delete',$category->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('BookCategoryController@edit',$category->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fas fa-trash"></i>
-                                            </button>
-                                            {{ Form::close() }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-
 
                         {!! Form::close() !!}
                     </div>

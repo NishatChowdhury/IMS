@@ -161,21 +161,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('attendance/leavePurpose/store','LeavePurposeController@store')->name('leavePurpose.store');
     Route::get('attendance/leavePurpose/edit/{id}','LeavePurposeController@edit')->name('leavePurpose.edit');
     Route::post('attendance/leavePurpose/delete/{id}','LeavePurposeController@destroy')->name('leavePurpose.delete');
-//leave purpose ends by Nishat
-
-//library management starts by Nishat
-    Route::get('library/bookCategory','BookCategoryController@index');
-    Route::get('library/bookCategory/add','BookCategoryController@add')->name('bookCategory.add');
-    Route::post('library/bookCategory/store','BookCategoryController@store')->name('bookCategory.store');
-    Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
-    Route::post('library/bookCategory/delete/{id}','BookCategoryController@destroy')->name('bookCategory.delete');
-
-    Route::get('library/books','NewBookController@index');
-    Route::get('library/books/add','NewBookController@add')->name('newBook.add');
-    Route::post('library/books/store','NewBookController@store')->name('newBook.store');
-    Route::get('library/books/edit/{id}','NewBookController@edit')->name('newBook.edit');
-    Route::post('library/books/delete/{id}','NewBookController@destroy')->name('newBook.delete');
-//library management ends by Nishat
+    //leave purpose ends by Nishat
 
     //leave management starts by Nishat
     Route::get('attendance/leaveManagement','LeaveManagementController@index');
@@ -183,23 +169,37 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('attendance/leaveManagement/store','LeaveManagementController@store')->name('leaveManagement.store');
     Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edit')->name('leaveManagement.edit');
     Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
-//leave management ends by Nishat
+    //leave management ends by Nishat
+
+    //Book Category starts by Nishat
+    Route::get('library/bookCategory','BookCategoryController@index');
+    Route::get('library/bookCategory/add','BookCategoryController@add')->name('bookCategory.add');
+    Route::post('library/bookCategory/store','BookCategoryController@store')->name('bookCategory.store');
+    Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
+    Route::patch('library/bookCategory/{id}/update','BookCategoryController@update')->name('bookCategory.update');
+    Route::post('library/bookCategory/delete/{id}','BookCategoryController@destroy')->name('bookCategory.delete');
+
+    //Book Category ends by Nishat
 
 
+
+    //library Management Starts By Nishat
+    //Add New Book
     Route::get('library/books','NewBookController@index');
     Route::get('library/allBooks','NewBookController@show')->name('allBooks.show');
     Route::get('library/SearchBook','NewBookController@search')->name('allBooks.search');
     Route::get('library/books/add','NewBookController@add')->name('newBook.add');
     Route::post('library/books/store','NewBookController@store')->name('newBook.store');
     Route::get('library/books/edit/{id}','NewBookController@edit')->name('newBook.edit');
+    Route::patch('library/books/{id}/update','NewBookController@update')->name('newBook.update');
     Route::post('library/books/delete/{id}','NewBookController@destroy')->name('newBook.delete');
 
-
+    //issue/return books
     Route::get('library/issue_books','NewBookController@issueBook')->name('issueBook.index');
     Route::post('library/issue-books/store','NewBookController@issueBookStore')->name('issueBook.store');
     Route::get('library/return_books','NewBookController@returnBook')->name('returnBook.index');
     Route::post('library/return-books/store','NewBookController@returnBookStore')->name('returnBook.store');
 
-//library management ends by Nishat
+    //library management ends by Nishat
 
 });

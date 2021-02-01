@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                            <h3 class="card-title">Manage Leave</h3>
+                            <h3 class="card-title">Add A New Book</h3>
                             <a href="{{ route('newBook.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add New Book</a>
                     </div>
                     <!-- /.card-header -->
@@ -36,8 +36,8 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>#SL</th>
-                                <th>Book Title</th>
-                                <th>Author Name</th>
+                                <th>Title</th>
+                                <th>Author</th>
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>No. Of Issues</th>
@@ -48,8 +48,8 @@
                             @foreach($allData as $key => $value)
                                 <tr class="{{$value->id}}">
                                     <td>{{  $key+1 }}</td>
-                                    <td>{{  $value->book_title }}</td>
-                                    <td>{{  $value->author_name }}</td>
+                                    <td>{{  $value->title }}</td>
+                                    <td>{{  $value->author }}</td>
                                     <td>{{  $value->description }}</td>
                                     <td>{{  $value->category->book_category }}</td>
                                     <td>{{  $value->no_of_issue }}</td>

@@ -185,7 +185,7 @@
                 </ul>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@index') }}" class="nav-link {{ isActive('library/books') }}">
+                        <a href="{{ action('NewBookController@add') }}" class="nav-link {{ isActive('library/books/add') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Books </p>
                         </a>

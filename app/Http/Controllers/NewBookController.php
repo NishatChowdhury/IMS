@@ -5,11 +5,22 @@ namespace App\Http\Controllers;
 use App\BookCategory;
 use App\IssueBook;
 use App\NewBook;
+use App\Repository\StudentRepository;
 use App\Student;
 use Illuminate\Http\Request;
 
 class NewBookController extends Controller
 {
+
+    /**
+     * @var StudentRepository
+     */
+    private $repository;
+
+    public function __construct(StudentRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     public function index()
     {
@@ -36,20 +47,23 @@ class NewBookController extends Controller
     {
         $text = $request->text;
         $all_books = NewBook::query()
-            ->where('book_title', 'LIKE', "%{$text}%")
+            ->where('title', 'LIKE', "%{$text}%")
             ->get();
 
         $html ="";
 
         foreach($all_books as $key =>$books){
+            $total = $books->no_of_issue;
+            $available=$total - $books->issue->count() + $books->return->count();
             $sl = $key+1;
             $html.="<tr class='{{$books->id}}'>";
             $html.="<td>{$sl}</td>";
-            $html.="<td>{$books->book_title}</td>";
-            $html.="<td>{$books->author_name}</td>";
+            $html.="<td>{$books->title}</td>";
+            $html.="<td>{$books->author}</td>";
             $html.="<td>{$books->description}</td>";
             $html.="<td>{$books->category->book_category}</td>";
-            $html.="<td><a class='btn btn-success' role='button'>{$books->no_of_issue}</a></td>";
+            $html.="<td><a class='btn btn-success' role='button'>{$total}</a></td>";
+            $html.="<td><a class='btn btn-success' role='button'>{$available}</a></td>";
             $html.="<td>
                         <a class='btn btn-primary' > <i class='fa-info fas '></i></a>
                         <a class='btn btn-warning'> <i class='fa-edit fas'></i></a>
@@ -82,7 +96,7 @@ class NewBookController extends Controller
     public function returnBook()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('book_title','id');
+        $bookCode =  NewBook::all()->pluck('title','id');
         $issuedData = IssueBook::all()->where('is_return','0');
         return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
     }
@@ -104,11 +118,26 @@ class NewBookController extends Controller
         return redirect('admin/library/books');
     }
 
+    public function edit($id)
+    {
+        $repository = $this->repository;
+        $book=NewBook::query()->findOrFail($id);
+        return view('admin.book.edit-book',compact('book','repository'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $data=NewBook::query()->find($id);
+        $data->update($request->all());
+        return redirect('admin/library/books')->with('success','Updated successfully');
+
+    }
+
 
     public function destroy($id)
     {
         $books = NewBook::query()->findOrFail($id);
         $books->delete();
-        return redirect('admin/library/books');
+        return redirect('admin/library/allBooks');
     }
 }

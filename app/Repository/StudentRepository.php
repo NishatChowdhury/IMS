@@ -12,6 +12,7 @@ namespace App\Repository;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\BloodGroup;
+use App\BookCategory;
 use App\City;
 use App\Classes;
 use App\Country;
@@ -92,6 +93,10 @@ class StudentRepository
     public function religions()
     {
         return Religion::all()->pluck('name','id');
+    }
+
+    public function bookCategories(){
+        return BookCategory::all()->pluck('book_category','id');
     }
 
 
