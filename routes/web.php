@@ -176,7 +176,7 @@ Route::get('exam/tabulationSheet','ExamController@tabulationSheet')->name('exam.
 
 //Communication Route by Rimon
 Route::get('communication/quick','CommunicationController@quick')->name('communication.quick');
-Route::get('communication/student','CommunicationController@student')->name('communication.studenlt');
+Route::get('communication/student','CommunicationController@student')->name('communication.student');
 Route::get('communication/staff','CommunicationController@staff')->name('communication.staff');
 Route::get('communication/history','CommunicationController@history')->name('communication.history');
 
@@ -361,11 +361,6 @@ Route::post('institution/sig','InstitutionController@sig');
     Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
     Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
-
-//Social Links start
-    Route::get('socials','SocialController@index')->name('social.index');
-    Route::post('socials/update/{id}','SocialController@update')->name('social.store');
-//Social Links End
 
 //Contact page start
     Route::get('message-index','MessagesController@index')->name('message.index');

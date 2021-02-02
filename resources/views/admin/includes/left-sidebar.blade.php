@@ -166,8 +166,8 @@
 
 
 {{--            library management starts here--}}
-            <li class="nav-item has-treeview {{ isActive('library*') }}">
-                <a href="#" class="nav-link {{ isActive('library*') }}">
+            <li class="nav-item has-treeview {{ isActive('admin/library*') }}">
+                <a href="#" class="nav-link {{ isActive('admin/library*') }}">
 {{--                    <i class="nav-icon fas fa-user-graduate"></i>--}}
                     <i class="nav-icon fas fa-book"></i>
                     <p>
@@ -177,31 +177,25 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{ action('BookCategoryController@index') }}" class="nav-link {{ isActive('library/bookCategory') }}">
+                        <a href="{{ action('BookCategoryController@index') }}" class="nav-link {{ isActive('admin/library/bookCategory') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Book Category </p>
                         </a>
                     </li>
-                </ul>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@add') }}" class="nav-link {{ isActive('library/books/add') }}">
+                        <a href="{{ action('NewBookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Books </p>
                         </a>
                     </li>
-                </ul>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@show') }}" class="nav-link {{ isActive('library/allBooks') }}">
+                        <a href="{{ action('NewBookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Books</p>
                         </a>
                     </li>
-                </ul>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@returnBook') }}" class="nav-link {{ isActive('library/return_books') }}">
+                        <a href="{{ action('NewBookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Return Books</p>
                         </a>

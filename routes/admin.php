@@ -114,6 +114,8 @@ Route::group(['prefix'=>'admin'],function(){
     Route::delete('feature/destroy/{id}','FeatureController@destroy');
 
     Route::get('themes','ThemeController@index');
+    Route::get('theme/edit/{id}','ThemeController@edit');
+    Route::delete('theme/destroy/{id}','ThemeController@destroy');
 
     // smartrahat start
 
@@ -144,10 +146,10 @@ Route::group(['prefix'=>'admin'],function(){
     /** User Routes */
     Route::get('users','UserController@index');
     Route::get('user/create','UserController@create')->name('user.add');
+    Route::post('user/store','UserController@store');
     Route::get('user/edit/{id}','UserController@edit');
     Route::delete('user/destroy/{id}','UserController@destroy');
     /** User Routes End */
-
 
     //Syllabus Section Start A R Babu
     Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
@@ -175,7 +177,8 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('library/bookCategory','BookCategoryController@index');
     Route::get('library/bookCategory/add','BookCategoryController@add')->name('bookCategory.add');
     Route::post('library/bookCategory/store','BookCategoryController@store')->name('bookCategory.store');
-    Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
+    Route::get('library/bookCategory/edit','BookCategoryController@edit')->name('book-category.edit');
+//    Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
     Route::patch('library/bookCategory/{id}/update','BookCategoryController@update')->name('bookCategory.update');
     Route::post('library/bookCategory/delete/{id}','BookCategoryController@destroy')->name('bookCategory.delete');
 
@@ -201,5 +204,12 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('library/return-books/store','NewBookController@returnBookStore')->name('returnBook.store');
 
     //library management ends by Nishat
+
+    //Social Links start
+    Route::get('socials','SocialController@index')->name('social.index');
+    Route::post('socials/update/{id}','SocialController@update')->name('social.store');
+//Social Links End
+
+    Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 
 });

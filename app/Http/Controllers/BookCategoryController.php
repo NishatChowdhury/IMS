@@ -21,7 +21,7 @@ class BookCategoryController extends Controller
     public function index()
     {
         $categories = BookCategory::all();
-        return view('admin.bookCategory.add-category',compact('categories'));
+        return view('admin.bookCategory.index',compact('categories'));
     }
 
 
@@ -31,12 +31,18 @@ class BookCategoryController extends Controller
         return redirect('admin/library/bookCategory');
     }
 
-    public function edit($id)
+//    public function edit($id)
+//    {
+//        $repository = $this->repository;
+//        $category=BookCategory::query()->findOrFail($id);
+//        return view('admin.bookCategory.edit-category',compact('category','repository'));
+//    }
+
+    public function edit(Request $request)
     {
-        $repository = $this->repository;
-        $category=BookCategory::query()->findOrFail($id);
-        return view('admin.bookCategory.edit-category',compact('category','repository'));
-    }
+        $category = BookCategory::query()->findOrFail($request->get('id'));
+        return view('admin/bookCategory/_edit',compact('category'));
+}
 
     public function update($id, Request $request)
     {
