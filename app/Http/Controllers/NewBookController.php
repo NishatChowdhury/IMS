@@ -103,11 +103,22 @@ class NewBookController extends Controller
 
     public function returnBookStore(Request $request)
     {
-        $returnBook = new IssueBook;
-        $returnBook->student_id = $request->student_id;
-        $returnBook->book_id = $request->book_id;
-        $returnBook->is_return = 1;
-        $returnBook->save();
+        $studentID = Student::all()->pluck('studentId','id');
+        $issuedStudentId =IssueBook::all()->pluck('student_id','id');
+        $bookCode =  NewBook::all()->pluck('title','id');
+        $issuedBookCode = IssueBook::all()->pluck('book_id','id');
+
+        if ($studentID = $issuedStudentId && $bookCode = $issuedBookCode) {
+
+            $returnBook = new IssueBook;
+            $returnBook->student_id = $request->student_id;
+            $returnBook->book_id = $request->book_id;
+            $returnBook->is_return = 1;
+            $returnBook->save();
+        }
+        else
+            echo "Issue The Book First!";
+
         return redirect('admin/library/allBooks');
     }
 
