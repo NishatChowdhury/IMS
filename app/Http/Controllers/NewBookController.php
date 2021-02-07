@@ -103,12 +103,18 @@ class NewBookController extends Controller
 
     public function returnBookStore(Request $request)
     {
-        $studentID = Student::all()->pluck('studentId','id');
         $issuedStudentId =IssueBook::all()->pluck('student_id','id');
-        $bookCode =  NewBook::all()->pluck('title','id');
         $issuedBookCode = IssueBook::all()->pluck('book_id','id');
 
-        if ($studentID = $issuedStudentId && $bookCode = $issuedBookCode) {
+        foreach ($issuedStudentId as $studentId){
+            $studentId;
+        }
+
+        foreach ($issuedBookCode as $bookCode){
+            $bookCode;
+        }
+
+        if ($request->student_id == $studentId && $request->book_id == $bookCode) {
 
             $returnBook = new IssueBook;
             $returnBook->student_id = $request->student_id;
