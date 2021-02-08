@@ -39,7 +39,7 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                            {{ Form::model($book,['action'=>['NewBookController@update',$book->id],'method'=>'patch']) }}
+                            {{ Form::model($book,['action'=>['BookController@update',$book->id],'method'=>'patch']) }}
 
                             <div class="card-body">
                             <div class="row">

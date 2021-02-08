@@ -18,11 +18,12 @@ class IssueBook extends Model
 
     public function bookCode(): BelongsTo
     {
-        return $this->belongsTo(NewBook::class,'book_id');
+        return $this->belongsTo(Book::class,'book_id');
     }
 
     public function studentID(): BelongsTo
     {
         return $this->belongsTo(Student::class,'student_id');
     }
+
 }

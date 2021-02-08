@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\BookCategory;
 use App\IssueBook;
-use App\NewBook;
+use App\Book;
 use App\Repository\StudentRepository;
 use App\Student;
 use Illuminate\Http\Request;
 
-class NewBookController extends Controller
+class BookController extends Controller
 {
 
     /**
@@ -24,7 +24,7 @@ class NewBookController extends Controller
 
     public function index()
     {
-        $allData = NewBook::all();
+        $allData = Book::all();
         return view('admin.book.view-book',compact('allData'));
     }
 
@@ -38,15 +38,15 @@ class NewBookController extends Controller
     public function show()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('book_title','id');
-        $allBooks = NewBook::all();
+        $bookCode =  Book::all()->pluck('book_title','id');
+        $allBooks = Book::all();
         return view('admin.book.allBooks',compact('allBooks','studentID','bookCode'));
     }
 
     public function search(Request $request)
     {
         $text = $request->text;
-        $all_books = NewBook::query()
+        $all_books = Book::query()
             ->where('title', 'LIKE', "%{$text}%")
             ->get();
 
@@ -78,8 +78,8 @@ class NewBookController extends Controller
     public function issueBook(Request $request)
     {
         $students = Student::all()->pluck('studentId','id');
-        //$bookCode =  NewBook::all()->pluck('book_code','id');
-        $book = NewBook::query()->findOrFail($request->get('id'));
+        //$bookCode =  Book::all()->pluck('book_code','id');
+        $book = Book::query()->findOrFail($request->get('id'));
         return view('admin.book._issue-book',compact('students','book'));
     }
 
@@ -96,7 +96,7 @@ class NewBookController extends Controller
     public function returnBook()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('title','id');
+        $bookCode =  Book::all()->pluck('title','id');
         $issuedData = IssueBook::all()->where('is_return','0');
         return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
     }
@@ -130,20 +130,20 @@ class NewBookController extends Controller
 
     public function store(Request $request)
     {
-        NewBook::query()->create($request->all());
+        Book::query()->create($request->all());
         return redirect('admin/library/books');
     }
 
     public function edit($id)
     {
         $repository = $this->repository;
-        $book=NewBook::query()->findOrFail($id);
+        $book=Book::query()->findOrFail($id);
         return view('admin.book.edit-book',compact('book','repository'));
     }
 
     public function update($id, Request $request)
     {
-        $data=NewBook::query()->find($id);
+        $data=Book::query()->find($id);
         $data->update($request->all());
         return redirect('admin/library/books')->with('success','Updated successfully');
 
@@ -151,7 +151,7 @@ class NewBookController extends Controller
 
     public function destroy($id)
     {
-        $books = NewBook::query()->findOrFail($id);
+        $books = Book::query()->findOrFail($id);
         $books->delete();
         return redirect('admin/library/allBooks');
     }
@@ -159,7 +159,7 @@ class NewBookController extends Controller
     public function report()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  NewBook::all()->pluck('title','id');
+        $bookCode =  Book::all()->pluck('title','id');
         $issuedData = IssueBook::all();
         return view('admin.book.report',compact('studentID','bookCode','issuedData'));
     }

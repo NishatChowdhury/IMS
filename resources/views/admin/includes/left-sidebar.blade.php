@@ -183,25 +183,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
+                        <a href="{{ action('BookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Books </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
+                        <a href="{{ action('BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Books</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
+                        <a href="{{ action('BookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Return Books</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action('NewBookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
+                        <a href="{{ action('BookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Report</p>
                         </a>

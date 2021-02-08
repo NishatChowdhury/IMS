@@ -39,7 +39,7 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'NewBookController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!!  Form::open(['action'=>'BookController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
 
                         <div class="card-body">
                             <div class="row">

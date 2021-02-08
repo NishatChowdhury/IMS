@@ -55,7 +55,7 @@
                                     <td>{{  $value->no_of_issue }}</td>
                                     <td class="text-center">
                                         {{ Form::open(['route'=>['newBook.delete',$value->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                        <a href="{{ action('NewBookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('BookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fa fas fa-trash"></i>
                                         </button>

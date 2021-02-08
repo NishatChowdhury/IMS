@@ -27,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'NewBookController@search','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'BookController@search','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -86,7 +86,7 @@
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal" onclick="loadForm({{$value->id}})">
                                             <i class="fas fa-info"></i>
                                         </button>
-                                        <a href="{{ action('NewBookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('BookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fa fas fa-trash"></i>
                                         </button>

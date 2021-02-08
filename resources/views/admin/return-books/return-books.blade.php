@@ -27,7 +27,7 @@
                 <!-- left column -->
                 <div class="col-md-12">
                     <div class="card card-light">
-                            {!!  Form::open(['action'=>'NewBookController@returnBookStore', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                            {!!  Form::open(['action'=>'BookController@returnBookStore', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                             <div class="card-body">
                                 <h3 style="background-color: #117a8b;color: white;margin-bottom: 10px;padding-left: 20px;padding-bottom: 10px;padding-top: 10px;">Return A Book</h3>
                                 <div class="row">

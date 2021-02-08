@@ -188,24 +188,24 @@ Route::group(['prefix'=>'admin'],function(){
 
     //library Management Starts By Nishat
     //Add New Book
-    Route::get('library/books','NewBookController@index');
-    Route::get('library/allBooks','NewBookController@show')->name('allBooks.show');
-    Route::get('library/SearchBook','NewBookController@search')->name('allBooks.search');
-    Route::get('library/books/add','NewBookController@add')->name('newBook.add');
-    Route::post('library/books/store','NewBookController@store')->name('newBook.store');
-    Route::get('library/books/edit/{id}','NewBookController@edit')->name('newBook.edit');
-    Route::patch('library/books/{id}/update','NewBookController@update')->name('newBook.update');
-    Route::post('library/books/delete/{id}','NewBookController@destroy')->name('newBook.delete');
+    Route::get('library/books','BookController@index');
+    Route::get('library/allBooks','BookController@show')->name('allBooks.show');
+    Route::get('library/SearchBook','BookController@search')->name('allBooks.search');
+    Route::get('library/books/add','BookController@add')->name('newBook.add');
+    Route::post('library/books/store','BookController@store')->name('newBook.store');
+    Route::get('library/books/edit/{id}','BookController@edit')->name('newBook.edit');
+    Route::patch('library/books/{id}/update','BookController@update')->name('newBook.update');
+    Route::post('library/books/delete/{id}','BookController@destroy')->name('newBook.delete');
 
     //issue/return books
-    Route::get('library/issue_books','NewBookController@issueBook')->name('issueBook.index');
-    Route::post('library/issue-books/store','NewBookController@issueBookStore')->name('issueBook.store');
-    Route::get('library/return_books','NewBookController@returnBook')->name('returnBook.index');
-    Route::post('library/return-books/store','NewBookController@returnBookStore')->name('returnBook.store');
+    Route::get('library/issue_books','BookController@issueBook')->name('issueBook.index');
+    Route::post('library/issue-books/store','BookController@issueBookStore')->name('issueBook.store');
+    Route::get('library/return_books','BookController@returnBook')->name('returnBook.index');
+    Route::post('library/return-books/store','BookController@returnBookStore')->name('returnBook.store');
 
 
 //    report
-    Route::get('library/report','NewBookController@report')->name('report');
+    Route::get('library/report','BookController@report')->name('report');
 
     //library management ends by Nishat
 

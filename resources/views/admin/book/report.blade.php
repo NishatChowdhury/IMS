@@ -38,18 +38,20 @@
                                     <th>Book ID</th>
                                     <th>Date Borrowed</th>
                                     <th>Date Returned</th>
+                                    <th>Total Days</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 @foreach($issuedData as $key => $data)
                                     <tr class="{{$data->id}}">
-                                        <td>{{  $key+1 }}</td>
-                                        <td>{{  $data->studentID->studentId }}</td>
-                                        <td>{{  $data->student_name->name }}</td>
-                                        <td>{{  $data->bookCode->book_code }}</td>
-                                        <td>{{  $date_borrowed=$data->created_at }}</td>
-                                        <td>{{  $date_returned=$data->created_at }}</td>
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $data->studentID->studentId }}</td>
+                                        <td>{{ $data->student_name->name }}</td>
+                                        <td>{{ $data->bookCode->book_code }}</td>
+                                        <td>{{ $date_borrowed=$data->created_at->todatestring() }}</td>
+                                        <td>{{ $date_returned=$data->created_at->todatestring() }}</td>
+                                        <td>{{ $diff = abs(strtotime($date_returned) - strtotime($date_borrowed)) }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
