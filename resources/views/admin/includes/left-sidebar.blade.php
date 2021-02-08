@@ -200,6 +200,12 @@
                             <p>Return Books</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ action('NewBookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Report</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
 {{--            library management ends here--}}

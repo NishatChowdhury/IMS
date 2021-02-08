@@ -203,6 +203,10 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('library/return_books','NewBookController@returnBook')->name('returnBook.index');
     Route::post('library/return-books/store','NewBookController@returnBookStore')->name('returnBook.store');
 
+
+//    report
+    Route::get('library/report','NewBookController@report')->name('report');
+
     //library management ends by Nishat
 
     //Social Links start

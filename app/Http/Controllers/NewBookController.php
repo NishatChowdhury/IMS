@@ -128,7 +128,6 @@ class NewBookController extends Controller
         return redirect('admin/library/allBooks');
     }
 
-
     public function store(Request $request)
     {
         NewBook::query()->create($request->all());
@@ -150,11 +149,18 @@ class NewBookController extends Controller
 
     }
 
-
     public function destroy($id)
     {
         $books = NewBook::query()->findOrFail($id);
         $books->delete();
         return redirect('admin/library/allBooks');
+    }
+
+    public function report()
+    {
+        $studentID = Student::all()->pluck('studentId','id');
+        $bookCode =  NewBook::all()->pluck('title','id');
+        $issuedData = IssueBook::all();
+        return view('admin.book.report',compact('studentID','bookCode','issuedData'));
     }
 }
