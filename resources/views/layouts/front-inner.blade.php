@@ -47,11 +47,11 @@
 
 <body>
 
-<div id="app">
+{{--<div id="app">--}}
 
     <header class="site-header bg-dark text-white-0_5 no-print">
-        {{--    @include('front.inc.info-bar')--}}
-        <info-bar></info-bar>
+            @include('front.inc.info-bar')
+{{--        <info-bar></info-bar>--}}
     </header><!-- END site header-->
 
 
@@ -91,11 +91,26 @@
         <i class="ti-angle-up"></i>
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+{{--    <script src="{{ asset('js/app.js') }}"></script>--}}
     <script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js"></script>
+
+<!-- Pull to refresh -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pulltorefreshjs/0.1.21/index.umd.min.js" integrity="sha512-oEw4xuIi6LVmWze9XMkOUKVrN3l4gIMDrnuci0T3NlcM5tbK9R21ZgP6mqOcit7m41sahXSIG88WOPKgFSWalA==" crossorigin="anonymous"></script>
+
+<script> // Initialize Pull To Refresh
+    const ptr = PullToRefresh.init({
+        mainElement: 'body',
+        onRefresh() {
+            window.location.reload();
+        }
+    });
+</script>
+
     @yield('script')
 
-</div>
+{{--</div>--}}
 </body>
 </html>
