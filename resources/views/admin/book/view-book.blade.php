@@ -41,6 +41,7 @@
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>No. Of Issues</th>
+                                <th>Shelve No.</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                     <td>{{  $value->description }}</td>
                                     <td>{{  $value->category->book_category }}</td>
                                     <td>{{  $value->no_of_issue }}</td>
+                                    <td>{{  $value->shelve }}</td>
                                     <td class="text-center">
                                         {{ Form::open(['route'=>['newBook.delete',$value->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
                                         <a href="{{ action('BookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
