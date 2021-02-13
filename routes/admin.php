@@ -162,6 +162,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('attendance/leavePurpose/add','LeavePurposeController@add')->name('leavePurpose.add');
     Route::post('attendance/leavePurpose/store','LeavePurposeController@store')->name('leavePurpose.store');
     Route::get('attendance/leavePurpose/edit/{id}','LeavePurposeController@edit')->name('leavePurpose.edit');
+    Route::patch('attendance/leavePurpose/{id}/update','LeavePurposeController@update')->name('leavePurpose.update');
     Route::post('attendance/leavePurpose/delete/{id}','LeavePurposeController@destroy')->name('leavePurpose.delete');
     //leave purpose ends by Nishat
 

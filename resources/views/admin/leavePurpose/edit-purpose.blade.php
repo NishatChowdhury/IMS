@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Add Purpose')
+@section('title','Edit Purpose')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add New Purpose of Leave</li>
+                        <li class="breadcrumb-item active">Edit Purpose of Leave</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -39,9 +39,10 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'LeavePurposeController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                            {{ Form::model($purpose,['action'=>['LeavePurposeController@update',$purpose->id],'method'=>'patch']) }}
 
-                        <div class="card-body">
+
+                            <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
@@ -72,7 +73,6 @@
                                         <td class="text-center"> {{ $purpose->leave_purpose }} </td>
                                         <td class="text-center">
                                             {{ Form::open(['route'=>['leavePurpose.delete',$purpose->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('LeavePurposeController@edit',$purpose->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fas fa-trash"></i>
                                             </button>
