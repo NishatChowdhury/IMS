@@ -210,6 +210,16 @@ Route::group(['prefix'=>'admin'],function(){
 
     //library management ends by Nishat
 
+//    route for api setting starts here
+
+    Route::get('communication/apiSetting','apiSettingController@index')->name('communication.apiSetting');
+    Route::post('communication/apiSetting/store','apiSettingController@store')->name('apiSetting.store');
+    Route::get('communication/apiSetting/edit/{id}','apiSettingController@edit')->name('apiSetting.edit');
+    Route::patch('communication/apiSetting/{id}/update','apiSettingController@update')->name('apiSetting.update');
+    Route::post('communication/apiSetting/delete/{id}','apiSettingController@destroy')->name('apiSetting.delete');
+
+//    route for api setting ends here
+
     //Social Links start
     Route::get('socials','SocialController@index')->name('social.index');
     Route::post('socials/update/{id}','SocialController@update')->name('social.store');

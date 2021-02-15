@@ -493,6 +493,12 @@
                                 <p>SMS History</p>
                             </a>
                         </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{route('communication.apiSetting')}}" class="nav-link {{ isActive('communication/apiSetting') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> API Settings</p>
+                            </a>
+                        </li>
                         {{--<li class="nav-item">--}}
                         {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
                         {{--<i class="far fa-circle nav-icon"></i>--}}

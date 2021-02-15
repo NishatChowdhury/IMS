@@ -85,13 +85,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <div class="form-group">
-                                        {{ Form::label('shelve', 'Shelve',['class'=>'control-label' ]) }}
-                                        {{ Form::text('shelve', null, ['placeholder' => 'Enter Shelve No.','class'=>'form-control']) }}
-                                    </div>
-                                </div>
-
                             </div>
                             <div class="form-group">
                                 {!! Form::submit('Update', ['class' => 'form-control, btn btn-success ']) !!}
