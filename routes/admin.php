@@ -221,6 +221,19 @@ Route::group(['prefix'=>'admin'],function(){
 
 //    route for api setting ends here
 
+//    route for email setting starts here
+    Route::get('setting/email','emailSettingController@index')->name('setting.email');
+    Route::post('setting/email/store','emailSettingController@store')->name('email.store');
+    Route::post('setting/email/edit','emailSettingController@edit')->name('email.edit');
+    Route::post('setting/email/update','emailSettingController@update')->name('email.update');
+    Route::delete('setting/email/delete/{id}','emailSettingController@destroy')->name('email.delete');
+//    route for email setting ends here
+
+    //    route for google map setting starts here
+    Route::get('setting/map','mapSettingController@index')->name('setting.map');
+    Route::get('setting/map/store','mapSettingController@store')->name('map.store');
+//    route for google map setting ends here
+
     //Social Links start
     Route::get('socials','SocialController@index')->name('social.index');
     Route::post('socials/update/{id}','SocialController@update')->name('social.store');

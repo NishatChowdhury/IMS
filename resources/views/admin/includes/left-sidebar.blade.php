@@ -507,6 +507,29 @@
                         {{--</li>--}}
                     </ul>
                 </li>
+                <li class="nav-item has-treeview {{ isActive(['menus*','pages*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['cms*']) }}">
+                        <i class="fas fa-tasks"></i>
+                        <p>
+                            CMS
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('menus') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Site Menu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Page Mgmt</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
                     <a href="#" class="nav-link {{ isActive(['extra*']) }}">
                         <i class="nav-icon fas fa-scroll"></i>
@@ -555,7 +578,7 @@
                     </ul>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*','calender*','theme']) }}">
+            <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*','calender*','theme','attendance']) }}">
                 <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*','social*','theme']) }}">
                     <i class="fas fa-shapes"></i>
                     <p>
@@ -564,22 +587,28 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('attendance/report') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Holiday Settings</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ route('setting.email') }}" class="nav-link {{ isActive('setting/email') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>E-mail Settings</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ route('setting.map') }}" class="nav-link {{ isActive('setting/map') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Map Settings</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Basic Info </p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('menus') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Site Menu</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Page Mgmt</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
