@@ -46,6 +46,8 @@ Route::group(['prefix'=>'admin'],function(){
     //Videos
     Route::get('videos','VideoController@index');
     Route::post('video/store','VideoController@store');
+    Route::get('video/edit','VideoController@edit')->name('video.edit');
+    Route::patch('video/{id}/update','VideoController@update');
     Route::delete('video/destroy/{id}','VideoController@destroy');
     //Videos End
 
@@ -89,6 +91,8 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('page/store','PageController@store');
     Route::get('page/edit/{id}','PageController@edit');
     Route::patch('pages/{id}/update','PageController@update');
+    Route::delete('pages/destroy/{id}','PageController@destroy');
+    Route::delete('pages/remove/{id}','PageController@remove');
 
     Route::get('siteinfo','SiteInformationController@index')->name('siteinfo');
     Route::patch('site-info/update','SiteInformationController@update');
@@ -212,11 +216,8 @@ Route::group(['prefix'=>'admin'],function(){
 
 //    route for api setting starts here
 
-    Route::get('communication/apiSetting','apiSettingController@index')->name('communication.apiSetting');
-    Route::post('communication/apiSetting/store','apiSettingController@store')->name('apiSetting.store');
-    Route::get('communication/apiSetting/edit/{id}','apiSettingController@edit')->name('apiSetting.edit');
-    Route::patch('communication/apiSetting/{id}/update','apiSettingController@update')->name('apiSetting.update');
-    Route::post('communication/apiSetting/delete/{id}','apiSettingController@destroy')->name('apiSetting.delete');
+    Route::get('communication/apiSetting','CommunicationSettingController@index')->name('communication.apiSetting');
+    Route::patch('communication/apiSetting/update','CommunicationSettingController@update')->name('apiSetting.update');
 
 //    route for api setting ends here
 
