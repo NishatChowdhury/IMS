@@ -1,19 +1,44 @@
-<div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Parent Account*:</label>
-    <div class="col-sm-10">
-        <div class="input-group">
-            {{ Form::select('coa_parent_id',$repository->parents(),null,['class'=>'form-control','style'=>'height: 35px !important;','required']) }}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Parent Account*:</label>
+            {{ Form::select('coa_parents_id',$repository->parents(),null,['class'=>'form-control select2','required']) }}
+        </div>
+        <div class="form-group">
+            <label for="">Code</label>
+            {{ Form::text('code',null,['class'=>'form-control','required']) }}
+        </div>
+        <div class="form-group">
+            <label for="">Account Name</label>
+            {{ Form::text('name',null,['class'=>'form-control','required']) }}
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="is_enabled" value="1" class="flat-red" checked>
+                Is Active
+            </label>
         </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Account Name</label>
-    <div class="col-sm-10">
-        <div class="input-group">
-            {{ Form::text('name',null,['class'=>'form-control','style'=>'height: 35px !important;','required']) }}
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Description:</label>
+            {{ Form::textarea('description',null,['class'=>'form-control']) }}
         </div>
     </div>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-success" > Create</button>
+        <a href="{{ URL::previous() }}" class="btn btn-danger">Cancel</a>
+    </div>
 </div>
-<div style="float: right">
-    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Save</button>
-</div>
+
+
+@section('script')
+    <script>
+        $(function () {
+            $('.select2').select2();
+        });
+    </script>
+@stop

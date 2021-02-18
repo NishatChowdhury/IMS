@@ -14,11 +14,11 @@ class CreateCoaParentsTable extends Migration
     public function up()
     {
         Schema::create('coa_parents', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('coa_grand_parent_id');
+            $table->id();
+            $table->unsignedBigInteger('coa_grandparent_id');
             $table->string('name')->unique();
-            $table->string('side');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateCoaParentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coa_parents');
+        Schema::dropIfExists('parents');
     }
 }

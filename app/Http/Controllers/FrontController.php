@@ -544,12 +544,35 @@ class FrontController extends Controller
     public function page($uri,Request $request)
     {
         $content = Menu::query()->where('uri',$uri)->first();
+
         if($content->type == 3){
-            $categories = GalleryCategory::all();
-            $albums = Album::all();
-            $teachers = Staff::query()->orderBy('code')->get();
+
+            $notices = null;
+            $categories = null;
+
+            $teachers = null;
+
+            $staffs = null;
+
+            $albums = null;
 
             $repository = $this->repository;
+
+            if($content->system_page == 'gallery'){
+                $categories = GalleryCategory::all();
+                $albums = Album::all();
+            }
+
+            if($content->system_page == 'teacher' || $content->system_page == 'teacher-1'){
+                $teachers = Staff::query()
+                    ->where('staff_type_id',2)
+                    ->orderBy('code')
+                    ->get();
+            }
+
+            if($content->system_page == 'staff' || $content->system_page == 'staff-1'){
+                $staffs = Staff::query()->where('staff_type_id',1)->orderBy('code')->get();
+            }
 
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
@@ -559,11 +582,16 @@ class FrontController extends Controller
                 $categories = NoticeCategory::all();
             }
 
+            if($content->system_page === 'playlists'){
+                $playlists = Playlist::query()->get();
+                return view('front.pages.'.$content->system_page,compact('playlists'));
+            }
+
             if($content->system_page === 'internal-result'){
                 $this->internal_exam($request);
             }
 
-            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','repository'));
+            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','staffs','repository'));
         }
         $page = $content->page;
 
@@ -585,6 +613,25 @@ class FrontController extends Controller
         return response($info);
     }
     public function titleBar()
+    {
+        $info = [
+            'bg_color' => themeConfig('header_background'),
+            'name' => siteConfig('name'),
+            'name_size' => siteConfig('name_size'),
+            'name_font' => siteConfig('name_font'),
+            'name_color' => siteConfig('name_color'),
+            'bn' => siteConfig('bn'),
+            'bn_size' => siteConfig('bn_size'),
+            'bn_font' => siteConfig('bn_font'),
+            'bn_color' => siteConfig('bn_color'),
+            'logo' => siteConfig('logo'),
+            'logo_height' => siteConfig('logo_height')
+        ];
+
+        return response($info);
+    }
+
+    public function menuBar()
     {
         $info = [
             'bg_color' => themeConfig('header_background'),

@@ -20,6 +20,16 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <section class="content">
+        @if($errors->any())
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+        @endif
+    </section>
+
     <!-- ***/Notices page inner Content Start-->
     <section class="content">
         <div class="container-fluid">

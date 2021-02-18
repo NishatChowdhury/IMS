@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : 1000</h3>
+                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : {{ $chartOfAccounts->count() }}</h3>
                             </div>
                             <div class="row">
                                 <div>
@@ -42,7 +42,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>SL</th>
+                                    <th>Code</th>
                                     <th>Name</th>
                                     <th>Parent</th>
                                     <th>Status</th>
@@ -53,10 +53,10 @@
                                 @php $x = 1 @endphp
                                 @foreach($chartOfAccounts as $coa)
                                 <tr>
-                                    <td>{{ $x++ }}</td>
+                                    <td>{{ $coa->code }}</td>
                                     <td>{{ $coa->name }}</td>
-                                    <td>{{ $coa->parent->name }} <b>[{{ $coa->parent->parent->name }}]</b></td>
-                                    <td>{{ $coa->is_active == 1 ? 'Active' : 'Inactive' }}</td>
+                                    <td class="text-right"><span class="text-secondary font-italic">{{ $coa->grandparents->name ?? '' }}</span> -> <b>{{ $coa->parents->name ?? '' }}</b></td>
+                                    <td>{{ $coa->is_enabled == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>
                                         {{ Form::open(['action'=>['ChartOfAccountController@destroy',$coa->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                         <a href="{{ action('ChartOfAccountController@edit',$coa->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ChartOfAccount;
+use App\COA;
 use App\CoaGrandParent;
+use App\CoaParent;
 use App\Repository\FinanceRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -27,7 +29,8 @@ class ChartOfAccountController extends Controller
     public function index()
     {
         //$coa = CoaGrandParent::all();
-        $chartOfAccounts = ChartOfAccount::query()->paginate(50);
+        //$chartOfAccounts = ChartOfAccount::query()->paginate(50);
+        $chartOfAccounts = COA::query()->paginate(50);
         return view('admin.coa.index',compact('chartOfAccounts'));
     }
 
@@ -40,15 +43,18 @@ class ChartOfAccountController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required|unique:chart_of_accounts',
-            'coa_parent_id' => 'required'
+            'name' => 'required|unique:coa',
+            'code' => 'required',
+            'coa_parents_id' => 'required'
         ]);
 
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-        $request['is_active'] = 1;
+        //$request['is_active'] = 1;
+        $coaParents = CoaParent::query()->findOrFail($request->get('coa_parents_id'));
+        $request['coa_grandparents_id'] = $coaParents->coa_grandparents_id;
 
         ChartOfAccount::query()->create($request->all());
 
@@ -68,7 +74,8 @@ class ChartOfAccountController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name' => ['required',Rule::unique(ChartOfAccount::class)->ignore($id)],
-            'coa_parent_id' => 'required'
+            'code' => 'required',
+            'coa_parents_id' => 'required'
         ]);
 
         $coa = ChartOfAccount::query()->findOrFail($id);
@@ -78,6 +85,8 @@ class ChartOfAccountController extends Controller
         }
 
         //$request['is_active'] = 1;
+        $coaParents = CoaParent::query()->findOrFail($request->get('coa_parents_id'));
+        $request['coa_grandparents_id'] = $coaParents->coa_grandparents_id;
 
         $coa->update($request->all());
 

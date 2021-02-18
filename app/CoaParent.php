@@ -3,14 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CoaParent extends Model
 {
-    protected $fillable = ['coa_grand_parent_id','name','side'];
+    use SoftDeletes;
 
-    public function parent()
+    protected $table = 'coa_parents';
+
+    protected $fillable = ['coa_grandparents_id','name'];
+
+    /**
+     * A Parents is belongs to Grandparents
+     * @return BelongsTo
+     */
+    public function parents(): BelongsTo
     {
-        return $this->belongsTo(CoaGrandParent::class,'coa_grand_parent_id');
+        return $this->belongsTo(CoaGrandParent::class,'coa_grandparents_id');
     }
 
     public function children()

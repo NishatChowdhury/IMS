@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChartOfAccount extends Model
 {
-    protected $fillable = ['coa_parent_id','name','is_active'];
+    protected $table = 'coa';
+
+    protected $fillable = ['name','code','coa_parents_id','coa_grandparents_id','is_enabled','description'];
 
     public function parent()
     {

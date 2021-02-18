@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class leavePurpose extends Model
+class CoaGreatGrandparent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['leave_purpose'];
+    protected $fillable = ['name'];
 }
