@@ -95,6 +95,7 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{{ action('LeaveManagementController@index') }}" class="nav-link {{ isActive('attendance/leaveManagement') }}">
                                 <i class="far fa-circle nav-icon"></i>
@@ -116,6 +117,12 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('attendance/report') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Holiday Settings</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">
                                         <i class="far nav-icon"></i>
@@ -152,12 +159,6 @@
                             <a href="{{ route('attendance.report') }}" class="nav-link {{ isActive('attendance/report') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Monthly Report</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('attendance/report') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Holiday Settings</p>
                             </a>
                         </li>
                     </ul>
@@ -528,6 +529,47 @@
                                 <p>Page Mgmt</p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview {{ isActive('attendance*') }}">
+                            <a href="#" class="nav-link {{ isActive('attendance*') }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Frontend Settings
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                                <li class="nav-item">
+                                    <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Site Basic Info </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Feature</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Slider</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Important Links</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Social Links</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
@@ -588,57 +630,15 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('attendance/report') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Holiday Settings</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ route('setting.email') }}" class="nav-link {{ isActive('setting/email') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>E-mail Settings</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('setting.map') }}" class="nav-link {{ isActive('setting/map') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Map Settings</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Site Basic Info </p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Feature</p>
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('AcademicCalenderController@index') }}" class="nav-link {{ isActive('calender') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Academic Calender</p>
-                        </a>
-                    </li>
-                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Slider</p>
-                        </a>
-                    </li>
-                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Important Links</p>
-                        </a>
-                    </li>
-                    <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Social Links</p>
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">

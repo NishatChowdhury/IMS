@@ -48,66 +48,11 @@
                                     <label for="title">Title</label>
                                     {{ Form::text('title',null,['class'=>'form-control']) }}
                                 </div>
-{{--                                <div class="form-group col-md-6">--}}
-{{--                                    <label for="name">Name</label>--}}
-{{--                                    {{ Form::text('name',null,['class'=>'form-control']) }}--}}
-{{--                                </div>--}}
-                            </div>
-                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Name</label>
                                     {{ Form::text('name',null,['class'=>'form-control']) }}
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Name Font</label>
-                                    {{ Form::text('name_font',null,['class'=>'form-control']) }}
-                                </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="title">Name Size</label>
-                                    {{ Form::text('name_size',null,['class'=>'form-control']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Name Color</label>
-                                    <div class="input-group my-colorpicker2">
-                                        {{ Form::text('name_color',null,['class'=>'form-control']) }}
-                                        <div class="input-group-append input-group-addon">
-                                            <span class="input-group-text">
-                                                <i></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputAddress">বাংলা নাম</label>
-                                    {{ Form::text('bn',null,['class'=>'form-control']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputAddress">বাংলা নাম  ফন্ট</label>
-                                    {{ Form::text('bn_font',null,['class'=>'form-control']) }}
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputAddress">বাংলা নাম  সাইজ</label>
-                                    {{ Form::text('bn_size',null,['class'=>'form-control']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputAddress">বাংলা নাম  রঙ</label>
-                                    <div class="input-group my-colorpicker2">
-                                    {{ Form::text('bn_color',null,['class'=>'form-control my-colorpicker1']) }}
-                                        <div class="input-group-append input-group-addon">
-                                            <span class="input-group-text">
-                                                <i></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 {{ Form::text('address',null,['class'=>'form-control']) }}
@@ -130,6 +75,16 @@
                                 <div class="form-group col-md-6">
                                     <label for="email">Email</label>
                                     {{ Form::text('email',null,['class'=>'form-control']) }}
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <h5>Google Map</h5>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="title">Google Map Embed Code: </label>
+                                    {{ Form::textarea('map_code',null,['class'=>'form-control','placeholder'=>'Paste Google Map Embed Code Here:','rows'=>'4', 'cols'=>'100']) }}
                                 </div>
                             </div>
                             <div class="form-group text-center">
