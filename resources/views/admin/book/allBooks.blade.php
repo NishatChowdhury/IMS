@@ -78,7 +78,7 @@
                                     <td>{{  $value->title }}</td>
                                     <td>{{  $value->author }}</td>
                                     <td>{{  $value->description }}</td>
-                                    <td>{{  $value->category->book_category }}</td>
+                                    <td>{{  $value->category->book_category ?? '' }}</td>
                                     <td><a class="btn btn-success">{{  $total = $value->no_of_issue }} </a></td>
                                     <td><a class="btn btn-success">{{  $total - $value->issue->count() + $value->return->count() }} </a></td>
                                     <td>
