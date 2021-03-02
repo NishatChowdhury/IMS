@@ -162,7 +162,7 @@ Route::get('test-download',function(){
     Artisan::call('CronJob:DownloadAttendances');
 });
 
-Route::get('test-attendance-sms',function(){
+Route::get('system/test-attendance-sms',function(){
     Artisan::call('CronJob:AttendanceSMS');
 });
 
@@ -681,4 +681,36 @@ Route::get('system/copy-student-to-student-login',function(){
         }
     }
     dd('data copied');
+});
+
+Route::get('system/copy-subjects-to-students-from-applied-students',function(){
+    $appliedStudents = AppliedStudent::query()->get();
+
+    foreach ($appliedStudents as $student){
+        $s = Student::query()->where('studentId',$student->studentId)->first();
+        if($s != null){
+            $s->update(['subjects'=>$student->subjects]);
+        }
+    }
+
+    dd('Subjects Copied!');
+});
+
+Route::get('system/copy-ssc-info-to-students-from-applied-students',function(){
+    $appliedStudents = AppliedStudent::query()->get();
+
+    foreach ($appliedStudents as $student){
+        $s = Student::query()->where('studentId',$student->studentId)->first();
+        if($s != null){
+            $s->update([
+                'ssc_roll' => $student->ssc_roll,
+                'ssc_registration' => $student->ssc_registration,
+                'ssc_session' => $student->ssc_session,
+                'ssc_year' => $student->ssc_year,
+                'ssc_board' => $student->ssc_board
+            ]);
+        }
+    }
+
+    dd('Student information copied!');
 });

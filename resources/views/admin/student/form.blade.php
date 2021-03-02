@@ -121,6 +121,47 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div  class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('fatherName','SSC Roll',['class'=>'control-label']) }}
+                        {{ Form::text('ssc_roll',null,['class'=>'form-control', 'placeholder'=>'SSC Roll (Optional)']) }}
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('motherName','SSC Registration',['class'=>'control-label']) }}
+                        {{ Form::text('ssc_registration',null,['class'=>'form-control', 'placeholder'=>'SSC Registration (optional)']) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('fatherName','SSC Session',['class'=>'control-label']) }}
+                        {{ Form::text('ssc_session',null,['class'=>'form-control', 'placeholder'=>'SSC Session (optional)']) }}
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('motherName','SSC Year',['class'=>'control-label']) }}
+                        {{ Form::text('ssc_year',null,['class'=>'form-control', 'placeholder'=>'SSC Year (optional)']) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        {{ Form::label('fatherName','SSC Board',['class'=>'control-label']) }}
+                        {{ Form::text('ssc_board',null,['class'=>'form-control', 'placeholder'=>'SSC Board (optional)']) }}
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+            </div>
             <div class="form-group files color">
                 {{ Form::label('stuPic', 'Student Picture', ['class' => 'control-label']) }}
                 {{ Form::file('pic',['class'=>'form-control', 'id'=>"file-input"]) }}

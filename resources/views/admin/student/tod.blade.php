@@ -108,21 +108,28 @@
                                     </td>
                                     <td>
                                         ROLL: {{ $student->ssc_roll }}<br>
-                                        REG : {{ $student->admission->ssc_registration ?? '' }}<br>
-                                        SESS: {{ $student->admission->ssc_session ?? '' }}
+                                        REG : {{ $student->ssc_registration ?? '' }}<br>
+                                        SESS: {{ $student->ssc_session ?? '' }}
                                     </td>
                                     <td>
-                                        {{ $student->admission->ssc_year ?? '' }}<br>
-                                        {{ $student->admission->ssc_board ??'' }}
+                                        {{ $student->ssc_year ?? '' }}<br>
+                                        {{ $student->ssc_board ??'' }}
                                     </td>
                                     <td>
-                                        {{ $student->admission ? $student->admission->created_at->format('d/m/Y') : '' }}<br>
+                                        {{ $student->created_at->format('d/m/Y') }}<br>
                                         {{ $student->classes->name ?? '' }}<br>
                                         {{ $student->group->name ?? '' }}, {{ $student->rank ?? 0 }}
                                     </td>
                                     <td>
-                                        @if($student->admission)
-                                            @foreach(json_decode($student->admission->subjects) as $subjects)
+{{--                                        @if($student->admission)--}}
+{{--                                            @foreach(json_decode($student->admission->subjects) as $subjects)--}}
+{{--                                                @foreach($subjects as $subject)--}}
+{{--                                                    <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>--}}
+{{--                                                @endforeach--}}
+{{--                                            @endforeach--}}
+{{--                                        @endif--}}
+                                        @if(is_object(json_decode($student->subjects)))
+                                            @foreach(json_decode($student->subjects) as $subjects)
                                                 @foreach($subjects as $subject)
                                                     <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                                 @endforeach

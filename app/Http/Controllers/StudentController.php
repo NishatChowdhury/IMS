@@ -11,6 +11,7 @@ use App\Country;
 use App\Division;
 use App\Gender;
 use App\Group;
+use App\OnlineSubject;
 use App\Religion;
 use App\Repository\StudentRepository;
 use App\Section;
@@ -246,7 +247,7 @@ class StudentController extends Controller
         $data = $req->all();
         //dd($data);
         if ($req->hasFile('pic')){
-            $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
+            $image = date('YmdHis').'.'.$req->file('pic')->getClientOriginalExtension();
             $req->file('pic')->move(public_path().'/assets/img/students/', $image);
             $data = $req->except('pic');
             $data['image'] = $image;
@@ -261,7 +262,7 @@ class StudentController extends Controller
 
         \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
 
-        return redirect('students');
+        return redirect('admin/students');
 //        return redirect()->back();
     }
 
@@ -368,12 +369,29 @@ class StudentController extends Controller
         foreach($ids as $key => $id){
             $student = Student::query()->findOrFail($id);
 
-            $academicClassId = AcademicClass::query()
-                ->where('session_id',$request->session_id)
-                ->where('class_id',$request->class_id)
-                ->where('section_id',$request->section_id)
-                ->where('group_id',$request->group_id)
-                ->first();
+//                $academicClassId = AcademicClass::query()
+//                    ->where('session_id',$request->session_id)
+//                    ->where('class_id',$request->class_id)
+//                    ->where('section_id',$request->section_id)
+//                    ->where('group_id',$request->group_id)
+//                    ->first();
+
+            $academicClassId = AcademicClass::query();
+
+            if($request->has('session_id')){
+                $academicClassId->where('session_id',$request->session_id);
+            }
+            if($request->has('class_id')){
+                $academicClassId->where('class_id',$request->class_id);
+            }
+            if($request->has('section_id')){
+                $academicClassId->where('section_id',$request->section_id);
+            }
+            if($request->has('group_id')){
+                $academicClassId->where('group_id',$request->group_id);
+            }
+
+            $academicClassId = $academicClassId->first();
 
             $data['name'] = $student->name;
             $data['studentId'] = $student->studentId;
@@ -646,4 +664,38 @@ class StudentController extends Controller
 //        $student = Student::query()->findOrFail(1);
 //        return view('student.profile',compact('student'));
 //    }
+
+    public function subjects($id)
+    {
+        $student = Student::query()->findOrFail($id);
+
+        $compulsory = OnlineSubject::query()
+            //->where('group_id',$student->group_id)
+            ->where('type',1)
+            ->get();
+
+        $selective = OnlineSubject::query()
+            ->where('group_id',$student->group_id)
+            ->where('type',2)
+            ->get();
+
+        $optional = OnlineSubject::query()
+            ->where('group_id',$student->group_id)
+            ->where('type',3)
+            ->get();
+
+        $subjects = json_decode($student->subjects);
+
+        return view('admin.student.subjects',compact('student','compulsory','selective','optional','subjects'));
+    }
+
+    public function assignSubject($id, Request $request)
+    {
+        $student = Student::query()->findOrFail($id);
+        $subjects = json_encode($request->get('subjects'));
+        $student->update(['subjects'=>$subjects]);
+        \Illuminate\Support\Facades\Session::flash('success','Subject has been assigned!');
+        return redirect()->back();
+    }
+
 }

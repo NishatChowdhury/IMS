@@ -49,6 +49,12 @@ class Student extends Model
         'ssc_roll',
         'location_id',
         'shift_id',
+        'subjects',
+        'ssc_roll',
+        'ssc_registration',
+        'ssc_session',
+        'ssc_year',
+        'ssc_board'
     ];
 
     public function academicClass()
