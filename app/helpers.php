@@ -3,6 +3,7 @@
 use App\CommunicationSetting;
 use App\HolidayDuration;
 use App\Journal;
+use App\JournalItem;
 use App\Menu;
 use App\RawAttendance;
 use App\Session;
@@ -110,7 +111,10 @@ function maxTime($studentId,$date){
  * Display menus in front end
  */
 function menus(){
-    $menus = Menu::query()->where('menu_id',null)->orderBy('order')->get();
+    $menus = Menu::query()
+        ->where('menu_id',null)
+        ->orderBy('order')
+        ->get();
     return $menus;
 }
 
@@ -120,7 +124,7 @@ function isMenu(): bool
 }
 
 /** Get current theme id */
-function theme(): HigherOrderBuilderProxy
+function theme()
 {
     $setting = SiteInformation::query()->first();
     return $setting->theme_id;
@@ -134,4 +138,54 @@ function themeConfig($col){
     $setting = SiteInformation::query()->first();
     $config = Theme::query()->findOrFail($setting->theme_id);
     return $config->$col;
+}
+
+/**
+ * Ledger balance of Chart of Account's head
+ * @param $id
+ * @param $start
+ * @param $end
+ * @param $side
+ * @return int|mixed
+ */
+function balance($id,$start,$end,$side): int
+{
+    $debit = JournalItem::query()
+        ->where('coa_id',$id)
+        ->whereHas('journal',function($query)use($start,$end){
+            $query->whereBetween('date',[$start,$end]);
+        })
+        ->sum('debit');
+
+    $credit = JournalItem::query()
+        ->where('coa_id',$id)
+        ->whereHas('journal',function($query)use($start,$end){
+            $query->whereBetween('date',[$start,$end]);
+        })
+        ->sum('credit');
+
+    if($side == 'dr'){
+        $debit = $debit - $credit;
+        if($debit > 0){
+            $balance = $debit;
+        }else{
+            $balance = 0;
+        }
+    }else{
+        $credit = $credit - $debit;
+        if($credit > 0){
+            $balance = $credit;
+        }else{
+            $balance = 0;
+        }
+    }
+
+//    if($debit > $credit){
+//        $balance = $debit - $credit;
+//    }else{
+//        $balance = $credit - $debit;
+//    }
+
+    //return $debit - $credit;
+    return $balance;
 }

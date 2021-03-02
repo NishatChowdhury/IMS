@@ -20,11 +20,11 @@ class CoaParent extends Model
      */
     public function parents(): BelongsTo
     {
-        return $this->belongsTo(CoaGrandParent::class,'coa_grandparents_id');
+        return $this->belongsTo(COA::class,'coa_grandparents_id');
     }
 
     public function children()
     {
-        return $this->hasMany(ChartOfAccount::class);
+        return $this->hasMany(COA::class,'coa_parents_id');
     }
 }

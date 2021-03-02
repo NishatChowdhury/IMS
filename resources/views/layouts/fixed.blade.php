@@ -20,6 +20,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css?ver:1.2') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/print.css?ver:1.6') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -28,7 +29,7 @@
 {{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    @livewireStyles
+{{--    @livewireStyles--}}
 {{--    <livewire:styles />--}}
     @yield('style')
 </head>
@@ -92,7 +93,7 @@
 @yield('script')
 {{--<script src="{{ asset('vendor/livewire/livewire.js') }}"></script>--}}
 
-@livewireScripts
+{{--@livewireScripts--}}
 <script>
    /* $(".nano").nanoScroller({
         preventPageScrolling: true,

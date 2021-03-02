@@ -401,8 +401,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ isActive(['fee-category*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['fee-category*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/trial-balance*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/trial-balance*']) }}">
                         <i class="nav-icon fas fa-money-check-alt"></i>
                         <p>
                             Accounts
@@ -451,14 +451,42 @@
                                 <p>Transaction</p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chart of Accounts</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ action('JournalController@index') }}" class="nav-link {{ isActive('admin/journals') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Journal</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('AccountingController@ledger') }}" class="nav-link {{ isActive('admin/ledger') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ledger</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('AccountingController@trialBalance') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Trial Balance</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('AccountingController@profitNLoss') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Profit & Loss</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('AccountingController@balanceSheet') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Balance Sheet</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview {{ isActive(['communication*']) }}">
@@ -824,31 +852,31 @@
                     </a>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['journals*']) }}">
-                <a href="#" class="nav-link {{ isActive(['journals*']) }}">
-                    <i class="fas fa-camera-retro"></i>
-                    <p>
-                        Accounting
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item" >
-                        <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Journals</p>
-                        </a>
-                        <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Add Journal</p>
-                        </a>
-                        <a href="{{ route('balance_sheet') }}" class="nav-link {{ isActive('balance-sheet') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Balance Sheet</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+{{--            <li class="nav-item has-treeview {{ isActive(['journals*']) }}">--}}
+{{--                <a href="#" class="nav-link {{ isActive(['journals*']) }}">--}}
+{{--                    <i class="fas fa-camera-retro"></i>--}}
+{{--                    <p>--}}
+{{--                        Accounting--}}
+{{--                        <i class="fas fa-angle-left right"></i>--}}
+{{--                    </p>--}}
+{{--                </a>--}}
+{{--                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">--}}
+{{--                    <li class="nav-item" >--}}
+{{--                        <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Journals</p>--}}
+{{--                        </a>--}}
+{{--                        <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Add Journal</p>--}}
+{{--                        </a>--}}
+{{--                        <a href="{{ route('balance_sheet') }}" class="nav-link {{ isActive('balance-sheet') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Balance Sheet</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
 
             <li class="nav-item has-treeview {{ isActive(['user*']) }}">
                 <a href="#" class="nav-link {{ isActive(['user*']) }}">

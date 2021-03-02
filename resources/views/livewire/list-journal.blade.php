@@ -49,7 +49,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     @forelse($allJournals as $index => $journal)
                                     <tr>
                                         <td>{{dateToRead($journal->created_at)}}</td>

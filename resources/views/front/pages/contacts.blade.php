@@ -13,14 +13,14 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">Contact</a>
                         </li>
-                        <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            Contact Us
-                        </li>
+{{--                        <li class="breadcrumb-item">--}}
+{{--                            <a href="#"> Elements</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="breadcrumb-item">--}}
+{{--                            Contact Us--}}
+{{--                        </li>--}}
                     </ol>
                 </div>
             </div>
@@ -37,7 +37,7 @@
 
                             <div class="col-lg-4 col-md-6 mt-4">
                                 <div class="media">
-                                    <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-mobile"></i></span>
+                                    <span class="iconbox iconbox-md bg-primary text-white"><i class="fas fa-phone-square-alt"></i></span>
                                     <div class="media-body ml-3">
                                         <h5 class="mb-0">{{ siteConfig('phone') }}</h5>
                                         <p>Call Us (9AM-10PM)</p>
@@ -50,7 +50,7 @@
                                     <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-email"></i></span>
                                     <div class="media-body ml-3">
                                         <a href="" class="h5">{{ siteConfig('email') }}</a>
-                                        <p>Call Us (9AM-10PM)</p>
+{{--                                        <p>Call Us (9AM-10PM)</p>--}}
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                     </div> <!-- END container-->
                 </section>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.5279357171717!2d92.2227251144799!3d22.52188804050705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad4c086d55fa3b%3A0xf40280cc8e7352d7!2sBangladesh%20Navy%20School%20and%20College%20Kaptai!5e0!3m2!1sen!2sbd!4v1608817408082!5m2!1sen!2sbd" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.69959972602!2d91.51427061448639!3d22.88755282710527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375347575b998957%3A0xbd64672d3a4249bb!2sMahajanhat%20Fazlur%20Rahman%20School%20and%20College!5e0!3m2!1sen!2sbd!4v1612854283517!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
 {{--                <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>--}}
 

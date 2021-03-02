@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class COA extends Model
 {
@@ -30,5 +31,14 @@ class COA extends Model
     public function grandparents(): BelongsTo
     {
         return $this->belongsTo(CoaGrandparent::class,'coa_grandparents_id');
+    }
+
+    /**
+     * A Chart of Account has many journal items
+     * @return HasMany
+     */
+    public function items(): HasMany
+    {
+        return $this->hasMany(JournalItem::class,'coa_id');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJournalsTable extends Migration
+class CreateJournalItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateJournalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('journals', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->date('date');
-            $table->string('reference');
+        Schema::create('journal_items', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('journal_id');
+            $table->unsignedBigInteger('coa_id');
             $table->string('description');
-            $table->string('journal_no');
-            $table->unsignedBigInteger('user_id');
+            $table->integer('debit')->nullable();
+            $table->integer('credit')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,9 +32,6 @@ class CreateJournalsTable extends Migration
      */
     public function down()
     {
-        Schema::table('journals', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-        Schema::dropIfExists('journals');
+        Schema::dropIfExists('journal_items');
     }
 }
