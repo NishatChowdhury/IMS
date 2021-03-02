@@ -38,8 +38,7 @@ class SiteInformationController extends Controller
 
     public function update_google_map(Request $request) {
         $data = SiteInformation::query()->first();
-        $data->map_code = $request->map_code;
-        $data->update();
+        $data->update($request->only('map'));
         return redirect('admin/siteinfo');
     }
 

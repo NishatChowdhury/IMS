@@ -40,7 +40,7 @@
                                     <span class="iconbox iconbox-md bg-primary text-white"><i class="fas fa-phone-square-alt"></i></span>
                                     <div class="media-body ml-3">
                                         <h5 class="mb-0">{{ siteConfig('phone') }}</h5>
-                                        <p>Call Us (9AM-10PM)</p>
+                                        <p>Call Us (9AM-2PM)</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                     </div> <!-- END container-->
                 </section>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.69959972602!2d91.51427061448639!3d22.88755282710527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375347575b998957%3A0xbd64672d3a4249bb!2sMahajanhat%20Fazlur%20Rahman%20School%20and%20College!5e0!3m2!1sen!2sbd!4v1612854283517!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    {!! siteConfig('map') !!}
 
 {{--                <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>--}}
 

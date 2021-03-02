@@ -177,7 +177,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="title">Google Map Embed Code: </label>
-                                {{ Form::textarea('map_code',null,['class'=>'form-control','placeholder'=>'Paste Google Map Embed Code Here:','rows'=>'4', 'cols'=>'100']) }}
+                                {{ Form::textarea('map',null,['class'=>'form-control','placeholder'=>'Paste Google Map Embed Code Here:','rows'=>'4', 'cols'=>'100']) }}
                             </div>
                             <div class="form-row">
                                 {{ Form::submit('UPDATE',['class'=>'btn btn-success']) }}

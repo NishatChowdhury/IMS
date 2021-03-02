@@ -14,7 +14,7 @@ class AddMapcodeToSiteInformationTable extends Migration
     public function up()
     {
         Schema::table('site_information', function (Blueprint $table) {
-            $table->string('map_code')->nullable();
+            $table->text('map')->nullable()->after('theme_id');
 
         });
     }
@@ -27,7 +27,7 @@ class AddMapcodeToSiteInformationTable extends Migration
     public function down()
     {
         Schema::table('site_information', function (Blueprint $table) {
-            $table->dropColumn('map_code');
+            $table->dropColumn('map');
 
         });
     }
