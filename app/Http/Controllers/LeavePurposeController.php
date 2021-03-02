@@ -18,7 +18,7 @@ class LeavePurposeController extends Controller
     public function store(Request $request)
     {
         LeavePurpose::query()->create($request->all());
-        return redirect('attendance/leavePurpose');
+        return redirect('admin/attendance/leavePurpose');
     }
 
     public function edit($id)

@@ -38,6 +38,11 @@ class LeaveManagementController extends Controller
     public function store(Request $request)
     {
         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
+
+        if(!$student){
+            return redirect()->back();
+        }
+
         $start = $request->get('start_date');
         $end = $request->get('end_date');
 
@@ -59,7 +64,7 @@ class LeaveManagementController extends Controller
         }
 
         Session::flash('success','Leave has been entered!');
-        return redirect('attendance/leaveManagement');
+        return redirect('admin/attendance/leaveManagement');
 
     }
 
