@@ -170,6 +170,7 @@
                         </div>
                     </div>
                     <div class="card mt-2">
+                        {{ Form::model($info,['action'=>'SiteInformationController@update_google_map','method'=>'patch']) }}
                         <div class="card-header">
                             <h5>Google Map</h5>
                         </div>
@@ -178,7 +179,11 @@
                                 <label for="title">Google Map Embed Code: </label>
                                 {{ Form::textarea('map_code',null,['class'=>'form-control','placeholder'=>'Paste Google Map Embed Code Here:','rows'=>'4', 'cols'=>'100']) }}
                             </div>
+                            <div class="form-row">
+                                {{ Form::submit('UPDATE',['class'=>'btn btn-success']) }}
+                            </div>
                         </div>
+                        {{ Form::close() }}
                     </div>
 
                 </div>

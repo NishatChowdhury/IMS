@@ -36,6 +36,13 @@ class SiteInformationController extends Controller
         return redirect('admin/siteinfo');
     }
 
+    public function update_google_map(Request $request) {
+        $data = SiteInformation::query()->first();
+        $data->map_code = $request->map_code;
+        $data->update();
+        return redirect('admin/siteinfo');
+    }
+
     public function logo(Request $request)
     {
         $this->validate($request,[

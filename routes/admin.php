@@ -100,6 +100,7 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::get('siteinfo','SiteInformationController@index')->name('siteinfo');
     Route::patch('site-info/update','SiteInformationController@update');
+    Route::patch('site-info/google_map','SiteInformationController@update_google_map');
     Route::patch('site-info/logo','SiteInformationController@logo');
 
     Route::get('sliders','SliderController@index');
