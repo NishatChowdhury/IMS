@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','Playlists')
 
 @section('content')
 
@@ -16,10 +16,7 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            About us
+                            Playlists
                         </li>
                     </ol>
                 </div>
