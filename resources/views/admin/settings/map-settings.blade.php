@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    {!!  Form::open(['action'=>'mapSettingController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                                    {!!  Form::open(['action'=>'MapSettingController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
 
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-sm-12">

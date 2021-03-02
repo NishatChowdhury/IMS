@@ -66,13 +66,17 @@ Route::group(['prefix'=>'admin'],function(){
 
         // Imam Hasan Journal Routes
     Route::resource('journals', "JournalController")->middleware('auth');
+    Route::get('ledger','AccountingController@ledger');
+    Route::get('trial-balance','AccountingController@trialBalance');
+    Route::get('profit-n-loss','AccountingController@profitNLoss');
+    Route::get('balance-sheet','AccountingController@balanceSheet');
     // Imam Hasan Journal Routes
     // Imam Hasan Journal Routes
-    Route::resource('journals', "JournalController")->middleware('auth');
+    //Route::resource('journals', "JournalController")->middleware('auth');
 // Imam Hasan Journal Routes
 
     // accounting Reports by Imam Hasan\
-    Route::get('balance-sheet', "AccountingController@balance_sheet")->name('balance_sheet');
+    //Route::get('balance-sheet', "AccountingController@balance_sheet")->name('balance_sheet');
     // accounting Reports by Imam Hasan
 
     // Route for test
@@ -107,6 +111,8 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('student/edit/{id}','StudentController@edit');
     Route::patch('student/{id}/update','StudentController@update');
     Route::get('student/drop/{id}','StudentController@dropOut');
+    Route::get('student/subjects/{id}','StudentController@subjects');
+    Route::patch('student/{id}/assign','StudentController@assignSubject');
     Route::get('/load_student_id','StudentController@loadStudentId');
     Route::get('/load_online_student_info','FrontController@loadStudentInfo');
 
@@ -222,16 +228,16 @@ Route::group(['prefix'=>'admin'],function(){
 //    route for api setting ends here
 
 //    route for email setting starts here
-    Route::get('setting/email','emailSettingController@index')->name('setting.email');
-    Route::post('setting/email/store','emailSettingController@store')->name('email.store');
-    Route::post('setting/email/edit','emailSettingController@edit')->name('email.edit');
-    Route::post('setting/email/update','emailSettingController@update')->name('email.update');
-    Route::delete('setting/email/delete/{id}','emailSettingController@destroy')->name('email.delete');
+    Route::get('setting/email','EmailSettingController@index')->name('setting.email');
+    Route::post('setting/email/store','EmailSettingController@store')->name('email.store');
+    Route::post('setting/email/edit','EmailSettingController@edit')->name('email.edit');
+    Route::post('setting/email/update','EmailSettingController@update')->name('email.update');
+    Route::delete('setting/email/delete/{id}','EmailSettingController@destroy')->name('email.delete');
 //    route for email setting ends here
 
     //    route for google map setting starts here
-    Route::get('setting/map','mapSettingController@index')->name('setting.map');
-    Route::get('setting/map/store','mapSettingController@store')->name('map.store');
+    Route::get('setting/map','MapSettingController@index')->name('setting.map');
+    Route::get('setting/map/store','MapSettingController@store')->name('map.store');
 //    route for google map setting ends here
 
     //Social Links start
