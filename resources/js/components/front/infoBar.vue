@@ -10,7 +10,7 @@
                 </li>
                 <li class="list-inline-item mr-3">
                     <div class="d-flex align-items-center">
-                        <i class="ti-headphone mr-2"></i>
+                        <i class="fas fa-phone-square-alt mr-2"></i>
                         <a href="tel:+8801740411513">{{  info.phone }}</a>
                     </div>
                 </li>

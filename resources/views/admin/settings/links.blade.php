@@ -72,7 +72,7 @@
                     <div class="card">
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
-                            <table>
+                            <table class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th>ID</th>

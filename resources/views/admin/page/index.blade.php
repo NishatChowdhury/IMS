@@ -44,7 +44,7 @@
                                     <th>Site</th>
                                     <th>Page</th>
                                     <th>Content</th>
-                                    <th>Order </th>
+                                    <th>Used in</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -53,9 +53,14 @@
                                 <tr>
                                     <td></td>
                                     <td>{{ $page->name }}</td>
-                                    <td>{{ substr(strip_tags($page->content),0,99) }}...</td>
+                                    <td style="line-break:anywhere">{{ substr(strip_tags($page->content),0,99) }}</td>
                                     <td>{{ $page->order }}</td>
-                                    <td><a href="{{ action('PageController@edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                                    <td>
+                                        {{ Form::model($page,['action'=>['PageController@destroy',$page->id],'method'=>'delete','onsubmit'=>'confirmDelete()']) }}
+                                        <a href="{{ action('PageController@edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        {{ Form::close() }}
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -155,5 +160,11 @@
         $(document).ready(function() {
             $("#txtEditor").Editor();
         });
+    </script>
+    <script>
+        function confirmDelete(){
+            var x = confirm('Are you sure you want to delete this page?');
+            return !!x;
+        }
     </script>
 @stop
