@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : 1000</h3>
+                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $playlist->videos->count() ?? '' }}</h3>
                             </div>
                             <div class="row">
                                 <div>
@@ -54,7 +54,8 @@
                                         <td>{!! $video->code !!}</td>
                                         <td>
                                             {{ Form::open(['action'=>['VideoController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <button type="button" onclick="loadEditForm({{$video->id}})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>
@@ -74,7 +75,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Video</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,20 +84,29 @@
                     {{ Form::open(['action'=>'VideoController@store','method'=>'post']) }}
                     {{ Form::hidden('playlist_id',$playlist->id) }}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Video Title*:</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::text('title',null,['class'=>'form-control']) }}
+                                {{ Form::text('title',null,['class'=>'form-control','required']) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Paste youtube embed code*:</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::textarea('code',null,['class'=>'form-control']) }}
+                                {{ Form::textarea('code',null,['class'=>'form-control','required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Sorting Order:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+                                {{ Form::text('order',null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
@@ -104,6 +114,25 @@
                         <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
                     {{ Form::close() }}
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ***/ Pop Up Model for button End-->
+
+    <!-- ***/ Pop Up Model for button -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Add Video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Edit form will appeared here -->
                 </div>
                 <div class="modal-footer"></div>
             </div>
@@ -123,6 +152,19 @@
         function confirmDelete(){
             var x = confirm('Are you sure you want to delete this playlist? All albums and images in this video will also be deleted!!!');
             return !!x;
+        }
+    </script>
+    <script>
+        function loadEditForm(id){
+            var token = "{{ csrf_token() }}";
+            $.ajax({
+                url:"{{ route('video.edit') }}",
+                data: {_token:token,id:id},
+                type: 'get'
+            }).done(function(e){
+                //$("#edit-form").remove();
+                $("#modal-body").html(e);
+            })
         }
     </script>
 @stop
