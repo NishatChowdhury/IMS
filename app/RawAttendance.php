@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class RawAttendance extends Model
 {
-    protected $dates = ['access_date'];
+    protected $dates = ['access_time'];
 
-    protected $fillable = ['registration_id','unit_name','user_name','access_date','access_id','department','unit_id','card'];
+    protected $fillable = ['registration_id','unit_name','user_name','access_date','access_time','access_id','department','unit_id','card','processed','sms_sent'];
 
     public function student()
     {

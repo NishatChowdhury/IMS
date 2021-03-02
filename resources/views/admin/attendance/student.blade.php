@@ -202,8 +202,8 @@
 {{--                                        <td>{{ $attn->class }}</td>--}}
                                         {{--<td></td>--}}
                                         {{--<td></td>--}}
-                                        <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter->format('h:i:s A') }}</td>
-                                        <td class="text-center">{{ $attn->exit == '-' ? '-' : $attn->exit->format('h:i:s A') }}</td>
+                                        <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $attn->exit == '-' ? '-' : $attn->exit->format('H:i:s') }}</td>
                                         <td>{{ $attn->status }}</td>
                                         <td></td>
                                     </tr>

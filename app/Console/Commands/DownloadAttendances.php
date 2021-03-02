@@ -44,13 +44,13 @@ class DownloadAttendances extends Command
 
         $data = [
             "operation" => env('STELLAR_OPERATION',''),
-            "user_name" => env('STELLAR_USERNAME',''),
+            "auth_user" => env('STELLAR_USERNAME',''),
             "auth_code" => env('STELLAR_AUTH_CODE',''),
             "start_date" => Carbon::today()->format('Y-m-d'),
             "end_date" => Carbon::today()->format('Y-m-d'),
             "start_time" => Carbon::createFromTime(00,00,00)->format('H:i:s'),
             "end_time" => Carbon::createFromTime(23,59,59)->format('H:i:s'),
-            "access_id" => env('STELLAR_ACCESS_ID',''),
+            //"access_id" => env('STELLAR_ACCESS_ID',''),
         ];
 
         $datapayload = json_encode($data);
@@ -62,7 +62,7 @@ class DownloadAttendances extends Command
         curl_setopt($api_request, CURLOPT_POSTFIELDS, $datapayload);
         curl_setopt($api_request, CURLOPT_HTTPHEADER, array(
                 'Content-Type:application/json',
-                'Content-Length: ' . strlen($datapayload))
+                'Content-Length: '.strlen($datapayload))
         );
         $result = curl_exec($api_request);
         //$replace_syntax = str_replace('{"log":',"",$result);
@@ -76,20 +76,24 @@ class DownloadAttendances extends Command
             $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
 
             if(!$isExists){
-                $attendance = new \App\RawAttendance();
+                $attendance = new RawAttendance();
                 $attendance->registration_id = $row->registration_id;
                 $attendance->unit_name = $row->unit_name;
                 $attendance->user_name = $row->user_name;
-                $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+                //$attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+                $attendance->access_date = $row->access_date;
+                $attendance->access_time = $row->access_time;
                 $attendance->access_id = $row->access_id;
                 $attendance->department = $row->department;
                 $attendance->unit_id = $row->unit_id;
                 $attendance->card = $row->card;
+                $attendance->processed = 0;
+                $attendance->sms_sent = 0;
 
                 $attendance->save();
             }
         }
 
-        dd('data saved successfully');
+        //dd('data saved successfully');
     }
 }

@@ -14,7 +14,6 @@ class ForeignForStudentsTableAsShift extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->unsignedBigInteger('shift_id');
             $table->foreign('shift_id')->references('id')->on('shifts')->onDelete('cascade');
         });
     }

@@ -22,7 +22,9 @@ class CreateRawAttendanceTable extends Migration
             $table->string('card')->nullable();
             $table->string('unit_name');
             $table->string('user_name');
-            $table->string('access_date');
+            $table->date('access_date')->nullable();
+            $table->time('access_time')->nullable();
+            $table->integer('processed');
             $table->timestamps();
         });
     }

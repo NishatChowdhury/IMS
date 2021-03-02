@@ -42,6 +42,7 @@ class CreateStudentTable extends Migration
             $table->string('father_mobile')->nullable();
             $table->string('mother_mobile')->nullable();
             $table->unsignedBigInteger('notification_type_id')->nullable();
+            $table->unsignedBigInteger('shift_id')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

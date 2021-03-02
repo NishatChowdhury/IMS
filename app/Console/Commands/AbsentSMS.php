@@ -2,27 +2,28 @@
 
 namespace App\Console\Commands;
 
+use App\Attendance;
 use App\RawAttendance;
 use App\Student;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
 
-class AttendanceSMS extends Command
+class AbsentSMS extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'CronJob:AttendanceSMS';
+    protected $signature = 'CronJob:AbsentSMS';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send attendance SMS after download attendances';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -41,30 +42,43 @@ class AttendanceSMS extends Command
      */
     public function handle()
     {
-        //1866177444 number of S202000001
-        //1918815613 number of S202000002
-        //1710420854 number of S202000003
-        //1556570714 number of S202000004
         $students = Student::query()->where('status',1)->get();
-
-        foreach($students as $student){
-            $isPresent = RawAttendance::query()
-                ->where('registration_id',$student->studentId)
-                ->where('access_date','like','%'.Carbon::today()->format('Y-m-d').'%')
-                ->where('sms_sent',0)
-                ->first();
-
-            if($isPresent){
-                $msg = 'Dear Parent, your ward entry time is '.$isPresent->access_time->format('H:i:s');
-                $this->send($student,$msg);
-            }else{
+        $attendances = Attendance::query()->where('date','like','%'.Carbon::today()->format('Y-m-d').'%')->where('sms_sent',0)->get();
+        foreach($attendances as $attendance){
+            if($attendance->status == 'A'){
+                //$msg = 'Dear Parent, your ward entry time is '.$isPresent->access_date->format('H:i:s');
                 $msg = 'Dear Parent, you ward is absent without any prior notice.';
+
+                $t = Carbon::createFromTime(14,27,00);
+                $now = Carbon::now();
+                if($t < $now){
+                    $this->send($attendance->student,$msg);
+                }
             }
-
-//            $this->send($student,$msg);
-
         }
 
+//        foreach($students as $student){
+//            $isPresent = Attendance::query()
+//                ->where('registration_id',$student->studentId)
+//                ->where('date','like','%'.Carbon::today()->format('Y-m-d').'%')
+//                ->where('sms_sent',0)
+//                ->first();
+//
+//            if($isPresent){
+//                if($isPresent->status == 'A'){
+//                    //$msg = 'Dear Parent, your wand entry time is '.$isPresent->access_date->format('H:i:s');
+//                    $msg = 'Dear Parent, you wand is absent without any prior notice.';
+//
+//                    $t = Carbon::createFromTime(01,35,00);
+//                    $now = Carbon::now();
+//                    if($t < $now){
+//                        $this->send($student,$msg);
+//                    }
+//                }
+//            }
+//
+//
+//        }
         return 0;
     }
 
@@ -82,15 +96,15 @@ class AttendanceSMS extends Command
         curl_setopt ($ch, CURLOPT_URL, $URL);
         curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($ch);
+        //curl_exec($ch);
 
         try{
             //$output = $content=curl_exec($ch);
             //print_r($output);
 
-            $allAttendances = RawAttendance::query()
+            $allAttendances = Attendance::query()
                 ->where('registration_id',$student->studentId)
-                ->where('access_date','like','%'.Carbon::today()->format('Y-m-d').'%')
+                ->where('date','like','%'.Carbon::today()->format('Y-m-d').'%')
                 ->where('sms_sent',0)
                 ->get();
 

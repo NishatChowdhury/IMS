@@ -251,8 +251,8 @@ class AttendanceController extends Controller
                     'class' => $student->academicClass->name,
                     'subject' => 'Subject',
                     'teacher' => 'Teacher',
-                    'enter' => $attn->first()->access_date,
-                    'exit' => $attn->last()->access_date,
+                    'enter' => $attn->first()->access_time,
+                    'exit' => $attn->last()->access_time,
                     'status' => $this->status($student->id,$today,$attn->first()->access_date,$attn->last()->access_date),
                     'is_notified' => 'Is Notified'
                 ];
