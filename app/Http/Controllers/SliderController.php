@@ -43,7 +43,7 @@ class SliderController extends Controller
             }
         }
 
-        return redirect('sliders');
+        return redirect('admin/sliders');
 
     }
 
@@ -53,6 +53,6 @@ class SliderController extends Controller
         File::delete(public_path().'/assets/img/sliders/'.$slider->image);
         $slider->delete();
         \Illuminate\Support\Facades\Session::flash('Slider removed successfully!');
-        return redirect('sliders');
+        return redirect('admin/sliders');
     }
 }

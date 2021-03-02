@@ -81,6 +81,7 @@
                                     <div class="form-group files color">
                                         <input type="file" name="image" class="form-control" multiple="">
                                     </div>
+                                    <small class="text-danger">For better view resize all images to 1920*800 pixel. For a quick help click on the link <a href="https://imageresizer.com/" target="_blank">https://imageresizer.com/</a></small>
                                 </div>
                             </div>
                             <div style="float: right;padding-bottom: 50px">
