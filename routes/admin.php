@@ -117,6 +117,9 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/load_student_id','StudentController@loadStudentId');
     Route::get('/load_online_student_info','FrontController@loadStudentInfo');
 
+    Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
+    Route::post('student/promote','StudentController@promote')->name('student.promote');
+
     Route::get('features','FeatureController@index');
     Route::get('feature/create','FeatureController@create');
     Route::post('feature/store','FeatureController@store');

@@ -289,8 +289,6 @@ Route::post('institution/sig','InstitutionController@sig');
 //Students Route by Rimon
     Route::get('student/designStudentCard','IdCardController@index');
     Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
-    Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
-    Route::post('student/promote','StudentController@promote')->name('student.promote');
 
     Route::get('student/download-blank-csv/{academicClassId}','StudentController@downloadBlank');
     Route::get('student/upload-student/{academicClassId}','StudentController@uploadStudent');

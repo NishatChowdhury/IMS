@@ -419,6 +419,23 @@ class StudentController extends Controller
             $data['mother_mobile'] = $student->mother_mobile;
             $data['notification_type_id'] = $student->notification_type_id;
             $data['status'] = $student->status;
+            $data['bcn'] = $student->bcn;
+            $data['father_occupation'] = $student->father_occupation;
+            $data['mother_occupation'] = $student->mother->occupation;
+            $data['other_guardian'] = $student->other_guardian;
+            $data['guardian_national_id'] = $student->guardian_national_id;
+            $data['yearly_income'] = $student->yearly_income;
+            $data['guardian_address'] = $student->guardian_address;
+            $data['bank_slip'] = $student->bank_slip;
+            $data['ssc_roll'] = $student->ssc_roll;
+            $data['location_id'] = $student->location_id;
+            $data['shift_id'] = $student->shift_id;
+            $data['subjects'] = $student->subjects;
+            $data['ssc_roll'] = $student->ssc_roll;
+            $data['ssc_registration'] = $student->ssc_registration;
+            $data['ssc_session'] = $student->ssc_session;
+            $data['ssc_year'] = $student->ssc_year;
+            $data['ssc_board'] = $student->ssc_board;
             Student::query()->create($data);
         }
 
