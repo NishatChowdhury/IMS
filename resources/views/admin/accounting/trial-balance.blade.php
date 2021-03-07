@@ -21,32 +21,35 @@
     </section>
 
     <div class="container">
-        {{ Form::open(['action'=>'AccountingController@trialBalance','method'=>'get']) }}
-        <div class="row">
-            <div class="form-group col-md-3">
-                <label for="" class="col-form-label">Start Date</label>
-                {{ Form::date('start_date',null,['class'=>'form-control']) }}
+        <div class="card mb-3">
+            {{ Form::open(['action'=>'AccountingController@trialBalance','method'=>'get']) }}
+            <div class="d-flex justify-content-center">
+                <div class="form-group col-md-3">
+                    <label for="" class="col-form-label">Start Date</label>
+                    {{ Form::date('start_date',null,['class'=>'form-control']) }}
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="" class="col-form-label">End Date</label>
+                    {{ Form::date('end_date',null,['class'=>'form-control']) }}
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="" class="col-form-label">&nbsp;</label><br>
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
             </div>
-            <div class="form-group col-md-3">
-                <label for="" class="col-form-label">End Date</label>
-                {{ Form::date('end_date',null,['class'=>'form-control']) }}
-            </div>
-            <div class="form-group col-md-3">
-                <label for="" class="col-form-label">&nbsp;</label>
-                <button type="submit" class="btn btn-info">Search</button>
-            </div>
+            {{ Form::close() }}
         </div>
-        {{ Form::close() }}
+
     </div>
 
     <!-- ***/Chart of Accounts page inner Content Start-->
-    <section class="content">
+    <section class="content pb-4">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <h3>Trial Balance Summery: </h3>
+                        <div class="card-header text-center">
+                            <h3>Trial Balance Summery </h3>
                         </div>
 
                         <div class="card-body">
