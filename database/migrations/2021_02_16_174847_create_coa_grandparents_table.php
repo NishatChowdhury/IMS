@@ -17,8 +17,8 @@ class CreateCoaGrandparentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('great_grandparents_id');
             $table->string('name')->unique();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

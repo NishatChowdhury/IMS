@@ -24,7 +24,6 @@ class CreateSiteInformationTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('logo');
-            $table->unsignedBigInteger('theme_id');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMapcodeToSiteInformationTable extends Migration
+class ForeignJournalItems extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddMapcodeToSiteInformationTable extends Migration
      */
     public function up()
     {
-        Schema::table('site_information', function (Blueprint $table) {
-            $table->text('map')->nullable();
-
+        Schema::table('journal_items', function (Blueprint $table) {
+            $table->foreign('journal_id')->references('id')->on('journals')->cascadeOnDelete();
         });
     }
 
@@ -26,9 +25,8 @@ class AddMapcodeToSiteInformationTable extends Migration
      */
     public function down()
     {
-        Schema::table('site_information', function (Blueprint $table) {
-            $table->dropColumn('map');
-
+        Schema::table('journal_items', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('journal_id');
         });
     }
 }

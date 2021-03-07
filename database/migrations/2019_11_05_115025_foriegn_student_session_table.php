@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ForeignForStudentsTableAsShift extends Migration
+class ForiegnStudentSessionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class ForeignForStudentsTableAsShift extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->unsignedBigInteger('shift_id')->nullable()->after('notification_type_id');
-            $table->foreign('shift_id')->references('id')->on('shifts')->onDelete('cascade');
+            //$table->foreign('session_id')->references('id')->on('sessions');
         });
     }
 
@@ -27,7 +26,7 @@ class ForeignForStudentsTableAsShift extends Migration
     public function down()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropForeign('shift_id');
+            $table->dropForeign(['session_id']);
         });
     }
 }

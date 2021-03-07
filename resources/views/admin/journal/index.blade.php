@@ -25,15 +25,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
+                        <div class="card-header d-flex">
                                 <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $journals->count() }}</h3>
-                            </div>
-                            <div class="row">
-                                <div>
 {{--                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>--}}
-                                    <a href="{{ action('JournalController@create') }}" class="btn btn-info">Create</a>
-                                </div>
+                            <div class="ml-auto media">
+                                <a href="{{ action('JournalController@create') }}" class="btn btn-success align-self-center"><i class="fas fa-plus-circle"></i> Create Journal</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -57,7 +53,7 @@
                                         <td>{{ $journal->description }}</td>
                                         <td>
                                             {{ Form::open(['action'=>['JournalController@destroy',$journal->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('JournalController@show',$journal->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-video"></i></a>
+                                            <a href="{{ action('JournalController@show',$journal->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                             {{ Form::close() }}
                                         </td>
@@ -115,7 +111,7 @@
 @section('script')
     <script>
         function confirmDelete(){
-            var x = confirm('Are you sure you want to delete this playlist? All albums and images in this playlist will also be deleted!!!');
+            var x = confirm('Are you sure you want to delete this journal?');
             return !!x;
         }
     </script>

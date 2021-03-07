@@ -6,11 +6,14 @@ use App\COA;
 use App\Journal;
 use App\ChartOfAccount;
 use App\JournalItem;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
@@ -77,7 +80,7 @@ class JournalController extends Controller
      */
     public function edit(Journal $journal)
     {
-        return view('admin.journals.edit', compact('journal'));
+        //return view('admin.journals.edit', compact('journal'));
     }
 
     /**
@@ -89,18 +92,25 @@ class JournalController extends Controller
      */
     public function update(Request $request, Journal $journal)
     {
-        return $request->all();
+        //return $request->all();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Journal  $journal
-     * @return Response
+     * @param $id
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy(Journal $journal)
+    public function destroy($id): RedirectResponse
     {
-        //
+        $journal = Journal::query()->findOrFail($id);
+        foreach($journal->items as $item){
+            $item->delete();
+        }
+        $journal->delete();
+        Session::flash('success','Journal has been deleted!');
+        return redirect()->back();
     }
 
     /**

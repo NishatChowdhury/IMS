@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoaGrandParentsTable extends Migration
+class CreateCoaParentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCoaGrandParentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('coa_grand_parents', function (Blueprint $table) {
+        Schema::create('coa_parents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('great_grandparents_it');
+            $table->unsignedBigInteger('coa_grand_parent_id');
             $table->string('name')->unique();
+            $table->string('side');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateCoaGrandParentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coa_grand_parents');
+        Schema::dropIfExists('coa_parents');
     }
 }
