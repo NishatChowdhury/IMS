@@ -23,26 +23,47 @@ class AccountingController extends Controller
     public function ledger(Request $request)
     {
         $this->validate($request,[
-            'start_date' => 'required',
-            'end_date' => 'required'
+            'start_date' => 'date',
+            'end_date' => 'date'
         ]);
 
         $coa = COA::all()->pluck('name','id');
-        $accounts = collect();
-        $account = 'Account Name';
+        $acc = collect();
+        //$account = 'Account Name';
 
         if($request->has('start_date') && $request->has('end_date') && $request->has('account')){
-            $accounts = JournalItem::query()
+            $start = $request->get('start_date');
+            $end = $request->get('end_date');
+
+//            $heads = COA::query()
+//                ->whereHas('items',function($query)use($start,$end){
+//                    $query->whereHas('journal',function($q)use($start,$end){
+//                        $q->whereBetween('date',[$start,$end]);
+//                    });
+//                });
+//
+//            if($request->has('account') && $request->get('account') !== null){
+//                $heads->where('id',$request->get('account'));
+//            }
+//
+//            $acc = $heads->get();
+
+            $heads = JournalItem::query()
                 ->whereHas('journal',function($query)use($request){
                     $query->whereBetween('date',[$request->get('start_date'),$request->get('end_date')]);
-                })
-                ->where('coa_id',$request->get('account'))
-                ->get();
+                });
+                //->where('coa_id',$request->get('account'));
 
-            $account = COA::query()->findOrFail($request->get('account'))->name;
+            if($request->has('account') && $request->get('account') !== null){
+                $heads->where('coa_id',$request->get('account'));
+            };
+
+            $acc = $heads->get()->groupBy('coa_id');
+//
+//            $account = COA::query()->findOrFail($request->get('account'))->name;
         }
 
-        return view('admin.accounting.ledger',compact('coa','accounts','account'));
+        return view('admin.accounting.ledger',compact('coa','acc'));
     }
 
     public function trialBalance(Request $request)

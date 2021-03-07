@@ -94,7 +94,10 @@
                                         @if($ex > $in)
                                             <div class="d-flex justify-content-between text-bold text-primary">
                                                 <span>To Gross Profit</span>
-                                                <span>{{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}</span>
+                                                <span>
+                                                    {{ number_format($ex[] = netProfit($start,$end),2) }}
+{{--                                                    {{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}--}}
+                                                </span>
                                             </div>
                                         @endif
                                     </td>
@@ -102,7 +105,10 @@
                                         @if($in > $ex)
                                             <div class="d-flex justify-content-between text-bold text-primary">
                                                 <span>By Gross Loss</span>
-                                                <span>{{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}</span>
+                                                <span>
+                                                    {{ number_format($in[] = netProfit($start,$end),2) }}
+{{--                                                    {{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}--}}
+                                                </span>
                                             </div>
                                         @endif
                                     </td>

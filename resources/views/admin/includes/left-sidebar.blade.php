@@ -401,8 +401,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/trial-balance*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/trial-balance*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/profit-n-loss','admin/trial-balance*','admin/balance-sheet']) }}">
+                    <a href="#" class="nav-link {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/profit-n-loss','admin/trial-balance*','admin/balance-sheet']) }}">
                         <i class="nav-icon fas fa-money-check-alt"></i>
                         <p>
                             Accounts
@@ -476,13 +476,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('AccountingController@profitNLoss') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
+                            <a href="{{ action('AccountingController@profitNLoss') }}" class="nav-link {{ isActive('admin/profit-n-loss') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Profit & Loss</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('AccountingController@balanceSheet') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
+                            <a href="{{ action('AccountingController@balanceSheet') }}" class="nav-link {{ isActive('admin/balance-sheet') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Balance Sheet</p>
                             </a>

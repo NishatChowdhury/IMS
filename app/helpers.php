@@ -1,5 +1,6 @@
 <?php
 
+use App\COA;
 use App\CommunicationSetting;
 use App\HolidayDuration;
 use App\Journal;
@@ -188,4 +189,40 @@ function balance($id,$start,$end,$side): int
 
     //return $debit - $credit;
     return $balance;
+}
+
+function netProfit($start,$end)
+{
+    //$start = '2021-04-01';
+    //$end = '2021-04-30';
+    $sum = 0;
+    $in_debit = 0;
+    $in_credit = 0;
+    $ex_debit = 0;
+    $ex_credit = 0;
+
+    $income = COA::query()->where('coa_grandparents_id',4)->get();
+    $expense = COA::query()->where('coa_grandparents_id',3)->get();
+
+    foreach($income as $in){
+        $in_debit += balance($in->id,$start,$end,'dr');
+        $in_credit += balance($in->id,$start,$end,'cr');
+    }
+
+    foreach($expense as $ex){
+        $ex_debit += balance($ex->id,$start,$end,'dr');
+        $ex_credit += balance($ex->id,$start,$end,'cr');
+    }
+
+    $profit = $in_credit - $in_debit;
+    $loss = $ex_debit - $ex_credit;
+
+    if($profit > $loss){
+        $balance = $profit - $loss;
+    }else{
+        $balance = $loss - $profit;
+    }
+
+    return $balance;
+
 }

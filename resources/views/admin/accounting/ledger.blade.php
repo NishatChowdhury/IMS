@@ -25,15 +25,15 @@
         <div class="row">
             <div class="form-group col-md-3">
                 <label for="" class="col-form-label">Start Date</label>
-                {{ Form::date('start_date',null,['class'=>'form-control']) }}
+                {{ Form::date('start_date',null,['class'=>'form-control','required']) }}
             </div>
             <div class="form-group col-md-3">
                 <label for="" class="col-form-label">End Date</label>
-                {{ Form::date('end_date',null,['class'=>'form-control']) }}
+                {{ Form::date('end_date',null,['class'=>'form-control','required']) }}
             </div>
             <div class="form-group col-md-3">
                 <label>Account</label>
-                {{ Form::select('account',$coa,null,['class'=>'form-control select2','placeholder'=>'Select an Account']) }}
+                {{ Form::select('account',$coa,null,['class'=>'form-control select2','placeholder'=>'ALL Ledger']) }}
             </div>
             <div class="form-group col-md-3">
                 <label for="" class="col-form-label">&nbsp;</label>
@@ -48,29 +48,31 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <h3>{{ $account ?? 'Account Details' }}</h3>
-                        </div>
-
+                    @foreach($acc as $accounts)
+                        <h3 class="text-center mt-5"><u><strong>{{ $accounts->first()->coa->name }}</strong></u></h3>
+                        <div class="card">
+{{--                        <div class="card-header" style="border-bottom: none !important;">--}}
+{{--                            <h3>{{ $account ?? 'Account Details' }}</h3>--}}
+{{--                        </div>--}}
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>Journal</th>
                                     <th>Date</th>
-                                    <th>Created At</th>
+{{--                                    <th>Created At</th>--}}
                                     <th>Description</th>
                                     <th>Debit</th>
                                     <th>Credit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @php $debit = []; $credit = []; @endphp
                                 @foreach($accounts as $account)
                                     <tr>
                                         <td>{{ $account->journal->journal_no }}</td>
                                         <td>{{ $account->journal->date }}</td>
-                                        <td>{{ $account->journal->created_at->format('Y-m-d') }}</td>
+{{--                                        <td>{{ $account->journal->created_at->format('Y-m-d') }}</td>--}}
                                         <td>{{ $account->journal->description }}</td>
                                         <td class="text-right">{{ number_format($debit[] = $account->debit,2) }}</td>
                                         <td class="text-right">{{ number_format($credit[] = $account->credit,2) }}</td>
@@ -100,6 +102,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

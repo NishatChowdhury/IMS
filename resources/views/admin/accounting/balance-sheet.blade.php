@@ -78,6 +78,10 @@
                                         @endforeach
                                     </td>
                                     <td>
+                                        <div class="d-flex justify-content-between">
+                                            <span>&emsp;{{ 'Net Profit' }}</span>
+                                            <span>{{ number_format($np = netProfit($start,$end),2) }}</span>
+                                        </div>
                                         @foreach($liabilities->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
@@ -103,7 +107,7 @@
                                         {{ number_format(array_sum($ass),2) }}
                                     </th>
                                     <th class="text-right">
-                                        {{ number_format(array_sum($lib) - array_sum($equ),2) }}
+                                        {{ number_format(array_sum($lib) + array_sum($equ) + $np,2) }}
                                     </th>
                                 </tr>
                                 </tbody>
