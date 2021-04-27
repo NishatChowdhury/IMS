@@ -2,11 +2,11 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="">Parent Account*:</label>
-            {{ Form::select('coa_parents_id',$repository->parents(),null,['class'=>'form-control select2','required']) }}
+            {{ Form::select('coa_parents_id',$repository->parents(),null,['class'=>'form-control select2','required','placeholder'=>'Select an account head']) }}
         </div>
         <div class="form-group">
             <label for="">Code</label>
-            {{ Form::text('code',null,['class'=>'form-control','required']) }}
+            {{ Form::text('code',$autoCode??null,['class'=>'form-control','required']) }}
         </div>
         <div class="form-group">
             <label for="">Account Name</label>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label>
-                <input type="checkbox" name="is_enabled" value="1" class="flat-red" checked>
+                <input type="checkbox" name="is_enabled" value="1" class="flat-red" {{ $coa->is_enabled == 1 ? 'checked' : '' }}>
                 Is Active
             </label>
         </div>

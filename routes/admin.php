@@ -19,6 +19,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('coa/edit/{id}','ChartOfAccountController@edit');
     Route::patch('coa/{id}/update','ChartOfAccountController@update');
     Route::delete('coa/destroy/{id}','ChartOfAccountController@destroy');
+    Route::post('coa/status','ChartOfAccountController@isEnabled');
     //Accounts End
 
     //Admission Routes

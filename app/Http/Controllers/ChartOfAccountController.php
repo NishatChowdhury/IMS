@@ -36,8 +36,9 @@ class ChartOfAccountController extends Controller
 
     public function create()
     {
+        $autoCode = COA::query()->max('code') + 1;
         $repository = $this->repository;
-        return view('admin.coa.create',compact('repository'));
+        return view('admin.coa.create',compact('repository','autoCode'));
     }
 
     public function store(Request $request)
@@ -102,5 +103,17 @@ class ChartOfAccountController extends Controller
         Session::flash('success','Account head has been deleted!');
 
         return redirect('admin/coa');
+    }
+
+    public function isEnabled(Request $request)
+    {
+        $id = $request->get('id');
+        $coa = ChartOfAccount::query()->findOrFail($id);
+
+        if($coa->is_enabled == 0){
+            $coa->update(['is_enabled'=>1]);
+        }else{
+            $coa->update(['is_enabled'=>0]);
+        }
     }
 }

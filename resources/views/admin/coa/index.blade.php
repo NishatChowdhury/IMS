@@ -43,8 +43,8 @@
                                 <thead>
                                 <tr>
                                     <th>Code</th>
-                                    <th>Name</th>
                                     <th>Parent</th>
+                                    <th>Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -54,9 +54,16 @@
                                 @foreach($chartOfAccounts as $coa)
                                 <tr>
                                     <td>{{ $coa->code }}</td>
-                                    <td>{{ $coa->name }}</td>
                                     <td class="text-right"><span class="text-secondary font-italic">{{ $coa->grandparents->name ?? '' }}</span> -> <b>{{ $coa->parents->name ?? '' }}</b></td>
-                                    <td>{{ $coa->is_enabled == 1 ? 'Active' : 'Inactive' }}</td>
+                                    <td>{{ $coa->name }}</td>
+                                    <td>
+{{--                                        {{ $coa->is_enabled == 1 ? 'Active' : 'Inactive' }} <br>--}}
+                                        <!-- Rounded switch -->
+                                        <label class="switch">
+                                            <input type="checkbox" {{ $coa->is_enabled ? 'checked' : '' }} onchange="statusChange({{$coa->id}})"/>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
                                     <td>
                                         {{ Form::open(['action'=>['ChartOfAccountController@destroy',$coa->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                         <a href="{{ action('ChartOfAccountController@edit',$coa->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
@@ -123,6 +130,18 @@
                     format: 'yyyy-mm-dd'
                 })
         });
+    </script>
+    <script>
+        function statusChange(id){
+            var csrf = "{{ csrf_token() }}";
+            $.ajax({
+                url  : '{{ action('ChartOfAccountController@isEnabled') }}',
+                data : {_token:csrf,id:id},
+                type : 'post'
+            }).done(function(){
+                location.replace("{{ action('ChartOfAccountController@index') }}");
+            })
+        }
     </script>
     <script>
         function confirmDelete(){
