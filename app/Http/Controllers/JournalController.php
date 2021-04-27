@@ -113,6 +113,14 @@ class JournalController extends Controller
         return redirect()->back();
     }
 
+    public function classic(Request $request)
+    {
+        $start = $request->get('start');
+        $end = $request->get('end');
+        $journals = Journal::query()->whereBetween('date',[$start,$end])->orderBy('date')->paginate(100);
+        return view('admin.journal.classic',compact('journals','start','end'));
+    }
+
     /**
      * Figure out new and unique journal number
      * @return string

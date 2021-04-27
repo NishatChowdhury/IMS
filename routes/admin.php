@@ -67,6 +67,7 @@ Route::group(['prefix'=>'admin'],function(){
 
         // Imam Hasan Journal Routes
     Route::resource('journals', "JournalController")->middleware('auth');
+    Route::get('journal/classic','JournalController@classic');
     Route::get('ledger','AccountingController@ledger');
     Route::get('trial-balance','AccountingController@trialBalance');
     Route::get('profit-n-loss','AccountingController@profitNLoss');
