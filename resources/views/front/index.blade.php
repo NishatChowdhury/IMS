@@ -1,8 +1,15 @@
+{{--@extends('layouts.test-layout')--}}
 @extends('layouts.front')
 
 @section('content')
 
-    @include('front.carousel')
+    @unless(URL::current() == 'https://bnsck.edu.bd')
+        @include('front.carousel')
+    @endunless
+
+    @if(URL::current() == 'https://bnsck.edu.bd')
+        @include('front.bootstrap-carousel')
+    @endif
 
     @include('front.features')
 
