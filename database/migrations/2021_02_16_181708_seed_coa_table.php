@@ -221,7 +221,7 @@ class SeedCoaTable extends Migration
                         'coa_grandparents_id' => $account['coa_grandparents_id'],
                         'coa_parents_id' => $account['coa_parents_id'],
                         'is_enabled' => 1,
-                        'created_by' => auth()->id(),
+                        'created_by' => 1,
                     ]
                 );
 

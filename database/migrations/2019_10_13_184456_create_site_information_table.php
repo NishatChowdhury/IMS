@@ -17,13 +17,23 @@ class CreateSiteInformationTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('name');
-            $table->string('bn');
+            $table->integer('name_size');
+            $table->string('name_font');
+            $table->string('name_color');
+            $table->string('bn')->nullable();
+            $table->integer('bn_size');
+            $table->string('bn_font');
+            $table->string('bn_color');
             $table->string('address');
             $table->string('institute_code');
             $table->string('eiin');
             $table->string('phone');
             $table->string('email');
             $table->string('logo');
+            $table->unsignedBigInteger('theme_id');
+            $table->boolean('admission_sms');
+            $table->boolean('admission_confirm_sms');
+
             $table->timestamps();
         });
     }

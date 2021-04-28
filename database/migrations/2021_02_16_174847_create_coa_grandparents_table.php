@@ -15,7 +15,7 @@ class CreateCoaGrandparentsTable extends Migration
     {
         Schema::create('coa_grandparents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('great_grandparents_id');
+            $table->unsignedBigInteger('coa_great_grandparents_id');
             $table->string('name')->unique();
             $table->softDeletes();
             $table->timestamps();

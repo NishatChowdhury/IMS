@@ -16,13 +16,20 @@ class SeedSiteInformationTable extends Migration
         Schema::table('site_information', function (Blueprint $table) {
             $data['title'] = 'WP';
             $data['name'] = 'Web Point Limited';
+            $data['name_size'] = 25;
+            $data['name_font'] = '';
+            $data['name_color'] = '';
             $data['bn'] = '';
+            $data['bn_size'] = '';
+            $data['bn_font'] = '';
+            $data['bn_color'] = '';
             $data['address'] = 'College Road, Chawk Bazar, Chittagong';
             $data['institute_code'] = '123456';
             $data['eiin'] = '4321';
             $data['phone'] = '+8801875004610';
             $data['email'] = 'info@webpointbd.com';
             $data['logo'] = 'logo.jpg';
+            $data['theme_id'] = 1;
             \App\SiteInformation::query()->create($data);
         });
     }

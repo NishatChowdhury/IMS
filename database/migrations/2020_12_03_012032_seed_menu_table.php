@@ -19,15 +19,6 @@ class SeedMenuTable extends Migration
             $data = [
                 [
                     'menu_id' => null,
-                    'name' => 'Home',
-                    'uri' => '/',
-                    'type' => 1,
-                    'order' => 1,
-                    'editable' => 0,
-                    'deletable' => 0,
-                ],
-                [
-                    'menu_id' => null,
                     'name' => 'Institute',
                     'uri' => '/',
                     'type' => 1,
