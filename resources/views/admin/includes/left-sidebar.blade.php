@@ -30,13 +30,13 @@
                 </a>
             </li>
             {{--<li class="nav-item {{ isActive(['widget*']) }}">--}}
-                {{--<a href="#" class="nav-link {{ isActive('widgets') }}">--}}
-                    {{--<i class="nav-icon fas fa-th"></i>--}}
-                    {{--<p>--}}
-                        {{--Widgets--}}
-                        {{--<span class="right badge badge-danger">New</span>--}}
-                    {{--</p>--}}
-                {{--</a>--}}
+            {{--<a href="#" class="nav-link {{ isActive('widgets') }}">--}}
+            {{--<i class="nav-icon fas fa-th"></i>--}}
+            {{--<p>--}}
+            {{--Widgets--}}
+            {{--<span class="right badge badge-danger">New</span>--}}
+            {{--</p>--}}
+            {{--</a>--}}
             {{--</li>--}}
             @cannot('cms')
                 <li class="nav-item has-treeview {{ isActive(['admission*']) }}">
@@ -137,12 +137,12 @@
                                 </li>
                             </ul>
                         </li>
-{{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                            <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Setting</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                        {{--                            <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('attendance/setting') }}">--}}
+                        {{--                                <i class="far fa-circle nav-icon"></i>--}}
+                        {{--                                <p>Setting</p>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                             <a href="{{ route('attendance.student')}}" class="nav-link {{ isActive('attendance/student') }}">
                                 <i class="far fa-circle nav-icon"></i>
@@ -165,52 +165,52 @@
                 </li>
             @endcannot
 
-
-{{--            library management starts here--}}
-            <li class="nav-item has-treeview {{ isActive('admin/library*') }}">
-                <a href="#" class="nav-link {{ isActive('admin/library*') }}">
-{{--                    <i class="nav-icon fas fa-user-graduate"></i>--}}
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        Library Management
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item">
-                        <a href="{{ action('BookCategoryController@index') }}" class="nav-link {{ isActive('admin/library/bookCategory') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Add Book Category </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ action('BookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Add Books </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ action('BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>All Books</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ action('BookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Return Books</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ action('BookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Report</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-{{--            library management ends here--}}
-
+            @cannot('cms')
+                {{--            library management starts here--}}
+                <li class="nav-item has-treeview {{ isActive('admin/library*') }}">
+                    <a href="#" class="nav-link {{ isActive('admin/library*') }}">
+                        {{--                    <i class="nav-icon fas fa-user-graduate"></i>--}}
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Library Management
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{ action('BookCategoryController@index') }}" class="nav-link {{ isActive('admin/library/bookCategory') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Book Category </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('BookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Books </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Books</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('BookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Return Books</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('BookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{--            library management ends here--}}
+            @endcannot
 
 
             <li class="nav-item has-treeview {{ isActive('admin/student*') }}">
@@ -322,23 +322,23 @@
                         </a>
                     </li>
 
-{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                        <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">--}}
-{{--                            <i class="far fa-circle nav-icon"></i>--}}
-{{--                            <p>Profile</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                    {{--                        <a href="{{route('institution.profile')}}" class="nav-link {{ isActive('institution/profile') }}">--}}
+                    {{--                            <i class="far fa-circle nav-icon"></i>--}}
+                    {{--                            <p>Profile</p>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                 </ul>
             </li>
             {{--<li class="nav-header">EXAMPLES</li>--}}
             {{--<li class="nav-item">--}}
-                {{--<a href="#" class="nav-link {{ isActive('calendar') }}">--}}
-                    {{--<i class="nav-icon fas fa-calendar-alt"></i>--}}
-                    {{--<p>--}}
-                        {{--Calendar--}}
-                        {{--<span class="badge badge-info right">2</span>--}}
-                    {{--</p>--}}
-                {{--</a>--}}
+            {{--<a href="#" class="nav-link {{ isActive('calendar') }}">--}}
+            {{--<i class="nav-icon fas fa-calendar-alt"></i>--}}
+            {{--<p>--}}
+            {{--Calendar--}}
+            {{--<span class="badge badge-info right">2</span>--}}
+            {{--</p>--}}
+            {{--</a>--}}
             {{--</li>--}}
             @cannot('cms')
                 <li class="nav-item has-treeview {{ isActive(['exam*']) }}">
@@ -370,8 +370,8 @@
                         </li>
                         {{--<li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
                         {{--<a href="{{route('exam.examitems')}}" class="nav-link {{ isActive('exam/examitems') }}">--}}
-                            {{--<i class="far fa-circle nav-icon"></i>--}}
-                            {{--<p>Exam Schedules</p>--}}
+                        {{--<i class="far fa-circle nav-icon"></i>--}}
+                        {{--<p>Exam Schedules</p>--}}
                         {{--</a>--}}
                         {{--</li>--}}
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -417,12 +417,12 @@
                             </a>
                         </li>
 
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Fee Setup</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">--}}
+                        {{--                                <i class="far fa-circle nav-icon"></i>--}}
+                        {{--                                <p>Fee Setup</p>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
 
                         <li class="nav-item">
                             <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
@@ -503,12 +503,12 @@
                                 <p>Quick SMS</p>
                             </a>
                         </li>
-{{--                        <li>--}}
-{{--                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Student SMS</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">--}}
+                        {{--                                <i class="far fa-circle nav-icon"></i>--}}
+                        {{--                                <p>Student SMS</p>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                             <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('communication/staff') }}">
                                 <i class="far fa-circle nav-icon"></i>
@@ -533,70 +533,6 @@
                         {{--<p>Starter Page</p>--}}
                         {{--</a>--}}
                         {{--</li>--}}
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview {{ isActive(['menus*','pages*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['cms*']) }}">
-                        <i class="fas fa-tasks"></i>
-                        <p>
-                            CMS
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('menus') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Site Menu</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Page Mgmt</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview {{ isActive('attendance*') }}">
-                            <a href="#" class="nav-link {{ isActive('attendance*') }}">
-                                <i class="nav-icon far fa-circle"></i>
-                                <p>
-                                    Frontend Settings
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                                <li class="nav-item">
-                                    <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Site Basic Info </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ action('FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Feature</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Slider</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Important Links</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Social Links</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview {{ isActive(['extra*']) }}">
@@ -647,6 +583,70 @@
                     </ul>
                 </li>
             @endcannot
+            <li class="nav-item has-treeview {{ isActive(['menus*','pages*']) }}">
+                <a href="#" class="nav-link {{ isActive(['cms*']) }}">
+                    <i class="fas fa-tasks"></i>
+                    <p>
+                        CMS
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('menus') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Site Menu</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Page Mgmt</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview {{ isActive('attendance*') }}">
+                        <a href="#" class="nav-link {{ isActive('attendance*') }}">
+                            <i class="nav-icon far fa-circle"></i>
+                            <p>
+                                Frontend Settings
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                            <li class="nav-item">
+                                <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Site Basic Info </p>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Feature</p>
+                                </a>
+                            </li>
+                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Slider</p>
+                                </a>
+                            </li>
+                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Important Links</p>
+                                </a>
+                            </li>
+                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Social Links</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item has-treeview {{ isActive(['settings*','page*','site*','slider*','social*','calender*','theme','attendance']) }}">
                 <a href="#" class="nav-link {{ isActive(['settings*','page*','site*','slider*','social*','theme']) }}">
                     <i class="fas fa-shapes"></i>
@@ -826,12 +826,12 @@
                             <p>Playlists</p>
                         </a>
                     </li>
-{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
-{{--                            <i class="far fa-circle nav-icon"></i>--}}
-{{--                            <p>Videos</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                    {{--                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
+                    {{--                            <i class="far fa-circle nav-icon"></i>--}}
+                    {{--                            <p>Videos</p>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                 </ul>
             </li>
 
@@ -851,31 +851,31 @@
                     </a>
                 </li>
             @endcannot
-{{--            <li class="nav-item has-treeview {{ isActive(['journals*']) }}">--}}
-{{--                <a href="#" class="nav-link {{ isActive(['journals*']) }}">--}}
-{{--                    <i class="fas fa-camera-retro"></i>--}}
-{{--                    <p>--}}
-{{--                        Accounting--}}
-{{--                        <i class="fas fa-angle-left right"></i>--}}
-{{--                    </p>--}}
-{{--                </a>--}}
-{{--                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">--}}
-{{--                    <li class="nav-item" >--}}
-{{--                        <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">--}}
-{{--                            <i class="far fa-circle nav-icon"></i>--}}
-{{--                            <p>Journals</p>--}}
-{{--                        </a>--}}
-{{--                        <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">--}}
-{{--                            <i class="far fa-circle nav-icon"></i>--}}
-{{--                            <p>Add Journal</p>--}}
-{{--                        </a>--}}
-{{--                        <a href="{{ route('balance_sheet') }}" class="nav-link {{ isActive('balance-sheet') }}">--}}
-{{--                            <i class="far fa-circle nav-icon"></i>--}}
-{{--                            <p>Balance Sheet</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
+            {{--            <li class="nav-item has-treeview {{ isActive(['journals*']) }}">--}}
+            {{--                <a href="#" class="nav-link {{ isActive(['journals*']) }}">--}}
+            {{--                    <i class="fas fa-camera-retro"></i>--}}
+            {{--                    <p>--}}
+            {{--                        Accounting--}}
+            {{--                        <i class="fas fa-angle-left right"></i>--}}
+            {{--                    </p>--}}
+            {{--                </a>--}}
+            {{--                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">--}}
+            {{--                    <li class="nav-item" >--}}
+            {{--                        <a href="{{ route('journals.index') }}" class="nav-link {{ isActive('journals') }}">--}}
+            {{--                            <i class="far fa-circle nav-icon"></i>--}}
+            {{--                            <p>Journals</p>--}}
+            {{--                        </a>--}}
+            {{--                        <a href="{{ route('journals.create') }}" class="nav-link {{ isActive('journals/create') }}">--}}
+            {{--                            <i class="far fa-circle nav-icon"></i>--}}
+            {{--                            <p>Add Journal</p>--}}
+            {{--                        </a>--}}
+            {{--                        <a href="{{ route('balance_sheet') }}" class="nav-link {{ isActive('balance-sheet') }}">--}}
+            {{--                            <i class="far fa-circle nav-icon"></i>--}}
+            {{--                            <p>Balance Sheet</p>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                </ul>--}}
+            {{--            </li>--}}
 
             <li class="nav-item has-treeview {{ isActive(['user*']) }}">
                 <a href="#" class="nav-link {{ isActive(['user*']) }}">
@@ -903,30 +903,30 @@
                 </a>
             </li>
 
-{{--            <li class="nav-item">--}}
-{{--                <a href="{{ route('message.index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
-{{--                    <i class="nav-icon far fa-envelope"></i>--}}
-{{--                    <p>Messages</p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
+            {{--            <li class="nav-item">--}}
+            {{--                <a href="{{ route('message.index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
+            {{--                    <i class="nav-icon far fa-envelope"></i>--}}
+            {{--                    <p>Messages</p>--}}
+            {{--                </a>--}}
+            {{--            </li>--}}
             {{--<li class="nav-header">LABELS</li>--}}
             {{--<li class="nav-item">--}}
-                {{--<a href="#" class="nav-link">--}}
-                    {{--<i class="nav-icon far fa-circle text-danger"></i>--}}
-                    {{--<p class="text">Important</p>--}}
-                {{--</a>--}}
+            {{--<a href="#" class="nav-link">--}}
+            {{--<i class="nav-icon far fa-circle text-danger"></i>--}}
+            {{--<p class="text">Important</p>--}}
+            {{--</a>--}}
             {{--</li>--}}
             {{--<li class="nav-item">--}}
-                {{--<a href="#" class="nav-link">--}}
-                    {{--<i class="nav-icon far fa-circle text-warning"></i>--}}
-                    {{--<p>Warning</p>--}}
-                {{--</a>--}}
+            {{--<a href="#" class="nav-link">--}}
+            {{--<i class="nav-icon far fa-circle text-warning"></i>--}}
+            {{--<p>Warning</p>--}}
+            {{--</a>--}}
             {{--</li>--}}
             {{--<li class="nav-item">--}}
-                {{--<a href="#" class="nav-link">--}}
-                    {{--<i class="nav-icon far fa-circle text-info"></i>--}}
-                    {{--<p>Informational</p>--}}
-                {{--</a>--}}
+            {{--<a href="#" class="nav-link">--}}
+            {{--<i class="nav-icon far fa-circle text-info"></i>--}}
+            {{--<p>Informational</p>--}}
+            {{--</a>--}}
             {{--</li>--}}
         </ul>
     </nav>
