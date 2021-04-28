@@ -19,6 +19,29 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
+    <div class="content mb-1">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ Form::open(['action'=>'JournalController@index','method'=>'get','class'=>'form-inline']) }}
+                            <label class="sr-only">Start Date: </label>
+                            {{ Form::date('start',null,['class'=>'form-control mr-sm-2','placeholder'=>'Start Date']) }}
+                            <label class="sr-only">End Date: </label>
+                            {{ Form::date('end',null,['class'=>'form-control mr-sm-2','placeholder'=>'End Date']) }}
+                            <label class="sr-only">Account Head: </label>
+                            {{ Form::select('head',$coa,null,['class'=>'form-control mr-sm-2 select2','placeholder'=>'Select Account Head']) }}
+                            <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
+                            {{ Form::close() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ***/Image page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
@@ -26,8 +49,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $journals->count() }}</h3>
-{{--                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>--}}
+                            <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $journals->count() }}</h3>
+                            {{--                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>--}}
                             <div class="ml-auto media">
                                 <a href="{{ action('JournalController@create') }}" class="btn btn-success align-self-center"><i class="fas fa-plus-circle"></i> Create Journal</a>
                             </div>
@@ -68,47 +91,24 @@
         </div>
     </section>
 
-
-    <!-- ***/ Pop Up Model for button -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {{ Form::open(['action'=>'PlaylistController@store','method'=>'post']) }}
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::text('name',null,['class'=>'form-control']) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
-                    </div>
-                    {{ Form::close() }}
-                </div>
-                <div class="modal-footer"></div>
-            </div>
+    <!-- Pagination Start -->
+    <div class="mb-3">
+        <div class="d-flex justify-content-center">
+            {{ $journals->links() }}
         </div>
     </div>
-    <!-- ***/ Pop Up Model for button End-->
+    <!-- Pagination End -->
+
 @stop
-<!--/Image page inner Content End***-->
 
 <!-- *** External CSS File-->
-@section('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
-@stop
 
 @section('script')
+    <script>
+        $(function () {
+            $('.select2').select2();
+        });
+    </script>
     <script>
         function confirmDelete(){
             var x = confirm('Are you sure you want to delete this journal?');

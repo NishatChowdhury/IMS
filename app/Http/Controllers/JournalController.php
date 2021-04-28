@@ -21,10 +21,29 @@ class JournalController extends Controller
 {
     use SoftDeletes;
 
-    public function index()
+    public function index(Request $request)
     {
-        $journals = Journal::query()->orderByDesc('date')->paginate(25);
-        return view('admin.journal.index',compact('journals'));
+        $coa = COA::all()->pluck('name','id');
+
+        $j = Journal::query();
+
+        if($request->has('start') && $request->has('end')){
+            $start = $request->get('start');
+            $end = $request->get('end');
+            $j->whereBetween('date',[$start,$end]);
+        }
+
+        if($request->has('head') && $request->get('head') > 0){
+            $head = $request->get('head');
+            $j->whereHas('items',function($q)use($head){
+                $q->where('coa_id',$head);
+            });
+        }
+
+        $journals = $j->orderByDesc('date')->paginate(25);
+
+        //dd($journals);
+        return view('admin.journal.index',compact('journals','coa'));
     }
 
     public function create()

@@ -55,57 +55,62 @@
                     @foreach($acc as $accounts)
                         <h3 class="text-center mt-5"><u><strong>{{ $accounts->first()->coa->name }}</strong></u></h3>
                         <div class="card">
-{{--                        <div class="card-header" style="border-bottom: none !important;">--}}
-{{--                            <h3>{{ $account ?? 'Account Details' }}</h3>--}}
-{{--                        </div>--}}
-                        <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Journal</th>
-                                    <th>Date</th>
-{{--                                    <th>Created At</th>--}}
-                                    <th>Description</th>
-                                    <th>Debit</th>
-                                    <th>Credit</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @php $debit = []; $credit = []; @endphp
-                                @foreach($accounts as $account)
+                            {{--                        <div class="card-header" style="border-bottom: none !important;">--}}
+                            {{--                            <h3>{{ $account ?? 'Account Details' }}</h3>--}}
+                            {{--                        </div>--}}
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
                                     <tr>
-                                        <td>{{ $account->journal->journal_no }}</td>
-                                        <td>{{ $account->journal->date }}</td>
-{{--                                        <td>{{ $account->journal->created_at->format('Y-m-d') }}</td>--}}
-                                        <td>{{ $account->journal->description }}</td>
-                                        <td class="text-right">{{ number_format($debit[] = $account->debit,2) }}</td>
-                                        <td class="text-right">{{ number_format($credit[] = $account->credit,2) }}</td>
+                                        <th>Journal</th>
+                                        <th>Date</th>
+                                        {{--                                    <th>Created At</th>--}}
+                                        <th>Description</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
                                     </tr>
-                                @endforeach
-                                <tr>
-                                    <th colspan="4" class="text-right">Balance:</th>
-                                    <th colspan="2" class="text-center">
-                                        @if($accounts->count() > 0)
-                                            @if(array_sum($debit) > array_sum($credit))
-                                                Dr. {{ number_format(array_sum($debit) - array_sum($credit),2) }}
-                                            @else
-                                                Cr. {{ number_format(array_sum($credit) - array_sum($debit),2) }}
+                                    </thead>
+                                    <tbody>
+                                    @php $debit = []; $credit = []; @endphp
+                                    @foreach($accounts as $account)
+                                        <tr>
+                                            <td><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('JournalController@show',$account->journal->id) }}">{{ $account->journal->journal_no }}</a></td>
+                                            <td>{{ $account->journal->date }}</td>
+                                            {{--                                        <td>{{ $account->journal->created_at->format('Y-m-d') }}</td>--}}
+                                            <td>{{ $account->journal->description }}</td>
+                                            <td class="text-right">{{ number_format($debit[] = $account->debit,2) }}</td>
+                                            <td class="text-right">{{ number_format($credit[] = $account->credit,2) }}</td>
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <th colspan="3" class="text-right">Balance:</th>
+                                        <th class="text-center">
+                                            @if($accounts->count() > 0)
+                                                @if(array_sum($debit) > array_sum($credit))
+                                                    Dr. {{ number_format(array_sum($debit) - array_sum($credit),2) }}
+                                                @endif
                                             @endif
-                                        @endif
-                                    </th>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    {{--                                    {{ $chartOfAccounts->links() }}--}}
+                                        </th>
+                                        <th>
+                                            @if($accounts->count() > 0)
+                                                @if(array_sum($debit) < array_sum($credit))
+                                                    Cr. {{ number_format(array_sum($credit) - array_sum($debit),2) }}
+                                                @endif
+                                            @endif
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row" style="margin-top: 10px">
+                                    <div class="col-sm-12 col-md-9">
+                                        {{--                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--}}
+                                    </div>
+                                    <div class="col-sm-12 col-md-3">
+                                        {{--                                    {{ $chartOfAccounts->links() }}--}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>

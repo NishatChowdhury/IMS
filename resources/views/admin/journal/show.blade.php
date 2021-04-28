@@ -39,7 +39,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Account</th>
-                                    <th>Description</th>
+{{--                                    <th>Description</th>--}}
                                     <th>Debit</th>
                                     <th>Credit</th>
                                 </tr>
@@ -50,13 +50,13 @@
                                     <tr>
                                         <th>{{ $x++ }}</th>
                                         <td>{{ $item->coa->name ?? 'Undefined' }}</td>
-                                        <td>{{ $item->description }}</td>
+{{--                                        <td>{{ $item->description }}</td>--}}
                                         <td class="text-right">{{ number_format($debit[] = $item->debit,2) }}</td>
                                         <td class="text-right">{{ number_format($credit[] = $item->credit,2) }}</td>
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <th class="text-right" colspan="3">Total</th>
+                                    <th class="text-right" colspan="2">Total</th>
                                     <th class="text-right">{{ number_format(array_sum($debit),2) }}</th>
                                     <th class="text-right">{{ number_format(array_sum($credit),2) }}</th>
                                 </tr>

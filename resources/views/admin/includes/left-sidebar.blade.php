@@ -401,8 +401,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/profit-n-loss','admin/trial-balance*','admin/balance-sheet']) }}">
-                    <a href="#" class="nav-link {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/profit-n-loss','admin/trial-balance*','admin/balance-sheet']) }}">
+                <li class="nav-item has-treeview {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/profit-n-loss','admin/trial-balance*','admin/balance-sheet','admin/coa*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['fee-category*','admin/coa/*','admin/journal*','admin/ledger*','admin/profit-n-loss','admin/trial-balance*','admin/balance-sheet','admin/coa*']) }}">
                         <i class="nav-icon fas fa-money-check-alt"></i>
                         <p>
                             Accounts
@@ -444,13 +444,6 @@
                                 <p>Student Fee Collection</p>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="{{ action('TransactionController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Transaction</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
@@ -461,6 +454,12 @@
                             <a href="{{ action('JournalController@index') }}" class="nav-link {{ isActive('admin/journals') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Journal</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('JournalController@classic') }}" class="nav-link {{ isActive('admin/journal/classic') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Journal Classic</p>
                             </a>
                         </li>
                         <li class="nav-item">
