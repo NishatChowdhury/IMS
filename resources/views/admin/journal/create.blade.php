@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-form-label">Description:</label>
-                                {{ Form::textarea('description',null,['class'=>'form-control','rows'=>5]) }}
+                                {{ Form::textarea('description',null,['class'=>'form-control','rows'=>5,'required']) }}
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -142,7 +142,7 @@
 
 @section('plugin-css')
     <!-- Select2 -->
-    <link rel="stylesheet" href="http://localhost/adminlte-alpha/public/plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
 @stop
 
 @section('plugin')
@@ -177,9 +177,29 @@
             var jar = $(".journal-entry").last();
             jar.clone().insertAfter(jar);
 
+            //$(".select2").last().select2();
+            //$(".select2").last().select2();
+
                 $('.select2').select2();
                 $('.select2').select2();
+                $('.select2').last().remove();
+                $('.select2').last().remove();
             //var jar = $("#journal-entry").clone().insertAfter('#journal-entry');
+
+            $(".debit").keyup(function(){
+                var sum = 0;
+                $(".debit").each(function(){
+                    sum += +$(this).val();
+                })
+                $("#debit-total").text(sum+'.00');
+            })
+            $(".credit").keyup(function(){
+                var sum = 0;
+                $(".credit").each(function(){
+                    sum += +$(this).val();
+                })
+                $("#credit-total").text(sum+'.00');
+            })
         }
     </script>
     <script>
