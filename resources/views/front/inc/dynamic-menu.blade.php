@@ -22,14 +22,14 @@
                         @if($menu->hasChild())
                             <div class="dropdown-menu">
                                 <ul class="list-unstyled">
-                                    @foreach($menu->children as $subMenu)
+                                    @foreach($menu->children->sortBy('order') as $subMenu)
                                         <li class="{{ $subMenu->hasChild() ? 'nav-item__has-dropdown' : '' }}">
-                                            <a class="nav-link__list {{ $subMenu->hasChild() ? 'dropdown-toggle' : '' }}" href="{{ $subMenu->uri }}" {{ $subMenu->hasChild() ? 'data-toggle=dropdown' : '' }}> {{ $subMenu->name }} </a>
+                                            <a class="nav-link__list {{ $subMenu->hasChild() ? 'dropdown-toggle' : '' }}" href="{{ url($subMenu->uri) }}" {{ $subMenu->hasChild() ? 'data-toggle=dropdown' : '' }}> {{ $subMenu->name }} </a>
                                             @if($subMenu->hasChild())
                                                 <div class="dropdown-menu">
                                                     <ul class="list-unstyled">
-                                                        @foreach($subMenu->children as $subSubMenu)
-                                                            <li><a class="nav-link__list" href="{{ $subSubMenu->uri }}"> {{ $subSubMenu->name }} </a></li>
+                                                        @foreach($subMenu->children->sortBy('order') as $subSubMenu)
+                                                            <li><a class="nav-link__list" href="{{ url($subSubMenu->uri) }}"> {{ $subSubMenu->name }} </a></li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -41,9 +41,7 @@
                         @endif
                     </li>
                 @endforeach
-
             </ul>
         </div>
-
     </div>
 </div> <!-- END container-->
