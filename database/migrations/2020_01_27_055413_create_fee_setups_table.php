@@ -15,11 +15,12 @@ class CreateFeeSetupsTable extends Migration
     {
         Schema::create('fee_setups', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('academic_class_id');
             $table->unsignedBigInteger('session_id');
             $table->unsignedBigInteger('class_id');
-//            $table->unsignedBigInteger('category_id');
-            $table->integer('month');
-//            $table->float('amount', 8, 2);
+            $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('month_id');
+            $table->string('year');
             $table->timestamps();
         });
     }
