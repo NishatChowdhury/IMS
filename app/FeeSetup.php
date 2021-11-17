@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FeeSetup extends Model
 {
-    protected $fillable = ['academic_class_id','category_id','month','amount'];
+    protected $fillable = ['academic_class_id','session_id','class_id','group_id','month_id','year'];
 
     public function category(){
         return $this->belongsTo(FeeCategory::class);
@@ -29,6 +29,8 @@ class FeeSetup extends Model
         return $this->belongsTo(Classes::class,'class_id');
     }
 
-
+    public function fee_setup_pivot(){
+        return $this->hasMany(FeeSetupPivot::class);
+    }
 
 }

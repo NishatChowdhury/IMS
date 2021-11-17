@@ -80,6 +80,23 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview {{ isActive(['feeSetup*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['feeSetup*']) }}">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Fee Setup
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/fee-setup') }}" class="nav-link {{ isActive('fee/fee-setup') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Fee</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item has-treeview {{ isActive('attendance*') }}">
                     <a href="#" class="nav-link {{ isActive('attendance*') }}">
                         <i class="nav-icon fas fa-tree"></i>
@@ -330,6 +347,7 @@
                     {{--                    </li>--}}
                 </ul>
             </li>
+
             {{--<li class="nav-header">EXAMPLES</li>--}}
             {{--<li class="nav-item">--}}
             {{--<a href="#" class="nav-link {{ isActive('calendar') }}">--}}
@@ -851,6 +869,23 @@
                     </a>
                 </li>
             @endcannot
+            <li class="nav-item has-treeview {{ isActive(['user*']) }}">
+                <a href="#" class="nav-link {{ isActive(['user*']) }}">
+                    <i class="fas fa-users-cog"></i>
+                    <p>
+                        User Management
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
+                        <a href="{{ action('UserController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             {{--            <li class="nav-item has-treeview {{ isActive(['journals*']) }}">--}}
             {{--                <a href="#" class="nav-link {{ isActive(['journals*']) }}">--}}
             {{--                    <i class="fas fa-camera-retro"></i>--}}
@@ -877,24 +912,6 @@
             {{--                </ul>--}}
             {{--            </li>--}}
 
-            <li class="nav-item has-treeview {{ isActive(['user*']) }}">
-                <a href="#" class="nav-link {{ isActive(['user*']) }}">
-                    <i class="fas fa-users-cog"></i>
-                    <p>
-                        User Management
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item" >
-                        <a href="{{ action('UserController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Users</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-life-ring"></i>
@@ -902,6 +919,7 @@
                     <p>Need Helps?</p>
                 </a>
             </li>
+
 
             {{--            <li class="nav-item">--}}
             {{--                <a href="{{ route('message.index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}

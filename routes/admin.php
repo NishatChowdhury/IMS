@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FeeSetupController;
+
 Route::group(['prefix'=>'admin'],function(){
 
     Route::get('transactions','TransactionController@index');
@@ -253,4 +255,17 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 
+//Route for fee setup starts here
+    Route::get('fee/fee-setup',[FeeSetupController::class,'index'])->name('fee-setup.index');
+    Route::post('fee/fee-setup/store',[FeeSetupController::class,'feeSetupStore'])->name('fee-setup.feeSetupStore');
+//Route for fee setup ends here
+
+
+////  Fee Setup Start
+//    Route::get('fee/fee-setup/{classId}',[FeeSetupController::class,'fee_setup'])->name('fee-setup.fee_setup');
+//    Route::post('fee/fee-setup/store/{classId}',[FeeSetupController::class,'store_fee_setup'])->name('fee-setup.store');
+//    Route::get('fee/fee-setup/list/{classId}',[FeeSetupController::class,'list_fee_setup'])->name('fee-setup.list');
+//    Route::get('fee/fee-setup/show/{id}', [FeeSetupController::class,'show_fee_setup'])->name('fee-setup.show');
+//    Route::patch('fee_setup/{id}/update',[FeeSetupController::class,'update_fee_setup'])->name('fee-setup.update');
+////  Fee Setup End
 });
