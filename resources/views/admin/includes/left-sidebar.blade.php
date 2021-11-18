@@ -80,23 +80,23 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ isActive(['feeSetup*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['feeSetup*']) }}">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            Fee Setup
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                        <li class="nav-item">
-                            <a href="{{ url('admin/fee/fee-setup') }}" class="nav-link {{ isActive('fee/fee-setup') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Fee</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                {{--                <li class="nav-item has-treeview {{ isActive(['feeSetup*']) }}">--}}
+                {{--                    <a href="#" class="nav-link {{ isActive(['feeSetup*']) }}">--}}
+                {{--                        <i class="nav-icon fas fa-table"></i>--}}
+                {{--                        <p>--}}
+                {{--                            Fee Setup--}}
+                {{--                            <i class="fas fa-angle-left right"></i>--}}
+                {{--                        </p>--}}
+                {{--                    </a>--}}
+                {{--                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">--}}
+                {{--                        <li class="nav-item">--}}
+                {{--                            <a href="{{ url('admin/fee/fee-setup') }}" class="nav-link {{ isActive('fee/fee-setup') }}">--}}
+                {{--                                <i class="far fa-circle nav-icon"></i>--}}
+                {{--                                <p>Add Fee</p>--}}
+                {{--                            </a>--}}
+                {{--                        </li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
                 <li class="nav-item has-treeview {{ isActive('attendance*') }}">
                     <a href="#" class="nav-link {{ isActive('attendance*') }}">
                         <i class="nav-icon fas fa-tree"></i>
@@ -434,13 +434,12 @@
                                 <p>Fee Category</p>
                             </a>
                         </li>
-
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a href="{{route('fee-setup.fee_setup')}}" class="nav-link {{ isActive('fee-category/fee_setup') }}">--}}
-                        {{--                                <i class="far fa-circle nav-icon"></i>--}}
-                        {{--                                <p>Fee Setup</p>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/fee-setup') }}" class="nav-link {{ isActive('fee/fee_setup') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Fee Setup') }}</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
@@ -478,6 +477,12 @@
                             <a href="{{ action('JournalController@classic') }}" class="nav-link {{ isActive('admin/journal/classic') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Journal Classic</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ action('AccountingController@cashBook') }}" class="nav-link {{ isActive('admin/cash-book') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cash Book</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -69,7 +69,12 @@
                                 @foreach($classes as $class)
                                     <tr>
                                         <td>{{ $class->id }}</td>
-                                        <td>{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</td>
+                                        <td>
+                                            <span class="badge badge-primary">{{ $class->academicClasses->name ?? '' }}</span>
+                                            <span class="badge badge-secondary">{{ $class->section->name ?? '' }}</span>
+                                            <span class="badge badge-dark">{{ $class->group->name ?? '' }}</span>
+
+                                        </td>
                                         <td>{{ $class->students->count() }}</td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td>

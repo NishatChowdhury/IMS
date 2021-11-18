@@ -198,20 +198,6 @@ Route::get('settings/basicInfo','SettingsController@basicInfo')->name('settings.
 //Route::get('settings/configuredPage','SettingsController@configuredPage')->name('settings.configuredPage');
 //End Settings Route
 
-// Gallery Routes start
-Route::get('gallery/image','GalleryController@index')->name('settings.image');
-Route::post('gallery/image/store','GalleryController@store');
-Route::delete('gallery/image/destroy/{id}','GalleryController@destroy');
-
-Route::get('gallery/category','GalleryCategoryController@index');
-Route::post('gallery/category/store','GalleryCategoryController@store');
-Route::delete('gallery/category/destroy/{id}','GalleryCategoryController@destroy');
-
-Route::get('gallery/albums','AlbumController@index');
-Route::post('gallery/album/store','AlbumController@store');
-Route::delete('gallery/album/delete/{id}','AlbumController@destroy');
-// Gallery Routes ends
-
 //Staff Route by Rimon
 Route::get('staff/teacher','StaffController@teacher')->name('staff.teacher');
 Route::get('staff/staffadd','StaffController@addstaff')->name('staff.addstaff');

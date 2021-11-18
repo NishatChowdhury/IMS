@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeePivotFeeSetupTable extends Migration
+class PivotFeeCategoryFeeSetupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFeePivotFeeSetupTable extends Migration
      */
     public function up()
     {
-        Schema::create('fee_pivot_fee_setup', function (Blueprint $table) {
+        Schema::create('fee_category_fee_setup', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('fee_setup_id');
             $table->unsignedBigInteger('fee_category_id');
