@@ -341,9 +341,9 @@ Route::post('institution/sig','InstitutionController@sig');
 //Account Section End
 
 //Syllabus Section Start A R Babu
-    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
-    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
-    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
+//    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
+//    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
+//    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
 
 //Contact page start

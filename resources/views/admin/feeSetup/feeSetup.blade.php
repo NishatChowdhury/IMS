@@ -111,9 +111,11 @@
                                 <th>{{ __('Sl') }}</th>
                                 <th>{{ __('Category') }}</th>
                                 <th>{{ __('Amount') }}</th>
+                                <th><button onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
+                            <!-- Fee category list will appeared here -->
                             </tbody>
                         </table>
                         <div class="button text-center">
@@ -132,86 +134,49 @@
 @stop
 
 @section('script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {{--    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>--}}
-    {{--    <script>--}}
-    {{--        $(document).ready(function(){--}}
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
 
-    {{--            var count = 1;--}}
-
-    {{--            dynamic_field(count);--}}
-
-    {{--            function dynamic_field(number)--}}
-    {{--            {--}}
-    {{--                html = '<tr>';--}}
-    {{--                html += '<td><select class="form-control" id="fee_category_id" name="fee_category_id"><option value="">Select Fee Category</option>@foreach($fee_category as $key=>$category)<option value="{{$key}}">{{$category}}</option>@endforeach</select></td>';--}}
-    {{--                html += '<td><input type="text" name="amount[]" class="form-control length" /></td>';--}}
-
-    {{--                if(number > 1)--}}
-    {{--                {--}}
-    {{--                    html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';--}}
-    {{--                    $('tbody').append(html);--}}
-    {{--                }--}}
-    {{--                else--}}
-    {{--                {--}}
-    {{--                    html += '<td><button type="button" name="add" id="add" class="btn btn-success">Add</button></td></tr>';--}}
-    {{--                    $('tbody').html(html);--}}
-    {{--                }--}}
-    {{--            }--}}
-
-    {{--            $(document).on('click', '#add', function(){--}}
-    {{--                count++;--}}
-    {{--                dynamic_field(count);--}}
-    {{--            });--}}
-
-    {{--            $(document).on('click', '.remove', function(){--}}
-    {{--                count--;--}}
-    {{--                $(this).closest("tr").remove();--}}
-    {{--            });--}}
-
-    {{--            $('#dynamic_form').on('submit', function(event){--}}
-    {{--                event.preventDefault();--}}
-    {{--                $.ajax({--}}
-    {{--                    url:'{{ route("fee-setup.feeSetupStore") }}',--}}
-    {{--                    method:'post',--}}
-    {{--                    data:$(this).serialize(),--}}
-    {{--                    dataType:'json',--}}
-    {{--                    beforeSend:function(){--}}
-    {{--                        $('#save').attr('disabled','disabled');--}}
-    {{--                    },--}}
-    {{--                    success:function(data)--}}
-    {{--                    {--}}
-    {{--                        if(data.error)--}}
-    {{--                        {--}}
-    {{--                            var error_html = '';--}}
-    {{--                            for(var count = 0; count < data.error.length; count++)--}}
-    {{--                            {--}}
-    {{--                                error_html += '<p>'+data.error[count]+'</p>';--}}
-    {{--                            }--}}
-    {{--                            $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');--}}
-    {{--                        }--}}
-    {{--                        else--}}
-    {{--                        {--}}
-    {{--                            dynamic_field(1);--}}
-    {{--                            $('#result').html('<div class="alert alert-success">'+data.success+'</div>');--}}
-    {{--                        }--}}
-    {{--                        $('#save').attr('disabled', false);--}}
-    {{--                    }--}}
-
-    {{--                })--}}
-    {{--            });--}}
-
-    {{--        });--}}
-    {{--    </script>--}}
     <script>
         function addToFee() {
+            "use strict";
             var cat = $("#fee_category_id").val();
             var amount = $("#amount").val();
-            sessionStorage.setItem('thekey',JSON.stringify([cat,amount]));
-            console.log(sessionStorage.thekey);
-            $("#tbody").append(
-                '<tr><td></td><td>'+cat+'</td><td>'+amount+'</td></tr>'
-            );
+            var token = "{{ @csrf_token() }}"
+            $.ajax({
+                url: "{{ url('admin/fee/fee-cart/store') }}",
+                data: {_token:token,cat:cat,amount:amount},
+                type: "POST",
+            }).done(function(e){
+                $("#tbody").html(e);
+                console.log(e);
+            });
+        }
+
+        function removeFeeFromCart(key){
+            "use strict";
+            var token = "{{ @csrf_token() }}"
+            //var fee = $(this).data('key');
+            $.ajax({
+                url: "{{ url('admin/fee/fee-cart/destroy') }}",
+                data: {_token:token,key:key},
+                type: "POST",
+            }).done(function(e){
+                $("#tbody").html(e);
+                console.log(e);
+            });
+        }
+
+        function clearFeeCart() {
+            "use strict";
+            var token = "{{ @csrf_token() }}"
+            $.ajax({
+                url: "{{ url('admin/fee/fee-cart/flush') }}",
+                data: {_token:token},
+                type: "POST",
+            }).done(function(e){
+                $("#tbody").html(e);
+                console.log(e);
+            });
         }
     </script>
 @endsection

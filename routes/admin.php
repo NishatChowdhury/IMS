@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
 
 Route::group(['prefix'=>'admin'],function(){
@@ -70,6 +71,8 @@ Route::group(['prefix'=>'admin'],function(){
         // Imam Hasan Journal Routes
     Route::resource('journals', "JournalController")->middleware('auth');
     Route::get('journal/classic','JournalController@classic');
+    Route::get('cash-book','AccountingController@cashBook');
+    Route::post('cash-book-settings','AccountingController@cashBookSetting');
     Route::get('ledger','AccountingController@ledger');
     Route::get('trial-balance','AccountingController@trialBalance');
     Route::get('profit-n-loss','AccountingController@profitNLoss');
@@ -258,6 +261,10 @@ Route::group(['prefix'=>'admin'],function(){
 //Route for fee setup starts here
     Route::get('fee/fee-setup',[FeeSetupController::class,'index'])->name('fee-setup.index');
     Route::post('fee/fee-setup/store',[FeeSetupController::class,'feeSetupStore'])->name('fee-setup.feeSetupStore');
+
+    Route::post('fee/fee-cart/store',[FeeCartController::class,'store']);
+    Route::post('fee/fee-cart/destroy',[FeeCartController::class,'destroy']);
+    Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush']);
 //Route for fee setup ends here
 
 
@@ -268,4 +275,19 @@ Route::group(['prefix'=>'admin'],function(){
 //    Route::get('fee/fee-setup/show/{id}', [FeeSetupController::class,'show_fee_setup'])->name('fee-setup.show');
 //    Route::patch('fee_setup/{id}/update',[FeeSetupController::class,'update_fee_setup'])->name('fee-setup.update');
 ////  Fee Setup End
+
+    // Gallery Routes start
+    Route::get('gallery/image','GalleryController@index')->name('settings.image');
+    Route::post('gallery/image/store','GalleryController@store');
+    Route::delete('gallery/image/destroy/{id}','GalleryController@destroy');
+
+    Route::get('gallery/category','GalleryCategoryController@index');
+    Route::post('gallery/category/store','GalleryCategoryController@store');
+    Route::delete('gallery/category/destroy/{id}','GalleryCategoryController@destroy');
+
+    Route::get('gallery/albums','AlbumController@index');
+    Route::post('gallery/album/store','AlbumController@store');
+    Route::delete('gallery/album/delete/{id}','AlbumController@destroy');
+// Gallery Routes ends
+
 });
