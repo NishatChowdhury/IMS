@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
+use App\Http\Controllers\HomeController;
 
 Route::group(['prefix'=>'admin'],function(){
+
+    Route::get('/',[HomeController::class,'index'])->name('admin');
 
     Route::get('transactions','TransactionController@index');
     Route::get('transaction/create','TransactionController@create');

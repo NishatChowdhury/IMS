@@ -8,6 +8,7 @@ use App\FeeSetup;
 use App\FeeSetupPivot;
 use App\Group;
 use App\Session;
+use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -32,32 +33,39 @@ class FeeSetupController extends Controller
     }
 
     public function feeSetupStore(Request $request){
-//        dd($request->all());
-        $query = DB::select(DB::Raw("SHOW TABLE STATUS LIKE 'fee_setups'"));
-        $query= $query[0]->Auto_increment;
-        $count = null;
+        $students = Student::query()
+            ->where('academic_class_id',$request->get('academic_class_id'))
+            ->get();
 
-        FeeSetup::create($request->all());
-        $fee_setup_id = FeeSetup::where('id', $request->input('fee_setup_id'))->withCount('pivot_fees')->first();
-//            $fee_setup_id= $request->fee_setup_id->count();
-        $fee_category_id= $request->fee_category_id;
-        $amount = $request->amount;
+        $fees = request()->session()->get('fees');
 
-        for($count = 0;  $count++;)
-        {
-            $data = array(
-                'fee_setup_id'  => $fee_setup_id[$count],
-                'fee_category_id'  => $fee_category_id[$count],
-                'amount' => $amount[$count],
-            );
+        if(count($fees) > 0){
+            foreach($students as $student){
+                $feeSetupData = [
+                    'academic_class_id' => $request->get('academic_class_id'),
+                    'student_id' => $student->id,
+                    'month_id' => $request->get('month_id'),
+                    'year' => $request->get('year'),
+                ];
 
-            $insert_data[] = $data;
+                $feeSetup = FeeSetup::query()->create($feeSetupData);
+
+                foreach($fees as $fee){
+                    $data = [
+                        'fee_category_id' => $fee['category_id'],
+                        'fee_setup_id' => $feeSetup->id,
+                        'amount' => $fee['amount'],
+                    ];
+
+                    FeeSetupPivot::query()->create($data);
+
+                }
+            }
         }
 
-        FeeSetupPivot::create($insert_data[]);
+        \Illuminate\Support\Facades\Session::flash('success','Fee added successfully');
 
-        return Redirect::to('fee-setup.index')
-            ->with('success','Great! Added successfully.');
+        return redirect()->back();
     }
 
     public function show($id)

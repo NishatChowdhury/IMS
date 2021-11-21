@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FeeSetup extends Model
 {
-    protected $fillable = ['academic_class_id','session_id','class_id','group_id','month_id','year'];
+    protected $fillable = ['academic_class_id','student_id','month_id','year'];
 
     public function category(){
         return $this->belongsTo(FeeCategory::class);

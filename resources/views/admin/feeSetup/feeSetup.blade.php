@@ -23,11 +23,11 @@
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
+            {{ Form::open(['url'=>'admin/fee/fee-setup/store','method'=>'POST', 'class'=>'form-horizontal','id'=>'dynamic_form']) }}
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin: 0px;">
                         <!-- form start -->
-                        {{ Form::open(['method'=>'POST', 'class'=>'form-horizontal','id'=>'dynamic_form']) }}
 
                         <div class="card-body">
                             <div class="form-row">
@@ -71,7 +71,6 @@
                             </div>
                         </div>
 
-                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
@@ -127,6 +126,7 @@
                     </div>
                 </div>
             </div>
+            {{ Form::close() }}
         </div>
     </section>
 
