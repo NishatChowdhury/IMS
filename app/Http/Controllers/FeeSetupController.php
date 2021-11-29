@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicClass;
 use App\Classes;
 use App\FeeCategory;
+use App\FeePivot;
 use App\FeeSetup;
 use App\FeeSetupPivot;
 use App\Group;
 use App\Session;
 use App\Student;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 
 class FeeSetupController extends Controller
 {
@@ -68,26 +68,89 @@ class FeeSetupController extends Controller
         return redirect()->back();
     }
 
-    public function show($id)
-    {
-        //
+    public  function view(Request $request){
+        $fees = FeeSetup::query()->where([
+            ['academic_class_id','!=',null],
+            [function ($query) use ($request){
+                if (($term = $request->term)){
+                    $query->orWhere('academic_class_id','LIKE','%' .$term. '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('id','desc')->with('studentID')
+            ->paginate(10);
+        return view('admin.feeSetup._view-all-fees',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
     }
+
+    public function viewFeeDetails(Request $request){
+        $id = $request->id;
+        $fee_pivot = FeePivot::query()->where('fee_setup_id',$id)->with('category')->get();
+        return view('admin.feeSetup._fee_details_modal',compact('fee_pivot'));
+    }
+
 
 
     public function edit($id)
     {
-        //
+        $classes = Classes::query()->pluck('name','id');
+        $fee_category = FeeCategory::query()->pluck('name','id');
+        $fee_setup = FeeSetup::query()->findOrFail($id);
+        $fee_pivot = FeePivot::query()
+            ->where('fee_setup_id',$id)
+            ->get();
+
+        session()->forget('fees'); // remove existing items from fees session
+
+        foreach ($fee_pivot as $result) {
+            $data = [
+                'category_id' => $result->fee_category_id,
+                'name' => $result->category->name,
+                'amount' => $result->amount,
+            ];
+            if(session()->has('fees')){
+                session()->push('fees',$data);
+            }else{
+                session()->put(['fees'=>[$data]]);
+            }
+        }
+
+        $fees = session('fees',[]);
+
+        return view('admin.feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
     }
 
-
-    public function update(Request $request, $id)
+    /**
+     * Update individual students fee
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function update($id): RedirectResponse
     {
-        //
+        $fees = session('fees');
+
+        if(count($fees) > 0){
+            FeePivot::query()->where('fee_setup_id',$id)->delete();
+            foreach($fees as $fee){
+                $data = [
+                    'fee_category_id' => $fee['category_id'],
+                    'fee_setup_id' => $id,
+                    'amount' => $fee['amount'],
+                ];
+                FeeSetupPivot::query()->create($data);
+            }
+        }
+
+        \Illuminate\Support\Facades\Session::flash('success','Fee Updated Successfully');
+
+        return redirect()->back();
     }
 
 
     public function destroy($id)
     {
-        //
+        $review = FeeSetup::find($id);
+        $review ->fee_setup_pivot()->detach();
+        return $review ->delete();
     }
 }

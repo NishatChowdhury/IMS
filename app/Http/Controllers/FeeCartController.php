@@ -9,13 +9,13 @@ class FeeCartController extends Controller
 {
     public function store(Request $request)
     {
-        $feeCategory = FeeCategory::query()->findOrFail($request->get('cat'));
+        $feeCategory = FeeCategory::query()->findOrFail($request->get('category_id'));
         $amount = $request->get('amount');
 
         // check if fee category exists in session starts
         $fees = $request->session()->get('fees',[]);
         foreach($fees as $fee){
-            if(array_search($request->get('cat'),$fee,true)){
+            if(array_search($request->get('category_id'),$fee,true)){
                 return view('admin.feeSetup._fee-cart',compact('fees'));
             }
         }
@@ -23,7 +23,7 @@ class FeeCartController extends Controller
 
         // store fee category in session starts
         $data = [
-            'category_id'=>$request->get('cat'),
+            'category_id'=>$request->get('category_id'),
             'name'=>$feeCategory->name,
             'amount'=>$amount
         ];
@@ -54,6 +54,14 @@ class FeeCartController extends Controller
 
         $fees = $request->session()->get('fees',[]);
 
+        return view('admin.feeSetup._fee-cart',compact('fees'));
+    }
+
+    public function EditFeeCartDestroy(Request $request)
+    {
+        //dd($request->get('key'));
+        $request->session()->pull('fees.'.$request->get('key'));
+        $fees = $request->session()->get('fees');
         return view('admin.feeSetup._fee-cart',compact('fees'));
     }
 }

@@ -440,6 +440,13 @@
                                 <p>{{ __('Fee Setup') }}</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/fee-setup/view') }}" class="nav-link {{ isActive('fee-setup/view') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Fee View') }}</p>
+                            </a>
+                        </li>
+
 
                         <li class="nav-item">
                             <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
@@ -479,11 +486,11 @@
                                 <p>Journal Classic</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ action('AccountingController@cashBook') }}" class="nav-link {{ isActive('admin/cash-book') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Cash Book</p>
-                            </a>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ action('AccountingController@cashBook') }}" class="nav-link {{ isActive('admin/cash-book') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Cash Book</p>--}}
+{{--                            </a>--}}
                         </li>
                         <li class="nav-item">
                             <a href="{{ action('AccountingController@ledger') }}" class="nav-link {{ isActive('admin/ledger') }}">

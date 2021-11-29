@@ -20,7 +20,7 @@ class SeedSiteInformationTable extends Migration
             $data['name_font'] = '';
             $data['name_color'] = '';
             $data['bn'] = '';
-            $data['bn_size'] = '';
+            $data['bn_size'] = '1';
             $data['bn_font'] = '';
             $data['bn_color'] = '';
             $data['address'] = 'College Road, Chawk Bazar, Chittagong';
@@ -30,6 +30,8 @@ class SeedSiteInformationTable extends Migration
             $data['email'] = 'info@webpointbd.com';
             $data['logo'] = 'logo.jpg';
             $data['theme_id'] = 1;
+            $data['admission_sms'] = 1;
+            $data['admission_confirm_sms'] = 1;
             \App\SiteInformation::query()->create($data);
         });
     }

@@ -3,6 +3,7 @@
 use App\AcademicClass;
 use App\ExamResult;
 use App\Grade;
+use App\Http\Controllers\FeeSetupController;
 use App\Mark;
 use App\RawAttendance;
 use App\Student;
@@ -365,6 +366,8 @@ Route::post('institution/sig','InstitutionController@sig');
     Route::get('admin/student-profile/{studentId}','StudentController@studentProfile')->name('admin.student.profile');
     Route::get('staff-profile/{staffId}','StaffController@staffProfile')->name('staff.profile');
 //Student profile end
+
+
 
 
 /** Route for Apps start */

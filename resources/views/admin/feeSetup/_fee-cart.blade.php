@@ -3,7 +3,7 @@
         <td>{{ $key + 1 }}</td>
         <td>{{ $fee['name'] }}</td>
         <td class="text-right">{{ number_format($fee['amount'],2) }}</td>
-        <td class="text-center"><button onclick="removeFeeFromCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
+        <td class="text-center"><button type="button" onclick="removeFeeFromCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
     </tr>
 @endforeach
 <tr>

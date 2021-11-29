@@ -264,10 +264,18 @@ Route::group(['prefix'=>'admin'],function(){
 //Route for fee setup starts here
     Route::get('fee/fee-setup',[FeeSetupController::class,'index'])->name('fee-setup.index');
     Route::post('fee/fee-setup/store',[FeeSetupController::class,'feeSetupStore'])->name('fee-setup.feeSetupStore');
+    Route::get('fee/fee-setup/view',[FeeSetupController::class,'view'])->name('fee-setup.view');
+    Route::post('fee/fee-setup/viewFeeDetails',[FeeSetupController::class,'viewFeeDetails'])->name('fee-setup.viewFeeDetails');
+    Route::get('fee/fee-setup/search',[FeeSetupController::class,'search'])->name('fee-setup.search');
+    Route::get('fee/fee-setup/edit/{id}',[FeeSetupController::class,'edit'])->name('fee-setup.edit');
+    Route::patch('fee/fee-setup/update/{id}',[FeeSetupController::class,'update'])->name('fee.fee-setup.update');
 
     Route::post('fee/fee-cart/store',[FeeCartController::class,'store']);
     Route::post('fee/fee-cart/destroy',[FeeCartController::class,'destroy']);
     Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush']);
+
+    Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy']);
+
 //Route for fee setup ends here
 
 

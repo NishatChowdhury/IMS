@@ -28,7 +28,6 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 0px;">
                         <!-- form start -->
-
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -37,24 +36,6 @@
                                         {{ Form::select('academic_class_id',$classes,null,['class'=>'form-control','placeholder'=>'Academic Class ID']) }}
                                     </div>
                                 </div>
-                                {{--                                    <div class="col">--}}
-                                {{--                                        <label for="">Session ID</label>--}}
-                                {{--                                        <div class="input-group">--}}
-                                {{--                                            {{ Form::select('session_id',$session,null,['class'=>'form-control','placeholder'=>'Session ID']) }}--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="col">--}}
-                                {{--                                        <label for="">Class ID</label>--}}
-                                {{--                                        <div class="input-group">--}}
-                                {{--                                            {{ Form::select('class_id',$classes,null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="col">--}}
-                                {{--                                        <label for="">Group ID</label>--}}
-                                {{--                                        <div class="input-group">--}}
-                                {{--                                            {{ Form::select('group_id',$groups,null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </div>--}}
                                 <div class="col">
                                     <label for="">{{ __('Month') }}</label>
                                     <div class="input-group">
@@ -67,10 +48,8 @@
                                         {{ Form::selectYear('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),null,['class'=>'form-control','placeholder'=>'Select Year']) }}
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -81,7 +60,7 @@
                         <div class="">
                             <div class="form-group">
                                 <label for="">{{ __('Fee Category') }}</label>
-                                <select class="form-control" id="fee_category_id" name="fee_category_id">--}}
+                                <select class="form-control" id="fee_category_id" name="fee_category_id">
                                     <option value="">{{ __('Select Fee Category') }}</option>
                                     @foreach($fee_category as $key => $category)
                                         <option value="{{$key}}">{{$category}}</option>
@@ -103,7 +82,6 @@
 
                 <div class="col-md-6">
                     <div class="" style="margin: 15px;">
-                        {{--                        <h5 class="text-center">{{ __('Tuition Fee') }}</h5>--}}
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -118,8 +96,7 @@
                             </tbody>
                         </table>
                         <div class="button text-center">
-{{--                            <input type="submit" name="save" id="save" class="btn btn-primary" value="Save Settings" />--}}
-                            <button class="btn btn-primary btn-sm">{{ __('Save') }}</button>
+                            <button type="submit" class="btn btn-primary btn-sm">{{ __('Save') }}</button>
                         </div>
 
                         <!-- /.card -->
@@ -134,17 +111,15 @@
 @stop
 
 @section('script')
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
-
     <script>
         function addToFee() {
             "use strict";
-            var cat = $("#fee_category_id").val();
+            var category_id = $("#fee_category_id").val();
             var amount = $("#amount").val();
             var token = "{{ @csrf_token() }}"
             $.ajax({
                 url: "{{ url('admin/fee/fee-cart/store') }}",
-                data: {_token:token,cat:cat,amount:amount},
+                data: {_token:token,category_id:category_id,amount:amount},
                 type: "POST",
             }).done(function(e){
                 $("#tbody").html(e);
@@ -155,7 +130,6 @@
         function removeFeeFromCart(key){
             "use strict";
             var token = "{{ @csrf_token() }}"
-            //var fee = $(this).data('key');
             $.ajax({
                 url: "{{ url('admin/fee/fee-cart/destroy') }}",
                 data: {_token:token,key:key},
