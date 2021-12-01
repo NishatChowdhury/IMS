@@ -14,8 +14,8 @@ class ForeignFeePivotFeeCategoryFeeSetupTable extends Migration
     public function up()
     {
         Schema::table('fee_pivots', function (Blueprint $table) {
-            $table->foreign('fee_setup_id')->references('id')->on('fee_setups');
-            $table->foreign('fee_category_id')->references('id')->on('fee_categories');
+            $table->foreign('fee_setup_id')->references('id')->on('fee_setups')->onDelete('cascade');
+            $table->foreign('fee_category_id')->references('id')->on('fee_categories')->onDelete('cascade');
         });
     }
 

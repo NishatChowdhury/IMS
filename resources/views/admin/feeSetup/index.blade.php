@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Fee Setup')
+@section('title','View All Fee Setups')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -22,6 +22,11 @@
 
     <!-- /.Search-panel -->
     <section class="content">
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -66,8 +71,13 @@
                                         <td>{{$fee->month_id}}</td>
                                         <td>{{$fee->year}}</td>
                                         <td>
-                                            <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$fee->id) }}" data-toggle="modal" data-target="#exampleModal" role="button" class="btn btn-success btn-sm" onclick="showFeeDetails({{ $fee->id }})"><i class="fas fa-eye"></i></a>
-                                            <a href="{{ url('admin/fee/fee-setup/edit',$fee->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$fee->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
+                                                <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$fee->id) }}" data-toggle="modal" data-target="#exampleModal" role="button" class="btn btn-success btn-sm" onclick="showFeeDetails({{ $fee->id }})"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ url('admin/fee/fee-setup/edit',$fee->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa fas fa-trash"></i>
+                                                </button>
+                                            {{ Form::close() }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -116,6 +126,13 @@
 @stop
 
 @section('script')
+    <script>
+        function confirmDelete(){
+            var x = confirm('Are you sure you want to delete this Fee Setup?');
+            return !!x;
+        }
+    </script>
+
     <script>
         function showFeeDetails(id){
             var csrf = "{{ @csrf_token() }}";

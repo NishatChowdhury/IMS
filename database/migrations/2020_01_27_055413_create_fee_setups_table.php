@@ -17,9 +17,6 @@ class CreateFeeSetupsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('academic_class_id');
             $table->unsignedBigInteger('student_id');
-//            $table->unsignedBigInteger('session_id');
-//            $table->unsignedBigInteger('class_id');
-//            $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('month_id');
             $table->string('year');
             $table->timestamps();

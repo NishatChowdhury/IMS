@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\AcademicClass;
 use App\Classes;
 use App\FeeCategory;
 use App\FeePivot;
@@ -29,7 +28,7 @@ class FeeSetupController extends Controller
         $groups = Group::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
 
-        return view('admin.feeSetup.feeSetup',compact('session','classes','groups','fee_category'));
+        return view('admin.feeSetup.create',compact('session','classes','groups','fee_category'));
     }
 
     public function feeSetupStore(Request $request){
@@ -79,7 +78,7 @@ class FeeSetupController extends Controller
         ])
             ->orderBy('id','desc')->with('studentID')
             ->paginate(10);
-        return view('admin.feeSetup._view-all-fees',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
+        return view('admin.feeSetup.index',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
     }
 
     public function viewFeeDetails(Request $request){
@@ -87,8 +86,6 @@ class FeeSetupController extends Controller
         $fee_pivot = FeePivot::query()->where('fee_setup_id',$id)->with('category')->get();
         return view('admin.feeSetup._fee_details_modal',compact('fee_pivot'));
     }
-
-
 
     public function edit($id)
     {
@@ -149,8 +146,8 @@ class FeeSetupController extends Controller
 
     public function destroy($id)
     {
-        $review = FeeSetup::find($id);
-        $review ->fee_setup_pivot()->detach();
-        return $review ->delete();
+        $fee_setup = FeeSetup::query()->findOrFail($id);
+        $fee_setup->delete();
+        return redirect('admin/fee/fee-setup/view')->with('message','Deleted Successfully!');
     }
 }
