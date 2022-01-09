@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 Route::group(['prefix'=>'admin'],function(){
 
     Route::get('/',[HomeController::class,'index'])->name('admin');
+    Route::get('backup',[HomeController::class,'backup'])->name('admin.backup');
 
     Route::get('transactions','TransactionController@index');
     Route::get('transaction/create','TransactionController@create');
