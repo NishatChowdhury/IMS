@@ -20,6 +20,7 @@ class CreateRawAttendanceTable extends Migration
             $table->string('department')->nullable();
             $table->string('unit_id')->nullable();
             $table->string('card')->nullable();
+            $table->integer('sms_sent', 11);
             $table->string('unit_name');
             $table->string('user_name');
             $table->date('access_date')->nullable();

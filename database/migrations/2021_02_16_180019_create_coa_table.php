@@ -19,6 +19,7 @@ class CreateCoaTable extends Migration
             $table->integer('code')->default(0);
             $table->integer('coa_grandparents_id')->default(0);
             $table->integer('coa_parents_id')->default(0);
+            $table->boolean('is_cashbook_item')->nullable();
             $table->integer('is_enabled')->default(1);
             $table->text('description')->nullable();
             $table->integer('created_by')->default(0);

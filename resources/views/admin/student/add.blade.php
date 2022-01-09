@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Student</h1>
+                    {{-- <h1 class="m-0 text-dark">Student</h1> --}}
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-light">
-                        @if($errors->any())
+                        {{-- @if($errors->any())
                             <div class="alert alert-danger" role="alert">
                                 <ul>
                                     @foreach($errors->all() as $error)
@@ -36,7 +36,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                        @endif --}}
                         <!-- /.card-header -->
                         <!-- form start -->
                         {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
@@ -84,6 +84,7 @@
         });
 
         $(document).on('keyup','#rank', function () {
+            alert();
             var academicYear = $('.year').val();
             $.ajax({
                 url:"{{url('admin/load_student_id')}}",

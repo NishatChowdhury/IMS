@@ -41,6 +41,11 @@ class CreateStudentTable extends Migration
             $table->string('email')->nullable();
             $table->string('father_mobile')->nullable();
             $table->string('mother_mobile')->nullable();
+            $table->string('ssc_registration')->nullable();
+            $table->string('ssc_session')->nullable();
+            $table->string('ssc_year')->nullable();
+            $table->string('ssc_board')->nullable();
+            
             $table->unsignedBigInteger('notification_type_id')->nullable();
             $table->boolean('status');
             $table->timestamps();
