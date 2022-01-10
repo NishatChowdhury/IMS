@@ -18,6 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('title');
             $table->unsignedBigInteger('playlist_id');
             $table->text('code');
+            $table->ingeter('order', 11);
             $table->timestamps();
         });
     }

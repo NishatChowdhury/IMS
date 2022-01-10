@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreatePageTable extends Migration
 {
@@ -19,6 +20,7 @@ class CreatePageTable extends Migration
             $table->text('content');
             $table->string('image');
             $table->integer('order');
+            $table->string('file')>nullable();
             $table->timestamps();
         });
     }

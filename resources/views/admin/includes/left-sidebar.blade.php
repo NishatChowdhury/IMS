@@ -931,6 +931,13 @@
             {{--            </li>--}}
 
             <li class="nav-item">
+                <a href="{{ route('admin.backup') }}" class="nav-link">
+                    <i class="nav-icon fas fa-life-ring"></i>
+
+                    <p>{{ __('Database Backup') }}</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-life-ring"></i>
 

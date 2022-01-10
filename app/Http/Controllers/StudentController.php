@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\AcademicClass;
-use App\AssignSubject;
-use App\BloodGroup;
 use App\City;
+use App\Group;
+use App\Gender;
 use App\Classes;
 use App\Country;
-use App\Division;
-use App\Gender;
-use App\Group;
-use App\OnlineSubject;
-use App\Religion;
-use App\Repository\StudentRepository;
 use App\Section;
 use App\Session;
-use App\SessionClass;
-//use App\State;
 use App\Student;
+use App\Division;
+use App\Religion;
+use App\BloodGroup;
+use App\SessionClass;
+use App\AcademicClass;
+use App\AssignSubject;
+use App\OnlineSubject;
+//use App\State;
 use App\StudentPayment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use App\Repository\StudentRepository;
+use Illuminate\Support\Facades\Response;
+use App\Http\Requests\StoreStudentRequest;
 use Symfony\Component\Console\Input\Input;
 
 class StudentController extends Controller
@@ -166,17 +167,44 @@ class StudentController extends Controller
     }
 
     public function store(Request $req){
-        $this->validate($req,[
-            'session_id'=>'required',
-            'class_id'=>'required',
-            'name'=>'required',
-            'rank' => 'required|numeric',
-            'studentId' => 'required',
-            //'mobile'=>'required|unique:students',
-            'status'=>'required',
-        ],[
 
-        ]);
+        $rules = [
+            'session_id' => 'required',
+            'class_id' => 'required',
+            'name' => 'required',
+            'rank' => 'required',
+            'studentId' => 'required',
+            'status' => 'required',
+            'rank' => 'required',
+            'rank' => 'required',
+            'dob' => 'required',
+            'gender_id' => 'required',
+            'father' => 'required',
+            'mother' => 'required',
+            'blood_group_id' => 'required',
+            'religion_id' => 'required',
+            'ssc_roll' => 'required',
+            'ssc_registration' => 'required',
+            'address' => 'required',
+            'area' => 'required',
+            'zip' => 'required',
+            'division_id' => 'required',
+            'city_id' => 'required',
+            'country_id' => 'required',
+            'mobile' => 'required',
+            'email' => 'required',
+            'father_mobile' => 'required',
+            'mother_mobile' => 'required',
+        ];
+    
+        $customMessages = [
+            'required' => 'The :attribute field is required.'
+            // 'division_id.required' => 'The Division Must be field is requi
+            
+        ];
+    
+        $this->validate($req, $rules, $customMessages);
+
 
         //dd($req->all());
         $academicClassId = AcademicClass::query()
@@ -189,6 +217,7 @@ class StudentController extends Controller
         $req['academic_class_id'] = $academicClassId->id ?? null;
 
         $data = $req->all();
+      
         if ($req->hasFile('pic')){
             $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
             $req->file('pic')->move(public_path().'/assets/img/students/', $image);
@@ -222,17 +251,40 @@ class StudentController extends Controller
     {
         $student = Student::query()->findOrFail($id);
 
-        $this->validate($req,[
+        $rules = [
             'session_id' => 'required',
             'class_id' => 'required',
             'name' => 'required',
-            'rank' => 'required|numeric',
+            'rank' => 'required',
             'studentId' => 'required',
-            'mobile' => 'required',
             'status' => 'required',
-        ],[
-
-        ]);
+            'rank' => 'required',
+            'rank' => 'required',
+            'dob' => 'required',
+            'gender_id' => 'required',
+            'father' => 'required',
+            'mother' => 'required',
+            'blood_group_id' => 'required',
+            'religion_id' => 'required',
+            'ssc_roll' => 'required',
+            'ssc_registration' => 'required',
+            'address' => 'required',
+            'area' => 'required',
+            'zip' => 'required',
+            'division_id' => 'required',
+            'city_id' => 'required',
+            'country_id' => 'required',
+            'mobile' => 'required',
+            'email' => 'required',
+            'father_mobile' => 'required',
+            'mother_mobile' => 'required',
+        ];
+    
+        $customMessages = [
+            'required' => 'The :attribute field is required.'
+            // 'division_id.required' => 'The Division Must be field is requi
+            
+        ];
 
         //dd($req->all());
         $academicClassId = AcademicClass::query()

@@ -17,7 +17,7 @@ class CreateStaffTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('card_id')->nullable();
-            $table->string('father_husband');
+            $table->string('father_husband')->nullable();
             $table->string('mobile')->unique();
             $table->date('dob');
             $table->string('nid')->unique()->nullable();
@@ -30,6 +30,7 @@ class CreateStaffTable extends Migration
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('job_type_id');
             $table->unsignedBigInteger('staff_type_id');
+            $table->string('academic_qualifications')->nullable();
             $table->string('joining');
             $table->string('salary')->nullable();
             $table->string('bonus')->nullable();
