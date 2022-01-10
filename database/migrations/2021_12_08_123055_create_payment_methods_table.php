@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnFeeSetup extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddColumnFeeSetup extends Migration
      */
     public function up()
     {
-        Schema::table('fee_setups', function (Blueprint $table) {
-            $table->addColumn('biginteger','academic_class_id')->after('id')->nullable()->unsigned();
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddColumnFeeSetup extends Migration
      */
     public function down()
     {
-        Schema::table('fee_setups', function (Blueprint $table) {
-            $table->dropColumn('academic_class_id');
-        });
+        Schema::dropIfExists('payment_methods');
     }
 }

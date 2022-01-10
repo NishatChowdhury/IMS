@@ -446,6 +446,12 @@
                                 <p>{{ __('Fee View') }}</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/fee-collection') }}" class="nav-link {{ isActive('fee/fee-collection') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Fee Collection') }}</p>
+                            </a>
+                        </li>
 
 
                         <li class="nav-item">

@@ -31,8 +31,8 @@ class CreateSiteInformationTable extends Migration
             $table->string('email');
             $table->string('logo');
             $table->unsignedBigInteger('theme_id')->default(1);
-            $table->boolean('admission_sms');
-            $table->boolean('admission_confirm_sms');
+            $table->boolean('admission_sms')->default(1);
+            $table->boolean('admission_confirm_sms')->default(1);
 
             $table->timestamps();
         });

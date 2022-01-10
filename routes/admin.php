@@ -3,6 +3,7 @@
 use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FeeCollectionController;
 
 Route::group(['prefix'=>'admin'],function(){
 
@@ -278,14 +279,11 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy']);
 //Route for fee setup ends here
 
-
-////  Fee Setup Start
-//    Route::get('fee/fee-setup/{classId}',[FeeSetupController::class,'fee_setup'])->name('fee-setup.fee_setup');
-//    Route::post('fee/fee-setup/store/{classId}',[FeeSetupController::class,'store_fee_setup'])->name('fee-setup.store');
-//    Route::get('fee/fee-setup/list/{classId}',[FeeSetupController::class,'list_fee_setup'])->name('fee-setup.list');
-//    Route::get('fee/fee-setup/show/{id}', [FeeSetupController::class,'show_fee_setup'])->name('fee-setup.show');
-//    Route::patch('fee_setup/{id}/update',[FeeSetupController::class,'update_fee_setup'])->name('fee-setup.update');
-////  Fee Setup End
+    //Route for fee collection starts here
+    Route::get('fee/fee-collection',[FeeCollectionController::class,'index']);
+    Route::get('fee/fee-collection/view',[FeeCollectionController::class,'view']);
+    Route::post('fee/fee-collection/store',[FeeCollectionController::class,'store']);
+    //Route for fee collection ends here
 
     // Gallery Routes start
     Route::get('gallery/image','GalleryController@index')->name('settings.image');

@@ -76,7 +76,7 @@ class FeeSetupController extends Controller
                 }
             }]
         ])
-            ->orderBy('id','desc')->with('studentID')
+            ->orderBy('id','desc')->with('student')
             ->paginate(10);
         return view('admin.feeSetup.index',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
     }
