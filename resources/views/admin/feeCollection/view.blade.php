@@ -160,26 +160,26 @@
                                         {{ Form::open(['url'=>'admin/fee/fee-collection/store','method'=>'POST', 'class'=>'form-horizontal']) }}
                                         <div class="row">
                                             <div class="form-row">
-                                                {{ Form::hidden('user_id', $user->id,['class'=>'form-control','placeholder'=>'']) }}
+                                                {{ Form::hidden('student_id', $student->id,['class'=>'form-control','placeholder'=>'']) }}
                                                 @foreach($feeSetup as $fee)
                                                 {{ Form::hidden('fee_setup_id', $fee->id,['class'=>'form-control','placeholder'=>'']) }}
                                                 @endforeach
                                                 <div class="col">
                                                     <label for="">Date</label>
                                                     <div class="input-group">
-                                                        {{ Form::date('date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
+                                                        {{ Form::date('payment_date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <label for="">{{ __('Balance') }}</label>
                                                     <div class="input-group">
-                                                        {{ Form::text('',null,['class'=>'form-control','placeholder'=>'Balance']) }}
+                                                        {{ Form::text('balance',null,['class'=>'form-control','placeholder'=>'Balance']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <label for="">Pay Method</label>
                                                     <div class="input-group">
-                                                        {{ Form::select('pay_method',$payment_method,null,['class'=>'form-control','placeholder'=>'Select Method']) }}
+                                                        {{ Form::select('payment_method',$payment_method,null,['class'=>'form-control','placeholder'=>'Select Method']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use App\StudentPayment;
 use Illuminate\Support\Facades\DB;
 
 class FeeCollectionController extends Controller
@@ -28,7 +29,8 @@ class FeeCollectionController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
+        StudentPayment::query()->create($request->all());
+        return redirect('admin/fee/fee-collection')->with('message','Added Successfully!');
     }
 
 }

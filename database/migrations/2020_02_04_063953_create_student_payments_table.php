@@ -16,18 +16,11 @@ class CreateStudentPaymentsTable extends Migration
         Schema::create('student_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('section_id');
-            $table->unsignedBigInteger('group_id')->nullable();
-            $table->unsignedBigInteger('session_id');
-            $table->integer('month');
-            $table->double('setup_amount',2);
-            $table->double('transport',2)->nullable();
-            $table->double('arrears',2)->nullable();
-            $table->double('discount',2)->nullable();
-            $table->double('fine',2)->nullable();
-            $table->double('due',2)->nullable();
-            $table->double('paid_amount',2);
+            $table->unsignedBigInteger('fee_setup_id');
+            $table->string('payment_date');
+            $table->double('balance',2)->nullable();
+            $table->integer('payment_method')->nullable();
+            $table->double('paid_amount',2)->nullable();
             $table->timestamps();
         });
     }
