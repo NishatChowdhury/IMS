@@ -284,6 +284,9 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('fee/fee-collection',[FeeCollectionController::class,'index']);
     Route::get('fee/fee-collection/view',[FeeCollectionController::class,'view']);
     Route::post('fee/fee-collection/store',[FeeCollectionController::class,'store']);
+    Route::get('fee/all-collections',[FeeCollectionController::class,'allCollections']);
+    Route::get('fee/all-collection/report/{id}',[FeeCollectionController::class,'report']);
+
     //Route for fee collection ends here
 
     // Gallery Routes start
