@@ -50,6 +50,7 @@ class MenuController extends Controller
             'notice' => 'Notice',
             'internal-result'=>'Internal Result',
             'teacher' => 'Teacher',
+            'applySchool' => 'Online Admission(School)',
         ];
         $menus = Menu::query()
             ->where('menu_id',null)

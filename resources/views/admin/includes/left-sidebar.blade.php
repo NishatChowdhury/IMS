@@ -245,6 +245,12 @@
                             <p>Students </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ action('OnlineApplyController@index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Online Application </p>
+                        </a>
+                    </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('StudentController@optional') }}" class="nav-link {{ isActive('student/optional') }}">
                             <i class="far fa-circle nav-icon"></i>

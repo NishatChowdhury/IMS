@@ -150,4 +150,6 @@ class FeeSetupController extends Controller
         $fee_setup->delete();
         return redirect('admin/fee/fee-setup/view')->with('message','Deleted Successfully!');
     }
+
+  
 }

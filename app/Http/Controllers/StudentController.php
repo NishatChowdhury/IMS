@@ -4,27 +4,34 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Group;
+use App\Father;
 use App\Gender;
+use App\Mother;
 use App\Classes;
 use App\Country;
 use App\Section;
 use App\Session;
 use App\Student;
 use App\Division;
+use App\Guardian;
 use App\Religion;
+use App\Student1;
 use App\BloodGroup;
+//use App\State;
 use App\SessionClass;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\OnlineSubject;
-//use App\State;
 use App\StudentPayment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use App\Repository\StudentRepository;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\StoreStudentRequest;
+use App\StudentAcademic;
 use Symfony\Component\Console\Input\Input;
 
 class StudentController extends Controller
@@ -42,6 +49,8 @@ class StudentController extends Controller
 
     public function index(Request $request,Student $student){
         //dd($request->all());
+
+
         $s = $student->newQuery()->whereIn('session_id',activeYear());
 
         if($request->get('studentId')){
@@ -143,7 +152,8 @@ class StudentController extends Controller
             return Response::download($filename, 'students.csv', $headers);
         }
 
-        $students = $s->orderBy('rank')->paginate(100);
+        $students = Student1::orderBy('studentId')->paginate(100);
+        // $students = $s->orderBy('rank')->paginate(100);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
     }
@@ -163,38 +173,32 @@ class StudentController extends Controller
 
     public function create(){
         $repository = $this->repository;
-        return view('admin.student.add', compact('repository'));
+        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+        return view('admin.student.add', compact('repository','academicClass'));
     }
 
     public function store(Request $req){
 
+
         $rules = [
-            'session_id' => 'required',
-            'class_id' => 'required',
             'name' => 'required',
-            'rank' => 'required',
+            'name_bn' => 'required',
+            'birth_certificate' => 'required|integer',
+            'nationality' => 'required',
+            'disability' => 'required',
             'studentId' => 'required',
             'status' => 'required',
-            'rank' => 'required',
-            'rank' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
-            'father' => 'required',
-            'mother' => 'required',
             'blood_group_id' => 'required',
             'religion_id' => 'required',
-            'ssc_roll' => 'required',
-            'ssc_registration' => 'required',
             'address' => 'required',
             'area' => 'required',
             'zip' => 'required',
-            'division_id' => 'required',
             'city_id' => 'required',
             'country_id' => 'required',
             'mobile' => 'required',
             'email' => 'required',
-            'father_mobile' => 'required',
-            'mother_mobile' => 'required',
         ];
     
         $customMessages = [
@@ -205,16 +209,19 @@ class StudentController extends Controller
     
         $this->validate($req, $rules, $customMessages);
 
+       
 
-        //dd($req->all());
-        $academicClassId = AcademicClass::query()
-            ->where('session_id',$req->session_id)
-            ->where('class_id',$req->class_id)
-            ->where('section_id',$req->section_id)
-            ->where('group_id',$req->group_id)
-            ->first();
 
-        $req['academic_class_id'] = $academicClassId->id ?? null;
+
+        // //dd($req->all());
+        // $academicClassId = AcademicClass::query()
+        //     ->where('session_id',$req->session_id)
+        //     ->where('class_id',$req->class_id)
+        //     ->where('section_id',$req->section_id)
+        //     ->where('group_id',$req->group_id)
+        //     ->first();
+
+        // $req['academic_class_id'] = $academicClassId->id ?? null;
 
         $data = $req->all();
       
@@ -224,17 +231,68 @@ class StudentController extends Controller
             $data = $req->except('pic');
             $data['image'] = $image;
             try{
-                Student::query()->create($data);
+                $studentStore = Student1::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
             }
         }else{
             try{
-                Student::query()->create($data);
+                $studentStore = Student1::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
             }
         }
+
+        $getAcademicClass = AcademicClass::find($req->academic_class_id);
+
+
+
+        $student_academicStore = StudentAcademic::create([
+            'academic_class_id' => $req->academic_class_id,
+            'student1_id' => $studentStore->id,
+            'session_id' => $getAcademicClass->session_id,
+            'class_id' => $getAcademicClass->class_id,
+            'section_id' => $getAcademicClass->section_id,
+            'group_id' => $getAcademicClass->group_id,
+            'shift_id' => 0,
+            'rank' => $req->rank,
+        ]);
+
+        $fatherStore = Father::create([
+            'f_name' => $req->f_name,
+            'student1_id' => $studentStore->id,
+            'f_name_bn' => $req->f_name_bn,
+            'f_mobile' => $req->f_mobile,
+            'f_email' => $req->f_email,
+            'f_dob' => $req->f_dob,
+            'f_occupation' => $req->f_occupation,
+            'f_nid' => $req->f_nid,
+            'f_birth_certificate' => $req->f_birth_certificate,
+        ]);
+        
+        $motherStore = Mother::create([
+            'm_name' => $req->m_name,
+            'student1_id' => $studentStore->id,
+            'm_name_bn' => $req->m_name_bn,
+            'm_mobile' => $req->m_mobile,
+            'm_email' => $req->m_email,
+            'm_dob' => $req->m_dob,
+            'm_occupation' => $req->m_occupation,
+            'm_nid' => $req->m_nid,
+            'm_birth_certificate' => $req->m_birth_certificate,
+        ]);
+
+        $guardianStore = Guardian::create([
+            'g_name' => $req->g_name,
+            'student1_id' => $studentStore->id,
+            'g_name_bn' => $req->g_name_bn,
+            'g_mobile' => $req->g_mobile,
+            'g_email' => $req->g_email,
+            'g_dob' => $req->g_dob,
+            'g_occupation' => $req->g_occupation,
+            'g_nid' => $req->g_nid,
+            'g_birth_certificate' => $req->g_birth_certificate,
+        ]);
 
         return redirect('admin/students')->with('success','Student Added Successfully');
 
@@ -242,42 +300,48 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $student = Student::query()->findOrFail($id);
+        // return $req->path();
+
+
+        $student = Student1::query()->findOrFail($id);
+        $father = Father::query()->where('student1_id', $id)->first();
+        $mother = Mother::query()->where('student1_id', $id)->first();
+        $guardian = Guardian::query()->where('student1_id', $id)->first();
+        $studentAcademic = StudentAcademic::query()->where('student1_id', $id)->first();
+        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+
+        // $student = collect([$student, $father, $mother, $guardian]);
+
+
+
         $repository = $this->repository;
-        return view('admin.student.edit',compact('student','repository'));
+        return view('admin.student.edit',compact('student','repository','father','mother','guardian','studentAcademic','academicClass'));
     }
 
     public function update($id, Request $req)
     {
-        $student = Student::query()->findOrFail($id);
+        // return $req->all();
+        $student = Student1::query()->findOrFail($id);
 
         $rules = [
-            'session_id' => 'required',
-            'class_id' => 'required',
             'name' => 'required',
-            'rank' => 'required',
-            'studentId' => 'required',
+            'name_bn' => 'required',
+            'birth_certificate' => 'required|integer',
+            'nationality' => 'required',
+            'disability' => 'required',
+            'studentId' => 'required|integer',
             'status' => 'required',
-            'rank' => 'required',
-            'rank' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
-            'father' => 'required',
-            'mother' => 'required',
             'blood_group_id' => 'required',
             'religion_id' => 'required',
-            'ssc_roll' => 'required',
-            'ssc_registration' => 'required',
             'address' => 'required',
             'area' => 'required',
             'zip' => 'required',
-            'division_id' => 'required',
             'city_id' => 'required',
             'country_id' => 'required',
             'mobile' => 'required',
             'email' => 'required',
-            'father_mobile' => 'required',
-            'mother_mobile' => 'required',
         ];
     
         $customMessages = [
@@ -287,14 +351,14 @@ class StudentController extends Controller
         ];
 
         //dd($req->all());
-        $academicClassId = AcademicClass::query()
-            ->where('session_id',$req->session_id)
-            ->where('class_id',$req->class_id)
-            ->where('section_id',$req->section_id)
-            ->where('group_id',$req->group_id)
-            ->first();
+        // $academicClassId = AcademicClass::query()
+        //     ->where('session_id',$req->session_id)
+        //     ->where('class_id',$req->class_id)
+        //     ->where('section_id',$req->section_id)
+        //     ->where('group_id',$req->group_id)
+        //     ->first();
 
-        $req['academic_class_id'] = $academicClassId->id ?? null;
+        // $req['academic_class_id'] = $academicClassId->id ?? null;
 
         $data = $req->all();
         //dd($data);
@@ -312,6 +376,60 @@ class StudentController extends Controller
             $student->update($data);
         }
 
+
+        $getAcademicClass = AcademicClass::find($req->academic_class_id);
+        
+        $student_academicStore = StudentAcademic::findOrFail($req->sa_id)->update([
+            'academic_class_id' => $req->academic_class_id,
+            'student1_id' => $student->id,
+            'session_id' => $getAcademicClass->session_id,
+            'class_id' => $getAcademicClass->class_id,
+            'section_id' => $getAcademicClass->section_id,
+            'group_id' => $getAcademicClass->group_id,
+            'shift_id' => 0,
+            'rank' => $req->rank,
+        ]);
+
+        $fatherStore = Father::findOrFail($req->f_id)->update([
+            'f_name' => $req->f_name,
+            'student1_id' => $student->id,
+            'f_name_bn' => $req->f_name_bn,
+            'f_mobile' => $req->f_mobile,
+            'f_email' => $req->f_email,
+            'f_dob' => $req->f_dob,
+            'f_occupation' => $req->f_occupation,
+            'f_nid' => $req->f_nid,
+            'f_birth_certificate' => $req->f_birth_certificate,
+        ]);
+        
+        $motherStore = Mother::findOrFail($req->m_id)->update([
+            'm_name' => $req->m_name,
+            'student1_id' => $student->id,
+            'm_name_bn' => $req->m_name_bn,
+            'm_mobile' => $req->m_mobile,
+            'm_email' => $req->m_email,
+            'm_dob' => $req->m_dob,
+            'm_occupation' => $req->m_occupation,
+            'm_nid' => $req->m_nid,
+            'm_birth_certificate' => $req->m_birth_certificate,
+        ]);
+
+        $guardianStore = Guardian::findOrFail($req->g_id)->update([
+            'g_name' => $req->g_name,
+            'student1_id' => $student->id,
+            'g_name_bn' => $req->g_name_bn,
+            'g_mobile' => $req->g_mobile,
+            'g_email' => $req->g_email,
+            'g_dob' => $req->g_dob,
+            'g_occupation' => $req->g_occupation,
+            'g_nid' => $req->g_nid,
+            'g_birth_certificate' => $req->g_birth_certificate,
+        ]);
+
+
+
+
+
         \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
 
         return redirect('admin/students');
@@ -319,10 +437,16 @@ class StudentController extends Controller
     }
 
     public function loadStudentId(Request $request){
-        $academicYear = substr(trim(Session::query()->where('id',$request->academicYear)->first()->year),-2);
-        $incrementId = Student::query()->max('id');
+
+        $id = $request->academicYear;
+
+       $getSessionId =  AcademicClass::where('id', $id)->first();
+
+        $academicYear = substr(trim(Session::query()->where('id',$getSessionId->id)->first()->year),-2);
+        $incrementId = Student1::query()->max('id');
         $increment = $incrementId + 1;
         $studentId = 'S'.$academicYear.$increment;
+        // return $academicYear;
         return $studentId;
     }
 
@@ -669,7 +793,7 @@ class StudentController extends Controller
 
     public function studentProfile($studentId)
     {
-        $student = Student::query()->findOrFail($studentId);
+        $student = Student1::query()->findOrFail($studentId);
         $payments = StudentPayment::query()->where('session_id',activeYear())->where('student_id',$studentId)->get();
 
         return view('admin.student.studentProfile',compact('student','payments'));

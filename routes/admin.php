@@ -3,6 +3,7 @@
 use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OnlineApplyController;
 
 Route::group(['prefix'=>'admin'],function(){
 
@@ -300,5 +301,15 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('gallery/album/store','AlbumController@store');
     Route::delete('gallery/album/delete/{id}','AlbumController@destroy');
 // Gallery Routes ends
+
+    Route::get('database-backup', [HomeController::class, 'database']);
+    Route::get('download-database', [HomeController::class, 'downloadDatabase']);
+    Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
+
+    Route::get('online-application', [OnlineApplyController::class, 'index']);
+    Route::get('online-application-view/{id}', [OnlineApplyController::class, 'applyStudentProfile']);
+    Route::get('get-apply-info', [OnlineApplyController::class, 'getApplyInfo']);
+    Route::get('get-apply-info-session', [OnlineApplyController::class, 'getApplyInfoSession']);
+    
 
 });

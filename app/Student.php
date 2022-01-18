@@ -142,5 +142,23 @@ class Student extends Model
         return $this->hasMany(RawAttendance::class,'registration_id','studentId');
     }
 
+    public function feeSetup()
+    {
+        return $this->hasMany(FeeSetup::class);
+    }
+    public function fee_setup_pivot()
+    {
+        return $this->hasMany(FeeSetupPivot::class);
+    }
+
+    public function academicClasses()
+    {
+        return $this->belongsTo(Classes::class,'class_id');
+    }
+
+    public function month()
+    {
+        return $this->belongsTo(Month::class);
+    }
 
 }

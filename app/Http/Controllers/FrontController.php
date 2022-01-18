@@ -2,37 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\AcademicCalender;
-use App\AdmissionFee;
-use App\Album;
-use App\AppliedStudent;
 use App\Bank;
-use App\Classes;
-use App\ClassSchedule;
-use App\ExamResult;
-use App\Feature;
-use App\Gallery;
-use App\GalleryCategory;
-use App\Group;
-use App\ImportantLink;
+use App\City;
 use App\Mark;
 use App\Menu;
-use App\MeritList;
-use App\Notice;
-use App\NoticeCategory;
 use App\Page;
-use App\Playlist;
-use App\Repository\FrontRepository;
-use App\Session;
-use App\Slider;
+use App\Album;
+use App\Group;
 use App\Staff;
+use App\Gender;
+use App\Notice;
+use App\Slider;
+use App\Classes;
+use App\Country;
+use App\Feature;
+use App\Gallery;
+use App\Session;
 use App\Student;
+use App\Division;
+use App\Playlist;
+use App\Religion;
 use App\Syllabus;
-use App\UpcomingEvent;
+use App\MeritList;
 use Carbon\Carbon;
+use App\BloodGroup;
+use App\ExamResult;
+use App\AdmissionFee;
+use App\ClassSchedule;
+use App\ImportantLink;
+use App\UpcomingEvent;
+use App\AppliedStudent;
+use App\NoticeCategory;
+use App\GalleryCategory;
+use App\AcademicCalender;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use App\Repository\FrontRepository;
+use Illuminate\Support\Facades\Artisan;
+use PhpParser\Builder\Class_;
 
 class FrontController extends Controller
 {
@@ -543,7 +550,10 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-        $content = Menu::query()->where('uri',$uri)->first();
+        // dd($request);
+         $content = Menu::query()->where('uri',$uri)->first();
+         //dd($uri);
+        // dd($content);
 
         if($content->type == 3){
 
@@ -585,6 +595,19 @@ class FrontController extends Controller
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
+            }
+            if($content->system_page === 'applySchool'){
+                // $playlists = Playlist::query()->get();
+                $data = [];
+                $data['gender'] = Gender::all()->pluck('name', 'id');
+                $data['blood'] = BloodGroup::all()->pluck('name', 'id');
+                $data['divi'] = Division::all()->pluck('name', 'id');
+                $data['class'] = Classes::all()->pluck('name', 'id');
+                $data['group'] = Group::all()->pluck('name', 'id');
+                $data['city'] = City::all()->pluck('name', 'id');
+                $data['country'] = Country::all()->pluck('name', 'id');
+                $data['religion'] = Religion::all()->pluck('name','id');
+                return view('front.pages.'.$content->system_page,compact('content','data'));
             }
 
             if($content->system_page === 'internal-result'){

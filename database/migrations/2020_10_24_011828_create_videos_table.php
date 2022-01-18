@@ -1,5 +1,6 @@
 <?php
 
+use App\Playlist;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +15,11 @@ class CreateVideosTable extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title');
-            $table->unsignedBigInteger('playlist_id');
+            $table->foreignId(Playlist::class);
             $table->text('code');
-            $table->ingeter('order', 11);
+            $table->integer('order');
             $table->timestamps();
         });
     }

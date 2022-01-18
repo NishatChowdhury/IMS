@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-light">
-                        {{-- @if($errors->any())
+                        @if($errors->any())
                             <div class="alert alert-danger" role="alert">
                                 <ul>
                                     @foreach($errors->all() as $error)
@@ -36,7 +36,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif --}}
+                        @endif
                         <!-- /.card-header -->
                         <!-- form start -->
                         {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
