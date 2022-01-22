@@ -147,6 +147,8 @@ class InstitutionController extends Controller
     }
 
     public function storeAcademicClass(Request $req){
+
+        // return $req->all();
         AcademicClass::query()->create($req->all());
         return redirect('institution/academic-class');
     }

@@ -1,0 +1,41 @@
+<?php
+
+use App\Student;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateFathersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('fathers', function (Blueprint $table) {
+            $table->id();
+            $table->string('f_name');
+            $table->string('f_name_bn');
+            $table->foreignId('student1_id');
+            $table->string('f_mobile');
+            $table->string('f_email')->nullable();
+            $table->string('f_dob');
+            $table->string('f_occupation');
+            $table->string('f_nid');
+            $table->string('f_birth_certificate');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('fathers');
+    }
+}
