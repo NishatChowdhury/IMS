@@ -36,12 +36,12 @@
                                 <form action="{{url('admin/fee/fee-setup/view')}}" method="GET" role="search">
                                     <div class="input-group">
                                         <input type="text" class="form-control mr-2" name="term" placeholder="Search By Academic ID" id="term">
-                                            <span class="input-group-btn mr-5 mt-1">
+                                            <span class="input-group-btn mr-2">
                                                 <button class="btn btn-info" type="submit" title="Search By Academic ID">
                                                     <span class="fas fa-search"></span>
                                                 </button>
                                             </span>
-                                            <a href="{{url('admin/fee/fee-setup/view')}}" class=" mt-1">
+                                            <a href="{{url('admin/fee/fee-setup/view')}}">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-danger" type="button" title="Refresh page">
                                                         <span class="fas fa-sync-alt"></span>
@@ -57,18 +57,18 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>{{ __('Academic Class ID') }}</th>
-                                        <th>Student ID</th>
-                                        <th>Month</th>
-                                        <th>Year</th>
-                                        <th>Action</th>
+                                        <th>{{ __('Student Name') }}</th>
+                                        <th>{{ __('Month') }}</th>
+                                        <th>{{ __('Year') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($fees as $fee)
                                     <tr>
                                         <td>{{$fee->academicClass->name}}</td>
-                                        <td>{{$fee->studentId->name}}</td>
-                                        <td>{{$fee->month_id}}</td>
+                                        <td>{{$fee->student->name}}</td>
+                                        <td>{{$fee->month->name}}</td>
                                         <td>{{$fee->year}}</td>
                                         <td>
                                             {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$fee->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
