@@ -50,6 +50,11 @@ class StudentRepository
     {
         return AcademicClass::query()->whereIn('session_id',activeYear())->get();
     }
+    public function academicClassesForForm()
+    {
+        return AcademicClass::with('classes')->get()->pluck('class_id','id');
+        // return AcademicClass::query()->whereIn('session_id',activeYear())->get()->pluck('name','id');
+    }
     public function classes()
     {
         return Classes::all()->pluck('name','id');

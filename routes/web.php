@@ -1,15 +1,17 @@
 <?php
 
-use App\AcademicClass;
-use App\ExamResult;
-use App\Grade;
-use App\Http\Controllers\FeeSetupController;
 use App\Mark;
-use App\RawAttendance;
+use App\Grade;
 use App\Student;
 use Carbon\Carbon;
+use App\ExamResult;
+use App\AcademicClass;
+use App\RawAttendance;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\FeeSetupController;
+use App\Http\Controllers\OnlineApplyController;
 
 /** Dashboard Routes */
 Route::get('dashboard','DashboardController@index');
@@ -75,7 +77,17 @@ Route::get('/tci','FrontController@tci');
 //Result  (Front-End)
 Route::get('/internal-exam','FrontController@internal_exam');
 Route::get('/public-exam','FrontController@public_exam');
+// Route::get('/admission','FrontController@admission');
 Route::get('/admission','FrontController@admission');
+
+
+//online apply (Front-End)
+// Route::get('/online-apply', function(){
+//     return "df";
+// });
+Route::get('/online-apply',[OnlineApplyController::class,'onlineApply']);
+Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
+Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
 //INFORMATION
 Route::get('/sports-n-culture-program','FrontController@sports_n_culture_program');
@@ -408,6 +420,7 @@ Route::get('playlist/{id}','FrontController@playlist');
 Route::post('admission-form-submit','AppliedStudentController@store');
 Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 /** Applied Student */
+
 
 
 

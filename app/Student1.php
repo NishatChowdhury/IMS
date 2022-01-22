@@ -2,60 +2,63 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Student1 extends Model
 {
-    protected $dates = ['dob'];
+    use HasFactory;
 
     protected $fillable = [
         'name',
+        'name_bn',
         'studentId',
-        'academic_class_id',
-        'session_id',
-        'class_id',
-        'section_id',
-        'group_id',
-        'rank',
-        'subject_id',
-        'father',
-        'mother',
         'gender_id',
         'mobile',
         'dob',
+        'birth_certificate',
         'blood_group_id',
         'religion_id',
+        'nationality',
+        'disability',
+        'freedom_fighter',
         'image',
         'address',
         'area',
         'zip',
-        //'division_id',
-        //'state_id',
         'city_id',
         'country_id',
         'email',
-        'father_mobile',
-        'mother_mobile',
-        'notification_type_id',
         'status',
-        'bcn',
-        'father_occupation',
-        'mother_occupation',
-        'other_guardian',
-        'guardian_national_id',
-        'yearly_income',
-        'guardian_address',
-        'bank_slip',
-        'ssc_roll',
-        'location_id',
-        'shift_id',
-        'subjects',
-        'ssc_roll',
-        'ssc_registration',
-        'ssc_session',
-        'ssc_year',
-        'ssc_board'
+        // //'division_id',
+        // //'state_id',
+        // 'city_id',
+        // 'country_id',
+        // 'email',
+        // 'father_mobile',
+        // 'mother_mobile',
+        // 'notification_type_id',
+        // 'status',
+        // 'bcn',
+        // 'father_occupation',
+        // 'mother_occupation',
+        // 'other_guardian',
+        // 'guardian_national_id',
+        // 'yearly_income',
+        // 'guardian_address',
+        // 'bank_slip',
+        // 'ssc_roll',
+        // 'location_id',
+        // 'shift_id',
+        // 'subjects',
+        // 'ssc_roll',
+        // 'ssc_registration',
+        // 'ssc_session',
+        // 'ssc_year',
+        // 'ssc_board'
     ];
+
+
 
     public function academicClass()
     {
@@ -160,5 +163,18 @@ class Student extends Model
     {
         return $this->belongsTo(Month::class);
     }
+    public function father()
+    {
+        return $this->hasOne(Father::class);
+    }
+    public function mother()
+    {
+        return $this->hasOne(Mother::class);
+    }
+    public function guardian()
+    {
+        return $this->hasOne(Guardian::class);
+    }
+
 
 }

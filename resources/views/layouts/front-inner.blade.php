@@ -43,6 +43,8 @@
         <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
     @endif
 
+
+
 </head>
 
 <body>

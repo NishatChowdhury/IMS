@@ -3,8 +3,9 @@
 namespace App\Console;
 
 use App\Console\Commands\AttendanceSMS;
-use App\Console\Commands\DownloadAttendances;
+use App\Console\Commands\DatabaseBackup;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\DownloadAttendances;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         DownloadAttendances::class,
-        AttendanceSMS::class
+        AttendanceSMS::class,
+        DatabaseBackup::class
     ];
 
     /**
@@ -31,6 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('CronJob:AttendanceSMS')->everyMinute();
         $schedule->command('CronJob:GenerateAttendances')->everyMinute();
         $schedule->command('CronJob:AbsentSMS')->everyMinute();
+        $schedule->command('db:backup')->daily();
 
     }
 

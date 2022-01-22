@@ -105,13 +105,9 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Rank</th>
                                 <th>Student</th>
-                                <th>Class</th>
+                                <th>Mobile</th>
                                 <th>Father/Mother</th>
-                                {{--<th>Mother</th>--}}
-                                {{--<th>Outstanding</th>--}}
-                                {{--<th>Status</th>--}}
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
@@ -119,23 +115,14 @@
                             <tbody>
                             @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->studentId }}<br>{{ $student->ssc_roll }}</td>
-                                    <td>{{ $student->rank }}</td>
-                                    <td>
-                                        {{ $student->name }}<br>
-                                        @if($student->status == 2)
-                                            <span style="color:red">Dropout</span>
-                                        @endif
+                                    <td>{{ $student->studentId }}</td>
+                                    <td>{{ $student->name }}</td>
+                                    <td> {{ $student->mobile }}</td>
+                                    <td>    {{ $student->father ? $student->father->f_name : ''}} ||<br>
+                                            {{ $student->mother ? $student->mother->m_name : ''}}
+
+                                           
                                     </td>
-                                    <td>
-                                        {{ $student->classes->name ?? '' }}
-                                        {{ $student->section ? $student->section->name : ''}}
-                                        {{ $student->group ? $student->group->name : ''}}
-                                    </td>
-                                    <td>{{ $student->father }}<br>{{ $student->mother }}</td>
-                                    {{--<td>{{ $student->mother }}</td>--}}
-                                    {{--<td>0.00%</td>--}}
-{{--                                    <td>{{ $student->status }}</td>--}}
                                     <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
                                         <a href="{{ action('StudentController@studentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>

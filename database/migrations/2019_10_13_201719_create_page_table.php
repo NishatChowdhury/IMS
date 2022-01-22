@@ -20,7 +20,7 @@ class CreatePageTable extends Migration
             $table->text('content');
             $table->string('image');
             $table->integer('order');
-            $table->string('file')>nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

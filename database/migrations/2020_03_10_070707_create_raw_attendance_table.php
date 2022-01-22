@@ -14,13 +14,13 @@ class CreateRawAttendanceTable extends Migration
     public function up()
     {
         Schema::create('raw_attendances', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('registration_id');
-            $table->string('access_id')->nullable();
+            $table->id();
+            $table->unsignedBigInteger('registration_id');
+            $table->unsignedBigInteger('access_id');
             $table->string('department')->nullable();
-            $table->string('unit_id')->nullable();
+            $table->unsignedBigInteger('unit_id');
             $table->string('card')->nullable();
-            $table->integer('sms_sent', 11);
+            $table->integer('sms_sent');
             $table->string('unit_name');
             $table->string('user_name');
             $table->date('access_date')->nullable();
