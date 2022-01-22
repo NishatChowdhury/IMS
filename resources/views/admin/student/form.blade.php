@@ -265,7 +265,7 @@ option.customOption {
                                                     {{ $item->id == $studentAcademic->academic_class_id ? 'selected' : '' }}
                                                     @endisset
                                                     >
-                                                    {{ $item->classes->name }}-{{ $item->section->name }}-{{ $item->group->name }}-{{ $item->sessions->year }}
+                                                    {{ $item->classes->name ?? '' }}-{{ $item->section->name ?? '' }}-{{ $item->group->name ?? '' }}-{{ $item->sessions->year }}
                                                     </option>
                                                   @endforeach
 

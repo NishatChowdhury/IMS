@@ -67,15 +67,21 @@ class TransportController extends Controller
             }
             if($request->get('class_id')){
                 $class = $request->get('class_id');
-                $s->where('class_id',$class);
+                $s->whereHas('academic',function($query)use($class){
+                    $query->where('class_id',$class);
+                });
             }
             if($request->get('section_id')){
                 $section = $request->get('section_id');
-                $s->where('section_id',$section);
+                $s->whereHas('section',function($query)use($section){
+                    $query->where('section_id',$section);
+                });
             }
             if($request->get('group_id')){
                 $group = $request->get('group_id');
-                $s->where('group_id',$group);
+                $s->whereHas('group',function($query)use($group){
+                    $query->where('group_id',$group);
+                });
             }
 
             $students = $s->get();
@@ -84,9 +90,9 @@ class TransportController extends Controller
         }
 
         $repository = $this->repository;
-        $trnsport_fee = Location::query()->pluck('name','id');
+        $transport_fee = Location::query()->pluck('name','id');
 
-        return view('admin.account.transport.location.assign-location',compact('repository','students','trnsport_fee'));
+        return view('admin.account.transport.location.assign-location',compact('repository','students','transport_fee'));
     }
 
     public function transport_assign(Request $request)
@@ -105,6 +111,8 @@ class TransportController extends Controller
                 ]);
             }
         }
+
+        return redirect()->back();
     }
 
 
