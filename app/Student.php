@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
     protected $dates = ['dob'];
 
-    protected $table = 'student1s';
+    protected $table = 'students';
 
     protected $fillable = [
         'name',
@@ -75,7 +76,12 @@ class Student extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function sessions()
+    /**
+     * A student is belongs to a session
+     *
+     * @return BelongsTo
+     */
+    public function sessions(): BelongsTo
     {
         return $this->belongsTo(Session::class,'session_id');
     }
@@ -169,9 +175,9 @@ class Student extends Model
      *
      * @return HasMany
      */
-    public function academic(): HasMany
+    public function academics(): HasMany
     {
-        return $this->hasMany(StudentAcademic::class,'student1_id');
+        return $this->hasMany(StudentAcademic::class)->latest();
     }
 
 }
