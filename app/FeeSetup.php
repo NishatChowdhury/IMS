@@ -30,12 +30,12 @@ class FeeSetup extends Model
         return $this->belongsTo(Classes::class);
     }
 
-    public function studentID()
-    {
-        return $this->belongsTo(Student::class,'student_id');
-    }
+    // public function studentID()
+    // {
+    //     return $this->belongsTo(Student::class,'student_id');
+    // }
 
-    public function fee_setup_pivot(){
+    public function feeSetupPivot(){
         return $this->hasMany(FeeSetupPivot::class);
     }
 
@@ -47,7 +47,8 @@ class FeeSetup extends Model
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
-}
+    }
+
     /**
      * A fee setup is belongs to a month
      *
@@ -56,6 +57,15 @@ class FeeSetup extends Model
     public function month(): BelongsTo
     {
         return $this->belongsTo(Month::class);
+    }
+/**
+     * A fee setup is belongs to a Section
+     *
+     * @return BelongsTo
+     */
+    public function section(): BelongsTo
+    {
+        return $this->belongsTo(Section::class);
     }
 
 }

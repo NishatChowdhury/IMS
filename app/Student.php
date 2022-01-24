@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
     protected $dates = ['dob'];
+
+    protected $table = 'student1s';
 
     protected $fillable = [
         'name',
@@ -159,6 +162,16 @@ class Student extends Model
     public function month()
     {
         return $this->belongsTo(Month::class);
+    }
+
+    /**
+     * A student has many academic classes
+     *
+     * @return HasMany
+     */
+    public function academic(): HasMany
+    {
+        return $this->hasMany(StudentAcademic::class,'student1_id');
     }
 
 }

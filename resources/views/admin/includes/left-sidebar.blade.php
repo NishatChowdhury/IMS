@@ -246,7 +246,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action('OnlineApplyController@index') }}" class="nav-link">
+                        <a href="{{ url('online-application') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Online Application </p>
                         </a>
@@ -450,6 +450,18 @@
                             <a href="{{ url('admin/fee/fee-setup/view') }}" class="nav-link {{ isActive('fee-setup/view') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee View') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/fee-collection') }}" class="nav-link {{ isActive('fee/fee-collection') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Fee Collection') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/all-collections') }}" class="nav-link {{ isActive('fee/all-collections') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Fee Collection Report') }}</p>
                             </a>
                         </li>
 
@@ -930,6 +942,13 @@
             {{--                </ul>--}}
             {{--            </li>--}}
 
+            <li class="nav-item">
+                <a href="{{ route('admin.backup') }}" class="nav-link">
+                    <i class="nav-icon fas fa-life-ring"></i>
+
+                    <p>{{ __('Database Backup') }}</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-life-ring"></i>

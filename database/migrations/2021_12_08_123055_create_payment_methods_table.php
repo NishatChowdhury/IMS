@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColStudents extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddColStudents extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->unsignedBigInteger('shift_id')->after('notification_type_id')->nullable();
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddColStudents extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('payment_methods');
     }
 }
