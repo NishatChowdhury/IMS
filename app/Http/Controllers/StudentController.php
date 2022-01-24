@@ -442,7 +442,7 @@ class StudentController extends Controller
 
        $getSessionId =  AcademicClass::where('id', $id)->first();
 
-        $academicYear = substr(trim(Session::query()->where('id',$getSessionId->id)->first()->year),-2);
+        $academicYear = substr(trim(Session::query()->where('id',$getSessionId->session_id)->first()->year),-2);
         $incrementId = Student1::query()->max('id');
         $increment = $incrementId + 1;
         $studentId = 'S'.$academicYear.$increment;

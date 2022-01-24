@@ -337,59 +337,59 @@ option.customOption {
                                     <div class="card-body cutom_shadow">
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_name','Father Name',['class'=>'control-label']) }}
-                                                {{ Form::text('f_name', !empty($father) ? $father->f_name : null,['class'=>'form-control', 'placeholder'=>'Father Name']) }}
+                                                {{ Form::label('f_name',' Name',['class'=>'control-label']) }}
+                                                {{ Form::text('f_name', !empty($father) ? $father->f_name : null,['class'=>'form-control', 'placeholder'=>' Name']) }}
                                                 @error('fname')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_name_bn','Father Name Bangla',['class'=>'control-label']) }}
-                                                {{ Form::text('f_name_bn',!empty($father) ? $father->f_name_bn : null,['class'=>'form-control', 'placeholder'=>'Father Name Bangla']) }}
+                                                {{ Form::label('f_name_bn',' Name Bangla',['class'=>'control-label']) }}
+                                                {{ Form::text('f_name_bn',!empty($father) ? $father->f_name_bn : null,['class'=>'form-control', 'placeholder'=>' Name Bangla']) }}
                                                 @error('f_name_bn')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_mobile','Father Mobile',['class'=>'control-label']) }}
-                                                {{ Form::text('f_mobile',!empty($father) ? $father->f_mobile : null,['class'=>'form-control', 'placeholder'=>'Father Mobile']) }}
+                                                {{ Form::label('f_mobile',' Mobile',['class'=>'control-label']) }}
+                                                {{ Form::text('f_mobile',!empty($father) ? $father->f_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
                                                 @error('f_mobile')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_email','Father Email',['class'=>'control-label']) }}
-                                                {{ Form::email('f_email',!empty($father) ? $father->f_email : null,['class'=>'form-control', 'placeholder'=>'Father Email']) }}
+                                                {{ Form::label('f_email',' Email',['class'=>'control-label']) }}
+                                                {{ Form::email('f_email',!empty($father) ? $father->f_email : null,['class'=>'form-control', 'placeholder'=>' Email']) }}
                                                 @error('f_email')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_dob','Father Date of Birth',['class'=>'control-label']) }}
-                                                {{ Form::date('f_dob',!empty($father) ? $father->f_dob : null,['class' => 'form-control', 'placeholder'=>'Father Date of Birth']) }}
+                                                {{ Form::label('f_dob',' Date of Birth',['class'=>'control-label']) }}
+                                                {{ Form::date('f_dob',!empty($father) ? $father->f_dob : null,['class' => 'form-control', 'placeholder'=>' Date of Birth']) }}
                                                 @error('f_dob')
                                                     <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_occupation','Father Occupation',['class'=>'control-label']) }}
-                                                {{ Form::text('f_occupation',!empty($father) ? $father->f_occupation : null,['class'=>'form-control', 'placeholder'=>'Father Occupation']) }}
+                                                {{ Form::label('f_occupation',' Occupation',['class'=>'control-label']) }}
+                                                {{ Form::text('f_occupation',!empty($father) ? $father->f_occupation : null,['class'=>'form-control', 'placeholder'=>' Occupation']) }}
                                                 @error('f_occupation')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_nid','Father NID',['class'=>'control-label']) }}
-                                                {{ Form::text('f_nid',!empty($father) ? $father->f_nid : null,['class'=>'form-control', 'placeholder'=>'Father NID']) }}
+                                                {{ Form::label('f_nid',' NID',['class'=>'control-label']) }}
+                                                {{ Form::text('f_nid',!empty($father) ? $father->f_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
                                                 @error('f_nid')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('f_birth_certificate','Father Birth Certificate',['class'=>'control-label']) }}
-                                                {{ Form::text('f_birth_certificate',!empty($father) ? $father->f_birth_certificate : null,['class'=>'form-control', 'placeholder'=>'Father Birth Certificate']) }}
+                                                {{ Form::label('f_birth_certificate',' Birth Certificate',['class'=>'control-label']) }}
+                                                {{ Form::text('f_birth_certificate',!empty($father) ? $father->f_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
                                                 @error('f_birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -406,59 +406,59 @@ option.customOption {
                                     <div class="card-body cutom_shadow">
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_name','Mother Name',['class'=>'control-label']) }}
-                                                {{ Form::text('m_name',!empty($mother) ? $mother->m_name : null,['class'=>'form-control', 'placeholder'=>'Mother Name']) }}
+                                                {{ Form::label('m_name',' Name',['class'=>'control-label']) }}
+                                                {{ Form::text('m_name',!empty($mother) ? $mother->m_name : null,['class'=>'form-control', 'placeholder'=>' Name']) }}
                                                 @error('m_name')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_name_bn','Mother Name Bangla',['class'=>'control-label']) }}
-                                                {{ Form::text('m_name_bn',!empty($mother) ? $mother->m_name_bn : null,['class'=>'form-control', 'placeholder'=>'Mother Name Bangla']) }}
+                                                {{ Form::label('m_name_bn',' Name Bangla',['class'=>'control-label']) }}
+                                                {{ Form::text('m_name_bn',!empty($mother) ? $mother->m_name_bn : null,['class'=>'form-control', 'placeholder'=>' Name Bangla']) }}
                                                 @error('m_name_bn')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_mobile','Mother Mobile',['class'=>'control-label']) }}
-                                                {{ Form::text('m_mobile',!empty($mother) ? $mother->m_mobile : null,['class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
+                                                {{ Form::label('m_mobile',' Mobile',['class'=>'control-label']) }}
+                                                {{ Form::text('m_mobile',!empty($mother) ? $mother->m_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
                                                 @error('m_mobile')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_email','Mother Email',['class'=>'control-label']) }}
-                                                {{ Form::email('m_email',!empty($mother) ? $mother->m_email : null,['class'=>'form-control', 'placeholder'=>'Mother Email']) }}
+                                                {{ Form::label('m_email',' Email',['class'=>'control-label']) }}
+                                                {{ Form::email('m_email',!empty($mother) ? $mother->m_email : null,['class'=>'form-control', 'placeholder'=>' Email']) }}
                                                 @error('m_email')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_dob','Mother Date of Birth',['class'=>'control-label']) }}
-                                                {{ Form::date('m_dob',!empty($mother) ? $mother->m_dob : null,['class' => 'form-control', 'placeholder'=>'Mother Date of Birth']) }}
+                                                {{ Form::label('m_dob',' Date of Birth',['class'=>'control-label']) }}
+                                                {{ Form::date('m_dob',!empty($mother) ? $mother->m_dob : null,['class' => 'form-control', 'placeholder'=>' Date of Birth']) }}
                                                 @error('m_dob')
                                                     <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_occupation','Mother Occupation',['class'=>'control-label']) }}
-                                                {{ Form::text('m_occupation',!empty($mother) ? $mother->m_occupation : null,['class'=>'form-control', 'placeholder'=>'Mother Occupation']) }}
+                                                {{ Form::label('m_occupation',' Occupation',['class'=>'control-label']) }}
+                                                {{ Form::text('m_occupation',!empty($mother) ? $mother->m_occupation : null,['class'=>'form-control', 'placeholder'=>' Occupation']) }}
                                                 @error('m_occupation')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_nid','Mother NID',['class'=>'control-label']) }}
-                                                {{ Form::text('m_nid',!empty($mother) ? $mother->m_nid : null,['class'=>'form-control', 'placeholder'=>'Mother NID']) }}
+                                                {{ Form::label('m_nid',' NID',['class'=>'control-label']) }}
+                                                {{ Form::text('m_nid',!empty($mother) ? $mother->m_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
                                                 @error('m_nid')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('m_birth_certificate','Mother Birth Certificate',['class'=>'control-label']) }}
-                                                {{ Form::text('m_birth_certificate',!empty($mother) ? $mother->m_birth_certificate : null,['class'=>'form-control', 'placeholder'=>'Mother Birth Certificate']) }}
+                                                {{ Form::label('m_birth_certificate',' Birth Certificate',['class'=>'control-label']) }}
+                                                {{ Form::text('m_birth_certificate',!empty($mother) ? $mother->m_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
                                                 @error('m_birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -476,59 +476,59 @@ option.customOption {
                                     <div class="card-body cutom_shadow">
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_name','Guardian Name',['class'=>'control-label']) }}
-                                                {{ Form::text('g_name',!empty($guardian) ? $guardian->g_name : null,['class'=>'form-control', 'placeholder'=>'Guardian Name']) }}
+                                                {{ Form::label('g_name',' Name',['class'=>'control-label']) }}
+                                                {{ Form::text('g_name',!empty($guardian) ? $guardian->g_name : null,['class'=>'form-control', 'placeholder'=>' Name']) }}
                                                 @error('g_name')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_name_bn','Guardian Name Bangla',['class'=>'control-label']) }}
-                                                {{ Form::text('g_name_bn',!empty($guardian) ? $guardian->g_name_bn : null,['class'=>'form-control', 'placeholder'=>'Guardian Name Bangla']) }}
+                                                {{ Form::label('g_name_bn',' Name Bangla',['class'=>'control-label']) }}
+                                                {{ Form::text('g_name_bn',!empty($guardian) ? $guardian->g_name_bn : null,['class'=>'form-control', 'placeholder'=>' Name Bangla']) }}
                                                 @error('g_name_bn')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_mobile','Guardian Mobile',['class'=>'control-label']) }}
-                                                {{ Form::text('g_mobile',!empty($guardian) ? $guardian->g_mobile : null,['class'=>'form-control', 'placeholder'=>'Guardian Mobile']) }}
+                                                {{ Form::label('g_mobile',' Mobile',['class'=>'control-label']) }}
+                                                {{ Form::text('g_mobile',!empty($guardian) ? $guardian->g_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
                                                 @error('g_mobile')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_email','Guardian Email',['class'=>'control-label']) }}
-                                                {{ Form::email('g_email',!empty($guardian) ? $guardian->g_email : null,['class'=>'form-control', 'placeholder'=>'Guardian Email']) }}
+                                                {{ Form::label('g_email',' Email',['class'=>'control-label']) }}
+                                                {{ Form::email('g_email',!empty($guardian) ? $guardian->g_email : null,['class'=>'form-control', 'placeholder'=>' Email']) }}
                                                 @error('g_email')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_dob','Guardian Date of Birth',['class'=>'control-label']) }}
-                                                {{ Form::date('g_dob',!empty($guardian) ? $guardian->g_dob : null,['class' => 'form-control', 'placeholder'=>'Guardian Date of Birth']) }}
+                                                {{ Form::label('g_dob',' Date of Birth',['class'=>'control-label']) }}
+                                                {{ Form::date('g_dob',!empty($guardian) ? $guardian->g_dob : null,['class' => 'form-control', 'placeholder'=>' Date of Birth']) }}
                                                 @error('g_dob')
                                                     <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_occupation','Guardian Occupation',['class'=>'control-label']) }}
-                                                {{ Form::text('g_occupation',!empty($guardian) ? $guardian->g_occupation : null,['class'=>'form-control', 'placeholder'=>'Guardian Occupation']) }}
+                                                {{ Form::label('g_occupation',' Occupation',['class'=>'control-label']) }}
+                                                {{ Form::text('g_occupation',!empty($guardian) ? $guardian->g_occupation : null,['class'=>'form-control', 'placeholder'=>' Occupation']) }}
                                                 @error('g_occupation')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_nid','Guardian NID',['class'=>'control-label']) }}
-                                                {{ Form::text('g_nid',!empty($guardian) ? $guardian->g_nid : null,['class'=>'form-control', 'placeholder'=>'Guardian NID']) }}
+                                                {{ Form::label('g_nid',' NID',['class'=>'control-label']) }}
+                                                {{ Form::text('g_nid',!empty($guardian) ? $guardian->g_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
                                                 @error('g_nid')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
-                                                {{ Form::label('g_birth_certificate','Guardian Birth Certificate',['class'=>'control-label']) }}
-                                                {{ Form::text('g_birth_certificate',!empty($guardian) ? $guardian->g_birth_certificate : null,['class'=>'form-control', 'placeholder'=>'Guardian Birth Certificate']) }}
+                                                {{ Form::label('g_birth_certificate',' Birth Certificate',['class'=>'control-label']) }}
+                                                {{ Form::text('g_birth_certificate',!empty($guardian) ? $guardian->g_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
                                                 @error('g_birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
