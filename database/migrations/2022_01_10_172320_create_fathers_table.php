@@ -18,7 +18,7 @@ class CreateFathersTable extends Migration
             $table->id();
             $table->string('f_name');
             $table->string('f_name_bn');
-            $table->foreignId('student1_id');
+            $table->foreignId('student_id');
             $table->string('f_mobile');
             $table->string('f_email')->nullable();
             $table->string('f_dob');

@@ -11,6 +11,7 @@ use App\Section;
 use App\Session;
 use App\SessionClass;
 use App\Staff;
+use App\StudentAcademic;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -141,7 +142,8 @@ class InstitutionController extends Controller
 
     public function academicClasses()
     {
-        $classes = AcademicClass::all()->whereIn('session_id',activeYear());
+        $classes = AcademicClass::withCount('studentAcademic')->get()->whereIn('session_id',activeYear());
+        // return $sutdent = AcademicClass::->get();
         $repository = $this->repository;
         return view ('admin.institution.academicClasses', compact('classes','repository'));
     }
@@ -169,7 +171,7 @@ class InstitutionController extends Controller
 
     public function classes()
     {
-        $classes = Classes::all();
+        $classes = Classes::withCount('studentAcademic')->get();
 
         return view ('admin.institution.classes', compact('classes'));
     }

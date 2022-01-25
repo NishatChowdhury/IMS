@@ -1,5 +1,20 @@
 @extends('layouts.fixed')
 
+@section('style')
+<style>
+    ul.parent_info {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.parent_info li {
+    list-style: none;
+    padding: 0px;
+    margin-left: 2px;
+    line-height: 12px;
+}
+</style>
+@endsection
 @section('title','Student Profile')
 
 @section('content')
@@ -46,16 +61,16 @@
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Class</b> <a class="float-right">{{ $student->classes->name }}</a>
+                                    <b>Class</b> <a class="float-right">{{ $studentAcademic->classes->name }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Section</b> <a class="float-right">{{ $student->section ? $student->section->name : 'N/A' }}</a>
+                                    <b>Section</b> <a class="float-right">{{ $studentAcademic->section->name  }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Group</b> <a class="float-right">{{ $student->group ? $student->group->name : 'N/A'}}</a>
+                                    <b>Group</b> <a class="float-right">{{ $studentAcademic->group->name }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Roll</b> <a class="float-right">{{ $student->rank }}</a>
+                                    <b>Roll</b> <a class="float-right">{{ $studentAcademic->rank }}</a>
                                 </li>
                             </ul>
                                 @if($student->status ==1)
@@ -79,15 +94,70 @@
                         <div class="card-body">
                             <strong><i class="fa fa-male"></i> Father Name</strong>
                             <hr>
-                            <p class="text-muted">
-                                {{ $student->father }} <br> {{ $student->father_mobile }}
-                            </p>
+                            <ul class="parent_info">
+                                <li>
+                                    <label for="">Name</label>
+                                    <p>{{ $data['father']['f_name'] ?  $data['father']['f_name']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Email</label>
+                                    <p>{{ $data['father']['f_email'] ?  $data['father']['f_email']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Number</label>
+                                    <p>{{ $data['father']['f_mobile'] ?  $data['father']['f_mobile']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Date of Birth</label>
+                                    <p>{{ $data['father']['f_dob'] ?  $data['father']['f_dob']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Occupation</label>
+                                    <p>{{ $data['father']['f_occupation'] ?  $data['father']['f_occupation']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">NID</label>
+                                    <p>{{ $data['father']['f_nid'] ?  $data['father']['f_nid']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Birth Certificate</label>
+                                    <p>{{ $data['father']['f_birth_certificate'] ?  $data['father']['f_birth_certificate']  : 'N/A' }}</p>
+                                </li>
+                            </ul>
+
                             <hr>
                             <strong><i class="fa fa-female"></i> Mother Name</strong>
                             <hr>
-                            <p class="text-muted">
-                                {{ $student->mother }} <br> {{ $student->mother_mobile }}
-                            </p>
+                            <ul class="parent_info">
+                                <li>
+                                    <label for="">Name</label>
+                                    <p>{{ $data['mother']['m_name'] ?  $data['mother']['m_name']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Email</label>
+                                    <p>{{ $data['mother']['m_email'] ?  $data['mother']['m_email']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Number</label>
+                                    <p>{{ $data['mother']['m_mobile'] ?  $data['mother']['m_mobile']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Date of Birth</label>
+                                    <p>{{ $data['mother']['m_dob'] ?  $data['mother']['m_dob']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Occupation</label>
+                                    <p>{{ $data['mother']['m_occupation'] ?  $data['mother']['m_occupation']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">NID</label>
+                                    <p>{{ $data['mother']['m_nid'] ?  $data['mother']['m_nid']  : 'N/A' }}</p>
+                                </li>
+                                <li>
+                                    <label for="">Birth Certificate</label>
+                                    <p>{{ $data['mother']['m_birth_certificate'] ?  $data['mother']['m_birth_certificate']  : 'N/A' }}</p>
+                                </li>
+                            </ul>
                             <hr>
 
                             <strong><i class="fa fa-map-marker mr-1"></i> Address</strong>
@@ -97,7 +167,6 @@
                                 {{ $student->area ? $student->area : 'N/A' }} <br>
                                 {{ $student->zip ? $student->zip : 'N/A' }} <br>
                                 {{ $student->city_id ? $student->city->name : 'N/A' }} <br>
-                                {{ $student->state_id ? $student->division->name : 'N/A' }} <br>
                                 {{ $student->country_id ? $student->country->name : 'N/A' }}
                             </p>
 

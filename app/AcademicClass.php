@@ -30,9 +30,10 @@ class AcademicClass extends Model
         return $this->belongsTo(Group::class);
     }
 
-    public function students()
+
+    public function studentAcademic()
     {
-        return $this->hasMany(Student::class,'academic_class_id');
+        return $this->hasMany(StudentAcademic::class,'academic_class_id');
     }
 
     public function subjects()

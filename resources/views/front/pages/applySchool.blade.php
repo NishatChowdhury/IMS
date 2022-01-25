@@ -133,14 +133,14 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            {{ Form::label('class_id','Religion',['class'=>'control-label']) }}
+                                            {{ Form::label('class_id','Class Name',['class'=>'control-label']) }}
                                             {{ Form::select('class_id', $data['class'], null, ['placeholder' => 'Select Class...','class'=>'form-control']) }}
                                             @error('class_id')
                                             <b style="color: red">{{ $message }}</b>
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            {{ Form::label('group_id','Religion',['class'=>'control-label']) }}
+                                            {{ Form::label('group_id','Group',['class'=>'control-label']) }}
                                             {{ Form::select('group_id', $data['group'], null, ['placeholder' => 'Select Group...','class'=>'form-control']) }}
                                             @error('group_id')
                                             <b style="color: red">{{ $message }}</b>
