@@ -30,32 +30,7 @@ class Student1 extends Model
         'country_id',
         'email',
         'status',
-        // //'division_id',
-        // //'state_id',
-        // 'city_id',
-        // 'country_id',
-        // 'email',
-        // 'father_mobile',
-        // 'mother_mobile',
-        // 'notification_type_id',
-        // 'status',
-        // 'bcn',
-        // 'father_occupation',
-        // 'mother_occupation',
-        // 'other_guardian',
-        // 'guardian_national_id',
-        // 'yearly_income',
-        // 'guardian_address',
-        // 'bank_slip',
-        // 'ssc_roll',
-        // 'location_id',
-        // 'shift_id',
-        // 'subjects',
-        // 'ssc_roll',
-        // 'ssc_registration',
-        // 'ssc_session',
-        // 'ssc_year',
-        // 'ssc_board'
+
     ];
 
 

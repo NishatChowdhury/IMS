@@ -17,14 +17,25 @@ class DashboardController extends Controller
 
     public function index()
     {
+
+        // return Student::all();
+
         $data =[];
 
-       $data['students']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->count();
+       $data['students']    = Student::query()->where('status',1)->count();
+    //    $data['students']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->count();
 
-       $data['studentMale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',1)->count('id');
+       $data['studentMale']    = Student::query()->where('status',1)->where('gender_id',1)->count('id');
+    //    $data['studentMale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',1)->count('id');
 
-       $data['studentFemale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',2)->count('id');
+       $data['studentFemale']    = Student::query()->where('status',1)->where('gender_id',2)->count('id');
+    //    $data['studentFemale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',2)->count('id');
 
+
+
+
+
+       
        $data['teachers']    = Staff::query()->where('staff_type_id',2)->count('id');
 
        $data['teacherMale']    = Staff::query()->where('staff_type_id',2)->where('gender_id',1)->count('id');

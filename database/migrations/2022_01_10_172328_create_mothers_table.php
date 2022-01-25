@@ -17,7 +17,7 @@ class CreateMothersTable extends Migration
             $table->id();
             $table->string('m_name');
             $table->string('m_name_bn');
-            $table->foreignId('student1_id');
+            $table->foreignId('student_id');
             $table->string('m_mobile');
             $table->string('m_email')->nullable();
             $table->string('m_dob');

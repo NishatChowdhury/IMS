@@ -15,7 +15,7 @@ class CreateStudentAcademicsTable extends Migration
     {
         Schema::create('student_academics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student1_id');
+            $table->foreignId('student_id');
             $table->foreignId('academic_class_id');
             $table->foreignId('session_id');
             $table->foreignId('class_id');

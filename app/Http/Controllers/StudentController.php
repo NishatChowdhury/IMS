@@ -152,7 +152,7 @@ class StudentController extends Controller
             return Response::download($filename, 'students.csv', $headers);
         }
 
-        $students = Student1::orderBy('studentId')->paginate(100);
+        $students = Student::orderBy('studentId')->paginate(100);
         // $students = $s->orderBy('rank')->paginate(100);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
@@ -231,13 +231,13 @@ class StudentController extends Controller
             $data = $req->except('pic');
             $data['image'] = $image;
             try{
-                $studentStore = Student1::query()->create($data);
+                $studentStore = Student::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
             }
         }else{
             try{
-                $studentStore = Student1::query()->create($data);
+                $studentStore = Student::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
             }
@@ -249,7 +249,7 @@ class StudentController extends Controller
 
         $student_academicStore = StudentAcademic::create([
             'academic_class_id' => $req->academic_class_id,
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'session_id' => $getAcademicClass->session_id,
             'class_id' => $getAcademicClass->class_id,
             'section_id' => $getAcademicClass->section_id,
@@ -260,7 +260,7 @@ class StudentController extends Controller
 
         $fatherStore = Father::create([
             'f_name' => $req->f_name,
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'f_name_bn' => $req->f_name_bn,
             'f_mobile' => $req->f_mobile,
             'f_email' => $req->f_email,
@@ -272,7 +272,7 @@ class StudentController extends Controller
         
         $motherStore = Mother::create([
             'm_name' => $req->m_name,
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'm_name_bn' => $req->m_name_bn,
             'm_mobile' => $req->m_mobile,
             'm_email' => $req->m_email,
@@ -284,7 +284,7 @@ class StudentController extends Controller
 
         $guardianStore = Guardian::create([
             'g_name' => $req->g_name,
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'g_name_bn' => $req->g_name_bn,
             'g_mobile' => $req->g_mobile,
             'g_email' => $req->g_email,
@@ -303,11 +303,11 @@ class StudentController extends Controller
         // return $req->path();
 
 
-        $student = Student1::query()->findOrFail($id);
-        $father = Father::query()->where('student1_id', $id)->first();
-        $mother = Mother::query()->where('student1_id', $id)->first();
-        $guardian = Guardian::query()->where('student1_id', $id)->first();
-        $studentAcademic = StudentAcademic::query()->where('student1_id', $id)->first();
+        $student = Student::query()->findOrFail($id);
+        $father = Father::query()->where('student_id', $id)->first();
+        $mother = Mother::query()->where('student_id', $id)->first();
+        $guardian = Guardian::query()->where('student_id', $id)->first();
+        $studentAcademic = StudentAcademic::query()->where('student_id', $id)->first();
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
 
         // $student = collect([$student, $father, $mother, $guardian]);
@@ -321,7 +321,7 @@ class StudentController extends Controller
     public function update($id, Request $req)
     {
         // return $req->all();
-        $student = Student1::query()->findOrFail($id);
+        $student = Student::query()->findOrFail($id);
 
         $rules = [
             'name' => 'required',
@@ -381,7 +381,7 @@ class StudentController extends Controller
         
         $student_academicStore = StudentAcademic::findOrFail($req->sa_id)->update([
             'academic_class_id' => $req->academic_class_id,
-            'student1_id' => $student->id,
+            'student_id' => $student->id,
             'session_id' => $getAcademicClass->session_id,
             'class_id' => $getAcademicClass->class_id,
             'section_id' => $getAcademicClass->section_id,
@@ -392,7 +392,7 @@ class StudentController extends Controller
 
         $fatherStore = Father::findOrFail($req->f_id)->update([
             'f_name' => $req->f_name,
-            'student1_id' => $student->id,
+            'student_id' => $student->id,
             'f_name_bn' => $req->f_name_bn,
             'f_mobile' => $req->f_mobile,
             'f_email' => $req->f_email,
@@ -404,7 +404,7 @@ class StudentController extends Controller
         
         $motherStore = Mother::findOrFail($req->m_id)->update([
             'm_name' => $req->m_name,
-            'student1_id' => $student->id,
+            'student_id' => $student->id,
             'm_name_bn' => $req->m_name_bn,
             'm_mobile' => $req->m_mobile,
             'm_email' => $req->m_email,
@@ -416,7 +416,7 @@ class StudentController extends Controller
 
         $guardianStore = Guardian::findOrFail($req->g_id)->update([
             'g_name' => $req->g_name,
-            'student1_id' => $student->id,
+            'student_id' => $student->id,
             'g_name_bn' => $req->g_name_bn,
             'g_mobile' => $req->g_mobile,
             'g_email' => $req->g_email,
@@ -443,7 +443,7 @@ class StudentController extends Controller
        $getSessionId =  AcademicClass::where('id', $id)->first();
 
         $academicYear = substr(trim(Session::query()->where('id',$getSessionId->session_id)->first()->year),-2);
-        $incrementId = Student1::query()->max('id');
+        $incrementId = Student::query()->max('id');
         $increment = $incrementId + 1;
         $studentId = 'S'.$academicYear.$increment;
         // return $academicYear;
@@ -793,10 +793,18 @@ class StudentController extends Controller
 
     public function studentProfile($studentId)
     {
-        $student = Student1::query()->findOrFail($studentId);
+        $student = Student::query()->findOrFail($studentId);
+        $data = [];
+        $data['father'] = Father::query()->where('student_id', $studentId)->first();
+        $data['mother'] = Mother::query()->where('student_id', $studentId)->first();
+        $data['guardian'] = Guardian::query()->where('student_id', $studentId)->first();
+        $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
+                                                    ->with('classes','section','group')
+                                                    ->first();
+        $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         $payments = StudentPayment::query()->where('session_id',activeYear())->where('student_id',$studentId)->get();
 
-        return view('admin.student.studentProfile',compact('student','payments'));
+        return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
     }
 
     public function tod(Request $request)
