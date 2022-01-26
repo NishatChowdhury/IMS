@@ -16,7 +16,7 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::query()->paginate(15);
-        return view('admin.settings.configuredPage',compact('pages'));
+        return view('admin.page.index',compact('pages'));
     }
 
     public function create()

@@ -155,6 +155,10 @@ class Student extends Model
         return $this->hasOne(Guardian::class);
     }
 
+    public function academics()
+    {
+        return $this->hasMany(StudentAcademic::class);
+    }
 
     // protected $dates = ['dob'];
 

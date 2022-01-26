@@ -38,8 +38,6 @@ use App\AcademicCalender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\FrontRepository;
-use Illuminate\Support\Facades\Artisan;
-use PhpParser\Builder\Class_;
 
 class FrontController extends Controller
 {
@@ -550,20 +548,14 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-        // dd($request);
-         $content = Menu::query()->where('uri',$uri)->first();
-         //dd($uri);
-        // dd($content);
+         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
 
         if($content->type == 3){
 
             $notices = null;
             $categories = null;
-
             $teachers = null;
-
             $staffs = null;
-
             $albums = null;
 
             $repository = $this->repository;

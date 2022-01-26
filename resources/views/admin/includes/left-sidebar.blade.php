@@ -641,7 +641,7 @@
                     </ul>
                 </li>
             @endcannot
-            <li class="nav-item has-treeview {{ isActive(['menus*','pages*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/menus*','admin/pages*']) }}">
                 <a href="#" class="nav-link {{ isActive(['cms*']) }}">
                     <i class="fas fa-tasks"></i>
                     <p>
@@ -651,13 +651,13 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('menus') }}">
+                        <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('admin/menus') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Menu</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('pages') }}">
+                        <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('admin/pages') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
                         </a>
