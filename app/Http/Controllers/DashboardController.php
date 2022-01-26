@@ -23,33 +23,15 @@ class DashboardController extends Controller
 
         $data =[];
 
-        $data['students']    = Student::query()->where('status',1)->count();
-    //    $data['students'] = Student::query()
-            ->whereHas('academics',function($query){
-                $query->whereIn('session_id',activeYear());
-            })
-            ->where('status',1)
-            ->count();
+       $data['students']    = Student::query()->where('status',1)->count();
+    //    $data['students']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->count();
 
        $data['studentMale']    = Student::query()->where('status',1)->where('gender_id',1)->count('id');
     //    $data['studentMale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',1)->count('id');
 
-        $data['studentFemale']    = Student::query()->where('status',1)->where('gender_id',2)->count('id');
-    //    $data['studentFemale'] = Student::query()
-            ->whereHas('academics',function($query){
-                $query->whereIn('session_id',activeYear());
-            })
-            ->where('status',1)
-            ->where('gender_id',2)
-            ->count('id');
+       $data['studentFemale']    = Student::query()->where('status',1)->where('gender_id',2)->count('id');
+    //    $data['studentFemale']    = Student::query()->whereIn('session_id',activeYear())->where('status',1)->where('gender_id',2)->count('id');
 
-        $data['studentFemale'] = Student::query()
-            ->whereHas('academics',function($query){
-                $query->whereIn('session_id',activeYear());
-            })
-            ->where('status',1)
-            ->where('gender_id',2)
-            ->count('id');
 
 
 

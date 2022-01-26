@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
-
-    protected  $table = 'student1s';
-
-    protected $table = 'students';
-
     protected $fillable = [
         'name',
         'name_bn',
@@ -315,15 +310,5 @@ class Student extends Model
     // {
     //     return $this->belongsTo(Month::class);
     // }
-
-    /**
-     * A student has many academic classes
-     *
-     * @return HasMany
-     */
-    public function academics(): HasMany
-    {
-        return $this->hasMany(StudentAcademic::class)->latest();
-    }
 
 }
