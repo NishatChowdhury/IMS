@@ -21,7 +21,7 @@ class CreateStudentAcademicsTable extends Migration
             $table->foreignId('class_id');
             $table->foreignId('section_id')->nullable();
             $table->foreignId('group_id')->nullable();
-            $table->foreignId('shift_id')->nullable();
+            $table->foreignId('shift_id');
             $table->string('rank');
             $table->boolean('status')->default(1);
             $table->timestamps();

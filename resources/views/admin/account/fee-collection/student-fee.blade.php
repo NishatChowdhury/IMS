@@ -43,31 +43,6 @@
                         {{ Form::open(['action'=>'FinanceController@index','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
-
-                                {{--<div class="col">--}}
-                                {{--<label for="">Name</label>--}}
-                                {{--<div class="input-group">--}}
-                                {{--{{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col">--}}
-                                {{--<label for="">Class</label>--}}
-                                {{--<div class="input-group">--}}
-                                {{--{{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col">--}}
-                                {{--<label for="">Section</label>--}}
-                                {{--<div class="input-group">--}}
-                                {{--{{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col">--}}
-                                {{--<label for="">Group</label>--}}
-                                {{--<div class="input-group">--}}
-                                {{--{{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
                                 <div class="col">
                                     <label for="">Student ID</label>
                                     <div class="input-group">

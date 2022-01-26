@@ -15,6 +15,7 @@ use App\Theme;
 use App\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
+use Illuminate\Support\Collection;
 use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
 
@@ -37,7 +38,13 @@ function socialConfig($col){
     return $config->$col;
 }
 
-function activeYear(){
+/**
+ * Active sessions for the institute
+ *
+ * @return Collection
+ */
+function activeYear(): Collection
+{
     return Session::query()->where('active',1)->pluck('id');
 }
 

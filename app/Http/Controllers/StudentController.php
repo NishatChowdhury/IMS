@@ -174,7 +174,7 @@ class StudentController extends Controller
     public function create(){
         $repository = $this->repository;
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
-        return view('admin.student.add', compact('repository','academicClass'));
+        return view('admin.student.create', compact('repository','academicClass'));
     }
 
     public function store(Request $req){
