@@ -75,7 +75,7 @@
                                             <span class="badge badge-dark">{{ $class->group->name ?? '' }}</span>
 
                                         </td>
-                                        <td>{{ $class->students->count() }}</td>
+                                        <td> {{ $class->student_academic_count  }} </td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td>
                                             {{ Form::open(['action'=>['InstitutionController@delete_SessionClass',$class->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}

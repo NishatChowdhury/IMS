@@ -18,6 +18,9 @@ class DashboardController extends Controller
 
     public function index()
     {
+
+        // return Student::all();
+
         $data =[];
 
         $data['students'] = Student::query()
