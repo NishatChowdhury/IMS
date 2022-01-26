@@ -17,7 +17,7 @@ class CreateGuardiansTable extends Migration
             $table->id();
             $table->string('g_name');
             $table->string('g_name_bn');
-            $table->foreignId('student1_id');
+            $table->foreignId('student_id');
             $table->string('g_mobile');
             $table->string('g_email')->nullable();
             $table->string('g_dob');

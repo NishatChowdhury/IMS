@@ -7,6 +7,7 @@ use App\Father;
 use App\Mother;
 use App\Section;
 use App\Session;
+use App\Student;
 use App\Guardian;
 use App\Student1;
 use App\OnlineApply;
@@ -134,7 +135,7 @@ class OnlineApplyController extends Controller
         // $getSessionId =  AcademicClass::where('id', $id)->first();
  
          $academicYear = substr(trim(Session::query()->where('id',$id)->first()->year),-2);
-         $incrementId = Student1::query()->max('id');
+         $incrementId = Student::query()->max('id');
          $increment = $incrementId + 1;
          $studentId = 'S'.$academicYear.$increment;
          // return $academicYear;
@@ -158,7 +159,7 @@ class OnlineApplyController extends Controller
       
 
             try{
-                $studentStore = Student1::query()->create($getOnlineApply);
+                $studentStore = Student::query()->create($getOnlineApply);
             }catch (\Exception $e){
                 dd($e);
             }
@@ -179,7 +180,7 @@ class OnlineApplyController extends Controller
 
         $student_academicStore = StudentAcademic::create([
             'academic_class_id' => $getAcademicClass->id,
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'session_id' => $req->session_id,
             'class_id' => $getOnlineApply['class_id'],
             'section_id' => $req->section_id,
@@ -190,7 +191,7 @@ class OnlineApplyController extends Controller
 
         $fatherStore = Father::create([
             'f_name' => $getOnlineApply['f_name'],
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'f_name_bn' => $getOnlineApply['f_name_bn'],
             'f_mobile' => $getOnlineApply['f_mobile'],
             'f_email' => $getOnlineApply['f_email'],
@@ -202,7 +203,7 @@ class OnlineApplyController extends Controller
         
         $motherStore = Mother::create([
             'm_name' => $getOnlineApply['m_name'],
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'm_name_bn' => $getOnlineApply['m_name_bn'],
             'm_mobile' => $getOnlineApply['m_mobile'],
             'm_email' => $getOnlineApply['m_email'],
@@ -214,7 +215,7 @@ class OnlineApplyController extends Controller
 
         $guardianStore = Guardian::create([
             'g_name' => $getOnlineApply['g_name'],
-            'student1_id' => $studentStore->id,
+            'student_id' => $studentStore->id,
             'g_name_bn' => $getOnlineApply['g_name_bn'],
             'g_mobile' => $getOnlineApply['g_mobile'],
             'g_email' => $getOnlineApply['g_email'],

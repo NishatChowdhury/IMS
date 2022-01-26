@@ -73,7 +73,7 @@
                                         <td>{{ $class->id }}</td>
                                         <td>{{ $class->name }}</td>
                                         <td>{{ $class->numeric_class }}</td>
-                                        <td>{{ $class->students->count() }}</td>
+                                        <td> {{ $class->student_academic_count }} </td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td></td>
                                         <td>

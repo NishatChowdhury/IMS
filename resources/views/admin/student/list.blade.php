@@ -116,7 +116,11 @@
                             @foreach($students as $student)
                                 <tr>
                                     <td>{{ $student->studentId }}</td>
-                                    <td>{{ $student->name }}</td>
+                                    <td>{{ $student->name }}
+                                    @if($student->status == 2)
+                                        <span class="badge badge-danger">Drop Out</span>
+                                    @endif
+                                    </td>
                                     <td> {{ $student->mobile }}</td>
                                     <td>    {{ $student->father ? $student->father->f_name : ''}} ||<br>
                                             {{ $student->mother ? $student->mother->m_name : ''}}

@@ -17,4 +17,11 @@ class Classes extends Model
     {
         return $this->hasMany(AssignSubject::class,'academic_class_id');
     }
+
+    public function studentAcademic()
+    {
+        return $this->hasMany(StudentAcademic::class, 'class_id');
+    }
+
+
 }
