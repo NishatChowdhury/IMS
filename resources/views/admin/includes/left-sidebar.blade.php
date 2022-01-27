@@ -54,6 +54,12 @@
                                 <p>Examinations</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ action('OnlineApplyController@onlineApplyIndex') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Online Application Type Set</p>
+                            </a>
+                        </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                             <a href="{{route('admission.applicant')}}" class="nav-link {{ isActive('admission/applicant') }}">
                                 <i class="far fa-circle nav-icon"></i>

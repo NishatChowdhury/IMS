@@ -12,6 +12,9 @@ use App\Guardian;
 use App\Student1;
 use App\OnlineApply;
 use App\AcademicClass;
+use App\Classes;
+use App\Group;
+use App\OnlineAdmission;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
 use App\Repository\StudentRepository;
@@ -243,5 +246,43 @@ class OnlineApplyController extends Controller
         $data['className'] = $student->classes->name;
         $data['groupName'] = $student->group->name;
         return $data;
+    }
+
+    public function onlineApplyIndex()
+    {
+        $classes = Classes::query()->get();
+        $onlineAdmissions = OnlineAdmission::query()->get();
+        $groups = Group::query()->get();
+        return view('admin.admission.onlineAdminssion', compact('classes','groups','onlineAdmissions'));
+    }
+
+    public function onlineApplySetStore(Request $req)
+    {
+        $rules = [
+            'class_id' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+
+        ];
+    
+        $customMessages = [
+            'required' => 'The :attribute field is required.'
+            // 'division_id.required' => 'The Division Must be field is requi
+            
+        ];
+        $this->validate($req, $rules, $customMessages);
+
+        OnlineAdmission::create($req->all());
+        return back();
+    }
+
+    public function load_online_adminsion_id(Request $req)
+    {
+        return OnlineAdmission::find($req->academicYear);
+    }
+
+    public function onlineApplySetUpdate(Request $req)
+    {
+        return $req->all();
     }
 }
