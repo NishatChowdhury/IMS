@@ -278,6 +278,7 @@ class FrontController extends Controller
         $content = Page::query()->where('name','introduction')->first();
         return view('front.pages.public-exam',compact('content'));
     }
+
     public function admission()
     {
         $content = Page::query()->where('name','introduction')->first();
@@ -600,6 +601,11 @@ class FrontController extends Controller
                 $data['country'] = Country::all()->pluck('name', 'id');
                 $data['religion'] = Religion::all()->pluck('name','id');
                 return view('front.pages.'.$content->system_page,compact('content','data'));
+            }
+
+            if($content->system_page === 'applyCollege'){
+                // $playlists = Playlist::query()->get();
+                return view('front.admission.validate-admission');
             }
 
             if($content->system_page === 'internal-result'){
