@@ -159,7 +159,7 @@
                     </div>
                     <div class="form-group col-6" id="statusCheck">
                             <div class="custom-control custom-switch">
-                              <input type="checkbox" name="status" class="custom-control-input" id="customSwitch1">
+                              <input type="checkbox" value="1" name="status" class="custom-control-input" id="customSwitch1">
                               <label class="custom-control-label" for="customSwitch1">Status</label>
                             </div>
                     </div>
@@ -187,6 +187,12 @@
         let Createaction = "{{ route('online.typeSave') }}";
         $("#ChnageUrl").attr("action", Createaction);
         $("#statusCheck").hide();
+                    $('#class_id').val('');
+                    $('#group_id').val('');
+                    $('#start').val('');
+                    $('#end').val('');
+                    $('#onlineId').val('');
+                    $('#customSwitch1').val('');
     }
 
 // update action url here
@@ -205,23 +211,32 @@
                     $('#start').val(data.start);
                     $('#end').val(data.end);
                     $('#onlineId').val(data.id);
-                    $('#customSwitch1').val(data.status);
-                    // $('#customSwitch1').prop('checked', true);
-                    if ($('#customSwitch1').is(':checked')) {
+                    // $('#customSwitch1').val(data.status);
+
+                    $("#statusCheck").show();
+                    if(data.status == 1){
                         $('#customSwitch1').prop('checked', true);
-                        $('#customSwitch1').val(1);
+                        $('#customSwitch1').val(1)
                     }else{
                         $('#customSwitch1').prop('checked', false);
-                        $('#customSwitch1').val(0);
                     }
-            
-                    // show status button
-                    $("#statusCheck").show();
-                    
+
+    
+
                     // edit action url show
                     $("#ChnageUrl").attr("action", action);
                 }
             });
     }
+    // function checkID(){
+    //             if ($('#customSwitch1').is(':checked')) {
+    //             $('input[type=checkbox]').prop('checked', true);
+    //             $('#customSwitch1').val(1)
+    //             }else{
+    //                 $('input[type=checkbox]').prop('checked', false);
+    //                 $('#customSwitch1').val(0);
+
+    //             }
+    //         }
 </script>
 @endsection

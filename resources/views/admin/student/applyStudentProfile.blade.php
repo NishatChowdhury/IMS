@@ -66,6 +66,12 @@ ul.parent_info li {
                                 <li class="list-group-item">
                                     <b>Group</b> <a class="float-right">{{ $student->group ? $student->group->name : 'N/A'}}</a>
                                 </li>
+                                <li class="list-group-item">
+                                    <b>Gender</b> <a class="float-right">{{ $student->gender_id ? $student->gender->name : 'N/A'}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Religion</b> <a class="float-right">{{ $student->religion_id ? $student->religion->name : 'N/A'  }}</a>
+                                </li>
 
                             </ul>
                                 {{-- @if($student->status ==1)
@@ -73,12 +79,37 @@ ul.parent_info li {
                                 @else
                                     <a href="#" class="btn btn-danger btn-block"><b>Apply</b></a>
                                 @endif --}}
+                                <strong><i class="fa fa-map-marker mr-1"></i> Address</strong>
 
+                                <p class="text-muted">
+                                    {{ $student->address ? $student->address : 'N/A'}} <br>
+                                    {{ $student->area ? $student->area : 'N/A' }} <br>
+                                    {{ $student->zip ? $student->zip : 'N/A' }} <br>
+                                    {{ $student->city_id ? $student->city->name : 'N/A' }} <br>
+                                    {{ $student->state_id ? $student->division->name : 'N/A' }} <br>
+                                    {{ $student->country_id ? $student->country->name : 'N/A' }}
+                                </p>
+    
+                                <hr>
+    
+           
+                                    
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <br>
                     <!-- /.card -->
+                    {{-- <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Address Info</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div> --}}
                 </div>
                 <div class="col-md-9">
                     <div class="row">
@@ -197,37 +228,7 @@ ul.parent_info li {
                     <hr>
 
                     <!-- About Me Box -->
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Address Info</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <strong><i class="fa fa-map-marker mr-1"></i> Address</strong>
-
-                            <p class="text-muted">
-                                {{ $student->address ? $student->address : 'N/A'}} <br>
-                                {{ $student->area ? $student->area : 'N/A' }} <br>
-                                {{ $student->zip ? $student->zip : 'N/A' }} <br>
-                                {{ $student->city_id ? $student->city->name : 'N/A' }} <br>
-                                {{ $student->state_id ? $student->division->name : 'N/A' }} <br>
-                                {{ $student->country_id ? $student->country->name : 'N/A' }}
-                            </p>
-
-                            <hr>
-
-                            <strong><i class="fa fa-transgender"></i> Gender</strong>
-                            <hr>
-                               {{ $student->gender_id ? $student->gender->name : 'N/A'}}
-                            <hr>
-
-                            <strong><i class="fa fa-heart"></i> Religion</strong>
-                            <hr>
-                                {{ $student->religion_id ? $student->religion->name : 'N/A'  }}
-
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
+                    
                 </div>
 
             </div>

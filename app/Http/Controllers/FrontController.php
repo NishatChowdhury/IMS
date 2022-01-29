@@ -35,6 +35,7 @@ use App\AppliedStudent;
 use App\NoticeCategory;
 use App\GalleryCategory;
 use App\AcademicCalender;
+use App\OnlineAdmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\FrontRepository;
@@ -546,6 +547,14 @@ class FrontController extends Controller
     {
         $playlist = Playlist::query()->findOrFail($id);
         return view('front.pages.playlist',compact('playlist'));
+    }
+
+    public function onlineApplyStep()
+    {
+        $admissionStep = OnlineAdmission::where('status', 1)->get(); 
+    
+        return view('front.pages.onlineApplyStep', compact('admissionStep'));
+        // return view('front.pages.onlineApplyStep');
     }
 
     public function page($uri,Request $request)

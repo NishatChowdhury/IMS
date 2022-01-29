@@ -33,7 +33,8 @@ Route::patch('user/password','UserController@password');
  */
 Route::get('/', 'FrontController@index');
 //Route::get('/', 'IdCardController@custom_staffPdf');
-
+Route::get('/online-apply-step','FrontController@onlineApplyStep');
+Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
 //Route::get('{uri}','FrontController@page');
 Route::get('{uri}','FrontController@page');
 
@@ -85,7 +86,9 @@ Route::get('/admission','FrontController@admission');
 // Route::get('/online-apply', function(){
 //     return "df";
 // });
-Route::get('/online-apply',[OnlineApplyController::class,'onlineApply']);
+
+
+
 Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
