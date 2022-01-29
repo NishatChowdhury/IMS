@@ -311,6 +311,11 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('online-application-view/{id}', [OnlineApplyController::class, 'applyStudentProfile']);
     Route::get('get-apply-info', [OnlineApplyController::class, 'getApplyInfo']);
     Route::get('get-apply-info-session', [OnlineApplyController::class, 'getApplyInfoSession']);
+
+    Route::get('get-apply-set', [OnlineApplyController::class, 'onlineApplyIndex']);
+    Route::post('get-apply-set-store', [OnlineApplyController::class, 'onlineApplySetStore'])->name('online.typeSave');
+    Route::get('load_online_adminsion_id', [OnlineApplyController::class, 'load_online_adminsion_id']);
+    Route::post('onlineApplySetUpdate', [OnlineApplyController::class, 'onlineApplySetUpdate'])->name('online.typeUpdate');
     
 
 });
