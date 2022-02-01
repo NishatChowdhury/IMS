@@ -73,7 +73,7 @@ class AppliedStudentController extends Controller
         $data['status'] = 3;
 
         if ($request->hasFile('pic')){
-            $image = $request->studentId.'.'.$request->file('pic')->getClientOriginalExtension();
+            $image = now().'.'.$request->file('pic')->getClientOriginalExtension();
             $request->file('pic')->move(public_path().'/assets/img/students/', $image);
             $data = $request->except('pic');
             $data['image'] = $image;

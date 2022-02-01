@@ -422,6 +422,7 @@ Route::get('playlist/{id}','FrontController@playlist');
 /** Applied Student */
 Route::post('admission-form-submit','AppliedStudentController@store');
 Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
+Route::get('/load_online_student_info','FrontController@loadStudentInfo');
 /** Applied Student */
 
 

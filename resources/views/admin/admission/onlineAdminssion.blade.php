@@ -43,7 +43,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="">
-                                        <button type="button" onclick="createOnlineType()"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: "> <i class="fas fa-plus-circle"></i> New</button>
+                                        <button type="button" onclick="createOnlineType()"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                                     </div>
                                 </div>
                             </div>

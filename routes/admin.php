@@ -128,7 +128,6 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('student/subjects/{id}','StudentController@subjects');
     Route::patch('student/{id}/assign','StudentController@assignSubject');
     Route::get('/load_student_id','StudentController@loadStudentId');
-    Route::get('/load_online_student_info','FrontController@loadStudentInfo');
 
     Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
     Route::post('student/promote','StudentController@promote')->name('student.promote');

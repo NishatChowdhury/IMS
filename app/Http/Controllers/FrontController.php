@@ -280,11 +280,11 @@ class FrontController extends Controller
         return view('front.pages.public-exam',compact('content'));
     }
 
-    public function admission()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.admission',compact('content'));
-    }
+//    public function admission()
+//    {
+//        $content = Page::query()->where('name','introduction')->first();
+//        return view('front.pages.admission',compact('content'));
+//    }
 //RESULT -> --END
 
 //INFORMATION -> --START
@@ -424,7 +424,6 @@ class FrontController extends Controller
         ]);
 
         $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
-        dd($student);
 
         $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
 
@@ -492,7 +491,7 @@ class FrontController extends Controller
 
     public function loadStudentInfo(Request $request){
         //$academicYear = substr(trim(Session::query()->where('id',$request->academicYear)->first()->year),-2);
-        $academicYear = 2020;
+        $academicYear = 2021;
         $incrementId = Student::query()->max('id');
         $increment = $incrementId + 1;
         $studentId = 'S'.$academicYear.$increment;
@@ -551,7 +550,7 @@ class FrontController extends Controller
 
     public function onlineApplyStep()
     {
-        $admissionStep = OnlineAdmission::where('status', 1)->get(); 
+        $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
     
         return view('front.pages.onlineApplyStep', compact('admissionStep'));
         // return view('front.pages.onlineApplyStep');
