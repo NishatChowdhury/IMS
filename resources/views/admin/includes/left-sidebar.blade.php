@@ -252,7 +252,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('online-application') }}" class="nav-link">
+                        <a href="{{ url('admin/online-application') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Online Application </p>
                         </a>

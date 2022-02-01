@@ -307,15 +307,15 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('download-database', [HomeController::class, 'downloadDatabase']);
     Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
 
-    Route::get('online-application', [OnlineApplyController::class, 'index']);
-    Route::get('online-application-view/{id}', [OnlineApplyController::class, 'applyStudentProfile']);
-    Route::get('get-apply-info', [OnlineApplyController::class, 'getApplyInfo']);
-    Route::get('get-apply-info-session', [OnlineApplyController::class, 'getApplyInfoSession']);
+    Route::get('online-application', 'OnlineApplyController@index');
+    Route::get('online-application-view/{id}', 'OnlineApplyController@applyStudentProfile');
+    Route::get('get-apply-info', 'OnlineApplyController@getApplyInfo');
+    Route::get('get-apply-info-session', 'OnlineApplyController@getApplyInfoSession');
 
-    Route::get('get-apply-set', [OnlineApplyController::class, 'onlineApplyIndex']);
-    Route::post('get-apply-set-store', [OnlineApplyController::class, 'onlineApplySetStore'])->name('online.typeSave');
-    Route::get('load_online_adminsion_id', [OnlineApplyController::class, 'load_online_adminsion_id']);
-    Route::post('onlineApplySetUpdate', [OnlineApplyController::class, 'onlineApplySetUpdate'])->name('online.typeUpdate');
+    Route::get('get-apply-set', 'OnlineApplyController@onlineApplyIndex');
+    Route::post('get-apply-set-store', 'OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
+    Route::get('load_online_adminsion_id', 'OnlineApplyController@load_online_adminsion_id');
+    Route::post('onlineApplySetUpdate', 'OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
     
 
 });
