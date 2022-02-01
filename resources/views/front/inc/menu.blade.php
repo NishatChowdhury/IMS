@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible">
             <ul class="nav navbar-nav ec-nav__navbar ml-auto">
                 <li class="nav-item nav-item__has-megamenu megamenu-col-2">
-                    <a class="nav-link" href="{{action('FrontController@index')}}" >Home</a>
+                    <a class="nav-link" href="{{action('FrontController@index')}}" >{{ __('Home') }}</a>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Institute</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">{{ __('Institute') }}</a>
                     <div class="dropdown-menu">
                         <ul class="list-unstyled">
 

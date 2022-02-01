@@ -424,6 +424,7 @@ class FrontController extends Controller
         ]);
 
         $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+        dd($student);
 
         $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
 

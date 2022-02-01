@@ -157,7 +157,7 @@ class AdmissionController extends Controller
         $applied = AppliedStudent::query()->count();
         $approved = AppliedStudent::query()->where('approved',1)->count();
 
-        $students = $s->paginate(50);
+        $students = $s->where('status',NULL)->paginate(50);
 
         $repository = $this->repository;
         return view('admin.admission.browse',compact('students','repository','applied','approved'));

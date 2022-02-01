@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible">
             <ul class="nav navbar-nav ec-nav__navbar ml-auto">
                 <li class="nav-item nav-item__has-megamenu megamenu-col-2">
-                    <a class="nav-link" href="{{ url('/') }}" >Home</a>
+                    <a class="nav-link" href="{{ url('/') }}" >{{ __('Home') }}</a>
                 </li>
                 @foreach(menus() as $menu)
                     <li class="nav-item nav-item__has-dropdown">
@@ -24,12 +24,12 @@
                                 <ul class="list-unstyled">
                                     @foreach($menu->children->sortBy('order') as $subMenu)
                                         <li class="{{ $subMenu->hasChild() ? 'nav-item__has-dropdown' : '' }}">
-                                            <a class="nav-link__list {{ $subMenu->hasChild() ? 'dropdown-toggle' : '' }}" href="{{ url($subMenu->uri) }}" {{ $subMenu->hasChild() ? 'data-toggle=dropdown' : '' }}> {{ $subMenu->name }} </a>
+                                            <a class="nav-link__list {{ $subMenu->hasChild() ? 'dropdown-toggle' : '' }}" href="{{ url('page',$subMenu->uri) }}" {{ $subMenu->hasChild() ? 'data-toggle=dropdown' : '' }}> {{ $subMenu->name }} </a>
                                             @if($subMenu->hasChild())
                                                 <div class="dropdown-menu">
                                                     <ul class="list-unstyled">
                                                         @foreach($subMenu->children->sortBy('order') as $subSubMenu)
-                                                            <li><a class="nav-link__list" href="{{ url($subSubMenu->uri) }}"> {{ $subSubMenu->name }} </a></li>
+                                                            <li><a class="nav-link__list" href="{{ url('page',$subSubMenu->uri) }}"> {{ $subSubMenu->name }} </a></li>
                                                         @endforeach
                                                     </ul>
                                                 </div>

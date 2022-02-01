@@ -36,7 +36,6 @@ Route::get('/', 'FrontController@index');
 Route::get('/online-apply-step','FrontController@onlineApplyStep');
 Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
 //Route::get('{uri}','FrontController@page');
-Route::get('{uri}','FrontController@page');
 
 //Institute -> About
 Route::get('/introduction','FrontController@introduction');
@@ -402,6 +401,7 @@ Route::post('api/class-routines','AndroidController@classRoutine');
 /** Online Admission Starts */
 Route::get('validate-admission','FrontController@validateAdmission');
 Route::get('admission-form','FrontController@admissionForm');
+
 //Route::post('admission-form-submit','FrontController@admissionFormSubmit');
 Route::get('student-form','FrontController@studentForm');
 Route::get('admission-invoice','FrontController@invoice');
@@ -426,6 +426,7 @@ Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
 
 
 
+Route::get('page/{uri}','FrontController@page');
 
 //if(isMenu()){
 //    Route::get('{uri}','FrontController@page');
