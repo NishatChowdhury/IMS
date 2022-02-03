@@ -31,7 +31,7 @@
 
         <div class="col-12 text-center">
             <h4>{{ __('Online Admission Form') }}</h4>
-            <p>{{ __('Download') }} <code><a href="#">{{ __('Admission Form') }}</a></code> {{ __('Download') }} <code><a href="#">{{ __('Invoice') }}</a></code><!-- Download <code><a href="#">Bank Slip</a></code>--></p>
+            <p>{{ __('Download') }} <code><a href="#" target="_blank">{{ __('Admission Form') }}</a></code> {{ __('Download') }} <code><a href="#" target="_blank">{{ __('Invoice') }}</a></code><!-- Download <code><a href="#">Bank Slip</a></code>--></p>
         </div>
 
         <div class="container">
@@ -67,7 +67,7 @@
 
             </ul>
         </div> <!-- END container-->
-        {{ Form::open(['action'=>'AppliedStudentController@store','files'=>true]) }}
+        {{ Form::open(['url'=>'admission-form-submit','files'=>true]) }}
 
             @include('front.admission.form')
 

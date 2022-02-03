@@ -412,44 +412,44 @@ class FrontController extends Controller
     }
     // Contact End
 
-    public function validateAdmission()
-    {
-        return view('front.admission.validate-admission');
-    }
+    // public function validateAdmission()
+    // {
+    //     return view('front.admission.validate-admission');
+    // }
 
-    public function admissionForm(Request $request)
-    {
-        $this->validate($request,[
-            'ssc_roll' => 'required|numeric|exists:merit_lists'
-        ]);
+    // public function admissionForm(Request $request)
+    // {
+    //     $this->validate($request,[
+    //         'ssc_roll' => 'required|numeric|exists:merit_lists'
+    //     ]);
 
-        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+    //     $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
 
-        $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
+    //     $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
 
-        $compulsory = DB::table('online_subjects')
-            ->where('type',1)
-            ->pluck('name','id');
-        $selective = DB::table('online_subjects')
-            ->where('type','like','%2%')
-            ->where('group_id',$group)
-            ->pluck('name','id');
-        $optional = DB::table('online_subjects')
-            ->where('type','like','%3%')
-            ->where('group_id',$group)
-            ->pluck('name','id');
+    //     $compulsory = DB::table('online_subjects')
+    //         ->where('type',1)
+    //         ->pluck('name','id');
+    //     $selective = DB::table('online_subjects')
+    //         ->where('type','like','%2%')
+    //         ->where('group_id',$group)
+    //         ->pluck('name','id');
+    //     $optional = DB::table('online_subjects')
+    //         ->where('type','like','%3%')
+    //         ->where('group_id',$group)
+    //         ->pluck('name','id');
 
-        $repository = $this->repository;
+    //     $repository = $this->repository;
 
-        if($student){
-            if($student->approved){
-                return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
-            }
-            return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
-        }
+    //     if($student){
+    //         if($student->approved){
+    //             return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
+    //         }
+    //         return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
+    //     }
 
-        return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
-    }
+    //     return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
+    // }
 
     public function admissionSuccess(Request $request)
     {
