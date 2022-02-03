@@ -38,7 +38,7 @@
             @endif
         </div>
 
-        {{ Form::open(['action'=>'FrontController@admissionForm','method'=>'get']) }}
+        {{ Form::open(['url'=>'admission-form','method'=>'get']) }}
 
 
         <div class="container">

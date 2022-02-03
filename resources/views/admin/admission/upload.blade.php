@@ -31,7 +31,24 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             {{ Form::open(['action'=>'AdmissionController@upload','method'=>'post','files'=>true]) }}
+              
                             <div class="form-group">
+                                <div class="row">
+                                    <label for="upload" class="col-sm-3">Academic Class*:</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="academic_class_id" id="getAcademicYear">
+                                            <option value="">--Select Academics Class--</option>
+                                            @foreach ($academicClass as $item)
+                                            <option value="{{ $item->id }}" class="customOption">
+                                              {{ $item->classes->name ?? '' }}-{{ $item->group->name ?? '' }}-{{ $item->sessions->year }}
+                                              </option>
+                                            @endforeach
+        
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="form-group">
                                 <div class="row">
                                     <label for="upload" class="col-sm-3">Session*:</label>
                                     <div class="col-sm-9">
@@ -54,7 +71,7 @@
                                         {{ Form::select('group_id',$groups,null,['class'=>'form-control','placeholder'=>'Select a group','required']) }}
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <div class="row">
                                     <label for="upload" class="col-sm-3">Browse Merit List (CSV)*:</label>

@@ -155,7 +155,8 @@ class AdmissionController extends Controller
         }
 
         $applied = AppliedStudent::query()->count();
-        $approved = AppliedStudent::query()->where('approved',1)->count();
+        $approved = 1;
+        // $approved = AppliedStudent::query()->where('approved',1)->count();
 
         $students = $s->where('status',NULL)->paginate(50);
 
@@ -165,28 +166,32 @@ class AdmissionController extends Controller
 
     public function uploadMeritList()
     {
+        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
         $sessions = Session::query()->where('active',1)->pluck('year','id');
         $classes = Classes::query()->pluck('name','id');
         $groups = Group::query()->pluck('name','id');
-        return view('admin.admission.upload',compact('sessions','classes','groups'));
+        return view('admin.admission.upload',compact('sessions','classes','groups','academicClass'));
     }
 
     public function upload(Request $request)
     {
+        $academic_class_id = $request->academic_class_id;
+        $getAcadimic = AcademicClass::findOrFail($academic_class_id);
+        // return $request->all();
         $file = file($request->file('list'));
         $sl = 0;
         foreach($file as $row){
             if($sl != 0){
                 $col = explode(',',$row);
 
-                $data['session_id'] = $request->get('session_id');
-                $data['class_id'] = $request->get('class_id');
-                $data['group_id'] = $request->get('group_id');
+                $data['session_id'] = $getAcadimic->session_id;
+                $data['class_id'] = $getAcadimic->class_id;
+                $data['group_id'] = $getAcadimic->group_id;
                 $data['ssc_roll'] = $col[0];
                 $data['board'] = $col[1];
                 $data['passing_year'] = $col[2];
                 $data['name'] = $col[3];
-                //$data['status'] = $col[4];
+                // $data['status'] = 0;
 
                 $isExist = MeritList::query()
                     ->where('ssc_roll',$data['ssc_roll'])
