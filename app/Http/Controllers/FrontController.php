@@ -598,9 +598,10 @@ class FrontController extends Controller
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
             }
-            if($content->system_page === 'applySchool'){
+            if($content->system_page === 'apply-school'){
                 // $playlists = Playlist::query()->get();
                 $data = [];
+                $admissionStep = OnlineAdmission::query()->where('status',1)->get();
                 $data['gender'] = Gender::all()->pluck('name', 'id');
                 $data['blood'] = BloodGroup::all()->pluck('name', 'id');
                 $data['divi'] = Division::all()->pluck('name', 'id');
@@ -609,7 +610,7 @@ class FrontController extends Controller
                 $data['city'] = City::all()->pluck('name', 'id');
                 $data['country'] = Country::all()->pluck('name', 'id');
                 $data['religion'] = Religion::all()->pluck('name','id');
-                return view('front.pages.'.$content->system_page,compact('content','data'));
+                return view('front.pages.'.$content->system_page,compact('content','data','admissionStep'));
             }
 
             if($content->system_page === 'applyCollege'){

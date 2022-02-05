@@ -46,7 +46,7 @@ class OnlineApplyController extends Controller
         $data['country'] = Country::all()->pluck('name', 'id');
         $data['religion'] = Religion::all()->pluck('name','id');
         $onlineAdmission = OnlineAdmission::find($id);
-        return view('front.pages.applySchool',compact('data','onlineAdmission'));
+        return view('front.pages.school-admission-form',compact('data','onlineAdmission'));
         // return view('front.pages.applySchool',compact('content'));
     }
 
@@ -128,11 +128,11 @@ class OnlineApplyController extends Controller
 
         $studentIdPrefix = 'STU-'.$studentStore->id;
 
-        if(isset($studentStore->id)){
-            OnlineApply::find($studentStore->id)->update([
-                'applyId' => $studentIdPrefix,
-            ]);
-        }
+//        if(isset($studentStore->id)){
+//            OnlineApply::find($studentStore->id)->update([
+//                'applyId' => $studentIdPrefix,
+//            ]);
+//        }
 
         return back()->with('status','Your Admission Successfully Done Here Your ID '.$studentIdPrefix);
     }
