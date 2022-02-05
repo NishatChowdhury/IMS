@@ -53,7 +53,7 @@
             <div class="row align-items-center">
                 <div class="col-12 text-center cus_courl">
                     <h4>Online Admission Form</h4>
-                    <h1>Class {{ $onlineAdmission->classes->name  }}
+                    <h1>Class {{ $onlineAdmission->classes->name }}
                         {{ $onlineAdmission->group_id ? $onlineAdmission->group->name : ''  }}</h1>
                   </div>
 

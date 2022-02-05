@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('get-apply-set') }}" class="nav-link">
+                            <a href="{{ url('admin/get-apply-set') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Online Application Type Set</p>
                             </a>

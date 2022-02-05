@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OnlineApplyController;
 use App\Http\Controllers\FeeCollectionController;
 
 Route::group(['prefix'=>'admin'],function(){
@@ -312,7 +313,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('get-apply-info', 'OnlineApplyController@getApplyInfo');
     Route::get('get-apply-info-session', 'OnlineApplyController@getApplyInfoSession');
 
-    Route::get('get-apply-set', 'OnlineApplyController@onlineApplyIndex');
+    Route::get('get-apply-set', [OnlineApplyController::class, 'onlineApplyIndex']);
     Route::post('get-apply-set-store', 'OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
     Route::get('load_online_adminsion_id', 'OnlineApplyController@load_online_adminsion_id');
     Route::post('onlineApplySetUpdate', 'OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');

@@ -89,7 +89,7 @@ span.GroupName {
                               <tbody>
                                 @foreach ($admissionStep as $admission)
                                 <tr>
-                                  <td>{{ $admission->classes->name }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
+                                  <td>{{ $admission->class_id ? $admission->classes->name : '' }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
                                   <td>{{ $admission->end }}</td>
                                   <td>
                                     <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">View</a>

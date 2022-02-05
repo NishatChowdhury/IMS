@@ -126,15 +126,9 @@ class OnlineApplyController extends Controller
             }
         }
 
-        $studentIdPrefix = 'STU-'.$studentStore->id;
+    
 
-        if(isset($studentStore->id)){
-            OnlineApply::find($studentStore->id)->update([
-                'applyId' => $studentIdPrefix,
-            ]);
-        }
-
-        return back()->with('status','Your Admission Successfully Done Here Your ID '.$studentIdPrefix);
+        return back()->with('status','Your Admission Successfully Done Here Your ID ');
     }
 
     public function index()
@@ -279,6 +273,7 @@ class OnlineApplyController extends Controller
             'class_id' => 'required',
             'start' => 'required',
             'end' => 'required',
+            'type' => 'required',
 
         ];
     
