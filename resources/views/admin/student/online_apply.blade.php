@@ -126,7 +126,7 @@
                                     <td>{{ $student->applyId }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->classes->name }}</td>
-                                    <td>{{ $student->group->name }}</td>
+                                    <td>{{ $student->group_id ? $student->group->name : 'N/A' }}</td>
                                     <td> {{ $student->mobile }}</td>
                                     <td>    {{ $student->f_name}} ||<br>
                                             {{ $student->m_name}}

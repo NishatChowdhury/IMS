@@ -558,8 +558,11 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+        // $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
 
+        // return $uri;
+         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+        // dd($content);
         if($content->type == 3){
 
             $notices = null;
@@ -582,6 +585,8 @@ class FrontController extends Controller
                     ->get();
             }
 
+            
+
             if($content->system_page == 'staff' || $content->system_page == 'staff-1'){
                 $staffs = Staff::query()->where('staff_type_id',1)->orderBy('code')->get();
             }
@@ -600,6 +605,7 @@ class FrontController extends Controller
             }
             if($content->system_page === 'apply-school'){
                 // $playlists = Playlist::query()->get();
+                // return $content;
                 $data = [];
                 $admissionStep = OnlineAdmission::query()->where('status',1)->get();
                 $data['gender'] = Gender::all()->pluck('name', 'id');
@@ -616,6 +622,11 @@ class FrontController extends Controller
             if($content->system_page === 'applyCollege'){
                 // $playlists = Playlist::query()->get();
                 return view('front.admission.validate-admission');
+            }
+            if($content->system_page === 'onlineApplyStep'){
+                
+                $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
+                return view('front.pages.onlineApplyStep', compact('admissionStep'));
             }
 
             if($content->system_page === 'internal-result'){

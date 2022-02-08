@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OnlineApplyController;
 use App\Http\Controllers\FeeCollectionController;
 
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin'], function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin');
     Route::get('backup',[HomeController::class,'backup'])->name('admin.backup');

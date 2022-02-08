@@ -36,6 +36,7 @@ class OnlineApplyController extends Controller
 
     public function onlineApply($id = null)
     {
+        // return $id;
         $data = [];
         $data['gender'] = Gender::all()->pluck('name', 'id');
         $data['blood'] = BloodGroup::all()->pluck('name', 'id');
@@ -52,6 +53,7 @@ class OnlineApplyController extends Controller
 
     public function store(Request $req)
     {
+        // return $req->all();
         $rules = [
             'name' => 'required',
             'name_bn' => 'required',
@@ -126,7 +128,8 @@ class OnlineApplyController extends Controller
             }
         }
 
-        $studentIdPrefix = 'STU-'.$studentStore->id;
+    
+        // $studentIdPrefix = 'STU-'.$studentStore->id;
 
 //        if(isset($studentStore->id)){
 //            OnlineApply::find($studentStore->id)->update([
@@ -134,7 +137,7 @@ class OnlineApplyController extends Controller
 //            ]);
 //        }
 
-        return back()->with('status','Your Admission Successfully Done Here Your ID '.$studentIdPrefix);
+        return back()->with('status','Your Admission Successfully Done Here Your ID ');
     }
 
     public function index()
@@ -279,6 +282,7 @@ class OnlineApplyController extends Controller
             'class_id' => 'required',
             'start' => 'required',
             'end' => 'required',
+            'type' => 'required',
 
         ];
     

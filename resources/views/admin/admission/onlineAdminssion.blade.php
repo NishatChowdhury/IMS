@@ -62,6 +62,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th>Admission Type</th>
                                     <th>Class Name</th>
                                     <th>Group Name</th>
                                     <th>Starting Date</th>
@@ -74,6 +75,7 @@
                                     
                                 @foreach ($onlineAdmissions as $onlineAdmission)
                                 <tr>
+                                    <td>{{ $onlineAdmission->type == 1 ? 'School' : 'College' }}</td>
                                     <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : 'N/A' }}</td>
                                     <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : 'N/A' }}</td>
                                     <td>{{ $onlineAdmission->start }}</td>
@@ -129,6 +131,14 @@
                <form id="ChnageUrl" method="post">
                    @csrf
                    <div class="modal-body row">
+                    <div class="form-group col-12">
+                        <label for="">Admission Type</label>
+                        <select name="type" class="form-control">
+                            <option>--Select Class--</option>                            
+                            <option value="1">School</option>                            
+                            <option value="2">College</option>                            
+                        </select>
+                    </div>
                     <div class="form-group col-6">
                         <label for="">Class Name</label>
                         <select name="class_id" id="class_id" class="form-control">
