@@ -7,7 +7,7 @@
     <section class="content-header">
         <div class="container-fluid">
                 <div class="col-md-12">
-                    <h3 style="background-color:rgb(45 136 151);color:white;padding:10px;text-align:center "><b>View report for:  {{ $student->studentId }}</b></h3>
+                    {{-- <h3 style="background-color:rgb(45 136 151);color:white;padding:10px;text-align:center "><b>View report for:  {{ $student->studentId  }}</b></h3> --}}
                 </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -175,8 +175,16 @@
                                             $sub_total = $fee_setup->feeSetupPivot->sum('amount') + $payment_detail->balance;
                                             $paid_amount = $payment_detail->paid_amount;
                                             $due = $sub_total - $paid_amount;
+                                            //dd($due);
                                         @endphp
-                                        @if ($sub_total > $paid_amount)
+
+
+                                        <tr style="background: #ffa37a">
+                                            <th>Dues:</th>
+                                            <td>{!! Form::text('due', number_format($due,2) ,['class'=>'form-control due','style'=>'text-align:right','readonly']) !!}</td>
+                                        </tr>
+
+                                        {{-- @if ($sub_total > $paid_amount)
                                             <tr style="background: #ffa37a">
                                                 <th>Dues:</th>
                                                 <td>{!! Form::text('due', number_format($due,2) ,['class'=>'form-control due','style'=>'text-align:right','readonly']) !!}</td>
@@ -187,7 +195,12 @@
                                                 <th>Dues:</th>
                                                 <td>{!! Form::text('due', 0 ,['class'=>'form-control due','style'=>'text-align:right','readonly']) !!}</td>
                                             </tr>
-                                        @endif
+                                        @elseif ($paid_amount > $sub_total)
+                                        <tr style="background: #ffa37a">
+                                            <th>Dues:</th>
+                                            <td>{!! Form::text('due', number_format($due,2) ,['class'=>'form-control due','style'=>'text-align:right','readonly']) !!}</td>
+                                        </tr>
+                                        @endif --}}
                                     </table>
                                 </div>
                             </div>

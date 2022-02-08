@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
-    public $table = 'student1s';
     protected $fillable = [
         'name',
         'name_bn',
@@ -39,10 +38,15 @@ class Student extends Model
     {
         return $this->belongsTo(AcademicClass::class,'academic_class_id');
     }
+    /**
+     * A student is belongs to a session
+     *
+     * @return BelongsTo
+     */
 
-    public function classes()
+    public function classes(): BelongsTo
     {
-        return $this->belongsTo(Classes::class,'class_id');
+        return $this->belongsTo(Classes::class);
     }
 
     public function section()
@@ -129,6 +133,7 @@ class Student extends Model
     {
         return $this->hasMany(FeeSetup::class);
     }
+
     public function fee_setup_pivot()
     {
         return $this->hasMany(FeeSetupPivot::class);

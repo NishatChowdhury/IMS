@@ -56,7 +56,7 @@
                                         <td>{{$payment->payment_method}}</td>
                                         <td>{{$payment->paid_amount}}</td>
                                         <td>
-                                            <a href="{{ url('admin/fee/all-collection/report',$payment->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ url('admin/fee/all-collection/report',$payment->student_id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                             {{-- <a href="{{ url('admin/fee/fee-setup/edit',$fee->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> --}}
                                             {{-- <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fas fa-trash"></i>

@@ -67,8 +67,7 @@
                                 @foreach($fees as $fee)
                                     <tr>
                                         <td>{{$fee->academicClass->name}}</td>
-                                        {{ dd($fee->student) }}
-                                        <td>{{$fee->student->name}}</td>
+                                        <td>{{$fee->student ? $fee->student->name : ''}}</td>
                                         <td>{{$fee->month->name}}</td>
                                         <td>{{$fee->year}}</td>
                                         <td>

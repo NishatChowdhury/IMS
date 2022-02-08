@@ -10,6 +10,7 @@ use App\FeeSetupPivot;
 use App\Group;
 use App\Session;
 use App\Student;
+use App\StudentAcademic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -32,20 +33,22 @@ class FeeSetupController extends Controller
     }
 
     public function feeSetupStore(Request $request){
-        $students = Student::query()
+        $students = StudentAcademic::query()
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
+            
 
         $fees = request()->session()->get('fees');
 
-        if(count($fees) > 0){
+
             foreach($students as $student){
                 $feeSetupData = [
                     'academic_class_id' => $request->get('academic_class_id'),
-                    'student_id' => $student->id,
+                    'student_id' => $student->student_id,
                     'month_id' => $request->get('month_id'),
                     'year' => $request->get('year'),
                 ];
+
 
                 $feeSetup = FeeSetup::query()->create($feeSetupData);
 
@@ -60,7 +63,7 @@ class FeeSetupController extends Controller
 
                 }
             }
-        }
+        
 
         \Illuminate\Support\Facades\Session::flash('success','Fee added successfully');
 
@@ -68,7 +71,8 @@ class FeeSetupController extends Controller
     }
 
     public  function view(Request $request){
-        $fees = FeeSetup::query()->where([
+        
+       $fees = FeeSetup::query()->where([
             ['academic_class_id','!=',null],
             [function ($query) use ($request){
                 if (($term = $request->term)){
@@ -78,6 +82,7 @@ class FeeSetupController extends Controller
         ])
             ->orderBy('id','desc')->with('student')
             ->paginate(10);
+            //dd($fees);
         return view('admin.feeSetup.index',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
     }
 

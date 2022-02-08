@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FeeSetup;
 use Illuminate\Http\Request;
 use App\Student;
+use App\StudentAcademic;
 use App\StudentPayment;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class FeeCollectionController extends Controller
         $user = auth()->user();
         $payment_method = DB::table('payment_methods')->pluck('name');
         $term = $request->term;
-        $student = Student::query()->where('studentId',$term)->first();
+        $student = Student::query()->where('studentId',$term)->with('academics')->first();
 
         if(!empty($student->studentId) && $student->studentId == $term){
             $feeSetup = $student->feeSetup;
@@ -43,13 +44,12 @@ class FeeCollectionController extends Controller
         $student = Student::query()->where('id',$id)->first();
         if($student){
             $fee_setup = FeeSetup::query()
-                ->where('academic_class_id',$student->academic_class_id)->with('feeSetupPivot')
+                ->where('student_id',$student->id)->with('feeSetupPivot')
                 ->first();
             $payment_details = StudentPayment::query()
                 ->where('student_id',$student->id)
                 ->orderBy('created_at')
                 ->get();
-                //dd($payment_details);
         }else{
             $fee_setup =[];
             $transport_fee =[];

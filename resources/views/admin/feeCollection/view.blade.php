@@ -89,37 +89,12 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>{{$student->name}}</td>
-                                                        <td>{{$student->father}}</td>
-                                                        <td>{{$student->academicClasses->name}}</td>
+                                                        <td>{{$student->father->f_name}}</td>
+                                                        <td>{{$student->classes}}</td>
                                                         <td>{{$student->rank}}</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
-                                            {{-- <div class="col">
-                                                <label for="">Student Name</label>
-                                                <div class="input-group">
-                                                    <p>{{$student->name}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Father Name</label>
-                                                <div class="input-group">
-                                                    <p>{{$student->father}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Class</label>
-                                                <div class="input-group">
-                                                    <p>{{$student->academicClasses->name}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">{{ __('Roll') }}</label>
-                                                <div class="input-group">
-                                                    <p>{{$student->rank}}</p>
-                                                </div>
-                                            </div> --}}
-                                        
+                                            </table>  
                                     </div>
                                 </div>
                                 <div class="clearfix" style="padding: 10px"></div>
@@ -183,9 +158,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <label for="">{{ __('Paid') }}</label>
+                                                    <label for="">{{ __('Paid Amount') }}</label>
                                                     <div class="input-group">
-                                                        {{ Form::text('amount',null,['class'=>'form-control','placeholder'=>'Paid']) }}
+                                                        {{ Form::text('paid_amount',null,['class'=>'form-control','placeholder'=>'Paid']) }}
                                                     </div>
                                                 </div>
                                             </div>
