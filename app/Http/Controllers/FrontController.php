@@ -603,11 +603,11 @@ class FrontController extends Controller
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
             }
-            if($content->system_page === 'applySchool'){
+            if($content->system_page === 'apply-school'){
                 // $playlists = Playlist::query()->get();
                 // return $content;
                 $data = [];
-                $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
+                $admissionStep = OnlineAdmission::query()->where('status',1)->get();
                 $data['gender'] = Gender::all()->pluck('name', 'id');
                 $data['blood'] = BloodGroup::all()->pluck('name', 'id');
                 $data['divi'] = Division::all()->pluck('name', 'id');

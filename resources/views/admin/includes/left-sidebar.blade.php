@@ -39,8 +39,8 @@
             {{--</a>--}}
             {{--</li>--}}
             @cannot('cms')
-                <li class="nav-item has-treeview {{ isActive(['admission*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admission*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admin/admission*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/admission*']) }}">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
                             Admission
@@ -55,9 +55,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a href="{{ url('admin/get-apply-set') }}" class="nav-link">
+=======
+                            <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
+>>>>>>> master
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Online Application Type Set</p>
+                                <p>{{ __('Create Admission') }}</p>
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">

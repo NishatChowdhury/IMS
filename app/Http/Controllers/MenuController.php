@@ -25,7 +25,7 @@ class MenuController extends Controller
             'notice' => 'Notice',
             'internal-result' => 'Internal Result',
             'teacher' => 'Teacher',
-            'applySchool' => 'Online Admission (School)',
+            'apply-school' => 'Online Admission (School)',
             'applyCollege' => 'Online Admission (College)'
         ];
         $menus = Menu::query()
@@ -59,7 +59,7 @@ class MenuController extends Controller
             'notice' => 'Notice',
             'internal-result'=>'Internal Result',
             'teacher' => 'Teacher',
-            'applySchool' => 'Online Admission (School)',
+            'apply-school' => 'Online Admission (School)',
             'applyCollege' => 'Online Admission (College)'
         ];
         $menus = Menu::query()
