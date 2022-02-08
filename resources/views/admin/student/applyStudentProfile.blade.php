@@ -4,6 +4,7 @@
     ul.parent_info {
     margin: 0px;
     padding: 0px;
+    font-size: 13px;
 }
 
 ul.parent_info li {
@@ -66,6 +67,12 @@ ul.parent_info li {
                                 <li class="list-group-item">
                                     <b>Group</b> <a class="float-right">{{ $student->group ? $student->group->name : 'N/A'}}</a>
                                 </li>
+                                <li class="list-group-item">
+                                    <b>Gender</b> <a class="float-right">{{ $student->gender_id ? $student->gender->name : 'N/A'}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Religion</b> <a class="float-right">{{ $student->religion_id ? $student->religion->name : 'N/A'  }}</a>
+                                </li>
 
                             </ul>
                                 {{-- @if($student->status ==1)
@@ -73,160 +80,144 @@ ul.parent_info li {
                                 @else
                                     <a href="#" class="btn btn-danger btn-block"><b>Apply</b></a>
                                 @endif --}}
+                                <strong><i class="fa fa-map-marker mr-1"></i> Address</strong>
 
+                                <p class="text-muted">
+                                    {{ $student->address ? $student->address : 'N/A'}} <br>
+                                    {{ $student->area ? $student->area : 'N/A' }} <br>
+                                    {{ $student->zip ? $student->zip : 'N/A' }} <br>
+                                    {{ $student->city_id ? $student->city->name : 'N/A' }} <br>
+                                    {{ $student->state_id ? $student->division->name : 'N/A' }} <br>
+                                    {{ $student->country_id ? $student->country->name : 'N/A' }}
+                                </p>
+    
+                                <hr>
+    
+           
+                                    
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <br>
                     <!-- /.card -->
-                </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header">Father Info</div>
-                                <div class="card-body">
-                                    <ul class="parent_info">
-                                        <li>
-                                            <label for="">Name</label>
-                                            <p>{{ $student->f_name ?  $student->f_name  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Email</label>
-                                            <p>{{ $student->f_email ?  $student->f_email  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Number</label>
-                                            <p>{{ $student->f_mobile ?  $student->f_mobile  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Date of Birth</label>
-                                            <p>{{ $student->f_dob ?  $student->f_dob : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Occupation</label>
-                                            <p>{{ $student->f_occupation ?  $student->f_occupation  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">NID</label>
-                                            <p>{{ $student->f_nid ?  $student->f_nid  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Birth Certificate</label>
-                                            <p>{{ $student->f_birth_certificate ?  $student->f_birth_certificate  : 'N/A' }}</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header">Mother Info</div>
-                                <div class="card-body">
-                                    <ul class="parent_info">
-                                        <li>
-                                            <label for="">Name</label>
-                                            <p>{{ $student->m_name ?  $student->m_name  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Email</label>
-                                            <p>{{ $student->m_email ?  $student->m_email  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Number</label>
-                                            <p>{{ $student->m_mobile ?  $student->m_mobile  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Date of Birth</label>
-                                            <p>{{ $student->m_dob ?  $student->m_dob : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Occupation</label>
-                                            <p>{{ $student->m_occupation ?  $student->m_occupation  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">NID</label>
-                                            <p>{{ $student->m_nid ?  $student->m_nid  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Birth Certificate</label>
-                                            <p>{{ $student->m_birth_certificate ?  $student->m_birth_certificate  : 'N/A' }}</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header">Guardian Info</div>
-                                <div class="card-body">
-                                    <ul class="parent_info">
-                                        <li>
-                                            <label for="">Name</label>
-                                            <p>{{ $student->g_name ?  $student->g_name  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Email</label>
-                                            <p>{{ $student->g_email ?  $student->g_email  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Number</label>
-                                            <p>{{ $student->g_mobile ?  $student->g_mobile  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Date of Birth</label>
-                                            <p>{{ $student->g_dob ?  $student->g_dob : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Occupation</label>
-                                            <p>{{ $student->g_occupation ?  $student->g_occupation  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">NID</label>
-                                            <p>{{ $student->g_nid ?  $student->g_nid  : 'N/A' }}</p>
-                                        </li>
-                                        <li>
-                                            <label for="">Birth Certificate</label>
-                                            <p>{{ $student->g_birth_certificate ?  $student->g_birth_certificate  : 'N/A' }}</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <!-- About Me Box -->
-                    <div class="card card-primary">
+                    {{-- <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Address Info</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <strong><i class="fa fa-map-marker mr-1"></i> Address</strong>
-
-                            <p class="text-muted">
-                                {{ $student->address ? $student->address : 'N/A'}} <br>
-                                {{ $student->area ? $student->area : 'N/A' }} <br>
-                                {{ $student->zip ? $student->zip : 'N/A' }} <br>
-                                {{ $student->city_id ? $student->city->name : 'N/A' }} <br>
-                                {{ $student->state_id ? $student->division->name : 'N/A' }} <br>
-                                {{ $student->country_id ? $student->country->name : 'N/A' }}
-                            </p>
-
-                            <hr>
-
-                            <strong><i class="fa fa-transgender"></i> Gender</strong>
-                            <hr>
-                               {{ $student->gender_id ? $student->gender->name : 'N/A'}}
-                            <hr>
-
-                            <strong><i class="fa fa-heart"></i> Religion</strong>
-                            <hr>
-                                {{ $student->religion_id ? $student->religion->name : 'N/A'  }}
+                            
 
                         </div>
                         <!-- /.card-body -->
+                    </div> --}}
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                                <h6 class="mb-2"><b>Father Info</b></h6> <hr>
+                                            <ul class="parent_info">
+                                                <li>
+                                                    <label for="">Name</label>
+                                                    <p>{{ $student->f_name ?  $student->f_name  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Email</label>
+                                                    <p>{{ $student->f_email ?  $student->f_email  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Number</label>
+                                                    <p>{{ $student->f_mobile ?  $student->f_mobile  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Date of Birth</label>
+                                                    <p>{{ $student->f_dob ?  $student->f_dob : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Occupation</label>
+                                                    <p>{{ $student->f_occupation ?  $student->f_occupation  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">NID</label>
+                                                    <p>{{ $student->f_nid ?  $student->f_nid  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Birth Certificate</label>
+                                                    <p>{{ $student->f_birth_certificate ?  $student->f_birth_certificate  : 'N/A' }}</p>
+                                                </li>
+                                            </ul>
+                                </div>
+                                <div class="col-4">
+                                            <h6 class="mb-2"><b>Mother Info</b></h6> <hr>
+                                            <ul class="parent_info">
+                                                <li>
+                                                    <label for="">Name</label>
+                                                    <p>{{ $student->m_name ?  $student->m_name  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Email</label>
+                                                    <p>{{ $student->m_email ?  $student->m_email  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Number</label>
+                                                    <p>{{ $student->m_mobile ?  $student->m_mobile  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Date of Birth</label>
+                                                    <p>{{ $student->m_dob ?  $student->m_dob : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Occupation</label>
+                                                    <p>{{ $student->m_occupation ?  $student->m_occupation  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">NID</label>
+                                                    <p>{{ $student->m_nid ?  $student->m_nid  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Birth Certificate</label>
+                                                    <p>{{ $student->m_birth_certificate ?  $student->m_birth_certificate  : 'N/A' }}</p>
+                                                </li>
+                                            </ul>
+                                </div>
+                                <div class="col-4">
+                                        <h6 class="mb-2"><b>Guardian Info</b></h6>
+                                        <hr>
+                                            <ul class="parent_info">
+                                                <li>
+                                                    <label for="">Name</label>
+                                                    <p>{{ $student->g_name ?  $student->g_name  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Email</label>
+                                                    <p>{{ $student->g_email ?  $student->g_email  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Number</label>
+                                                    <p>{{ $student->g_mobile ?  $student->g_mobile  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Date of Birth</label>
+                                                    <p>{{ $student->g_dob ?  $student->g_dob : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Occupation</label>
+                                                    <p>{{ $student->g_occupation ?  $student->g_occupation  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">NID</label>
+                                                    <p>{{ $student->g_nid ?  $student->g_nid  : 'N/A' }}</p>
+                                                </li>
+                                                <li>
+                                                    <label for="">Birth Certificate</label>
+                                                    <p>{{ $student->g_birth_certificate ?  $student->g_birth_certificate  : 'N/A' }}</p>
+                                                </li>
+                                            </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

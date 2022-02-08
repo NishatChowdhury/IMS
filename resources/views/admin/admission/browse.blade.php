@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Student</h1>
+                    <h1 class="m-0 text-dark">{{ __('Student') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Students Merit</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Students Merit') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,31 +27,31 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card" style="margin: 10px;">
+                    <div class="card m-3">
                         <!-- form start -->
                         {{ Form::open(['action'=>'AdmissionController@browseMeritList','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">SSC Roll</label>
+                                    <label for="">{{ __('SSC Roll') }}</label>
                                     <div class="input-group">
                                         {{ Form::text('ssc_roll',null,['class'=>'form-control','placeholder'=>'Enter SSC Roll']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Name</label>
+                                    <label for="">{{ __('Name') }}</label>
                                     <div class="input-group">
                                         {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Group</label>
+                                    <label for="">{{ __('Group') }}</label>
                                     <div class="input-group">
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Status</label>
+                                    <label for="">{{ __('Status') }}</label>
                                     <div class="input-group">
                                         {{ Form::select('status',[0=>'Not Submitted',1=>'Submitted',2=>'Approved'],null,['class'=>'form-control','placeholder'=>'Select Option']) }}
                                     </div>

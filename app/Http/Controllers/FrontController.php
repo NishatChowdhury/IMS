@@ -35,6 +35,7 @@ use App\AppliedStudent;
 use App\NoticeCategory;
 use App\GalleryCategory;
 use App\AcademicCalender;
+use App\OnlineAdmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\FrontRepository;
@@ -278,11 +279,12 @@ class FrontController extends Controller
         $content = Page::query()->where('name','introduction')->first();
         return view('front.pages.public-exam',compact('content'));
     }
-    public function admission()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.admission',compact('content'));
-    }
+
+//    public function admission()
+//    {
+//        $content = Page::query()->where('name','introduction')->first();
+//        return view('front.pages.admission',compact('content'));
+//    }
 //RESULT -> --END
 
 //INFORMATION -> --START
@@ -410,44 +412,44 @@ class FrontController extends Controller
     }
     // Contact End
 
-    public function validateAdmission()
-    {
-        return view('front.admission.validate-admission');
-    }
+    // public function validateAdmission()
+    // {
+    //     return view('front.admission.validate-admission');
+    // }
 
-    public function admissionForm(Request $request)
-    {
-        $this->validate($request,[
-            'ssc_roll' => 'required|numeric|exists:merit_lists'
-        ]);
+    // public function admissionForm(Request $request)
+    // {
+    //     $this->validate($request,[
+    //         'ssc_roll' => 'required|numeric|exists:merit_lists'
+    //     ]);
 
-        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+    //     $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
 
-        $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
+    //     $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
 
-        $compulsory = DB::table('online_subjects')
-            ->where('type',1)
-            ->pluck('name','id');
-        $selective = DB::table('online_subjects')
-            ->where('type','like','%2%')
-            ->where('group_id',$group)
-            ->pluck('name','id');
-        $optional = DB::table('online_subjects')
-            ->where('type','like','%3%')
-            ->where('group_id',$group)
-            ->pluck('name','id');
+    //     $compulsory = DB::table('online_subjects')
+    //         ->where('type',1)
+    //         ->pluck('name','id');
+    //     $selective = DB::table('online_subjects')
+    //         ->where('type','like','%2%')
+    //         ->where('group_id',$group)
+    //         ->pluck('name','id');
+    //     $optional = DB::table('online_subjects')
+    //         ->where('type','like','%3%')
+    //         ->where('group_id',$group)
+    //         ->pluck('name','id');
 
-        $repository = $this->repository;
+    //     $repository = $this->repository;
 
-        if($student){
-            if($student->approved){
-                return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
-            }
-            return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
-        }
+    //     if($student){
+    //         if($student->approved){
+    //             return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
+    //         }
+    //         return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
+    //     }
 
-        return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
-    }
+    //     return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
+    // }
 
     public function admissionSuccess(Request $request)
     {
@@ -489,7 +491,7 @@ class FrontController extends Controller
 
     public function loadStudentInfo(Request $request){
         //$academicYear = substr(trim(Session::query()->where('id',$request->academicYear)->first()->year),-2);
-        $academicYear = 2020;
+        $academicYear = 2021;
         $incrementId = Student::query()->max('id');
         $increment = $incrementId + 1;
         $studentId = 'S'.$academicYear.$increment;
@@ -546,6 +548,14 @@ class FrontController extends Controller
         return view('front.pages.playlist',compact('playlist'));
     }
 
+    public function onlineApplyStep()
+    {
+        $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
+    
+        return view('front.pages.onlineApplyStep', compact('admissionStep'));
+        // return view('front.pages.onlineApplyStep');
+    }
+
     public function page($uri,Request $request)
     {
          $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
@@ -588,9 +598,10 @@ class FrontController extends Controller
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
             }
-            if($content->system_page === 'applySchool'){
+            if($content->system_page === 'apply-school'){
                 // $playlists = Playlist::query()->get();
                 $data = [];
+                $admissionStep = OnlineAdmission::query()->where('status',1)->get();
                 $data['gender'] = Gender::all()->pluck('name', 'id');
                 $data['blood'] = BloodGroup::all()->pluck('name', 'id');
                 $data['divi'] = Division::all()->pluck('name', 'id');
@@ -599,7 +610,12 @@ class FrontController extends Controller
                 $data['city'] = City::all()->pluck('name', 'id');
                 $data['country'] = Country::all()->pluck('name', 'id');
                 $data['religion'] = Religion::all()->pluck('name','id');
-                return view('front.pages.'.$content->system_page,compact('content','data'));
+                return view('front.pages.'.$content->system_page,compact('content','data','admissionStep'));
+            }
+
+            if($content->system_page === 'applyCollege'){
+                // $playlists = Playlist::query()->get();
+                return view('front.admission.validate-admission');
             }
 
             if($content->system_page === 'internal-result'){

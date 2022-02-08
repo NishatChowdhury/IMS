@@ -1,5 +1,5 @@
 <div class="tab-content">
-    @if($errors->any)
+    @if($errors->count() > 0)
         <div class="alert alert-danger">
             <ul>
                 @foreach($errors->all() as $error)

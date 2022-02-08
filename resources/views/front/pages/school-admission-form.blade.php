@@ -15,6 +15,10 @@
     /* background: rebeccapurple; */
     color: #fff;
 }
+.cus_courl h1{
+    color: #61c721;
+    font-weight: 900;
+}
 
 </style>
 @endsection
@@ -25,7 +29,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>{{ strtoupper($content->name) }}</h2>
+                    <h2>{{ __('online admission')  }}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
@@ -36,7 +40,7 @@
                             <a href="#"> Result </a>
                         </li>
                         <li class="breadcrumb-item">
-                            {{ ucfirst($content->name) }}
+                            {{ __('online admission') }}
                         </li>
                     </ol>
                 </div>
@@ -44,23 +48,38 @@
         </div>
     </div>
 
-    <section class="padding-y-100 border-bottom">
+    <section class="padding-y-50 border-bottom bg-light-v4">
         <div class="container">
             <div class="row align-items-center">
+                <div class="col-12 text-center cus_courl">
+                    <h4>Online Admission Form</h4>
+                    <h1>Class {{ $onlineAdmission->classes->name  }}
+                        {{ $onlineAdmission->group_id ? $onlineAdmission->group->name : ''  }}</h1>
+                  </div>
 
 
-                {!! $content->content !!}
                 {!!  Form::open(['action'=>'OnlineApplyController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                 <div class="col-12">
                     @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                    <div class="alert border border-success text-success bg-success-0_1 px-4 py-3 alert-dismissible fade show" role="alert">
+                        <div class="media align-items-center">
+                          <i class="mr-2 ti-check font-size-20"></i>
+                          <div class="media-body">
+                            <strong> Well done!</strong>  {{ session('status') }}
+                          </div>
+                        </div>
+                        <button type="button" class="close font-size-14 absolute-center-y" data-dismiss="alert" aria-label="Close">
+                          <i class="ti-close"></i>
+                        </button>
+                      </div>
+                    @endif
+               
                     <div class="row">
                         <div class="col-6">
-                            <div class="card custom_shadow">
-                                <div class="card-body row ">
+                            <div class="card card-body  border">
+                                <h4 class="mb-3"><b>Personal Info</b></h4>   
+                                <div class="row">
+
                                     <div class="form-group col-6">
                                         {{Form::label('name','Student\'s name',['class'=>'control-label'])}}
                                         {{ Form::text('name', null, ['placeholder' => 'Student\'s  Name...', 'class' => 'form-control' ]) }}
@@ -129,10 +148,12 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="card custom_shadow">
-                                <div class="card-body">
+                            <div class="card card-body border">
+                                <h4 class="mb-3"><b>Address Info</b></h4>
                                     <div class="row">
-                                        <div class="form-group col-6">
+                                        <input type="hidden" name="class_id" value="{{ $onlineAdmission->class_id }}">
+                                        <input type="hidden" name="group_id" value="{{ $onlineAdmission->group_id }}">
+                                        {{-- <div class="form-group col-6">
                                             {{ Form::label('class_id','Class Name',['class'=>'control-label']) }}
                                             {{ Form::select('class_id', $data['class'], null, ['placeholder' => 'Select Class...','class'=>'form-control']) }}
                                             @error('class_id')
@@ -145,7 +166,7 @@
                                             @error('group_id')
                                             <b style="color: red">{{ $message }}</b>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group col-12">
                                             {{ Form::label('streetAddress','Address',['class'=>'control-label']) }}
                                             {{ Form::textarea('address',null,['class'=>'form-control', 'rows'=>1, 'placeholder'=>'Address']) }}
@@ -193,15 +214,14 @@
                                         </div>
                                       
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row mt-5">
                         <div class="col-6">
-                            <div class="card custom_shadow">
-                                 <div class="card-body">
+                            <div class="card card-body border">
+                                <h4 class="mb-4"><b>Father Info</b></h4>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             {{ Form::label('f_name','Father Name',['class'=>'control-label']) }}
@@ -263,11 +283,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-6">
-                            <div class="card custom_shadow">
-                                 <div class="card-body">
+                            <div class="card card-body border">
+                                <h4 class="mb-4"><b>Mother Info</b></h4>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             {{ Form::label('m_name','Mother Name',['class'=>'control-label']) }}
@@ -329,12 +348,11 @@
                                         </div>
     
                                     </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-6 mt-5">
-                            <div class="card custom_shadow">
-                                 <div class="card-body ">
+                            <div class="card card-body border">
+                                <h4 class="mb-4"><b>Guardian Info</b></h4>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             {{ Form::label('g_name','Guardian Name',['class'=>'control-label']) }}
@@ -395,12 +413,11 @@
                                             @enderror
                                         </div>
                                    </div>
-                               </div>
                             </div>
                         </div>
                         <div class="col-6 mt-5">
-                            <div class="card custom_shadow">
-                                 <div class="card-body ">
+                            <div class="card card-body border">
+                                <h4></h4>
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="form-group">
@@ -436,11 +453,10 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
+                                            {!! Form::submit(__('Preview'), ['class' => 'form-control, btn btn-success btn-block']) !!}
                                         </div>
                                     </div>
                                    </div>
-                               </div>
                             </div>
                         </div>
                     </div>

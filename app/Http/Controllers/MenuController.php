@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use App\Page;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -24,6 +25,8 @@ class MenuController extends Controller
             'notice' => 'Notice',
             'internal-result' => 'Internal Result',
             'teacher' => 'Teacher',
+            'apply-school' => 'Online Admission (School)',
+            'applyCollege' => 'Online Admission (College)'
         ];
         $menus = Menu::query()
             ->where('menu_id',null)
@@ -32,7 +35,13 @@ class MenuController extends Controller
         return view('admin.menu.index',compact('parents','menus','pages','systemPages'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store menu information in database
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
         Menu::query()->create($request->all());
         Session::flash('success','Menu added successfully');
@@ -50,7 +59,8 @@ class MenuController extends Controller
             'notice' => 'Notice',
             'internal-result'=>'Internal Result',
             'teacher' => 'Teacher',
-            'applySchool' => 'Online Admission(School)',
+            'apply-school' => 'Online Admission (School)',
+            'applyCollege' => 'Online Admission (College)'
         ];
         $menus = Menu::query()
             ->where('menu_id',null)

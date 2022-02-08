@@ -68,7 +68,7 @@
             </ul>
         </div> <!-- END container-->
 
-        {{ Form::model($student,['action'=>'AppliedStudentController@store','files'=>true]) }}
+        {{ Form::model($student,['url'=>'admission-form-submit','files'=>true]) }}
 
             @include('front.admission.form')
 

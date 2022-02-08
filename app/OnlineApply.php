@@ -10,6 +10,7 @@ class OnlineApply extends Model
     use HasFactory;
 
     protected $guarded = [];
+
     public function classes()
     {
         return $this->belongsTo(Classes::class,'class_id');

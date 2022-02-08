@@ -22,7 +22,7 @@ class CreateMeritListsTable extends Migration
             $table->string('board');
             $table->integer('passing_year');
             $table->string('name');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Page;
+use App\Group;
 use App\Father;
+use App\Gender;
 use App\Mother;
+use App\Classes;
+use App\Country;
 use App\Section;
 use App\Session;
 use App\Student;
+use App\Division;
 use App\Guardian;
+use App\Religion;
 use App\Student1;
+use App\BloodGroup;
 use App\OnlineApply;
 use App\AcademicClass;
+use App\OnlineAdmission;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
 use App\Repository\StudentRepository;
@@ -25,11 +34,20 @@ class OnlineApplyController extends Controller
         $this->repository = $repository;
     }
 
-    public function onlineApply()
+    public function onlineApply($id = null)
     {
-        $repository = $this->repository;
-        $content = Page::query()->where('name','online-apply')->first();
-        return view('front.pages.applySchool',compact('content'));
+        $data = [];
+        $data['gender'] = Gender::all()->pluck('name', 'id');
+        $data['blood'] = BloodGroup::all()->pluck('name', 'id');
+        $data['divi'] = Division::all()->pluck('name', 'id');
+        $data['class'] = Classes::all()->pluck('name', 'id');
+        $data['group'] = Group::all()->pluck('name', 'id');
+        $data['city'] = City::all()->pluck('name', 'id');
+        $data['country'] = Country::all()->pluck('name', 'id');
+        $data['religion'] = Religion::all()->pluck('name','id');
+        $onlineAdmission = OnlineAdmission::find($id);
+        return view('front.pages.school-admission-form',compact('data','onlineAdmission'));
+        // return view('front.pages.applySchool',compact('content'));
     }
 
     public function store(Request $req)
@@ -110,11 +128,11 @@ class OnlineApplyController extends Controller
 
         $studentIdPrefix = 'STU-'.$studentStore->id;
 
-        if(isset($studentStore->id)){
-            OnlineApply::find($studentStore->id)->update([
-                'applyId' => $studentIdPrefix,
-            ]);
-        }
+//        if(isset($studentStore->id)){
+//            OnlineApply::find($studentStore->id)->update([
+//                'applyId' => $studentIdPrefix,
+//            ]);
+//        }
 
         return back()->with('status','Your Admission Successfully Done Here Your ID '.$studentIdPrefix);
     }
@@ -243,5 +261,60 @@ class OnlineApplyController extends Controller
         $data['className'] = $student->classes->name;
         $data['groupName'] = $student->group->name;
         return $data;
+    }
+
+
+
+    public function onlineApplyIndex()
+    {
+        $classes = Classes::query()->get();
+        $onlineAdmissions = OnlineAdmission::query()->get();
+        $groups = Group::query()->get();
+        return view('admin.admission.onlineAdminssion', compact('classes','groups','onlineAdmissions'));
+    }
+
+    public function onlineApplySetStore(Request $req)
+    {
+        $rules = [
+            'class_id' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+
+        ];
+    
+        $customMessages = [
+            'required' => 'The :attribute field is required.'
+            // 'division_id.required' => 'The Division Must be field is requi
+            
+        ];
+        $this->validate($req, $rules, $customMessages);
+
+        OnlineAdmission::create($req->all());
+        return back();
+    }
+
+    public function load_online_adminsion_id(Request $req)
+    {
+        return OnlineAdmission::find($req->academicYear);
+    }
+
+    public function onlineApplySetUpdate(Request $req)
+    {
+        // return $req->all();
+
+        $dataStore = OnlineAdmission::find($req->id);
+        $dataStore->class_id = $req->class_id;
+        $dataStore->group_id = $req->group_id;
+        $dataStore->start = $req->start;
+        $dataStore->end = $req->end;
+        $dataStore->status = $req->status;
+        if(empty($req->status)){
+            $dataStore->status = 0;
+        }
+        // else{
+        //     $dataStore->status = $req->status;
+        // }
+        $dataStore->save();
+         return back();
     }
 }

@@ -33,9 +33,9 @@ Route::patch('user/password','UserController@password');
  */
 Route::get('/', 'FrontController@index');
 //Route::get('/', 'IdCardController@custom_staffPdf');
-
+Route::get('/online-apply-step','FrontController@onlineApplyStep');
+Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
 //Route::get('{uri}','FrontController@page');
-Route::get('{uri}','FrontController@page');
 
 //Institute -> About
 Route::get('/introduction','FrontController@introduction');
@@ -85,7 +85,9 @@ Route::get('/admission','FrontController@admission');
 // Route::get('/online-apply', function(){
 //     return "df";
 // });
-Route::get('/online-apply',[OnlineApplyController::class,'onlineApply']);
+
+
+
 Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
@@ -396,9 +398,13 @@ Route::post('api/notices','AndroidController@notices');
 Route::post('api/class-routines','AndroidController@classRoutine');
 /** Route for Apps end */
 
-/** Online Admission Starts */
-Route::get('validate-admission','FrontController@validateAdmission');
-Route::get('admission-form','FrontController@admissionForm');
+/** Online Admission Starts */ 
+Route::get('validate-admission','Front\AdmissionController@validateAdmission');
+Route::get('admission-form','Front\AdmissionController@admissionForm');
+
+// Route::get('admission-form','FrontController@admissionForm');
+// Route::get('validate-admission','FrontController@validateAdmission');
+
 //Route::post('admission-form-submit','FrontController@admissionFormSubmit');
 Route::get('student-form','FrontController@studentForm');
 Route::get('admission-invoice','FrontController@invoice');
@@ -417,12 +423,18 @@ Route::get('playlist/{id}','FrontController@playlist');
 /** Playlist Ends */
 
 /** Applied Student */
-Route::post('admission-form-submit','AppliedStudentController@store');
-Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
+// Route::post('admission-form-submit','AppliedStudentController@store');
+// Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
+
+Route::post('admission-form-submit','Front\AdmissionController@store');
+Route::post('load_applied_student_id','Front\AdmissionController@loadStudentId');
+
+Route::get('/load_online_student_info','FrontController@loadStudentInfo');
 /** Applied Student */
 
 
 
+Route::get('page/{uri}','FrontController@page');
 
 //if(isMenu()){
 //    Route::get('{uri}','FrontController@page');
