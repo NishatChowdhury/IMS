@@ -1,46 +1,6 @@
 @extends('layouts.front-inner')
 
 @section('title','Inner Page')
-@section('style')
-    <style>
-        .custom_shadow{
-            box-shadow: rgb(100 100 111 / 26%) 0px 7px 29px 0px;
-        }
-        .cl1{
-            background: #0e5a66;
-        }
-        span.form-header {
-            font-size: 21px;
-            font-weight: 600;
-            /* background: rebeccapurple; */
-            color: #fff;
-        }
-        .items-box {
-            padding: 15px;
-            background: #66cc56;
-            text-align: center;
-            border-radius: 2%;
-            transition: .5s;
-            color: #fff;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: rgb(100 100 111 / 26%) 0px 7px 29px 0px;
-        }
-
-        .items-box:hover {
-            background: #629d58;
-        }
-        span.className {
-            font-size: 30px;
-        }
-
-        span.GroupName {
-            font-size: 30px;
-            /* font-style: italic; */
-        }
-
-    </style>
-@endsection
 
 @section('content')
 
@@ -56,11 +16,9 @@
                             <a href="#">{{ __('Home') }}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Result </a>
+                            <a href="#"> {{ __('Result') }} </a>
                         </li>
-                        <li class="breadcrumb-item">
-
-                        </li>
+                        <li class="breadcrumb-item">{{ __('School Admission') }}</li>
                     </ol>
                 </div>
             </div>
@@ -75,24 +33,29 @@
                         A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
                     </div>
                     <div class="row">
-
-
                         <div class="table-responsive my-4">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="font-weight-semiBold">Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="font-weight-semiBold">{{ __('Name') }}</th>
+                                    <th class="text-center">{{ __('Expire Date') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($admissionStep as $admission)
                                     <tr>
                                         <td>{{ $admission->classes->name }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
-                                        <td>{{ $admission->end }}</td>
-                                        <td>
+                                        <td class="text-center">
+                                            {{ __('From') }} <b>{{ $admission->start->format('d F Y') }}</b> {{ __('To') }}
+                                            <b>{{ $admission->end->format('d F Y') }}</b>
+                                        </td>
+                                        <td class="text-center">
+                                            @if($admission->end->endOfDay() > now())
                                             <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('View') }}</a>
+                                            @else
+                                                <span class="text-danger">{{ __('Expired') }}</span>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

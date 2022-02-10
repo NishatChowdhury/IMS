@@ -55,11 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-<<<<<<< HEAD
-                            <a href="{{ url('admin/get-apply-set') }}" class="nav-link">
-=======
                             <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
->>>>>>> master
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Create Admission') }}</p>
                             </a>
