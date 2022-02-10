@@ -137,7 +137,8 @@ class OnlineApplyController extends Controller
 //            ]);
 //        }
 
-        return back()->with('status','Your Admission Successfully Done Here Your ID ');
+        return redirect('admission-success')->with(compact('studentStore'));
+        // return back()->with('status','Your Admission Successfully Done Here Your ID ');
     }
 
     public function index()
