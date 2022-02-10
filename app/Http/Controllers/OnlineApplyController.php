@@ -186,9 +186,7 @@ class OnlineApplyController extends Controller
             }
  
 
-   
-
-        $getAcademicClass = AcademicClass::where('session_id', $req->session_id)
+        $getAcademicClass = AcademicClass::query()->where('session_id', $req->session_id)
                                          ->where('class_id', $getOnlineApply['class_id'])
                                          ->where('section_id', $req->section_id)
                                          ->where('group_id', $getOnlineApply['group_id'])

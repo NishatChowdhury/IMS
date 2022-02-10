@@ -11,6 +11,8 @@ class OnlineAdmission extends Model
 
     protected $guarded = [];
 
+    protected $dates = ['start','end'];
+
     public function classes()
     {
         return $this->belongsTo(Classes::class,'class_id');
