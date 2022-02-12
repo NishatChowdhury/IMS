@@ -56,8 +56,7 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>{{ __('Academic Class ID') }}</th>
-                                        <th>{{ __('Student Name') }}</th>
+                                        <th>{{ __('Academic Class') }}</th>
                                         <th>{{ __('Month') }}</th>
                                         <th>{{ __('Year') }}</th>
                                         <th>{{ __('Action') }}</th>
@@ -66,8 +65,7 @@
                                 <tbody>
                                 @foreach($fees as $fee)
                                     <tr>
-                                        <td>{{$fee->academicClass->name}}</td>
-                                        <td>{{$fee->student ? $fee->student->name : ''}}</td>
+                                        <td>{{$fee->academicClass->name}} {{ $fee->academicClass->section->name ?? '' }} {{ $fee->academicClass->group->name ?? '' }}</td>
                                         <td>{{$fee->month->name}}</td>
                                         <td>{{$fee->year}}</td>
                                         <td>

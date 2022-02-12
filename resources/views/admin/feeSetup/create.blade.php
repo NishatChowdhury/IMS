@@ -23,17 +23,29 @@
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="col-6 text-center" style="color:white;font-size:16px;background-color:rgb(167, 57, 29);padding:5px">{{$error}}</div>
+                @endforeach
+            @endif
+            <br>
             {{ Form::open(['url'=>'admin/fee/fee-setup/store','method'=>'POST', 'class'=>'form-horizontal','id'=>'dynamic_form']) }}
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin: 0px;">
+                        
                         <!-- form start -->
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Academic Class ID</label>
+                                    <label for="">Academic Class</label>
                                     <div class="input-group">
-                                        {{ Form::select('academic_class_id',$classes,null,['class'=>'form-control','placeholder'=>'Academic Class ID']) }}
+                                        <select name="academic_class_id" class="form-control" >
+                                            <option value=""> -- Select Academic Class -- </option>
+                                            @foreach($academic_classes as $value)
+                                                <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }} - {{$value->section->name ?? ''}} - {{ $value->group->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col">
