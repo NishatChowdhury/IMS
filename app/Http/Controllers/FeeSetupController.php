@@ -14,6 +14,7 @@ use App\Student;
 use App\StudentAcademic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FeeSetupController extends Controller
 {
@@ -37,7 +38,10 @@ class FeeSetupController extends Controller
     public function feeSetupStore(Request $request){
 
         $request->validate([
-            'academic_class_id' => 'required | unique:fee_setups',
+            'academic_class_id' => [
+                'required',
+                Rule::unique('fee_setups')->where('month_id',$request->get('month_id'))
+            ],
             'month_id' => 'required',
             'year' => 'required',
         ]);
@@ -47,6 +51,7 @@ class FeeSetupController extends Controller
             ->get();
 
         $fees = request()->session()->get('fees');
+
             foreach($students as $student){
                 $feeSetupData = [
                     'academic_class_id' => $request->get('academic_class_id'),
@@ -68,7 +73,6 @@ class FeeSetupController extends Controller
 
                 }
             }
-        
         \Illuminate\Support\Facades\Session::flash('success','Fee added successfully');
 
         return redirect('admin/fee/fee-setup/view');

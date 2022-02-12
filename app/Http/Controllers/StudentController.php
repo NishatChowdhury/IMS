@@ -209,20 +209,6 @@ class StudentController extends Controller
     
         $this->validate($req, $rules, $customMessages);
 
-       
-
-
-
-        // //dd($req->all());
-        // $academicClassId = AcademicClass::query()
-        //     ->where('session_id',$req->session_id)
-        //     ->where('class_id',$req->class_id)
-        //     ->where('section_id',$req->section_id)
-        //     ->where('group_id',$req->group_id)
-        //     ->first();
-
-        // $req['academic_class_id'] = $academicClassId->id ?? null;
-
         $data = $req->all();
       
         if ($req->hasFile('pic')){
@@ -245,9 +231,7 @@ class StudentController extends Controller
 
         $getAcademicClass = AcademicClass::find($req->academic_class_id);
 
-
-
-        $student_academicStore = StudentAcademic::create([
+        StudentAcademic::create([
             'academic_class_id' => $req->academic_class_id,
             'student_id' => $studentStore->id,
             'session_id' => $getAcademicClass->session_id,
@@ -258,7 +242,7 @@ class StudentController extends Controller
             'rank' => $req->rank,
         ]);
 
-        $fatherStore = Father::create([
+        Father::create([
             'f_name' => $req->f_name,
             'student_id' => $studentStore->id,
             'f_name_bn' => $req->f_name_bn,
@@ -270,7 +254,7 @@ class StudentController extends Controller
             'f_birth_certificate' => $req->f_birth_certificate,
         ]);
         
-        $motherStore = Mother::create([
+        Mother::create([
             'm_name' => $req->m_name,
             'student_id' => $studentStore->id,
             'm_name_bn' => $req->m_name_bn,
@@ -282,7 +266,7 @@ class StudentController extends Controller
             'm_birth_certificate' => $req->m_birth_certificate,
         ]);
 
-        $guardianStore = Guardian::create([
+        Guardian::create([
             'g_name' => $req->g_name,
             'student_id' => $studentStore->id,
             'g_name_bn' => $req->g_name_bn,
@@ -300,9 +284,6 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        // return $req->path();
-
-
         $student = Student::query()->findOrFail($id);
         $father = Father::query()->where('student_id', $id)->first();
         $mother = Mother::query()->where('student_id', $id)->first();
@@ -310,26 +291,23 @@ class StudentController extends Controller
         $studentAcademic = StudentAcademic::query()->where('student_id', $id)->first();
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
 
-        // $student = collect([$student, $father, $mother, $guardian]);
-
-
-
         $repository = $this->repository;
         return view('admin.student.edit',compact('student','repository','father','mother','guardian','studentAcademic','academicClass'));
     }
 
-    public function update($id, Request $req)
+    public function update($id, Request $request)
     {
-        // return $req->all();
         $student = Student::query()->findOrFail($id);
 
         $rules = [
             'name' => 'required',
             'name_bn' => 'required',
+            'f_name' => 'required',
+            'f_name_bn' => 'required',
             'birth_certificate' => 'required|integer',
             'nationality' => 'required',
             'disability' => 'required',
-            'studentId' => 'required|integer',
+            'studentId' => 'required',
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
@@ -346,26 +324,16 @@ class StudentController extends Controller
     
         $customMessages = [
             'required' => 'The :attribute field is required.'
-            // 'division_id.required' => 'The Division Must be field is requi
-            
         ];
 
-        //dd($req->all());
-        // $academicClassId = AcademicClass::query()
-        //     ->where('session_id',$req->session_id)
-        //     ->where('class_id',$req->class_id)
-        //     ->where('section_id',$req->section_id)
-        //     ->where('group_id',$req->group_id)
-        //     ->first();
+        $this->validate($request,$rules,$customMessages);
 
-        // $req['academic_class_id'] = $academicClassId->id ?? null;
+        $data = $request->all();
 
-        $data = $req->all();
-        //dd($data);
-        if ($req->hasFile('pic')){
-            $image = date('YmdHis').'.'.$req->file('pic')->getClientOriginalExtension();
-            $req->file('pic')->move(public_path().'/assets/img/students/', $image);
-            $data = $req->except('pic');
+        if ($request->hasFile('pic')){
+            $image = date('YmdHis').'.'.$request->file('pic')->getClientOriginalExtension();
+            $request->file('pic')->move(public_path().'/assets/img/students/', $image);
+            $data = $request->except('pic');
             $data['image'] = $image;
             try{
                 $student->update($data);
@@ -377,58 +345,54 @@ class StudentController extends Controller
         }
 
 
-        $getAcademicClass = AcademicClass::find($req->academic_class_id);
+        $getAcademicClass = AcademicClass::query()->find($request->academic_class_id);
         
-        $student_academicStore = StudentAcademic::findOrFail($req->sa_id)->update([
-            'academic_class_id' => $req->academic_class_id,
+        StudentAcademic::query()->findOrNew($request->sa_id)->updateOrCreate([
+            'academic_class_id' => $request->academic_class_id,
             'student_id' => $student->id,
             'session_id' => $getAcademicClass->session_id,
             'class_id' => $getAcademicClass->class_id,
             'section_id' => $getAcademicClass->section_id,
             'group_id' => $getAcademicClass->group_id,
             'shift_id' => 0,
-            'rank' => $req->rank,
+            'rank' => $request->rank,
         ]);
 
-        $fatherStore = Father::findOrFail($req->f_id)->update([
-            'f_name' => $req->f_name,
+        Father::query()->findOrNew($request->f_id)->updateOrCreate([
+            'f_name' => $request->f_name,
             'student_id' => $student->id,
-            'f_name_bn' => $req->f_name_bn,
-            'f_mobile' => $req->f_mobile,
-            'f_email' => $req->f_email,
-            'f_dob' => $req->f_dob,
-            'f_occupation' => $req->f_occupation,
-            'f_nid' => $req->f_nid,
-            'f_birth_certificate' => $req->f_birth_certificate,
+            'f_name_bn' => $request->f_name_bn,
+            'f_mobile' => $request->f_mobile,
+            'f_email' => $request->f_email,
+            'f_dob' => $request->f_dob,
+            'f_occupation' => $request->f_occupation,
+            'f_nid' => $request->f_nid,
+            'f_birth_certificate' => $request->f_birth_certificate,
         ]);
         
-        $motherStore = Mother::findOrFail($req->m_id)->update([
-            'm_name' => $req->m_name,
+        Mother::query()->findOrNew($request->m_id)->updateOrCreate([
+            'm_name' => $request->m_name,
             'student_id' => $student->id,
-            'm_name_bn' => $req->m_name_bn,
-            'm_mobile' => $req->m_mobile,
-            'm_email' => $req->m_email,
-            'm_dob' => $req->m_dob,
-            'm_occupation' => $req->m_occupation,
-            'm_nid' => $req->m_nid,
-            'm_birth_certificate' => $req->m_birth_certificate,
+            'm_name_bn' => $request->m_name_bn,
+            'm_mobile' => $request->m_mobile,
+            'm_email' => $request->m_email,
+            'm_dob' => $request->m_dob,
+            'm_occupation' => $request->m_occupation,
+            'm_nid' => $request->m_nid,
+            'm_birth_certificate' => $request->m_birth_certificate,
         ]);
 
-        $guardianStore = Guardian::findOrFail($req->g_id)->update([
-            'g_name' => $req->g_name,
+        Guardian::query()->findOrNew($request->g_id)->updateOrCreate([
+            'g_name' => $request->g_name,
             'student_id' => $student->id,
-            'g_name_bn' => $req->g_name_bn,
-            'g_mobile' => $req->g_mobile,
-            'g_email' => $req->g_email,
-            'g_dob' => $req->g_dob,
-            'g_occupation' => $req->g_occupation,
-            'g_nid' => $req->g_nid,
-            'g_birth_certificate' => $req->g_birth_certificate,
+            'g_name_bn' => $request->g_name_bn,
+            'g_mobile' => $request->g_mobile,
+            'g_email' => $request->g_email,
+            'g_dob' => $request->g_dob,
+            'g_occupation' => $request->g_occupation,
+            'g_nid' => $request->g_nid,
+            'g_birth_certificate' => $request->g_birth_certificate,
         ]);
-
-
-
-
 
         \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
 
