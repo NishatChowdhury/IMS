@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicClass;
 use App\Classes;
 use App\FeeCategory;
 use App\FeePivot;
@@ -13,6 +14,7 @@ use App\Student;
 use App\StudentAcademic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FeeSetupController extends Controller
 {
@@ -24,22 +26,31 @@ class FeeSetupController extends Controller
 
     public function index()
     {
+        $academic_classes = AcademicClass::query()->whereIn('session_id',activeYear())->with('academicClasses')->get();
         $classes = Classes::query()->pluck('name','id');
         $session = Session::query()->pluck('year','id');
         $groups = Group::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
 
-        return view('admin.feeSetup.create',compact('session','classes','groups','fee_category'));
+        return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
     public function feeSetupStore(Request $request){
+
+        $request->validate([
+            'academic_class_id' => [
+                'required',
+                Rule::unique('fee_setups')->where('month_id',$request->get('month_id'))
+            ],
+            'month_id' => 'required',
+            'year' => 'required',
+        ]);
+
         $students = StudentAcademic::query()
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
-            
 
         $fees = request()->session()->get('fees');
-
 
             foreach($students as $student){
                 $feeSetupData = [
@@ -48,7 +59,6 @@ class FeeSetupController extends Controller
                     'month_id' => $request->get('month_id'),
                     'year' => $request->get('year'),
                 ];
-
 
                 $feeSetup = FeeSetup::query()->create($feeSetupData);
 
@@ -63,11 +73,9 @@ class FeeSetupController extends Controller
 
                 }
             }
-        
-
         \Illuminate\Support\Facades\Session::flash('success','Fee added successfully');
 
-        return redirect()->back();
+        return redirect('admin/fee/fee-setup/view');
     }
 
     public  function view(Request $request){

@@ -24,8 +24,7 @@ class FeeCollectionController extends Controller
         if(!empty($student->studentId) && $student->studentId == $term){
             $feeSetup = $student->feeSetup;
             return view('admin.feeCollection.view',compact('student','feeSetup','term','payment_method','user'));
-        }
-        else{
+        }else{
             return view('admin.feeCollection.index')->with('message', 'IT WORKS!');
         }
     }

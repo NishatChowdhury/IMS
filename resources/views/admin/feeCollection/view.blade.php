@@ -80,16 +80,16 @@
                                             <table class="table table-bordered table-striped table-sm">
                                                 <thead class="thead-dark">
                                                     <tr>
-                                                        <th>Student Name</th>
-                                                        <th>Father Name</th>
-                                                        <th>Class</th>
-                                                        <th>Roll</th>
+                                                        <th>{{ __('Student Name') }}</th>
+                                                        <th>{{ __('Father Name') }}</th>
+                                                        <th>{{ __('Class') }}</th>
+                                                        <th>{{ __('Roll') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>{{$student->name}}</td>
-                                                        <td>{{$student->father->f_name}}</td>
+                                                        <td>{{ $student->father->name ?? '' }}</td>
                                                         <td>{{$student->classes}}</td>
                                                         <td>{{$student->rank}}</td>
                                                     </tr>
@@ -133,14 +133,13 @@
                                             Setup New Payment
                                         </h5>
                                         {{ Form::open(['url'=>'admin/fee/fee-collection/store','method'=>'POST', 'class'=>'form-horizontal']) }}
-                                        <div class="row">
                                             <div class="form-row">
                                                 {{ Form::hidden('student_id', $student->id,['class'=>'form-control','placeholder'=>'']) }}
                                                 @foreach($feeSetup as $fee)
                                                 {{ Form::hidden('fee_setup_id', $fee->id,['class'=>'form-control','placeholder'=>'']) }}
                                                 @endforeach
                                                 <div class="col">
-                                                    <label for="">Date</label>
+                                                    <label for="">{{ __('Date') }}</label>
                                                     <div class="input-group">
                                                         {{ Form::date('payment_date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
                                                     </div>
@@ -164,7 +163,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         <br>
                                         <div class="button text-center">
                                             <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
