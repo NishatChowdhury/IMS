@@ -621,16 +621,16 @@ option.customOption {
                                             {{ Form::radio('status', 1, true, ['id'=>'active']) }}&nbsp;{{ Form::label('active','Active') }}
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-12">
+                        <div class="form-group">
+                            {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
+                        </div>
+                    </div>
                 </div>
          <!-- 	</div> -->
         </div>

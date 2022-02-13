@@ -142,7 +142,7 @@
                                         @endif  
                                     </td>
                                     <td>
-                                        <a href="{{ action('OnlineApplyController@applyStudentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ action('Backend\OnlineApplyController@applyStudentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                         {{-- <a href="{{ action('StudentController@subjects',$student->id) }}" role="button" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a> --}}
                                         @if ($student->status == 0 )
                                         <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$student->id) }}" data-toggle="modal" data-id="{{ $student->session_id  }}" data-target="#exampleModal" role="button" class="btn btn-info btn-sm" onclick="showFeeDetails({{ $student->id }})"><i class="fas fa-book"></i></a>
@@ -180,7 +180,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {!!  Form::open(['action'=>'OnlineApplyController@moveToStudent', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                {!!  Form::open(['action'=>'Backend\OnlineApplyController@moveToStudent', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                 <div class="modal-body row">
                     <div class="form-group col-6">
                         <label for="">Class Name</label>

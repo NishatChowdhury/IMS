@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\FeeSetupController;
-use App\Http\Controllers\OnlineApplyController;
+use App\Http\Controllers\Backend\OnlineApplyController;
 
 /** Dashboard Routes */
 Route::get('dashboard','DashboardController@index');

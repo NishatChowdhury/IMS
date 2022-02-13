@@ -119,7 +119,7 @@ span.red{
                   </div>
 
 
-                {!!  Form::open(['action'=>'OnlineApplyController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                {!!  Form::open(['action'=>'Backend\OnlineApplyController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                 <div class="col-12">
                     @if (session('status'))
                     <div class="alert border border-success text-success bg-success-0_1 px-4 py-3 alert-dismissible fade show" role="alert">

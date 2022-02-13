@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeeCartController;
 use App\Http\Controllers\FeeSetupController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\OnlineApplyController;
+use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\FeeCollectionController;
 
 Route::group(['prefix'=>'admin'], function(){
@@ -308,15 +308,15 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('download-database', [HomeController::class, 'downloadDatabase']);
     Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
 
-    Route::get('online-application', 'OnlineApplyController@index');
-    Route::get('online-application-view/{id}', 'OnlineApplyController@applyStudentProfile');
-    Route::get('get-apply-info', 'OnlineApplyController@getApplyInfo');
-    Route::get('get-apply-info-session', 'OnlineApplyController@getApplyInfoSession');
+    Route::get('online-application', 'Backend\OnlineApplyController@index');
+    Route::get('online-application-view/{id}', 'Backend\OnlineApplyController@applyStudentProfile');
+    Route::get('get-apply-info', 'Backend\OnlineApplyController@getApplyInfo');
+    Route::get('get-apply-info-session', 'Backend\OnlineApplyController@getApplyInfoSession');
 
-    Route::get('admission/create', 'OnlineApplyController@onlineApplyIndex');
-    Route::post('get-apply-set-store', 'OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
-    Route::get('load_online_adminsion_id/{id}', 'OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
-    Route::post('onlineApplySetUpdate', 'OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
+    Route::get('admission/create', 'Backend\OnlineApplyController@onlineApplyIndex');
+    Route::post('get-apply-set-store', 'Backend\OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
+    Route::get('load_online_adminsion_id/{id}', 'Backend\OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
+    Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
     
 
 });

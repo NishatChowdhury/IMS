@@ -93,24 +93,23 @@ ul.parent_info li {
     
                                 <hr>
     
+                                @if ($student->status == 0 )
+                                <button data-toggle="modal"
+                                        data-id="{{ $student->session_id  }}" 
+                                        data-target="#exampleModal" 
+                                        role="button" 
+                                        class="btn btn-info btn-sm" 
+                                        onclick="showFeeDetails({{ $student->id }})">
+                                        Approve Student
+                                </button>
+                            @endif
            
                                     
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <br>
-                    <!-- /.card -->
-                    {{-- <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Address Info</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            
 
-                        </div>
-                        <!-- /.card-body -->
-                    </div> --}}
                 </div>
                 <div class="col-md-9">
                     <div class="card">
@@ -227,4 +226,103 @@ ul.parent_info li {
     </section>
     <!-- /.content -->
 
-@stop
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Approve Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {!!  Form::open(['action'=>'Backend\OnlineApplyController@moveToStudent', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                <div class="modal-body row">
+                    <div class="form-group col-6">
+                        <label for="">Class Name</label>
+                        <input type="text" class="form-control" id="className" readonly>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="">Group Name</label>
+                        <input type="text" class="form-control" id="groupName" readonly>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="">Session Name</label>
+                        <input type="text" class="form-control fff" id="sessionName" readonly>
+                    </div>
+                    <input type="hidden" name="session_id" id="sessionId">
+
+                    <div class="form-group col-6">
+                          <label for="">Sections</label>
+                          <select class="form-control" name="section_id">
+                              <option value="">--Select Section--</option>
+                              @foreach ($sections as $item)
+                              <option value="{{ $item->id }}" class="customOption">
+                                {{ $item->name }}
+                                </option>
+                              @endforeach
+
+                          </select>
+                    </div>
+
+
+                    <div class="form-group col-12">
+                        {{ Form::label('rank','Rank',['class'=>'control-label']) }}
+                        {{ Form::text('rank', null,['placeholder'=>'Student Rank','class' => 'form-control','id'=>'rank']) }}
+                        @error('rank')
+                        <b style="color: red">{{ $message }}</b>
+                        @enderror
+                    </div>
+                    <div class="form-group col-12">
+                        {{Form::label('studentId','Student ID',['class'=>'control-label'])}}
+                        {{ Form::text('studentId', null, ['placeholder' => 'Student ID...','class' => 'form-control','id'=>'studentID']) }}
+                    </div>
+                    <input type="hidden" name="onlineApplyID" id="onlineApplyID">
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success btn-block']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+
+
+    @stop
+    @section('script')
+    <script>
+    $(document).on('keyup','#rank', function () {
+        // alert();
+                // var academicYear = $('.year').val();
+                var academicYear = $('.fff').val();
+                // console.log(academicYear);        
+                $.ajax({
+                    url:"{{url('admin/get-apply-info-session')}}",
+                    type:'GET',
+                    data:{academicYear:academicYear},
+                    success:function (data) {
+                        // console.log(data);
+                        $('#studentID').val(data);
+    
+                    }
+                });
+            });
+        function showFeeDetails(id){
+                let nn = $('#onlineApplyID').val(id);
+                $.ajax({
+                    url:"{{url('admin/get-apply-info')}}",
+                    type:'GET',
+                    data:{id:id},
+                    success:function (data) {
+                        $('#className').val(data.className);
+                        $('#groupName').val(data.groupName);
+                        $('#sessionName').val(data.SessionName);
+                        $('#sessionId').val(data.SessionId);
+                        // console.log(getSessionId);
+                        // $('#studentID').val(data);
+    
+                    }
+                });
+    
+            }
+    </script>
+    @endsection

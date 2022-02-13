@@ -48,7 +48,7 @@
                 </div>
                 <div class="container-fluid institute-info">
                     <p>Class Roll: <span></span></p>
-                    <p>Bank Name: <span class="bank-name">{{ $bank->name }} </span><a href="#" data-toggle="modal" data-target="#bankListModal" title="Change Bank"><i class="fas fa-sync-alt no-print"></i></a></p>
+                    <p>Bank Name: <span class="bank-name">{{ $bank->name ? $bank->name : '' }} </span><a href="#" data-toggle="modal" data-target="#bankListModal" title="Change Bank"><i class="fas fa-sync-alt no-print"></i></a></p>
                     <p>Branch Name: <span class="bank-branch">{{ $bank->branch }}</span></p>
                     <p>Account Number: <span class="bank-account-number">{{ $bank->account_number }}</span></p>
                     <p>Student Name: <span>{{ $student['name'] }}</span></p>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\City;
 use App\Page;
@@ -23,6 +23,7 @@ use App\AcademicClass;
 use App\OnlineAdmission;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repository\StudentRepository;
 
 class OnlineApplyController extends Controller
@@ -159,8 +160,11 @@ class OnlineApplyController extends Controller
 
     public function applyStudentProfile($id)
     {
+        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+        $sessions = Session::query()->get();
+        $sections = Section::query()->get();
         $student = OnlineApply::find($id);
-        return view('admin.student.applyStudentProfile', compact('student'));
+        return view('admin.student.applyStudentProfile', compact('student','academicClass','sessions','sections'));
     }
 
     public function moveToStudent(Request $req)

@@ -46,7 +46,7 @@ class CreateOnlineAppliesTable extends Migration
             $table->string('f_dob');
             $table->string('f_occupation');
             $table->string('f_nid');
-            $table->string('f_birth_certificate');
+            $table->string('f_birth_certificate')->nullable();
             //mother
             $table->string('m_name');
             $table->string('m_name_bn');
@@ -55,7 +55,7 @@ class CreateOnlineAppliesTable extends Migration
             $table->string('m_dob');
             $table->string('m_occupation');
             $table->string('m_nid');
-            $table->string('m_birth_certificate');
+            $table->string('m_birth_certificate')->nullable();
             //guardian
             $table->string('g_name');
             $table->string('g_name_bn');
@@ -64,7 +64,7 @@ class CreateOnlineAppliesTable extends Migration
             $table->string('g_dob');
             $table->string('g_occupation');
             $table->string('g_nid');
-            $table->string('g_birth_certificate');
+            $table->string('g_birth_certificate')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
