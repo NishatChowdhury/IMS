@@ -23,7 +23,7 @@ class CreateGuardiansTable extends Migration
             $table->string('g_dob');
             $table->string('g_occupation');
             $table->string('g_nid');
-            $table->string('g_birth_certificate');
+            $table->string('g_birth_certificate')->nullable();
             $table->timestamps();
         });
     }

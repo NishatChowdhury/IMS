@@ -9,6 +9,7 @@ use App\AcademicClass;
 use App\RawAttendance;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\FeeSetupController;
 use App\Http\Controllers\OnlineApplyController;
@@ -31,54 +32,54 @@ Route::patch('user/password','UserController@password');
 /*
   ==== Route for Front-End Menu Bar Start ==== @MKH
  */
-Route::get('/', 'FrontController@index');
+Route::get('/', 'Front\FrontController@index');
 //Route::get('/', 'IdCardController@custom_staffPdf');
-Route::get('/online-apply-step','FrontController@onlineApplyStep');
+Route::get('/online-apply-step','Front\FrontController@onlineApplyStep');
 Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
-//Route::get('{uri}','FrontController@page');
+//Route::get('{uri}','Front\FrontController@page');
 
 //Institute -> About
-Route::get('/introduction','FrontController@introduction');
-Route::get('/governing-body','FrontController@governing_body');
-Route::get('/founder-n-donor','FrontController@donor');
+Route::get('/introduction','Front\FrontController@introduction');
+Route::get('/governing-body','Front\FrontController@governing_body');
+Route::get('/founder-n-donor','Front\FrontController@donor');
 
 //Institute -> Administrative message
-Route::get('/president','FrontController@president');
-Route::get('/principal','FrontController@principal');
+Route::get('/president','Front\FrontController@president');
+Route::get('/principal','Front\FrontController@principal');
 
 //Institute-> Infrastructure
-Route::get('/building-room','FrontController@building_room');
-Route::get('/library','FrontController@library');
-Route::get('/transport','FrontController@transport');
-Route::get('/hostel','FrontController@hostel');
-Route::get('/land-information','FrontController@land_information');
+Route::get('/building-room','Front\FrontController@building_room');
+Route::get('/library','Front\FrontController@library');
+Route::get('/transport','Front\FrontController@transport');
+Route::get('/hostel','Front\FrontController@hostel');
+Route::get('/land-information','Front\FrontController@land_information');
 
 //Institute -> Academic
-Route::get('/class-routine','FrontController@class_routine');
-Route::get('/calender','FrontController@calender');
-Route::get('/syllabus','FrontController@syllabus');
-Route::get('/diary','FrontController@diary');
-Route::get('/performance','FrontController@performance');
-Route::get('/holiday','FrontController@holiday');
+Route::get('/class-routine','Front\FrontController@class_routine');
+Route::get('/calender','Front\FrontController@calender');
+Route::get('/syllabus','Front\FrontController@syllabus');
+Route::get('/diary','Front\FrontController@diary');
+Route::get('/performance','Front\FrontController@performance');
+Route::get('/holiday','Front\FrontController@holiday');
 
 //Institute -> Digital Campus
-Route::get('/multimedia-classroom','FrontController@multimedia_classroom');
-Route::get('/computer-lab','FrontController@computer_lab');
-Route::get('/science-lab','FrontController@science_lab');
+Route::get('/multimedia-classroom','Front\FrontController@multimedia_classroom');
+Route::get('/computer-lab','Front\FrontController@computer_lab');
+Route::get('/science-lab','Front\FrontController@science_lab');
 
 //TEAM
-Route::get('/managing-committee','FrontController@managing_committee');
-Route::get('/teacher','FrontController@teacher');
-Route::get('/staff','FrontController@staff');
-Route::get('/wapc','FrontController@wapc');
-Route::get('/tswt','FrontController@tswt');
-Route::get('/tci','FrontController@tci');
+Route::get('/managing-committee','Front\FrontController@managing_committee');
+Route::get('/teacher','Front\FrontController@teacher');
+Route::get('/staff','Front\FrontController@staff');
+Route::get('/wapc','Front\FrontController@wapc');
+Route::get('/tswt','Front\FrontController@tswt');
+Route::get('/tci','Front\FrontController@tci');
 
 //Result  (Front-End)
-Route::get('/internal-exam','FrontController@internal_exam');
-Route::get('/public-exam','FrontController@public_exam');
-// Route::get('/admission','FrontController@admission');
-Route::get('/admission','FrontController@admission');
+Route::get('/internal-exam','Front\FrontController@internal_exam');
+Route::get('/public-exam','Front\FrontController@public_exam');
+// Route::get('/admission','Front\FrontController@admission');
+Route::get('/admission','Front\FrontController@admission');
 
 
 //online apply (Front-End)
@@ -92,33 +93,33 @@ Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
 //INFORMATION
-Route::get('/sports-n-culture-program','FrontController@sports_n_culture_program');
-Route::get('/center-information','FrontController@center_information');
-Route::get('/scholarship-info','FrontController@scholarship_info');
-Route::get('/bncc','FrontController@bncc');
-Route::get('/scout','FrontController@scout');
-Route::get('/tender','FrontController@tender');
+Route::get('/sports-n-culture-program','Front\FrontController@sports_n_culture_program');
+Route::get('/center-information','Front\FrontController@center_information');
+Route::get('/scholarship-info','Front\FrontController@scholarship_info');
+Route::get('/bncc','Front\FrontController@bncc');
+Route::get('/scout','Front\FrontController@scout');
+Route::get('/tender','Front\FrontController@tender');
 
 //Attendance
-Route::get('/attendance-summery','FrontController@attendance_summery');
-Route::get('/student-attendance','FrontController@student_attendance');
-Route::get('/teacher-attendance','FrontController@teacher_attendance');
+Route::get('/attendance-summery','Front\FrontController@attendance_summery');
+Route::get('/student-attendance','Front\FrontController@student_attendance');
+Route::get('/teacher-attendance','Front\FrontController@teacher_attendance');
 
 //News & Notice
-Route::get('/notice','FrontController@notice');
-Route::get('/notice-details/{id}','FrontController@noticeDetails');
-Route::get('/news','FrontController@news');
-Route::get('/news-details/{id}','FrontController@newsDetails');
+Route::get('/notice','Front\FrontController@notice');
+Route::get('/notice-details/{id}','Front\FrontController@noticeDetails');
+Route::get('/news','Front\FrontController@news');
+Route::get('/news-details/{id}','Front\FrontController@newsDetails');
 
 //Gallery
-Route::get('/gallery','FrontController@gallery');
-Route::get('/album/{name}','FrontController@album');
+Route::get('/gallery','Front\FrontController@gallery');
+Route::get('/album/{name}','Front\FrontController@album');
 
 //Download
-Route::get('/download','FrontController@download');
+Route::get('/download','Front\FrontController@download');
 
 //Contact
-Route::get('/contact','FrontController@contact');
+Route::get('/contact','Front\FrontController@contact');
 /*===== Route for Front-End Menu Bar END ====*/
 
 //Admission Route by Rimon
@@ -228,59 +229,59 @@ Route::get('staff/payslip','StaffController@payslip')->name('staff.payslip');
 
 //Institution Mgnt Route by Rimon
 //Session @MKH
-Route::get('institution/academicyear','InstitutionController@academicyear')->name('institution.academicyear');
-Route::post('institution/store-session', 'InstitutionController@store_session');
-Route::post('institution/edit-session', 'InstitutionController@edit_session');
-Route::post('institution/update-session', 'InstitutionController@update_session');
-Route::get('institution/{id}/delete-session', 'InstitutionController@delete_session');
-Route::patch('institution/status/{id}','InstitutionController@sessionStatus');
+Route::get('institution/academicyear','Backend\InstitutionController@academicyear')->name('institution.academicyear');
+Route::post('institution/store-session', 'Backend\InstitutionController@store_session');
+Route::post('institution/edit-session', 'Backend\InstitutionController@edit_session');
+Route::post('institution/update-session', 'Backend\InstitutionController@update_session');
+Route::get('institution/{id}/delete-session', 'Backend\InstitutionController@delete_session');
+Route::patch('institution/status/{id}','Backend\InstitutionController@sessionStatus');
 
 //Academic Classes $ Groups
-Route::get('institution/section-groups','InstitutionController@section_group')->name('section.group');
-Route::post('institution/create-section', 'InstitutionController@create_section');
-Route::post('institution/edit-section', 'InstitutionController@edit_section');
-Route::post('institution/update-section', 'InstitutionController@update_section');
-Route::get('institution/{id}/delete-section', 'InstitutionController@delete_section');
+Route::get('institution/section-groups','Backend\InstitutionController@section_group')->name('section.group');
+Route::post('institution/create-section', 'Backend\InstitutionController@create_section');
+Route::post('institution/edit-section', 'Backend\InstitutionController@edit_section');
+Route::post('institution/update-section', 'Backend\InstitutionController@update_section');
+Route::get('institution/{id}/delete-section', 'Backend\InstitutionController@delete_section');
 
-Route::post('institution/create-group', 'InstitutionController@create_group');
-Route::post('institution/edit-group', 'InstitutionController@edit_group');
-Route::post('institution/update-group', 'InstitutionController@update_group');
-Route::get('institution/{id}/delete-group', 'InstitutionController@delete_grp');
+Route::post('institution/create-group', 'Backend\InstitutionController@create_group');
+Route::post('institution/edit-group', 'Backend\InstitutionController@edit_group');
+Route::post('institution/update-group', 'Backend\InstitutionController@update_group');
+Route::get('institution/{id}/delete-group', 'Backend\InstitutionController@delete_grp');
 
 //Session-Class
-Route::get('institution/class','InstitutionController@classes')->name('institution.classes');
-Route::post('institution/store-class','InstitutionController@store_class');
-Route::get('institution/academic-class','InstitutionController@academicClasses')->name('institution.academicClasses');
-Route::post('institution/store-academic-class','InstitutionController@storeAcademicClass');
-Route::post('institution/edit-AcademicClass','InstitutionController@editAcademicClass');
-Route::post('institution/update-AcademicClass','InstitutionController@updateAcademicClass');
-Route::post('institution/edit-SessionClass','InstitutionController@edit_SessionClass');
-Route::post('institution/update-SessionClass','InstitutionController@update_SessionClass');
-Route::get('institution/{id}/delete-SessionClass','InstitutionController@delete_SessionClass');
+Route::get('institution/class','Backend\InstitutionController@classes')->name('institution.classes');
+Route::post('institution/store-class','Backend\InstitutionController@store_class');
+Route::get('institution/academic-class','Backend\InstitutionController@academicClasses')->name('institution.academicClasses');
+Route::post('institution/store-academic-class','Backend\InstitutionController@storeAcademicClass');
+Route::post('institution/edit-AcademicClass','Backend\InstitutionController@editAcademicClass');
+Route::post('institution/update-AcademicClass','Backend\InstitutionController@updateAcademicClass');
+Route::post('institution/edit-SessionClass','Backend\InstitutionController@edit_SessionClass');
+Route::post('institution/update-SessionClass','Backend\InstitutionController@update_SessionClass');
+Route::get('institution/{id}/delete-SessionClass','Backend\InstitutionController@delete_SessionClass');
 
-Route::get('institution/class/subject/{class}','InstitutionController@classSubjects');
-Route::delete('institution/class/subject/destroy/{id}','InstitutionController@unAssignSubject');
+Route::get('institution/class/subject/{class}','Backend\InstitutionController@classSubjects');
+Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@unAssignSubject');
 
 //Class Schedule
 Route::get('institution/class/schedule/{class}','ScheduleController@index');
 Route::post('institution/class/schedule/store','ScheduleController@store');
 
 //Subjects
-Route::get('institution/subjects','InstitutionController@subjects')->name('institution.subjects');
-Route::post('institution/create-subject','InstitutionController@create_subject');
-Route::post('institution/edit-subject','InstitutionController@edit_subject');
-Route::post('institution/update-subject','InstitutionController@update_subject');
-Route::get('institution/{id}/delete-subject','InstitutionController@delete_subject');
+Route::get('institution/subjects','Backend\InstitutionController@subjects')->name('institution.subjects');
+Route::post('institution/create-subject','Backend\InstitutionController@create_subject');
+Route::post('institution/edit-subject','Backend\InstitutionController@edit_subject');
+Route::post('institution/update-subject','Backend\InstitutionController@update_subject');
+Route::get('institution/{id}/delete-subject','Backend\InstitutionController@delete_subject');
 
-//Route::get('institution/classsubjects','InstitutionController@classsubjects')->name('institution.classsubjects');
-Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
-//Route::post('institution/assign-subject','InstitutionController@assign_subject')->name('assign.subject');
-Route::post('institution/edit-assigned-subject','InstitutionController@edit_assigned')->name('edit.assign');
-Route::get('institution/{id}/delete-assigned-subject','InstitutionController@delete_assigned');
-Route::get('institution/profile','InstitutionController@profile')->name('institution.profile');
+//Route::get('institution/classsubjects','Backend\InstitutionController@classsubjects')->name('institution.classsubjects');
+Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
+//Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
+Route::post('institution/edit-assigned-subject','Backend\InstitutionController@edit_assigned')->name('edit.assign');
+Route::get('institution/{id}/delete-assigned-subject','Backend\InstitutionController@delete_assigned');
+Route::get('institution/profile','Backend\InstitutionController@profile')->name('institution.profile');
 
-Route::get('institution/signature','InstitutionController@signature');
-Route::post('institution/sig','InstitutionController@sig');
+Route::get('institution/signature','Backend\InstitutionController@signature');
+Route::post('institution/sig','Backend\InstitutionController@sig');
 
 
 
@@ -316,20 +317,20 @@ Route::post('institution/sig','InstitutionController@sig');
 
 //Account Section Star AR Babu
 //  Fee Category Start
-    Route::get('/fee-category/index','FeeCategoryController@index')->name('fee-category.index');
-    Route::post('fee-category/store','FeeCategoryController@store_fee_category')->name('fee-category.store');
-    Route::post('fee-category/edit','FeeCategoryController@edit_fee_category')->name('fee-category.edit');
-    Route::post('fee-category/update','FeeCategoryController@update_fee_category')->name('fee-category.update');
-    Route::get('fee-category/{id}/delete','FeeCategoryController@delete_fee_category')->name('fee-category.delete');
-    Route::put('fee-category/status/{id}','FeeCategoryController@status')->name('fee-category.status');
+    Route::get('/fee-category/index','Backend\FeeCategoryController@index')->name('fee-category.index');
+    Route::post('fee-category/store','Backend\FeeCategoryController@store_fee_category')->name('fee-category.store');
+    Route::post('fee-category/edit','Backend\FeeCategoryController@edit_fee_category')->name('fee-category.edit');
+    Route::post('fee-category/update','Backend\FeeCategoryController@update_fee_category')->name('fee-category.update');
+    Route::get('fee-category/{id}/delete','Backend\FeeCategoryController@delete_fee_category')->name('fee-category.delete');
+    Route::put('fee-category/status/{id}','Backend\FeeCategoryController@status')->name('fee-category.status');
 //    Fee Category End
 
 //  Fee Setup Start
-    Route::get('fee-category/fee_setup/{classId}','FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
-    Route::post('fee_setup/store/{classId}','FeeCategoryController@store_fee_setup')->name('fee-setup.store');
-    Route::get('fee_setup/list/{classId}','FeeCategoryController@list_fee_setup')->name('fee-setup.list');
-    Route::get('fee_setup/show/{id}', 'FeeCategoryController@show_fee_setup')->name('fee-setup.show');
-    Route::patch('fee_setup/{id}/update','FeeCategoryController@update_fee_setup')->name('fee-setup.update');
+    Route::get('fee-category/fee_setup/{classId}','Backend\FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
+    Route::post('fee_setup/store/{classId}','Backend\FeeCategoryController@store_fee_setup')->name('fee-setup.store');
+    Route::get('fee_setup/list/{classId}','Backend\FeeCategoryController@list_fee_setup')->name('fee-setup.list');
+    Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup')->name('fee-setup.show');
+    Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
 
 // Student Transport management Start
@@ -402,24 +403,26 @@ Route::post('api/class-routines','AndroidController@classRoutine');
 Route::get('validate-admission','Front\AdmissionController@validateAdmission');
 Route::get('admission-form','Front\AdmissionController@admissionForm');
 
-// Route::get('admission-form','FrontController@admissionForm');
-// Route::get('validate-admission','FrontController@validateAdmission');
+// Route::get('admission-form','Front\FrontController@admissionForm');
+// Route::get('validate-admission','Front\FrontController@validateAdmission');
 
-//Route::post('admission-form-submit','FrontController@admissionFormSubmit');
-Route::get('student-form','FrontController@studentForm');
-Route::get('admission-invoice','FrontController@invoice');
-Route::get('admission-bank-slip','FrontController@bankSlip');
-Route::get('admission-success','FrontController@admissionSuccess');
+//Route::post('admission-form-submit','Front\FrontController@admissionFormSubmit');
+Route::get('student-form','Front\FrontController@studentForm');
+Route::get('admission-invoice','Front\FrontController@invoice');
+Route::get('admission-bank-slip','Front\FrontController@bankSlip');
+Route::get('admission-success','Front\FrontController@admissionSuccess');
+Route::get('admission-success-school', 'Front\FrontController@admissionSuccessSchool');
+// Route::get('admission-success-school', [Front\Front\FrontController::class, 'admissionSuccessSchool']);
 /** Online Admission Ends */
 
 /** Event Start */
-Route::get('events','FrontController@events');
-Route::get('event/{id}','FrontController@event');
+Route::get('events','Front\FrontController@events');
+Route::get('event/{id}','Front\FrontController@event');
 /** Event Ends */
 
 /** Playlist Start */
-Route::get('playlists','FrontController@playlists');
-Route::get('playlist/{id}','FrontController@playlist');
+Route::get('playlists','Front\FrontController@playlists');
+Route::get('playlist/{id}','Front\FrontController@playlist');
 /** Playlist Ends */
 
 /** Applied Student */
@@ -429,12 +432,12 @@ Route::get('playlist/{id}','FrontController@playlist');
 Route::post('admission-form-submit','Front\AdmissionController@store');
 Route::post('load_applied_student_id','Front\AdmissionController@loadStudentId');
 
-Route::get('/load_online_student_info','FrontController@loadStudentInfo');
+Route::get('/load_online_student_info','Front\FrontController@loadStudentInfo');
 /** Applied Student */
 
 
 
-Route::get('page/{uri}','FrontController@page');
+Route::get('page/{uri}','Front\FrontController@page');
 
 //if(isMenu()){
 //    Route::get('{uri}','FrontController@page');

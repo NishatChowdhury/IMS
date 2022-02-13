@@ -34,7 +34,7 @@
                             <div class="row" style="margin-bottom: 15px">
                                 <div class="col-md-12">
                                     <div style="float: left;">
-                                        <a href="{{ action('FeeCategoryController@fee_setup',$academicClass->id) }}" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-eye"></i> Setup Monthly Fee</a>
+                                        <a href="{{ action('Backend\FeeCategoryController@fee_setup',$academicClass->id) }}" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-eye"></i> Setup Monthly Fee</a>
                                     </div>
                                     <div style="float: right;">
                                         <button type="button" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 10px; float: right !important;"> Session : {{ $academicClass->sessions->year ?? '' }} </button>

@@ -78,12 +78,12 @@
                                         <td> {{ $class->student_academic_count  }} </td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['InstitutionController@delete_SessionClass',$class->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\InstitutionController@delete_SessionClass',$class->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <a href="{{ action('StudentController@downloadBlank',$class->id) }}" role="button" class="btn btn-primary btn-sm" title="Download CSV"><i class="fas fa-file-download"></i></a>
                                             <a href="{{ action('StudentController@uploadStudent',$class->id) }}" role="button" class="btn btn-light btn-sm" title="Upload Student"><i class="fas fa-file-upload"></i></a>
-                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
+                                            <a href="{{ action('Backend\InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
                                             <a href="{{ action('ScheduleController@index',$class->id) }}" role="button" class="btn btn-success btn-sm" title="Class Schedule"><i class="fas fa-clock"></i></a>
-                                            <a href="{{ action('FeeCategoryController@list_fee_setup',$class->id) }}" class="btn btn-dark btn-sm"><i class="fas fa-funnel-dollar"></i></a>
+                                            <a href="{{ action('Backend\FeeCategoryController@list_fee_setup',$class->id) }}" class="btn btn-dark btn-sm"><i class="fas fa-funnel-dollar"></i></a>
                                             <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}' title="Edit"> <i class="fas fa-edit"></i></a>
                                             <button type="submit" disabled class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
@@ -111,7 +111,7 @@
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['action'=>'InstitutionController@storeAcademicClass', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@storeAcademicClass', 'method'=>'post']) !!}
 
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>
@@ -187,7 +187,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'InstitutionController@updateAcademicClass', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@updateAcademicClass', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>

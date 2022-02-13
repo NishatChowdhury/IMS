@@ -73,7 +73,7 @@
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
 
-                                        <a type="button" href="{{action('InstitutionController@delete_section',$section->id)}}"
+                                        <a type="button" href="{{action('Backend\InstitutionController@delete_section',$section->id)}}"
                                            class="btn btn-danger btn-sm"
                                            style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
@@ -108,7 +108,7 @@
                                         <a type="button" class="btn btn-info btn-sm edit_group" value='{{$group->id}}'
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
-                                        <a type="button" href="{{action('InstitutionController@delete_grp',$group->id)}}"
+                                        <a type="button" href="{{action('Backend\InstitutionController@delete_grp',$group->id)}}"
                                            class="btn btn-danger btn-sm delete_grp"
                                            style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
                                         </a>

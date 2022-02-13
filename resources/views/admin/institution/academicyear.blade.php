@@ -67,7 +67,7 @@
                                         <td>{{$session->start}} - {{ $session->end }}</td>
                                         <td>{{$session->description}}</td>
                                         <td>
-                                            {{ Form::model($session,['action'=>['InstitutionController@sessionStatus',$session->id],'method'=>'patch','onsubmit'=>'return statusChange()']) }}
+                                            {{ Form::model($session,['action'=>['Backend\InstitutionController@sessionStatus',$session->id],'method'=>'patch','onsubmit'=>'return statusChange()']) }}
                                             @if($session->active == 0)
                                                 <button class="btn btn-danger btn-sm">Inactive</button>
                                             @else
@@ -76,7 +76,7 @@
                                             {{ Form::close() }}
                                         </td>
                                         <td>
-                                            {{ Form::open(['action'=>['InstitutionController@delete_session',$session->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\InstitutionController@delete_session',$session->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <a type="button" class="btn btn-warning btn-sm edit_session" value='{{$session->id}}'
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                             </a>

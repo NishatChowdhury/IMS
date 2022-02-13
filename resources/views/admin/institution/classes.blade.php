@@ -82,7 +82,7 @@
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <a type="button" href="{{action('InstitutionController@delete_SessionClass', $class->id)}}"
+                                            <a type="button" href="{{action('Backend\InstitutionController@delete_SessionClass', $class->id)}}"
                                                class="btn btn-danger btn-sm delete_session"
                                                style="margin-left: 10px;"> <i class="fas fa-trash"></i>
                                             </a>
@@ -154,7 +154,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'InstitutionController@update_SessionClass', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@update_SessionClass', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
 
                     <div class="form-group row">

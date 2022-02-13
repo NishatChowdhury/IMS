@@ -145,7 +145,7 @@
                                         <a href="{{ action('OnlineApplyController@applyStudentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                         {{-- <a href="{{ action('StudentController@subjects',$student->id) }}" role="button" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a> --}}
                                         @if ($student->status == 0 )
-                                        <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$student->id) }}" data-toggle="modal" data-target="#exampleModal" role="button" class="btn btn-info btn-sm" onclick="showFeeDetails({{ $student->id }})"><i class="fas fa-book"></i></a>
+                                        <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$student->id) }}" data-toggle="modal" data-id="{{ $student->session_id  }}" data-target="#exampleModal" role="button" class="btn btn-info btn-sm" onclick="showFeeDetails({{ $student->id }})"><i class="fas fa-book"></i></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -191,6 +191,11 @@
                         <input type="text" class="form-control" id="groupName" readonly>
                     </div>
                     <div class="form-group col-6">
+                        <label for="">Session Name</label>
+                        <input type="text" class="form-control fff" id="sessionName" readonly>
+                    </div>
+                    <input type="hidden" name="session_id" id="sessionId">
+                    {{-- <div class="form-group col-6">
                           <label for="">Session</label>
                           <select class="form-control" name="session_id" id="getAcademicYear">
                               <option value="">--Select Session--</option>
@@ -201,7 +206,7 @@
                               @endforeach
 
                           </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group col-6">
                           <label for="">Sections</label>
                           <select class="form-control" name="section_id">
@@ -262,8 +267,8 @@
 $(document).on('keyup','#rank', function () {
     // alert();
             // var academicYear = $('.year').val();
-            var academicYear = $('#getAcademicYear').val();
-            console.log(academicYear);        
+            var academicYear = $('.fff').val();
+            // console.log(academicYear);        
             $.ajax({
                 url:"{{url('admin/get-apply-info-session')}}",
                 type:'GET',
@@ -285,7 +290,9 @@ $(document).on('keyup','#rank', function () {
                 success:function (data) {
                     $('#className').val(data.className);
                     $('#groupName').val(data.groupName);
-                    console.log(data);
+                    $('#sessionName').val(data.SessionName);
+                    $('#sessionId').val(data.SessionId);
+                    // console.log(getSessionId);
                     // $('#studentID').val(data);
 
                 }

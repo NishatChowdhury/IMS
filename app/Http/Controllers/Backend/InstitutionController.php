@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\AssignSubject;
-use App\Classes;
 use App\Group;
-use App\Repository\StudentRepository;
+use App\Staff;
+use App\Classes;
 use App\Section;
 use App\Session;
-use App\SessionClass;
-use App\Staff;
-use App\StudentAcademic;
 use App\Subject;
+use App\SessionClass;
+use App\AcademicClass;
+use App\AssignSubject;
+use App\StudentAcademic;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\StudentRepository;
 use Illuminate\Support\Facades\Validator;
 
 class InstitutionController extends Controller

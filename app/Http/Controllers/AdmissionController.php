@@ -8,6 +8,7 @@ use App\Classes;
 use App\CommunicationSetting;
 use App\Group;
 use App\MeritList;
+use App\OnlineAdmission;
 use App\Repository\StudentRepository;
 use App\Session;
 use App\SiteInformation;
@@ -166,17 +167,18 @@ class AdmissionController extends Controller
 
     public function uploadMeritList()
     {
-        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
-        $sessions = Session::query()->where('active',1)->pluck('year','id');
-        $classes = Classes::query()->pluck('name','id');
-        $groups = Group::query()->pluck('name','id');
-        return view('admin.admission.upload',compact('sessions','classes','groups','academicClass'));
+        $onlineApplyStep = OnlineAdmission::where('type', 2)->where('status', 1)->get();
+        // $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+        // $sessions = Session::query()->where('active',1)->pluck('year','id');
+        // $classes = Classes::query()->pluck('name','id');
+        // $groups = Group::query()->pluck('name','id');
+        return view('admin.admission.upload',compact('onlineApplyStep'));
     }
 
     public function upload(Request $request)
     {
-        $academic_class_id = $request->academic_class_id;
-        $getAcadimic = AcademicClass::findOrFail($academic_class_id);
+        $onlineApplyStep_id = $request->academic_class_id;
+        $getOnlineAdmission = OnlineAdmission::findOrFail($onlineApplyStep_id);
         // return $request->all();
         $file = file($request->file('list'));
         $sl = 0;
@@ -184,9 +186,9 @@ class AdmissionController extends Controller
             if($sl != 0){
                 $col = explode(',',$row);
 
-                $data['session_id'] = $getAcadimic->session_id;
-                $data['class_id'] = $getAcadimic->class_id;
-                $data['group_id'] = $getAcadimic->group_id;
+                $data['session_id'] = $getOnlineAdmission->session_id;
+                $data['class_id'] = $getOnlineAdmission->class_id;
+                $data['group_id'] = $getOnlineAdmission->group_id;
                 $data['ssc_roll'] = $col[0];
                 $data['board'] = $col[1];
                 $data['passing_year'] = $col[2];

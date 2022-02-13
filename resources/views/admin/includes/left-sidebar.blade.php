@@ -345,7 +345,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('InstitutionController@signature') }}" class="nav-link {{ isActive('institution/signature') }}">
+                        <a href="{{ action('Backend\InstitutionController@signature') }}" class="nav-link {{ isActive('institution/signature') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Signature</p>
                         </a>

@@ -24,7 +24,7 @@ class CreateFathersTable extends Migration
             $table->string('f_dob');
             $table->string('f_occupation');
             $table->string('f_nid');
-            $table->string('f_birth_certificate');
+            $table->string('f_birth_certificate')->nullable();
             $table->timestamps();
         });
     }

@@ -70,13 +70,16 @@ ul.parent_info label {
 }
 
 .showImg{
-    width: 250px;
-    height: 250px;
+    width: 155px;
+    height: 185px;                                      
     border-radius: 10px;
     overflow: hidden;
     background-color: #cccccc;
     background-size: cover;
     position: relative;
+}
+span.red{
+    color: red;
 }
 </style>
 @endsection
@@ -140,6 +143,7 @@ ul.parent_info label {
 
                                     <div class="form-group col-6">
                                         {{Form::label('name','Student\'s name',['class'=>'control-label'])}}
+                                        <span class="red">*</span>
                                         {{ Form::text('name', null, [ 'id' => 'name', 'placeholder' => 'Student\'s  Name...', 'class' => 'form-control' ]) }}
                                         @error('name')
                                             <b style="color: red">{{ $message }}</b>
@@ -147,6 +151,7 @@ ul.parent_info label {
                                     </div>
                                     <div class="form-group col-6">
                                         {{Form::label('name','Student\'s name Bangla',['class'=>'control-label'])}}
+                                        <span class="red">*</span>
                                         {{ Form::text('name_bn', null, ['id' => 'name_bn', 'placeholder' => 'Student\'s  Name Bangla...', 'class' => 'form-control' ]) }}
                                         @error('name_bn')
                                             <b style="color: red">{{ $message }}</b>
@@ -154,6 +159,7 @@ ul.parent_info label {
                                     </div>
                                     <div class="form-group col-12">
                                         {{Form::label('name','Student\'s Birth Certificate',['class'=>'control-label'])}}
+                                        <span class="red">*</span>
                                         {{ Form::number('birth_certificate', null, ['id' => 'birth_certificate','placeholder' => 'Student\'s  Birth Certificate...', 'class' => 'form-control' ]) }}
                                         @error('birth_certificate')
                                             <b style="color: red">{{ $message }}</b>
@@ -162,6 +168,7 @@ ul.parent_info label {
                                     
                                     <div class="form-group col-6">
                                         {{ Form::label('dob','Date of Birth',['class'=>'control-label']) }}
+                                        <span class="red">*</span>
                                         {{ Form::date('dob',null,['id' => 'dob','class' => 'form-control', 'placeholder'=>'Date of Birth']) }}
                                         @error('dob')
                                             <b style="color: red">{{ $message }}</b>
@@ -170,6 +177,7 @@ ul.parent_info label {
                                     
                                     <div class="form-group col-6">
                                         {{ Form::label('gender','Gender',['class'=>'control-label']) }}
+                                        <span class="red">*</span>
                                         {{ Form::select('gender_id', $data['gender'], null, ['id' => 'gender_id','class'=>'form-control','placeholder' => 'Select Gender...']) }}
                                         @error('gender_id')
                                         <b style="color: red">{{ $message }}</b>
@@ -179,6 +187,7 @@ ul.parent_info label {
                                     
                                     <div class="form-group col-6">
                                         {{ Form::label('bloodGroup','Blood Group',['class'=>'control-label']) }}
+                                        <span class="red">*</span>
                                         {{ Form::select('blood_group_id', $data['blood'], null, ['id' => 'blood_group_id','placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                                         @error('blood_group_id')
                                         <b style="color: red">{{ $message }}</b>
@@ -186,6 +195,7 @@ ul.parent_info label {
                                     </div>
                                     <div class="form-group col-6">
                                         {{ Form::label('religion_id','Religion',['class'=>'control-label']) }}
+                                        <span class="red">*</span>
                                         {{ Form::select('religion_id', $data['religion'], null, ['id' => 'religion','placeholder' => 'Select Blood Group...','class'=>'form-control']) }}
                                         @error('religion_id')
                                         <b style="color: red">{{ $message }}</b>
@@ -211,6 +221,7 @@ ul.parent_info label {
                                     <div class="row">
                                         <input type="hidden" name="class_id" value="{{ $onlineAdmission->class_id }}">
                                         <input type="hidden" name="group_id" value="{{ $onlineAdmission->group_id }}">
+                                        <input type="hidden" name="session_id" value="{{ $onlineAdmission->session_id }}">
                                         {{-- <div class="form-group col-6">
                                             {{ Form::label('class_id','Class Name',['class'=>'control-label']) }}
                                             {{ Form::select('class_id', $data['class'], null, ['placeholder' => 'Select Class...','class'=>'form-control']) }}
@@ -227,6 +238,7 @@ ul.parent_info label {
                                         </div> --}}
                                         <div class="form-group col-12">
                                             {{ Form::label('streetAddress','Address',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::textarea('address',null,['id' => 'address','class'=>'form-control', 'rows'=>1, 'placeholder'=>'Address']) }}
                                             @error('address')
                                             <b style="color: red">{{ $message }}</b>
@@ -235,6 +247,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-12">
                                             {{ Form::label('area','Area / Town',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('area',null,['id' => 'area','class'=>'form-control', 'placeholder'=>'Area Town']) }}
                                             @error('area')
                                             <b style="color: red">{{ $message }}</b>
@@ -242,6 +255,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('postCode','Post / Zip Code',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('zip',null,['id' => 'zip','class'=>'form-control', 'placeholder'=>'Post / Zip Code']) }}
                                             @error('zip')
                                             <b style="color: red">{{ $message }}</b>
@@ -251,6 +265,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('city_id','City',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::select('city_id',$data['city'], null, ['id' => 'city_id','placeholder' => 'Select City','class'=>'form-control']) }}
                                             @error('city_id')
                                             <b style="color: red">{{ $message }}</b>
@@ -258,6 +273,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('country','Country',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::select('country_id', $data['country'], null, ['id' => 'country_id','placeholder' => 'Select Country...','class'=>'form-control']) }}
                                             @error('country_id')
                                             <b style="color: red">{{ $message }}</b>
@@ -265,6 +281,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('nationality','Nationality',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('nationality',null,['id' => 'nationality','class'=>'form-control', 'placeholder'=>'Nationality']) }}
                                             @error('nationality')
                                             <b style="color: red">{{ $message }}</b>
@@ -283,6 +300,7 @@ ul.parent_info label {
                                     <div class="row">
                                         <div class="form-group col-6">
                                             {{ Form::label('f_name','Father Name',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('f_name', !empty($father) ? $father->f_name : null,['id' => 'f_name','class'=>'form-control', 'placeholder'=>'Father Name']) }}
                                             @error('fname')
                                             <b style="color: red">{{ $message }}</b>
@@ -290,6 +308,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('f_name_bn','Father Name Bangla',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('f_name_bn',!empty($father) ? $father->f_name_bn : null,['id' => 'f_name_bn','class'=>'form-control', 'placeholder'=>'Father Name Bangla']) }}
                                             @error('f_name_bn')
                                             <b style="color: red">{{ $message }}</b>
@@ -297,6 +316,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('f_mobile','Father Mobile',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('f_mobile',!empty($father) ? $father->f_mobile : null,['id' => 'f_mobile','class'=>'form-control', 'placeholder'=>'Father Mobile']) }}
                                             @error('f_mobile')
                                             <b style="color: red">{{ $message }}</b>
@@ -312,6 +332,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('f_dob','Father Date of Birth',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::date('f_dob',!empty($father) ? $father->f_dob : null,['id' => 'f_dob','class' => 'form-control', 'placeholder'=>'Father Date of Birth']) }}
                                             @error('f_dob')
                                                 <b style="color: red">{{ $message }}</b>
@@ -319,6 +340,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('f_occupation','Father Occupation',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('f_occupation',!empty($father) ? $father->f_occupation : null,['id' => 'f_occupation','class'=>'form-control', 'placeholder'=>'Father Occupation']) }}
                                             @error('f_occupation')
                                             <b style="color: red">{{ $message }}</b>
@@ -327,6 +349,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('f_nid','Father NID',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::number('f_nid',!empty($father) ? $father->f_nid : null,['id' => 'f_nid','class'=>'form-control', 'placeholder'=>'Father NID']) }}
                                             @error('f_nid')
                                             <b style="color: red">{{ $message }}</b>
@@ -348,6 +371,7 @@ ul.parent_info label {
                                     <div class="row">
                                         <div class="form-group col-6">
                                             {{ Form::label('m_name','Mother Name',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('m_name',!empty($mother) ? $mother->m_name : null,['id' => 'm_name','class'=>'form-control', 'placeholder'=>'Mother Name']) }}
                                             @error('m_name')
                                             <b style="color: red">{{ $message }}</b>
@@ -355,6 +379,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('m_name_bn','Mother Name Bangla',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('m_name_bn',!empty($mother) ? $mother->m_name_bn : null,['id' => 'm_name_bn','class'=>'form-control', 'placeholder'=>'Mother Name Bangla']) }}
                                             @error('m_name_bn')
                                             <b style="color: red">{{ $message }}</b>
@@ -362,6 +387,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('m_mobile','Mother Mobile',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('m_mobile',!empty($mother) ? $mother->m_mobile : null,['id' => 'm_mobile','class'=>'form-control', 'placeholder'=>'Mother Mobile']) }}
                                             @error('m_mobile')
                                             <b style="color: red">{{ $message }}</b>
@@ -377,6 +403,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('m_dob','Mother Date of Birth',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::date('m_dob',!empty($mother) ? $mother->m_dob : null,['id' => 'm_dob','class' => 'form-control', 'placeholder'=>'Mother Date of Birth']) }}
                                             @error('m_dob')
                                                 <b style="color: red">{{ $message }}</b>
@@ -384,6 +411,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('m_occupation','Mother Occupation',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('m_occupation',!empty($mother) ? $mother->m_occupation : null,['id' => 'm_occupation','class'=>'form-control', 'placeholder'=>'Mother Occupation']) }}
                                             @error('m_occupation')
                                             <b style="color: red">{{ $message }}</b>
@@ -392,6 +420,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('m_nid','Mother NID',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::number('m_nid',!empty($mother) ? $mother->m_nid : null,['id' => 'm_nid','class'=>'form-control', 'placeholder'=>'Mother NID']) }}
                                             @error('m_nid')
                                             <b style="color: red">{{ $message }}</b>
@@ -414,6 +443,7 @@ ul.parent_info label {
                                     <div class="row">
                                         <div class="form-group col-6">
                                             {{ Form::label('g_name','Guardian Name',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('g_name',!empty($guardian) ? $guardian->g_name : null,['id' => 'g_name','class'=>'form-control', 'placeholder'=>'Guardian Name']) }}
                                             @error('g_name')
                                             <b style="color: red">{{ $message }}</b>
@@ -421,6 +451,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('g_name_bn','Guardian Name Bangla',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('g_name_bn',!empty($guardian) ? $guardian->g_name_bn : null,['id' => 'g_name_bn','class'=>'form-control', 'placeholder'=>'Guardian Name Bangla']) }}
                                             @error('g_name_bn')
                                             <b style="color: red">{{ $message }}</b>
@@ -428,6 +459,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('g_mobile','Guardian Mobile',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('g_mobile',!empty($guardian) ? $guardian->g_mobile : null,['id' => 'g_mobile','class'=>'form-control', 'placeholder'=>'Guardian Mobile']) }}
                                             @error('g_mobile')
                                             <b style="color: red">{{ $message }}</b>
@@ -443,6 +475,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('g_dob','Guardian Date of Birth',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::date('g_dob',!empty($guardian) ? $guardian->g_dob : null,['id' => 'g_dob','class' => 'form-control', 'placeholder'=>'Guardian Date of Birth']) }}
                                             @error('g_dob')
                                                 <b style="color: red">{{ $message }}</b>
@@ -450,6 +483,7 @@ ul.parent_info label {
                                         </div>
                                         <div class="form-group col-6">
                                             {{ Form::label('g_occupation','Guardian Occupation',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::text('g_occupation',!empty($guardian) ? $guardian->g_occupation : null,['id' => 'g_occupation','class'=>'form-control', 'placeholder'=>'Guardian Occupation']) }}
                                             @error('g_occupation')
                                             <b style="color: red">{{ $message }}</b>
@@ -458,6 +492,7 @@ ul.parent_info label {
                                         
                                         <div class="form-group col-6">
                                             {{ Form::label('g_nid','Guardian NID',['class'=>'control-label']) }}
+                                            <span class="red">*</span>
                                             {{ Form::number('g_nid',!empty($guardian) ? $guardian->g_nid : null,['id' => 'g_nid','class'=>'form-control', 'placeholder'=>'Guardian NID']) }}
                                             @error('g_nid')
                                             <b style="color: red">{{ $message }}</b>
@@ -480,6 +515,7 @@ ul.parent_info label {
                                         <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="form-group">
                                                 {{ Form::label('contactMobile','Contact Mobile',['class'=>'control-label']) }}
+                                                <span class="red">*</span>
                                                 {{ Form::text('mobile',null,['id' => 'mobile','class'=>'form-control', 'placeholder'=>'Contact Mobile']) }}
                                                 @error('mobile')
                                                 <b style="color: red">{{ $message }}</b>
@@ -498,6 +534,8 @@ ul.parent_info label {
                                         <div class="col-6">
                                             <div class="form-group">
                                                 {{ Form::label('freedom_fighter','Freedom Fighter',['class'=>'control-label']) }}
+                                                <span class="red">*</span>
+                                                <br>
                                                 {{ Form::radio('freedom_fighter', 1, true, ['id'=>'active', 'class'=> 'checked_f']) }}&nbsp;{{ Form::label('active','Yes') }}
                                                 {{ Form::radio('freedom_fighter', 0, false, ['id'=>'inactive', 'class'=> 'checked_f']) }}&nbsp;{{ Form::label('inactive','No') }}
                                             </div>
@@ -505,12 +543,15 @@ ul.parent_info label {
                                         <div class="col-6">
                                             <div class="form-group">
                                                 {{ Form::label('disability','Disability',['class'=>'control-label']) }}
+                                                <span class="red">*</span>
+                                                <br>
                                                 {{ Form::radio('disability', 1, true, ['id'=>'active', 'class'=>"checked_d"]) }}&nbsp;{{ Form::label('active','Yes') }}
                                                 {{ Form::radio('disability', 0, false, ['id'=>'inactive', 'class'=>"checked_d"]) }}&nbsp;{{ Form::label('inactive','No') }}
                                             </div>
                                         </div>
                                         <div class="col-md-12 mb-2">
                                             <label for="">Student Picture</label>
+                                            <span class="red">*</span>
                                             <div class="drop-zone">
                                                 <span class="drop-zone__prompt">Drop file here or click to upload</span>
                                                 {{-- <input type="file" name="myFile" class="drop-zone__input"> --}}
@@ -614,7 +655,7 @@ ul.parent_info label {
                                 </li>
                             </ul>
                 </div>
-                <div class="col-4">
+                <div class="col-4 p-5">
                     <div class="showImg"></div>  
                 </div>
 

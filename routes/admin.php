@@ -315,7 +315,7 @@ Route::group(['prefix'=>'admin'], function(){
 
     Route::get('admission/create', 'OnlineApplyController@onlineApplyIndex');
     Route::post('get-apply-set-store', 'OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
-    Route::get('load_online_adminsion_id', 'OnlineApplyController@load_online_adminsion_id');
+    Route::get('load_online_adminsion_id/{id}', 'OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
     Route::post('onlineApplySetUpdate', 'OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
     
 

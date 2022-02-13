@@ -23,7 +23,7 @@ class CreateMothersTable extends Migration
             $table->string('m_dob');
             $table->string('m_occupation');
             $table->string('m_nid');
-            $table->string('m_birth_certificate');
+            $table->string('m_birth_certificate')->nullable();
             $table->timestamps();
         });
     }

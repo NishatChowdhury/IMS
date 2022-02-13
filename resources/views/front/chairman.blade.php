@@ -9,7 +9,7 @@
                     Message
                 </h2>
                 {!! substr($content->where('name','president message')->first()->content,0,1000) !!}
-                <a href="{{ action('FrontController@page','message-from-chairman') }}">...more</a>
+                <a href="{{ action('Front\FrontController@page','message-from-chairman') }}">...more</a>
             </div>
             <div class="col-md-6 mt-3">
                 {{--<img src="assets/img/avatar/1_1.png" alt="">--}}

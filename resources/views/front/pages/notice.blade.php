@@ -61,7 +61,7 @@
                             @if($notice->file)
                                 <a href="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>
                             @endif
-                            <a href="{{action('FrontController@noticeDetails',$notice->id)}}" class="btn btn-outline-primary">Read More</a>
+                            <a href="{{action('Front\FrontController@noticeDetails',$notice->id)}}" class="btn btn-outline-primary">Read More</a>
                         </div>
                     @endforeach
 

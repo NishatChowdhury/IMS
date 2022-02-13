@@ -21,6 +21,7 @@ class CreateOnlineAppliesTable extends Migration
 //            $table->string('applyId')->nullable();
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->unsignedBigInteger('class_id')->nullable();
+            $table->unsignedBigInteger('session_id')->nullable();
             $table->unsignedBigInteger('group_id')->nullable();
             $table->string('mobile');
             $table->string('dob')->nullable();

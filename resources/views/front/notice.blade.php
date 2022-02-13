@@ -23,7 +23,7 @@
 {{--                        <p class="my-4 text-white">--}}
 {{--                            Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clartas est consectetur adipi sicing elitsed kdo eusmod tempor cididunt wuti labore.--}}
 {{--                        </p>--}}
-                        <a href="{{ action('FrontController@page','history') }}" class="btn btn-outline-white-hover">
+                        <a href="{{ action('Front\FrontController@page','history') }}" class="btn btn-outline-white-hover">
                             Read More
                         </a>
                     </div>
@@ -46,14 +46,14 @@
                                     {{ $notice->created_at->format('Y-m-d') }}
                                 @endif
                             </p>
-                            <a href="{{ action('FrontController@noticeDetails',$notice->id) }}" class="text-info">
+                            <a href="{{ action('Front\FrontController@noticeDetails',$notice->id) }}" class="text-info">
                                 {{ strip_tags($notice->title) }}
                             </a>
                         </div>
                     @endforeach
 
                     <div class="p-4">
-                        <a href="{{ action('FrontController@notice') }}" class="btn btn-link pl-0">
+                        <a href="{{ action('Front\FrontController@notice') }}" class="btn btn-link pl-0">
                             View All Notices
                         </a>
                     </div>
