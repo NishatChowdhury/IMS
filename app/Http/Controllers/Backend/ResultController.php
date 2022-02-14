@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\AssignSubject;
-use App\Exam;
-use App\ExamResult;
-use App\ExamSchedule;
-use App\FinalMark;
-use App\FinalResult;
 use App\FM;
-use App\Grade;
+use App\Exam;
 use App\Mark;
-use App\Repository\ResultRepository;
+use App\Grade;
 use App\Student;
 use App\Subject;
+use App\FinalMark;
+use App\ExamResult;
+use App\FinalResult;
+use App\ExamSchedule;
+use App\AcademicClass;
+use App\AssignSubject;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\ResultRepository;
 
 class ResultController extends Controller
 {

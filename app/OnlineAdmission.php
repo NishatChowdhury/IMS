@@ -17,6 +17,10 @@ class OnlineAdmission extends Model
     {
         return $this->belongsTo(Classes::class,'class_id');
     }
+    public function sessions()
+    {
+        return $this->belongsTo(Session::class,'session_id');
+    }
 
     public function group()
     {

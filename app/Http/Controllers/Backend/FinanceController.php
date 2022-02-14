@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\FeeSetup;
-use App\PaymentPivot;
 use App\Student;
-use App\StudentPayment;
+use App\FeeSetup;
 use App\Transport;
+use App\PaymentPivot;
+use App\StudentPayment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repository\StudentRepository;
 
 class FinanceController extends Controller

@@ -13,7 +13,7 @@
 {{--                    Principal Message--}}
 {{--                </h2>--}}
                 {!! substr($content->where('name','principal message')->first()->content,0,2000) !!}
-                <a href="{{ action('FrontController@page','message-from-principal') }}">...more</a>
+                <a href="{{ action('Front\FrontController@page','message-from-principal') }}">...more</a>
                 {{--<h2>--}}
                 {{--<small class="text-primary d-block">--}}
                 {{--Hello, and--}}

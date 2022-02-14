@@ -84,7 +84,7 @@
                                                                            style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                                                         </a>
 
-                                                                        <a type="button" href="{{action('FeeCategoryController@delete_fee_category', $location->id)}}"
+                                                                        <a type="button" href="{{action('Backend\FeeCategoryController@delete_fee_category', $location->id)}}"
                                                                         class="btn btn-danger btn-sm delete_session"
                                                                         style="margin-left: 10px;"> <i class="fas fa-trash"></i>
                                                                         </a>

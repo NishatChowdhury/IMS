@@ -171,7 +171,7 @@
                 </div>
                 <div class="modal-body">
                     <img src="{{ asset('assets/img/loader.gif') }}" alt="" id="loader" style="display: none;margin:0 auto !important;">
-                    {!! Form::open(['action'=>'FeeCategoryController@update_fee_category', 'method'=>'post','id'=>'form']) !!}
+                    {!! Form::open(['action'=>'Backend\FeeCategoryController@update_fee_category', 'method'=>'post','id'=>'form']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
 
                     <div class="form-group row">

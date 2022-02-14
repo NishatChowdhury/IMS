@@ -45,4 +45,8 @@ class OnlineApply extends Model
     {
         return $this->belongsTo(Country::class);
     }
+    public function sessions()
+    {
+        return $this->belongsTo(Session::class,'session_id');
+    }
 }

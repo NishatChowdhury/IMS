@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\BloodGroup;
-use App\Gender;
-use App\Repository\StaffRepository;
 use App\Staff;
+use App\Gender;
+use App\BloodGroup;
 use Illuminate\Http\Request;
+use App\Repository\StaffRepository;
+use App\Http\Controllers\Controller;
 
 class StaffController extends Controller
 {

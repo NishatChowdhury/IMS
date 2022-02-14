@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\FeeCategory;
+use App\Session;
 use App\FeePivot;
 use App\FeeSetup;
-use App\Session;
+use App\FeeCategory;
 use Dotenv\Validator;
+use App\AcademicClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class FeeCategoryController extends Controller
 {

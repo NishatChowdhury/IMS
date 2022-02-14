@@ -47,7 +47,7 @@
                                     <tr>
                                         <td>
                                             <div class="card-body">
-                                                {{ Form::open(['action'=>'InstitutionController@sig','method'=>'post','files'=>true]) }}
+                                                {{ Form::open(['action'=>'Backend\InstitutionController@sig','method'=>'post','files'=>true]) }}
                                                     <div class="form-group row">
 {{--                                                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Status</label>--}}
 {{--                                                        {{ Form::label('signature', 'Signature', ['class' => 'control-label']) }}--}}

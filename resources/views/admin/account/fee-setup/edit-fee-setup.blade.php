@@ -24,7 +24,7 @@
                     <div class="card">
 
                         <div class="card-body" style="border-bottom: none !important;">
-                            {{ Form::model($fee_setup,['action'=>['FeeCategoryController@update_fee_setup',$fee_setup->first()->id],'method'=>'PATCH']) }}
+                            {{ Form::model($fee_setup,['action'=>['Backend\FeeCategoryController@update_fee_setup',$fee_setup->first()->id],'method'=>'PATCH']) }}
                                 @include('admin.account.fee-setup.form')
                                 <div class="from-group">
                                     {{ Form::button('UPDATE',['type'=>'submit','class'=>'btn btn-warning']) }}

@@ -37,9 +37,9 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="academic_class_id" id="getAcademicYear">
                                             <option value="">--Select Academics Class--</option>
-                                            @foreach ($academicClass as $item)
+                                            @foreach ($onlineApplyStep as $item)
                                             <option value="{{ $item->id }}" class="customOption">
-                                              {{ $item->classes->name ?? '' }}-{{ $item->group->name ?? '' }}-{{ $item->sessions->year }}
+                                              {{ $item->classes->name ?? '' }}-{{ $item->group->name ?? '' }}-{{ $item->session_id ? $item->sessions->year : '' }}
                                               </option>
                                             @endforeach
         

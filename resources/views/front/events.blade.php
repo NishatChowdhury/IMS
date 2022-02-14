@@ -28,7 +28,7 @@
                                 {{ $event->venue }}
                             </li>
                         </ul>
-                        <a href="{{ action('FrontController@event',$event->id) }}" class="text-primary">
+                        <a href="{{ action('Front\FrontController@event',$event->id) }}" class="text-primary">
                             View Details
                             <i class="ti-angle-double-right small"></i>
                         </a>
@@ -87,7 +87,7 @@
 {{--                </div>--}}
 {{--            </div> <!-- END col-md-4-->--}}
             <div class="col-12 mt-5 text-center">
-                <a href="{{ action('FrontController@events') }}" class="btn btn-outline-white-hover">More Events</a>
+                <a href="{{ action('Front\FrontController@events') }}" class="btn btn-outline-white-hover">More Events</a>
             </div>
         </div> <!-- END row-->
     </div> <!-- END container-->

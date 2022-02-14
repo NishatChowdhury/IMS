@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
 use App\Bank;
 use App\City;
@@ -34,15 +34,15 @@ use App\UpcomingEvent;
 use App\AppliedStudent;
 use App\NoticeCategory;
 use App\GalleryCategory;
-use App\AcademicCalender;
 use App\OnlineAdmission;
+use App\AcademicCalender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\FrontRepository;
+use App\Http\Controllers\Controller;
 
 class FrontController extends Controller
 {
-
     private $repository;
 
     public function __construct(FrontRepository $repository)
@@ -695,5 +695,5 @@ class FrontController extends Controller
 
         return response($info);
     }
-}
 
+}

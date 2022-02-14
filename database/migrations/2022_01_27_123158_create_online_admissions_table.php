@@ -17,6 +17,8 @@ class CreateOnlineAdmissionsTable extends Migration
             $table->id();
             $table->integer('class_id')->unsigned();
             $table->integer('group_id')->nullable();
+            $table->integer('session_id')->nullable();
+            $table->integer('type');
             $table->string('start');
             $table->string('end');
             $table->integer('status')->default(1);

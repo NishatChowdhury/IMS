@@ -63,6 +63,7 @@
                                 <thead>
                                 <tr>
                                     <th>Admission Type</th>
+                                    <th>Session Name</th>
                                     <th>Class Name</th>
                                     <th>Group Name</th>
                                     <th>Starting Date</th>
@@ -76,10 +77,11 @@
                                 @foreach ($onlineAdmissions as $onlineAdmission)
                                 <tr>
                                     <td>{{ $onlineAdmission->type == 1 ? 'School' : 'College' }}</td>
+                                    <td>{{ $onlineAdmission->session_id ? $onlineAdmission->sessions->year : 'N/A' }}</td>
                                     <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : 'N/A' }}</td>
                                     <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : 'N/A' }}</td>
-                                    <td>{{ $onlineAdmission->start }}</td>
-                                    <td>{{ $onlineAdmission->end }}</td>
+                                    <td>{{ $onlineAdmission->start->format('d F Y') }}</td>
+                                    <td>{{ $onlineAdmission->end->format('d F Y') }}</td>
                                     <td>
                                         @if ($onlineAdmission->status == 1)
                                             <span class="badge badge-primary">Active</span>
@@ -88,7 +90,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="" onclick="getData({{ $onlineAdmission->id }})" data-toggle="modal" data-target="#exampleModal" role="button" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
+                                        <a href="{{ route('onlineStepEdit', $onlineAdmission->id) }}"  class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -137,6 +139,16 @@
                             <option>--Select Class--</option>                            
                             <option value="1">School</option>                            
                             <option value="2">College</option>                            
+                        </select>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="">Session Name</label>
+                        <select name="session_id" id="session_id" class="form-control">
+                            <option value="">--Select Session--</option>
+                                @foreach ($sessions as $session)
+                                <option value="{{ $session->id }}">{{ $session->year }}</option>   
+                                @endforeach
+                            
                         </select>
                     </div>
                     <div class="form-group col-6">
@@ -216,6 +228,7 @@
                 type:'GET',
                 data:{academicYear:academicYear},
                 success:function (data) {
+                    // console.log(data.end.toLocaleDateString());
                     $('#class_id').val(data.class_id);
                     $('#group_id').val(data.group_id);
                     $('#start').val(data.start);

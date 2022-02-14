@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Location;
 use App\Student;
+use App\Location;
 use App\Transport;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repository\StudentRepository;
 
 class TransportController extends Controller

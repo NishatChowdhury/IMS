@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\City;
 use App\Page;
@@ -23,6 +23,7 @@ use App\AcademicClass;
 use App\OnlineAdmission;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repository\StudentRepository;
 
 class OnlineApplyController extends Controller
@@ -68,34 +69,27 @@ class OnlineApplyController extends Controller
             'city_id' => 'required',
             'country_id' => 'required',
             'mobile' => 'required',
-            'email' => 'required',
             // 
             'f_name' => 'required',
             'f_name_bn' => 'required',
             'f_mobile' => 'required',
-            'f_email' => 'required|email',
             'f_dob' => 'required',
             'f_occupation' => 'required',
             'f_nid' => 'required|integer',
-            'f_birth_certificate' => 'required|integer',
             //
             'm_name' => 'required',
             'm_name_bn' => 'required',
             'm_mobile' => 'required',
-            'm_email' => 'required|email',
             'm_dob' => 'required',
             'm_occupation' => 'required',
             'm_nid' => 'required|integer',
-            'm_birth_certificate' => 'required|integer',
             //
             'g_name' => 'required',
             'g_name_bn' => 'required',
             'g_mobile' => 'required',
-            'g_email' => 'required|email',
             'g_dob' => 'required',
             'g_occupation' => 'required',
             'g_nid' => 'required|integer',
-            'g_birth_certificate' => 'required|integer',
 
         ];
     
@@ -137,7 +131,8 @@ class OnlineApplyController extends Controller
 //            ]);
 //        }
 
-        return back()->with('status','Your Admission Successfully Done Here Your ID ');
+        return redirect('admission-success-school')->with(['studentStore' => $studentStore]);
+        // return back()->with('status','Your Admission Successfully Done Here Your ID ');
     }
 
     public function index()
@@ -155,7 +150,7 @@ class OnlineApplyController extends Controller
 
         // $getSessionId =  AcademicClass::where('id', $id)->first();
  
-         $academicYear = substr(trim(Session::query()->where('id',$id)->first()->year),-2);
+         $academicYear = substr(trim(Session::query()->where('year',$id)->first()->year),-2);
          $incrementId = Student::query()->max('id');
          $increment = $incrementId + 1;
          $studentId = 'S'.$academicYear.$increment;
@@ -165,32 +160,40 @@ class OnlineApplyController extends Controller
 
     public function applyStudentProfile($id)
     {
+        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+        $sessions = Session::query()->get();
+        $sections = Section::query()->get();
         $student = OnlineApply::find($id);
-        return view('admin.student.applyStudentProfile', compact('student'));
+        return view('admin.student.applyStudentProfile', compact('student','academicClass','sessions','sections'));
     }
 
     public function moveToStudent(Request $req)
     {
-        // return $req->all();
+        //  return $req->session_id;
         $getOnlineApply = OnlineApply::find($req->onlineApplyID)->toarray();
         $getOnlineApply['studentId'] = $req->studentId;
-         $data = $req->all();
+        // return $data = $req->all();
 
         // $data['d'] = $getOnlineApply->sf ;
       
-
+// return $getOnlineApply['class_id'];
             try{
-                $studentStore = Student::query()->create($getOnlineApply);
+                $studentStore = Student::query()->where('studentId', $req->studentId)->exists();
+                if(!$studentStore){
+                    $studentStore = Student::query()->create($getOnlineApply);
+                }else{
+                    return back()->with('status', 'Student Id Match');
+                }
             }catch (\Exception $e){
                 dd($e);
             }
  
 
-        $getAcademicClass = AcademicClass::query()->where('session_id', $req->session_id)
-                                         ->where('class_id', $getOnlineApply['class_id'])
-                                         ->where('section_id', $req->section_id)
-                                         ->where('group_id', $getOnlineApply['group_id'])
-                                         ->first();
+        $getAcademicClass = AcademicClass::query()
+                                                ->where('session_id', $req->session_id)
+                                                ->where('class_id', $getOnlineApply['class_id'])
+                                                ->where('group_id', $getOnlineApply['group_id'])
+                                                ->first();
 
         if(!$getAcademicClass){
             return back()->with('status', 'Academic Class Not Match Try Again');
@@ -202,13 +205,12 @@ class OnlineApplyController extends Controller
             'student_id' => $studentStore->id,
             'session_id' => $req->session_id,
             'class_id' => $getOnlineApply['class_id'],
-            'section_id' => $req->section_id,
             'group_id' => $getOnlineApply['group_id'],
             'shift_id' => 0,
             'rank' => $req->rank,
         ]);
 
-        $fatherStore = Father::create([
+        Father::create([
             'f_name' => $getOnlineApply['f_name'],
             'student_id' => $studentStore->id,
             'f_name_bn' => $getOnlineApply['f_name_bn'],
@@ -220,7 +222,7 @@ class OnlineApplyController extends Controller
             'f_birth_certificate' => $getOnlineApply['f_birth_certificate'],
         ]);
         
-        $motherStore = Mother::create([
+        Mother::create([
             'm_name' => $getOnlineApply['m_name'],
             'student_id' => $studentStore->id,
             'm_name_bn' => $getOnlineApply['m_name_bn'],
@@ -232,7 +234,7 @@ class OnlineApplyController extends Controller
             'm_birth_certificate' => $getOnlineApply['m_birth_certificate'],
         ]);
 
-        $guardianStore = Guardian::create([
+        Guardian::create([
             'g_name' => $getOnlineApply['g_name'],
             'student_id' => $studentStore->id,
             'g_name_bn' => $getOnlineApply['g_name_bn'],
@@ -261,6 +263,8 @@ class OnlineApplyController extends Controller
         $data = [];
         $data['className'] = $student->classes->name;
         $data['groupName'] = $student->group->name;
+        $data['SessionName'] = $student->sessions->year;
+        $data['SessionId'] = $student->session_id;
         return $data;
     }
 
@@ -269,14 +273,16 @@ class OnlineApplyController extends Controller
     public function onlineApplyIndex()
     {
         $classes = Classes::query()->get();
+        $sessions = Session::query()->get();
         $onlineAdmissions = OnlineAdmission::query()->get();
         $groups = Group::query()->get();
-        return view('admin.admission.onlineAdminssion', compact('classes','groups','onlineAdmissions'));
+        return view('admin.admission.onlineAdminssion', compact('sessions','classes','groups','onlineAdmissions'));
     }
 
     public function onlineApplySetStore(Request $req)
     {
         $rules = [
+            'session_id' => 'required',
             'class_id' => 'required',
             'start' => 'required',
             'end' => 'required',
@@ -295,9 +301,14 @@ class OnlineApplyController extends Controller
         return back();
     }
 
-    public function load_online_adminsion_id(Request $req)
+    public function load_online_adminsion_id($id)
     {
-        return OnlineAdmission::find($req->academicYear);
+        $onlineAdmission = OnlineAdmission::find($id);
+        $classes = Classes::query()->get();
+        $sessions = Session::query()->get();
+        $onlineAdmissions = OnlineAdmission::query()->get();
+        $groups = Group::query()->get();
+        return view('admin.admission.online-admission-edit', compact('onlineAdmission','classes','sessions','groups'));
     }
 
     public function onlineApplySetUpdate(Request $req)
@@ -306,6 +317,7 @@ class OnlineApplyController extends Controller
 
         $dataStore = OnlineAdmission::find($req->id);
         $dataStore->class_id = $req->class_id;
+        $dataStore->session_id = $req->session_id;
         $dataStore->group_id = $req->group_id;
         $dataStore->start = $req->start;
         $dataStore->end = $req->end;
