@@ -15,6 +15,7 @@ use App\StudentAcademic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session as sessions;
 
 class FeeSetupController extends Controller
 {
@@ -26,6 +27,7 @@ class FeeSetupController extends Controller
 
     public function index()
     {
+        sessions::forget('fees');
         $academic_classes = AcademicClass::query()->whereIn('session_id',activeYear())->with('academicClasses')->get();
         $classes = Classes::query()->pluck('name','id');
         $session = Session::query()->pluck('year','id');

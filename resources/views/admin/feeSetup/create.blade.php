@@ -135,8 +135,14 @@
                 type: "POST",
             }).done(function(e){
                 $("#tbody").html(e);
+                resetField();
                 console.log(e);
             });
+        }
+
+        function resetField(){
+            var category_id = $("#fee_category_id").val('');
+            var amount = $("#amount").val('');
         }
 
         function removeFeeFromCart(key){
