@@ -32,18 +32,18 @@
             {{ Form::open(['url'=>'admin/fee/fee-setup/store','method'=>'POST', 'class'=>'form-horizontal','id'=>'dynamic_form']) }}
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card" style="margin: 0px;">
+                    <div class="card">
                         
                         <!-- form start -->
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Academic Class</label>
+                                    <label for="">{{ __('Academic Class') }}</label>
                                     <div class="input-group">
                                         <select name="academic_class_id" class="form-control" >
-                                            <option value=""> -- Select Academic Class -- </option>
+                                            <option value=""> -- {{ __('Select Academic Class') }} -- </option>
                                             @foreach($academic_classes as $value)
-                                                <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }} - {{$value->section->name ?? ''}} - {{ $value->group->name ?? '' }}</option>
+                                                <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }}&nbsp;{{$value->section->name ?? ''}}&nbsp;{{ $value->group->name ?? '' }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -67,12 +67,12 @@
             </div>
             <br>
             <div class="row">
-                <div class="card col-md-6">
-                    <div class="" style="margin: 15px;">
-                        <div class="">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="form-group">
                                 <label for="">{{ __('Fee Category') }}</label>
-                                <select class="form-control" id="fee_category_id" name="fee_category_id">
+                                <select class="form-control form-control-sm" id="fee_category_id" name="fee_category_id">
                                     <option value="">{{ __('Select Fee Category') }}</option>
                                     @foreach($fee_category as $key => $category)
                                         <option value="{{$key}}">{{$category}}</option>
@@ -82,25 +82,25 @@
                             <div class="form-group">
                                 <label for="">{{ __('Fee Amount') }}</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="amount" placeholder="Amount here" name="amount" type="text">
+                                    <input class="form-control form-control-sm" id="amount" placeholder="Amount here" name="amount" type="text">
                                 </div>
                             </div>
-                            <div class="button">
-                                <button onclick="addToFee()" type="button" class="btn btn-primary">{{ __('Add To Fee') }}</button>
+                            <div class="button text-right">
+                                <button onclick="addToFee()" type="button" class="btn btn-primary btn-sm">{{ __('Add To Fee') }}</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="" style="margin: 15px;">
+                    <div>
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>{{ __('Sl') }}</th>
                                 <th>{{ __('Category') }}</th>
                                 <th>{{ __('Amount') }}</th>
-                                <th><button onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
+                                <th><button class="btn btn-danger btn-sm" onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
@@ -135,6 +135,8 @@
                 type: "POST",
             }).done(function(e){
                 $("#tbody").html(e);
+                $("#fee_category_id").val('');
+                $("#amount").val('');
                 console.log(e);
             });
         }
