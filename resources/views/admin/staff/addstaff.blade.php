@@ -62,7 +62,7 @@
                             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                                    {!! Form::open(['action'=>'StaffController@store_staff', 'method'=>'post', 'files'=>true]) !!}
+                                    {!! Form::open(['action'=>'Backend\StaffController@store_staff', 'method'=>'post', 'files'=>true]) !!}
                                     <div class="row">
                                         <div class="col-md-6">
                                             <table id="example2" class="table table-bordered" style="margin: 10px;">

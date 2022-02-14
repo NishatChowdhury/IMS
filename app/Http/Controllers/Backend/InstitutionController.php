@@ -57,7 +57,7 @@ class InstitutionController extends Controller
         }*/
         $request['active'] = 0;
         Session::query()->create($request->all());
-        return redirect('institution/academicyear')->with('success', 'Academic year added successfully');
+        return redirect('admin/institution/academicyear')->with('success', 'Academic year added successfully');
     }
 
     public function edit_session(Request $request){
@@ -68,13 +68,13 @@ class InstitutionController extends Controller
     public function update_session(Request $request){
         $session = Session::query()->findOrFail($request->session_id);
         $session->update($request->all());
-        return redirect('institution/academicyear')->with('success', 'Academic year Updated');
+        return redirect('admin/institution/academicyear')->with('success', 'Academic year Updated');
     }
 
     public function delete_session($id){
          $session = Session::query()->findOrFail($id);
          $session->delete();
-         return redirect('institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
+         return redirect('admin/institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
     }
 
     public function sessionStatus($id){
@@ -84,7 +84,7 @@ class InstitutionController extends Controller
          }else{
              $session->update(['active'=>0]);
          }
-         return redirect('institution/academicyear')->with('success', 'Status change successfully!');
+         return redirect('admin/institution/academicyear')->with('success', 'Status change successfully!');
     }
 
     public function section_group()
@@ -96,7 +96,7 @@ class InstitutionController extends Controller
 
     public function create_section(Request $req){
         Section::query()->create($req->all());
-        return redirect('institution/section-groups')->with('success', 'Section added successfully');
+        return redirect('admin/institution/section-groups')->with('success', 'Section added successfully');
     }
 
     public function edit_section(Request $req){
@@ -107,18 +107,18 @@ class InstitutionController extends Controller
     public function update_section(Request $req){
         $section = Section::query()->findOrFail($req->id);
         $section->update(['name' => $req->section_name]);
-        return redirect('institution/section-groups')->with('success', 'Section has been Updated');
+        return redirect('admin/institution/section-groups')->with('success', 'Section has been Updated');
     }
 
     public function delete_section($id){
         $section= Section::query()->findOrFail($id);
         $section->delete();
-        return redirect('institution/section-groups')->with('success', 'Section deleted successfully');
+        return redirect('admin/institution/section-groups')->with('success', 'Section deleted successfully');
     }
 
     public function create_group(Request $req){
         Group::query()->create($req->all());
-        return redirect('institution/section-groups')->with('success', 'Group added successfully');
+        return redirect('admin/institution/section-groups')->with('success', 'Group added successfully');
     }
 
     public function edit_group(Request $req){
@@ -130,13 +130,13 @@ class InstitutionController extends Controller
         $data = Group::query()->findOrFail($req->group_id);
         $info = ['name' => $req->group_name];
         $data->update($info);
-        return redirect('institution/section-groups')->with('success', 'Group has been Updated');
+        return redirect('admin/institution/section-groups')->with('success', 'Group has been Updated');
     }
 
     public function delete_grp($id){
         $group = Group::query()->findOrFail($id)->first();
         $group->delete();
-        return redirect('institution/section-groups')->with('success', 'Group deleted successfully');
+        return redirect('admin/institution/section-groups')->with('success', 'Group deleted successfully');
     }
     /*Institute >> Section-Groups End*/
 
@@ -180,7 +180,7 @@ class InstitutionController extends Controller
     public function store_class(Request $req){
         //dd($req->all());
         Classes::query()->create($req->all());
-        return redirect('institution/class');
+        return redirect('admin/institution/class');
     }
 
     public function edit_SessionClass(Request $req){
@@ -197,7 +197,7 @@ class InstitutionController extends Controller
     public function delete_SessionClass($id){
         $class = Classes::query()->findOrFail($id);
         $class->delete();
-        return redirect('institution/class')->with('success', 'Class has been Deleted');
+        return redirect('admin/institution/class')->with('success', 'Class has been Deleted');
     }
 
     /*Subjects Start*/
@@ -209,7 +209,7 @@ class InstitutionController extends Controller
 
     public function create_subject(Request $request){
         Subject::create($request->all());
-        return redirect('institution/subjects')->with('success', 'Subject Added Successfully');
+        return redirect('admin/institution/subjects')->with('success', 'Subject Added Successfully');
     }
 
     public function edit_subject(Request $req){
@@ -220,13 +220,13 @@ class InstitutionController extends Controller
     public function update_subject(Request $req){
         $subject = Subject::findOrFail($req->id);
         $subject->update($req->all());
-        return redirect('institution/subjects')->with('success', 'Class has been Updated');
+        return redirect('admin/institution/subjects')->with('success', 'Class has been Updated');
     }
 
     public function delete_subject($id){
         $subject = Subject::findOrFail($id);
         $subject->delete();
-        return redirect('institution/subjects')->with('success', 'Class has been Deleted');
+        return redirect('admininstitution/subjects')->with('success', 'Class has been Deleted');
     }
     /*Subjects End*/
 

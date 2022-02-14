@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicCalender;
 use App\AcademicClass;
-use Illuminate\Http\RedirectResponse;
+use App\AcademicCalender;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repository\StudentRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 
 class AcademicCalenderController extends Controller

@@ -110,7 +110,7 @@
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['url'=>'institution/store-class', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@store_class', 'method'=>'post']) !!}
 
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>

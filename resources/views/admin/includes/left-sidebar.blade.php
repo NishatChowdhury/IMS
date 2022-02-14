@@ -710,7 +710,7 @@
                         </a>
                     </li>
                     <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('AcademicCalenderController@index') }}" class="nav-link {{ isActive('calender') }}">
+                        <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('calender') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Academic Calender</p>
                         </a>

@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\Attendance;
-use App\Classes;
-use App\HolidayDuration;
-use App\RawAttendance;
-use App\Repository\AttendanceRepository;
 use App\Shift;
 use App\Staff;
+use App\Classes;
 use App\Student;
-use App\StudentLeave;
 use App\weeklyOff;
 use Carbon\Carbon;
+use App\Attendance;
+use App\StudentLeave;
+use App\AcademicClass;
+use App\RawAttendance;
+use App\HolidayDuration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Repository\AttendanceRepository;
 
 class AttendanceController extends Controller
 {

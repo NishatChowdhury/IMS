@@ -75,7 +75,7 @@
                                             </td>
                                             <td>
                                                 <a type="button" class="btn btn-warning btn-sm edit" value="{{ $calender->id }}">Edit</a> ||
-                                                {!! Form::open(['action'=>['AcademicCalenderController@destroy',$calender->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
+                                                {!! Form::open(['action'=>['Backend\AcademicCalenderController@destroy',$calender->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 {!! Form::close() !!}
                                             </td>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="modal-body">
                     {{--<form>--}}
-                    {{ Form::open(['action'=>'AcademicCalenderController@store','method'=>'post','files'=>true]) }}
+                    {{ Form::open(['action'=>'Backend\AcademicCalenderController@store','method'=>'post','files'=>true]) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Session :</label>
                         <div class="col-sm-10">
@@ -192,7 +192,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'AcademicCalenderController@update', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\AcademicCalenderController@update', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Session :</label>

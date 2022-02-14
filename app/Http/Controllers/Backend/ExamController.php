@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\AssignSubject;
 use App\Exam;
-use App\ExamSchedule;
-use App\FinalResult;
-use App\Gender;
+use App\Mark;
 use App\Grade;
 use App\Group;
-use App\Mark;
-use App\Repository\ExamRepository;
+use App\Staff;
+use App\Gender;
 use App\Section;
 use App\Session;
-use App\Staff;
 use App\Student;
 use App\Subject;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
+use App\FinalResult;
+use App\ExamSchedule;
+use App\AcademicClass;
+use App\AssignSubject;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Repository\ExamRepository;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
 
 class ExamController extends Controller
 {

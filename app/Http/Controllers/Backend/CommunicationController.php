@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\CommunicationHistory;
-use App\Repository\StudentRepository;
 use App\Staff;
-use App\Student;
 use Exception;
+use App\Student;
 use Illuminate\Http\Request;
+use App\CommunicationHistory;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Repository\StudentRepository;
 use Illuminate\Support\Facades\Session;
 
 class CommunicationController extends Controller

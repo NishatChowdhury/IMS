@@ -134,7 +134,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/create-section', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@create_section', 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Section Name*</label>
                         <div class="col-9">
@@ -167,7 +167,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/create-group', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'admin/institution/create-group', 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Group Name*</label>
                         <div class="col-9">
@@ -200,7 +200,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/update-section', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'admin/institution/update-section', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'sec_id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Section Name*</label>
@@ -233,7 +233,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/update-group', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'admin/institution/update-group', 'method'=>'post']) !!}
                     {!! Form::hidden('group_id', null, ['id'=>'group_id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Group Name*</label>
@@ -264,7 +264,7 @@
             var id = $(this).attr('value');
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-section')}}",
+                url:"{{ url('admin/institution/edit-section')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
@@ -284,7 +284,7 @@
             var id = $(this).attr('value');
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-group')}}",
+                url:"{{ url('admin/institution/edit-group')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){

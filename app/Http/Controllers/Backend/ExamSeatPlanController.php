@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\ExamSeatPlan;
-use App\Repository\StudentRepository;
 use App\Student;
+use App\ExamSeatPlan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\StudentRepository;
 
 class ExamSeatPlanController extends Controller
 {

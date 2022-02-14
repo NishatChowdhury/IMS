@@ -110,7 +110,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/store-session', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@store_session', 'method'=>'post']) !!}
                     <div class="form-group row">
                         {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
@@ -172,7 +172,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'institution/update-session', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\InstitutionController@update_session', 'method'=>'post']) !!}
                     {!! Form::hidden('session_id', null,['id'=>'session_id']) !!}
                     <div class="form-group row">
                         {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
@@ -245,7 +245,7 @@
 
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-session')}}",
+                url:"{{ url('admin/institution/edit-session')}}",
                 data:{session_id:session_id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
