@@ -265,9 +265,9 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 
 //Route for fee setup starts here
-    Route::get('fee/fee-setup',[FeeSetupController::class,'index'])->name('fee-setup.index');
-    Route::post('fee/fee-setup/store',[FeeSetupController::class,'feeSetupStore'])->name('fee-setup.feeSetupStore');
-    Route::get('fee/fee-setup/view',[FeeSetupController::class,'view'])->name('fee-setup.view');
+    Route::get('fee/fee-setup',[FeeSetupController::class,'create'])->name('fee-setup.create');
+    Route::post('fee/fee-setup/store',[FeeSetupController::class,'store'])->name('fee-setup.store');
+    Route::get('fee/fee-setup/view',[FeeSetupController::class,'index'])->name('fee-setup.index');
     Route::post('fee/fee-setup/viewFeeDetails',[FeeSetupController::class,'viewFeeDetails'])->name('fee-setup.viewFeeDetails');
     Route::get('fee/fee-setup/search',[FeeSetupController::class,'search'])->name('fee-setup.search');
     Route::get('fee/fee-setup/edit/{id}',[FeeSetupController::class,'edit'])->name('fee-setup.edit');

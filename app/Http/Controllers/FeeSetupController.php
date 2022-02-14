@@ -25,9 +25,20 @@ class FeeSetupController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public  function index(Request $request)
     {
-        sessions::forget('fees');
+        $fees = FeeSetup::query()
+            ->where('academic_class_id','!=',null)
+            ->orderBy('month_id')
+            ->get()
+            ->groupBy('month_id');
+
+        return view('admin.feeSetup.index',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
+    }
+
+    public function create()
+    {
+        //sessions::forget('fees');
         $academic_classes = AcademicClass::query()->whereIn('session_id',activeYear())->with('academicClasses')->get();
         $classes = Classes::query()->pluck('name','id');
         $session = Session::query()->pluck('year','id');
@@ -37,7 +48,7 @@ class FeeSetupController extends Controller
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
-    public function feeSetupStore(Request $request){
+    public function store(Request $request){
 
         $request->validate([
             'academic_class_id' => [
@@ -75,25 +86,12 @@ class FeeSetupController extends Controller
 
                 }
             }
+
+        sessions::forget('fees');
+
         \Illuminate\Support\Facades\Session::flash('success','Fee added successfully');
 
         return redirect('admin/fee/fee-setup/view');
-    }
-
-    public  function view(Request $request){
-        
-       $fees = FeeSetup::query()->where([
-            ['academic_class_id','!=',null],
-            [function ($query) use ($request){
-                if (($term = $request->term)){
-                    $query->orWhere('academic_class_id','LIKE','%' .$term. '%')->get();
-                }
-            }]
-        ])
-            ->orderBy('id','desc')->with('student')
-            ->paginate(10);
-            //dd($fees);
-        return view('admin.feeSetup.index',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
     }
 
     public function viewFeeDetails(Request $request){

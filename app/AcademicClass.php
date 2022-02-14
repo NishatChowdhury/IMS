@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AcademicClass extends Model
 {
@@ -12,7 +13,7 @@ class AcademicClass extends Model
 
     public function sessions()
     {
-        return $this->belongsTo(\App\Session::class,'session_id');
+        return $this->belongsTo(Session::class,'session_id');
     }
 
     public function academicClasses()
@@ -40,7 +41,13 @@ class AcademicClass extends Model
     {
         return $this->hasMany(AssignSubject::class,'academic_class_id');
     }
-    public function classes()
+
+    /**
+     * An academic class is belongs to a class
+     *
+     * @return BelongsTo
+     */
+    public function classes(): BelongsTo
     {
         return $this->belongsTo(Classes::class,'class_id');
     }

@@ -25,9 +25,15 @@ class FeeSetup extends Model
         return $this->belongsTo(Session::class);
     }
 
-    public function academicClass()
+    /**
+     * A fee setup is belongs to an academic class
+     *
+     * @return BelongsTo
+     */
+
+    public function academicClass(): BelongsTo
     {
-        return $this->belongsTo(Classes::class);
+        return $this->belongsTo(AcademicClass::class);
     }
 
     // public function studentID()

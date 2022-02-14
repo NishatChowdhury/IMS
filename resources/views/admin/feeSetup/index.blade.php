@@ -30,59 +30,49 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card" style="margin: 0px;">
-                        <div class="mx-auto pull-right">
-                            <div class="">
-                                <form action="{{url('admin/fee/fee-setup/view')}}" method="GET" role="search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control mr-2" name="term" placeholder="Search By Academic ID" id="term">
-                                            <span class="input-group-btn mr-2">
-                                                <button class="btn btn-info" type="submit" title="Search By Academic ID">
-                                                    <span class="fas fa-search"></span>
-                                                </button>
-                                            </span>
-                                            <a href="{{url('admin/fee/fee-setup/view')}}">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-danger" type="button" title="Refresh page">
-                                                        <span class="fas fa-sync-alt"></span>
-                                                    </button>
-                                                </span>
-                                            </a>
-                                    </div>
-                                </form>
+                    @foreach($fees as $fee)
+                        <div class="card">
+                            <div class="card-header">
+                                {{ $fee->first()->month->name }}&nbsp;{{ $fee->first()->year }}
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-sm">
+                                    <thead class="thead-dark">
+{{--                                    <tr>--}}
+{{--                                        <th>{{ __('Academic Class') }}</th>--}}
+{{--                                    </tr>--}}
+                                    </thead>
+                                    <tbody>
+                                    @foreach($fee->groupBy('academic_class_id') as $classes)
+                                        <tr>
+                                            <td>
+                                                {{$classes->first()->academicClass->classes->name}}
+                                                {{ $classes->first()->academicClass->section->name ?? '' }}
+                                                {{ $classes->first()->academicClass->group->name ?? '' }}
+                                            </td>
+                                            <td>{{ $classes->count() }} {{ __('Student(s)') }}</td>
+                                            <td>
+                                                <a href="#" role="button" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                                <a href="#" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            </td>
+{{--                                            <td>{{$fee->first()->month->name}}</td>--}}
+{{--                                            <td>{{$fee->first()->year}}</td>--}}
+{{--                                            <td>--}}
+                                                {{--                                            {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$fee->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}--}}
+                                                {{--                                            <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$fee->id) }}" data-toggle="modal" data-target="#exampleModal" role="button" class="btn btn-success btn-sm" onclick="showFeeDetails({{ $fee->id }})"><i class="fas fa-eye"></i></a>--}}
+                                                {{--                                            <a href="{{ url('admin/fee/fee-setup/edit',$fee->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
+{{--                                                <button type="submit" class="btn btn-danger btn-sm">--}}
+{{--                                                    <i class="fa fas fa-trash"></i>--}}
+{{--                                                </button>--}}
+{{--                                                {{ Form::close() }}--}}
+{{--                                            </td>--}}
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-bordered table-striped table-sm">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>{{ __('Academic Class') }}</th>
-                                        <th>{{ __('Month') }}</th>
-                                        <th>{{ __('Year') }}</th>
-                                        <th>{{ __('Action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($fees as $fee)
-                                    <tr>
-                                        <td>{{$fee->academicClass->name}} {{ $fee->academicClass->section->name ?? '' }} {{ $fee->academicClass->group->name ?? '' }}</td>
-                                        <td>{{$fee->month->name}}</td>
-                                        <td>{{$fee->year}}</td>
-                                        <td>
-                                            {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$fee->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                                <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$fee->id) }}" data-toggle="modal" data-target="#exampleModal" role="button" class="btn btn-success btn-sm" onclick="showFeeDetails({{ $fee->id }})"><i class="fas fa-eye"></i></a>
-                                                <a href="{{ url('admin/fee/fee-setup/edit',$fee->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa fas fa-trash"></i>
-                                                </button>
-                                            {{ Form::close() }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <br>
