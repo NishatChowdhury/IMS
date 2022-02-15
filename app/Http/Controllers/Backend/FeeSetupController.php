@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\Classes;
-use App\FeeCategory;
-use App\FeePivot;
-use App\FeeSetup;
-use App\FeeSetupPivot;
 use App\Group;
+use App\Classes;
 use App\Session;
 use App\Student;
+use App\FeePivot;
+use App\FeeSetup;
+use App\FeeCategory;
+use App\AcademicClass;
+use App\FeeSetupPivot;
 use App\StudentAcademic;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session as sessions;
 
 class FeeSetupController extends Controller

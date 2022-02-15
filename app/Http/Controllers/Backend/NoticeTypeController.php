@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\NoticeType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class NoticeTypeController extends Controller
 {

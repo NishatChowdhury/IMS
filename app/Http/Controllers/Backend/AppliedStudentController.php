@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AppliedStudent;
-use App\CommunicationSetting;
-use App\Session;
-use App\SiteInformation;
-use App\Student;
 use Exception;
+use App\Session;
+use App\Student;
+use App\AppliedStudent;
+use App\SiteInformation;
 use Illuminate\Http\Request;
+use App\CommunicationSetting;
+use App\Http\Controllers\Controller;
 
 class AppliedStudentController extends Controller
 {

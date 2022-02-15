@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\LeavePurpose;
 use App\Student;
+use App\LeavePurpose;
 use App\StudentLeave;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
-use App\Repository\StudentRepository;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Repository\StudentRepository;
 use Illuminate\Support\Facades\Session;
 
 class LeaveManagementController extends Controller

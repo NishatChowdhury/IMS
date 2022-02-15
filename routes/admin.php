@@ -1,20 +1,21 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\FeeCartController;
-use App\Http\Controllers\FeeSetupController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Backend\FeeCartController;
+use App\Http\Controllers\Backend\FeeSetupController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
-use App\Http\Controllers\FeeCollectionController;
 
 Route::group(['prefix'=>'admin'], function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin');
     Route::get('backup',[HomeController::class,'backup'])->name('admin.backup');
 
-    Route::get('transactions','TransactionController@index');
-    Route::get('transaction/create','TransactionController@create');
-    Route::post('transaction/store','TransactionController@store');
+    Route::get('transactions','Backend\TransactionController@index');
+    Route::get('transaction/create','Backend\TransactionController@create');
+    Route::post('transaction/store','Backend\TransactionController@store');
 
     //Student Routes
     Route::get('student/tod','StudentController@tod');
@@ -23,13 +24,13 @@ Route::group(['prefix'=>'admin'], function(){
     //Student Routes End
 
     //Accounts
-    Route::get('coa','ChartOfAccountController@index');
-    Route::get('coa/create','ChartOfAccountController@create');
-    Route::post('coa/store','ChartOfAccountController@store');
-    Route::get('coa/edit/{id}','ChartOfAccountController@edit');
-    Route::patch('coa/{id}/update','ChartOfAccountController@update');
-    Route::delete('coa/destroy/{id}','ChartOfAccountController@destroy');
-    Route::post('coa/status','ChartOfAccountController@isEnabled');
+    Route::get('coa','Backend\ChartOfAccountController@index');
+    Route::get('coa/create','Backend\ChartOfAccountController@create');
+    Route::post('coa/store','Backend\ChartOfAccountController@store');
+    Route::get('coa/edit/{id}','Backend\ChartOfAccountController@edit');
+    Route::patch('coa/{id}/update','Backend\ChartOfAccountController@update');
+    Route::delete('coa/destroy/{id}','Backend\ChartOfAccountController@destroy');
+    Route::post('coa/status','Backend\ChartOfAccountController@isEnabled');
     //Accounts End
 
     //Admission Routes
@@ -38,79 +39,79 @@ Route::group(['prefix'=>'admin'], function(){
     //Admission Routes Ends
 
 //Upcoming Events
-    Route::get('events','UpcomingEventController@index');
-    Route::get('event/create','UpcomingEventController@create');
-    Route::post('event/store','UpcomingEventController@store');
-    Route::get('event/show/{id}','UpcomingEventController@show');
-    Route::get('event/edit/{id}','UpcomingEventController@edit');
-    Route::patch('event/{id}/update','UpcomingEventController@update');
-    Route::delete('event/destroy/{id}','UpcomingEventController@destroy');
+    Route::get('events','Backend\UpcomingEventController@index');
+    Route::get('event/create','Backend\UpcomingEventController@create');
+    Route::post('event/store','Backend\UpcomingEventController@store');
+    Route::get('event/show/{id}','Backend\UpcomingEventController@show');
+    Route::get('event/edit/{id}','Backend\UpcomingEventController@edit');
+    Route::patch('event/{id}/update','Backend\UpcomingEventController@update');
+    Route::delete('event/destroy/{id}','Backend\UpcomingEventController@destroy');
 //Upcoming Events Ends
 
     //Playlists
-    Route::get('playlists','PlaylistController@index');
-    Route::post('playlist/store','PlaylistController@store');
-    Route::get('playlist/show/{id}','PlaylistController@show');
-    Route::delete('playlist/destroy/{id}','PlaylistController@destroy');
+    Route::get('playlists','Backend\PlaylistController@index');
+    Route::post('playlist/store','Backend\PlaylistController@store');
+    Route::get('playlist/show/{id}','Backend\PlaylistController@show');
+    Route::delete('playlist/destroy/{id}','Backend\PlaylistController@destroy');
     //Playlists Ends
 
     //Videos
-    Route::get('videos','VideoController@index');
-    Route::post('video/store','VideoController@store');
-    Route::get('video/edit','VideoController@edit')->name('video.edit');
-    Route::patch('video/{id}/update','VideoController@update');
-    Route::delete('video/destroy/{id}','VideoController@destroy');
+    Route::get('videos','Backend\VideoController@index');
+    Route::post('video/store','Backend\VideoController@store');
+    Route::get('video/edit','Backend\VideoController@edit')->name('video.edit');
+    Route::patch('video/{id}/update','Backend\VideoController@update');
+    Route::delete('video/destroy/{id}','Backend\VideoController@destroy');
     //Videos End
 
     //Applied Student
-    Route::post('applied-student/view','AppliedStudentController@studentView');
+    Route::post('applied-student/view','Backend\AppliedStudentController@studentView');
     //Applied Student Ends
 
     //Holiday Setup
-    Route::get('holidays','HolidayController@index')->name('attendance.holiday');
-    Route::post('holiday/store','HolidayController@store');
-    Route::get('holiday/edit/{id}','HolidayController@edit');
-    Route::patch('holiday/{id}/update','HolidayController@update');
-    Route::delete('holiday/delete/{id}','HolidayController@destroy');
+    Route::get('holidays','Backend\HolidayController@index')->name('attendance.holiday');
+    Route::post('holiday/store','Backend\HolidayController@store');
+    Route::get('holiday/edit/{id}','Backend\HolidayController@edit');
+    Route::patch('holiday/{id}/update','Backend\HolidayController@update');
+    Route::delete('holiday/delete/{id}','Backend\HolidayController@destroy');
     //Holiday Setup
 
 
         // Imam Hasan Journal Routes
-    Route::resource('journals', "JournalController")->middleware('auth');
-    Route::get('journal/classic','JournalController@classic');
-    Route::get('cash-book','AccountingController@cashBook');
-    Route::post('cash-book-settings','AccountingController@cashBookSetting');
-    Route::get('ledger','AccountingController@ledger');
-    Route::get('trial-balance','AccountingController@trialBalance');
-    Route::get('profit-n-loss','AccountingController@profitNLoss');
-    Route::get('balance-sheet','AccountingController@balanceSheet');
+    Route::resource('journals', "Backend\JournalController")->middleware('auth');
+    Route::get('journal/classic','Backend\JournalController@classic');
+    Route::get('cash-book','Backend\AccountingController@cashBook');
+    Route::post('cash-book-settings','Backend\AccountingController@cashBookSetting');
+    Route::get('ledger','Backend\AccountingController@ledger');
+    Route::get('trial-balance','Backend\AccountingController@trialBalance');
+    Route::get('profit-n-loss','Backend\AccountingController@profitNLoss');
+    Route::get('balance-sheet','Backend\AccountingController@balanceSheet');
     // Imam Hasan Journal Routes
     // Imam Hasan Journal Routes
     //Route::resource('journals', "JournalController")->middleware('auth');
 // Imam Hasan Journal Routes
 
     // accounting Reports by Imam Hasan\
-    //Route::get('balance-sheet', "AccountingController@balance_sheet")->name('balance_sheet');
+    //Route::get('balance-sheet', "Backend\AccountingController@balance_sheet")->name('balance_sheet');
     // accounting Reports by Imam Hasan
 
     // Route for test
     Route::view('bl', 'admin.reports.balance_sheet');
     // Route for test
     /** Menu Routes Starts */
-    Route::get('menus','MenuController@index');
-    Route::post('menu/store','MenuController@store')->name('menu.store');
-    Route::get('menu/edit','MenuController@edit')->name('menu.edit');
-    Route::patch('menu/{id}/update','MenuController@update')->name('menu.update');
-    Route::delete('menu/destroy/{id}','MenuController@destroy');
+    Route::get('menus','Backend\MenuController@index');
+    Route::post('menu/store','Backend\MenuController@store')->name('menu.store');
+    Route::get('menu/edit','Backend\MenuController@edit')->name('menu.edit');
+    Route::patch('menu/{id}/update','Backend\MenuController@update')->name('menu.update');
+    Route::delete('menu/destroy/{id}','Backend\MenuController@destroy');
     /** Menu Routes Ends */
 
-    Route::get('pages','PageController@index');
-    Route::get('page/create','PageController@create');
-    Route::post('page/store','PageController@store');
-    Route::get('page/edit/{id}','PageController@edit');
-    Route::patch('pages/{id}/update','PageController@update');
-    Route::delete('pages/destroy/{id}','PageController@destroy');
-    Route::delete('pages/remove/{id}','PageController@remove');
+    Route::get('pages','Backend\PageController@index');
+    Route::get('page/create','Backend\PageController@create');
+    Route::post('page/store','Backend\PageController@store');
+    Route::get('page/edit/{id}','Backend\PageController@edit');
+    Route::patch('pages/{id}/update','Backend\PageController@update');
+    Route::delete('pages/destroy/{id}','Backend\PageController@destroy');
+    Route::delete('pages/remove/{id}','Backend\PageController@remove');
 
     Route::get('siteinfo','SiteInformationController@index')->name('siteinfo');
     Route::patch('site-info/update','SiteInformationController@update');
@@ -147,19 +148,19 @@ Route::group(['prefix'=>'admin'], function(){
     // smartrahat start
 
 
-    Route::get('notices','NoticeController@index');
-    Route::post('notice/store','NoticeController@store');
-    Route::get('notice/edit/{id}','NoticeController@edit');
-    Route::patch('notice/{id}/update','NoticeController@update');
-    Route::delete('notice/destroy/{id}','NoticeController@destroy');
+    Route::get('notices','Backend\NoticeController@index');
+    Route::post('notice/store','Backend\NoticeController@store');
+    Route::get('notice/edit/{id}','Backend\NoticeController@edit');
+    Route::patch('notice/{id}/update','Backend\NoticeController@update');
+    Route::delete('notice/destroy/{id}','Backend\NoticeController@destroy');
 
-    Route::get('notice/category','NoticeCategoryController@index');
-    Route::post('notice/category/store','NoticeCategoryController@store');
-    Route::get('notice/category/edit/{id}','NoticeCategoryController@edit');
+    Route::get('notice/category','Backend\NoticeCategoryController@index');
+    Route::post('notice/category/store','Backend\NoticeCategoryController@store');
+    Route::get('notice/category/edit/{id}','Backend\NoticeCategoryController@edit');
 
-    Route::get('notice/type','NoticeTypeController@index');
-    Route::post('notice/type/store','NoticeTypeController@store');
-    Route::get('notice/type/edit/{id}','NoticeTypeController@edit');
+    Route::get('notice/type','Backend\NoticeTypeController@index');
+    Route::post('notice/type/store','Backend\NoticeTypeController@store');
+    Route::get('notice/type/edit/{id}','Backend\NoticeTypeController@edit');
 
 // smartrahat end
 
@@ -185,30 +186,30 @@ Route::group(['prefix'=>'admin'], function(){
 //Syllabus Section End
 
     //leave purpose starts by Nishat
-    Route::get('attendance/leavePurpose','LeavePurposeController@index');
-    Route::get('attendance/leavePurpose/add','LeavePurposeController@add')->name('leavePurpose.add');
-    Route::post('attendance/leavePurpose/store','LeavePurposeController@store')->name('leavePurpose.store');
-    Route::get('attendance/leavePurpose/edit/{id}','LeavePurposeController@edit')->name('leavePurpose.edit');
-    Route::patch('attendance/leavePurpose/{id}/update','LeavePurposeController@update')->name('leavePurpose.update');
-    Route::post('attendance/leavePurpose/delete/{id}','LeavePurposeController@destroy')->name('leavePurpose.delete');
+    Route::get('attendance/leavePurpose','Backend\LeavePurposeController@index');
+    Route::get('attendance/leavePurpose/add','Backend\LeavePurposeController@add')->name('leavePurpose.add');
+    Route::post('attendance/leavePurpose/store','Backend\LeavePurposeController@store')->name('leavePurpose.store');
+    Route::get('attendance/leavePurpose/edit/{id}','Backend\LeavePurposeController@edit')->name('leavePurpose.edit');
+    Route::patch('attendance/leavePurpose/{id}/update','Backend\LeavePurposeController@update')->name('leavePurpose.update');
+    Route::post('attendance/leavePurpose/delete/{id}','Backend\LeavePurposeController@destroy')->name('leavePurpose.delete');
     //leave purpose ends by Nishat
 
     //leave management starts by Nishat
-    Route::get('attendance/leaveManagement','LeaveManagementController@index');
-    Route::get('attendance/leaveManagement/add','LeaveManagementController@add')->name('leaveManagement.add');
-    Route::post('attendance/leaveManagement/store','LeaveManagementController@store')->name('leaveManagement.store');
-    Route::get('attendance/leaveManagement/edit/{id}','LeaveManagementController@edit')->name('leaveManagement.edit');
-    Route::delete('attendance/leaveManagement/delete/{id}','LeaveManagementController@destroy');
+    Route::get('attendance/leaveManagement','Backend\LeaveManagementController@index');
+    Route::get('attendance/leaveManagement/add','Backend\LeaveManagementController@add')->name('leaveManagement.add');
+    Route::post('attendance/leaveManagement/store','Backend\LeaveManagementController@store')->name('leaveManagement.store');
+    Route::get('attendance/leaveManagement/edit/{id}','Backend\LeaveManagementController@edit')->name('leaveManagement.edit');
+    Route::delete('attendance/leaveManagement/delete/{id}','Backend\LeaveManagementController@destroy');
     //leave management ends by Nishat
 
     //Book Category starts by Nishat
-    Route::get('library/bookCategory','BookCategoryController@index');
-    Route::get('library/bookCategory/add','BookCategoryController@add')->name('bookCategory.add');
-    Route::post('library/bookCategory/store','BookCategoryController@store')->name('bookCategory.store');
-    Route::get('library/bookCategory/edit','BookCategoryController@edit')->name('book-category.edit');
-//    Route::get('library/bookCategory/edit/{id}','BookCategoryController@edit')->name('bookCategory.edit');
-    Route::patch('library/bookCategory/{id}/update','BookCategoryController@update')->name('bookCategory.update');
-    Route::post('library/bookCategory/delete/{id}','BookCategoryController@destroy')->name('bookCategory.delete');
+    Route::get('library/bookCategory','Backend\BookCategoryController@index');
+    Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
+    Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
+    Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
+//    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
+    Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
+    Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
 
     //Book Category ends by Nishat
 
@@ -216,24 +217,24 @@ Route::group(['prefix'=>'admin'], function(){
 
     //library Management Starts By Nishat
     //Add New Book
-    Route::get('library/books','BookController@index');
-    Route::get('library/allBooks','BookController@show')->name('allBooks.show');
-    Route::get('library/SearchBook','BookController@search')->name('allBooks.search');
-    Route::get('library/books/add','BookController@add')->name('newBook.add');
-    Route::post('library/books/store','BookController@store')->name('newBook.store');
-    Route::get('library/books/edit/{id}','BookController@edit')->name('newBook.edit');
-    Route::patch('library/books/{id}/update','BookController@update')->name('newBook.update');
-    Route::post('library/books/delete/{id}','BookController@destroy')->name('newBook.delete');
+    Route::get('library/books','Backend\BookController@index');
+    Route::get('library/allBooks','Backend\BookController@show')->name('allBooks.show');
+    Route::get('library/SearchBook','Backend\BookController@search')->name('allBooks.search');
+    Route::get('library/books/add','Backend\BookController@add')->name('newBook.add');
+    Route::post('library/books/store','Backend\BookController@store')->name('newBook.store');
+    Route::get('library/books/edit/{id}','Backend\BookController@edit')->name('newBook.edit');
+    Route::patch('library/books/{id}/update','Backend\BookController@update')->name('newBook.update');
+    Route::post('library/books/delete/{id}','Backend\BookController@destroy')->name('newBook.delete');
 
     //issue/return books
-    Route::get('library/issue_books','BookController@issueBook')->name('issueBook.index');
-    Route::post('library/issue-books/store','BookController@issueBookStore')->name('issueBook.store');
-    Route::get('library/return_books','BookController@returnBook')->name('returnBook.index');
-    Route::post('library/return-books/store','BookController@returnBookStore')->name('returnBook.store');
+    Route::get('library/issue_books','Backend\BookController@issueBook')->name('issueBook.index');
+    Route::post('library/issue-books/store','Backend\BookController@issueBookStore')->name('issueBook.store');
+    Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
+    Route::post('library/return-books/store','Backend\BookController@returnBookStore')->name('returnBook.store');
 
 
 //    report
-    Route::get('library/report','BookController@report')->name('report');
+    Route::get('library/report','Backend\BookController@report')->name('report');
 
     //library management ends by Nishat
 
@@ -245,11 +246,11 @@ Route::group(['prefix'=>'admin'], function(){
 //    route for api setting ends here
 
 //    route for email setting starts here
-    Route::get('setting/email','EmailSettingController@index')->name('setting.email');
-    Route::post('setting/email/store','EmailSettingController@store')->name('email.store');
-    Route::post('setting/email/edit','EmailSettingController@edit')->name('email.edit');
-    Route::post('setting/email/update','EmailSettingController@update')->name('email.update');
-    Route::delete('setting/email/delete/{id}','EmailSettingController@destroy')->name('email.delete');
+    Route::get('setting/email','Backend\EmailSettingController@index')->name('setting.email');
+    Route::post('setting/email/store','Backend\EmailSettingController@store')->name('email.store');
+    Route::post('setting/email/edit','Backend\EmailSettingController@edit')->name('email.edit');
+    Route::post('setting/email/update','Backend\EmailSettingController@update')->name('email.update');
+    Route::delete('setting/email/delete/{id}','Backend\EmailSettingController@destroy')->name('email.delete');
 //    route for email setting ends here
 
     //    route for google map setting starts here
@@ -258,8 +259,8 @@ Route::group(['prefix'=>'admin'], function(){
 //    route for google map setting ends here
 
     //Social Links start
-    Route::get('socials','SocialController@index')->name('social.index');
-    Route::post('socials/update/{id}','SocialController@update')->name('social.store');
+    Route::get('socials','Backend\SocialController@index')->name('social.index');
+    Route::post('socials/update/{id}','Backend\SocialController@update')->name('social.store');
 //Social Links End
 
     Route::get('page-media/destroy/{id}','PageMediaController@destroy');
@@ -291,13 +292,13 @@ Route::group(['prefix'=>'admin'], function(){
     //Route for fee collection ends here
 
     // Gallery Routes start
-    Route::get('gallery/image','GalleryController@index')->name('settings.image');
-    Route::post('gallery/image/store','GalleryController@store');
-    Route::delete('gallery/image/destroy/{id}','GalleryController@destroy');
+    Route::get('gallery/image','Backend\GalleryController@index')->name('settings.image');
+    Route::post('gallery/image/store','Backend\GalleryController@store');
+    Route::delete('gallery/image/destroy/{id}','Backend\GalleryController@destroy');
 
-    Route::get('gallery/category','GalleryCategoryController@index');
-    Route::post('gallery/category/store','GalleryCategoryController@store');
-    Route::delete('gallery/category/destroy/{id}','GalleryCategoryController@destroy');
+    Route::get('gallery/category','Backend\GalleryCategoryController@index');
+    Route::post('gallery/category/store','Backend\GalleryCategoryController@store');
+    Route::delete('gallery/category/destroy/{id}','Backend\GalleryCategoryController@destroy');
 
     Route::get('gallery/albums','AlbumController@index');
     Route::post('gallery/album/store','AlbumController@store');
@@ -425,27 +426,27 @@ Route::post('institution/sig','Backend\InstitutionController@sig');
 
 
 // Student Fee Collection start
-Route::get('student/fee','FinanceController@index')->name('student.fee');
-Route::post('student/fee-store','FinanceController@store_payment')->name('student.fee-store');
-Route::get('student/fee-invoice/{id}','FinanceController@fee_invoice')->name('student.fee-invoice');
+Route::get('student/fee','Backend\FinanceController@index')->name('student.fee');
+Route::post('student/fee-store','Backend\FinanceController@store_payment')->name('student.fee-store');
+Route::get('student/fee-invoice/{id}','Backend\FinanceController@fee_invoice')->name('student.fee-invoice');
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
-Route::get('report/student-fee-report','ReportController@student_fee_report')->name('report.student-fee');
-Route::get('report/student-monthly-fee-report','ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
+Route::get('report/student-fee-report','Backend\ReportController@student_fee_report')->name('report.student-fee');
+Route::get('report/student-monthly-fee-report','Backend\ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
 // Student Fee Collection Report End
 
 
 
 
 //Communication Route by Rimon
-Route::get('communication/quick','CommunicationController@quick')->name('communication.quick');
-Route::get('communication/student','CommunicationController@student')->name('communication.student');
-Route::get('communication/staff','CommunicationController@staff')->name('communication.staff');
-Route::get('communication/history','CommunicationController@history')->name('communication.history');
+Route::get('communication/quick','Backend\CommunicationController@quick')->name('communication.quick');
+Route::get('communication/student','Backend\CommunicationController@student')->name('communication.student');
+Route::get('communication/staff','Backend\CommunicationController@staff')->name('communication.staff');
+Route::get('communication/history','Backend\CommunicationController@history')->name('communication.history');
 
-Route::post('communication/send','CommunicationController@send');
-Route::post('communication/quick/send','CommunicationController@quickSend');
+Route::post('communication/send','Backend\CommunicationController@send');
+Route::post('communication/quick/send','Backend\CommunicationController@quickSend');
 //End Communication Route
 
 

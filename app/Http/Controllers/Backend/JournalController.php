@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\COA;
-use App\Journal;
-use App\ChartOfAccount;
-use App\JournalItem;
 use Exception;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
+use App\Journal;
+use App\JournalItem;
+use App\ChartOfAccount;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\View\View;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Foundation\Application;
 
 class JournalController extends Controller
 {

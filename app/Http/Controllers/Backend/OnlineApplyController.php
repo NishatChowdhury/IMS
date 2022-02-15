@@ -24,6 +24,7 @@ use App\OnlineAdmission;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Repository\StudentRepository;
 
 class OnlineApplyController extends Controller
@@ -54,7 +55,7 @@ class OnlineApplyController extends Controller
 
     public function store(Request $req)
     {
-        // return $req->all();
+       
         $rules = [
             'name' => 'required',
             'name_bn' => 'required',
@@ -122,6 +123,17 @@ class OnlineApplyController extends Controller
             }
         }
 
+
+        if($req->email){
+            $details = [
+                'title' => 'Mail IMS',
+                'body' => 'This is for testing email using smtp'
+            ];
+           
+            Mail::to('abc@gmail.com')->send(new \App\Mail\AdmissionMail($details));
+           
+            dd("Email is Sent.");
+        }
     
         // $studentIdPrefix = 'STU-'.$studentStore->id;
 

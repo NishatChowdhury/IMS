@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\NoticeCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class NoticeCategoryController extends Controller
 {

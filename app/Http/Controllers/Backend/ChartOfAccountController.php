@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\ChartOfAccount;
 use App\COA;
-use App\CoaGrandParent;
 use App\CoaParent;
-use App\Repository\FinanceRepository;
+use App\ChartOfAccount;
+use App\CoaGrandParent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\Repository\FinanceRepository;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Unique;
+use Illuminate\Support\Facades\Validator;
 
 class ChartOfAccountController extends Controller
 {

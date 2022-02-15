@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\COA;
-use App\CoaParent;
-use App\CoaGrandparent;
 use App\Journal;
+use App\CoaParent;
 use App\JournalItem;
+use App\CoaGrandparent;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class AccountingController extends Controller

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Notice;
-use App\Repository\NoticeRepositories;
 use App\Session;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\NoticeRepositories;
 
 class NoticeController extends Controller
 {

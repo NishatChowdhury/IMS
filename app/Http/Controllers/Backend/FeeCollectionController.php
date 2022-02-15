@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\FeeSetup;
-use Illuminate\Http\Request;
 use App\Student;
-use App\StudentAcademic;
+use App\FeeSetup;
 use App\StudentPayment;
+use App\StudentAcademic;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class FeeCollectionController extends Controller
 {

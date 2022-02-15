@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\ExamResult;
 use App\AcademicClass;
 use App\RawAttendance;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FrontController;
@@ -30,7 +32,7 @@ Route::patch('user/password','UserController@password');
 /** User Routes end */
 
 /*
-  ==== Route for Front-End Menu Bar Start ==== @MKH
+==== Route for Front-End Menu Bar Start ==== @MKH
  */
 Route::get('/', 'Front\FrontController@index');
 //Route::get('/', 'IdCardController@custom_staffPdf');

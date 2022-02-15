@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\BookCategory;
-use App\IssueBook;
 use App\Book;
-use App\Repository\StudentRepository;
 use App\Student;
+use App\IssueBook;
+use App\BookCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\StudentRepository;
 
 class BookController extends Controller
 {

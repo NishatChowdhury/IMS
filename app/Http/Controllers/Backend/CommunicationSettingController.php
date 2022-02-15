@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\CommunicationSetting;
 use Illuminate\Http\Request;
+use App\CommunicationSetting;
 use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
 
 class CommunicationSettingController extends Controller
 {

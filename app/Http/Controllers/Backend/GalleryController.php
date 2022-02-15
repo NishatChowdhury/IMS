@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Gallery;
-use App\Repository\GalleryRepositories;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Repository\GalleryRepositories;
 
 class GalleryController extends Controller
 {

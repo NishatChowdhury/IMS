@@ -55,6 +55,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('admin/online-application') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Application(School) </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Create Admission') }}</p>
@@ -234,12 +240,7 @@
                             <p>Students </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('admin/online-application') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Online Application </p>
-                        </a>
-                    </li>
+
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('StudentController@optional') }}" class="nav-link {{ isActive('student/optional') }}">
                             <i class="far fa-circle nav-icon"></i>
