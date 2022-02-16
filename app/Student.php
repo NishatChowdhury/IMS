@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
+<<<<<<< HEAD
     public $table = 'student1s';
+=======
+    protected $table = 'student1s';
+>>>>>>> master
     protected $fillable = [
         'name',
         'name_bn',
@@ -135,7 +139,7 @@ class Student extends Model
         return $this->hasMany(FeeSetup::class);
     }
 
-    public function fee_setup_pivot()
+    public function fee_setup_pivot(): HasMany
     {
         return $this->hasMany(FeeSetupPivot::class);
     }

@@ -278,7 +278,8 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('fee/fee-setup',[FeeSetupController::class,'create'])->name('fee-setup.create');
     Route::post('fee/fee-setup/store',[FeeSetupController::class,'store'])->name('fee-setup.store');
     Route::get('fee/fee-setup/view',[FeeSetupController::class,'index'])->name('fee-setup.index');
-    Route::post('fee/fee-setup/viewFeeDetails',[FeeSetupController::class,'viewFeeDetails'])->name('fee-setup.viewFeeDetails');
+    Route::get('fee/fee-setup/feeDetails/{id}',[FeeSetupController::class,'feeDetails'])->name('fee-setup.feeDetails');
+    Route::get('fee/fee-setup/feeSetupDetails/{id}',[FeeSetupController::class,'feeSetupDetails'])->name('fee-setup.feeSetupDetails');
     Route::get('fee/fee-setup/search',[FeeSetupController::class,'search'])->name('fee-setup.search');
     Route::get('fee/fee-setup/edit/{id}',[FeeSetupController::class,'edit'])->name('fee-setup.edit');
     Route::patch('fee/fee-setup/update/{id}',[FeeSetupController::class,'update'])->name('fee.fee-setup.update');
