@@ -16,13 +16,13 @@ class CreateGuardiansTable extends Migration
         Schema::create('guardians', function (Blueprint $table) {
             $table->id();
             $table->string('g_name');
-            $table->string('g_name_bn');
+            $table->string('g_name_bn')->nullable();
             $table->foreignId('student_id');
-            $table->string('g_mobile');
+            $table->string('g_mobile')->nullable();
             $table->string('g_email')->nullable();
-            $table->string('g_dob');
-            $table->string('g_occupation');
-            $table->string('g_nid');
+            $table->string('g_dob')->nullable();
+            $table->string('g_occupation')->nullable();
+            $table->string('g_nid')->nullable();
             $table->string('g_birth_certificate')->nullable();
             $table->timestamps();
         });

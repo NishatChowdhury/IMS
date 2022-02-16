@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Group;
+use App\Father;
+use App\Mother;
 use App\Classes;
 use App\Session;
 use App\Student;
+use App\Guardian;
 use App\MeritList;
+use App\StudentSsc;
 use App\AcademicClass;
 use App\AppliedStudent;
 use App\OnlineAdmission;
 use App\SiteInformation;
+use App\StudentAcademic;
 use Illuminate\Http\Request;
 use App\CommunicationSetting;
 use App\Http\Controllers\Controller;
@@ -33,72 +38,170 @@ class AdmissionController extends Controller
     {
         $ssc_roll = $request->get('ssc_roll');
 
-        $rolls = AppliedStudent::query()->get('ssc_roll')->toArray();
-
-        foreach($rolls as $ssc_roll){
-            // dd($ssc_roll);
-            $student = AppliedStudent::query()->where('ssc_roll',$ssc_roll)->first();
-
-            $academicClassId = AcademicClass::query()
-                ->where('session_id',$student->session_id)
-                ->where('class_id',$student->class_id)
-                ->where('group_id',$student->group_id)
-                ->where('section_id',$student->section_id)
-                ->first();
-
-            $optional = json_decode($student->subjects)->optional[0];
-
-            $data = [
-                'name' => $student->name,
-                'studentId' => $student->studentId,
-                'academic_class_id' => $academicClassId->id,
-                'session_id' => $student->session_id,
-                'class_id' => $student->class_id,
-                'section_id' => $student->section_id,
-                'group_id' => $student->group_id,
-                'rank' => 0,
-                'subject_id' => $optional,
-                'father' => $student->father,
-                'mother' => $student->mother,
-                'gender_id' => $student->gender_id,
-                'mobile' => $student->mobile,
-                'dob' => $student->dob,
-                'blood_group_id' => $student->blood_group_id,
-                'religion_id' => $student->religion_id,
-                'image' => $student->image,
-                'address' => $student->pre_house_number.', '.$student->pre_road,
-                'area' => $student->pre_village,
-                'zip' => $student->pre_post_code,
-                'city_id' => null,
-                'country_id' => 1,
-                'email' => $student->email,
-                'father_mobile' => $student->guardian_mobile,
-                'mother_mobile' => null,
-                'notification_type_id' => null,
-                'status' => 1,
-                'bcn' => null,
-                'father_occupation' => null,
-                'mother_occupation' => null,
-                'other_guardian' => null,
-                'guardian_national_id' => null,
-                'yearly_income' => null,
-                'guardian_address' => null,
-                'bank_slip' => null,
-                'ssc_roll' => $student->ssc_roll,
-                'location_id' => $student->location_id,
-            ];
-
-            $isExist = Student::query()->where('ssc_roll',$student->ssc_roll)->exists();
-
-            if($isExist){
-                $s = Student::query()->where('ssc_roll',$student->ssc_roll)->first();
-                $s->update();
-            }else{
-                Student::query()->create($data);
-                $student->update(['approved'=>1]);
-                $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
-            }
+        $appliedStudent = AppliedStudent::query()->where('ssc_roll', $ssc_roll)->first();
+// dd($appliedStudent);
+        $getAcademicClass = AcademicClass::query()
+                                            ->where('session_id', $appliedStudent->session_id)
+                                            ->where('class_id', $appliedStudent->class_id)
+                                            ->where('group_id', $appliedStudent->group_id)
+                                            ->first();
+        $data = [
+            'name' => $appliedStudent->name,
+            'name_bn' => $appliedStudent->name,
+            'studentId' => $appliedStudent->studentId,
+            'gender_id' => $appliedStudent->gender_id,
+            'mobile' => $appliedStudent->mobile,
+            'dob' => $appliedStudent->dob,
+            'birth_certificate' => $appliedStudent->nid,
+            'blood_group_id' => $appliedStudent->blood_group_id,
+            'religion_id' => $appliedStudent->religion_id,
+            'nationality' => 'Bangladeshi',
+            'image' => $appliedStudent->image,
+            'address' => $appliedStudent->pre_village . "," .$appliedStudent->pre_post_office,
+            'area' => $appliedStudent->pre_district,
+            'zip' => $appliedStudent->per_post_code,
+            'city_id' => 1,
+            'country_id' => 1,
+            'email' => $appliedStudent->email,
+            'status' => 1,
+         
+        ];                                        
+        try{
+            $student = Student::query()->create($data);
+            $appliedStudent->update(['approved' => 1]);
+            
+            $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
+        }catch (\Exception $e){
+            dd($e);
         }
+
+        StudentSsc::create([
+            'student_id' => $student->id,
+            'board' => $appliedStudent->ssc_board,
+            'ssc_session' => $appliedStudent->ssc_session,
+            'type' => $appliedStudent->student_type,
+            'year' => $appliedStudent->ssc_year,
+            'registration' => $appliedStudent->ssc_registration,
+            'roll' => $appliedStudent->ssc_roll,
+            'gpa' => $appliedStudent->ssc_gpa,
+            'group' => $appliedStudent->ssc_group,
+            'school' => $appliedStudent->ssc_school,
+        ]);
+                                
+
+        StudentAcademic::query()->findOrNew($request->sa_id)->updateOrCreate([
+            'academic_class_id' => $getAcademicClass->id,
+            'student_id' => $student->id,
+            'session_id' => $getAcademicClass->session_id,
+            'class_id' => $getAcademicClass->class_id,
+            'section_id' => $getAcademicClass->section_id,
+            'group_id' => $getAcademicClass->group_id,
+            'shift_id' => 0,
+            'rank' => $student->id
+        ]);
+
+        Father::query()->findOrNew($request->f_id)->updateOrCreate([
+            'f_name' => $appliedStudent->father,
+            'student_id' => $student->id,
+            'f_mobile' => $appliedStudent->guardian_mobile,
+        ]);
+        
+        Mother::query()->findOrNew($request->m_id)->updateOrCreate([
+            'm_name' => $appliedStudent->mother,
+            'student_id' => $student->id,
+            'm_mobile' => $appliedStudent->guardian_mobile,
+        ]);
+
+        Guardian::query()->findOrNew($request->g_id)->updateOrCreate([
+            'g_name' => $appliedStudent->guardian_name,
+            'student_id' => $student->id,
+            'g_mobile' => $appliedStudent->guardian_mobile,
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // foreach($rolls as $ssc_roll){
+        //     // dd($ssc_roll);
+        //     $student = AppliedStudent::query()->where('ssc_roll',$ssc_roll)->first();
+
+        //     $academicClassId = AcademicClass::query()
+        //         ->where('session_id',$student->session_id)
+        //         ->where('class_id',$student->class_id)
+        //         ->where('group_id',$student->group_id)
+        //         ->where('section_id',$student->section_id)
+        //         ->first();
+
+        //     $optional = json_decode($student->subjects)->optional[0];
+
+        //     $data = [
+        //         'name' => $student->name,
+        //         'studentId' => $student->studentId,
+        //         'academic_class_id' => $academicClassId->id,
+        //         'session_id' => $student->session_id,
+        //         'class_id' => $student->class_id,
+        //         'section_id' => $student->section_id,
+        //         'group_id' => $student->group_id,
+        //         'rank' => 0,
+        //         'subject_id' => $optional,
+        //         'father' => $student->father,
+        //         'mother' => $student->mother,
+        //         'gender_id' => $student->gender_id,
+        //         'mobile' => $student->mobile,
+        //         'dob' => $student->dob,
+        //         'blood_group_id' => $student->blood_group_id,
+        //         'religion_id' => $student->religion_id,
+        //         'image' => $student->image,
+        //         'address' => $student->pre_house_number.', '.$student->pre_road,
+        //         'area' => $student->pre_village,
+        //         'zip' => $student->pre_post_code,
+        //         'city_id' => null,
+        //         'country_id' => 1,
+        //         'email' => $student->email,
+        //         'father_mobile' => $student->guardian_mobile,
+        //         'mother_mobile' => null,
+        //         'notification_type_id' => null,
+        //         'status' => 1,
+        //         'bcn' => null,
+        //         'father_occupation' => null,
+        //         'mother_occupation' => null,
+        //         'other_guardian' => null,
+        //         'guardian_national_id' => null,
+        //         'yearly_income' => null,
+        //         'guardian_address' => null,
+        //         'bank_slip' => null,
+        //         'ssc_roll' => $student->ssc_roll,
+        //         'location_id' => $student->location_id,
+        //     ];
+
+        //     $isExist = Student::query()->where('ssc_roll',$student->ssc_roll)->exists();
+
+        //     if($isExist){
+        //         $s = Student::query()->where('ssc_roll',$student->ssc_roll)->first();
+        //         $s->update();
+        //     }else{
+        //         Student::query()->create($data);
+        //         $student->update(['approved'=>1]);
+        //         $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
+        //     }
+        // }
 
         \Illuminate\Support\Facades\Session::flash('success','Admission completed successfully!');
 
@@ -122,7 +225,7 @@ class AdmissionController extends Controller
 
     public function browseMeritList(Request $request)
     {
-        //dd($request->get('ssc_roll') != null);
+
         $s = MeritList::query();
 
         if($request->has('name') && $request->get('name') != null){

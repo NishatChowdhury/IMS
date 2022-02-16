@@ -15,14 +15,14 @@ class CreateStudentAcademicsTable extends Migration
     {
         Schema::create('student_academics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id');
+            $table->foreignId('student_id')->nullable();
             $table->foreignId('academic_class_id');
             $table->foreignId('session_id');
             $table->foreignId('class_id');
             $table->foreignId('section_id')->nullable();
             $table->foreignId('group_id')->nullable();
             $table->foreignId('shift_id');
-            $table->string('rank');
+            $table->string('rank')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
