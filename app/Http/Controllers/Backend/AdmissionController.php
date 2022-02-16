@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Group;
+use App\Classes;
+use App\Session;
+use App\Student;
+use App\MeritList;
 use App\AcademicClass;
 use App\AppliedStudent;
-use App\Classes;
-use App\CommunicationSetting;
-use App\Group;
-use App\MeritList;
 use App\OnlineAdmission;
-use App\Repository\StudentRepository;
-use App\Session;
 use App\SiteInformation;
-use App\Student;
 use Illuminate\Http\Request;
+use App\CommunicationSetting;
+use App\Http\Controllers\Controller;
+use App\Repository\StudentRepository;
 
 class AdmissionController extends Controller
 {
@@ -34,9 +35,8 @@ class AdmissionController extends Controller
 
         $rolls = AppliedStudent::query()->get('ssc_roll')->toArray();
 
-        //dd($rolls);
-
         foreach($rolls as $ssc_roll){
+            // dd($ssc_roll);
             $student = AppliedStudent::query()->where('ssc_roll',$ssc_roll)->first();
 
             $academicClassId = AcademicClass::query()
@@ -97,9 +97,6 @@ class AdmissionController extends Controller
                 Student::query()->create($data);
                 $student->update(['approved'=>1]);
                 $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
-                //if($admission_sms) {
-                    //$this->sms($data);
-                //}
             }
         }
 

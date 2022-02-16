@@ -33,7 +33,7 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <a href="{{ action('ChartOfAccountController@create') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
+                                    <a href="{{ action('Backend\ChartOfAccountController@create') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +65,8 @@
                                         </label>
                                     </td>
                                     <td>
-                                        {{ Form::open(['action'=>['ChartOfAccountController@destroy',$coa->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                        <a href="{{ action('ChartOfAccountController@edit',$coa->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        {{ Form::open(['action'=>['Backend\ChartOfAccountController@destroy',$coa->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                        <a href="{{ action('Backend\ChartOfAccountController@edit',$coa->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                         {{ Form::close() }}
                                     </td>
@@ -135,11 +135,11 @@
         function statusChange(id){
             var csrf = "{{ csrf_token() }}";
             $.ajax({
-                url  : '{{ action('ChartOfAccountController@isEnabled') }}',
+                url  : '{{ action('Backend\ChartOfAccountController@isEnabled') }}',
                 data : {_token:csrf,id:id},
                 type : 'post'
             }).done(function(){
-                location.replace("{{ action('ChartOfAccountController@index') }}");
+                location.replace("{{ action('Backend\ChartOfAccountController@index') }}");
             })
         }
     </script>

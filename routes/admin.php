@@ -34,8 +34,8 @@ Route::group(['prefix'=>'admin'], function(){
     //Accounts End
 
     //Admission Routes
-    Route::post('admission/store','AdmissionController@store');
-    Route::post('admission/unapprove/{roll}','AdmissionController@unapprove');
+    Route::post('admission/store','Backend\AdmissionController@store');
+    Route::post('admission/unapprove/{roll}','Backend\AdmissionController@unapprove');
     //Admission Routes Ends
 
 //Upcoming Events
@@ -113,14 +113,23 @@ Route::group(['prefix'=>'admin'], function(){
     Route::delete('pages/destroy/{id}','Backend\PageController@destroy');
     Route::delete('pages/remove/{id}','Backend\PageController@remove');
 
-    Route::get('siteinfo','SiteInformationController@index')->name('siteinfo');
-    Route::patch('site-info/update','SiteInformationController@update');
-    Route::patch('site-info/google_map','SiteInformationController@update_google_map');
-    Route::patch('site-info/logo','SiteInformationController@logo');
+    Route::get('siteinfo','Backend\SiteInformationController@index')->name('siteinfo');
+    Route::patch('site-info/update','Backend\SiteInformationController@update');
+    Route::patch('site-info/google_map','Backend\SiteInformationController@update_google_map');
+    Route::patch('site-info/logo','Backend\SiteInformationController@logo');
 
-    Route::get('sliders','SliderController@index');
-    Route::post('slider/store','SliderController@store');
-    Route::delete('slider/destroy/{id}','SliderController@destroy');
+    Route::get('sliders','Backend\SliderController@index');
+    Route::post('slider/store','Backend\SliderController@store');
+    Route::delete('slider/destroy/{id}','Backend\SliderController@destroy');
+
+    // Important Links
+    Route::get('settings/links','Backend\LinkController@index');
+    Route::post('settings/link/store','Backend\LinkController@store');
+    Route::delete('settings/link/delete/{id}','Backend\LinkController@destroy');
+// End Important Links
+
+
+
 
     Route::get('students','StudentController@index')->name('student.list');
     Route::get('student/create','StudentController@create')->name('student.add');
@@ -134,12 +143,12 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
     Route::post('student/promote','StudentController@promote')->name('student.promote');
 
-    Route::get('features','FeatureController@index');
-    Route::get('feature/create','FeatureController@create');
-    Route::post('feature/store','FeatureController@store');
-    Route::get('feature/edit/{id}','FeatureController@edit');
-    Route::patch('feature/{id}/update','FeatureController@update');
-    Route::delete('feature/destroy/{id}','FeatureController@destroy');
+    Route::get('features','Backend\FeatureController@index');
+    Route::get('feature/create','Backend\FeatureController@create');
+    Route::post('feature/store','Backend\FeatureController@store');
+    Route::get('feature/edit/{id}','Backend\FeatureController@edit');
+    Route::patch('feature/{id}/update','Backend\FeatureController@update');
+    Route::delete('feature/destroy/{id}','Backend\FeatureController@destroy');
 
     Route::get('themes','ThemeController@index');
     Route::get('theme/edit/{id}','ThemeController@edit');
@@ -347,7 +356,7 @@ Route::put('fee-category/status/{id}','Backend\FeeCategoryController@status')->n
 
 //  Fee Setup Start
 Route::get('fee-category/fee_setup/{classId}','Backend\FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
-Route::post('fee_setup/store/{classId}','Backend\FeeCategoryController@store_fee_setup')->name('fee-setup.store');
+// Route::post('fee_setup/store/{classId}','Backend\FeeCategoryController@store_fee_setup')->name('fee-setup.store');
 Route::get('fee_setup/list/{classId}','Backend\FeeCategoryController@list_fee_setup')->name('fee-setup.list');
 Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup')->name('fee-setup.show');
 Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');

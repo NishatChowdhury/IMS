@@ -17,13 +17,13 @@ use App\Http\Controllers\FeeSetupController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 
 /** Dashboard Routes */
-Route::get('dashboard','DashboardController@index');
+Route::get('dashboard','Backend\DashboardController@index');
 
 // Routes For ADMIN LTE Alpha END........//
 
 
 Auth::routes(['register' => false]);
-Route::get('/home', 'DashboardController@index')->name('home');
+Route::get('/home', 'Backend\DashboardController@index')->name('home');
 
 /** User Routes start */
 Route::get('user/profile','UserController@profile');
@@ -125,14 +125,14 @@ Route::get('/contact','Front\FrontController@contact');
 /*===== Route for Front-End Menu Bar END ====*/
 
 //Admission Route by Rimon
-Route::get('admission/exams','AdmissionController@admissionExams')->name('admission.exams');
-Route::get('admission/applicant','AdmissionController@admissionApplicant')->name('admission.applicant');
-Route::get('admission/examResult','AdmissionController@admissionExamResult')->name('admission.examResult');
-Route::get('admission/browse-merit-list','AdmissionController@browseMeritList');
-Route::get('admission/upload-merit-list','AdmissionController@uploadMeritList');
-Route::post('admission/upload','AdmissionController@upload');
+Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
+Route::get('admission/applicant','Backend\AdmissionController@admissionApplicant')->name('admission.applicant');
+Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
+Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList');
+Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList');
+Route::post('admission/upload','Backend\AdmissionController@upload');
 
-Route::post('admission/slip-view','AdmissionController@slipView');
+Route::post('admission/slip-view','Backend\AdmissionController@slipView');
 //End Admission Route
 
 
@@ -196,11 +196,6 @@ Route::post('institution/class/schedule/store','ScheduleController@store');
     Route::post('student/card/pdf','IdCardController@pdf');
 // ID Card Routes
 
-// Important Links
-    Route::get('settings/links','LinkController@index');
-    Route::post('settings/link/store','LinkController@store');
-    Route::delete('settings/link/delete/{id}','LinkController@destroy');
-// End Important Links
 
 //Account Section Star AR Babu
 
