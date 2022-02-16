@@ -33,7 +33,8 @@ class FeeSetupController extends Controller
             ->get()
             ->groupBy('month_id');
 
-        return view('admin.feeSetup.index',compact('fees'))->with('i', (request()->input('page',1) -1) *5);
+
+        return view('admin.feeSetup.index',compact('fees'));
     }
 
     public function create()
@@ -49,6 +50,7 @@ class FeeSetupController extends Controller
     }
 
     public function store(Request $request){
+//        dd($request->all());
 
         $request->validate([
             'academic_class_id' => [
@@ -93,11 +95,20 @@ class FeeSetupController extends Controller
 
         return redirect('admin/fee/fee-setup/view');
     }
+    public function feeDetails(Request $request){
+        $studentData = StudentAcademic::query()
+            ->where('academic_class_id',$request->id)
+            ->with('students')
+            ->get();
+        return view('admin.feeSetup.fee_details',compact('studentData'));
+    }
 
-    public function viewFeeDetails(Request $request){
-        $id = $request->id;
-        $fee_pivot = FeePivot::query()->where('fee_setup_id',$id)->with('category')->get();
-        return view('admin.feeSetup._fee_details_modal',compact('fee_pivot'));
+    public function feeSetupDetails(Request $request){
+        $fee_setup = FeeSetup::query()
+            ->where('student_id',$request->id)
+            ->with('feeSetupPivot','student','fee_categories')
+            ->get();
+        return view('admin.feeSetup.fee_pivot_details',compact('fee_setup'));
     }
 
     public function edit($id)

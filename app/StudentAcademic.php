@@ -33,5 +33,8 @@ class StudentAcademic extends Model
     {
         return $this->belongsTo(Group::class);
     }
+    public function students(){
+        return$this->belongsTo(Student::class,'student_id');
+    }
 
 }
