@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Account Section</h1>
+                    <h1>Add New Category</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,19 +25,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-12">--}}
-{{--                                    <div class="dec-block">--}}
-{{--                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
-{{--                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="dec-block-dec" style="float:left;">--}}
-{{--                                            <h5 style="margin-bottom: 0px;">Total Fee Category</h5>--}}
-{{--                                            <p>1000</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
@@ -59,7 +46,6 @@
                                     <th>SL</th>
                                     <th>Category Name</th>
                                     <th>Short Description</th>
-                                    <th>Year</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -71,7 +57,6 @@
                                             <td>{{$i++}}</td>
                                             <td>{{ucwords($fee_category->name)}}</td>
                                             <td>{{ucfirst($fee_category->description)}}</td>
-                                            <td style="text-align: center">{{$fee_category->session->year}}</td>
                                             <td style="text-align: center;">
                                                 {{ Form::open(['method'=>'PUT','url'=>['fee-category/status/'.$fee_category->id],'style'=>'display:inline']) }}
                                                     @if($fee_category->status == 1)
@@ -85,12 +70,6 @@
                                                 <a type="button" class="btn btn-warning btn-sm edit" value='{{$fee_category->id}}'
                                                    style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                                 </a>
-
-                                                {{--<a type="button" href="{{action('FeeCategoryController@delete_fee_category', $fee_category->id)}}"--}}
-                                                   {{--class="btn btn-danger btn-sm delete_session"--}}
-                                                   {{--style="margin-left: 10px;"> <i class="fas fa-trash"></i>--}}
-                                                {{--</a>--}}
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -117,17 +96,6 @@
                 <div class="modal-body">
 
                     {!! Form::open(['url'=>'fee-category/store', 'method'=>'post']) !!}
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session*</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::select('session_id', $sessions, null, ['class'=>'form-control','placeholder' => 'Select Session','required']) !!}
-
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
                         <div class="col-sm-9">
@@ -173,16 +141,6 @@
                     <img src="{{ asset('assets/img/loader.gif') }}" alt="" id="loader" style="display: none;margin:0 auto !important;">
                     {!! Form::open(['action'=>'FeeCategoryController@update_fee_category', 'method'=>'post','id'=>'form']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session*</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {!! Form::select('session_id', $sessions, null, ['class'=>'form-control session_id','placeholder' => 'Select Session']) !!}
-
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
@@ -237,7 +195,6 @@
                     $("#form").show();
                     console.log(response);
                     $("#id").val(response.id);
-                    $(".session_id").val(response.session_id);
                     $(".name").val(response.name);
                     $(".description").val(response.description);
 

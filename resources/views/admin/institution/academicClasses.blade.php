@@ -83,7 +83,7 @@
                                             <a href="{{ action('StudentController@uploadStudent',$class->id) }}" role="button" class="btn btn-light btn-sm" title="Upload Student"><i class="fas fa-file-upload"></i></a>
                                             <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
                                             <a href="{{ action('ScheduleController@index',$class->id) }}" role="button" class="btn btn-success btn-sm" title="Class Schedule"><i class="fas fa-clock"></i></a>
-                                            <a href="{{ action('FeeCategoryController@list_fee_setup',$class->id) }}" class="btn btn-dark btn-sm"><i class="fas fa-funnel-dollar"></i></a>
+{{--                                            <a href="{{ action('FeeCategoryController@list_fee_setup',$class->id) }}" class="btn btn-dark btn-sm"><i class="fas fa-funnel-dollar"></i></a>--}}
                                             <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}' title="Edit"> <i class="fas fa-edit"></i></a>
                                             <button type="submit" disabled class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
