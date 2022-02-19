@@ -8,11 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
-<<<<<<< HEAD
-    public $table = 'student1s';
-=======
     protected $table = 'student1s';
->>>>>>> master
+    
     protected $fillable = [
         'name',
         'name_bn',
