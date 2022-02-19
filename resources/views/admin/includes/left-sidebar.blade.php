@@ -22,7 +22,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview {{ isActive(['/','dashboard*']) }}">
-                <a href="{{ action('DashboardController@index') }}" class="nav-link {{ isActive(['dashboard*','/']) }}">
+                <a href="{{ action('Backend\DashboardController@index') }}" class="nav-link {{ isActive(['dashboard*','/']) }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Dashboard
@@ -55,6 +55,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('admin/online-application') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Application(School) </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Create Admission') }}</p>
@@ -73,13 +79,13 @@
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{action('AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admission/browse-merit-list') }}">
+                            <a href="{{action('Backend\AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admission/browse-merit-list') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Browse Merit List</p>
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{action('AdmissionController@uploadMeritList')}}" class="nav-link {{ isActive('admission/upload-merit-list') }}">
+                            <a href="{{action('Backend\AdmissionController@uploadMeritList')}}" class="nav-link {{ isActive('admission/upload-merit-list') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Upload Merit List</p>
                             </a>
@@ -103,13 +109,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ action('LeaveManagementController@index') }}" class="nav-link {{ isActive('attendance/leaveManagement') }}">
+                            <a href="{{ action('Backend\LeaveManagementController@index') }}" class="nav-link {{ isActive('attendance/leaveManagement') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Leave Management</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('LeavePurposeController@index') }}" class="nav-link {{ isActive('attendance/leavePurpose') }}">
+                            <a href="{{ action('Backend\LeavePurposeController@index') }}" class="nav-link {{ isActive('attendance/leavePurpose') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Leave Purpose</p>
                             </a>
@@ -184,31 +190,31 @@
                     </a>
                     <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                         <li class="nav-item">
-                            <a href="{{ action('BookCategoryController@index') }}" class="nav-link {{ isActive('admin/library/bookCategory') }}">
+                            <a href="{{ action('Backend\BookCategoryController@index') }}" class="nav-link {{ isActive('admin/library/bookCategory') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Book Category </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('BookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
+                            <a href="{{ action('Backend\BookController@add') }}" class="nav-link {{ isActive('admin/library/books/add') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Books </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
+                            <a href="{{ action('Backend\BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Books</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('BookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
+                            <a href="{{ action('Backend\BookController@returnBook') }}" class="nav-link {{ isActive('admin/library/return_books') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Return Books</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('BookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
+                            <a href="{{ action('Backend\BookController@report') }}" class="nav-link {{ isActive('admin/library/report') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Report</p>
                             </a>
@@ -234,12 +240,7 @@
                             <p>Students </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('admin/online-application') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Online Application </p>
-                        </a>
-                    </li>
+
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('StudentController@optional') }}" class="nav-link {{ isActive('student/optional') }}">
                             <i class="far fa-circle nav-icon"></i>
@@ -370,7 +371,7 @@
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('ExamController@admitCard') }}" class="nav-link {{ isActive('exam/admit-card') }}">
+                            <a href="{{ action('Backend\ExamController@admitCard') }}" class="nav-link {{ isActive('exam/admit-card') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Admit Card</p>
                             </a>
@@ -486,19 +487,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
+                            <a href="{{ action('Backend\ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chart of Accounts</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('JournalController@index') }}" class="nav-link {{ isActive('admin/journals') }}">
+                            <a href="{{ action('Backend\JournalController@index') }}" class="nav-link {{ isActive('admin/journals') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Journal</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('JournalController@classic') }}" class="nav-link {{ isActive('admin/journal/classic') }}">
+                            <a href="{{ action('Backend\JournalController@classic') }}" class="nav-link {{ isActive('admin/journal/classic') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Journal Classic</p>
                             </a>
@@ -510,25 +511,25 @@
 {{--                            </a>--}}
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('AccountingController@ledger') }}" class="nav-link {{ isActive('admin/ledger') }}">
+                            <a href="{{ action('Backend\AccountingController@ledger') }}" class="nav-link {{ isActive('admin/ledger') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ledger</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('AccountingController@trialBalance') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
+                            <a href="{{ action('Backend\AccountingController@trialBalance') }}" class="nav-link {{ isActive('admin/trial-balance') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Trial Balance</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('AccountingController@profitNLoss') }}" class="nav-link {{ isActive('admin/profit-n-loss') }}">
+                            <a href="{{ action('Backend\AccountingController@profitNLoss') }}" class="nav-link {{ isActive('admin/profit-n-loss') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Profit & Loss</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('AccountingController@balanceSheet') }}" class="nav-link {{ isActive('admin/balance-sheet') }}">
+                            <a href="{{ action('Backend\AccountingController@balanceSheet') }}" class="nav-link {{ isActive('admin/balance-sheet') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Balance Sheet</p>
                             </a>
@@ -610,13 +611,13 @@
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('ReportController@student_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
+                            <a href="{{ action('Backend\ReportController@student_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Fee Collection</p>
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('ReportController@student_monthly_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
+                            <a href="{{ action('Backend\ReportController@student_monthly_fee_report') }}" class="nav-link {{ isActive('extra/blank') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Monthly Fee Report</p>
                             </a>
@@ -640,13 +641,13 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('MenuController@index') }}" class="nav-link {{ isActive('admin/menus') }}">
+                        <a href="{{ action('Backend\MenuController@index') }}" class="nav-link {{ isActive('admin/menus') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Site Menu</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('PageController@index') }}" class="nav-link {{ isActive('admin/pages') }}">
+                        <a href="{{ action('Backend\PageController@index') }}" class="nav-link {{ isActive('admin/pages') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Page Mgmt</p>
                         </a>
@@ -661,31 +662,31 @@
                         </a>
                         <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                             <li class="nav-item">
-                                <a href="{{ action('SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
+                                <a href="{{ action('Backend\SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
                                     <i class="far nav-icon"></i>
                                     <p>Site Basic Info </p>
                                 </a>
                             </li>
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
+                                <a href="{{ action('Backend\FeatureController@index') }}" class="nav-link {{ isActive('pages') }}">
                                     <i class="far nav-icon"></i>
                                     <p>Feature</p>
                                 </a>
                             </li>
                             <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
+                                <a href="{{ action('Backend\SliderController@index') }}" class="nav-link {{ isActive('sliders') }}">
                                     <i class="far nav-icon"></i>
                                     <p>Slider</p>
                                 </a>
                             </li>
                             <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
+                                <a href="{{ action('Backend\LinkController@index') }}" class="nav-link {{ isActive('settings/links') }}">
                                     <i class="far nav-icon"></i>
                                     <p>Important Links</p>
                                 </a>
                             </li>
                             <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
+                                <a href="{{ action('Backend\SocialController@index') }}" class="nav-link {{ isActive('socials') }}">
                                     <i class="far nav-icon"></i>
                                     <p>Social Links</p>
                                 </a>
@@ -787,31 +788,31 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" >
-                        <a href="{{ action('NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">
+                        <a href="{{ action('Backend\NoticeController@index') }}" class="nav-link {{ isActive('notices') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Management</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('NoticeCategoryController@index') }}" class="nav-link {{ isActive('notice/category') }}">
+                        <a href="{{ action('Backend\NoticeCategoryController@index') }}" class="nav-link {{ isActive('notice/category') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Category</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">
+                        <a href="{{ action('Backend\NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Notice Type</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('NoticeCategoryController@index') }}" class="nav-link {{ isActive(['notices']) }}">
+                        <a href="{{ action('Backend\NoticeCategoryController@index') }}" class="nav-link {{ isActive(['notices']) }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>News</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('UpcomingEventController@index') }}" class="nav-link {{ isActive(['event*']) }}">
+                        <a href="{{ action('Backend\UpcomingEventController@index') }}" class="nav-link {{ isActive(['event*']) }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Upcoming Events</p>
                         </a>
@@ -850,13 +851,13 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" >
-                        <a href="{{ action('GalleryController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
+                        <a href="{{ action('Backend\GalleryController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Image Mgmt</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('GalleryCategoryController@index') }}" class="nav-link {{ isActive('gallery/category') }}">
+                        <a href="{{ action('Backend\GalleryCategoryController@index') }}" class="nav-link {{ isActive('gallery/category') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Image Category</p>
                         </a>
@@ -868,7 +869,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('PlaylistController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
+                        <a href="{{ action('Backend\PlaylistController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Playlists</p>
                         </a>

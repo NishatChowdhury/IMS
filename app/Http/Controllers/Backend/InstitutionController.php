@@ -153,7 +153,7 @@ class InstitutionController extends Controller
 
         // return $req->all();
         AcademicClass::query()->create($req->all());
-        return redirect('institution/academic-class');
+        return redirect('admin/institution/academic-class');
     }
 
     public function editAcademicClass(Request $request)
@@ -191,7 +191,7 @@ class InstitutionController extends Controller
     public function update_SessionClass(Request $req){
         $class = Classes::query()->findOrFail($req->id);
         $class->update($req->all());
-        return redirect(route('institution.classes'))->with('success', 'Class has been Updated');
+        return redirect('admin/institution/class')->with('success', 'Class has been Updated');
     }
 
     public function delete_SessionClass($id){
@@ -226,7 +226,7 @@ class InstitutionController extends Controller
     public function delete_subject($id){
         $subject = Subject::findOrFail($id);
         $subject->delete();
-        return redirect('admininstitution/subjects')->with('success', 'Class has been Deleted');
+        return redirect('admin/institution/subjects')->with('success', 'Class has been Deleted');
     }
     /*Subjects End*/
 
@@ -237,7 +237,7 @@ class InstitutionController extends Controller
         $subjects = Subject::all();
         //$staffs = Staff::all()->pluck('name','id');
         $assignedSubjects = AssignSubject::query()->where('academic_class_id',$classId)->get();
-        return view ('admin.institution.classsubjects', compact( 'subjects','assignedSubjects','class'));
+        return view('admin.institution.classsubjects', compact( 'subjects','assignedSubjects','class'));
     }
 
     public function assign_subject(Request $request){

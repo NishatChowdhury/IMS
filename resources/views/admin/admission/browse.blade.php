@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card m-3">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'AdmissionController@browseMeritList','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\AdmissionController@browseMeritList','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -125,7 +125,7 @@
                                     </td>
                                     <td>
                                         @if($stdnt)
-                                        {{ Form::open(['action'=>['AdmissionController@unapprove',$student->ssc_roll],'method'=>'post','onsubmit'=>'return confirmUnApprove()']) }}
+                                        {{ Form::open(['action'=>['Backend\AdmissionController@unapprove',$student->ssc_roll],'method'=>'post','onsubmit'=>'return confirmUnApprove()']) }}
                                             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#studentModal" onclick="studentView({{$student->ssc_roll}})" title="Approve"><span class="fas fa-eye"></span></button>
 
                                             <button type="submit" class="btn btn-danger btn-sm" title="Disapprove"><span class="fas fa-ban"></span></button>
@@ -154,7 +154,7 @@
     <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true" style="z-index: 1100">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                {{ Form::open(['action'=>'AdmissionController@store']) }}
+                {{ Form::open(['action'=>'Backend\AdmissionController@store']) }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="studentModalLabel">Applied Student</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -179,7 +179,7 @@
         function slipView(id){
             var csrf = "{{ csrf_token() }}";
             $.ajax({
-                url: "{{ action('AdmissionController@slipView') }}",
+                url: "{{ action('Backend\AdmissionController@slipView') }}",
                 data:{id:id,_token:csrf},
                 type: 'post'
             }).done(function(e){
@@ -192,7 +192,7 @@
             var csrf = "{{ csrf_token() }}";
             $("#loader").show()
             $.ajax({
-                url: "{{ action('AppliedStudentController@studentView') }}",
+                url: "{{ action('Backend\AppliedStudentController@studentView') }}",
                 data:{roll:roll,_token:csrf},
                 type: 'post'
             }).done(function(e){

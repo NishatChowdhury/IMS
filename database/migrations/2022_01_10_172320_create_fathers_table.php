@@ -17,13 +17,13 @@ class CreateFathersTable extends Migration
         Schema::create('fathers', function (Blueprint $table) {
             $table->id();
             $table->string('f_name');
-            $table->string('f_name_bn');
+            $table->string('f_name_bn')->nullable();
             $table->foreignId('student_id');
-            $table->string('f_mobile');
+            $table->string('f_mobile')->nullable();
             $table->string('f_email')->nullable();
-            $table->string('f_dob');
-            $table->string('f_occupation');
-            $table->string('f_nid');
+            $table->string('f_dob')->nullable();
+            $table->string('f_occupation')->nullable();
+            $table->string('f_nid')->nullable();
             $table->string('f_birth_certificate')->nullable();
             $table->timestamps();
         });
