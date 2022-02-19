@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class FeeCategory extends Model
 {
     protected $table ='fee_categories';
-    protected $fillable = ['session_id','name','description','status'];
+//    protected $fillable = ['name','description','status'];
+    protected $guarded =[];
 
     public function session(){
         return $this->belongsTo(Session::class);

@@ -27,9 +27,7 @@ class FeeCategoryController extends Controller
 
     public function store_fee_category(Request $request){
         $validate = $this->validate($request,[
-            'session_id' => 'required',
-            'name' => 'required',
-            //'description' => 'required'
+            'name' => 'required'
         ],[
             'name.required'=>'Name Field is Required'
         ]);
