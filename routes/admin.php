@@ -513,7 +513,9 @@ Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrul
 Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
 Route::post('exam/final-result','Backend\ResultController@finalResultNew');
 
-
+Route::get('pdf', function(){
+return view('form-pdf');
+});
 
 
 

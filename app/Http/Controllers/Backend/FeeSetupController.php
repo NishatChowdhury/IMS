@@ -8,8 +8,12 @@ use App\Session;
 use App\Student;
 use App\FeePivot;
 use App\FeeSetup;
+<<<<<<< HEAD:app/Http/Controllers/Backend/FeeSetupController.php
 use App\FeeCategory;
 use App\AcademicClass;
+=======
+use App\FeeSetupCategory;
+>>>>>>> master:app/Http/Controllers/FeeSetupController.php
 use App\FeeSetupPivot;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
@@ -71,7 +75,6 @@ class FeeSetupController extends Controller
             foreach($students as $student){
                 $feeSetupData = [
                     'academic_class_id' => $request->get('academic_class_id'),
-                    'student_id' => $student->student_id,
                     'month_id' => $request->get('month_id'),
                     'year' => $request->get('year'),
                 ];
@@ -80,12 +83,14 @@ class FeeSetupController extends Controller
 
                 foreach($fees as $fee){
                     $data = [
-                        'fee_category_id' => $fee['category_id'],
-                        'fee_setup_id' => $feeSetup->id,
-                        'amount' => $fee['amount'],
+                        'fee_setup_student_id' => $feeSetup->id,
+                        'category_id' => $fee['category_id'],
+                        'amount' => $fee['amount']
+//                        'paid' => $fee['paid'],
                     ];
+                    //dd($data);
 
-                    FeeSetupPivot::query()->create($data);
+                    FeeSetupCategory::query()->create($data);
 
                 }
             }
