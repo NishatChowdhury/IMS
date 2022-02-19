@@ -39,12 +39,13 @@ class AdmissionController extends Controller
         $ssc_roll = $request->get('ssc_roll');
 
         $appliedStudent = AppliedStudent::query()->where('ssc_roll', $ssc_roll)->first();
-// dd($appliedStudent);
+
         $getAcademicClass = AcademicClass::query()
-                                            ->where('session_id', $appliedStudent->session_id)
-                                            ->where('class_id', $appliedStudent->class_id)
-                                            ->where('group_id', $appliedStudent->group_id)
-                                            ->first();
+            ->where('session_id', $appliedStudent->session_id)
+            ->where('class_id', $appliedStudent->class_id)
+            ->where('group_id', $appliedStudent->group_id)
+            ->first();
+
         $data = [
             'name' => $appliedStudent->name,
             'name_bn' => $appliedStudent->name,
@@ -64,12 +65,11 @@ class AdmissionController extends Controller
             'country_id' => 1,
             'email' => $appliedStudent->email,
             'status' => 1,
-         
-        ];                                        
+        ];
         try{
             $student = Student::query()->create($data);
             $appliedStudent->update(['approved' => 1]);
-            
+
             $admission_sms = SiteInformation::query()->where('admission_confirm_sms',1)->exists();
         }catch (\Exception $e){
             dd($e);
@@ -87,7 +87,7 @@ class AdmissionController extends Controller
             'group' => $appliedStudent->ssc_group,
             'school' => $appliedStudent->ssc_school,
         ]);
-                                
+
 
         StudentAcademic::query()->findOrNew($request->sa_id)->updateOrCreate([
             'academic_class_id' => $getAcademicClass->id,
@@ -105,7 +105,7 @@ class AdmissionController extends Controller
             'student_id' => $student->id,
             'f_mobile' => $appliedStudent->guardian_mobile,
         ]);
-        
+
         Mother::query()->findOrNew($request->m_id)->updateOrCreate([
             'm_name' => $appliedStudent->mother,
             'student_id' => $student->id,
@@ -267,7 +267,11 @@ class AdmissionController extends Controller
 
     public function uploadMeritList()
     {
-        $onlineApplyStep = OnlineAdmission::where('type', 2)->where('status', 1)->get();
+        $onlineApplyStep = OnlineAdmission::query()
+            ->where('type', 2)
+            ->where('status', 1)
+            ->get();
+
         // $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
         // $sessions = Session::query()->where('active',1)->pluck('year','id');
         // $classes = Classes::query()->pluck('name','id');
@@ -293,7 +297,7 @@ class AdmissionController extends Controller
                 $data['board'] = $col[1];
                 $data['passing_year'] = $col[2];
                 $data['name'] = $col[3];
-                // $data['status'] = 0;
+                //$data['status'] = 1;
 
                 $isExist = MeritList::query()
                     ->where('ssc_roll',$data['ssc_roll'])
@@ -308,7 +312,7 @@ class AdmissionController extends Controller
             $sl++;
         }
 
-       \Illuminate\Support\Facades\Session::flash('success','Merit List Uploaded Successfully');
+        \Illuminate\Support\Facades\Session::flash('success','Merit List Uploaded Successfully');
 
         return redirect()->back();
     }

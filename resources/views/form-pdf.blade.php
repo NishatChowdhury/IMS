@@ -34,7 +34,7 @@
             <div class="col-12 text-center">
     
                 <h3>Institution Name Here</h3>
-                <h3>School Admission Form (Session 2020-2021)</h3>
+                <h3>School Admission Form</h3>
             </div>
 
         </div>
@@ -45,28 +45,28 @@
                         <table class="table table-bordered table-personal">
                             <tr>
                                 <td>Name</td>
-                                <td>Abdul Korim </td>
+                                <td>{{ $getData->name }}</td>
                                 <td>Name Bangla</td>
-                                <td>Abdul Korim </td>
+                                <td>{{ $getData->name_bn }} </td>
                             </tr>
                             <tr>
                                 <td>Date of Birth</td>
-                                <td>23-23-2002</td>
+                                <td>{{ $getData->dob }}</td>
                                 <td>Gender</td>
-                                <td>Male</td>
+                                <td>{{ $getData->gender->name }}</td>
                             </tr>
                        
                             <tr>
                                 <td>Blood Group</td>
-                                <td>O+</td>
+                                <td>{{ $getData->name }}</td>
                                 <td>Birth Certificate</td>
-                                <td>324234234234234234</td>
+                                <td>{{ $getData->birth_certificate }}</td>
                             </tr>
                             <tr>
                                 <td>Student's ID</td>
-                               <td>2332</td> 
+                               <td>{{ $getData->id }}</td> 
                                <td>Religion</td>
-                                <td>O+</td>  
+                                <td>{{ $getData->religion_id ? $getData->religion->name : 'N/A'  }}</td>  
                             </tr>
        
                         </table>
@@ -74,33 +74,33 @@
                     <table class="table table-bordered table-personal">
                         <tr>
                             <td>Address</td>
-                           <td>Lorem ipsum dolor sit amet consectetur adipisicing </td>
+                           <td>{{ $getData->address }}</td>
                             <td>Area / Town</td>
-                           <td>Abdul Korim </td>
+                           <td>{{ $getData->area }} </td>
                         </tr>
                         <tr>
                             <td>Post / Zip Code</td>
-                            <td>23-23-2002</td>
+                            <td>{{ $getData->zip }} </td>
                             <td>City </td>
-                            <td>Male</td>
+                            <td>{{ $getData->city->name }}</td>
                         </tr>
                         <tr>
                             <td>Country</td>
-                            <td>O+</td>
+                            <td>{{ $getData->country->name }}</td>
                             <td>Nationality</td>
-                            <td>O+</td>
+                            <td>{{ $getData->nationality }}</td>
                         </tr>
                         <tr>
                             <td>Contact Mobile</td>
-                           <td>345345345345345</td>
+                           <td>{{ $getData->mobile }}</td>
                             <td>E-mail</td>
-                           <td>@dff.dfd </td>
+                           <td>{{ $getData->email ?  $getData->email : 'N/A'}} </td>
                         </tr>
                         <tr>
                             <td>Freedom Fighter</td>
-                            <td>23-23-2002</td>
+                            <td>{{ $getData->freedom_fighter == 1 ? 'Yes' : 'No' }}</td>
                             <td>Disability </td>
-                            <td>Male</td>
+                            <td>{{ $getData->disability == 1 ? 'Yes' : 'No' }}</td>
                         </tr>
                     </table>
                     </div>
@@ -108,7 +108,7 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <img src="https://dummyimage.com/180x220/000/fff" class="img-thumbnail" width="180" height="220" alt="">
+                            <img src="{{ asset('assets/img/students/') }}/{{ $getData->image }}" class="img-thumbnail" width="180" height="220" alt="">
                         </div>
                     </div>
                 </div>
@@ -120,79 +120,79 @@
                     <table class="table table-bordered table-guardian">
                         <tr>
                             <td>Father Name</td>
-                            <td>Bangladeshi</td>
+                            <td>{{ $getData->f_name }}</td>
                             <td>Father Name Bangla</td>
-                            <td>Bangla</td>
+                            <td>{{ $getData->f_name_bn }}</td>
                         </tr>
                         <tr>
                             <td>Father Mobile </td>
-                            <td>345345345</td>
+                            <td>{{ $getData->f_mobile ? $getData->f_mobile : 'N\A' }}</td>
                             <td>Father Email </td>
-                            <td>sdfsdf@dfd.kj</td>
+                            <td>{{ $getData->f_email ? $getData->f_email : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Father Date of Birth</td>
-                            <td>234-87-8</td>
+                            <td>{{ $getData->f_dob ? $getData->f_dob : 'N\A' }}</td>
                             <td>Father Occupation</td>
-                            <td>sdfsdf</td>
+                            <td>{{ $getData->f_occupation ? $getData->f_occupation : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Father NID</td>
-                            <td>353453453453453453</td>
+                            <td>{{ $getData->f_nid ? $getData->f_nid : 'N\A' }}</td>
                             <td>Father Birth Certificate.</td>
-                            <td>sdfsdfsdfsdfsdfsdfsdf</td>
+                            <td>{{ $getData->f_birth_certificate ? $getData->f_birth_certificate : 'N\A' }}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered table-guardian mt-4">
                         <tr>
                             <td>Mother Name</td>
-                            <td>Bangladeshi</td>
+                            <td>{{ $getData->m_name ? $getData->m_name : 'N\A' }}</td>
                             <td>Mother Name Bangla</td>
-                            <td>Bangla</td>
+                            <td>{{ $getData->m_name_bn ? $getData->m_name_bn : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Mother Mobile </td>
-                            <td>345345345</td>
+                            <td>{{ $getData->m_mobile ? $getData->m_mobile : 'N\A' }}</td>
                             <td>Mother Email </td>
-                            <td>sdfsdf@dfd.kj</td>
+                            <td>{{ $getData->m_email ? $getData->m_email : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Mother Date of Birth</td>
-                            <td>234-87-8</td>
+                            <td>{{ $getData->m_dob ? $getData->m_dob : 'N\A' }}</td>
                             <td>Mother Occupation</td>
-                            <td>sdfsdf</td>
+                            <td>{{ $getData->m_occupation ? $getData->m_occupation : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Mother NID</td>
-                            <td>353453453453453453</td>
+                            <td>{{ $getData->m_nid ? $getData->m_nid : 'N\A' }}</td>
                             <td>Mother Birth Certificate.</td>
-                            <td>sdfsdfsdfsdfsdfsdfsdf</td>
+                            <td>{{ $getData->m_birth_certificate ? $getData->m_birth_certificate : 'N\A' }}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered table-guardian mt-4">
                         <tr>
                             <td>Guardian Name</td>
-                            <td>Bangladeshi</td>
+                            <td>{{ $getData->g_name ? $getData->g_name : 'N\A' }}</td>
                             <td>Guardian Name Bangla</td>
-                            <td>Bangla</td>
+                            <td>{{ $getData->g_name_bn ? $getData->g_name_bn : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Guardian Mobile </td>
-                            <td>345345345</td>
+                            <td>{{ $getData->g_mobile ? $getData->g_mobile : 'N\A' }}</td>
                             <td>Guardian Email </td>
-                            <td>sdfsdf@dfd.kj</td>
+                            <td>{{ $getData->g_email ? $getData->g_email : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Guardian Date of Birth</td>
-                            <td>234-87-8</td>
+                            <td>{{ $getData->g_dob ? $getData->g_dob : 'N\A' }}</td>
                             <td>Guardian Occupation</td>
-                            <td>sdfsdf</td>
+                            <td>{{ $getData->g_occupation ? $getData->g_occupation : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td>Guardian NID</td>
-                            <td>353453453453453453</td>
+                            <td>{{ $getData->g_nid ? $getData->g_nid : 'N\A' }}</td>
                             <td>Guardian Birth Certificate.</td>
-                            <td>sdfsdfsdfsdfsdfsdfsdf</td>
+                            <td>{{ $getData->g_birth_certificate ? $getData->g_birth_certificate : 'N\A' }}</td>
                         </tr>
                     </table>
                 </div>

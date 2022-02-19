@@ -8,12 +8,17 @@ use App\Session;
 use App\Student;
 use App\FeePivot;
 use App\FeeSetup;
+<<<<<<< HEAD
 <<<<<<< HEAD:app/Http/Controllers/Backend/FeeSetupController.php
 use App\FeeCategory;
 use App\AcademicClass;
 =======
 use App\FeeSetupCategory;
 >>>>>>> master:app/Http/Controllers/FeeSetupController.php
+=======
+use App\FeeCategory;
+use App\AcademicClass;
+>>>>>>> master
 use App\FeeSetupPivot;
 use App\StudentAcademic;
 use Illuminate\Http\Request;

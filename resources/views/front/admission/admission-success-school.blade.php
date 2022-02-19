@@ -9,11 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="text-success">
-                        {{ $data['name'] }}
-                        {{-- {{ $studentStore->name }}  --}}
-                        your admission request has been submitted successfully <br> your Id 
-                        {{ $data['id'] }}
-                        {{-- {{ $studentStore->id }}. --}}
+                        <b>{{ $data['name'] }}</b> {{ __('your admission request has been submitted successfully your application Id') }} {{ $data['id'] }}
                     </h3>
                 </div>
             </div>

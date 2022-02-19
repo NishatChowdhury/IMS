@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Session;
 use App\MeritList;
+use App\OnlineApply;
 use App\AppliedStudent;
 use App\SiteInformation;
 use Illuminate\Http\Request;
@@ -220,5 +221,16 @@ class AdmissionController extends Controller
 //        }catch(Exception $ex){
 //            $output = "-100";
 //        }
+    }
+
+
+    public function downloadSchoolPdf(Request $req)
+    {
+        // return "sdfsdf";
+       $getData =  OnlineApply::find($req->id);
+       if(empty($getData)){
+            return back()->with('status', 'Your Application ID Not Match :)');
+       }
+        return view('form-pdf', compact('getData'));
     }
 }

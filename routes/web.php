@@ -1,19 +1,8 @@
 <?php
 
-use App\Mark;
-use App\Grade;
-use App\Student;
-use Carbon\Carbon;
-use App\ExamResult;
-use App\AcademicClass;
-use App\RawAttendance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\FrontController;
-use App\Http\Controllers\DatabaseController;
-use App\Http\Controllers\FeeSetupController;
+use App\Http\Controllers\Front\AdmissionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 
 /** Dashboard Routes */
@@ -93,6 +82,9 @@ Route::get('/admission','Front\FrontController@admission');
 
 Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
+
+
+Route::get('download-school-pdf', [AdmissionController::class,'downloadSchoolPdf'])->name('download.school.form');
 
 //INFORMATION
 Route::get('/sports-n-culture-program','Front\FrontController@sports_n_culture_program');
@@ -268,7 +260,7 @@ Route::get('playlist/{id}','Front\FrontController@playlist');
 
 /** Applied Student */
 // Route::post('admission-form-submit','AppliedStudentController@store');
-// Route::post('load_applied_student_id','AppliedStudentController@loadStudentId');
+// Route::post('load_applied_student_id','Backend\AppliedStudentController@loadStudentId');
 
 Route::post('admission-form-submit','Front\AdmissionController@store');
 Route::post('load_applied_student_id','Front\AdmissionController@loadStudentId');

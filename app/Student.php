@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Student extends Model
 {
@@ -136,9 +137,14 @@ class Student extends Model
         return $this->hasMany(FeeSetup::class);
     }
 
-    public function fee_setup_pivot(): HasMany
+    /**
+     * A student has many fee setup pivot
+     *
+     * @return HasManyThrough
+     */
+    public function fee_setup_pivot(): HasManyThrough
     {
-        return $this->hasMany(FeeSetupPivot::class);
+        return $this->hasManyThrough(FeeSetupPivot::class,FeeSetup::class);
     }
 
     public function academicClasses()
@@ -163,7 +169,13 @@ class Student extends Model
         return $this->hasOne(Guardian::class);
     }
 
-    public function academics()
+    /**
+     * Student's academic information
+     * A student has many academics
+     *
+     * @return HasMany
+     */
+    public function academics(): HasMany
     {
         return $this->hasMany(StudentAcademic::class);
     }
