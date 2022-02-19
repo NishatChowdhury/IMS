@@ -29,7 +29,7 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            {{ Form::open(['action'=>'AdmissionController@upload','method'=>'post','files'=>true]) }}
+                            {{ Form::open(['action'=>'Backend\AdmissionController@upload','method'=>'post','files'=>true]) }}
               
                             <div class="form-group">
                                 <div class="row">

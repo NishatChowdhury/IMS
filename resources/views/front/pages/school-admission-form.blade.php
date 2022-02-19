@@ -1,6 +1,7 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','Applied Students | School')
+
 @section('style')
 <style>
 ul.parent_info {

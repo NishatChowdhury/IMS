@@ -14,7 +14,7 @@
                 Phone: {{ siteConfig('phone') }} Email: {{ siteConfig('email') }}<br>
                 Website: {{ url('/') }}
             </address>
-            <h3>HSC Admission Form (Session 2020-2021)</h3>
+            <h3>HSC Admission Form (Session 2021-2022)</h3>
         </div>
         <div class="col-2">
             <table class="table-bordered" style="font-size: 14px;position: absolute;bottom: 50px;margin-left:25px">

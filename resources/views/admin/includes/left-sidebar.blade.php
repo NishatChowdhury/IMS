@@ -1,8 +1,7 @@
 <!-- Brand Logo -->
 <a href="{{url('dashboard')}}" class="brand-link">
-    <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-         style="opacity: .8">
-    <span class="brand-text font-weight-light">WPIMS</span>
+    <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
 </a>
 <!-- Sidebar -->
 <div class="sidebar nano">
@@ -66,10 +65,10 @@
                                 <p>{{ __('Create Admission') }}</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('admission.applicant')}}" class="nav-link {{ isActive('admission/applicant') }}">
+                        <li class="nav-item">
+                            <a href="{{ route('admission.applicant') }}" class="nav-link {{ isActive('admission/applicant') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Applicants</p>
+                                <p>{{ __('Applicants') }}</p>
                             </a>
                         </li>
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -78,16 +77,16 @@
                                 <p>Results</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{action('Backend\AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admission/browse-merit-list') }}">
+                        <li class="nav-item">
+                            <a href="{{action('Backend\AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admin/admission/browse-merit-list') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Browse Merit List</p>
+                                <p>{{ __('Browse Merit List') }}</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{action('Backend\AdmissionController@uploadMeritList')}}" class="nav-link {{ isActive('admission/upload-merit-list') }}">
+                        <li class="nav-item">
+                            <a href="{{action('Backend\AdmissionController@uploadMeritList')}}" class="nav-link {{ isActive('admin/admission/upload-merit-list') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Upload Merit List</p>
+                                <p>{{ __('Upload Merit List') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -285,40 +284,40 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['institution*']) }}">
-                <a href="#" class="nav-link {{ isActive(['institution*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/institution*']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/institution*']) }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
                         Institution Management
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{route('institution.academicyear')}}" class="nav-link {{ isActive('institution/academicyear') }}">
+                        <a href="{{route('institution.academicyear')}}" class="nav-link {{ isActive('admin/institution/academicyear') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Sessions</p>
+                            <p>{{ __('Sessions') }}</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('admin/institution/class') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Classes') }}</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('section.group')}}" class="nav-link {{ isActive('admin/institution/section-groups') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Sections & Groups') }}</p>
                         </a>
                     </li>
 
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.classes')}}" class="nav-link {{ isActive('institution/class') }}">
+                        <a href="{{route('institution.academicClasses')}}" class="nav-link {{ isActive('admin/institution/academic-class') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Classes</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('section.group')}}" class="nav-link {{ isActive('institution/section-groups') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Sections & Groups</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{route('institution.academicClasses')}}" class="nav-link {{ isActive('institution/academic-class') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Academic Classes</p>
+                            <p>{{ __('Academic Classes') }}</p>
                         </a>
                     </li>
 
@@ -367,10 +366,10 @@
                         <li class="nav-item">
                             <a href="{{route('exam.gradesystem')}}" class="nav-link {{ isActive('exam/gradesystem') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Grade System </p>
+                                <p>{{ __('Grade System')}}</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
                             <a href="{{ action('Backend\ExamController@admitCard') }}" class="nav-link {{ isActive('exam/admit-card') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Admit Card</p>

@@ -52,10 +52,11 @@
                                         </td>
                                         <td class="text-center">
                                             @if($admission->end->endOfDay() > now())
-                                            <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('View') }}</a>
+                                                <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('View') }}</a>
                                             @else
                                                 <span class="text-danger">{{ __('Expired') }}</span>
                                             @endif
+                                            <a href="#" class="btn btn-link">{{ __('Download') }}</a>
                                         </td>
                                     </tr>
                                 @endforeach

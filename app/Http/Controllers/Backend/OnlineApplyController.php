@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\City;
-use App\Page;
 use App\Group;
 use App\Father;
 use App\Gender;
@@ -16,7 +15,6 @@ use App\Student;
 use App\Division;
 use App\Guardian;
 use App\Religion;
-use App\Student1;
 use App\BloodGroup;
 use App\OnlineApply;
 use App\AcademicClass;
@@ -29,10 +27,11 @@ use App\Repository\StudentRepository;
 
 class OnlineApplyController extends Controller
 {
-    private $repository;
+    protected $repository;
 
     public function __construct(StudentRepository $repository)
     {
+        //$this->middleware('auth');
         $this->repository = $repository;
     }
 
@@ -130,9 +129,8 @@ class OnlineApplyController extends Controller
                 'body' => 'This is for testing email using smtp'
             ];
            
-            Mail::to('abc@gmail.com')->send(new \App\Mail\AdmissionMail($details));
+            Mail::to($req->email)->send(new \App\Mail\AdmissionMail($details));
            
-            dd("Email is Sent.");
         }
     
         // $studentIdPrefix = 'STU-'.$studentStore->id;
@@ -265,16 +263,17 @@ class OnlineApplyController extends Controller
         return back();
     }
 
-    public function getApplyInfo(Request $req)
+    /**
+     * @param Request $req
+     * @return array
+     */
+    public function getApplyInfo(Request $req): array
     {
-        $student = OnlineApply::find($req->id);
-
-        // $className = $student->classes->name;
-        // $groupName = $student->group->name;
+        $student = OnlineApply::query()->find($req->get('id'));
 
         $data = [];
         $data['className'] = $student->classes->name;
-        $data['groupName'] = $student->group->name;
+        $data['groupName'] = $student->group->name ?? NULL;
         $data['SessionName'] = $student->sessions->year;
         $data['SessionId'] = $student->session_id;
         return $data;
