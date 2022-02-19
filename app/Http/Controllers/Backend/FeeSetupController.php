@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\FeeSetupCategory;
+use App\FeeSetupStudent;
 use App\Group;
 use App\Classes;
 use App\Session;
@@ -34,14 +36,16 @@ class FeeSetupController extends Controller
             ->get()
             ->groupBy('month_id');
 
-
         return view('admin.feeSetup.index',compact('fees'));
     }
 
     public function create()
     {
-        //sessions::forget('fees');
-        $academic_classes = AcademicClass::query()->whereIn('session_id',activeYear())->with('academicClasses')->get();
+        $academic_classes = AcademicClass::query()
+            ->whereIn('session_id',activeYear())
+            ->with('academicClasses')
+            ->get();
+
         $classes = Classes::query()->pluck('name','id');
         $session = Session::query()->pluck('year','id');
         $groups = Group::query()->pluck('name','id');
@@ -51,8 +55,6 @@ class FeeSetupController extends Controller
     }
 
     public function store(Request $request){
-//        dd($request->all());
-
         $request->validate([
             'academic_class_id' => [
                 'required',
@@ -62,34 +64,34 @@ class FeeSetupController extends Controller
             'year' => 'required',
         ]);
 
+        // get selected academic class's students
         $students = StudentAcademic::query()
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
 
+        // get fee categories from session
         $fees = request()->session()->get('fees');
 
-            foreach($students as $student){
-                $feeSetupData = [
-                    'academic_class_id' => $request->get('academic_class_id'),
-                    'month_id' => $request->get('month_id'),
-                    'year' => $request->get('year'),
+        /** store fee setup information start */
+        $feeSetupData = [
+            'academic_class_id' => $request->get('academic_class_id'),
+            'month_id' => $request->get('month_id'),
+            'year' => $request->get('year'),
+        ];
+        $feeSetup = FeeSetup::query()->create($feeSetupData);
+        /** store fee setup information end */
+
+        foreach($students as $student){
+            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id]);
+            foreach($fees as $fee){
+                $data = [
+                    'fee_setup_student_id' => $feeSetupStudent->id,
+                    'category_id' => $fee['category_id'],
+                    'amount' => $fee['amount']
                 ];
-
-                $feeSetup = FeeSetup::query()->create($feeSetupData);
-
-                foreach($fees as $fee){
-                    $data = [
-                        'fee_setup_student_id' => $feeSetup->id,
-                        'category_id' => $fee['category_id'],
-                        'amount' => $fee['amount']
-//                        'paid' => $fee['paid'],
-                    ];
-                    //dd($data);
-
-                    FeeSetupCategory::query()->create($data);
-
-                }
+                FeeSetupCategory::query()->create($data);
             }
+        }
 
         sessions::forget('fees');
 
@@ -97,12 +99,22 @@ class FeeSetupController extends Controller
 
         return redirect('admin/fee/fee-setup/view');
     }
-    public function feeDetails(Request $request){
-        $studentData = StudentAcademic::query()
-            ->where('academic_class_id',$request->id)
-            ->with('students')
-            ->get();
-        return view('admin.feeSetup.fee_details',compact('studentData'));
+
+    /**
+     * Get all students for a fee setup
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function feeStudents(Request $request){
+//        $students = StudentAcademic::query()
+//            ->where('academic_class_id',$request->id)
+//            ->with('student')
+//            ->get();
+
+        $students = FeeSetupStudent::query()->where('fee_setup_id',$request->id)->get();
+
+        return view('admin.feeSetup.fee-students',compact('students'));
     }
 
     public function feeSetupDetails(Request $request){
@@ -177,5 +189,5 @@ class FeeSetupController extends Controller
         return redirect('admin/fee/fee-setup/view')->with('message','Deleted Successfully!');
     }
 
-  
+
 }

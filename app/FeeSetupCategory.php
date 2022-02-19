@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class FeeSetupCategory extends Model
 {
@@ -12,4 +13,14 @@ class FeeSetupCategory extends Model
     protected $table ='fee_setup_categories';
 
     protected $fillable = ['fee_setup_student_id','category_id','amount','paid'];
+
+    /**
+     * A fee setup category is belongs to a fee category
+     *
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(FeeCategory::class);
+    }
 }

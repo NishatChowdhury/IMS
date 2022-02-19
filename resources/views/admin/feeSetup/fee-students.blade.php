@@ -30,27 +30,32 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card" style="margin: 0px;">
+                    <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered table-striped table-sm">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>{{ __('Serial') }}</th>
+                                    <th>{{ __('ID') }}</th>
                                     <th>{{ __('Student Name') }}</th>
-                                    <th>{{ __('Father Name') }}</th>
+                                    <th>{{ __('Categories') }}</th>
                                     <th>{{ __('Class') }}</th>
                                     <th>{{ __('Section') }}</th>
                                     <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($studentData as $key=>$data)
+                                @foreach($students as $key => $data)
                                     <tr>
-                                        <td>{{$key+1}}</td>
-                                        <td>{{$data->students->name}}</td>
-                                        <td>{{$data->students->father->f_name}}</td>
-                                        <td>{{$data->classes->name}}</td>
-                                        <td>{{$data->section->name}}</td>
+                                        <td>{{ $data->student->studentId }}</td>
+                                        <td>{{ $data->student->name ?? '' }}</td>
+                                        <td>
+                                            <p class="badge badge-primary">{{ __('Total') }} : {{ $data->categories->sum('amount') }}</p>
+                                            @foreach($data->categories as $category)
+                                                <span class="badge badge-info">{{ $category->category->name }} : {{ number_format($category->amount,2) }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $data->classes->name ?? '' }}</td>
+                                        <td>{{ $data->section->name ?? '' }}</td>
                                         <td>
                                             <a href="{{ url('admin/fee/fee-setup/feeSetupDetails',$data->student_id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                         </td>

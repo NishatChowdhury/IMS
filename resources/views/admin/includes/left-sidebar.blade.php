@@ -417,7 +417,7 @@
 
                 <li class="nav-item has-treeview {{ isActive(['admin/fee*']) }}">
                     <a href="#" class="nav-link {{ isActive(['admin/fee*']) }}">
-                        <i class="nav-icon fas fa-money-check-alt"></i>
+                        <i class="nav-icon fas fa-balance-scale"></i>
                         <p>
                             {{ __('Tuition Fee') }}
                             <i class="fas fa-angle-left right"></i>
@@ -425,7 +425,7 @@
                     </a>
                     <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                         <li class="nav-item">
-                            <a href="{{route('fee-category.index')}}" class="nav-link {{ isActive('fee-category/index') }}">
+                            <a href="{{route('fee-category.index')}}" class="nav-link {{ isActive('admin/fee-category/index') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee Category') }}</p>
                             </a>

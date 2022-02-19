@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add New Category</h1>
+                    <h1>{{ __('Add New Category') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Account</a></li>
-                        <li class="breadcrumb-item active">Fee Category</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Account') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Fee Category') }}</li>
                     </ol>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                                             <td>{{ucwords($fee_category->name)}}</td>
                                             <td>{{ucfirst($fee_category->description)}}</td>
                                             <td style="text-align: center;">
-                                                {{ Form::open(['method'=>'PUT','url'=>['fee-category/status/'.$fee_category->id],'style'=>'display:inline']) }}
+                                                {{ Form::open(['method'=>'PUT','url'=>['admin/fee-category/status/'.$fee_category->id],'style'=>'display:inline']) }}
                                                     @if($fee_category->status == 1)
                                                         {{ Form::submit('Active',['class'=>'btn btn-success btn-sm']) }}
                                                     @else
@@ -95,7 +95,7 @@
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['url'=>'fee-category/store', 'method'=>'post']) !!}
+                    {!! Form::open(['url'=>'admin/fee-category/store', 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
                         <div class="col-sm-9">
