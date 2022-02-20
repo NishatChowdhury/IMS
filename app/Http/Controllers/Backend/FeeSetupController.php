@@ -127,20 +127,28 @@ class FeeSetupController extends Controller
 
     public function edit($id)
     {
+        //dd($id);
         $classes = Classes::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
+        //dd($fee_category);
         $fee_setup = FeeSetup::query()->findOrFail($id);
-        $fee_pivot = FeePivot::query()
-            ->where('fee_setup_id',$id)
-            ->get();
+        $fee_setup_student = FeeSetupStudent::query()->where('fee_setup_id',$id)->get();
+
+        foreach ($fee_setup_student as $data){
+            $fee_pivot = FeeSetupCategory::query()
+                ->where('fee_setup_student_id',$data->id)
+                ->get();
+            //dd($fee_pivot);
 
         session()->forget('fees'); // remove existing items from fees session
 
         foreach ($fee_pivot as $result) {
+            //dd($result);
             $data = [
-                'category_id' => $result->fee_category_id,
-                'name' => $result->category->name,
+                'fee_setup_student_id' => $result->fee_setup_student_id,
+                'category_id' => $result->category_id,
                 'amount' => $result->amount,
+                'paid' => $result->paid,
             ];
             if(session()->has('fees')){
                 session()->push('fees',$data);
@@ -148,8 +156,10 @@ class FeeSetupController extends Controller
                 session()->put(['fees'=>[$data]]);
             }
         }
+        }
 
         $fees = session('fees',[]);
+        //dd($fees);
 
         return view('admin.feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
     }
