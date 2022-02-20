@@ -342,4 +342,5 @@ class OnlineApplyController extends Controller
         $dataStore->save();
          return back();
     }
+
 }

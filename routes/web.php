@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\AdmissionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 
 /** Dashboard Routes */
@@ -81,6 +82,9 @@ Route::get('/admission','Front\FrontController@admission');
 
 Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
+
+
+Route::get('download-school-pdf', [AdmissionController::class,'downloadSchoolPdf'])->name('download.school.form');
 
 //INFORMATION
 Route::get('/sports-n-culture-program','Front\FrontController@sports_n_culture_program');

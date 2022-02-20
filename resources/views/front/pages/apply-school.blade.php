@@ -32,6 +32,12 @@
                     <div class="alert alert-primary" role="alert">
                         A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
                     </div>
+                    @if ($message = Session::get('status'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
                     <div class="row">
                         <div class="table-responsive my-4">
                             <table class="table table-bordered">
@@ -56,19 +62,44 @@
                                             @else
                                                 <span class="text-danger">{{ __('Expired') }}</span>
                                             @endif
-                                            <a href="#" class="btn btn-link">{{ __('Download') }}</a>
+                                           
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        <a href="#"  class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  >{{ __('Download') }}</a>  
                     </div>
                 </div>
             </div> <!-- END row-->
         </div> <!-- END container-->
     </section>
+    
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Download Your Application Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
+               <form action="{{ route('download.school.form') }}" method="get">
+                   @csrf
+                   <div class="modal-body row">
+                    <div class="form-group col-12">
+                        <label for="">Application ID</label>
+                        <input type="text" name="id" class="form-control" placeholder="Enter Application ID">
+                        <hr>
+                        <button type="submit" class="btn btn-primary btn-sm">Download</button>
+                    </div>
+                </div>
+               </form>
 
+            </div>
+        </div>
+    </div>
 @stop
