@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\FeeCategory;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class FeeCartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
         $feeCategory = FeeCategory::query()->findOrFail($request->get('category_id'));

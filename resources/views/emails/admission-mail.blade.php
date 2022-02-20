@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>IMS</title>
-</head>
-<body>
-    <h1>{{ $details['title'] }}</h1>
-    <p>{{ $details['body'] }}</p>
-   
-    <p>{{ __('Thank you') }}</p>
-</body>
-</html>
+@component('mail::message')
+# Order Shipped
+ 
+Your order has been shipped!
+ 
+{{-- @component('mail::button', ['url' => $url])
+View Order
+@endcomponent --}}
+ 
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent
