@@ -87,14 +87,14 @@
                     </button>
                 </div>
 
-               <form action="{{ route('download.school.form') }}" method="get">
+               <form id="downloadForm" method="get">
                    @csrf
                    <div class="modal-body row">
                     <div class="form-group col-12">
                         <label for="">Application ID</label>
-                        <input type="text" name="id" class="form-control" placeholder="Enter Application ID">
+                        <input type="text" id="applcationID" name="id" class="form-control" placeholder="Enter Application ID">
                         <hr>
-                        <button type="submit" class="btn btn-primary btn-sm">Download</button>
+                        <button type="submit"  class="btn btn-primary btn-sm">Download</button>
                     </div>
                 </div>
                </form>
@@ -103,3 +103,16 @@
         </div>
     </div>
 @stop
+
+@section('script')
+<script>
+
+    $('#applcationID').keyup(function(){
+        let id = $('#applcationID').val();
+         let action = "{{ url('download-school-pdf') }}/"+id;
+         $('#downloadForm').attr('action', action);
+    });
+
+
+</script>
+@endsection

@@ -20,6 +20,7 @@ use App\OnlineApply;
 use App\AcademicClass;
 use App\OnlineAdmission;
 use App\StudentAcademic;
+use App\Mail\AdmissionMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -125,11 +126,14 @@ class OnlineApplyController extends Controller
 
         if($req->email){
             $details = [
-                'title' => 'Mail IMS',
-                'body' => 'This is for testing email using smtp'
+                'title' => config('app'),
+                'id' => $studentStore->id,
+                'name' => $studentStore->name,
+                'url' => route('download.school.form', $studentStore->id),
             ];
            
-            Mail::to($req->email)->send(new \App\Mail\AdmissionMail($details));
+            Mail::to($req->email)->send(new AdmissionMail($details));
+            // dd('done');
            
         }
     

@@ -1,12 +1,17 @@
+
 @component('mail::message')
-# Order Shipped
+
+# Application ID {{ $details['id'] }}
  
-Your order has been shipped!
+{{ $details['name'] }} your application successfully done!
  
-{{-- @component('mail::button', ['url' => $url])
-View Order
-@endcomponent --}}
+
+@component('mail::button', ['url' => $details['url']])
+Download Application Form
+@endcomponent
  
 Thanks,<br>
 {{ config('app.name') }}
+
+
 @endcomponent
