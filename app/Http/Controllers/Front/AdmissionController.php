@@ -225,6 +225,6 @@ class AdmissionController extends Controller
        if(empty($getData)){
             return back()->with('status', 'Your Application ID Not Match :)');
        }
-        return view('form-pdf', compact('getData'));
+        return view('front.admission-school.form-pdf', compact('getData'));
     }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Admission | Examinations')
-
+@section('title','Online Admission')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -9,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Online Admission Type Set</h1>
+                    <h1>{{ __('Online Admission') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Admission</a></li>
-                        <li class="breadcrumb-item active">Online Admission</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Admission') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Create') }}</li>
                     </ol>
                 </div>
             </div>
@@ -26,24 +25,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
-                                        </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>0</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-header">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="">
-                                        <button type="button" onclick="createOnlineType()"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                        <button type="button" onclick="createOnlineType()"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('New') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -56,46 +43,44 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
-                        <!-- /.card-header -->
+                    @endif
+                    <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Admission Type</th>
-                                    <th>Session Name</th>
-                                    <th>Class Name</th>
-                                    <th>Group Name</th>
-                                    <th>Starting Date</th>
-                                    <th>Ending Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Admission Type') }}</th>
+                                    <th>{{ __('Session') }}</th>
+                                    <th>{{ __('Class') }}</th>
+                                    <th>{{ __('Group') }}</th>
+                                    <th>{{ __('Start') }}</th>
+                                    <th>{{ __('End') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 @foreach ($onlineAdmissions as $onlineAdmission)
-                                <tr>
-                                    <td>{{ $onlineAdmission->type == 1 ? 'School' : 'College' }}</td>
-                                    <td>{{ $onlineAdmission->session_id ? $onlineAdmission->sessions->year : 'N/A' }}</td>
-                                    <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : 'N/A' }}</td>
-                                    <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : 'N/A' }}</td>
-                                    <td>{{ $onlineAdmission->start->format('d F Y') }}</td>
-                                    <td>{{ $onlineAdmission->end->format('d F Y') }}</td>
-                                    <td>
-                                        @if ($onlineAdmission->status == 1)
-                                            <span class="badge badge-primary">Active</span>
-                                        @else    
-                                            <span class="badge badge-danger">Inactive</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('onlineStepEdit', $onlineAdmission->id) }}"  class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $onlineAdmission->type == 1 ? 'School' : 'College' }}</td>
+                                        <td>{{ $onlineAdmission->session_id ? $onlineAdmission->sessions->year : 'N/A' }}</td>
+                                        <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : 'N/A' }}</td>
+                                        <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : 'N/A' }}</td>
+                                        <td>{{ $onlineAdmission->start->format('d F Y') }}</td>
+                                        <td>{{ $onlineAdmission->end->format('d F Y') }}</td>
+                                        <td>
+                                            @if ($onlineAdmission->status == 1)
+                                                <span class="badge badge-primary">Active</span>
+                                            @else
+                                                <span class="badge badge-danger">Inactive</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('onlineStepEdit', $onlineAdmission->id) }}"  class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        </td>
+                                    </tr>
                                 @endforeach
-                                    
-                                    
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
@@ -130,69 +115,69 @@
                     </button>
                 </div>
 
-               <form id="ChnageUrl" method="post">
-                   @csrf
-                   <div class="modal-body row">
-                    <div class="form-group col-12">
-                        <label for="">Admission Type</label>
-                        <select name="type" class="form-control">
-                            <option>--Select Class--</option>                            
-                            <option value="1">School</option>                            
-                            <option value="2">College</option>                            
-                        </select>
-                    </div>
-                    <div class="form-group col-12">
-                        <label for="">Session Name</label>
-                        <select name="session_id" id="session_id" class="form-control">
-                            <option value="">--Select Session--</option>
+                <form id="ChnageUrl" method="post">
+                    @csrf
+                    <div class="modal-body row">
+                        <div class="form-group col-12">
+                            <label for="">{{ __('Admission Type') }}</label>
+                            <select name="type" class="form-control">
+                                <option>--Select Class--</option>
+                                <option value="1">School</option>
+                                <option value="2">College</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="">Session Name</label>
+                            <select name="session_id" id="session_id" class="form-control">
+                                <option value="">--Select Session--</option>
                                 @foreach ($sessions as $session)
-                                <option value="{{ $session->id }}">{{ $session->year }}</option>   
+                                    <option value="{{ $session->id }}">{{ $session->year }}</option>
                                 @endforeach
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="">Class Name</label>
-                        <select name="class_id" id="class_id" class="form-control">
-                            <option value="">--Select Class--</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="">Class Name</label>
+                            <select name="class_id" id="class_id" class="form-control">
+                                <option value="">--Select Class--</option>
                                 @foreach ($classes as $class)
-                                <option value="{{ $class->id }}">{{ $class->name }}</option>   
+                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
                                 @endforeach
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="">Group Name</label>
-                        <select name="group_id" id="group_id" class="form-control">
-                            <option value="">--Select Class--</option>
-                                    @foreach ($groups as $group)
+
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="">Group Name</label>
+                            <select name="group_id" id="group_id" class="form-control">
+                                <option value="">--Select Class--</option>
+                                @foreach ($groups as $group)
                                     <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="">Starting Date</label>
-                        <input type="date" name="start" id="start" class="form-control">
-                    </div>
-                    
-                    <div class="form-group col-6">
-                        <label for="">Ending Date</label>
-                        <input type="date" name="end" id="end" class="form-control">
-                    </div>
-                    <div class="form-group col-6" id="statusCheck">
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="">Starting Date</label>
+                            <input type="date" name="start" id="start" class="form-control">
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="">Ending Date</label>
+                            <input type="date" name="end" id="end" class="form-control">
+                        </div>
+                        <div class="form-group col-6" id="statusCheck">
                             <div class="custom-control custom-switch">
-                              <input type="checkbox" value="1" name="status" class="custom-control-input" id="customSwitch1">
-                              <label class="custom-control-label" for="customSwitch1">Status</label>
+                                <input type="checkbox" value="1" name="status" class="custom-control-input" id="customSwitch1">
+                                <label class="custom-control-label" for="customSwitch1">Status</label>
                             </div>
+                        </div>
+                        <input type="hidden" name="id" id="onlineId" class="form-control">
                     </div>
-                    <input type="hidden" name="id" id="onlineId" class="form-control">
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group col-12">
-                        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    <div class="modal-footer">
+                        <div class="form-group col-12">
+                            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                        </div>
                     </div>
-                </div>
-               </form>
+                </form>
 
             </div>
         </div>
@@ -202,28 +187,28 @@
 
 
 @section('script')
-<script>
+    <script>
 
-// create action url here
-    function createOnlineType(){
-        let Createaction = "{{ route('online.typeSave') }}";
-        $("#ChnageUrl").attr("action", Createaction);
-        $("#statusCheck").hide();
-                    $('#class_id').val('');
-                    $('#group_id').val('');
-                    $('#start').val('');
-                    $('#end').val('');
-                    $('#onlineId').val('');
-                    $('#customSwitch1').val('');
-    }
+        // create action url here
+        function createOnlineType(){
+            let Createaction = "{{ route('online.typeSave') }}";
+            $("#ChnageUrl").attr("action", Createaction);
+            $("#statusCheck").hide();
+            $('#class_id').val('');
+            $('#group_id').val('');
+            $('#start').val('');
+            $('#end').val('');
+            $('#onlineId').val('');
+            $('#customSwitch1').val('');
+        }
 
-// update action url here
+        // update action url here
 
-    function getData($id){
-        let academicYear = $id;
-        let action = "{{ route('online.typeUpdate') }}";
+        function getData($id){
+            let academicYear = $id;
+            let action = "{{ route('online.typeUpdate') }}";
 
-        $.ajax({
+            $.ajax({
                 url:"{{url('admin/load_online_adminsion_id')}}",
                 type:'GET',
                 data:{academicYear:academicYear},
@@ -244,22 +229,22 @@
                         $('#customSwitch1').prop('checked', false);
                     }
 
-    
+
 
                     // edit action url show
                     $("#ChnageUrl").attr("action", action);
                 }
             });
-    }
-    // function checkID(){
-    //             if ($('#customSwitch1').is(':checked')) {
-    //             $('input[type=checkbox]').prop('checked', true);
-    //             $('#customSwitch1').val(1)
-    //             }else{
-    //                 $('input[type=checkbox]').prop('checked', false);
-    //                 $('#customSwitch1').val(0);
+        }
+        // function checkID(){
+        //             if ($('#customSwitch1').is(':checked')) {
+        //             $('input[type=checkbox]').prop('checked', true);
+        //             $('#customSwitch1').val(1)
+        //             }else{
+        //                 $('input[type=checkbox]').prop('checked', false);
+        //                 $('#customSwitch1').val(0);
 
-    //             }
-    //         }
-</script>
+        //             }
+        //         }
+    </script>
 @endsection

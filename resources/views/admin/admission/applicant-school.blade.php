@@ -8,84 +8,18 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Student</h1>
+                    <h1 class="m-0 text-dark">{{ __('Online School Applicant') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Students</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Admission') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Applicant') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-
-    <!-- /.Search-panel -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="margin: 10px;">
-                        <!-- form start -->
-                        {{-- {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="col">
-                                    <label for="">Student ID</label>
-                                    <div class="input-group">
-                                        {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Name</label>
-                                    <div class="input-group">
-                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Session</label>
-                                    <div class="input-group">
-                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Class</label>
-                                    <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-1" style="padding-top: 32px;">
-                                    <div class="input-group">
-                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        {{ Form::close() }} --}}
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.Search-panel -->
-
 
     <!-- Main content -->
     <section class="content">
@@ -96,18 +30,14 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <div class="card card-info">
+                <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title">Total Found : {{ $students->total() }}</h3>
-                        <div class="card-tools">
-                            <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
-                            <a href="{{ \Illuminate\Support\Facades\Request::fullUrlWithQuery(['csv' => 'csv']) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
-                        </div>
+                        <h3 class="card-title">{{ __('Total Found') }} : {{ $students->total() }}</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped table-sm">
-                            <thead class="thead-dark">
+                        <table id="example1" class="table table-bordered table-sm">
+                            <thead class="thead-light">
                             <tr>
                                 <th>Id</th>
                                 <th>Student</th>
@@ -129,23 +59,23 @@
                                     <td>{{ $student->group_id ? $student->group->name : 'N/A' }}</td>
                                     <td> {{ $student->mobile }}</td>
                                     <td>    {{ $student->f_name}} ||<br>
-                                            {{ $student->m_name}}
+                                        {{ $student->m_name}}
 
-                                           
+
                                     </td>
                                     <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
                                         @if ($student->status == 0 )
-                                        <span class="badge badge-danger">Applied</span>
+                                            <span class="badge badge-danger">Applied</span>
                                         @else
-                                        <span class="badge badge-primary">Approve</span>
-                                        @endif  
+                                            <span class="badge badge-primary">Approve</span>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="{{ action('Backend\OnlineApplyController@applyStudentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ action('Backend\OnlineApplyController@applyStudentProfile',$student->id) }}" role="button" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                         {{-- <a href="{{ action('StudentController@subjects',$student->id) }}" role="button" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a> --}}
                                         @if ($student->status == 0 )
-                                        <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$student->id) }}" data-toggle="modal" data-id="{{ $student->session_id  }}" data-target="#exampleModal" role="button" class="btn btn-info btn-sm" onclick="showFeeDetails({{ $student->id }})"><i class="fas fa-book"></i></a>
+                                            <a href="{{ url('admin/fee/fee-setup/viewFeeDetails',$student->id) }}" data-toggle="modal" data-id="{{ $student->session_id  }}" data-target="#exampleModal" role="button" class="btn btn-warning btn-sm" onclick="showFeeDetails({{ $student->id }})"><i class="fas fa-user-check"></i></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -170,7 +100,7 @@
 
     <!-- Button trigger modal -->
 
-  
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -208,16 +138,16 @@
                           </select>
                     </div> --}}
                     <div class="form-group col-6">
-                          <label for="">Sections</label>
-                          <select class="form-control" name="section_id">
-                              <option value="">--Select Section--</option>
-                              @foreach ($sections as $item)
-                              <option value="{{ $item->id }}" class="customOption">
-                                {{ $item->name }}
+                        <label for="">Sections</label>
+                        <select class="form-control" name="section_id">
+                            <option value="">--Select Section--</option>
+                            @foreach ($sections as $item)
+                                <option value="{{ $item->id }}" class="customOption">
+                                    {{ $item->name }}
                                 </option>
-                              @endforeach
+                            @endforeach
 
-                          </select>
+                        </select>
                     </div>
                     {{-- <div class="form-group col-12">
 
@@ -257,15 +187,15 @@
 
 @stop
 @section('script')
-<script>
-    
-    // $("#getAcademicYear").change(function() {
-    //     var id = $(this).children(":selected").attr("value");
-    //     console.log(id);
-    // });
+    <script>
 
-$(document).on('keyup','#rank', function () {
-    // alert();
+        // $("#getAcademicYear").change(function() {
+        //     var id = $(this).children(":selected").attr("value");
+        //     console.log(id);
+        // });
+
+        $(document).on('keyup','#rank', function () {
+            // alert();
             // var academicYear = $('.year').val();
             var academicYear = $('.fff').val();
             // console.log(academicYear);        
@@ -304,5 +234,5 @@ $(document).on('keyup','#rank', function () {
 
 
 
-</script>
+    </script>
 @endsection
