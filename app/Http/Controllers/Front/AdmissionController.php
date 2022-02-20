@@ -215,19 +215,13 @@ class AdmissionController extends Controller
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
         curl_exec($ch);
 
-//        try{
-//            $output = $content=curl_exec($ch);
-//            print_r($output);
-//        }catch(Exception $ex){
-//            $output = "-100";
-//        }
     }
 
 
-    public function downloadSchoolPdf(Request $req)
+    public function downloadSchoolPdf($id = null)
     {
-        // return "sdfsdf";
-       $getData =  OnlineApply::find($req->id);
+
+       $getData =  OnlineApply::find($id);
        if(empty($getData)){
             return back()->with('status', 'Your Application ID Not Match :)');
        }

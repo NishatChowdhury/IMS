@@ -31,6 +31,8 @@ class AdmissionMail extends Mailable
     public function build()
     {
         return $this->subject('Mail from IMS')
-                    ->view('emails.admission-mail');
+                    ->markdown('emails.admission-mail',[
+                        'details' =>  $this->details,
+                    ]);
     }
 }

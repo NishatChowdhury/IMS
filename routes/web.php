@@ -84,7 +84,7 @@ Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
 
-Route::get('download-school-pdf', [AdmissionController::class,'downloadSchoolPdf'])->name('download.school.form');
+Route::get('download-school-pdf/{id}', [AdmissionController::class,'downloadSchoolPdf'])->name('download.school.form');
 
 //INFORMATION
 Route::get('/sports-n-culture-program','Front\FrontController@sports_n_culture_program');

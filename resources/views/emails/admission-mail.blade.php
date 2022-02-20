@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>IMS</title>
-</head>
-<body>
-    <h1>{{ $details['title'] }}</h1>
-    <p>{{ $details['body'] }}</p>
-   
-    <p>{{ __('Thank you') }}</p>
-</body>
-</html>
+
+@component('mail::message')
+
+# Application ID {{ $details['id'] }}
+ 
+{{ $details['name'] }} your application successfully done!
+ 
+
+@component('mail::button', ['url' => $details['url']])
+Download Application Form
+@endcomponent
+ 
+Thanks,<br>
+{{ config('app.name') }}
+
+
+@endcomponent
