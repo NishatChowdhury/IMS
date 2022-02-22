@@ -35,12 +35,6 @@
                                         <img src="{{ asset('assets/img/students') }}/{{ $fee_setup->student->image ?? '' }}" alt="" width="75">
                                     </div>
                                 </div>
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Student Name</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        <p>{{ $fee_setup}}</p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="col">
                                     <label for="">Academic Class ID</label>
                                     <div class="input-group">
@@ -105,10 +99,9 @@
                             <tbody id="tbody">
 {{--                            <!-- Fee category list will appeared here -->--}}
                             @foreach($fees as $key => $fee)
-                                {{dd($fees)}}
                                 <tr>
                                     <td>{{$key+1}}</td>
-{{--                                    <td>{{$fee['name']}}</td>--}}
+                                    <td>{{ \App\FeeCategory::query()->find($fee['category_id'])->name }}</td>
                                     <td>{{$fee['amount']}}</td>
                                     <td class="text-center"><button type="button" onclick="removeFeeFromEditCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
                                 </tr>
