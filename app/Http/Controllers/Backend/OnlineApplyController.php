@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Repository\StudentRepository;
+use App\Helpers;
 
 class OnlineApplyController extends Controller
 {
@@ -38,7 +39,7 @@ class OnlineApplyController extends Controller
 
     public function onlineApply($id = null)
     {
-        // return $id;
+
         $data = [];
         $data['gender'] = Gender::all()->pluck('name', 'id');
         $data['blood'] = BloodGroup::all()->pluck('name', 'id');
@@ -131,20 +132,48 @@ class OnlineApplyController extends Controller
                 'name' => $studentStore->name,
                 'url' => route('download.school.form', $studentStore->id),
             ];
-           
             Mail::to($req->email)->send(new AdmissionMail($details));
-            // dd('done');
            
         }
-    
-        // $studentIdPrefix = 'STU-'.$studentStore->id;
 
-//        if(isset($studentStore->id)){
-//            OnlineApply::find($studentStore->id)->update([
-//                'applyId' => $studentIdPrefix,
-//            ]);
-//        }
+        if(siteConfig('admission_sms') == 1){
 
+                $url = "https://sms.solutionsclan.com/api/sms/send";
+                $data = [
+                        "apiKey"=> smsConfig('api_key'),
+                        "contactNumbers"=> $req->mobile,
+                        "senderId"=> smsConfig('sender_id'),
+                        "textBody"=> "Application successfully done! You Application ID-".$studentStore->id
+                ];
+        
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                $response = curl_exec($ch);
+                echo "$response";
+                curl_close($ch);
+
+
+        }
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+        
         return redirect('admission-success-school')->with(['studentStore' => $studentStore]);
         // return back()->with('status','Your Admission Successfully Done Here Your ID ');
     }
