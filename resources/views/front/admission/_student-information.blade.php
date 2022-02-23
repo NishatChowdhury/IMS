@@ -146,14 +146,14 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label for="example-textarea" class="col-2 col-form-label text-right">Transport (Optional)</label>
-                    <div class="col-10">
-                        {{ Form::select('location_id',$repository->locations(),null,['class'=>'form-control','id'=>'input-quota','placeholder'=>'Select transport location. Monthly charge will apply.']) }}
-                    </div>
-                </div>
+{{--                <div class="row form-group">--}}
+{{--                    <label for="example-textarea" class="col-2 col-form-label text-right">Transport (Optional)</label>--}}
+{{--                    <div class="col-10">--}}
+{{--                        {{ Form::select('location_id',$repository->locations(),null,['class'=>'form-control','id'=>'input-quota','placeholder'=>'Select transport location. Monthly charge will apply.']) }}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <h3 class="text-center">Guardian Information</h3>
+                <h3 class="text-center">{{ __('Guardian Information') }}</h3>
 
                 <div class="row form-group">
                     <label for="example-number-input" class="col-2 col-form-label text-right">Father Name</label>

@@ -58,7 +58,7 @@
                                         </td>
                                         <td class="text-center">
                                             @if($admission->end->endOfDay() > now())
-                                                <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('View') }}</a>
+                                                <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('Apply Now') }}</a>
                                             @else
                                                 <span class="text-danger">{{ __('Expired') }}</span>
                                             @endif
@@ -69,7 +69,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="#"  class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  >{{ __('Download') }}</a>  
+                        <a href="#"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ __('View Application') }}</a>
                     </div>
                 </div>
             </div> <!-- END row-->

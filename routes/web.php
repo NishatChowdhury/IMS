@@ -118,7 +118,6 @@ Route::get('/contact','Front\FrontController@contact');
 
 //Admission Route by Rimon
 Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
-Route::get('admission/applicant','Backend\AdmissionController@admissionApplicant')->name('admission.applicant');
 Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
 Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList');
 Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList');
@@ -168,24 +167,24 @@ Route::post('institution/class/schedule/store','ScheduleController@store');
 
 
 //Students Route by Rimon
-    Route::get('student/designStudentCard','IdCardController@index');
-    Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
+Route::get('student/designStudentCard','IdCardController@index');
+Route::get('student/testimonial','StudentController@testimonial')->name('student.testimonial');
 
-    Route::get('student/download-blank-csv/{academicClassId}','StudentController@downloadBlank');
-    Route::get('student/upload-student/{academicClassId}','StudentController@uploadStudent');
-    Route::post('student/up','StudentController@up');
+Route::get('student/download-blank-csv/{academicClassId}','StudentController@downloadBlank');
+Route::get('student/upload-student/{academicClassId}','StudentController@uploadStudent');
+Route::post('student/up','StudentController@up');
 
-    Route::get('staff/idCard','IdCardController@staff');
-    Route::post('staff/idCard/pdf','IdCardController@staffPdf');
+Route::get('staff/idCard','IdCardController@staff');
+Route::post('staff/idCard/pdf','IdCardController@staffPdf');
 
 //@MKH
-    Route::post('student/store', 'StudentController@store');
-    Route::get('student/optional','StudentController@optional');
-    Route::post('student/optional/assign','StudentController@assignOptional');
+Route::post('student/store', 'StudentController@store');
+Route::get('student/optional','StudentController@optional');
+Route::post('student/optional/assign','StudentController@assignOptional');
 //End Students Route
 
 // ID Card Routes
-    Route::post('student/card/pdf','IdCardController@pdf');
+Route::post('student/card/pdf','IdCardController@pdf');
 // ID Card Routes
 
 
@@ -204,13 +203,13 @@ Route::post('institution/class/schedule/store','ScheduleController@store');
 //Syllabus Section End
 
 //Contact page start
-    Route::get('message-index','MessagesController@index')->name('message.index');
-    Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
-    Route::post('message-view','MessagesController@view')->name('message.view');
-    Route::post('message-store','MessagesController@store')->name('message.store');
+Route::get('message-index','MessagesController@index')->name('message.index');
+Route::delete('message-delete/{id}','MessagesController@destroy')->name('message.destroy');
+Route::post('message-view','MessagesController@view')->name('message.view');
+Route::post('message-store','MessagesController@store')->name('message.store');
 //Contact Page end
 //Academic Calender Start
-   
+
 //Academic Calender End
 
 
@@ -232,7 +231,7 @@ Route::post('api/notices','AndroidController@notices');
 Route::post('api/class-routines','AndroidController@classRoutine');
 /** Route for Apps end */
 
-/** Online Admission Starts */ 
+/** Online Admission Starts */
 Route::get('validate-admission','Front\AdmissionController@validateAdmission');
 Route::get('admission-form','Front\AdmissionController@admissionForm');
 

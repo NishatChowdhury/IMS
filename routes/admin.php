@@ -319,7 +319,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('download-database', [HomeController::class, 'downloadDatabase']);
     Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
 
-    Route::get('online-application', 'Backend\OnlineApplyController@index');
+    Route::get('admission/applicant', 'Backend\OnlineApplyController@index');
     Route::get('online-application-view/{id}', 'Backend\OnlineApplyController@applyStudentProfile');
     Route::get('get-apply-info', 'Backend\OnlineApplyController@getApplyInfo');
     Route::get('get-apply-info-session', 'Backend\OnlineApplyController@getApplyInfoSession');
@@ -328,6 +328,8 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('get-apply-set-store', 'Backend\OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
     Route::get('load_online_adminsion_id/{id}', 'Backend\OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
     Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
+
+    Route::get('admission/applicant-college','Backend\AdmissionController@admissionApplicant')->name('admission.applicant');
     
     Route::get('academic-calender/index','Backend\AcademicCalenderController@index')->name('academic-calender.index');
     Route::post('academic-calender/store','Backend\AcademicCalenderController@store')->name('academic-calender.store');

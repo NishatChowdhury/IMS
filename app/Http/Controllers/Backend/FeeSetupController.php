@@ -7,14 +7,18 @@ use App\FeeSetupStudent;
 use App\Group;
 use App\Classes;
 use App\Session;
-use App\Student;
 use App\FeePivot;
 use App\FeeSetup;
+<<<<<<< HEAD
 
 // use app/Http/Controllers/Backend/FeeSetupController.php;
 use App\FeeCategory;
 use App\AcademicClass;
 
+=======
+use App\FeeCategory;
+use App\AcademicClass;
+>>>>>>> master
 use App\FeeSetupPivot;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
@@ -110,13 +114,9 @@ class FeeSetupController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function feeStudents(Request $request){
-//        $students = StudentAcademic::query()
-//            ->where('academic_class_id',$request->id)
-//            ->with('student')
-//            ->get();
-
-        $students = FeeSetupStudent::query()->where('fee_setup_id',$request->id)->get();
-
+        $students = FeeSetupStudent::query()
+            ->where('fee_setup_id',$request->id)
+            ->get();
         return view('admin.feeSetup.fee-students',compact('students'));
     }
 
@@ -133,26 +133,30 @@ class FeeSetupController extends Controller
         $classes = Classes::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
         $fee_setup = FeeSetup::query()->findOrFail($id);
-        $fee_pivot = FeePivot::query()
-            ->where('fee_setup_id',$id)
-            ->get();
+        $fee_setup_student = FeeSetupStudent::query()->where('fee_setup_id',$id)->get();
 
-        session()->forget('fees'); // remove existing items from fees session
+        foreach ($fee_setup_student as $data){
+            $fee_pivot = FeeSetupCategory::query()
+                ->where('fee_setup_student_id',$data->id)
+                ->get();
 
-        foreach ($fee_pivot as $result) {
-            $data = [
-                'category_id' => $result->fee_category_id,
-                'name' => $result->category->name,
-                'amount' => $result->amount,
-            ];
-            if(session()->has('fees')){
-                session()->push('fees',$data);
-            }else{
-                session()->put(['fees'=>[$data]]);
+            session()->forget('fees'); // remove existing items from fees session
+
+            foreach ($fee_pivot as $result) {
+                $data = [
+                    'fee_setup_student_id' => $result->fee_setup_student_id,
+                    'category_id' => $result->category_id,
+                    'amount' => $result->amount,
+                    'paid' => $result->paid,
+                ];
+                if(session()->has('fees')){
+                    session()->push('fees',$data);
+                }else{
+                    session()->put(['fees'=>[$data]]);
+                }
             }
         }
-
-        $fees = session('fees',[]);
+        $fees = session('fees');
 
         return view('admin.feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
     }
@@ -166,16 +170,23 @@ class FeeSetupController extends Controller
     public function update($id): RedirectResponse
     {
         $fees = session('fees');
+        $feeSetup = FeeSetup::query()->findOrFail($id);
+        $students = $feeSetup->feeSetupStudent;
 
-        if(count($fees) > 0){
-            FeePivot::query()->where('fee_setup_id',$id)->delete();
+        foreach($students as $student){
+            $feeSetupCategories = $student->categories;
+
+            foreach ($feeSetupCategories as $category){
+                $category->delete();
+            }
+
             foreach($fees as $fee){
                 $data = [
-                    'fee_category_id' => $fee['category_id'],
-                    'fee_setup_id' => $id,
-                    'amount' => $fee['amount'],
+                    'fee_setup_student_id' => $student->id,
+                    'category_id' => $fee['category_id'],
+                    'amount' => $fee['amount']
                 ];
-                FeeSetupPivot::query()->create($data);
+                FeeSetupCategory::query()->create($data);
             }
         }
 

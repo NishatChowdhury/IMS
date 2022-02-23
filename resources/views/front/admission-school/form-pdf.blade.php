@@ -32,9 +32,8 @@
     <section class="padding-y-20 border-bottom" style="color:black">
         <div class="row mb-2">
             <div class="col-12 text-center">
-    
-                <h3>Institution Name Here</h3>
-                <h3>School Admission Form</h3>
+                <h3>{{ siteConfig('name') }}</h3>
+                <h4>{{ __('Admission Form') }}</h4>
             </div>
 
         </div>

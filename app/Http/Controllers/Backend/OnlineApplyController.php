@@ -37,6 +37,15 @@ class OnlineApplyController extends Controller
         $this->repository = $repository;
     }
 
+    public function index()
+    {
+        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+        $sessions = Session::query()->get();
+        $sections = Section::query()->get();
+        $students = onlineApply::query()->orderBy('id')->paginate(100);
+        return view('admin.admission.applicant-school', compact('students','academicClass','sessions','sections'));
+    }
+
     public function onlineApply($id = null)
     {
 
@@ -178,14 +187,7 @@ class OnlineApplyController extends Controller
         // return back()->with('status','Your Admission Successfully Done Here Your ID ');
     }
 
-    public function index()
-    {
-        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
-        $sessions = Session::query()->get();
-        $sections = Section::query()->get();
-        $students = onlineApply::query()->orderBy('id')->paginate(100);
-        return view('admin.student.online_apply', compact('students','academicClass','sessions','sections'));
-    }
+
 
     public function getApplyInfoSession(Request $request)
     {

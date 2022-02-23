@@ -38,9 +38,6 @@
                                     <th>{{ __('ID') }}</th>
                                     <th>{{ __('Student Name') }}</th>
                                     <th>{{ __('Categories') }}</th>
-                                    <th>{{ __('Class') }}</th>
-                                    <th>{{ __('Section') }}</th>
-                                    <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,11 +51,7 @@
                                                 <span class="badge badge-info">{{ $category->category->name }} : {{ number_format($category->amount,2) }}</span>
                                             @endforeach
                                         </td>
-                                        <td>{{ $data->classes->name ?? '' }}</td>
-                                        <td>{{ $data->section->name ?? '' }}</td>
-                                        <td>
-                                            <a href="{{ url('admin/fee/fee-setup/feeSetupDetails',$data->student_id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
-                                        </td>
+
                                     </tr>
                                 @endforeach
                                 </tbody>
