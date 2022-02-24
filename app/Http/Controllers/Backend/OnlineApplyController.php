@@ -339,8 +339,16 @@ class OnlineApplyController extends Controller
         $customMessages = [
             'required' => 'The :attribute field is required.'
             // 'division_id.required' => 'The Division Must be field is requi
-            
         ];
+
+        $checkAcademic = AcademicClass::where('session_id', $req->session_id)
+                                        ->where('class_id', $req->class_id)
+                                        ->where('group_id', $req->group_id)
+                                        ->exists();
+
+        if(!$checkAcademic){
+            return back()->with('status', 'Your Academic Class Not Match First You Have To Create Acadimic Classes Then Make It. :) ');
+        }                                
         $this->validate($req, $rules, $customMessages);
 
         OnlineAdmission::create($req->all());

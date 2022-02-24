@@ -44,6 +44,11 @@
                                 </ul>
                             </div>
                     @endif
+                    @if (session('status'))
+                        <div class="alert alert-danger">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
