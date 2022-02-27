@@ -32,4 +32,10 @@ class FeeSetupStudent extends Model
     {
         return $this->hasMany(FeeSetupCategory::class);
     }
+
+    public function feeSetup():BelongsTo
+    {
+        return $this->belongsTo(FeeSetup::class);
+    }
+
 }

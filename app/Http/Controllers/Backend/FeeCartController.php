@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\FeeCategory;
+use App\FeeSetupCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -65,7 +66,13 @@ class FeeCartController extends Controller
 
     public function EditFeeCartDestroy(Request $request)
     {
-        //dd($request->get('key'));
+//        dd($request->categoryId);
+
+        $feeStu = $request->feeStudentId;
+        $category_id = $request->categoryId;
+
+        FeeSetupCategory::where('fee_setup_student_id', $feeStu)->where('category_id', $category_id)->delete();
+
         $request->session()->pull('fees.'.$request->get('key'));
         $fees = $request->session()->get('fees');
         return view('admin.feeSetup._fee-cart',compact('fees'));

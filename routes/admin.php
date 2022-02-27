@@ -282,6 +282,10 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('fee/fee-setup/feeSetupDetails/{id}',[FeeSetupController::class,'feeSetupDetails'])->name('fee-setup.feeSetupDetails');
     Route::get('fee/fee-setup/search',[FeeSetupController::class,'search'])->name('fee-setup.search');
     Route::get('fee/fee-setup/edit/{id}',[FeeSetupController::class,'edit'])->name('fee-setup.edit');
+
+    Route::get('fee/fee-setup/edit-by-student/{id}',[FeeSetupController::class,'editByStudent'])->name('fee-setup.editByStudent');
+    Route::patch('fee/fee-setup/update-by-student/{id}',[FeeSetupController::class,'updateByStudent'])->name('fee-setup.updateByStudent');
+
     Route::patch('fee/fee-setup/update/{id}',[FeeSetupController::class,'update'])->name('fee.fee-setup.update');
     Route::post('fee/fee-setup/delete/{id}',[FeeSetupController::class,'destroy'])->name('fee.fee-setup.delete');
 

@@ -169,8 +169,10 @@ class FeeSetupController extends Controller
      */
     public function update($id): RedirectResponse
     {
+        //dd($id);
         $fees = session('fees');
-        $feeSetup = FeeSetup::query()->findOrFail($id);
+        $feeSetup = FeeSetup::query()->where('student_id',$id);
+        //dd($feeSetup);
         $students = $feeSetup->feeSetupStudent;
 
         foreach($students as $student){
@@ -195,6 +197,53 @@ class FeeSetupController extends Controller
         return redirect()->back();
     }
 
+    public function editByStudent($id)
+    {
+        $fee_categories = FeeCategory::query()->pluck('name','id');  /* All Categories are here */
+        $feeSetupStudent = FeeSetupStudent::query()->findOrFail($id);
+        $categories = $feeSetupStudent->categories;
+        session()->forget('fees'); // remove existing items from fees session
+
+        foreach ($categories as $result) {
+            //dd($result);
+            $data = [
+                'fee_setup_student_id' => $result->fee_setup_student_id,
+                'category_id' => $result->category_id,
+                'amount' => $result->amount,
+                'paid' => $result->paid,
+            ];
+
+            if(session()->has('fees'))
+            {
+                session()->push('fees',$data);
+            }
+            else
+            {
+                session()->put(['fees'=>[$data]]);
+            }
+        }
+
+        return  view('admin.feeSetup.edit_by_student',compact('feeSetupStudent','categories','fee_categories'));
+    }
+
+    public function updateByStudent($id): RedirectResponse
+    {
+        $fees = session('fees'); /* New stored fees */
+            foreach($fees as $fee){
+                //dd($fee);
+                $data = [
+                    'fee_setup_student_id' =>$id,
+                    'category_id' => $fee['category_id'],
+                    'amount' => $fee['amount']
+                ];
+                FeeSetupCategory::query()->create($data);
+            }
+
+
+        \Illuminate\Support\Facades\Session::flash('success','Fee Updated Successfully');
+
+        return redirect()->back();
+    }
 
     public function destroy($id)
     {

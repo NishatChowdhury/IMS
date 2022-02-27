@@ -38,6 +38,7 @@
                                     <th>{{ __('ID') }}</th>
                                     <th>{{ __('Student Name') }}</th>
                                     <th>{{ __('Categories') }}</th>
+                                    <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,7 +52,12 @@
                                                 <span class="badge badge-info">{{ $category->category->name }} : {{ number_format($category->amount,2) }}</span>
                                             @endforeach
                                         </td>
-
+                                        <td>
+                                            <a href="{{ url('admin/fee/fee-setup/edit-by-student',$data->id) }}"
+                                               class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
