@@ -453,6 +453,7 @@ class FrontController extends Controller
 
     public function admissionSuccess(Request $request)
     {
+        // return $request->all();
         $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
 
         return view('front.admission.admission-success',compact('student'));

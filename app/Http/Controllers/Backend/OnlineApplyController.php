@@ -9,6 +9,7 @@ use App\Gender;
 use App\Mother;
 use App\Classes;
 use App\Country;
+use App\Helpers;
 use App\Section;
 use App\Session;
 use App\Student;
@@ -17,6 +18,7 @@ use App\Guardian;
 use App\Religion;
 use App\BloodGroup;
 use App\OnlineApply;
+use App\Mail\Confirm;
 use App\AcademicClass;
 use App\OnlineAdmission;
 use App\StudentAcademic;
@@ -25,7 +27,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Repository\StudentRepository;
-use App\Helpers;
 
 class OnlineApplyController extends Controller
 {
@@ -44,6 +45,11 @@ class OnlineApplyController extends Controller
         $sections = Section::query()->get();
         $students = onlineApply::query()->orderBy('id')->paginate(100);
         return view('admin.admission.applicant-school', compact('students','academicClass','sessions','sections'));
+    }
+
+    public function onlineApplyCollege()
+    {
+        return view('front.admission.validate-admission');
     }
 
     public function onlineApply($id = null)
@@ -147,26 +153,11 @@ class OnlineApplyController extends Controller
 
         if(siteConfig('admission_sms') == 1){
 
-                $url = "https://sms.solutionsclan.com/api/sms/send";
-                $data = [
-                        "apiKey"=> smsConfig('api_key'),
-                        "contactNumbers"=> $req->mobile,
-                        "senderId"=> smsConfig('sender_id'),
-                        "textBody"=> "Application successfully done! You Application ID-".$studentStore->id
-                ];
-        
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                $response = curl_exec($ch);
-                echo "$response";
-                curl_close($ch);
-
-
+            $smsData = [];
+            $smsData['mobile'] = $req->mobile;
+            $smsData['id'] = $studentStore->id;
+            $smsData['textbody'] = "Application successfully done! You Application ID-".$studentStore->id;
+            $this->sms($smsData);
         }
 
 
@@ -217,11 +208,7 @@ class OnlineApplyController extends Controller
         //  return $req->session_id;
         $getOnlineApply = OnlineApply::find($req->onlineApplyID)->toarray();
         $getOnlineApply['studentId'] = $req->studentId;
-        // return $data = $req->all();
 
-        // $data['d'] = $getOnlineApply->sf ;
-      
-// return $getOnlineApply['class_id'];
             try{
                 $studentStore = Student::query()->where('studentId', $req->studentId)->exists();
                 if(!$studentStore){
@@ -295,7 +282,50 @@ class OnlineApplyController extends Controller
             'status' => 1
         ]);
 
+        if($req->email){
+            $details = [
+                'title' => config('app'),
+                'id' => $studentStore->id,
+                'name' => $studentStore->name,
+            ];
+            Mail::to($getOnlineApply['email'])->send(new Confirm($details));
+           
+        }
+
+        if(siteConfig('admission_sms') == 1){
+
+            $smsData = [];
+            $smsData['mobile'] = $getOnlineApply['mobile'];
+            $smsData['textbody'] = "Application Approved successfully done!";
+
+            $this->sms($smsData);
+        }
+
         return back();
+    }
+
+
+    public function sms($data)
+    {
+        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $data = [
+                "apiKey"=> smsConfig('api_key'),
+                "contactNumbers"=> $data['mobile'],
+                "senderId"=> smsConfig('sender_id'),
+                "textBody"=> $data['textbody']
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $response = curl_exec($ch);
+        echo "$response";
+        curl_close($ch);
+
     }
 
     /**

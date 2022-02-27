@@ -59,7 +59,7 @@
                                         <td>{{ $menu->uri }}</td>
                                         <td>{{ $menu->order }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['MenuController@destroy',$menu->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\MenuController@destroy',$menu->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleEditModal" onclick="loadEditForm({{$menu->id}})"><i class="fas fa-edit"></i></button>
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
@@ -72,7 +72,7 @@
                                             <td>{{ $child->uri }}</td>
                                             <td>{{ $child->order }}</td>
                                             <td>
-                                                {{ Form::open(['action'=>['MenuController@destroy',$child->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                                {{ Form::open(['action'=>['Backend\MenuController@destroy',$child->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleEditModal" onclick="loadEditForm({{$child->id}})"><i class="fas fa-edit"></i></button>
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                 {{ Form::close() }}
@@ -85,7 +85,7 @@
                                                 <td>{{ $child->uri }}</td>
                                                 <td>{{ $child->order }}</td>
                                                 <td>
-                                                    {{ Form::open(['action'=>['MenuController@destroy',$child->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                                    {{ Form::open(['action'=>['Backend\MenuController@destroy',$child->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleEditModal" onclick="loadEditForm({{$child->id}})"><i class="fas fa-edit"></i></button>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                     {{ Form::close() }}

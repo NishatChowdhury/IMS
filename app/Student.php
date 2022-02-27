@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class Student extends Model
 {
 
-    protected $table = 'student1s';
+
 
     protected $fillable = [
         'name',

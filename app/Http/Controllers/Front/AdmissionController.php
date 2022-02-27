@@ -7,10 +7,12 @@ use App\MeritList;
 use App\OnlineApply;
 use App\AppliedStudent;
 use App\SiteInformation;
+use App\Mail\AdmissionMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repository\FrontRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class AdmissionController extends Controller
 {
@@ -156,15 +158,55 @@ class AdmissionController extends Controller
 
         $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
 
+        // dd($student->id);
+
         if($student){
             $student->update($data);
         }else{
-            AppliedStudent::query()->create($data);
-            $admission_sms = SiteInformation::query()->where('admission_sms',1)->exists();
-            if($admission_sms) {
-                $this->sms($data);
+            $student = AppliedStudent::query()->create($data);
+            if(siteConfig('admission_sms') == 1){
+                $smsData = [];
+                $smsData['mobile'] = $data['mobile'];
+                $smsData['id'] = $student->id;
+
+                $this->sms($smsData);
             }
+            // dd($data);
         }
+
+        if($request->email){
+            $details = [
+                'title' => config('app'),
+                'id' => $student->id,
+                'name' => $student->name,
+                'url' => 'sd',
+                // 'url' => route('download.school.form', $student->id),
+            ];
+            Mail::to($request->email)->send(new AdmissionMail($details));
+           
+        }
+
+        // if(siteConfig('admission_sms') == 1){
+
+        //         $url = "https://sms.solutionsclan.com/api/sms/send";
+        //         $data = [
+        //                 "apiKey"=> smsConfig('api_key'),
+        //                 "contactNumbers"=> $request->mobile,
+        //                 "senderId"=> smsConfig('sender_id'),
+        //                 "textBody"=> "Application successfully done! You Application ID-".$student->id
+        //         ];
+        
+        //         $ch = curl_init();
+        //         curl_setopt($ch, CURLOPT_URL, $url);
+        //         curl_setopt($ch, CURLOPT_POST, 1);
+        //         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        //         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        //         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        //         $response = curl_exec($ch);
+        //         echo "$response";
+        //         curl_close($ch);
+        // }
 
         return redirect('admission-success')->withErrors(compact('data'));
     }
@@ -199,21 +241,24 @@ class AdmissionController extends Controller
 
     public function sms($data)
     {
-        $api_key = smsConfig('api_key');
-        $contacts = $data['mobile'];
-        $senderid = smsConfig('sender_id');
-        //$sms = $request->get('message');
-        $sms = $data['name'].' your form has been successfully submitted to '.siteConfig('title').'. Your student ID is '.$data['studentId'];
-
-        $URL = "http://bangladeshsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".urlencode($contacts)."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
-
-        $ch = curl_init();
-        curl_setopt ($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/html; charset=UTF-8']);
-        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt ($ch, CURLOPT_URL, $URL);
-        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($ch);
+        $url = "https://sms.solutionsclan.com/api/sms/send";
+                $data = [
+                        "apiKey"=> smsConfig('api_key'),
+                        "contactNumbers"=>  $data['mobile'],
+                        "senderId"=> smsConfig('sender_id'),
+                        "textBody"=> "Application successfully done! You Application ID-".$data['id']
+                ];
+        
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                $response = curl_exec($ch);
+                echo "$response";
+                curl_close($ch);
 
     }
 

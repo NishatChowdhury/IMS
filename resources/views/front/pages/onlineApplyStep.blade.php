@@ -1,46 +1,6 @@
 @extends('layouts.front-inner')
 
 @section('title','Inner Page')
-@section('style')
-<style>
-    .custom_shadow{
-        box-shadow: rgb(100 100 111 / 26%) 0px 7px 29px 0px;
-    }
-    .cl1{
-        background: #0e5a66;
-    }
-    span.form-header {
-    font-size: 21px;
-    font-weight: 600;
-    /* background: rebeccapurple; */
-    color: #fff;
-}
-.items-box {
-    padding: 15px;
-    background: #66cc56;
-    text-align: center;
-    border-radius: 2%;
-    transition: .5s;
-    color: #fff;
-    font-weight: 900;
-    cursor: pointer;
-    box-shadow: rgb(100 100 111 / 26%) 0px 7px 29px 0px;
-}
-
-.items-box:hover {
-    background: #629d58;
-}
-span.className {
-    font-size: 30px;
-}
-
-span.GroupName {
-    font-size: 30px;
-    /* font-style: italic; */
-}
-
-</style>
-@endsection
 
 @section('content')
 
@@ -92,8 +52,12 @@ span.GroupName {
                                   <td>{{ $admission->class_id ? $admission->classes->name : '' }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
                                   <td>{{ $admission->end }}</td>
                                   <td>
+                                    @if($admission->type == 1)
                                     <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">View</a>
-                                  </td>
+                                    @else
+                                    <a href="{{ url('/online-apply-college') }}" class="btn btn-link">View</a>
+                                    @endif
+                                </td>
                                 </tr>
                                 @endforeach
                               </tbody>
