@@ -27,6 +27,7 @@ Route::get('/', 'Front\FrontController@index');
 //Route::get('/', 'IdCardController@custom_staffPdf');
 Route::get('/online-apply-step','Front\FrontController@onlineApplyStep');
 Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
+Route::get('/online-apply-college',[OnlineApplyController::class,'onlineApplyCollege']);
 //Route::get('{uri}','Front\FrontController@page');
 
 //Institute -> About

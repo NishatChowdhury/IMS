@@ -64,7 +64,7 @@ ul.parent_info li {
                                     <b>Class</b> <a class="float-right">{{ $studentAcademic->classes->name }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Section</b> <a class="float-right">{{ $studentAcademic->section->name  }}</a>
+                                    <b>Section</b> <a class="float-right">{{ $studentAcademic->section ? $studentAcademic->section->name : 'N/A'  }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Group</b> <a class="float-right">{{ $studentAcademic->group->name }}</a>

@@ -208,20 +208,11 @@ class AdmissionController extends Controller
         return redirect()->back();
     }
 
-    public function admissionExams()
-    {
-        return view('admin.admission.admission-exam');
-    }
+  
 
-    public function admissionApplicant()
-    {
-        return view('admin.admission.applicant');
-    }
+   
 
-    public function admissionExamResult()
-    {
-        return view('admin.admission.admission-exam-result');
-    }
+   
 
     public function browseMeritList(Request $request)
     {

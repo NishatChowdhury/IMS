@@ -66,18 +66,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admission.applicant') }}" class="nav-link {{ isActive('admin/admission/applicant-college') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Applicants (College)') }}</p>
-                            </a>
-                        </li>
-{{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                            <a href="{{route('admission.examResult')}}" class="nav-link {{ isActive('admission/examResult') }}">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Results</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-                        <li class="nav-item">
                             <a href="{{action('Backend\AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admin/admission/browse-merit-list') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Browse Merit List') }}</p>

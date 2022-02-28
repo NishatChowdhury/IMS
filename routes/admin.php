@@ -333,7 +333,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('load_online_adminsion_id/{id}', 'Backend\OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
     Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
 
-    Route::get('admission/applicant-college','Backend\AdmissionController@admissionApplicant')->name('admission.applicant');
+
     
     Route::get('academic-calender/index','Backend\AcademicCalenderController@index')->name('academic-calender.index');
     Route::post('academic-calender/store','Backend\AcademicCalenderController@store')->name('academic-calender.store');

@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <h3 class="text-success">
                         <b>{{ $data['name'] }}</b> {{ __('your admission request has been submitted successfully your application Id') }} {{ $data['id'] }}
+                        <a href="{{ route('download.school.form', $data['id']) }}" class="btn btn-primary">Download Application Form</a>
                     </h3>
                 </div>
             </div>

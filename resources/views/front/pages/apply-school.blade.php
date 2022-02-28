@@ -58,7 +58,11 @@
                                         </td>
                                         <td class="text-center">
                                             @if($admission->end->endOfDay() > now())
-                                                <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('Apply Now') }}</a>
+                                                @if($admission->type == 1)
+                                                    <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('Apply Now') }}</a>
+                                                @else
+                                                <a href="{{ url('/online-apply-college') }}" class="btn btn-link">Apply View</a>
+                                                @endif
                                             @else
                                                 <span class="text-danger">{{ __('Expired') }}</span>
                                             @endif

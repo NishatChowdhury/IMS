@@ -152,7 +152,17 @@ class StudentController extends Controller
             return Response::download($filename, 'students.csv', $headers);
         }
 
-        $students = Student::orderBy('studentId')->paginate(100);
+            // return activeYear();
+        // $students =  StudentAcademic::whereHas('sessions', function ($query) {
+        //     return $query->where('active', '=', 1);
+        // })->with('student')->paginate(100);  
+ 
+         $students = Student::orderBy('studentId')
+                    ->whereHas('academics', function($query){
+                         $query->whereHas('sessions', function($query){
+                            return $query->where('active', '=', 1);
+                         });
+                    })->paginate(100);
         // $students = $s->orderBy('rank')->paginate(100);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
@@ -765,7 +775,9 @@ class StudentController extends Controller
         $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
                                                     ->with('classes','section','group')
                                                     ->first();
+                                                    // return $studentAcademic;
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
+        // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
         $payments = StudentPayment::query()->where('session_id',activeYear())->where('student_id',$studentId)->get();
 
         return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
