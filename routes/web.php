@@ -117,15 +117,7 @@ Route::get('/download','Front\FrontController@download');
 Route::get('/contact','Front\FrontController@contact');
 /*===== Route for Front-End Menu Bar END ====*/
 
-//Admission Route by Rimon
-Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
-Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
-Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList');
-Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList');
-Route::post('admission/upload','Backend\AdmissionController@upload');
 
-Route::post('admission/slip-view','Backend\AdmissionController@slipView');
-//End Admission Route
 
 
 Route::get('exam/marks/{schedule}','MarkController@index');

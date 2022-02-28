@@ -249,8 +249,8 @@ Route::group(['prefix'=>'admin'], function(){
 
 //    route for api setting starts here
 
-    Route::get('communication/apiSetting','CommunicationSettingController@index')->name('communication.apiSetting');
-    Route::patch('communication/apiSetting/update','CommunicationSettingController@update')->name('apiSetting.update');
+    Route::get('communication/apiSetting','Backend\CommunicationSettingController@index')->name('communication.apiSetting');
+    Route::patch('communication/apiSetting/update','Backend\CommunicationSettingController@update')->name('apiSetting.update');
 
 //    route for api setting ends here
 
@@ -506,7 +506,15 @@ Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@dest
 
 // Exam Seat Plan End
 
+//Admission Route by Rimon
+    Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
+    Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
+    Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList');
+    Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList');
+    Route::post('admission/upload','Backend\AdmissionController@upload');
 
+    Route::post('admission/slip-view','Backend\AdmissionController@slipView');
+//End Admission Route
 
 Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails');
 Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails');
