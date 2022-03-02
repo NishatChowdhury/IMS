@@ -32,7 +32,7 @@
                             {{--</div>--}}
                             <div class="row">
                                 <div>
-                                    <a class="btn btn-info btn-sm" href="{{ action('PageController@create') }}" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
+                                    <a class="btn btn-info btn-sm" href="{{ action('Backend\PageController@create') }}" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                     <td style="line-break:anywhere">{{ substr(strip_tags($page->content),0,99) }}</td>
                                     <td>{{ $page->order }}</td>
                                     <td>
-                                        {{ Form::model($page,['action'=>['PageController@destroy',$page->id],'method'=>'delete','onsubmit'=>'confirmDelete()']) }}
-                                        <a href="{{ action('PageController@edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        {{ Form::model($page,['action'=>['Backend\PageController@destroy',$page->id],'method'=>'delete','onsubmit'=>'confirmDelete()']) }}
+                                        <a href="{{ action('Backend\PageController@edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                         {{ Form::close() }}
                                     </td>

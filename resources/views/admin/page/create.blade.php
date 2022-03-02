@@ -43,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {{ Form::open(['action'=>'PageController@store','method'=>'post','files'=>true]) }}
+                        {{ Form::open(['action'=>'Backend\PageController@store','method'=>'post','files'=>true]) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>

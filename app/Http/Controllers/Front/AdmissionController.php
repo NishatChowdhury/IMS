@@ -179,34 +179,13 @@ class AdmissionController extends Controller
                 'title' => config('app'),
                 'id' => $student->id,
                 'name' => $student->name,
-                'url' => 'sd',
-                // 'url' => route('download.school.form', $student->id),
+                'url' => url('student-form?ssc_roll=').$request->get('ssc_roll'),
             ];
             Mail::to($request->email)->send(new AdmissionMail($details));
            
         }
 
-        // if(siteConfig('admission_sms') == 1){
 
-        //         $url = "https://sms.solutionsclan.com/api/sms/send";
-        //         $data = [
-        //                 "apiKey"=> smsConfig('api_key'),
-        //                 "contactNumbers"=> $request->mobile,
-        //                 "senderId"=> smsConfig('sender_id'),
-        //                 "textBody"=> "Application successfully done! You Application ID-".$student->id
-        //         ];
-        
-        //         $ch = curl_init();
-        //         curl_setopt($ch, CURLOPT_URL, $url);
-        //         curl_setopt($ch, CURLOPT_POST, 1);
-        //         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        //         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        //         $response = curl_exec($ch);
-        //         echo "$response";
-        //         curl_close($ch);
-        // }
 
         return redirect('admission-success')->withErrors(compact('data'));
     }

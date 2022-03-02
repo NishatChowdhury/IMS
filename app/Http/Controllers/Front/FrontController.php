@@ -52,6 +52,23 @@ class FrontController extends Controller
 
     public function index()
     {
+
+//         curl -X POST \
+//   'https://api.reacher.email/v0/check_email' \
+//   -H 'content-type: application/json' \
+//   -H 'authorization: test_api_token' \
+//   -d '{
+//   "to_email": "test@gmail.com"
+// }'
+
+// "authorization" => 'a1c7cf96-99f8-11ec-95af-1935d61c5545',
+// "content-type" =>  'application/json',
+// "to_email" => 'hossainiftekhar556@gmail.com',
+
+
+
+
+
         $sliders = Slider::query()
             //->where('start','<',Carbon::today())
             ->where(function($query){
@@ -212,13 +229,13 @@ class FrontController extends Controller
     {
         $content = Page::query()->where('name','teachers')->first();
         $teachers = Staff::query()->where('staff_type_id',2)->orderBy('code')->get();
-        return view('front.pages.teacher',compact('content','teachers'));
+        return view('front.employer.teacher',compact('content','teachers'));
     }
     public function staff()
     {
         $content = Page::query()->where('name','staff')->first();
         $staffs = Staff::query()->where('staff_type_id',1)->get();
-        return view('front.pages.staff',compact('content','staffs'));
+        return view('front.employer.staff',compact('content','staffs'));
     }
     public function wapc()
     {
@@ -350,32 +367,30 @@ class FrontController extends Controller
         //->paginate(5);
 
         $categories = NoticeCategory::all();
-        return view('front.pages.notice',compact('notices','categories'));
+        return view('front.notice.index',compact('notices','categories'));
     }
     public function noticeDetails($id)
     {
         $notice = Notice::query()->findOrFail($id);
         $categories = NoticeCategory::all();
-        return view('front.pages.notice-details',compact('notice','categories'));
+        return view('front.notice.notice-details',compact('notice','categories'));
     }
 
     public function news()
     {
         $newses = Notice::query()
             ->where('notice_type_id',1)
-            //->where('start','<',Carbon::today())
-            //->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->paginate(5);
         $categories = NoticeCategory::all();
-        return view('front.pages.news',compact('newses','categories'));
+        return view('front.news.index',compact('newses','categories'));
     }
 
     public function newsDetails($id)
     {
         $news = Notice::query()->findOrFail($id);
         $categories = NoticeCategory::all();
-        return view('front.pages.news-details',compact('news','categories'));
+        return view('front.news.news-details',compact('news','categories'));
     }
 
 //News & Notice END...
@@ -385,14 +400,14 @@ class FrontController extends Controller
     {
         $categories = GalleryCategory::all();
         $albums = Album::all();
-        return view('front.pages.gallery',compact('categories','albums'));
+        return view('front.gallery.index',compact('categories','albums'));
     }
 
     public function album($id)
     {
         $album = Album::query()->findOrFail($id);
         $images = Gallery::query()->where('album_id',$id)->get();
-        return view('front.pages.album',compact('images','album'));
+        return view('front.gallery.album',compact('images','album'));
     }
     //Gallery -> END
 
@@ -408,48 +423,11 @@ class FrontController extends Controller
     public function contact()
     {
         $content = Page::query()->where('name','contacts')->first();
-        return view('front.pages.contacts',compact('content'));
+        return view('front.contact.index',compact('content'));
     }
     // Contact End
 
-    // public function validateAdmission()
-    // {
-    //     return view('front.admission.validate-admission');
-    // }
 
-    // public function admissionForm(Request $request)
-    // {
-    //     $this->validate($request,[
-    //         'ssc_roll' => 'required|numeric|exists:merit_lists'
-    //     ]);
-
-    //     $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
-
-    //     $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
-
-    //     $compulsory = DB::table('online_subjects')
-    //         ->where('type',1)
-    //         ->pluck('name','id');
-    //     $selective = DB::table('online_subjects')
-    //         ->where('type','like','%2%')
-    //         ->where('group_id',$group)
-    //         ->pluck('name','id');
-    //     $optional = DB::table('online_subjects')
-    //         ->where('type','like','%3%')
-    //         ->where('group_id',$group)
-    //         ->pluck('name','id');
-
-    //     $repository = $this->repository;
-
-    //     if($student){
-    //         if($student->approved){
-    //             return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
-    //         }
-    //         return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
-    //     }
-
-    //     return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
-    // }
 
     public function admissionSuccess(Request $request)
     {
@@ -578,31 +556,82 @@ class FrontController extends Controller
 
             $repository = $this->repository;
 
-            if($content->system_page == 'gallery'){
-                $categories = GalleryCategory::all();
-                $albums = Album::all();
-            }
+         
 
-            if($content->system_page == 'teacher' || $content->system_page == 'teacher-1'){
-                $teachers = Staff::query()
-                    ->where('staff_type_id',2)
-                    ->orderBy('code')
-                    ->get();
-            }
-
-            
-
-            if($content->system_page == 'staff' || $content->system_page == 'staff-1'){
-                $staffs = Staff::query()->where('staff_type_id',1)->orderBy('code')->get();
-            }
+       
 
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
-                    ->where('notice_type_id',2)
-                    ->orderByDesc('start')
-                    ->get();
-                $categories = NoticeCategory::all();
+                            ->orderByDesc('start')
+                            ->paginate(3);
+                $artilces = '';
+                if ($request->ajax()) {
+                    foreach($notices as $key => $notice){
+                        if($notice->start != null){
+                            $date = $notice->start->format('d');
+                        }
+                        if($notice->start != null){
+                            $mm = $notice->start->format('M, Y');
+                        }
+                        if($notice->notice_type_id == 1){
+                            $typeN = 'Notice';
+                            $types = 'badge-danger';
+                        }else{
+                            $typeN = 'News';
+                            $types = 'badge-info';
+                        }
+
+                        if($notice->file){
+                            $noticeFile = '<a href="'. asset('assets/files/notice').'/'.$notice->file .'" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>';
+                        }else{
+                            $noticeFile = '';
+                        }
+                
+
+
+                        $artilces.= '
+                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
+                            <div class="media align-items-center">
+                                <div class="text-center border-right pr-4">
+                                <strong class="text-primary font-size-38">
+                                            '. $date .'
+                                </strong>
+                                <p class="mb-0 text-gray">
+                                    '. $mm .'
+                                </p>
+                                </div>
+                                <div class="media-body p-4">
+                                <p class="mb-1 text-gray">
+                                <i class="ti-file"></i>
+                                    <span class="badge '. $types .'">
+                                        '. $typeN .'
+                                    </span>  
+                                </p>
+                                <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="h5">
+                                    '. $notice->title .'
+                                </a>
+                                </div>
+                            </div>
+                            '. $noticeFile .'
+                            <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="btn btn-outline-primary">Read More</a> 
+                            </div>';
+                    }
+                    return $artilces;
+                }                           
+                $categories = NoticeCategory::with('notices')->get();
+                return view('front.'.$uri.'.index',compact('categories','albums','teachers','notices','staffs','repository'));
             }
+            if($content->url === 'news'){
+
+                $newses = Notice::query()
+                        ->where('notice_type_id',1)
+                        ->orderByDesc('start')
+                        ->paginate(5);
+            $categories = NoticeCategory::all();
+            return view('front.'.$uri.'.index',compact('newses','categories'));
+            }
+
+
 
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
@@ -643,7 +672,6 @@ class FrontController extends Controller
         $page = $content->page;
 
         $page = $page ?? new Page;
-
         return view('front.pages.page',compact('page'));
     }
 

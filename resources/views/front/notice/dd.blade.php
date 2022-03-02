@@ -51,9 +51,11 @@
                                 <div class="media-body p-4">
                                     <p class="mb-1 text-gray">
                                         <i class="ti-file"></i>
-                                        Event
+                                        <span class="badge {{ $notice->notice_type_id == 2 ? 'badge-danger' : 'badge-primary' }}">
+                                            {{ $notice->notice_type_id == 2 ? 'Notice' : 'News' }}
+                                        </span>
                                     </p>
-                                    <a href="{{ action('FrontController@noticeDetails',$notice->id) }}" class="h5">
+                                    <a href="{{ action('Front\FrontController@noticeDetails',$notice->id) }}" class="h5">
                                         {{ $notice->title }}
                                     </a>
                                 </div>
@@ -66,32 +68,29 @@
                     @endforeach
 
                     <div class="text-center mt-5">
-                        <a href="#" class="btn btn-outline-primary btn-icon">
+                        {{ $notices->links() }}
+                        {{-- <a href="#" class="btn btn-outline-primary btn-icon">
                             <i class="ti-reload mr-2"></i>
                             Load More
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
 
                 <div class="col-lg-3 mt-5">
                     <div class="card shadow-v1">
                         <div class="card-header border-bottom">
-                            <h4 class="mb-0">Category List</h4>
+                            <h4 class="mb-0">Notice & News List</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
                                 @foreach($categories as $category)
                                     <li class="mb-3"><a href="">{{ $category->name }} ({{ $category->notices->count() }})</a></li>
                                 @endforeach
-                                {{--<li class="mb-3"><a href="">Web Development (28)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Mobile Apps (4)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Business (10)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">IT &amp; Software (22)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Data Science (6)</a></li>--}}
-                                {{--<li class="mb-3"><a href="">Design (16) </a></li>--}}
+                               
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div> <!-- END row-->
         </div> <!-- END container-->
@@ -106,38 +105,5 @@
 
 
 
-
-
-
-
-
-    {{--<section class="padding-y-100 border-bottom">--}}
-    {{--<div class="container">--}}
-    {{--<div class="row align-items-center">--}}
-
-    {{--<table class="table table-bordered">--}}
-    {{--<thead>--}}
-    {{--<tr>--}}
-    {{--<th>SL</th>--}}
-    {{--<th>Date</th>--}}
-    {{--<th>Title</th>--}}
-    {{--<th></th>--}}
-    {{--</tr>--}}
-    {{--</thead>--}}
-    {{--<tbody>--}}
-    {{--@foreach($notices as $notice)--}}
-    {{--<tr>--}}
-    {{--<td></td>--}}
-    {{--<td>{{ $notice->start }}</td>--}}
-    {{--<td>{{ $notice->title }}</td>--}}
-    {{--<td></td>--}}
-    {{--</tr>--}}
-    {{--@endforeach--}}
-    {{--</tbody>--}}
-    {{--</table>--}}
-
-    {{--</div> <!-- END row-->--}}
-    {{--</div> <!-- END container-->--}}
-    {{--</section>--}}
-
 @stop
+

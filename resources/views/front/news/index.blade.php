@@ -37,7 +37,7 @@
                     <div class="col-lg-8 paddingRight-30 my-4">
                         <div class="media justify-content-between">
                             <div class="group">
-                                <a href="{{ action('FrontController@newsDetails',$news->id) }}" class="h4">
+                                <a href="{{ action('Front\FrontController@newsDetails',$news->id) }}" class="h4">
                                     {{ $news->title }}
                                 </a>
                                 <ul class="list-inline mt-3">
@@ -78,7 +78,7 @@
                                     27.5 hours
                                 </li>
                             </ul>
-                            <a href="{{ action('FrontController@newsDetails',$news->id) }}" class="btn btn-outline-primary">Read More</a>
+                            <a href="{{ action('Front\FrontController@newsDetails',$news->id) }}" class="btn btn-outline-primary">Read More</a>
                         </div>
                     </div>
                 </div>

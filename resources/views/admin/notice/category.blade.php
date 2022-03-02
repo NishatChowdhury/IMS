@@ -55,7 +55,7 @@
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->notices->count() }}</td>
                                         <td>
-                                            <a href="{{ action('NoticeCategoryController@edit',$category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ action('Backend\NoticeCategoryController@edit',$category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -94,7 +94,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'NoticeCategoryController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\NoticeCategoryController@store','method'=>'post']) }}
                     {{--<form>--}}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Name*</label>

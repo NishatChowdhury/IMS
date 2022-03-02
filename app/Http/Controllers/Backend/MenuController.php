@@ -24,6 +24,7 @@ class MenuController extends Controller
             'contacts' => 'Contacts',
             'gallery' => 'Gallery',
             'notice' => 'Notice',
+            'news' => 'News',
             'internal-result' => 'Internal Result',
             'teacher' => 'Teacher',
             'apply-school' => 'Online Admission (School)',
