@@ -38,7 +38,7 @@
                 <div class="col-lg-3 mt-5">
                     <div class="card shadow-v1">
                         <div class="card-header border-bottom">
-                            <h4 class="mb-0">Notice & News List</h4>
+                            <h4 class="mb-0">{{ __('Notice & News List') }}</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
