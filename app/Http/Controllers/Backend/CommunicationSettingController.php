@@ -16,14 +16,13 @@ class CommunicationSettingController extends Controller
 
     public function index()
     {
-        // dd('sd');
-        $apiData = CommunicationSetting::query()->first();
+        $apiData = CommunicationSetting::query()->firstOrNew();
         return view('admin.communication.api-settings',compact('apiData'));
     }
 
     public function update(Request $request)
     {
-        $data = CommunicationSetting::query()->first();
+        $data = CommunicationSetting::query()->firstOrCreate($request->only(['api_key','sender_id']));
         $data->update($request->all());
         return redirect('admin/communication/apiSetting')->with('success','Updated successfully');
 

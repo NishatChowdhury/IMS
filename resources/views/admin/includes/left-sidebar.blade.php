@@ -42,11 +42,11 @@
                     <a href="#" class="nav-link {{ isActive(['admin/admission*']) }}">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
-                            Admission
+                            {{ __('Admission') }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <ul class="nav nav-treeview">
 {{--                        <li class="nav-item">--}}
 {{--                            <a href="{{route('admission.exams')}}" class="nav-link {{ isActive('admission/exams') }}">--}}
 {{--                                <i class="far fa-circle nav-icon"></i>--}}
@@ -54,15 +54,15 @@
 {{--                            </a>--}}
 {{--                        </li>--}}
                         <li class="nav-item">
-                            <a href="{{ url('admin/admission/applicant') }}" class="nav-link {{ isActive('admin/admission/applicant') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Applicants (School)') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Create Admission') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/admission/applicant') }}" class="nav-link {{ isActive('admin/admission/applicant') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Applicants (School)') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -466,7 +466,7 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{route('student.fee')}}" class="nav-link {{ isActive('fee-category/student') }}">
                                 <i class="far fa-circle nav-icon"></i>
@@ -523,19 +523,19 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ isActive(['communication*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['communication*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>
                             Communication
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('communication/quick') }}">
+                            <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('admin/communication/quick') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Quick SMS</p>
+                                <p>{{ __('Quick SMS') }}</p>
                             </a>
                         </li>
                         {{--                        <li>--}}
@@ -544,13 +544,13 @@
                         {{--                                <p>Student SMS</p>--}}
                         {{--                            </a>--}}
                         {{--                        </li>--}}
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
                             <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('communication/staff') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Staff SMS</p>
+                                <p>{{ __('Staff SMS') }}</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <li class="nav-item">
                             <a href="{{route('communication.history')}}" class="nav-link {{ isActive('communication/history') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>SMS History</p>

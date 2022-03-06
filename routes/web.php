@@ -13,12 +13,8 @@ Route::get('dashboard','Backend\DashboardController@index');
 
 Auth::routes(['register' => false]);
 Route::get('/home', 'Backend\DashboardController@index')->name('home');
+    
 
-/** User Routes start */
-Route::get('user/profile','UserController@profile');
-Route::patch('user/update','UserController@update');
-Route::patch('user/password','UserController@password');
-/** User Routes end */
 
 /*
 ==== Route for Front-End Menu Bar Start ==== @MKH

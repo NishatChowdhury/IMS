@@ -190,6 +190,11 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('user/store','Backend\UserController@store');
     Route::get('user/edit/{id}','Backend\UserController@edit');
     Route::delete('user/destroy/{id}','Backend\UserController@destroy');
+        /** User Routes start */
+    Route::get('user/profile','Backend\UserController@profile');
+    Route::patch('user/update','Backend\UserController@update');
+    Route::patch('user/password','Backend\UserController@password');
+/** User Routes end */
     /** User Routes End */
 
     //Syllabus Section Start A R Babu
@@ -566,7 +571,15 @@ Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@dest
 
 // Exam Seat Plan End
 
+//Admission Route by Rimon
+    Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
+    Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
+    Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList');
+    Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList');
+    Route::post('admission/upload','Backend\AdmissionController@upload');
 
+    Route::post('admission/slip-view','Backend\AdmissionController@slipView');
+//End Admission Route
 
 Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails');
 Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails');

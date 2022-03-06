@@ -16,6 +16,12 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $user = Auth::user();
+        return view('admin.user.view',compact('user'));
+    }
+
     public function profile()
     {
         $user = Auth::user();
