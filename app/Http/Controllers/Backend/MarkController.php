@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\ExamSchedule;
-use App\Grade;
 use App\Mark;
+use App\Grade;
 use App\Student;
+use App\ExamSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
 class MarkController extends Controller

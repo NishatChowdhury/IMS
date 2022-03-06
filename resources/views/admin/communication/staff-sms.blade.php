@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    {{ Form::open(['action'=>'CommunicationController@staff','method'=>'get']) }}
+                    {{ Form::open(['action'=>'Backend\CommunicationController@staff','method'=>'get']) }}
                     <div class="card">
                         <div class="card-body">
                             <div class="form-row">
@@ -51,7 +51,7 @@
                     </div>
                     {{ Form::close() }}
 
-                {{ Form::open(['action'=>'CommunicationController@send','method'=>'post']) }}
+                {{ Form::open(['action'=>'Backend\CommunicationController@send','method'=>'post']) }}
                 <!-- description -->
                     <div class="card">
                         <div class="card-body">

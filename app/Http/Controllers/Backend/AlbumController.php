@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Album;
-use App\Repository\GalleryRepositories;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Repository\GalleryRepositories;
 
 class AlbumController extends Controller
 {
@@ -30,13 +31,13 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         Album::query()->create($request->all());
-        return redirect('gallery/albums');
+        return back();
     }
 
     public function destroy($id)
     {
         $album = Album::query()->findOrFail($id);
         $album->delete();
-        return redirect('gallery/albums');
+        return back();
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\AcademicClass;
+namespace App\Http\Controllers\Backend;
 use App\Classes;
 use App\Session;
 use App\Syllabus;
+use App\AcademicClass;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
 class SyllabusController extends Controller

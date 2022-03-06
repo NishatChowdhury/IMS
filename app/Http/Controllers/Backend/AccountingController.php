@@ -69,6 +69,7 @@ class AccountingController extends Controller
 
     public function trialBalance(Request $request)
     {
+        // dd();
         $start = $request->get('start_date');
         $end = $request->get('end_date');
         $accounts = JournalItem::query()

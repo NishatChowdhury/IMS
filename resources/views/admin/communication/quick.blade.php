@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-12">
                     {{--description--}}
-                    {{ Form::open(['action'=>'CommunicationController@quickSend','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\CommunicationController@quickSend','method'=>'post']) }}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">

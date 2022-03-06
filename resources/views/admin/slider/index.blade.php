@@ -38,7 +38,7 @@
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
                             {{--<form>--}}
-                            {{ Form::open(['action'=>'SliderController@store','method'=>'post','files'=>'true']) }}
+                            {{ Form::open(['action'=>'Backend\SliderController@store','method'=>'post','files'=>'true']) }}
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title*</label>
                                 <div class="col-sm-8">
@@ -125,7 +125,7 @@
                                         <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
                                     </td>
                                     <td>
-                                        {{ Form::open(['action'=>['SliderController@destroy',$slider->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                        {{ Form::open(['action'=>['Backend\SliderController@destroy',$slider->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         {{ Form::close() }}

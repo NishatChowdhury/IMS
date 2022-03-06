@@ -45,9 +45,9 @@
                     @foreach($albums as $album)
                         <div class="col-lg-2 col-md-3 marginTop-30 {{ $album ? $album->category ? $album->category->name : '':''}}">
                             <div class="media-viewer">
-                                <a href="{{ action('FrontController@album',$album->id) }}">
+                                <a href="{{ action('Front\FrontController@album',$album->id) }}">
                                     <img class="" src="{{ asset('assets/img/album.png') }}" alt="" width="125"><br>
-                                    <a href="{{ action('FrontController@album',$album->id) }}">{{ $album->name }}</a>
+                                    <a href="{{ action('Front\FrontController@album',$album->id) }}">{{ $album->name }}</a>
                                 </a>
                             </div>
                         </div>

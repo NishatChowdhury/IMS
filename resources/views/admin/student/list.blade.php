@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\StudentController@index','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -129,10 +129,10 @@
                                     </td>
                                     <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
-                                        <a href="{{ action('StudentController@studentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ action('StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ action('StudentController@subjects',$student->id) }}" role="button" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
-                                        <a href="{{ action('StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm" title="DROPOUT"><i class="fas fa-sign-out-alt"></i></a>
+                                        <a href="{{ action('Backend\StudentController@studentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ action('Backend\StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('Backend\StudentController@subjects',$student->id) }}" role="button" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
+                                        <a href="{{ action('Backend\StudentController@dropOut',$student->id) }}" role="button" class="btn btn-danger btn-sm" title="DROPOUT"><i class="fas fa-sign-out-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

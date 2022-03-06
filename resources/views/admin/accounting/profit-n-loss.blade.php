@@ -22,7 +22,7 @@
 
     <div class="container">
         <div class="card mb-2">
-                {{ Form::open(['action'=>'AccountingController@profitNLoss','method'=>'get']) }}
+                {{ Form::open(['action'=>'Backend\AccountingController@profitNLoss','method'=>'get']) }}
                 <div class="d-flex justify-content-center">
                     <div class="form-group col-md-3">
                         <label for="" class="col-form-label">Start Date</label>

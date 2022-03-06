@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ Form::open(['action'=>'JournalController@index','method'=>'get','class'=>'form-inline']) }}
+                            {{ Form::open(['action'=>'Backend\JournalController@index','method'=>'get','class'=>'form-inline']) }}
                             <label class="sr-only">Start Date: </label>
                             {{ Form::date('start',null,['class'=>'form-control mr-sm-2','placeholder'=>'Start Date']) }}
                             <label class="sr-only">End Date: </label>
@@ -52,7 +52,7 @@
                             <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $journals->count() }}</h3>
                             {{--                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>--}}
                             <div class="ml-auto media">
-                                <a href="{{ action('JournalController@create') }}" class="btn btn-success align-self-center"><i class="fas fa-plus-circle"></i> Create Journal</a>
+                                <a href="{{ action('Backend\JournalController@create') }}" class="btn btn-success align-self-center"><i class="fas fa-plus-circle"></i> Create Journal</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -70,13 +70,13 @@
                                 <tbody>
                                 @foreach($journals as $journal)
                                     <tr>
-                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('JournalController@show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
+                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('Backend\JournalController@show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
                                         <td>{{ $journal->date }}</td>
                                         <td>{{ $journal->items->sum('credit') }}</td>
                                         <td>{{ $journal->description }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['JournalController@destroy',$journal->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('JournalController@show',$journal->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                            {{ Form::open(['action'=>['Backend\JournalController@destroy',$journal->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('Backend\JournalController@show',$journal->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                             {{ Form::close() }}
                                         </td>

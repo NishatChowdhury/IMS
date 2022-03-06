@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Staff;
 use App\AcademicClass;
 use App\AssignSubject;
 use App\ClassSchedule;
-use App\Repository\ScheduleRepository;
-use App\Staff;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repository\ScheduleRepository;
 use Illuminate\Support\Facades\Session;
 
 class ScheduleController extends Controller

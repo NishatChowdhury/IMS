@@ -101,7 +101,7 @@
                                         <td>{{ $shift->late_fee }}</td>
                                         <td>{{ $shift->absent_fee }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['ShiftController@destroy',$shift->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
+                                            {{ Form::open(['action'=>['Backend\ShiftController@destroy',$shift->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
                                         </td>
@@ -131,7 +131,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{ Form::open(['action'=>'ShiftController@store','method'=>'post']) }}
+                {{ Form::open(['action'=>'Backend\ShiftController@store','method'=>'post']) }}
                 <div class="modal-body">
                     {{--<form>--}}
                     <div class="form-group row">

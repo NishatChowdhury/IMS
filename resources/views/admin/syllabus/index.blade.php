@@ -69,7 +69,7 @@
                                                 <a href="{{ asset('assets/syllabus') }}/{{ $syllabus->file }}" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>
                                             </td>
                                             <td>
-                                                {{ Form::open(['action'=>['SyllabusController@destroy',$syllabus->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                                {{ Form::open(['action'=>['Backend\SyllabusController@destroy',$syllabus->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
 {{--                                                <a href="{{ route('syllabus.delete',$syllabus->id) }}" class="btn btn-danger btn-sm" onclick="confirm('Do you want to delete this Syllabus ?')"><i class="fas fa-trash"></i> </a>--}}
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                 {{ Form::close() }}
@@ -98,7 +98,7 @@
                 </div>
                 <div class="modal-body">
                     {{--<form>--}}
-                    {{ Form::open(['action'=>'SyllabusController@store','method'=>'post','files'=>true]) }}
+                    {{ Form::open(['action'=>'Backend\SyllabusController@store','method'=>'post','files'=>true]) }}
 
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Class</label>

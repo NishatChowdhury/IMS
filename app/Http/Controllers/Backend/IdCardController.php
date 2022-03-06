@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Repository\StudentRepository;
 use App\Staff;
 use App\Student;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Http\Controllers\Controller;
+use App\Repository\StudentRepository;
 
 class IdCardController extends Controller
 {

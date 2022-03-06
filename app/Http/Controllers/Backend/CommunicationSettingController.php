@@ -16,6 +16,7 @@ class CommunicationSettingController extends Controller
 
     public function index()
     {
+        // dd('sd');
         $apiData = CommunicationSetting::query()->first();
         return view('admin.communication.api-settings',compact('apiData'));
     }

@@ -18,9 +18,9 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('transaction/store','Backend\TransactionController@store');
 
     //Student Routes
-    Route::get('student/tod','StudentController@tod');
-    Route::get('student/esif','StudentController@esif');
-    Route::get('student/images','StudentController@images');
+    Route::get('student/tod','Backend\StudentController@tod');
+    Route::get('student/esif','Backend\StudentController@esif');
+    Route::get('student/images','Backend\StudentController@images');
     //Student Routes End
 
     //Accounts
@@ -129,19 +129,23 @@ Route::group(['prefix'=>'admin'], function(){
 // End Important Links
 
 
+    //Settings Route by Rimon
+    Route::get('settings/basicInfo','Backend\SettingsController@basicInfo')->name('settings.basicInfo');
 
 
-    Route::get('students','StudentController@index')->name('student.list');
-    Route::get('student/create','StudentController@create')->name('student.add');
-    Route::get('student/edit/{id}','StudentController@edit');
-    Route::patch('student/{id}/update','StudentController@update');
-    Route::get('student/drop/{id}','StudentController@dropOut');
-    Route::get('student/subjects/{id}','StudentController@subjects');
-    Route::patch('student/{id}/assign','StudentController@assignSubject');
-    Route::get('/load_student_id','StudentController@loadStudentId');
 
-    Route::get('student/promotion','StudentController@promotion')->name('student.promotion');
-    Route::post('student/promote','StudentController@promote')->name('student.promote');
+
+    Route::get('students','Backend\StudentController@index')->name('student.list');
+    Route::get('student/create','Backend\StudentController@create')->name('student.add');
+    Route::get('student/edit/{id}','Backend\StudentController@edit');
+    Route::patch('student/{id}/update','Backend\StudentController@update');
+    Route::get('student/drop/{id}','Backend\StudentController@dropOut');
+    Route::get('student/subjects/{id}','Backend\StudentController@subjects');
+    Route::patch('student/{id}/assign','Backend\StudentController@assignSubject');
+    Route::get('/load_student_id','Backend\StudentController@loadStudentId');
+
+    Route::get('student/promotion','Backend\StudentController@promotion')->name('student.promotion');
+    Route::post('student/promote','Backend\StudentController@promote')->name('student.promote');
 
     Route::get('features','Backend\FeatureController@index');
     Route::get('feature/create','Backend\FeatureController@create');
@@ -150,9 +154,9 @@ Route::group(['prefix'=>'admin'], function(){
     Route::patch('feature/{id}/update','Backend\FeatureController@update');
     Route::delete('feature/destroy/{id}','Backend\FeatureController@destroy');
 
-    Route::get('themes','ThemeController@index');
-    Route::get('theme/edit/{id}','ThemeController@edit');
-    Route::delete('theme/destroy/{id}','ThemeController@destroy');
+    Route::get('themes','Backend\ThemeController@index');
+    Route::get('theme/edit/{id}','Backend\ThemeController@edit');
+    Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy');
 
     // smartrahat start
 
@@ -174,24 +178,24 @@ Route::group(['prefix'=>'admin'], function(){
 // smartrahat end
 
     //Weekly Off Setting starts by Nishat
-    Route::get('attendance/weeklyOff','WeeklyOffController@index');
-    Route::post('attendance/weeklyOff/store','WeeklyOffController@store')->name('weeklyOff.store');
-    Route::get('attendance/weeklyOff/edit/{id}','WeeklyOffController@edit')->name('weeklyOff.edit');
-    Route::delete('attendance/weeklyOff/delete/{id}','WeeklyOffController@destroy');
+    Route::get('attendance/weeklyOff','Backend\WeeklyOffController@index');
+    Route::post('attendance/weeklyOff/store','Backend\WeeklyOffController@store')->name('weeklyOff.store');
+    Route::get('attendance/weeklyOff/edit/{id}','Backend\WeeklyOffController@edit')->name('weeklyOff.edit');
+    Route::delete('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy');
 //Weekly Off Setting ends by Nishat
 
     /** User Routes */
-    Route::get('users','UserController@index');
-    Route::get('user/create','UserController@create')->name('user.add');
-    Route::post('user/store','UserController@store');
-    Route::get('user/edit/{id}','UserController@edit');
-    Route::delete('user/destroy/{id}','UserController@destroy');
+    Route::get('users','Backend\UserController@index');
+    Route::get('user/create','Backend\UserController@create')->name('user.add');
+    Route::post('user/store','Backend\UserController@store');
+    Route::get('user/edit/{id}','Backend\UserController@edit');
+    Route::delete('user/destroy/{id}','Backend\UserController@destroy');
     /** User Routes End */
 
     //Syllabus Section Start A R Babu
-    Route::get('syllabuses','SyllabusController@index')->name('syllabus.index');
-    Route::post('syllabus/store','SyllabusController@store')->name('syllabus.store');
-    Route::get('syllabus/delete/{id}','SyllabusController@destroy')->name('syllabus.delete');
+    Route::get('syllabuses','Backend\SyllabusController@index')->name('syllabus.index');
+    Route::post('syllabus/store','Backend\SyllabusController@store')->name('syllabus.store');
+    Route::get('syllabus/delete/{id}','Backend\SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
 
     //leave purpose starts by Nishat
@@ -221,8 +225,57 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
 
     //Book Category ends by Nishat
+    //Admission Route by Rimon
+    Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
+    Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
+    Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList');
+    Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList');
+    Route::post('admission/upload','Backend\AdmissionController@upload');
+
+    Route::post('admission/slip-view','Backend\AdmissionController@slipView');
+
+    Route::get('attendance/setting','Backend\ShiftController@index');
+    Route::post('attendance/shift/store','Backend\ShiftController@store');
+    Route::delete('attendance/shift/delete/{id}','Backend\ShiftController@destroy');
+
+    Route::get('exam/marks/{schedule}','Backend\MarkController@index');
+    Route::get('exam/mark/download/{schedule}','Backend\MarkController@download');
+    Route::get('exam/mark/upload/{schedule}','Backend\MarkController@upload');
+    Route::post('exam/mark/up','Backend\MarkController@up');
+    Route::post('exam/mark/store','Backend\MarkController@store');
+    
+    Route::get('exam/tabulationSheet','Backend\ExamController@tabulationSheet')->name('exam.tabulationSheet');
+    //Exam management End
+    
+
+    //Students Route by Rimon
+    Route::get('student/designStudentCard','Backend\IdCardController@index');
+    Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
+
+    Route::get('student/download-blank-csv/{academicClassId}','Backend\StudentController@downloadBlank');
+    Route::get('student/upload-student/{academicClassId}','Backend\StudentController@uploadStudent');
+    Route::post('student/up','Backend\StudentController@up');
+
+    Route::get('staff/idCard','Backend\IdCardController@staff');
+    Route::post('staff/idCard/pdf','Backend\IdCardController@staffPdf');
+
+    //@MKH
+    Route::post('student/store', 'Backend\StudentController@store');
+    Route::get('student/optional','Backend\StudentController@optional');
+    Route::post('student/optional/assign','Backend\StudentController@assignOptional');
+    //End Students Route
+
+    // ID Card Routes
+    Route::post('student/card/pdf','IdCardController@pdf');
+    // ID Card Routes
 
 
+//Contact page start
+Route::get('message-index','Backend\MessagesController@index')->name('message.index');
+Route::delete('message-delete/{id}','Backend\MessagesController@destroy')->name('message.destroy');
+Route::post('message-view','Backend\MessagesController@view')->name('message.view');
+Route::post('message-store','Backend\MessagesController@store')->name('message.store');
+//Contact Page end
 
     //library Management Starts By Nishat
     //Add New Book
@@ -249,22 +302,22 @@ Route::group(['prefix'=>'admin'], function(){
 
 //    route for api setting starts here
 
-    Route::get('communication/apiSetting','CommunicationSettingController@index')->name('communication.apiSetting');
-    Route::patch('communication/apiSetting/update','CommunicationSettingController@update')->name('apiSetting.update');
+    Route::get('communication/apiSetting','Backend\CommunicationSettingController@index')->name('communication.apiSetting');
+    Route::patch('communication/apiSetting/update','Backend\CommunicationSettingController@update')->name('apiSetting.update');
 
 //    route for api setting ends here
 
 //    route for email setting starts here
-    Route::get('setting/email','Backend\EmailSettingController@index')->name('setting.email');
-    Route::post('setting/email/store','Backend\EmailSettingController@store')->name('email.store');
-    Route::post('setting/email/edit','Backend\EmailSettingController@edit')->name('email.edit');
-    Route::post('setting/email/update','Backend\EmailSettingController@update')->name('email.update');
-    Route::delete('setting/email/delete/{id}','Backend\EmailSettingController@destroy')->name('email.delete');
+    Route::get('setting/email','Backend\emailSettingController@index')->name('setting.email');
+    Route::post('setting/email/store','Backend\emailSettingController@store')->name('email.store');
+    Route::post('setting/email/edit','Backend\emailSettingController@edit')->name('email.edit');
+    Route::post('setting/email/update','Backend\emailSettingController@update')->name('email.update');
+    Route::delete('setting/email/delete/{id}','Backend\emailSettingController@destroy')->name('email.delete');
 //    route for email setting ends here
 
     //    route for google map setting starts here
-    Route::get('setting/map','MapSettingController@index')->name('setting.map');
-    Route::get('setting/map/store','MapSettingController@store')->name('map.store');
+    Route::get('setting/map','Backend\MapSettingController@index')->name('setting.map');
+    Route::get('setting/map/store','Backend\MapSettingController@store')->name('map.store');
 //    route for google map setting ends here
 
     //Social Links start
@@ -273,6 +326,13 @@ Route::group(['prefix'=>'admin'], function(){
 //Social Links End
 
     Route::get('page-media/destroy/{id}','PageMediaController@destroy');
+
+
+
+//Class Schedule
+Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index');
+Route::post('institution/class/schedule/store','Backend\ScheduleController@store');
+
 
 //Route for fee setup starts here
     Route::get('fee/fee-setup',[FeeSetupController::class,'create'])->name('fee-setup.create');
@@ -314,9 +374,9 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('gallery/category/store','Backend\GalleryCategoryController@store');
     Route::delete('gallery/category/destroy/{id}','Backend\GalleryCategoryController@destroy');
 
-    Route::get('gallery/albums','AlbumController@index');
-    Route::post('gallery/album/store','AlbumController@store');
-    Route::delete('gallery/album/delete/{id}','AlbumController@destroy');
+    Route::get('gallery/albums','Backend\AlbumController@index');
+    Route::post('gallery/album/store','Backend\AlbumController@store');
+    Route::delete('gallery/album/delete/{id}','Backend\AlbumController@destroy');
 // Gallery Routes ends
 
     Route::get('database-backup', [HomeController::class, 'database']);
@@ -332,7 +392,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('get-apply-set-store', 'Backend\OnlineApplyController@onlineApplySetStore')->name('online.typeSave');
     Route::get('load_online_adminsion_id/{id}', 'Backend\OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
     Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
-
+    Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
     
     Route::get('academic-calender/index','Backend\AcademicCalenderController@index')->name('academic-calender.index');
@@ -371,7 +431,7 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
 
 //Student profile start
-Route::get('student-profile/{studentId}','StudentController@studentProfile')->name('admin.student.profile');
+Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
 //Staff Route 
 Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');
 Route::get('staff/teacher','Backend\StaffController@teacher')->name('staff.teacher');
@@ -490,8 +550,8 @@ Route::get('exam/examination','Backend\ExamController@examination')->name('exam.
 Route::post('exam/sotre-exam', 'Backend\ExamController@store_exam')->name('store.exam');
 Route::delete('exam/destroy/{id}', 'Backend\ExamController@destroy');
 Route::get('exam/examitems','Backend\ExamController@examitems')->name('exam.examitems');
-Route::get('exam/schedule/create/{exam}','ExamScheduleController@create');
-Route::post('exam/schedule/store','ExamScheduleController@store');
+Route::get('exam/schedule/create/{exam}','Backend\ExamScheduleController@create');
+Route::post('exam/schedule/store','Backend\ExamScheduleController@store');
 Route::get('exam/schedule/{examId}', 'Backend\ExamController@schedule');
 Route::post('exam/store-schedule', 'Backend\ExamController@store_schedule');
 Route::get('exam/admit-card','Backend\ExamController@admitCard');

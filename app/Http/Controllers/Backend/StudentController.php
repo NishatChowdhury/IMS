@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\City;
 use App\Group;
@@ -23,15 +23,16 @@ use App\AcademicClass;
 use App\AssignSubject;
 use App\OnlineSubject;
 use App\StudentPayment;
+use App\StudentAcademic;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
 use App\Repository\StudentRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\StoreStudentRequest;
-use App\StudentAcademic;
 use Symfony\Component\Console\Input\Input;
 
 class StudentController extends Controller

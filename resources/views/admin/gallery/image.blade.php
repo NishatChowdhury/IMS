@@ -71,7 +71,7 @@
                                             <img src="{{ asset('assets/img/gallery') }}/{{ $image->album ? $image->album->id : '' }}/{{ $image->image }}" alt="{{ $image->title }}" width="75">
                                         </td>
                                         <td>
-                                            {{ Form::open(['action'=>['GalleryController@destroy',$image->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\GalleryController@destroy',$image->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             {{ Form::close() }}
                                         </td>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="modal-body">
                     {{--<form>--}}
-                    {{ Form::open(['action'=>'GalleryController@store','method'=>'post','files'=>true]) }}
+                    {{ Form::open(['action'=>'Backend\GalleryController@store','method'=>'post','files'=>true]) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title</label>
                         <div class="col-sm-10">

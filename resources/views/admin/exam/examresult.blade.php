@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ResultController@index','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\ResultController@index','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div style="float: right;">
-                                        <a role="button" href="{{ action('ResultController@allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> All Details </a>
+                                        <a role="button" href="{{ action('Backend\ResultController@allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> All Details </a>
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Notify</button>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Summery Pdf</button>
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> CSV</button>
@@ -154,7 +154,7 @@
                                         <td>{{ $result->gpa < 1 ? 0 : $result->gpa }}</td>
                                         <td>{{ $result->rank }}</td>
                                         <td>{{ $result->total_mark }}</td>
-                                        <td><a href="{{action('ResultController@resultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
+                                        <td><a href="{{action('Backend\ResultController@resultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ResultController@getfinalresultrule','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\ResultController@getfinalresultrule','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -139,7 +139,7 @@
                                         <td>{{ $result->gpa < 1 ? 0 : $result->gpa }}</td>
                                         <td>{{ $result->rank }}</td>
                                         <td>{{ number_format($result->total_mark,2) }}</td>
-                                        <td><a href="{{action('ResultController@finalResultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
+                                        <td><a href="{{action('Backend\ResultController@finalResultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

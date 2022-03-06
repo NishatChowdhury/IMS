@@ -22,13 +22,13 @@ class GalleryCategoryController extends Controller
     public function store(Request $request)
     {
         GalleryCategory::query()->create($request->all());
-        return redirect('gallery/category');
+        return back();
     }
 
     public function destroy($id)
     {
         $category = GalleryCategory::query()->findOrFail($id);
         $category->delete();
-        return redirect('gallery/category');
+        return back();
     }
 }

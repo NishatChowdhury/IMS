@@ -12,7 +12,6 @@ class emailSettingController extends Controller
     public function index()
     {
         $allData = EmailSetting::query()->get();
-//        dd($allData);
         return view('admin.settings.email_setting',compact('allData'));
     }
 

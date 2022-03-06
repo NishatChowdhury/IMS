@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
 use App\Exam;
-use App\ExamSchedule;
-use App\Repository\ExamRepository;
 use App\Session;
 use App\Subject;
+use App\ExamSchedule;
+use App\AcademicClass;
 use Illuminate\Http\Request;
+use App\Repository\ExamRepository;
+use App\Http\Controllers\Controller;
 
 class ExamScheduleController extends Controller
 {
