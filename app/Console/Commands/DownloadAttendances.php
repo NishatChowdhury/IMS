@@ -2,8 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Attendance;
-use App\RawAttendance;
+use App\Models\Backend\RawAttendance;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

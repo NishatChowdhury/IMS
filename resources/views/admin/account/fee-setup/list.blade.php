@@ -64,7 +64,7 @@
                                                     <button type="button" class="btn btn-outline-success btn-sm">
                                                         {{$fee->name }} -
                                                         <span class="badge badge-warning">
-                                                                {{ \App\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_list->id)->first()->amount  }}
+                                                                {{ \App\Models\Backend\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_list->id)->first()->amount  }}
                                                             </span>
                                                     </button>
                                                 @endforeach

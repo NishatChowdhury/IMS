@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\City;
-use App\Group;
-use App\Gender;
-use App\Classes;
-use App\Country;
-use App\Division;
-use App\Religion;
-use App\MeritList;
-use App\BloodGroup;
-use App\OnlineApply;
-use App\AppliedStudent;
-use App\OnlineAdmission;
+use App\Http\Controllers\Controller;
 use App\Mail\AdmissionMail;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\City;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Country;
+use App\Models\Backend\Division;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Group;
+use App\Models\Backend\MeritList;
+use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\OnlineApply;
+use App\Models\Backend\Religion;
+use App\Repository\FrontRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Repository\FrontRepository;
+
 class OnlineApplyController extends Controller
 {
     private $repository;
@@ -49,7 +50,7 @@ class OnlineApplyController extends Controller
     // school online admission form submitted data
     public function store(Request $req)
     {
-       
+
         $rules = [
             'name' => 'required',
             'name_bn' => 'required',
@@ -100,8 +101,9 @@ class OnlineApplyController extends Controller
         $data = $req->all();
       
         if ($req->hasFile('pic')){
-            $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
-            $req->file('pic')->move(public_path().'/assets/img/students/', $image);
+
+            $image = time().'.'.$req->file('pic')->getClientOriginalExtension();
+            $req->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $req->except('pic');
             $data['image'] = $image;
             try{
@@ -246,7 +248,7 @@ class OnlineApplyController extends Controller
 
         if ($request->hasFile('pic')){
             $image = now().'.'.$request->file('pic')->getClientOriginalExtension();
-            $request->file('pic')->move(public_path().'/assets/img/students/', $image);
+            $request->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $request->except('pic');
             $data['image'] = $image;
             $data['status'] = 3;
@@ -254,7 +256,7 @@ class OnlineApplyController extends Controller
         }
         if ($request->hasFile('slip')){
             $image = $request->studentId.'.'.$request->file('slip')->getClientOriginalExtension();
-            $request->file('slip')->move(public_path().'/assets/img/slip/', $image);
+            $request->file('slip')->move(storage_path('app/public/uploads/slip/'), $image);
             $data = $request->except('slip');
             $data['bank_slip'] = $image;
             $data['status'] = 3;

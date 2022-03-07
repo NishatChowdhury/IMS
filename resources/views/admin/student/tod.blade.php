@@ -131,7 +131,7 @@
                                         @if(is_object(json_decode($student->subjects)))
                                             @foreach(json_decode($student->subjects) as $subjects)
                                                 @foreach($subjects as $subject)
-                                                    <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
+                                                    <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                                 @endforeach
                                             @endforeach
                                         @endif

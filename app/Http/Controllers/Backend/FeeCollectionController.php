@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Student;
-use App\FeeSetup;
-use App\StudentPayment;
-use App\StudentAcademic;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class FeeCollectionController extends Controller
 {

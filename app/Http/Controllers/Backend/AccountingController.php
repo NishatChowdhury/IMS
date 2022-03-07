@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\COA;
-use App\Journal;
-use App\CoaParent;
-use App\JournalItem;
-use App\CoaGrandparent;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Backend\COA;
+use App\Models\Backend\CoaGrandparent;
+use App\Models\Backend\CoaParent;
+use App\Models\Backend\JournalItem;
+use Illuminate\Http\Request;
 
 class AccountingController extends Controller
 {

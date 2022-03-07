@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ Form::model($feature = new \App\Feature,['action'=>'FeatureController@store','method'=>'store','files'=>true]) }}
+                            {{ Form::model($feature = new \App\Models\Backend\Feature,['action'=>'FeatureController@store','method'=>'store','files'=>true]) }}
                             @include('admin.feature.form')
                             {{ Form::close() }}
                         </div>

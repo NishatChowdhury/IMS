@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\SiteInformation;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\SiteInformation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class SiteInformationController extends Controller

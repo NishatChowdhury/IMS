@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\NoticeCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\NoticeCategory;
+use Illuminate\Http\Request;
 
 class NoticeCategoryController extends Controller
 {

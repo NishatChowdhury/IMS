@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {

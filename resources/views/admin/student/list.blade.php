@@ -127,7 +127,7 @@
 
                                            
                                     </td>
-                                    <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
+                                    <td><img src="{{ asset('storage/uploads/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
                                         <a href="{{ action('Backend\StudentController@studentProfile',$student->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                         <a href="{{ action('Backend\StudentController@edit',$student->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>

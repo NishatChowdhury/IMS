@@ -16,7 +16,7 @@ class SeedCountries extends Migration
         Schema::table('countries', function (Blueprint $table) {
             $countries = ['Bangladesh'];
             foreach ($countries as $con){
-                \App\Country::query()->create(['name'=>$con]);
+                \App\Models\Backend\Country::query()->create(['name'=>$con]);
             }
         });
     }

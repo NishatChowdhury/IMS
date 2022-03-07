@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Shift;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Shift;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class ShiftController extends Controller

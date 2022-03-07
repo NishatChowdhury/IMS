@@ -2,38 +2,30 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\City;
-use App\Group;
-use App\Father;
-use App\Gender;
-use App\Mother;
-use App\Classes;
-use App\Country;
-use App\Section;
-use App\Session;
-use App\Student;
-use App\Division;
-use App\Guardian;
-use App\Religion;
-use App\Student1;
-use App\BloodGroup;
-//use App\State;
-use App\SessionClass;
-use App\AcademicClass;
-use App\AssignSubject;
-use App\OnlineSubject;
-use App\StudentPayment;
-use App\StudentAcademic;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\City;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Country;
+use App\Models\Backend\Father;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Group;
+use App\Models\Backend\Guardian;
+use App\Models\Backend\Mother;
+use App\Models\Backend\OnlineSubject;
+use App\Models\Backend\Religion;
+use App\Models\Backend\Section;
+use App\Models\Backend\Session;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
+use App\Models\Backend\StudentPayment;
 use App\Repository\StudentRepository;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
-use App\Http\Requests\StoreStudentRequest;
-use Symfony\Component\Console\Input\Input;
+
+//use App\State;
 
 class StudentController extends Controller
 {
@@ -224,7 +216,7 @@ class StudentController extends Controller
       
         if ($req->hasFile('pic')){
             $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
-            $req->file('pic')->move(public_path().'/assets/img/students/', $image);
+            $req->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $req->except('pic');
             $data['image'] = $image;
             try{
@@ -343,7 +335,7 @@ class StudentController extends Controller
 
         if ($request->hasFile('pic')){
             $image = date('YmdHis').'.'.$request->file('pic')->getClientOriginalExtension();
-            $request->file('pic')->move(public_path().'/assets/img/students/', $image);
+            $request->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $request->except('pic');
             $data['image'] = $image;
             try{
@@ -779,9 +771,21 @@ class StudentController extends Controller
                                                     // return $studentAcademic;
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
-        $payments = StudentPayment::query()->where('session_id',activeYear())->where('student_id',$studentId)->get();
+        $payments = StudentPayment::query()
+                                        ->whereHas('sessions', function($query){
+                                            $query->where('active', '=', 1);
+                                        })->where('student_id',$studentId)
+                                        ->get();
+        
 
-        return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
+            return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
+
+// ->whereHas('academics', function($query){
+//                          $query->whereHas('sessions', function($query){
+//                             return $query->where('active', '=', 1);
+//                          });
+//                     })
+
     }
 
     public function tod(Request $request)

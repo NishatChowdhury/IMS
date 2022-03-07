@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\GalleryCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\GalleryCategory;
+use Illuminate\Http\Request;
 
 class GalleryCategoryController extends Controller
 {

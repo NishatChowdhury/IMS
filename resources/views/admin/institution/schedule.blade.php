@@ -73,7 +73,7 @@
                                 <tbody>
                                 @foreach($schedules as $day => $schedule)
                                     <tr>
-                                        <td>{{ \App\Day::query()->findOrNew($day)->short_name }}</td>
+                                        <td>{{ \App\Models\Backend\Day::query()->findOrNew($day)->short_name }}</td>
                                         @foreach($schedule as $sch)
                                             <td>
                                                 {{ $sch->subject->name ?? '' }}<br>

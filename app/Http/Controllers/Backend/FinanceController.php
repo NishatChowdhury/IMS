@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Student;
-use App\FeeSetup;
-use App\Transport;
-use App\PaymentPivot;
-use App\StudentPayment;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\PaymentPivot;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentPayment;
+use App\Models\Backend\Transport;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 
 class FinanceController extends Controller
 {

@@ -21,7 +21,7 @@ class SeedDivisionsTable extends Migration
 
         $divisions = ['Dhaka', 'Chattogram', 'Barishal', 'Khulna', 'Rajshahi', 'Rangpur', 'Mymensingh', 'Sylhet'];
         foreach ($divisions as $div){
-            \App\Division::query()->create(['name'=>$div]);
+            \App\Models\Backend\Division::query()->create(['name'=>$div]);
         }
     }
 

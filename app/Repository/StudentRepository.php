@@ -9,23 +9,21 @@
 namespace App\Repository;
 
 
-use App\AcademicClass;
-use App\AssignSubject;
-use App\BloodGroup;
-use App\BookCategory;
-use App\City;
-use App\Classes;
-use App\Country;
-use App\Division;
-use App\Gender;
-use App\Group;
-use App\leavePurpose;
-use App\Religion;
-use App\Section;
-use App\Session;
-use App\Student;
-use App\StudentLeave;
-use App\Subject;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AssignSubject;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\BookCategory;
+use App\Models\Backend\City;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Country;
+use App\Models\Backend\Division;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Group;
+use App\Models\Backend\Religion;
+use App\Models\Backend\Section;
+use App\Models\Backend\Session;
+use App\Models\Backend\Student;
+use App\Models\Backend\Subject;
 
 class StudentRepository
 {

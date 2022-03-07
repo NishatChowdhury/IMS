@@ -16,7 +16,7 @@ class SeedNoticeTypeTable extends Migration
         Schema::table('notice_types', function (Blueprint $table) {
             $data = ['News','Notice'];
             foreach($data as $d){
-                \App\NoticeType::query()->create(['name'=>$d]);
+                \App\Models\Backend\NoticeType::query()->create(['name'=>$d]);
             }
         });
     }

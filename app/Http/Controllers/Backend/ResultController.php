@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\FM;
-use App\Exam;
-use App\Mark;
-use App\Grade;
-use App\Student;
-use App\Subject;
-use App\FinalMark;
-use App\ExamResult;
-use App\FinalResult;
-use App\ExamSchedule;
-use App\AcademicClass;
-use App\AssignSubject;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Exam;
+use App\Models\Backend\ExamResult;
+use App\Models\Backend\ExamSchedule;
+use App\Models\Backend\FinalMark;
+use App\Models\Backend\FinalResult;
+use App\Models\Backend\Grade;
+use App\Models\Backend\Mark;
+use App\Models\Backend\Student;
 use App\Repository\ResultRepository;
+use Illuminate\Http\Request;
 
 class ResultController extends Controller
 {

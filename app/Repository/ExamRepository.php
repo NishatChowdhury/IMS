@@ -8,12 +8,12 @@
 
 namespace App\Repository;
 
-use App\AcademicClass;
-use App\Classes;
-use App\Exam;
-use App\Group;
-use App\Section;
-use App\Session;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Exam;
+use App\Models\Backend\Group;
+use App\Models\Backend\Section;
+use App\Models\Backend\Session;
 
 class ExamRepository
 {

@@ -131,7 +131,7 @@
                                 </table>
 
                                 @php
-                                    $marks = App\Mark::query()
+                                    $marks = \App\Models\Backend\Mark::query()
                                         ->where('student_id',$result->student_id)
                                         ->where('exam_id',$result->exam_id)
                                         ->where('academic_class_id',$result->academic_class_id)

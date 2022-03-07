@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Exam;
-use App\Mark;
-use App\Grade;
-use App\Group;
-use App\Staff;
-use App\Gender;
-use App\Section;
-use App\Session;
-use App\Student;
-use App\Subject;
-use App\FinalResult;
-use App\ExamSchedule;
-use App\AcademicClass;
-use App\AssignSubject;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
-use App\Repository\ExamRepository;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AssignSubject;
+use App\Models\Backend\Exam;
+use App\Models\Backend\ExamSchedule;
+use App\Models\Backend\FinalResult;
+use App\Models\Backend\Grade;
+use App\Models\Backend\Mark;
+use App\Models\Backend\Session;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
+use App\Models\Backend\Subject;
+use App\Repository\ExamRepository;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ExamController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\EmailSetting;
+use App\Models\Backend\EmailSetting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 

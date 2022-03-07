@@ -173,9 +173,9 @@
                             </td>
                             <td>{{ucfirst($category->description)}}</td>
                             @if ($fee_setup->count() == 1)
-                                @php $isExit1 = \App\FeePivot::query()->where('fee_setup_id',$fee_setup->id)->where('fee_category_id',$category->id)->first() ; @endphp
+                                @php $isExit1 = \App\Models\Backend\FeePivot::query()->where('fee_setup_id',$fee_setup->id)->where('fee_category_id',$category->id)->first() ; @endphp
                                 @php
-                                    $isExit = \App\FeePivot::query()->where('fee_setup_id',$fee_setup->id)->where('fee_category_id',$category->id)->first() ;
+                                    $isExit = \App\Models\Backend\FeePivot::query()->where('fee_setup_id',$fee_setup->id)->where('fee_category_id',$category->id)->first() ;
                                 @endphp
                                 <td>{!! Form::number('amount[]',$isExit !=null ? $isExit->amount : 0  ,['class'=>'form-control','placeholder'=>'ex: 100']) !!}</td>
                             @else

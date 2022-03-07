@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Mark;
-use App\Grade;
-use App\Student;
-use App\ExamSchedule;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\ExamSchedule;
+use App\Models\Backend\Grade;
+use App\Models\Backend\Mark;
+use App\Models\Backend\Student;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class MarkController extends Controller

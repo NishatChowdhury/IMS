@@ -32,7 +32,7 @@
 {{--<option value="12">Ten</option>--}}
 {{--</select>--}}
 @php
-    $subjects = \App\Subject::all()->pluck('name','id');
+    $subjects = \App\Models\Backend\Subject::all()->pluck('name','id');
 @endphp
 <select name="subject_id" id="" required>
     <option value="">Select Subject</option>
