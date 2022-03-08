@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-9 mt-5">
                     <div class="card align-items-start shadow-v1 p-5">
-                        <img src="{{ asset('assets/files/notice') }}/{{ $news->file }}" alt="">
+                        <img src="{{ asset('storage/uploads/notice') }}/{{ $news->file }}" alt="">
                         <ul class="list-inline text-gray">
                             <li class="list-inline-item mr-3">
                                 <i class="ti-file mr-1"></i>

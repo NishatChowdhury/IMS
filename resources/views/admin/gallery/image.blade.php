@@ -68,7 +68,7 @@
                                         </td>
                                         <td>{{ $image->tags }}</td>
                                         <td>
-                                            <img src="{{ asset('assets/img/gallery') }}/{{ $image->album ? $image->album->id : '' }}/{{ $image->image }}" alt="{{ $image->title }}" width="75">
+                                            <img src="{{ asset('storage/uploads/gallery') }}/{{ $image->album ? $image->album->id : '' }}/{{ $image->image }}" alt="{{ $image->title }}" width="75">
                                         </td>
                                         <td>
                                             {{ Form::open(['action'=>['Backend\GalleryController@destroy',$image->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}

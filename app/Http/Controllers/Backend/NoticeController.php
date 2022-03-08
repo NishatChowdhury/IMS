@@ -40,7 +40,7 @@ class NoticeController extends Controller
 
         if($request->has('file')){
             $file = date('YmdHis').'.'.$request->file('file')->getClientOriginalExtension();
-            $request->file('file')->move(public_path().'/assets/files/notice/', $file);
+            $request->file('file')->move(storage_path('app/public/uploads/notice/'), $file);
             $data = $request->except('file');
             $data['file'] = $file;
             try{
@@ -70,7 +70,7 @@ class NoticeController extends Controller
 
         if($request->has('file')){
             $file = date('YmdHis').'.'.$request->file('file')->getClientOriginalExtension();
-            $request->file('file')->move(public_path().'/assets/files/notice/', $file);
+            $request->file('file')->move(storage_path('app/public/uploads/notice/'), $file);
             $data = $request->except('file');
             $data['file'] = $file;
             try{
