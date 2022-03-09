@@ -33,6 +33,7 @@ class CreateSiteInformationTable extends Migration
             $table->unsignedBigInteger('theme_id')->default(1);
             $table->boolean('admission_sms')->default(1);
             $table->boolean('admission_confirm_sms')->default(1);
+            $table->text('map')->nullable();
 
             $table->timestamps();
         });

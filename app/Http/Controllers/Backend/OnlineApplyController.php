@@ -274,7 +274,7 @@ class OnlineApplyController extends Controller
         //     $dataStore->status = $req->status;
         // }
         $dataStore->save();
-         return back();
+        return back();
     }
 
 }

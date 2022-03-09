@@ -101,7 +101,7 @@
                                  
                                  <div class="form-group col-6">
                                      <label for="">Ending Date</label>
-                                     <input type="date" name="end" id="end" class="form-control" value="{{ $onlineAdmission->start->format('Y-m-d') }}">
+                                     <input type="date" name="end" id="end" class="form-control" value="{{ $onlineAdmission->end->format('Y-m-d') }}">
                                  </div>
                                  <div class="form-group col-6" id="statusCheck">
                                          <div class="custom-control custom-switch">
@@ -132,17 +132,17 @@
 <script>
 
 // create action url here
-    function createOnlineType(){
-        let Createaction = "{{ route('online.typeSave') }}";
-        $("#ChnageUrl").attr("action", Createaction);
-        $("#statusCheck").hide();
-                    $('#class_id').val('');
-                    $('#group_id').val('');
-                    $('#start').val('');
-                    $('#end').val('');
-                    $('#onlineId').val('');
-                    $('#customSwitch1').val('');
-    }
+    // function createOnlineType(){
+    //     let Createaction = "{{ route('online.typeSave') }}";
+    //     $("#ChnageUrl").attr("action", Createaction);
+    //     $("#statusCheck").hide();
+    //                 $('#class_id').val('');
+    //                 $('#group_id').val('');
+    //                 $('#start').val('');
+    //                 $('#end').val('');
+    //                 $('#onlineId').val('');
+    //                 $('#customSwitch1').val('');
+    // }
 
 </script>
 @endsection
