@@ -13,10 +13,10 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="{{ url('/') }}">Home</a>
+                            <a href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ url('gallery') }}"> Gallery</a>
+                            <a href="{{ url('gallery') }}"> {{ __('Gallery') }}</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ $album->name }}

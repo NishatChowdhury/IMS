@@ -9,16 +9,11 @@ use App\Classes;
 use App\Session;
 use App\FeePivot;
 use App\FeeSetup;
-<<<<<<< HEAD
 
 // use app/Http/Controllers/Backend/FeeSetupController.php;
 use App\FeeCategory;
 use App\AcademicClass;
 
-=======
-use App\FeeCategory;
-use App\AcademicClass;
->>>>>>> master
 use App\FeeSetupPivot;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
@@ -88,7 +83,8 @@ class FeeSetupController extends Controller
         $feeSetup = FeeSetup::query()->create($feeSetupData);
         /** store fee setup information end */
 
-        foreach($students as $student){
+        foreach($students as $student)
+        {
             $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id]);
             foreach($fees as $fee){
                 $data = [
@@ -113,7 +109,8 @@ class FeeSetupController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function feeStudents(Request $request){
+    public function feeStudents(Request $request)
+    {
         $students = FeeSetupStudent::query()
             ->where('fee_setup_id',$request->id)
             ->get();
@@ -169,21 +166,25 @@ class FeeSetupController extends Controller
      */
     public function update($id): RedirectResponse
     {
-        //dd($id);
+        // dd($id);
         $fees = session('fees');
         $feeSetup = FeeSetup::query()->where('student_id',$id);
-        //dd($feeSetup);
+        // dd($feeSetup);
         $students = $feeSetup->feeSetupStudent;
 
-        foreach($students as $student){
+        foreach($students as $student)
+        {
             $feeSetupCategories = $student->categories;
 
-            foreach ($feeSetupCategories as $category){
+            foreach ($feeSetupCategories as $category)
+            {
                 $category->delete();
             }
 
-            foreach($fees as $fee){
-                $data = [
+            foreach($fees as $fee)
+            {
+                $data = 
+                [
                     'fee_setup_student_id' => $student->id,
                     'category_id' => $fee['category_id'],
                     'amount' => $fee['amount']
@@ -204,7 +205,8 @@ class FeeSetupController extends Controller
         $categories = $feeSetupStudent->categories;
         session()->forget('fees'); // remove existing items from fees session
 
-        foreach ($categories as $result) {
+        foreach ($categories as $result)
+         {
             //dd($result);
             $data = [
                 'fee_setup_student_id' => $result->fee_setup_student_id,
@@ -212,7 +214,6 @@ class FeeSetupController extends Controller
                 'amount' => $result->amount,
                 'paid' => $result->paid,
             ];
-
             if(session()->has('fees'))
             {
                 session()->push('fees',$data);

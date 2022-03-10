@@ -52,7 +52,6 @@ class StudentController extends Controller
 
 
         $s = $student->newQuery()->whereIn('session_id',activeYear());
-
         if($request->get('studentId')){
             $studentId = $request->get('studentId');
             //$s->where('studentId',$studentId);

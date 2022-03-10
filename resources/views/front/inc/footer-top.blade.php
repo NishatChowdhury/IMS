@@ -6,14 +6,14 @@
                 <img src="assets/img/logo-white.png" alt="Logo" width="100">
                 <div class="margin-y-40 text-justify">
                     <p>
-                        WP-IMS is a latest technology of educational institute’s digitization. This is the fastest and most intelligent application ever made in Bangladesh.
+                        {{ __('WP-IMS is a latest technology of educational institute’s digitization. This is the fastest and most intelligent application ever made in Bangladesh.') }}
                     </p>
                 </div>
             </div>
 
 
             <div class="col-lg-4 col-md-6 mt-5">
-                <h4 class="h5 text-white">Important links</h4>
+                <h4 class="h5 text-white">{{ __('Important links') }}</h4>
                 <div class="width-3rem bg-primary height-3 mt-3"></div>
                 <ul class="list-unstyled marginTop-40">
                     @foreach(importantLinks() as $link)
@@ -36,7 +36,7 @@
             </div>
 
             <div class="col-lg-4 col-md-6 mt-5">
-                <h4 class="h5 text-white">Contact Us</h4>
+                <h4 class="h5 text-white">{{ __('Contact Us') }}</h4>
                 <div class="width-3rem bg-primary height-3 mt-3"></div>
                 <ul class="list-unstyled marginTop-40">
                     <li class="mb-3"><i class="ti-headphone mr-3"></i><a href="tel:{{ siteConfig('phone') }}">{{ siteConfig('phone') }}</a></li>

@@ -22,60 +22,60 @@
                         <ul class="list-unstyled">
 
                             <li class="nav-item__has-dropdown">
-                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> About Institute </a>
+                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> {{ __('About Institute') }} </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="{{ url('introduction') }}"> Introduction </a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@governing_body')}}"> Governing Body</a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@donor')}}"> Founder & Donor</a></li>
+                                        <li><a class="nav-link__list" href="{{ url('introduction') }}"> {{ __('Introduction ') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@governing_body')}}"> {{ __('Governing Body') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@donor')}}"> {{ __('Founder & Donor') }}</a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             <li class="nav-item__has-dropdown">
-                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Administrative Message </a>
+                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> {{ __('Administrative Message') }} </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@president') }}"> President Message </a></li>
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@principal') }}"> Principal Message</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@president') }}"> {{ __('President Message ') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@principal') }}"> {{ __('Principal Message') }}</a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             <li class="nav-item__has-dropdown">
-                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Infrastructure </a>
+                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> {{ __('Infrastructure') }} </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="{{action('FrontController@building_room')}}"> Building & Rooms </a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@library')}}"> Library</a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@transport')}}"> Transport</a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@hostel')}}"> Hostel</a></li>
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@land_information') }}"> Land Information</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@building_room')}}"> {{ __('Building & Rooms ') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@library')}}"> {{ __('Library') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@transport')}}"> {{ __('Transport') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@hostel')}}"> {{ __('Hostel') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@land_information') }}"> {{ __('Land Information') }}</a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             <li class="nav-item__has-dropdown">
-                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Academics </a>
+                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> {{ __('Academics') }} </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="{{action('FrontController@class_routine')}}"> Class Routine </a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@calender')}}">Academic Calender</a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@syllabus')}}"> Syllabus</a></li>
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@diary') }}"> Diary</a></li>
-                                        <li><a class="nav-link__list" href="{{action('FrontController@performance')}}"> Performance</a></li>
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@holiday') }}"> Annual Holiday List</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@class_routine')}}"> {{ __('Class Routine ') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@calender')}}">{{ __('Academic Calender') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@syllabus')}}"> {{ __('Syllabus') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@diary') }}"> {{ __('Diary') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{action('FrontController@performance')}}"> {{ __('Performance') }}</a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@holiday') }}"> {{ __('Annual Holiday List') }}</a></li>
                                     </ul>
                                 </div>
                             </li>
 
                             <li class="nav-item__has-dropdown">
-                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> Digital Campus </a>
+                                <a class="nav-link__list dropdown-toggle" href="#" data-toggle="dropdown"> {{ __('Digital Campus') }} </a>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled">
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@multimedia_classroom') }}"> Multimedia Class Room </a></li>
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@computer_lab') }}"> Computer Lab </a></li>
-                                        <li><a class="nav-link__list" href="{{ action('FrontController@science_lab') }}"> Science Lab </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@multimedia_classroom') }}"> {{ __('Multimedia Class Room') }} </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@computer_lab') }}"> {{ __('Computer Lab') }} </a></li>
+                                        <li><a class="nav-link__list" href="{{ action('FrontController@science_lab') }}"> {{ __('Science Lab') }} </a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -83,76 +83,76 @@
                     </div>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Team</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Team') }}</a>
                     <div class="dropdown-menu">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list" href="{{action('FrontController@managing_committee')}}">Managing Committee</a></li>
-                            <li><a class="nav-link__list" href="{{action('FrontController@teacher')}}">Teachers</a></li>
-                            <li><a class="nav-link__list" href="{{action('FrontController@staff')}}">Staffs</a></li>
-                            <li><a class="nav-link__list" href="{{ action('FrontController@wapc') }}">Women Abuse Prevention Committee(WAPC)</a></li>
-                            <li><a class="nav-link__list" href="{{ action('FrontController@tswt') }}">Teacher & Staff Welfare Trust</a></li>
-                            <li><a class="nav-link__list" href="{{ action('FrontController@tci') }}">Teachers Council Information</a></li>
+                            <li><a class="nav-link__list" href="{{action('FrontController@managing_committee')}}">{{ __('Managing Committee') }}</a></li>
+                            <li><a class="nav-link__list" href="{{action('FrontController@teacher')}}">{{ __('Teachers') }}</a></li>
+                            <li><a class="nav-link__list" href="{{action('FrontController@staff')}}">{{ __('Staffs') }}</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@wapc') }}">{{ __('Women Abuse Prevention Committee(WAPC)') }}</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@tswt') }}">{{ __('Teacher & Staff Welfare Trust') }}</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@tci') }}">{{ __('Teachers Council Information') }}</a></li>
 
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Result</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Result') }}</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@internal_exam')}}">Internal Result</a></li>
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@public_exam')}}">Public Examination</a></li>
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@admission')}}">Online Admission</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@internal_exam')}}">{{ __('Internal Result') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@public_exam')}}">P{{ __('ublic Examination') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@admission')}}">{{ __('Online Admission') }}</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Information</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Information') }}</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@sports_n_culture_program') }}">Sports & Cultural Program </a></li>
-                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@center_information') }}"> Centre Information </a></li>
-                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@scholarship_info') }}"> Scholarship Info</a></li>
-                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@bncc') }}"> BNCC Info </a></li>
-                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@scout') }}"> Rover Scouts </a></li>
-                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@tender') }}"> Tender </a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@sports_n_culture_program') }}">{{ __('Sports & Cultural Program ') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@center_information') }}"> {{ __('Centre Information ') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@scholarship_info') }}"> {{ __('Scholarship Info') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@bncc') }}"> {{ __('BNCC Info ') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@scout') }}"> {{ __('Rover Scouts ') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{ action('FrontController@tender') }}"> {{ __('Tender ') }}</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Attendance</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Attendance') }}</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@attendance_summery')}}">Summery</a></li>
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@student_attendance')}}">Students</a></li>
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@teacher_attendance')}}">Teachers & Staffs</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@attendance_summery')}}">{{ __('Summery') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@student_attendance')}}">{{ __('Students') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@teacher_attendance')}}">{{ __('Teachers & Staffs') }}</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">News & Notice</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('News & Notice') }}</a>
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@notice')}}">Notice</a></li>
-                            <li><a class="nav-link__list px-0" href="{{action('FrontController@news')}}">News</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@notice')}}">{{ __('Notice') }}</a></li>
+                            <li><a class="nav-link__list px-0" href="{{action('FrontController@news')}}">{{ __('News') }}</a></li>
                         </ul>
 
                     </div>
                 </li>
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link no-caret" href="{{ action('FrontController@gallery') }}">Gallery</a>
+                    <a class="nav-link no-caret" href="{{ action('FrontController@gallery') }}">{{ __('Gallery') }}</a>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link no-caret" href="{{ action('FrontController@download') }}">Download</a>
+                    <a class="nav-link no-caret" href="{{ action('FrontController@download') }}">{{ __('Download') }}</a>
                 </li>
 
                 <li class="nav-item nav-item__has-dropdown">
-                    <a class="nav-link no-caret" href="{{ action('FrontController@contact') }}">Contacts</a>
+                    <a class="nav-link no-caret" href="{{ action('FrontController@contact') }}">{{ __('Contacts') }}</a>
                 </li>
 
             </ul>
