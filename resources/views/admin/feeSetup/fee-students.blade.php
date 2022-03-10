@@ -43,8 +43,11 @@
                                 </thead>
                                 <tbody>
                                 @foreach($students as $key => $data)
+                                {{-- {{dd($data)}} --}}
                                     <tr>
-                                        <td>{{ $data->student->studentId }}</td>
+                                        @if (isset($data->student->studentId))
+                                            <td>{{ $data->student->studentId }}</td>
+                                        @endif
                                         <td>{{ $data->student->name ?? '' }}</td>
                                         <td>
                                             <p class="badge badge-primary">{{ __('Total') }} : {{ $data->categories->sum('amount') }}</p>

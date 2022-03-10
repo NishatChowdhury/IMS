@@ -32,6 +32,7 @@ class FeeSetup extends Model
      *
      * @return BelongsTo
      */
+    
     public function academicClass(): BelongsTo
     {
         return $this->belongsTo(AcademicClass::class);
@@ -46,10 +47,8 @@ class FeeSetup extends Model
      * A fee setup has many fee setup students
      * @return HasMany
      */
-    public function feeSetupStudent(): HasMany
-    {
-        return $this->hasMany(FeeSetupStudent::class);
-    }
+     
+  
 
     /**
      * A fee setup has many categories through students

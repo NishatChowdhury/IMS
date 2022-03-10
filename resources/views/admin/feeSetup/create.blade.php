@@ -131,7 +131,7 @@
             var token = "{{ @csrf_token() }}"
             $.ajax({
                 url: "{{ url('admin/fee/fee-cart/store') }}",
-                data: {_token:token,category_id:category_id,amount:amount},
+                data: { _token:token,category_id:category_id,amount:amount},
                 type: "POST",
             }).done(function(e){
                 $("#tbody").html(e);

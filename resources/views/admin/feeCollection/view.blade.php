@@ -89,9 +89,9 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>{{$student->name}}</td>
-                                                        <td>{{ $student->father->name ?? '' }}</td>
-                                                        <td>{{$student->classes}}</td>
-                                                        <td>{{$student->rank}}</td>
+                                                        <td>{{ $student->father->f_name ?? '' }}</td>
+                                                        <td>{{ $student->academics->first()->classes->name   }}</td>
+                                                        <td>{{ $student->academics->first()->rank}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>  
@@ -107,24 +107,21 @@
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>{{ __('Month') }}</th>
-                                                    <th>{{ __('Amount') }}</th>
+                                                    <th>{{ __('Amount') }}</th>                                                            
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if(!empty($feeSetup))
-                                                    @foreach($feeSetup as $value)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $value->month->name }},&nbsp;{{ $value->year}}
-                                                            </td>
-                                                            <td>
-                                                                {{ number_format($value->feeSetupPivot->sum('amount'),2) }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                    @else 
-                                                    <h2>No data found</h2>
-                                                @endif
+                                                {{-- @foreach($student->feeSetup as $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ ($value->month->name) }},&nbsp;{{ $value->year}}
+                                                        </td>
+                                                        <td>
+                                                            {{ number_format($value->feeSetupPivot->sum('amount'),2) }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach --}}
+                                                {{-- {{dd($student->feeSetup())}} --}}
                                             </tbody>
                                         </table>
                                     </div>
@@ -135,13 +132,15 @@
                                         {{ Form::open(['url'=>'admin/fee/fee-collection/store','method'=>'POST', 'class'=>'form-horizontal']) }}
                                             <div class="form-row">
                                                 {{ Form::hidden('student_id', $student->id,['class'=>'form-control','placeholder'=>'']) }}
-                                                @foreach($feeSetup as $fee)
+                                              
+                                                {{-- @foreach($student->feeSetup as $fee)
                                                 {{ Form::hidden('fee_setup_id', $fee->id,['class'=>'form-control','placeholder'=>'']) }}
-                                                @endforeach
+                                                {{ Form::hidden('user_id', Auth::user()->id,['class'=>'form-control','placeholder'=>''])}} 
+                                                @endforeach --}}
                                                 <div class="col">
                                                     <label for="">{{ __('Date') }}</label>
                                                     <div class="input-group">
-                                                        {{ Form::date('payment_date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
+                                                        {{ Form::date('date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -159,7 +158,7 @@
                                                 <div class="col">
                                                     <label for="">{{ __('Paid Amount') }}</label>
                                                     <div class="input-group">
-                                                        {{ Form::text('paid_amount',null,['class'=>'form-control','placeholder'=>'Paid']) }}
+                                                        {{ Form::text('amount',null,['class'=>'form-control','placeholder'=>'Paid']) }}
                                                     </div>
                                                 </div>
                                             </div>

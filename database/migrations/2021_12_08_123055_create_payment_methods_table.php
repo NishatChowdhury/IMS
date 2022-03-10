@@ -14,9 +14,13 @@ class CreatePaymentMethodsTable extends Migration
     public function up()
     {
         Schema::create('payment_methods', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+            // $table->id();
+            // $table->string('name');
+            // $table->timestamps();
+            $paymentMethods = ['bkash', 'Rocket', 'Cash', 'Card'];
+            foreach($paymentMethods as $payMethod){
+                DB::table('payment_methods')->create(['name'=>$payMethod]);
+            }
         });
     }
 

@@ -23,6 +23,7 @@
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
+            {{-- {{ dd($fee_setup)}} --}}
             {{ Form::model($fee_setup,['url'=>['admin/fee/fee-setup/update',$fee_setup->id],'method'=>'patch', 'class'=>'form-horizontal']) }}
             <div class="row">
                 <div class="col-md-12">
@@ -38,7 +39,7 @@
                                 <div class="col">
                                     <label for="">Academic Class ID</label>
                                     <div class="input-group">
-                                        <p>{{ $fee_setup->academicClass->academicClasses->name }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name }}</p>
+                                        <p>{{ $fee_setup->academicClass->academicClasses->name }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name ??  '' }}</p>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -98,14 +99,16 @@
                             </thead>
                             <tbody id="tbody">
 {{--                            <!-- Fee category list will appeared here -->--}}
+                            @if (isset($fees))
                             @foreach($fees as $key => $fee)
-                                <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{ \App\FeeCategory::query()->find($fee['category_id'])->name }}</td>
-                                    <td>{{$fee['amount']}}</td>
-                                    <td class="text-center"><button type="button" onclick="removeFeeFromEditCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td>{{$key+1}}</td>
+                                <td>{{ \App\FeeCategory::query()->find($fee['category_id'])->name }}</td>
+                                <td>{{$fee['amount']}}</td>
+                                <td class="text-center"><button type="button" onclick="removeFeeFromEditCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
+                            </tr>
+                        @endforeach
+                            @endif
                             </tbody>
                         </table>
                         <div class="button text-center">

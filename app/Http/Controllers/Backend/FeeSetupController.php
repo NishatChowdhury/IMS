@@ -7,14 +7,9 @@ use App\FeeSetupStudent;
 use App\Group;
 use App\Classes;
 use App\Session;
-use App\FeePivot;
 use App\FeeSetup;
-
-// use app/Http/Controllers/Backend/FeeSetupController.php;
 use App\FeeCategory;
 use App\AcademicClass;
-
-use App\FeeSetupPivot;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -56,7 +51,8 @@ class FeeSetupController extends Controller
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'academic_class_id' => [
                 'required',
@@ -70,7 +66,6 @@ class FeeSetupController extends Controller
         $students = StudentAcademic::query()
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
-
         // get fee categories from session
         $fees = request()->session()->get('fees');
 
@@ -83,8 +78,7 @@ class FeeSetupController extends Controller
         $feeSetup = FeeSetup::query()->create($feeSetupData);
         /** store fee setup information end */
 
-        foreach($students as $student)
-        {
+        foreach($students as $student){
             $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id]);
             foreach($fees as $fee){
                 $data = [
@@ -109,10 +103,10 @@ class FeeSetupController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function feeStudents(Request $request)
-    {
+    public function feeStudents(Request $request){
+        // dd($request->id);
         $students = FeeSetupStudent::query()
-            ->where('fee_setup_id',$request->id)
+            ->where('fee_setup_id',$request->id)->with('student')
             ->get();
         return view('admin.feeSetup.fee-students',compact('students'));
     }
@@ -127,6 +121,7 @@ class FeeSetupController extends Controller
 
     public function edit($id)
     {
+        // dd($id);
         $classes = Classes::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
         $fee_setup = FeeSetup::query()->findOrFail($id);
@@ -166,14 +161,11 @@ class FeeSetupController extends Controller
      */
     public function update($id): RedirectResponse
     {
-        // dd($id);
         $fees = session('fees');
-        $feeSetup = FeeSetup::query()->where('student_id',$id);
-        // dd($feeSetup);
+        $feeSetup = FeeSetup::query()->findOrFail($id);
         $students = $feeSetup->feeSetupStudent;
 
-        foreach($students as $student)
-        {
+        foreach($students as $student){
             $feeSetupCategories = $student->categories;
 
             foreach ($feeSetupCategories as $category)
@@ -183,8 +175,7 @@ class FeeSetupController extends Controller
 
             foreach($fees as $fee)
             {
-                $data = 
-                [
+                $data = [
                     'fee_setup_student_id' => $student->id,
                     'category_id' => $fee['category_id'],
                     'amount' => $fee['amount']
@@ -198,53 +189,6 @@ class FeeSetupController extends Controller
         return redirect()->back();
     }
 
-    public function editByStudent($id)
-    {
-        $fee_categories = FeeCategory::query()->pluck('name','id');  /* All Categories are here */
-        $feeSetupStudent = FeeSetupStudent::query()->findOrFail($id);
-        $categories = $feeSetupStudent->categories;
-        session()->forget('fees'); // remove existing items from fees session
-
-        foreach ($categories as $result)
-         {
-            //dd($result);
-            $data = [
-                'fee_setup_student_id' => $result->fee_setup_student_id,
-                'category_id' => $result->category_id,
-                'amount' => $result->amount,
-                'paid' => $result->paid,
-            ];
-            if(session()->has('fees'))
-            {
-                session()->push('fees',$data);
-            }
-            else
-            {
-                session()->put(['fees'=>[$data]]);
-            }
-        }
-
-        return  view('admin.feeSetup.edit_by_student',compact('feeSetupStudent','categories','fee_categories'));
-    }
-
-    public function updateByStudent($id): RedirectResponse
-    {
-        $fees = session('fees'); /* New stored fees */
-            foreach($fees as $fee){
-                //dd($fee);
-                $data = [
-                    'fee_setup_student_id' =>$id,
-                    'category_id' => $fee['category_id'],
-                    'amount' => $fee['amount']
-                ];
-                FeeSetupCategory::query()->create($data);
-            }
-
-
-        \Illuminate\Support\Facades\Session::flash('success','Fee Updated Successfully');
-
-        return redirect()->back();
-    }
 
     public function destroy($id)
     {
