@@ -19,6 +19,10 @@ class StudentPayment extends Model
         return $this->belongsTo(Student::class,'student_id');
     }
    
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'role_user_table', 'user_id', 'role_id');
+    }
 
     public function sessions()
     {

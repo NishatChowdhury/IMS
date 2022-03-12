@@ -22,16 +22,13 @@ class FeeCollectionController extends Controller
         $payment_method = DB::table('payment_methods')->pluck('name');
         $term = $request->term;
         $student = Student::query()->where('studentId',$term)->with('academics')->first();
-        // $paidAmount = DB::table('student_payments')->select('select  month(date) as month, sum(amount) as total_amount')->groupBy('month')->get();
-        // return $paidAmount;
-        // dd($paidAmount);
-        return StudentPayment::select(
-            DB::raw('sum(amount) as `amount`'),
-            DB::raw("date as month")
-        )->groupBy('month')->get();
+        $paidAmount = StudentPayment::where('student_id', $student->id)->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
+                    ->groupBy('year','month')
+                    ->get();     
+        $previousPayment = StudentPayment::where('student_id', $student->id)->get();
         if(!empty($student->studentId) && $student->studentId == $term){
         // $feeSetup = $student->feeSetup;
-            return view('admin.feeCollection.view',compact('student','term','payment_method'));
+            return view('admin.feeCollection.view',compact('student','term','payment_method','paidAmount','previousPayment'));
         }else{
             return view('admin.feeCollection.index')->with('message', 'IT WORKS!');
         }
@@ -39,9 +36,8 @@ class FeeCollectionController extends Controller
 
     public function store(Request $request)
     {
-      
+    //   return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
-        // dd($ss);
         $academicClassID = $ss->academic_class_id;
         $feeSetupID = FeeSetup::where('academic_class_id', $academicClassID)->first();
     

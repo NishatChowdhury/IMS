@@ -62,11 +62,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>01-01-21</td>
-                                                    <td>Cash</td>
-                                                    <td>5000</td>
-                                                </tr>
+                                                @forelse ($previousPayment as $value )
+                                                    <tr>
+                                                        <td>{{ $value->date}}</td>
+                                                        <td>{{ $value->payment_method}}</td>
+                                                        <td>{{ $value->amount}}</td>
+                                                    </tr>
+                                                @empty
+                                                    <td colspan="2"><h5 class="text-center text-danger"> No data found!!</h5></td>
+                                                @endforelse
+                                                
                                                 
                                             </tbody>
                                         </table>
@@ -101,7 +106,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h5 class="text-center" style="background-color: rgba(45 136 151);color:white;padding:5px">
-                                            Monthwise Fees for ID : <?php echo $term?>
+                                            Month wise Fees for ID : <?php echo $term?>
                                         </h5>
                                         <table class="table table-bordered table-striped table-sm">
                                             <thead class="thead-dark">
@@ -111,17 +116,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach($student->feeSetup as $value)
+                                                @forelse ($paidAmount as $value )
                                                     <tr>
-                                                        <td>
-                                                            {{ ($value->month->name) }},&nbsp;{{ $value->year}}
-                                                        </td>
-                                                        <td>
-                                                            {{ number_format($value->feeSetupPivot->sum('amount'),2) }}
-                                                        </td>
+                                                        <td> {{ ($value->month) }}, &nbsp;{{ $value->year}}</td>
+                                                        <td> {{ $value->amount }}</td>
                                                     </tr>
-                                                @endforeach --}}
-                                                {{-- {{dd($student->feeSetup())}} --}}
+                                                @empty
+                                                    <td colspan="2"><h5 class="text-center text-danger"> No data found!!</h5></td>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
@@ -133,10 +135,6 @@
                                             <div class="form-row">
                                                 {{ Form::hidden('student_id', $student->id,['class'=>'form-control','placeholder'=>'']) }}
                                               
-                                                {{-- @foreach($student->feeSetup as $fee)
-                                                {{ Form::hidden('fee_setup_id', $fee->id,['class'=>'form-control','placeholder'=>'']) }}
-                                                {{ Form::hidden('user_id', Auth::user()->id,['class'=>'form-control','placeholder'=>''])}} 
-                                                @endforeach --}}
                                                 <div class="col">
                                                     <label for="">{{ __('Date') }}</label>
                                                     <div class="input-group">
