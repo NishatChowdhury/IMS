@@ -47,9 +47,6 @@ class FeeSetup extends Model
      * A fee setup has many fee setup students
      * @return HasMany
      */
-     
-  
-
     /**
      * A fee setup has many categories through students
      *
@@ -57,7 +54,7 @@ class FeeSetup extends Model
      */
     public function feeSetupCategories(): HasManyThrough
     {
-        return $this->hasManyThrough(FeeSetupCategory::class,FeeSetupStudent::class);
+        return $this->hasManyThrough(FeeSetupCategory::class, FeeSetupStudent::class);
     }
 
 //    /**

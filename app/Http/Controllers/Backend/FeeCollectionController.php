@@ -19,7 +19,7 @@ class FeeCollectionController extends Controller
 
     public function view(Request $request)
     {
-        $payment_method = DB::table('payment_methods')->pluck('name');
+        $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
         $student = Student::query()->where('studentId',$term)->with('academics')->first();
         $paidAmount = StudentPayment::where('student_id', $student->id)->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
@@ -36,7 +36,7 @@ class FeeCollectionController extends Controller
 
     public function store(Request $request)
     {
-    //   return $request->all();
+      return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
         $academicClassID = $ss->academic_class_id;
         $feeSetupID = FeeSetup::where('academic_class_id', $academicClassID)->first();

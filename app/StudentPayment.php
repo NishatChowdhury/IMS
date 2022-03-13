@@ -3,6 +3,8 @@
 namespace App;
 
 use App\FeeSetup;
+use App\PaymentMethod;
+
 use Illuminate\Database\Eloquent\Model;
 
 class StudentPayment extends Model
@@ -17,6 +19,10 @@ class StudentPayment extends Model
 
     public function student(){
         return $this->belongsTo(Student::class,'student_id');
+    }
+
+    public function payment_methods(){
+        return $this->belongsTo(PaymentMethod::class,'payment_method','id');
     }
    
     public function roles(): BelongsToMany

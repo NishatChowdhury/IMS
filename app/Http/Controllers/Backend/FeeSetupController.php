@@ -27,12 +27,11 @@ class FeeSetupController extends Controller
 
     public  function index(Request $request)
     {
-        $fees = FeeSetup::query()
+          $fees = FeeSetup::query()
             ->where('academic_class_id','!=',null)
             ->orderBy('month_id')
             ->get()
             ->groupBy('month_id');
-
         return view('admin.feeSetup.index',compact('fees'));
     }
 
@@ -53,6 +52,7 @@ class FeeSetupController extends Controller
 
     public function store(Request $request)
     {
+        $request->all();
         $request->validate([
             'academic_class_id' => [
                 'required',

@@ -65,7 +65,7 @@
                                                 @forelse ($previousPayment as $value )
                                                     <tr>
                                                         <td>{{ $value->date}}</td>
-                                                        <td>{{ $value->payment_method}}</td>
+                                                        <td>{{ $value->payment_methods->name ?? 'Undifined' }}</td>
                                                         <td>{{ $value->amount}}</td>
                                                     </tr>
                                                 @empty
@@ -150,7 +150,7 @@
                                                 <div class="col">
                                                     <label for="">Pay Method</label>
                                                     <div class="input-group">
-                                                        {{ Form::select('payment_method',$payment_method,null,['class'=>'form-control','placeholder'=>'Select Method']) }}
+                                                        {{ Form::select('payment_method',$payment_method,$payment_method,['class'=>'form-control']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">
