@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\FeeSetupCategory;
-use App\FeeSetupStudent;
-use App\Group;
-use App\Classes;
-use App\Session;
-use App\FeeSetup;
-use App\FeeCategory;
-use App\AcademicClass;
-use App\StudentAcademic;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Classes;
+use App\Models\Backend\FeeCategory;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\FeeSetupCategory;
+use App\Models\Backend\FeeSetupStudent;
+use App\Models\Backend\Group;
+use App\Models\Backend\Session;
+use App\Models\Backend\StudentAcademic;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as sessions;
+use Illuminate\Validation\Rule;
 
 class FeeSetupController extends Controller
 {

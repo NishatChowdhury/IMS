@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Group;
-use App\Staff;
-use App\Classes;
-use App\Section;
-use App\Session;
-use App\Subject;
-use App\SessionClass;
-use App\AcademicClass;
-use App\AssignSubject;
-use App\StudentAcademic;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AssignSubject;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Group;
+use App\Models\Backend\Section;
+use App\Models\Backend\Session;
+use App\Models\Backend\Subject;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class InstitutionController extends Controller

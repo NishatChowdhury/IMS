@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'TransportController@student_list','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\TransportController@student_list','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -93,7 +93,7 @@
                             <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
                     </div>
-                {{ Form::open(['action'=>'TransportController@transport_assign','method'=>'post']) }}
+                {{ Form::open(['action'=>'Backend\TransportController@transport_assign','method'=>'post']) }}
                 <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped table-sm">

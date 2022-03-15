@@ -43,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {{ Form::open(['action'=>'JournalController@store','method'=>'post','id'=>'form']) }}
+                        {{ Form::open(['action'=>'Backend\JournalController@store','method'=>'post','id'=>'form']) }}
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-4">

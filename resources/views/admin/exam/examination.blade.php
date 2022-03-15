@@ -27,19 +27,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-12">--}}
-{{--                                    <div class="dec-block">--}}
-{{--                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
-{{--                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="dec-block-dec" style="float:left;">--}}
-{{--                                            <h5 style="margin-bottom: 0px;">Total Found</h5>--}}
-{{--                                            <p>00</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
@@ -73,14 +60,14 @@
                                     <td>{{ $exam->status }}</td>
                                     <td>{{ $exam->notify == 1 ? "Notify" : "Don't Notify" }}</td>
                                     <td>
-                                        {{ Form::open(['action'=>['ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
+                                        {{ Form::open(['action'=>['Backend\ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
                                         <a href="{{ action('ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
 
-                                        <a href="{{ action('ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
-                                        <a href="{{ action('ResultController@tabulation',$exam->id) }}" class="btn btn-dark btn-sm" title="Tabulation Sheet"><i class="fas fa-list-ol"></i></a>
+                                        <a href="{{ action('Backend\ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
+                                        <a href="{{ action('Backend\ResultController@tabulation',$exam->id) }}" class="btn btn-dark btn-sm" title="Tabulation Sheet"><i class="fas fa-list-ol"></i></a>
 {{--                                        <a type="button" href="{{ action('ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>--}}
                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
-                                        <a href="{{ action('ResultController@generateResult',$exam->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></a>
+                                        <a href="{{ action('Backend\ResultController@generateResult',$exam->id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></a>
                                         {{ Form::close() }}
                                     </td>
                                 </tr>
@@ -120,7 +107,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'ExamController@store_exam', 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>'Backend\ExamController@store_exam', 'method'=>'post']) !!}
 
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>

@@ -139,20 +139,20 @@
 {{--                                                @endif--}}
                                                 <td>
                                                     @php
-                                                        $attn = \App\RawAttendance::query()
+                                                        $attn = \App\Models\Backend\RawAttendance::query()
                                                                     ->where(function($query)use($student){
                                                                         $query->where('registration_id',$student->studentId)->orWhere('registration_id',$student->card_id);
                                                                     })
                                                                     ->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->get();
 
-                                                    $isWeeklyOff = \App\weeklyOff::query()->where('show_option','like','%'.Carbon\Carbon::make($year.'-'.$month.'-'.$i)->dayOfWeekIso.'%')->exists();
-                                                    $isHoliday = App\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
-                                                    $inLeave = \App\StudentLeave::query()->where('student_id',$student->id)->where('date',$year.'-'.$month.'-'.$i)->exists();
+                                                    $isWeeklyOff = \App\Models\Backend\weeklyOff::query()->where('show_option','like','%'.Carbon\Carbon::make($year.'-'.$month.'-'.$i)->dayOfWeekIso.'%')->exists();
+                                                    $isHoliday = \App\Models\Backend\HolidayDuration::query()->whereDate('date',$year.'-'.$month.'-'.$i)->exists();
+                                                    $inLeave = \App\Models\Backend\StudentLeave::query()->where('student_id',$student->id)->where('date',$year.'-'.$month.'-'.$i)->exists();
 
-                                                    $shiftInTime = App\Shift::query()->first()->start;
-                                                    $shiftOutTime = App\Shift::query()->first()->end;
-                                                    $grace = App\Shift::query()->first()->grace;
+                                                    $shiftInTime = \App\Models\Backend\Shift::query()->first()->start;
+                                                    $shiftOutTime = \App\Models\Backend\Shift::query()->first()->end;
+                                                    $grace = \App\Models\Backend\Shift::query()->first()->grace;
 
                                                     $shiftInTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftInTime)->addMinutes($grace);
                                                     $shiftOutTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftOutTime);

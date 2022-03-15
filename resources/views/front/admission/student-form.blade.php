@@ -52,11 +52,11 @@
                         </tr>
                         <tr>
                             <td>Group</td>
-                            <td>{{ \App\Group::query()->findOrNew($student['group_id'])->name }}</td>
+                            <td>{{ \App\Models\Backend\Group::query()->findOrNew($student['group_id'])->name }}</td>
                         </tr>
                         <tr>
                             <td>Session</td>
-                            <td>{{ \App\Session::query()->findOrNew($student['session_id'])->year }}</td>
+                            <td>{{ \App\Models\Backend\Session::query()->findOrNew($student['session_id'])->year }}</td>
                         </tr>
                         <tr>
                             <td>SSC GPA</td>
@@ -100,11 +100,11 @@
                             </tr>
                             <tr>
                                 <td>Gender</td>
-                                <td>{{ \App\Gender::query()->findOrNew($student['gender_id'])->name }}</td>
+                                <td>{{ \App\Models\Backend\Gender::query()->findOrNew($student['gender_id'])->name }}</td>
                             </tr>
                             <tr>
                                 <td>Blood Group</td>
-                                <td>{{ \App\BloodGroup::query()->findOrNew($student['blood_group_id'])->name }}</td>
+                                <td>{{ \App\Models\Backend\BloodGroup::query()->findOrNew($student['blood_group_id'])->name }}</td>
                             </tr>
                         </table>
                     </div>
@@ -112,7 +112,7 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <img src="{{ asset('assets/img/students') }}/{{ $student->image }}" class="img-thumbnail" width="180" height="220" alt="">
+                            <img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}" class="img-thumbnail" width="180" height="220" alt="">
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                             <td>NID No.</td>
                             <td>{{ $student['nid'] }}</td>
                             <td>Religion</td>
-                            <td>{{ \App\Religion::query()->findOrNew($student['religion_id'])->name }}</td>
+                            <td>{{ \App\Models\Backend\Religion::query()->findOrNew($student['religion_id'])->name }}</td>
                         </tr>
                         <tr>
                             <td>Nationality</td>
@@ -162,9 +162,9 @@
                         </tr>
                         <tr>
                             <td>Class</td>
-                            <td>{{ \App\Classes::query()->findOrNew($student['class_id'])->name }}</td>
+                            <td>{{ \App\Models\Backend\Classes::query()->findOrNew($student['class_id'])->name }}</td>
                             <td>Session</td>
-                            <td>{{ \App\Session::query()->findOrNew($student['session_id'])->year }}</td>
+                            <td>{{ \App\Models\Backend\Session::query()->findOrNew($student['session_id'])->year }}</td>
                         </tr>
                         <tr>
                             <td>Student's Mobile</td>
@@ -295,8 +295,8 @@
                                         <ol style="margin-bottom: 0">
                                             @foreach($subject as $sub)
                                             <li>
-                                                {{ \App\OnlineSubject::query()->findOrNew($sub)->name }}
-                                                ({{ \App\OnlineSubject::query()->findOrNew($sub)->code }})
+                                                {{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->name }}
+                                                ({{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->code }})
                                             </li>
                                             @endforeach
                                         </ol>

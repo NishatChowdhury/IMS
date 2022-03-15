@@ -1,19 +1,15 @@
 <?php
 
-use App\COA;
-use App\CommunicationSetting;
-use App\HolidayDuration;
-use App\Journal;
-use App\JournalItem;
-use App\Menu;
-use App\RawAttendance;
-use App\Session;
-use App\ImportantLink;
-use App\Shift;
-use App\SiteInformation;
-use App\Theme;
-use App\weeklyOff;
-use Carbon\Carbon;
+use App\Models\Backend\COA;
+use App\Models\Backend\CommunicationSetting;
+use App\Models\Backend\ImportantLink;
+use App\Models\Backend\Journal;
+use App\Models\Backend\JournalItem;
+use App\Models\Backend\Menu;
+use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Session;
+use App\Models\Backend\SiteInformation;
+use App\Models\Backend\Theme;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HigherOrderCollectionProxy;
@@ -34,7 +30,7 @@ function smsConfig($col){
 }
 
 function socialConfig($col){
-    $config = \App\Social::query()->first();
+    $config = \App\Models\Backend\Social::query()->first();
     return $config->$col;
 }
 
@@ -53,7 +49,7 @@ function importantLinks(){
 }
 
 function academicClass($id){
-    $academicClass = \App\AcademicClass::query()->findOrFail($id);
+    $academicClass = \App\Models\Backend\AcademicClass::query()->findOrFail($id);
     $className = $academicClass->academicClasses->name ?? '';
     $section = $academicClass->section->name ?? '';
     $group = $academicClass->group->name ?? '';

@@ -9,8 +9,8 @@
 namespace App\Repository;
 
 
-use App\NoticeCategory;
-use App\NoticeType;
+use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\NoticeType;
 
 class NoticeRepositories
 {

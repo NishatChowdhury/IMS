@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Group;
-use App\Father;
-use App\Mother;
-use App\Classes;
-use App\Session;
-use App\Student;
-use App\Guardian;
-use App\MeritList;
-use App\StudentSsc;
-use App\AcademicClass;
-use App\AppliedStudent;
-use App\OnlineAdmission;
-use App\SiteInformation;
-use App\StudentAcademic;
-use Illuminate\Http\Request;
-use App\CommunicationSetting;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\Father;
+use App\Models\Backend\Guardian;
+use App\Models\Backend\MeritList;
+use App\Models\Backend\Mother;
+use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\SiteInformation;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
+use App\Models\Backend\StudentSsc;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 
 class AdmissionController extends Controller
 {

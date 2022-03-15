@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Shift;
-use App\Staff;
-use App\Classes;
-use App\Student;
-use App\weeklyOff;
-use Carbon\Carbon;
-use App\Attendance;
-use App\StudentLeave;
-use App\AcademicClass;
-use App\RawAttendance;
-use App\HolidayDuration;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Attendance;
+use App\Models\Backend\Classes;
+use App\Models\Backend\HolidayDuration;
+use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Shift;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentLeave;
+use App\Models\Backend\weeklyOff;
 use App\Repository\AttendanceRepository;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {

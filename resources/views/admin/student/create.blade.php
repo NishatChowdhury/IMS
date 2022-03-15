@@ -39,7 +39,7 @@
                         @endif
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'StudentController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!!  Form::open(['action'=>'Backend\StudentController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                             @include('admin.student.form')
                         {!! Form::close() !!}
                     </div>

@@ -63,7 +63,7 @@
 
 
                                     </td>
-                                    <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
+                                    <td><img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
                                         @if ($student->status == 0 )
                                             <span class="badge badge-danger">Applied</span>

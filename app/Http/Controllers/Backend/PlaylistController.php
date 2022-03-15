@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Playlist;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Playlist;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class PlaylistController extends Controller

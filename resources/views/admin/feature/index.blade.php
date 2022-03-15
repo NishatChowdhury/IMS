@@ -39,7 +39,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <a href="{{ action('FeatureController@create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i> Add New</a>
+                                <a href="{{ action('Backend\FeatureController@create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i> Add New</a>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ Form::model($feature,['action'=>['FeatureController@update',$feature->id],'method'=>'patch']) }}
+                                            {{ Form::model($feature,['action'=>['Backend\FeatureController@update',$feature->id],'method'=>'patch']) }}
                                             <select name="active" class="active" title="Toggle activeness">
                                                 <option value="0" {{ $feature->active == 0 ? 'selected' : '' }}>Inactive</option>
                                                 <option value="1" {{ $feature->active == 1 ? 'selected' : '' }}>Active</option>
@@ -78,8 +78,8 @@
                                             <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}" alt="" width="60">
                                         </td>
                                         <td>
-                                            {{ Form::model($feature,['action'=>['FeatureController@destroy',$feature->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('FeatureController@edit',$feature->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            {{ Form::model($feature,['action'=>['Backend\FeatureController@destroy',$feature->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('Backend\FeatureController@edit',$feature->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                             {{ Form::submit('X',['class'=>'btn btn-danger btn-sm']) }}
                                             {{ Form::close() }}
                                         </td>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\FeeCategory;
-use App\FeeSetupCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\FeeCategory;
+use App\Models\Backend\FeeSetupCategory;
 use Illuminate\Http\Request;
 
 class FeeCartController extends Controller

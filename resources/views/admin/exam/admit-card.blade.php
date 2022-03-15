@@ -30,7 +30,7 @@
                     <div class="card">
                         <!-- form start -->
                         {{--<form method="GET" action="http://localhost/wpschool/public/students" accept-charset="UTF-8" role="form">--}}
-                        {{ Form::open(['action'=>'ExamController@admitCard','method'=>'get','role'=>'form']) }}
+                        {{ Form::open(['action'=>'Backend\ExamController@admitCard','method'=>'get','role'=>'form']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">

@@ -70,6 +70,7 @@ class CreateAppliedStudentsTable extends Migration
             $table->string('image')->nullable();
             $table->text('subjects')->nullable();
             $table->timestamps();
+            $table->integer('approved')->nullable();
         });
     }
 

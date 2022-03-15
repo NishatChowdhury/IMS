@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Gallery;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
+use App\Models\Backend\Gallery;
 use App\Repository\GalleryRepositories;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class GalleryController extends Controller
 {
@@ -33,7 +33,7 @@ class GalleryController extends Controller
         if($request->hasFile('image')){
             foreach($request->file('image') as $img){
                 $name = time().'.'.$img->getClientOriginalExtension();
-                $img->move(public_path().'/assets/img/gallery/'.$request->album_id.'/', $name);
+                $img->move(storage_path('app/public/uploads/gallery/').$request->album_id.'/', $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 Gallery::query()->create($data);
@@ -41,14 +41,14 @@ class GalleryController extends Controller
         }else{
             Gallery::query()->create($request->all());
         }
-        return redirect('gallery/image');
+        return back();
     }
 
     public function destroy($id)
     {
         $image = Gallery::query()->findOrFail($id);
-        File::delete('assets/img/gallery/'.$image->album_id.'/'.$image->image);
+        File::delete(storage_path('app/public/uploads/gallery/').$image->album_id.'/'.$image->image);
         $image->delete();
-        return redirect('gallery/image');
+        return back();
     }
 }

@@ -4,8 +4,8 @@
 namespace App\Repository;
 
 
-use App\ChartOfAccount;
-use App\CoaParent;
+use App\Models\Backend\ChartOfAccount;
+use App\Models\Backend\CoaParent;
 
 class FinanceRepository
 {

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Student;
-use App\FeePivot;
-use App\FeeSetup;
-use App\StudentPayment;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\FeePivot;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\Student;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {

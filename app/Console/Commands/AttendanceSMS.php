@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\RawAttendance;
-use App\Student;
+use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Student;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;

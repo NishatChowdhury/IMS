@@ -59,7 +59,7 @@
                         <tbody class="text-center">
                         @foreach($cls->groupBy('day_id') as $day => $schedule)
                             <tr>
-                                <td class="text-bold">{{ \App\Day::query()->findOrNew($day)->short_name }}</td>
+                                <td class="text-bold">{{ \App\Models\Backend\Day::query()->findOrNew($day)->short_name }}</td>
                                 @foreach($schedule as $sch)
                                     <td>
                                         {{ $sch->subject->short_name ?? '' }}<br>

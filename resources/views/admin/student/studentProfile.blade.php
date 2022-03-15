@@ -216,7 +216,8 @@ ul.parent_info li {
                                         </thead>
 
                                         <tbody>
-                                        @foreach($payments as $payment)
+                                            
+                                            @forelse ($payments as $payment)
                                             <tr>
                                                 <td style="text-align: center">{{\Carbon\Carbon::parse($payment->created_at)->format('m F Y')}}</td>
                                                 <td style="text-align: center">{{$payment->id}}</td>
@@ -227,7 +228,15 @@ ul.parent_info li {
                                                 <td style="text-align: right">{{ number_format($payment->paid_amount,2) }}</td>
                                                 <td style="text-align: right">{{ number_format($payment->due,2) }}</td>
                                             </tr>
-                                        @endforeach
+                                            @empty
+                                            <tr>
+                                                <td style="text-align: center" colspan="8">
+                                                    Data Not found :)
+                                                </td>
+                                                
+                                            </tr>
+                                            @endforelse
+
                                         </tbody>
                                     </table>
                                 </div>

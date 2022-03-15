@@ -156,7 +156,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
                 <div class="pull-left">
-                    <a href="{{ action('UserController@profile') }}" class="btn btn-success btn-flat">Profile</a>
+                    <a href="{{ action('Backend\UserController@profile') }}" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-danger btn-flat" href="{{ route('logout') }}"

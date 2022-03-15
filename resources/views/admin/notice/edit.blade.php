@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="card-body">
-                            {{ Form::model($notice,['action'=>['NoticeController@update',$notice->id],'method'=>'patch','files'=>true]) }}
+                            {{ Form::model($notice,['action'=>['Backend\NoticeController@update',$notice->id],'method'=>'patch','files'=>true]) }}
                             @include('admin.notice.form')
                             {{ Form::close() }}
                         </div>

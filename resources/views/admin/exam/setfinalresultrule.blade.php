@@ -43,7 +43,7 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            {{ Form::open(['action'=>'ResultController@finalResultNew','method'=>'post']) }}
+                            {{ Form::open(['action'=>'Backend\ResultController@finalResultNew','method'=>'post']) }}
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>

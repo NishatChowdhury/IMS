@@ -1,7 +1,7 @@
 <?php
 
-use App\CoaGrandparent;
-use App\CoaParent;
+use App\Models\Backend\CoaGrandparent;
+use App\Models\Backend\CoaParent;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

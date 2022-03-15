@@ -24,7 +24,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        {{ Form::model($user,['action'=>'UserController@update','method'=>'patch']) }}
+                        {{ Form::model($user,['action'=>'Backend\UserController@update','method'=>'patch']) }}
                         <div class="card">
                             <div class="card-header text-center">Account Information</div>
                             <div class="card-body">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="col">
-                        {{ Form::model($user,['action'=>'UserController@password','method'=>'patch']) }}
+                        {{ Form::model($user,['action'=>'Backend\UserController@password','method'=>'patch']) }}
                         <div class="card">
                             <div class="card-header text-center">Change Password</div>
                             <div class="card-body">

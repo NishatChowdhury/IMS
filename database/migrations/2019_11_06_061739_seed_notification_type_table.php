@@ -16,7 +16,7 @@ class SeedNotificationTypeTable extends Migration
         Schema::table('notification_types', function (Blueprint $table) {
             $data = ['SMS','APP'];
             foreach($data as $d){
-                \App\NotificationType::query()->create(['name'=>$d]);
+                \App\Models\Backend\NotificationType::query()->create(['name'=>$d]);
             }
         });
     }

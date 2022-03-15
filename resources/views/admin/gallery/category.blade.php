@@ -55,7 +55,7 @@
                                     <td>{{ $category->albums->count() }} Album(s)</td>
                                     <td>{{ $category->images->count() }} Image(s)</td>
                                     <td>
-                                        {{ Form::open(['action'=>['GalleryCategoryController@destroy',$category->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                        {{ Form::open(['action'=>['Backend\GalleryCategoryController@destroy',$category->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         {{ Form::close() }}
                                     </td>
@@ -82,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'GalleryCategoryController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\GalleryCategoryController@store','method'=>'post']) }}
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category Name</label>
                             <div class="col-sm-10">

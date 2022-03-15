@@ -69,7 +69,7 @@
 <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
     <ul>
         @foreach($notices as $notice)
-        <li>@if($notice->start)[{{ $notice->start->format('Y-m-d') }}]@endif<a href="{{ action('FrontController@noticeDetails',$notice->id) }}">&nbsp;{{ $notice->title }}</a></li>
+        <li>@if($notice->start)[{{ $notice->start->format('Y-m-d') }}]@endif<a href="{{ action('Front\FrontController@noticeDetails',$notice->id) }}">&nbsp;{{ $notice->title }}</a></li>
         @endforeach
     </ul>
 </marquee>

@@ -37,7 +37,7 @@
                     <div class="card">
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Link</h4>
-                            {{ Form::open(['action'=>'LinkController@store','method'=>'post']) }}
+                            {{ Form::open(['action'=>'Backend\LinkController@store','method'=>'post']) }}
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title*</label>
                                 <div class="col-sm-8">
@@ -88,7 +88,7 @@
                                         <td>{{ $link->title }}</td>
                                         <td>{{ $link->link }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['LinkController@destroy',$link->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\LinkController@destroy',$link->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
                                         </td>

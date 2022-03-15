@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'StudentController@esif','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\StudentController@esif','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -124,13 +124,13 @@
                                     <td>
                                         @foreach(json_decode($student->admission->subjects) as $subjects)
                                             @foreach($subjects as $subject)
-                                                <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
+                                                <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                             @endforeach
                                         @endforeach
                                     </td>
                                     <td>
                                         @foreach(json_decode($student->admission->subjects)->optional as $subjects)
-                                            <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
+                                            <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                         @endforeach
                                     </td>
                                     <td>
