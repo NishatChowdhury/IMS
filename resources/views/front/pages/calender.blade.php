@@ -8,15 +8,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Academic Calender</h2>
+                    <h2>{{ __('Academic Calender') }}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Institute</a>
+                            <a href="#">{{ __('Institute') }}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Academics</a>
+                            <a href="#"> {{ __('Academics') }}</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ ucfirst($content->name) }}
@@ -33,11 +33,11 @@
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark text-center">
                         <tr>
-                            <th>Sl</th>
-                            <th>Title</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Days</th>
+                            <th>{{ __('Sl') }}</th>
+                            <th>{{ __('Title') }}</th>
+                            <th>{{ __('Start Date') }}</th>
+                            <th>{{ __('End Date') }}</th>
+                            <th>{{ __('Days') }}</th>
                         </tr>
                     </thead>
                     @php $i=1; $total = 0;@endphp
@@ -73,7 +73,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>Total Days</th>
+                            <th>{{ __('Total Days') }}</th>
                             <th class="text-center">{{ $total }}</th>
                         </tr>
                     </tfoot>

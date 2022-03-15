@@ -19,7 +19,7 @@
                             <a href="#"> Elements</a>
                         </li>
                         <li class="breadcrumb-item">
-                            About us
+                            {{ __('About us') }}
                         </li>
                     </ol>
                 </div>

@@ -6,8 +6,8 @@
                     <a class="logo-default" href="{{ url('/') }}"><img alt="" src="assets/img/logo-only.jpg"></a>
                 </div>
                 <div class="col-10 hdr">
-                    <p style="font-size:28px;font-weight:bold">CHIPATALI  JAMIA GAUSIA MUINIA KAMIL (M.A) MADRASHAH</p>
-                    <p style="font-size:28px;font-weight:bold">ছিপাতলী জামেয়া গাউছিয়া মূঈনীয়া কামিল (এম. এ) মাদ্রাসা</p>
+                    <p style="font-size:28px;font-weight:bold">{{__('CHIPATALI  JAMIA GAUSIA MUINIA KAMIL (M.A) MADRASHAH') }}</p>
+                    <p style="font-size:28px;font-weight:bold">{{__('ছিপাতলী জামেয়া গাউছিয়া মূঈনীয়া কামিল (এম. এ) মাদ্রাসা') }}</p>
                 </div>
             </div>
         </div>

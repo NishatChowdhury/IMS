@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 class CreatePaymentMethodsTable extends Migration
 {
     /**
@@ -11,12 +11,17 @@ class CreatePaymentMethodsTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('payment_methods', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+            // $table->id();
+            // $table->string('name');
+            // $table->timestamps();
+            $paymentMethods = ['Cash', 'Rocket','bkash'];
+            foreach($paymentMethods as $payMethod){
+                DB::table('payment_methods')->create(['name'=>$payMethod]);
+            }
         });
     }
 

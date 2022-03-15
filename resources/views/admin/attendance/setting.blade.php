@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Attendance Setting </h1>
+                    <h1>{{__('Attendance Setting') }} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Attendance Setting</li>
+                        <li class="breadcrumb-item"><a href="#">{{__('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{__('Attendance Setting') }}</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                         <div class="col-md-12">
                             <div class="card" style="margin: 10px;">
                                 <div class="card-header">
-                                    <h3 class="card-title">Quick  Search</h3>
+                                    <h3 class="card-title">{{__('Quick  Search') }}</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->

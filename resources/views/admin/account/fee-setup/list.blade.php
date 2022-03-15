@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Account</h1>
+                    <h1>{{__('Account') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Finance</a></li>
-                        <li class="breadcrumb-item active">Fee Setup List</li>
+                        <li class="breadcrumb-item"><a href="#">{{__('Finance') }}</a></li>
+                        <li class="breadcrumb-item active">{{__('Fee Setup List') }}</li>
                     </ol>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
                             <div class="card-header">
-                                <h5 class="card-title">List Fee Setup</h5>
+                                <h5 class="card-title">{{__('List Fee Setup') }}</h5>
                             </div>
                         </div>
                         <div class="card-body" style="border-bottom: none !important;">
@@ -47,10 +47,10 @@
                                 <table id="example2" class="table table-bordered table-striped table-sm">
                                     <thead class="table-dark">
                                     <tr class="text-center">
-                                        <th>SL</th>
-                                        <th>Month Name</th>
-                                        <th>Category</th>
-                                        <th>Action</th>
+                                        <th>{{__('SL') }}</th>
+                                        <th>{{__('Month Name') }}</th>
+                                        <th>{{__('Category') }}</th>
+                                        <th>{{__('Action') }}</th>
                                     </tr>
                                     </thead>
                                     @php $i=1 @endphp

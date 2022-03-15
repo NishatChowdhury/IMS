@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Finance</h1>
+                    <h1 class="m-0 text-dark">{{__('Finance') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Location Assign</li>
+                        <li class="breadcrumb-item"><a href="#">{{__('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{__('Location Assign') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -33,31 +33,31 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{__('Student ID') }}</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Name</label>
+                                    <label for="">{{__('Name') }}</label>
                                     <div class="input-group">
                                         {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="">{{__('Class') }}</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Section</label>
+                                    <label for="">{{__('Section') }}</label>
                                     <div class="input-group">
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Group</label>
+                                    <label for="">{{__('Group') }}</label>
                                     <div class="input-group">
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
@@ -99,15 +99,15 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr class="text-center">
-                                <th>Rank</th>
-                                <th>Student</th>
-                                <th>Id</th>
-                                <th>Class</th>
+                                <th>{{__('Rank') }}</th>
+                                <th>{{__('Student') }}</th>
+                                <th>{{__('Id') }}</th>
+                                <th>{{__('Class') }}</th>
                                 <th>
                                     {{--@if($students != [])--}}
                                     {{--{{ Form::select('sub',$repository->optionals($students->first()->class_id),null,['class'=>'form-control','id'=>'sub']) }}--}}
                                     {{--@endif--}}
-                                    Location
+                                    {{__('Location') }}
                                 </th>
                             </tr>
                             </thead>

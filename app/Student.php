@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\FeeSetupStudent;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Student extends Model
@@ -135,6 +136,7 @@ class Student extends Model
         return $this->hasMany(FeeSetup::class);
     }
 
+
     /**
      * A student has many fee setup pivot
      *
@@ -145,6 +147,7 @@ class Student extends Model
         return $this->hasManyThrough(FeeSetupPivot::class,FeeSetup::class);
     }
 
+    
     public function academicClasses()
     {
         return $this->belongsTo(Classes::class,'class_id');
@@ -172,10 +175,12 @@ class Student extends Model
      * A student has many academics
      *
      * @return HasMany
+     * 
      */
+
     public function academics(): HasMany
     {
-        return $this->hasMany(StudentAcademic::class);
+        return $this->hasMany(StudentAcademic::class)->latest();
     }
 
     // protected $dates = ['dob'];

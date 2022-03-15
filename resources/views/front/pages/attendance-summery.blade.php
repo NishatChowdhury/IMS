@@ -8,15 +8,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Attendance Summery</h2>
+                    <h2>{{ __('Attendance Summery') }}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home') }}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Attendance</a>
+                            <a href="#"> {{ __('Attendance') }}</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ ucfirst($content->name) }}

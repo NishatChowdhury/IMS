@@ -62,11 +62,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>01-01-21</td>
-                                                    <td>Cash</td>
-                                                    <td>5000</td>
-                                                </tr>
+                                                @forelse ($previousPayment as $value )
+                                                    <tr>
+                                                        <td>{{ $value->date}}</td>
+                                                        <td>{{ $value->payment_methods->name ?? 'Undifined' }}</td>
+                                                        <td>{{ $value->amount}}</td>
+                                                    </tr>
+                                                @empty
+                                                    <td colspan="2"><h5 class="text-center text-danger"> No data found!!</h5></td>
+                                                @endforelse
+                                                
                                                 
                                             </tbody>
                                         </table>
@@ -89,9 +94,9 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>{{$student->name}}</td>
-                                                        <td>{{ $student->father->name ?? '' }}</td>
-                                                        <td>{{$student->classes}}</td>
-                                                        <td>{{$student->rank}}</td>
+                                                        <td>{{ $student->father->f_name ?? '' }}</td>
+                                                        <td>{{ $student->academics->first()->classes->name   }}</td>
+                                                        <td>{{ $student->academics->first()->rank}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>  
@@ -101,30 +106,24 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h5 class="text-center" style="background-color: rgba(45 136 151);color:white;padding:5px">
-                                            Monthwise Fees for ID : <?php echo $term?>
+                                            Month wise Fees for ID : <?php echo $term?>
                                         </h5>
                                         <table class="table table-bordered table-striped table-sm">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>{{ __('Month') }}</th>
-                                                    <th>{{ __('Amount') }}</th>
+                                                    <th>{{ __('Amount') }}</th>                                                            
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if(!empty($feeSetup))
-                                                    @foreach($feeSetup as $value)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $value->month->name }},&nbsp;{{ $value->year}}
-                                                            </td>
-                                                            <td>
-                                                                {{ number_format($value->feeSetupPivot->sum('amount'),2) }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                    @else 
-                                                    <h2>No data found</h2>
-                                                @endif
+                                                @forelse ($paidAmount as $value )
+                                                    <tr>
+                                                        <td> {{ ($value->month) }}, &nbsp;{{ $value->year}}</td>
+                                                        <td> {{ $value->amount }}</td>
+                                                    </tr>
+                                                @empty
+                                                    <td colspan="2"><h5 class="text-center text-danger"> No data found!!</h5></td>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
@@ -135,13 +134,11 @@
                                         {{ Form::open(['url'=>'admin/fee/fee-collection/store','method'=>'POST', 'class'=>'form-horizontal']) }}
                                             <div class="form-row">
                                                 {{ Form::hidden('student_id', $student->id,['class'=>'form-control','placeholder'=>'']) }}
-                                                @foreach($feeSetup as $fee)
-                                                {{ Form::hidden('fee_setup_id', $fee->id,['class'=>'form-control','placeholder'=>'']) }}
-                                                @endforeach
+                                              
                                                 <div class="col">
                                                     <label for="">{{ __('Date') }}</label>
                                                     <div class="input-group">
-                                                        {{ Form::date('payment_date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
+                                                        {{ Form::date('date',null,['class'=>'form-control','placeholder'=>'Select Date']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -153,13 +150,13 @@
                                                 <div class="col">
                                                     <label for="">Pay Method</label>
                                                     <div class="input-group">
-                                                        {{ Form::select('payment_method',$payment_method,null,['class'=>'form-control','placeholder'=>'Select Method']) }}
+                                                        {{ Form::select('payment_method',$payment_method,$payment_method,['class'=>'form-control']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <label for="">{{ __('Paid Amount') }}</label>
                                                     <div class="input-group">
-                                                        {{ Form::text('paid_amount',null,['class'=>'form-control','placeholder'=>'Paid']) }}
+                                                        {{ Form::text('amount',null,['class'=>'form-control','placeholder'=>'Paid']) }}
                                                     </div>
                                                 </div>
                                             </div>

@@ -8,12 +8,12 @@
     <div class="padding-y-60 bg-cover" data-dark-overlay="6" style="background:url(assets/img/breadcrumb-bg.jpg) no-repeat">
         <div class="container">
             <h1 class="text-white">
-                Event Details
+                {{ __('Event Details') }}
             </h1>
             <ol class="breadcrumb breadcrumb-double-angle text-white bg-transparent p-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Event</a></li>
-                <li class="breadcrumb-item">Event Details</li>
+                <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ __('Event') }}</a></li>
+                <li class="breadcrumb-item">{{ __('Event Details') }}</li>
             </ol>
         </div>
     </div>
@@ -30,19 +30,19 @@
                                 <ul class="list-inline my-2" data-countdown="2019/01/01">
                                     <li class="list-inline-item iconbox iconbox-xxl bg-white-0_2 my-1">
                                         <h4 class="countdown-days font-size-md-28 mb-0 line-height-reset">226</h4>
-                                        <small>Days</small>
+                                        <small>{{ __('Days') }}</small>
                                     </li>
                                     <li class="list-inline-item iconbox iconbox-xxl bg-white-0_2 my-1">
                                         <h4 class="countdown-hours font-size-md-28 mb-0 line-height-reset">12</h4>
-                                        <small>Hours</small>
+                                        <small>{{ __('Hours') }}</small>
                                     </li>
                                     <li class="list-inline-item iconbox iconbox-xxl bg-white-0_2 my-1">
                                         <h4 class="countdown-minutes font-size-md-28 mb-0 line-height-reset">23</h4>
-                                        <small>Minutes</small>
+                                        <small>{{ __('Minutes') }}</small>
                                     </li>
                                     <li class="list-inline-item iconbox iconbox-xxl bg-white-0_2 my-1">
                                         <h4 class="countdown-seconds font-size-md-28 mb-0 line-height-reset">40</h4>
-                                        <small>Second</small>
+                                        <small>{{ __('Second') }}</small>
                                     </li>
                                 </ul>
                             </div>
@@ -54,7 +54,7 @@
                             <ul class="nav tab-line tab-line border-bottom my-4 text-gray" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active show" data-toggle="tab" href="#Tabs_1-1" role="tab" aria-selected="true">
-                                        Details
+                                        {{ __('Details') }}
                                     </a>
                                 </li>
                             </ul>
@@ -74,7 +74,7 @@
                     <div class="card shadow-v1">
                         <div class="card-body">
                             <h4 class="mb-2">
-                                Event Quick Information
+                                {{ __('Event Quick Information') }}
                             </h4>
 
                             <div class="border-bottom py-3">
@@ -91,7 +91,7 @@
                                 <div class="media">
                                     <i class="ti-time text-primary mt-2"></i>
                                     <div class="media-body ml-3">
-                                        <h6 class="my-0">Time</h6>
+                                        <h6 class="my-0">{{ __('Time') }}</h6>
                                         <span>{{ $event->time }}</span>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                 <div class="media">
                                     <i class="ti-location-pin text-primary mt-2"></i>
                                     <div class="media-body ml-3">
-                                        <h6 class="my-0">Venue</h6>
+                                        <h6 class="my-0">{{ __('Venue') }}</h6>
                                         <span>{{ $event->venue }}</span>
                                     </div>
                                 </div>

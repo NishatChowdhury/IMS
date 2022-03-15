@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Teacher Attendances </h1>
+                    <h1>{{__('Teacher Attendances') }} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Attendance</a></li>
-                        <li class="breadcrumb-item active">Teacher Attendances</li>
+                        <li class="breadcrumb-item"><a href="#">{{__('Attendance') }}</a></li>
+                        <li class="breadcrumb-item active">{{__('Teacher Attendances') }}</li>
                     </ol>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="text-center">Daily Employee Attendance Report</h4>
+                            <h4 class="text-center">{{__('Daily Employee Attendance Report') }}</h4>
                             <h5 class="text-center">Date: {{ $date }}</h5>
                         </div>
                         <div class="card-body" style="padding: 1.00rem;">
@@ -69,7 +69,7 @@
                                 <div class="col-md-2">
                                     <div class="dec-block">
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">Total</h5>
+                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Total')</h5>
                                             <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($staffs) }}</span></p>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                 <div class="col-md-2">
                                     <div class="dec-block">
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">Present</h5>
+                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Present')</h5>
                                             <p>
                                                     <span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">
 00
@@ -127,13 +127,13 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th style="text-align: center">Employee</th>
-                                    <th style="text-align: center">Card ID</th>
-                                    <th style="text-align: center">Designation </th>
-                                    <th style="text-align: center">Enter</th>
-                                    <th style="text-align: center">Exit</th>
-                                    <th style="text-align: center">Status</th>
-                                    <th style="text-align: center">Is Notified</th>
+                                    <th style="text-align: center">{{__('Employee') }}</th>
+                                    <th style="text-align: center">{{__('Card ID') }}</th>
+                                    <th style="text-align: center">{{__('Designation ') }}</th>
+                                    <th style="text-align: center">{{__('Enter') }}</th>
+                                    <th style="text-align: center">{{__('Exit') }}</th>
+                                    <th style="text-align: center">{{__('Status') }}</th>
+                                    <th style="text-align: center">{{__('Is Notified') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody id="indTeacher">

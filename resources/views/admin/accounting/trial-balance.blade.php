@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Ledger</h1>
+                    <h1> {{__('Ledger') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Accounts</a></li>
-                        <li class="breadcrumb-item active">Trial Balance</li>
+                        <li class="breadcrumb-item"><a href="#"> {{__('Accounts') }}</a></li>
+                        <li class="breadcrumb-item active"> {{__('Trial') }} Balance</li>
                     </ol>
                 </div>
             </div>
@@ -25,16 +25,16 @@
             {{ Form::open(['action'=>'AccountingController@trialBalance','method'=>'get']) }}
             <div class="d-flex justify-content-center">
                 <div class="form-group col-md-3">
-                    <label for="" class="col-form-label">Start Date</label>
+                    <label for="" class="col-form-label"> {{__('Start Date') }}</label>
                     {{ Form::date('start_date',null,['class'=>'form-control']) }}
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="" class="col-form-label">End Date</label>
+                    <label for="" class="col-form-label"> {{__('End Date') }}</label>
                     {{ Form::date('end_date',null,['class'=>'form-control']) }}
                 </div>
                 <div class="form-group col-md-2">
                     <label for="" class="col-form-label">&nbsp;</label><br>
-                    <button type="submit" class="btn btn-info">Search</button>
+                    <button type="submit" class="btn btn-info"> {{__('Search')}}</button>
                 </div>
             </div>
             {{ Form::close() }}
@@ -49,17 +49,17 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h3>Trial Balance Summery </h3>
+                            <h3> {{__('Trial Balance Summery') }} </h3>
                         </div>
 
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Account</th>
-                                    <th>Debit</th>
-                                    <th>Credit</th>
+                                    <th> {{__('Code') }}</th>
+                                    <th> {{__('Account') }}</th>
+                                    <th> {{__('Debit') }}</th>
+                                    <th> {{__('Credit') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -77,7 +77,7 @@
                                     </tr>
                                 @endforeach
                                 <tr class="text-right">
-                                    <th colspan="2">Total</th>
+                                    <th colspan="2"> {{__('Total') }}</th>
                                     <th class="text-right">
                                         {{ number_format(array_sum($debit),2) }}
                                     </th>
@@ -89,7 +89,7 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"> {{__('Showing 0 to 0 of 0 entries') }}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     {{--                                    {{ $chartOfAccounts->links() }}--}}

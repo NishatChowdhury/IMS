@@ -144,6 +144,7 @@ class InstitutionController extends Controller
     public function academicClasses()
     {
         $classes = AcademicClass::withCount('studentAcademic')->get()->whereIn('session_id',activeYear());
+        // dd($classes);
         // return $sutdent = AcademicClass::->get();
         $repository = $this->repository;
         return view ('admin.institution.academicClasses', compact('classes','repository'));

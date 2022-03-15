@@ -1,5 +1,5 @@
 @foreach($fees as $key => $fee)
-{{--    {{dd($fee)}}--}}
+   {{-- {{dd($fee)}} --}}
     <tr>
         <td>{{ $key + 1 }}</td>
         <td>{{ \App\FeeCategory::query()->find($fee['category_id'])->name }}</td>

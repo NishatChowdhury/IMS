@@ -10,8 +10,6 @@ use App\Session;
 use App\FeeSetup;
 use App\FeeCategory;
 use App\AcademicClass;
-
-use App\FeeSetupPivot;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -29,12 +27,11 @@ class FeeSetupController extends Controller
 
     public  function index(Request $request)
     {
-        $fees = FeeSetup::query()
+          $fees = FeeSetup::query()
             ->where('academic_class_id','!=',null)
             ->orderBy('month_id')
             ->get()
             ->groupBy('month_id');
-
         return view('admin.feeSetup.index',compact('fees'));
     }
 
@@ -53,7 +50,9 @@ class FeeSetupController extends Controller
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        $request->all();
         $request->validate([
             'academic_class_id' => [
                 'required',
@@ -67,7 +66,6 @@ class FeeSetupController extends Controller
         $students = StudentAcademic::query()
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
-
         // get fee categories from session
         $fees = request()->session()->get('fees');
 
@@ -106,8 +104,9 @@ class FeeSetupController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function feeStudents(Request $request){
+        // dd($request->id);
         $students = FeeSetupStudent::query()
-            ->where('fee_setup_id',$request->id)
+            ->where('fee_setup_id',$request->id)->with('student')
             ->get();
         return view('admin.feeSetup.fee-students',compact('students'));
     }
@@ -122,6 +121,7 @@ class FeeSetupController extends Controller
 
     public function edit($id)
     {
+        // dd($id);
         $classes = Classes::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
         $fee_setup = FeeSetup::query()->findOrFail($id);
@@ -168,11 +168,13 @@ class FeeSetupController extends Controller
         foreach($students as $student){
             $feeSetupCategories = $student->categories;
 
-            foreach ($feeSetupCategories as $category){
+            foreach ($feeSetupCategories as $category)
+            {
                 $category->delete();
             }
 
-            foreach($fees as $fee){
+            foreach($fees as $fee)
+            {
                 $data = [
                     'fee_setup_student_id' => $student->id,
                     'category_id' => $fee['category_id'],

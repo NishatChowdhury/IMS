@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Validate Admission</h2>
+                    <h2>{{__('Validate Admission')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
@@ -26,11 +26,10 @@
             </div>
         </div>
     </div>
-
     <section class="padding-y-20 border-bottom">
 
         <div class="col-12 text-center">
-            <h4>Validate Admission</h4>
+            <h4>{{__('Validate Admission')}}</h4>
             @if($errors->any())
                 @foreach($errors->all() as $error)
                     <span style="color:indianred">{{ $error }}</span>
