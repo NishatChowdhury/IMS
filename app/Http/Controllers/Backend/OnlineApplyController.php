@@ -54,7 +54,6 @@ class OnlineApplyController extends Controller
 
     public function onlineApply($id = null)
     {
-
         $data = [];
         $data['gender'] = Gender::all()->pluck('name', 'id');
         $data['blood'] = BloodGroup::all()->pluck('name', 'id');

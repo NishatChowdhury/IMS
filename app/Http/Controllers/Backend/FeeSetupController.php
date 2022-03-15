@@ -52,7 +52,6 @@ class FeeSetupController extends Controller
 
     public function store(Request $request)
     {
-        $request->all();
         $request->validate([
             'academic_class_id' => [
                 'required',

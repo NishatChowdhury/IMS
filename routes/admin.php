@@ -470,7 +470,8 @@ Route::post('communication/quick/send','Backend\CommunicationController@quickSen
 
 //Attendance Route by Rimon
 Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
-Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
+Route::get('attendance/dashboard','Backend\AttendanceController@
+')->name('attendance.dashboard');
 Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');

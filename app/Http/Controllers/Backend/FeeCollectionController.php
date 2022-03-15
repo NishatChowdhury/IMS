@@ -25,6 +25,7 @@ class FeeCollectionController extends Controller
         $paidAmount = StudentPayment::where('student_id', $student->id)->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
                     ->groupBy('year','month')
                     ->get();     
+        // show previous payments
         $previousPayment = StudentPayment::where('student_id', $student->id)->get();
         if(!empty($student->studentId) && $student->studentId == $term){
         // $feeSetup = $student->feeSetup;
@@ -36,7 +37,7 @@ class FeeCollectionController extends Controller
 
     public function store(Request $request)
     {
-      return $request->all();
+    //   return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
         $academicClassID = $ss->academic_class_id;
         $feeSetupID = FeeSetup::where('academic_class_id', $academicClassID)->first();
