@@ -8,6 +8,7 @@ use App\Models\Backend\Student;
 use App\Models\Backend\StudentPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class FeeCollectionController extends Controller
 {
@@ -15,22 +16,39 @@ class FeeCollectionController extends Controller
         return view('admin.feeCollection.index');
     }
 
-    public function view(Request $request){
-        $user = auth()->user();
-        $payment_method = DB::table('payment_methods')->pluck('name');
+    public function view(Request $request)
+    {
+        $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
         $student = Student::query()->where('studentId',$term)->with('academics')->first();
-
+        $paidAmount = StudentPayment::where('student_id', $student->id)->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
+                    ->groupBy('year','month')
+                    ->get();     
+        // show previous payments
+        $previousPayment = StudentPayment::where('student_id', $student->id)->get();
         if(!empty($student->studentId) && $student->studentId == $term){
-            $feeSetup = $student->feeSetup;
-            return view('admin.feeCollection.view',compact('student','feeSetup','term','payment_method','user'));
+        // $feeSetup = $student->feeSetup;
+            return view('admin.feeCollection.view',compact('student','term','payment_method','paidAmount','previousPayment'));
         }else{
             return view('admin.feeCollection.index')->with('message', 'IT WORKS!');
         }
     }
 
-    public function store(Request $request){
-        StudentPayment::query()->create($request->all());
+    public function store(Request $request)
+    {
+    //   return $request->all();
+        $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
+        $academicClassID = $ss->academic_class_id;
+        $feeSetupID = FeeSetup::where('academic_class_id', $academicClassID)->first();
+    
+        StudentPayment::query()->create([
+            'user_id' => Auth::user()->id,
+            'student_id' => $request->student_id,
+            'fee_setup_id' => $feeSetupID->id,
+            'date' => $request->date,
+            'amount' => $request->amount,
+            'payment_method' => $request->payment_method
+        ]);
         return redirect('admin/fee/fee-collection')->with('message','Added Successfully!');
     }
 

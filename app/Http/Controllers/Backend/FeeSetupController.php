@@ -50,7 +50,8 @@ class FeeSetupController extends Controller
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'academic_class_id' => [
                 'required',
