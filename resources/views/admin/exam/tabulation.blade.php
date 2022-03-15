@@ -114,7 +114,7 @@
                                                         <td>{{ $result->student->rank }}</td>
                                                         @foreach($subjects as $subject)
                                                             <td>
-                                                                {{ \App\Mark::query()
+                                                                {{ \App\Models\Backend\Mark::query()
                                                                 //->where('class_id',$result->class_id)
                                                                 //->where('section_id',$result->section_id)
                                                                 //->where('group_id',$result->group_id)

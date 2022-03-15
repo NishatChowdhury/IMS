@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Student;
-use App\Location;
-use App\Transport;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Location;
+use App\Models\Backend\Student;
+use App\Models\Backend\Transport;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 
 class TransportController extends Controller
 {

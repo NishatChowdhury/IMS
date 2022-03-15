@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\COA;
-use App\CoaParent;
-use App\ChartOfAccount;
-use App\CoaGrandParent;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\ChartOfAccount;
+use App\Models\Backend\COA;
+use App\Models\Backend\CoaParent;
 use App\Repository\FinanceRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rules\Unique;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ChartOfAccountController extends Controller
 {

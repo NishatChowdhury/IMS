@@ -8,9 +8,7 @@
 
 namespace App\Repository;
 
-use App\AcademicClass;
-use App\Group;
-use App\Section;
+use App\Models\Backend\AcademicClass;
 
 class AttendanceRepository
 {

@@ -111,7 +111,7 @@
                                     </td>
                                     <td>
                                         @php
-                                            $stdnt = \App\AppliedStudent::query()->where('ssc_roll',$student->ssc_roll)->first()
+                                            $stdnt = \App\Models\Backend\AppliedStudent::query()->where('ssc_roll',$student->ssc_roll)->first()
                                         @endphp
                                         @if($stdnt)
                                             @if($stdnt->approved == 1)

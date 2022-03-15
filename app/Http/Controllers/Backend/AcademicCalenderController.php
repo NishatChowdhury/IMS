@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\AcademicCalender;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicCalender;
 use App\Repository\StudentRepository;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class AcademicCalenderController extends Controller

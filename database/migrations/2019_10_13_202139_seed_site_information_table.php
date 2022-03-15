@@ -32,7 +32,7 @@ class SeedSiteInformationTable extends Migration
             $data['theme_id'] = 1;
             $data['admission_sms'] = 1;
             $data['admission_confirm_sms'] = 1;
-            \App\SiteInformation::query()->create($data);
+            \App\Models\Backend\SiteInformation::query()->create($data);
         });
     }
 

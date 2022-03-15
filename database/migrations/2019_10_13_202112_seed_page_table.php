@@ -20,7 +20,7 @@ class SeedPageTable extends Migration
                 $data['content'] = '';
                 $data['image'] = '';
                 $data['order'] = 0;
-                \App\Page::query()->create($data);
+                \App\Models\Backend\Page::query()->create($data);
             }
         });
     }

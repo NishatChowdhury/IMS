@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\NoticeType;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\NoticeType;
 
 class NoticeTypeController extends Controller
 {

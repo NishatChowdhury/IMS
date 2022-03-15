@@ -37,7 +37,7 @@
                     <div class="card">
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Social Link</h4>
-                            {{ Form::model($socials,['action'=>['SocialController@update',1],'method'=>'post']) }}
+                            {{ Form::model($socials,['action'=>['Backend\SocialController@update',1],'method'=>'post']) }}
                                 <table class="table table-bordered table-striped table-dark">
                                     <thead>
                                         <tr>

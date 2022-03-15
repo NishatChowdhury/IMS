@@ -16,7 +16,7 @@ class SeedGenderTable extends Migration
         Schema::table('genders', function (Blueprint $table) {
             $genders = ['Male','Female','Other'];
             foreach($genders as $gender){
-                \App\Gender::query()->create(['name'=>$gender]);
+                \App\Models\Backend\Gender::query()->create(['name'=>$gender]);
             }
         });
     }

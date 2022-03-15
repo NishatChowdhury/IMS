@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Student;
-use App\ExamSeatPlan;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\ExamSeatPlan;
+use App\Models\Backend\Student;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 
 class ExamSeatPlanController extends Controller
 {

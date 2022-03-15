@@ -16,7 +16,7 @@ class SeedNoticeCategoryTable extends Migration
         Schema::table('notice_categories', function (Blueprint $table) {
             $categories = ['School Order','College Order','Office Order'];
             foreach($categories as $category){
-                \App\NoticeCategory::query()->create(['name'=>$category]);
+                \App\Models\Backend\NoticeCategory::query()->create(['name'=>$category]);
             }
         });
     }

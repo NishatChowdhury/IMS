@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Attendance;
-use App\RawAttendance;
-use App\Student;
+use App\Models\Backend\Attendance;
+use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Student;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

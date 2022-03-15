@@ -14,7 +14,7 @@ class SeedSocialTable extends Migration
     public function up()
     {
         Schema::table('socials', function (Blueprint $table) {
-            \App\Social::create([
+            \App\Models\Backend\Social::create([
                 'facebook'  => 'https://www.facebook.com/',
                 'youtube'   => 'https://www.youtube.com/',
                 'twitter'   => 'https://twitter.com/',

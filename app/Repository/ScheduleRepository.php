@@ -4,7 +4,7 @@
 namespace App\Repository;
 
 
-use App\Day;
+use App\Models\Backend\Day;
 
 class ScheduleRepository
 {

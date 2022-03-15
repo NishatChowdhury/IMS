@@ -2,44 +2,40 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Bank;
-use App\City;
-use App\Mark;
-use App\Menu;
-use App\Page;
-use App\Album;
-use App\Group;
-use App\Staff;
-use App\Gender;
-use App\Notice;
-use App\Slider;
-use App\Classes;
-use App\Country;
-use App\Feature;
-use App\Gallery;
-use App\Session;
-use App\Student;
-use App\Division;
-use App\Playlist;
-use App\Religion;
-use App\Syllabus;
-use App\MeritList;
-use Carbon\Carbon;
-use App\BloodGroup;
-use App\ExamResult;
-use App\AdmissionFee;
-use App\ClassSchedule;
-use App\ImportantLink;
-use App\UpcomingEvent;
-use App\AppliedStudent;
-use App\NoticeCategory;
-use App\GalleryCategory;
-use App\OnlineAdmission;
-use App\AcademicCalender;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Repository\FrontRepository;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AdmissionFee;
+use App\Models\Backend\Album;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\Bank;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\City;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Country;
+use App\Models\Backend\Division;
+use App\Models\Backend\ExamResult;
+use App\Models\Backend\Feature;
+use App\Models\Backend\Gallery;
+use App\Models\Backend\GalleryCategory;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Group;
+use App\Models\Backend\ImportantLink;
+use App\Models\Backend\Mark;
+use App\Models\Backend\Menu;
+use App\Models\Backend\MeritList;
+use App\Models\Backend\Notice;
+use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\Page;
+use App\Models\Backend\Playlist;
+use App\Models\Backend\Religion;
+use App\Models\Backend\Session;
+use App\Models\Backend\Slider;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
+use App\Models\Backend\UpcomingEvent;
+use App\Repository\FrontRepository;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -52,6 +48,7 @@ class FrontController extends Controller
 
     public function index()
     {
+
         $sliders = Slider::query()
             //->where('start','<',Carbon::today())
             ->where(function($query){
@@ -80,162 +77,6 @@ class FrontController extends Controller
         return view('front.index',compact('sliders','content','teachers','links','notices','events','newses','latestNews','features'));
     }
 
-    public function introduction()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.introduction',compact('content'));
-    }
-
-    public function governing_body()
-    {
-        $content = Page::query()->where('name','governing body')->first();
-        return view('front.pages.governing-body',compact('content'));
-    }
-
-    public function donor()
-    {
-        $content = Page::query()->where('name','founder & donor')->first();
-        return view('front.pages.founder-n-donor',compact('content'));
-    }
-
-    public function principal()
-    {
-        $content = Page::query()->where('name','principal message')->first();
-        return view('front.pages.principal',compact('content'));
-    }
-    public function president()
-    {
-        $content = Page::query()->where('name','president message')->first();
-        return view('front.pages.president',compact('content'));
-    }
-
-//Institute -> infrastructure ---Start
-    public function building_room()
-    {
-        $content = Page::query()->where('name','building & rooms')->first();
-        return view('front.pages.building-n-room',compact('content'));
-    }
-
-    public function library()
-    {
-        $content = Page::query()->where('name','library')->first();
-        return view('front.pages.library',compact('content'));
-    }
-
-    public function transport()
-    {
-        $content = Page::query()->where('name','transport')->first();
-        return view('front.pages.transport',compact('content'));
-    }
-
-    public function hostel()
-    {
-        $content = Page::query()->where('name','hotel')->first();
-        return view('front.pages.hostel',compact('content'));
-    }
-
-    public function land_information()
-    {
-        $content = Page::query()->where('name','land information')->first();
-        return view('front.pages.land-information',compact('content'));
-    }
-//Institute -> infrastructure ---Start
-
-//Institute -> Academic ---START
-    public function class_routine()
-    {
-        $classes = ClassSchedule::query()
-            //->where('academic_class_id',$classId)
-            ->get()
-            //->sortBy('start')
-            //->groupBy('day_id')
-            //->sortBy('day_id')
-            ->groupBy('academic_class_id');
-
-        return view('front.pages.class-routine',compact('classes'));
-    }
-    public function calender()
-    {
-        $content = Page::query()->where('name','calendar')->first();
-        $data = AcademicCalender::query()->orderBy('start')->get();
-
-        return view('front.pages.calender',compact('content','data'));
-    }
-    public function syllabus()
-    {
-        //$content = Page::query()->where('name','syllabus')->first();
-        $syllabuses = Syllabus::all();
-        return view('front.pages.syllabus',compact('syllabuses'));
-    }
-    public function diary()
-    {
-        $content = Page::query()->where('name','diary')->first();
-        return view('front.pages.diary',compact('content'));
-    }
-    public function performance()
-    {
-        $content = Page::query()->where('name','performance')->first();
-        return view('front.pages.performance',compact('content'));
-    }
-    public function holiday()
-    {
-        $content = Page::query()->where('name','annual holiday')->first();
-        return view('front.pages.annual-holiday',compact('content'));
-    }
-//Institute -> Academic ---END
-
-//Institute -> Digital Campus --START
-    public function multimedia_classroom()
-    {
-        $content = Page::query()->where('name','multimedia class room')->first();
-        return view('front.pages.multimedia-class-room',compact('content'));
-    }
-    public function computer_lab()
-    {
-        $content = Page::query()->where('name','computer lab')->first();
-        return view('front.pages.computer-lab',compact('content'));
-    }
-    public function science_lab()
-    {
-        $content = Page::query()->where('name','science lab')->first();
-        return view('front.pages.science-lab',compact('content'));
-    }
-//Institute -> Digital Campus ---END
-
-//TEAM -> --START
-    public function managing_committee()
-    {
-        $content = Page::query()->where('name','managing committee')->first();
-        return view('front.pages.managing-committee',compact('content'));
-    }
-    public function teacher()
-    {
-        $content = Page::query()->where('name','teachers')->first();
-        $teachers = Staff::query()->where('staff_type_id',2)->orderBy('code')->get();
-        return view('front.pages.teacher',compact('content','teachers'));
-    }
-    public function staff()
-    {
-        $content = Page::query()->where('name','staff')->first();
-        $staffs = Staff::query()->where('staff_type_id',1)->get();
-        return view('front.pages.staff',compact('content','staffs'));
-    }
-    public function wapc()
-    {
-        $content = Page::query()->where('name','wapc')->first();
-        return view('front.pages.wapc',compact('content'));
-    }
-    public function tswt()
-    {
-        $content = Page::query()->where('name','teacher staff welfare trust')->first();
-        return view('front.pages.tswt',compact('content'));
-    }
-    public function tci()
-    {
-        $content = Page::query()->where('name','teacher council information')->first();
-        return view('front.pages.teacher-council-information',compact('content'));
-    }
-//TEAM -> --END
 
 
 //RESULT -> --START
@@ -274,108 +115,42 @@ class FrontController extends Controller
         $repository = $this->repository;
         return view('front.pages.internal-exam',compact('result','marks','repository'));
     }
-    public function public_exam()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.public-exam',compact('content'));
-    }
 
-//    public function admission()
-//    {
-//        $content = Page::query()->where('name','introduction')->first();
-//        return view('front.pages.admission',compact('content'));
-//    }
-//RESULT -> --END
 
-//INFORMATION -> --START
-    public function sports_n_culture_program()
-    {
-        $content = Page::query()->where('name','sports and cultural program')->first();
-        return view('front.pages.sports-n-culture-program',compact('content'));
-    }
-    public function center_information()
-    {
-        $content = Page::query()->where('name','center information')->first();
-        return view('front.pages.center-information',compact('content'));
-    }
-    public function scholarship_info()
-    {
-        $content = Page::query()->where('name','scholarship info')->first();
-        return view('front.pages.scholarship-info',compact('content'));
-    }
-    public function bncc()
-    {
-        $content = Page::query()->where('name','bncc')->first();
-        return view('front.pages.bncc',compact('content'));
-    }
-    public function scout()
-    {
-        $content = Page::query()->where('name','scouts')->first();
-        return view('front.pages.scouts',compact('content'));
-    }
-    public function tender()
-    {
-        $content = Page::query()->where('name','tender')->first();
-        return view('front.pages.tender',compact('content'));
-    }
-//INFORMATION -> --END
-
-//ATTENDANCE -> --START
-    public function attendance_summery()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.attendance-summery',compact('content'));
-    }
-    public function student_attendance()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.student-attendance',compact('content'));
-    }
-    public function teacher_attendance()
-    {
-        $content = Page::query()->where('name','introduction')->first();
-        return view('front.pages.teacher-attendance',compact('content'));
-    }
-//ATTENDANCE -> --END
 
 //News & Notice Start...
     public function notice()
     {
         $notices = Notice::query()
             ->where('notice_type_id',2)
-            //->where('start','<',Carbon::today())
-            //->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->get();
-        //->paginate(5);
 
         $categories = NoticeCategory::all();
-        return view('front.pages.notice',compact('notices','categories'));
+        return view('front.notice.index',compact('notices','categories'));
     }
     public function noticeDetails($id)
     {
         $notice = Notice::query()->findOrFail($id);
         $categories = NoticeCategory::all();
-        return view('front.pages.notice-details',compact('notice','categories'));
+        return view('front.notice.notice-details',compact('notice','categories'));
     }
 
     public function news()
     {
         $newses = Notice::query()
             ->where('notice_type_id',1)
-            //->where('start','<',Carbon::today())
-            //->where('end','>',Carbon::today())
             ->orderByDesc('start')
             ->paginate(5);
         $categories = NoticeCategory::all();
-        return view('front.pages.news',compact('newses','categories'));
+        return view('front.news.index',compact('newses','categories'));
     }
 
     public function newsDetails($id)
     {
         $news = Notice::query()->findOrFail($id);
         $categories = NoticeCategory::all();
-        return view('front.pages.news-details',compact('news','categories'));
+        return view('front.news.news-details',compact('news','categories'));
     }
 
 //News & Notice END...
@@ -385,14 +160,14 @@ class FrontController extends Controller
     {
         $categories = GalleryCategory::all();
         $albums = Album::all();
-        return view('front.pages.gallery',compact('categories','albums'));
+        return view('front.gallery.index',compact('categories','albums'));
     }
 
     public function album($id)
     {
         $album = Album::query()->findOrFail($id);
         $images = Gallery::query()->where('album_id',$id)->get();
-        return view('front.pages.album',compact('images','album'));
+        return view('front.gallery.album',compact('images','album'));
     }
     //Gallery -> END
 
@@ -408,60 +183,11 @@ class FrontController extends Controller
     public function contact()
     {
         $content = Page::query()->where('name','contacts')->first();
-        return view('front.pages.contacts',compact('content'));
+        return view('front.contact.index',compact('content'));
     }
     // Contact End
 
-    // public function validateAdmission()
-    // {
-    //     return view('front.admission.validate-admission');
-    // }
 
-    // public function admissionForm(Request $request)
-    // {
-    //     $this->validate($request,[
-    //         'ssc_roll' => 'required|numeric|exists:merit_lists'
-    //     ]);
-
-    //     $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
-
-    //     $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
-
-    //     $compulsory = DB::table('online_subjects')
-    //         ->where('type',1)
-    //         ->pluck('name','id');
-    //     $selective = DB::table('online_subjects')
-    //         ->where('type','like','%2%')
-    //         ->where('group_id',$group)
-    //         ->pluck('name','id');
-    //     $optional = DB::table('online_subjects')
-    //         ->where('type','like','%3%')
-    //         ->where('group_id',$group)
-    //         ->pluck('name','id');
-
-    //     $repository = $this->repository;
-
-    //     if($student){
-    //         if($student->approved){
-    //             return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
-    //         }
-    //         return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
-    //     }
-
-    //     return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
-    // }
-
-    public function admissionSuccess(Request $request)
-    {
-        // return $request->all();
-        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
-
-        return view('front.admission.admission-success',compact('student'));
-    }
-    public function admissionSuccessSchool()
-    {
-        return view('front.admission.admission-success-school');
-    }
 
     public function studentForm(Request $request)
     {
@@ -578,31 +304,82 @@ class FrontController extends Controller
 
             $repository = $this->repository;
 
-            if($content->system_page == 'gallery'){
-                $categories = GalleryCategory::all();
-                $albums = Album::all();
-            }
+         
 
-            if($content->system_page == 'teacher' || $content->system_page == 'teacher-1'){
-                $teachers = Staff::query()
-                    ->where('staff_type_id',2)
-                    ->orderBy('code')
-                    ->get();
-            }
-
-            
-
-            if($content->system_page == 'staff' || $content->system_page == 'staff-1'){
-                $staffs = Staff::query()->where('staff_type_id',1)->orderBy('code')->get();
-            }
+       
 
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
-                    ->where('notice_type_id',2)
-                    ->orderByDesc('start')
-                    ->get();
-                $categories = NoticeCategory::all();
+                            ->orderByDesc('start')
+                            ->paginate(3);
+                $artilces = '';
+                if ($request->ajax()) {
+                    foreach($notices as $key => $notice){
+                        if($notice->start != null){
+                            $date = $notice->start->format('d');
+                        }
+                        if($notice->start != null){
+                            $mm = $notice->start->format('M, Y');
+                        }
+                        if($notice->notice_type_id == 1){
+                            $typeN = 'Notice';
+                            $types = 'badge-danger';
+                        }else{
+                            $typeN = 'News';
+                            $types = 'badge-info';
+                        }
+
+                        if($notice->file){
+                            $noticeFile = '<a href="'. asset('assets/files/notice').'/'.$notice->file .'" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>';
+                        }else{
+                            $noticeFile = '';
+                        }
+                
+
+
+                        $artilces.= '
+                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
+                            <div class="media align-items-center">
+                                <div class="text-center border-right pr-4">
+                                <strong class="text-primary font-size-38">
+                                            '. $date .'
+                                </strong>
+                                <p class="mb-0 text-gray">
+                                    '. $mm .'
+                                </p>
+                                </div>
+                                <div class="media-body p-4">
+                                <p class="mb-1 text-gray">
+                                <i class="ti-file"></i>
+                                    <span class="badge '. $types .'">
+                                        '. $typeN .'
+                                    </span>  
+                                </p>
+                                <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="h5">
+                                    '. $notice->title .'
+                                </a>
+                                </div>
+                            </div>
+                            '. $noticeFile .'
+                            <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="btn btn-outline-primary">Read More</a> 
+                            </div>';
+                    }
+                    return $artilces;
+                }                           
+                $categories = NoticeCategory::with('notices')->get();
+                return view('front.'.$uri.'.index',compact('categories','albums','teachers','notices','staffs','repository'));
             }
+            if($content->url === 'news'){
+
+                $newses = Notice::query()
+                        ->where('notice_type_id',1)
+                        ->orderByDesc('start')
+                        ->paginate(5);
+            $categories = NoticeCategory::all();
+            return view('front.'.$uri.'.index',compact('newses','categories'));
+            }
+
+
 
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
@@ -643,7 +420,6 @@ class FrontController extends Controller
         $page = $content->page;
 
         $page = $page ?? new Page;
-
         return view('front.pages.page',compact('page'));
     }
 

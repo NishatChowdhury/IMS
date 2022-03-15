@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Page;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Page;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller

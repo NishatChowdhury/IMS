@@ -27,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ExamController@tabulationSheet','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\ExamController@tabulationSheet','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -117,7 +117,7 @@
                                                         <td>{{ $result->student->rank }}</td>
                                                         @foreach($subjects as $subject)
                                                             <td>
-                                                                {{ \App\FinalMark::query()
+                                                                {{ \App\Models\Backend\FinalMark::query()
                                                                 //->where('class_id',$result->class_id)
                                                                 //->where('section_id',$result->section_id)
                                                                 //->where('group_id',$result->group_id)

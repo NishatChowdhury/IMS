@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\ImportantLink;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\ImportantLink;
+use Illuminate\Http\Request;
 
 class LinkController extends Controller
 {

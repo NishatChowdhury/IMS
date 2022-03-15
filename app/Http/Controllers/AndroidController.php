@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Attendance;
-use App\ClassSchedule;
-use App\Notice;
-use App\NoticeCategory;
-use App\Page;
-use App\SiteInformation;
-use App\Staff;
-use App\Student;
-use App\Syllabus;
+use App\Models\Backend\Attendance;
+use App\Models\Backend\ClassSchedule;
+use App\Models\Backend\Notice;
+use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\Page;
+use App\Models\Backend\SiteInformation;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
+use App\Models\Backend\Syllabus;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Http\Request;
 
 class AndroidController extends Controller
 {

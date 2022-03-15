@@ -64,7 +64,7 @@
             </ul>
         </div> <!-- END container-->
 
-        {{ Form::model($student,['action'=>'Front\AdmissionController@store','files'=>true]) }}
+        {{ Form::model($student,['action'=>'Front\OnlineApplyController@store','files'=>true]) }}
         <div class="tab-content">
 
             <div class="tab-pane fade show active" id="student-information" role="tabpanel">

@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ReportController@student_fee_report','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\ReportController@student_fee_report','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -168,7 +168,7 @@
                                                     </tr>
                                                 </thead>
                                                 @php
-                                                    $payments = \App\StudentPayment::query()->where('student_id',$student->id)->get();
+                                                    $payments = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->get();
                                                 @endphp
                                                 <tbody>
                                                     @foreach($payments as $payment)

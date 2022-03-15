@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'StudentController@index','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\StudentController@index','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -115,8 +115,8 @@
                                     <td>{{ $theme->created_at }}</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm"><i class="fas fa-user-check"></i></a>
-                                        <a href="{{ action('ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ action('ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>
+                                        <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -2,31 +2,24 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\City;
-use App\Group;
-use App\Father;
-use App\Gender;
-use App\Mother;
-use App\Classes;
-use App\Country;
 use App\Helpers;
-use App\Section;
-use App\Session;
-use App\Student;
-use App\Division;
-use App\Guardian;
-use App\Religion;
-use App\BloodGroup;
-use App\OnlineApply;
-use App\Mail\Confirm;
-use App\AcademicClass;
-use App\OnlineAdmission;
-use App\StudentAcademic;
-use App\Mail\AdmissionMail;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\Confirm;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Father;
+use App\Models\Backend\Group;
+use App\Models\Backend\Guardian;
+use App\Models\Backend\Mother;
+use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\OnlineApply;
+use App\Models\Backend\Section;
+use App\Models\Backend\Session;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OnlineApplyController extends Controller
 {
@@ -46,138 +39,6 @@ class OnlineApplyController extends Controller
         $students = onlineApply::query()->orderBy('id')->paginate(100);
         return view('admin.admission.applicant-school', compact('students','academicClass','sessions','sections'));
     }
-
-    public function onlineApplyCollege()
-    {
-        return view('front.admission.validate-admission');
-    }
-
-    public function onlineApply($id = null)
-    {
-
-        $data = [];
-        $data['gender'] = Gender::all()->pluck('name', 'id');
-        $data['blood'] = BloodGroup::all()->pluck('name', 'id');
-        $data['divi'] = Division::all()->pluck('name', 'id');
-        $data['class'] = Classes::all()->pluck('name', 'id');
-        $data['group'] = Group::all()->pluck('name', 'id');
-        $data['city'] = City::all()->pluck('name', 'id');
-        $data['country'] = Country::all()->pluck('name', 'id');
-        $data['religion'] = Religion::all()->pluck('name','id');
-        $onlineAdmission = OnlineAdmission::find($id);
-        return view('front.pages.school-admission-form',compact('data','onlineAdmission'));
-        // return view('front.pages.applySchool',compact('content'));
-    }
-
-    public function store(Request $req)
-    {
-       
-        $rules = [
-            'name' => 'required',
-            'name_bn' => 'required',
-            'birth_certificate' => 'required|integer',
-            'dob' => 'required',
-            'gender_id' => 'required',
-            'blood_group_id' => 'required',
-            'religion_id' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'zip' => 'required',
-            'city_id' => 'required',
-            'country_id' => 'required',
-            'mobile' => 'required',
-            // 
-            'f_name' => 'required',
-            'f_name_bn' => 'required',
-            'f_mobile' => 'required',
-            'f_dob' => 'required',
-            'f_occupation' => 'required',
-            'f_nid' => 'required|integer',
-            //
-            'm_name' => 'required',
-            'm_name_bn' => 'required',
-            'm_mobile' => 'required',
-            'm_dob' => 'required',
-            'm_occupation' => 'required',
-            'm_nid' => 'required|integer',
-            //
-            'g_name' => 'required',
-            'g_name_bn' => 'required',
-            'g_mobile' => 'required',
-            'g_dob' => 'required',
-            'g_occupation' => 'required',
-            'g_nid' => 'required|integer',
-
-        ];
-    
-        $customMessages = [
-            'required' => 'The :attribute field is required.'
-            // 'division_id.required' => 'The Division Must be field is requi
-            
-        ];
-    
-        $this->validate($req, $rules, $customMessages);
-
-        $req->studentId = 76576;
-        $data = $req->all();
-      
-        if ($req->hasFile('pic')){
-            $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
-            $req->file('pic')->move(public_path().'/assets/img/students/', $image);
-            $data = $req->except('pic');
-            $data['image'] = $image;
-            try{
-                $studentStore = OnlineApply::query()->create($data);
-            }catch (\Exception $e){
-                dd($e);
-            }
-        }else{
-            try{
-                $studentStore = OnlineApply::query()->create($data);
-            }catch (\Exception $e){
-                dd($e);
-            }
-        }
-
-
-        if($req->email){
-            $details = [
-                'title' => config('app'),
-                'id' => $studentStore->id,
-                'name' => $studentStore->name,
-                'url' => route('download.school.form', $studentStore->id),
-            ];
-            Mail::to($req->email)->send(new AdmissionMail($details));
-           
-        }
-
-        if(siteConfig('admission_sms') == 1){
-
-            $smsData = [];
-            $smsData['mobile'] = $req->mobile;
-            $smsData['id'] = $studentStore->id;
-            $smsData['textbody'] = "Application successfully done! You Application ID-".$studentStore->id;
-            $this->sms($smsData);
-        }
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-        
-        return redirect('admission-success-school')->with(['studentStore' => $studentStore]);
-        // return back()->with('status','Your Admission Successfully Done Here Your ID ');
-    }
-
 
 
     public function getApplyInfoSession(Request $request)
@@ -413,7 +274,7 @@ class OnlineApplyController extends Controller
         //     $dataStore->status = $req->status;
         // }
         $dataStore->save();
-         return back();
+        return back();
     }
 
 }

@@ -4,7 +4,7 @@
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".1">
                 <h2 class="h1 text-primary">
-                    {{ \App\Student::all()->count() }}
+                    {{ \App\Models\Backend\Student::all()->count() }}
                 </h2>
                 <p class="lead">
                     Students
@@ -13,7 +13,7 @@
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".2">
                 <h2 class="h1 text-primary">
-                    {{ \App\AcademicClass::all()->count() }}
+                    {{ \App\Models\Backend\AcademicClass::all()->count() }}
                 </h2>
                 <p class="lead">
                     Classes
@@ -31,7 +31,7 @@
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".4">
                 <h2 class="h1 text-primary">
-                    {{ \App\Staff::all()->count() }}
+                    {{ \App\Models\Backend\Staff::all()->count() }}
                 </h2>
                 <p class="lead">
                     Teachers & Staff

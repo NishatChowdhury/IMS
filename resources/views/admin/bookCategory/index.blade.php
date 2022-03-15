@@ -44,7 +44,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {!!  Form::open(['action'=>'BookCategoryController@store','method'=>'post']) !!}
+                                        {!!  Form::open(['action'=>'Backend\BookCategoryController@store','method'=>'post']) !!}
                                         <div class="form-group row">
                                             {{ Form::label('book_category', 'Book Category',['class'=>'col-sm-2 col-form-label' ]) }}
                                             <div class="col-sm-8">

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Session;
-use App\FeePivot;
-use App\FeeSetup;
-use App\FeeCategory;
-use Dotenv\Validator;
-use App\AcademicClass;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\FeeCategory;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\Session;
+use Illuminate\Http\Request;
 
 class FeeCategoryController extends Controller
 {

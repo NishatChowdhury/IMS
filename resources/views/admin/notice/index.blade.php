@@ -69,8 +69,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ Form::model($notice,['action'=>['NoticeController@destroy',$notice->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            {{ Form::model($notice,['action'=>['Backend\NoticeController@destroy',$notice->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('Backend\NoticeController@edit',$notice->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                             {{ Form::submit('X',['class'=>'btn btn-danger btn-sm']) }}
                                             {{ Form::close() }}
                                         </td>
@@ -111,7 +111,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'NoticeController@store','method'=>'post','files'=>true]) }}
+                    {{ Form::open(['action'=>'Backend\NoticeController@store','method'=>'post','files'=>true]) }}
                     {{--<form>--}}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Type*</label>

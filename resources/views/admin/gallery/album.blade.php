@@ -59,7 +59,7 @@
                                         </td>
                                         <td>{{ $album->images->count() }} Image(s)</td>
                                         <td>
-                                            {{ Form::open(['action'=>['AlbumController@destroy',$album->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\AlbumController@destroy',$album->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             {{ Form::close() }}
                                         </td>
@@ -86,7 +86,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'AlbumController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\AlbumController@store','method'=>'post']) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category</label>
                         <div class="col-sm-10">

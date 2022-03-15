@@ -57,12 +57,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p>Class: <span>Eleven</span></p>
-                            <p>Session: <span>{{ \App\Session::query()->findOrFail($student['session_id'])->year }}</span></p>
+                            <p>Session: <span>{{ \App\Models\Backend\Session::query()->findOrFail($student['session_id'])->year }}</span></p>
                             <p>Date: <span></span></p>
                         </div>
                         <div class="col-md-6">
                             <p>SID: <span>{{ $student['studentId'] }}</span></p>
-                            <p>Group: <span>{{ \App\Group::query()->findOrFail($student['group_id'])->name }}</span></p>
+                            <p>Group: <span>{{ \App\Models\Backend\Group::query()->findOrFail($student['group_id'])->name }}</span></p>
                             <p>Mobile: <span>{{ $student['mobile'] }}</span></p>
                         </div>
                     </div>

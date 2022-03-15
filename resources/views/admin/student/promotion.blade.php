@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'StudentController@promotion','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\StudentController@promotion','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -94,7 +94,7 @@
                         {{--</div>--}}
                     </div>
                     <!-- /.card-header -->
-                    {{ Form::open(['action'=>'StudentController@promote','method'=>'post','onsubmit'=>'return confirmPromotion()']) }}
+                    {{ Form::open(['action'=>'Backend\StudentController@promote','method'=>'post','onsubmit'=>'return confirmPromotion()']) }}
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">

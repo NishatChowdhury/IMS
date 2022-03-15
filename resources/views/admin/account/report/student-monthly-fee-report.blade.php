@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ReportController@student_monthly_fee_report','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>'Backend\ReportController@student_monthly_fee_report','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -147,12 +147,12 @@
                                         {{ $student->group ? $student->group->name : ''}}
                                     </td>
                                     @php
-                                        $setup_amount = \App\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('setup_amount');
-                                        $transport = \App\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('transport');
-                                        $arrears = \App\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('arrears');
-                                        $discount = \App\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('discount');
-                                        $due = \App\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('due');
-                                        $paid_amount = \App\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('paid_amount');
+                                        $setup_amount = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('setup_amount');
+                                        $transport = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('transport');
+                                        $arrears = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('arrears');
+                                        $discount = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('discount');
+                                        $due = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('due');
+                                        $paid_amount = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->where('month',$monthId)->sum('paid_amount');
 
                                     @endphp
                                     <td style="text-align: right"> {{ number_format($monthSetup ? $monthSetup : 0, 2) }}  </td>

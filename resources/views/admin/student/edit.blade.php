@@ -39,7 +39,7 @@
                         @endif
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::model($student,['action'=>['StudentController@update',$student->id], 'method'=>'patch', 'enctype'=>'multipart/form-data']) !!}
+                        {!!  Form::model($student,['action'=>['Backend\StudentController@update',$student->id], 'method'=>'patch', 'enctype'=>'multipart/form-data']) !!}
                             @include('admin.student.form')
                         {!! Form::close() !!}
                     </div>
@@ -52,6 +52,18 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+
+
+
+
+
+
+
+
+
+
+
+    
 @stop
 
 @section('script')

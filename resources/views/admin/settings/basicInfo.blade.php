@@ -42,7 +42,7 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            {{ Form::model($info,['action'=>'SiteInformationController@update','method'=>'patch']) }}
+                            {{ Form::model($info,['action'=>'Backend\SiteInformationController@update','method'=>'patch']) }}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="title">Title</label>
@@ -149,7 +149,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            {{ Form::model($info,['action'=>'SiteInformationController@logo','method'=>'patch','files'=>true]) }}
+                            {{ Form::model($info,['action'=>'Backend\SiteInformationController@logo','method'=>'patch','files'=>true]) }}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="title">Logo Height</label>
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                     <div class="card mt-2">
-                        {{ Form::model($info,['action'=>'SiteInformationController@update_google_map','method'=>'patch']) }}
+                        {{ Form::model($info,['action'=>'Backend\SiteInformationController@update_google_map','method'=>'patch']) }}
                         <div class="card-header">
                             <h5>Google Map</h5>
                         </div>

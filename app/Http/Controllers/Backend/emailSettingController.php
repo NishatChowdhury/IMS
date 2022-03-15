@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\EmailSetting;
+use App\Models\Backend\EmailSetting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -12,7 +12,6 @@ class emailSettingController extends Controller
     public function index()
     {
         $allData = EmailSetting::query()->get();
-//        dd($allData);
         return view('admin.settings.email_setting',compact('allData'));
     }
 

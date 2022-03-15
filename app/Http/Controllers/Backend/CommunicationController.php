@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Staff;
-use Exception;
-use App\Student;
-use Illuminate\Http\Request;
-use App\CommunicationHistory;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Backend\CommunicationHistory;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class CommunicationController extends Controller
