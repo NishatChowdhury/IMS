@@ -234,7 +234,7 @@ option.customOption {
                                         <div class="col-12 text-center mt-2">
                                             <div id="editImage" class="editImageShow">
                                                 @if(\Route::current()->getName() != 'student.add')
-                                                {!! Form::image('/assets/img/students/'.$student->image, 'Image Button',['class' => 'reset-now', 'width' => '200px', 'height' => '200px']) !!}
+                                                {!! Form::image('/storage/uploads/students/'.$student->image, 'Image Button',['class' => 'reset-now', 'width' => '200px', 'height' => '200px']) !!}
                                                 @endif
                                             </div>  
                                         </div>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Staff;
-use App\Gender;
-use App\BloodGroup;
-use Illuminate\Http\Request;
-use App\Repository\StaffRepository;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Staff;
+use App\Repository\StaffRepository;
+use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {

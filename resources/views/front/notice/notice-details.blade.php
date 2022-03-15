@@ -58,7 +58,7 @@
                         </p>
 {{--                        <img src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" alt="" class="img-fluid">--}}
                         @if($notice->file)
-                        <embed src="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf" style="width: 100%;height: 500px">
+                        <embed src="{{ asset('storage/uploads/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf" style="width: 100%;height: 500px">
                         @endif
                         <a href="{{ action('Front\FrontController@notice') }}" class="btn btn-primary mt-4">Back To Notices</a>
                         @if($notice->file)

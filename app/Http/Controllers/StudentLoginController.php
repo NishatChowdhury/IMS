@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\RawAttendance;
-use App\Student;
+use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Student;
 use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
 
 class StudentLoginController extends Controller
 {

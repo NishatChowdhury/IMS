@@ -1,7 +1,7 @@
 @foreach($students as $student)
 
     @php
-        $attendances =  \App\Attendance::query()
+        $attendances =  \App\Models\Backend\Attendance::query()
                         ->where('registration_id',$student->studentId)
                         ->whereBetween('access_date',[$start,$end])->get()
                         ->groupBy(function($date) {

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Exam;
-use App\Session;
-use App\Subject;
-use App\ExamSchedule;
-use App\AcademicClass;
-use Illuminate\Http\Request;
-use App\Repository\ExamRepository;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Exam;
+use App\Models\Backend\ExamSchedule;
+use App\Models\Backend\Session;
+use App\Models\Backend\Subject;
+use App\Repository\ExamRepository;
+use Illuminate\Http\Request;
 
 class ExamScheduleController extends Controller
 {

@@ -2,31 +2,24 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\City;
-use App\Group;
-use App\Father;
-use App\Gender;
-use App\Mother;
-use App\Classes;
-use App\Country;
 use App\Helpers;
-use App\Section;
-use App\Session;
-use App\Student;
-use App\Division;
-use App\Guardian;
-use App\Religion;
-use App\BloodGroup;
-use App\OnlineApply;
-use App\Mail\Confirm;
-use App\AcademicClass;
-use App\OnlineAdmission;
-use App\StudentAcademic;
-use App\Mail\AdmissionMail;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\Confirm;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Father;
+use App\Models\Backend\Group;
+use App\Models\Backend\Guardian;
+use App\Models\Backend\Mother;
+use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\OnlineApply;
+use App\Models\Backend\Section;
+use App\Models\Backend\Session;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OnlineApplyController extends Controller
 {
@@ -281,7 +274,7 @@ class OnlineApplyController extends Controller
         //     $dataStore->status = $req->status;
         // }
         $dataStore->save();
-         return back();
+        return back();
     }
 
 }

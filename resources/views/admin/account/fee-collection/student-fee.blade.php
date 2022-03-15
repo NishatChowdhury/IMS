@@ -160,7 +160,7 @@
                                         {!! Form::hidden('month', $fee_setup->month) !!}
                                         @foreach($fee_setup->fee_categories  as $fee)
                                             @php
-                                                $fee_amount = \App\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_setup->id)->first()->amount;
+                                                $fee_amount = \App\Models\Backend\FeePivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_setup->id)->first()->amount;
                                                 $total +=$fee_amount;
                                             @endphp
 

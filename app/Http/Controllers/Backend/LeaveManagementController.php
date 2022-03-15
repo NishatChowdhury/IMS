@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Student;
-use App\LeavePurpose;
-use App\StudentLeave;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\LeavePurpose;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentLeave;
+use App\Repository\StudentRepository;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Repository\StudentRepository;
 use Illuminate\Support\Facades\Session;
 
 class LeaveManagementController extends Controller

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Exception;
-use App\UpcomingEvent;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\UpcomingEvent;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class UpcomingEventController extends Controller

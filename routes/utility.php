@@ -1,19 +1,19 @@
 <?php
 
-use App\AcademicClass;
-use App\AppliedStudent;
-use App\BloodGroup;
-use App\ExamResult;
-use App\ExamSchedule;
-use App\FinalMark;
-use App\FinalResult;
-use App\Gender;
-use App\Grade;
-use App\Mark;
-use App\RawAttendance;
-use App\Religion;
-use App\Student;
-use App\StudentLogin;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\ExamResult;
+use App\Models\Backend\ExamSchedule;
+use App\Models\Backend\FinalMark;
+use App\Models\Backend\FinalResult;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Grade;
+use App\Models\Backend\Mark;
+use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Religion;
+use App\Models\Backend\Student;
+use App\Models\Backend\StudentLogin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;

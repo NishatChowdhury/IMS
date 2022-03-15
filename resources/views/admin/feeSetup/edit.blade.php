@@ -23,7 +23,6 @@
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
-            {{-- {{ dd($fee_setup)}} --}}
             {{ Form::model($fee_setup,['url'=>['admin/fee/fee-setup/update',$fee_setup->id],'method'=>'patch', 'class'=>'form-horizontal']) }}
             <div class="row">
                 <div class="col-md-12">
@@ -103,7 +102,7 @@
                             @foreach($fees as $key => $fee)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{ \App\FeeCategory::query()->find($fee['category_id'])->name }}</td>
+                                <td>{{ \App\Models\Backend\FeeCategory::query()->find($fee['category_id'])->name }}</td>
                                 <td>{{$fee['amount']}}</td>
                                 <td class="text-center"><button type="button" onclick="removeFeeFromEditCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
                             </tr>

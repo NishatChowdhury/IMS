@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Session;
-use App\MeritList;
-use App\OnlineApply;
-use App\AppliedStudent;
-use App\SiteInformation;
-use App\Mail\AdmissionMail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Repository\FrontRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\OnlineApply;
+use App\Models\Backend\Session;
+use App\Repository\FrontRepository;
+use Illuminate\Http\Request;
 
 class AdmissionController extends Controller
 {

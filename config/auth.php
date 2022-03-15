@@ -73,7 +73,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => \App\Models\Backend\User::class,
         ],
 
         // 'users' => [
@@ -83,7 +83,7 @@ return [
 
         'students' => [
             'driver' => 'eloquent',
-            'model' => App\StudentLogin::class,
+            'model' => \App\Models\Backend\StudentLogin::class,
         ]
     ],
 

@@ -1,14 +1,12 @@
 <?php
 namespace App\Http\Controllers\Backend;
 
-use App\Staff;
-use App\Notice;
-use App\Session;
-use App\Student;
-use App\AcademicClass;
-use App\AcademicCalender;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicCalender;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Notice;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
 
 class DashboardController extends Controller
 {

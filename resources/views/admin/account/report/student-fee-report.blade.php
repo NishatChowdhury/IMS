@@ -168,7 +168,7 @@
                                                     </tr>
                                                 </thead>
                                                 @php
-                                                    $payments = \App\StudentPayment::query()->where('student_id',$student->id)->get();
+                                                    $payments = \App\Models\Backend\StudentPayment::query()->where('student_id',$student->id)->get();
                                                 @endphp
                                                 <tbody>
                                                     @foreach($payments as $payment)

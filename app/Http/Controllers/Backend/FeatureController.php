@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Menu;
-use Exception;
-use App\Feature;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Feature;
+use App\Models\Backend\Menu;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class FeatureController extends Controller

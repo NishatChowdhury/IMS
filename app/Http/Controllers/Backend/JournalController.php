@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\COA;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\COA;
+use App\Models\Backend\Journal;
+use App\Models\Backend\JournalItem;
 use Exception;
-use App\Journal;
-use App\JournalItem;
-use App\ChartOfAccount;
-use Illuminate\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Foundation\Application;
 
 class JournalController extends Controller
 {
@@ -95,7 +93,7 @@ class JournalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\Backend\Journal  $journal
      * @return Response
      */
     public function edit(Journal $journal)
@@ -107,7 +105,7 @@ class JournalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\Backend\Journal  $journal
      * @return Response
      */
     public function update(Request $request, Journal $journal)

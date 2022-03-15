@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use App\CommunicationSetting;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\CommunicationSetting;
+use Illuminate\Http\Request;
 
 class CommunicationSettingController extends Controller
 {

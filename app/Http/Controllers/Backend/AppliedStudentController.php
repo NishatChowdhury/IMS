@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Exception;
-use App\Session;
-use App\Student;
-use App\AppliedStudent;
-use App\SiteInformation;
-use Illuminate\Http\Request;
-use App\CommunicationSetting;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AppliedStudent;
+use Illuminate\Http\Request;
 
 class AppliedStudentController extends Controller
 {

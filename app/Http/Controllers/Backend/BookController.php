@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Book;
-use App\Student;
-use App\IssueBook;
-use App\BookCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Book;
+use App\Models\Backend\BookCategory;
+use App\Models\Backend\IssueBook;
+use App\Models\Backend\Student;
 use App\Repository\StudentRepository;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {

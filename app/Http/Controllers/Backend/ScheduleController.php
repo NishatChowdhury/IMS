@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Staff;
-use App\AcademicClass;
-use App\AssignSubject;
-use App\ClassSchedule;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\ClassSchedule;
+use App\Models\Backend\Staff;
 use App\Repository\ScheduleRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class ScheduleController extends Controller

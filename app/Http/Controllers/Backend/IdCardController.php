@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Staff;
-use App\Student;
-use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
 use App\Repository\StudentRepository;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Request;
 
 class IdCardController extends Controller
 {

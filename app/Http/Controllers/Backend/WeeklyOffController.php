@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\weeklyOff;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\weeklyOff;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class WeeklyOffController extends Controller

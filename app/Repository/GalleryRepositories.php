@@ -9,8 +9,8 @@
 namespace App\Repository;
 
 
-use App\Album;
-use App\GalleryCategory;
+use App\Models\Backend\Album;
+use App\Models\Backend\GalleryCategory;
 
 class GalleryRepositories
 {

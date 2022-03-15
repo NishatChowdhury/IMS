@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\FeeSetupCategory;
-use App\FeeSetupStudent;
-use App\Group;
-use App\Classes;
-use App\Session;
-use App\FeeSetup;
-use App\FeeCategory;
-use App\AcademicClass;
-use App\StudentAcademic;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Classes;
+use App\Models\Backend\FeeCategory;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\FeeSetupCategory;
+use App\Models\Backend\FeeSetupStudent;
+use App\Models\Backend\Group;
+use App\Models\Backend\Session;
+use App\Models\Backend\StudentAcademic;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as sessions;
+use Illuminate\Validation\Rule;
 
 class FeeSetupController extends Controller
 {
@@ -50,9 +50,7 @@ class FeeSetupController extends Controller
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
-    public function store(Request $request)
-    {
-        $request->all();
+    public function store(Request $request){
         $request->validate([
             'academic_class_id' => [
                 'required',
@@ -104,7 +102,6 @@ class FeeSetupController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function feeStudents(Request $request){
-        // dd($request->id);
         $students = FeeSetupStudent::query()
             ->where('fee_setup_id',$request->id)->with('student')
             ->get();
@@ -121,7 +118,6 @@ class FeeSetupController extends Controller
 
     public function edit($id)
     {
-        // dd($id);
         $classes = Classes::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
         $fee_setup = FeeSetup::query()->findOrFail($id);

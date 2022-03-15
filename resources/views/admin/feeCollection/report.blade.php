@@ -91,7 +91,7 @@
                                     @if($fee_setup)
                                         @foreach($fee_setup->fee_categories  as $key=>$fee)
                                             @php
-                                                $fee_amount = \App\FeeSetupPivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_setup->id)->first()->amount;
+                                                $fee_amount = \App\Models\Backend\FeeSetupPivot::where('fee_category_id',$fee->id)->where('fee_setup_id',$fee_setup->id)->first()->amount;
                                             @endphp
 
                                             <tr>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Album;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
+use App\Models\Backend\Album;
 use App\Repository\GalleryRepositories;
+use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {

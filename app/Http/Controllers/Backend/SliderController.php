@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Slider;
-use App\Session;
+use App\Models\Backend\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
