@@ -38,7 +38,7 @@ class Student extends Model
 
     public function academicClass()
     {
-        return $this->belongsTo(AcademicClass::class,'academic_class_id');
+        return $this->belongsTo(AcademicClass::class, 'academic_class_id');
     }
     /**
      * A student is belongs to a session
@@ -63,7 +63,7 @@ class Student extends Model
      */
     public function sessions(): BelongsTo
     {
-        return $this->belongsTo(Session::class,'session_id');
+        return $this->belongsTo(Session::class, 'session_id');
     }
 
     public function group()
@@ -101,34 +101,39 @@ class Student extends Model
         return $this->belongsTo(Location::class);
     }
 
-    public function payable($id){
-        return StudentPayment::query()->where('student_id',$id)->sum('setup_amount');
+    public function payable($id)
+    {
+        return StudentPayment::query()->where('student_id', $id)->sum('setup_amount');
     }
 
-    public function paid($id){
-        return StudentPayment::query()->where('student_id',$id)->sum('paid_amount');
+    public function paid($id)
+    {
+        return StudentPayment::query()->where('student_id', $id)->sum('paid_amount');
     }
 
-    public function fine($id){
-        return StudentPayment::query()->where('student_id',$id)->sum('fine');
+    public function fine($id)
+    {
+        return StudentPayment::query()->where('student_id', $id)->sum('fine');
     }
 
-    public function discount($id){
-        return StudentPayment::query()->where('student_id',$id)->sum('discount');
+    public function discount($id)
+    {
+        return StudentPayment::query()->where('student_id', $id)->sum('discount');
     }
 
     public function admission()
     {
-        return $this->belongsTo(AppliedStudent::class,'ssc_roll','ssc_roll');
+        return $this->belongsTo(AppliedStudent::class, 'ssc_roll', 'ssc_roll');
     }
 
     public function shift()
     {
-        return $this->belongsTo(Shift::class,'shift_id');
+        return $this->belongsTo(Shift::class, 'shift_id');
     }
 
-    public function attendances(){
-        return $this->hasMany(RawAttendance::class,'registration_id','studentId');
+    public function attendances()
+    {
+        return $this->hasMany(RawAttendance::class, 'registration_id', 'studentId');
     }
 
     public function feeSetup()
@@ -144,13 +149,13 @@ class Student extends Model
      */
     public function fee_setup_pivot(): HasManyThrough
     {
-        return $this->hasManyThrough(FeeSetupPivot::class,FeeSetup::class);
+        return $this->hasManyThrough(FeeSetupPivot::class, FeeSetup::class);
     }
 
-    
+
     public function academicClasses()
     {
-        return $this->belongsTo(Classes::class,'class_id');
+        return $this->belongsTo(Classes::class, 'class_id');
     }
 
     public function month()
