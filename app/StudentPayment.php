@@ -34,4 +34,5 @@ class StudentPayment extends Model
     {
         return $this->belongsTo(Session::class,'session_id');
     }
+   
 }

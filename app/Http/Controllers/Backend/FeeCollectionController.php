@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Student;
 use App\FeeSetup;
+use App\FeeSetupCategory;
+use App\FeeSetupStudent;
 use App\StudentPayment;
 use App\StudentAcademic;
 use Illuminate\Http\Request;
@@ -20,17 +22,21 @@ class FeeCollectionController extends Controller
 
     public function view(Request $request)
     {
+
         $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
         $student = Student::query()->where('studentId', $term)->with('academics')->first();
         $paidAmount = StudentPayment::where('student_id', $student->id)->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
             ->groupBy('year', 'month')
             ->get();
-        // show previous payments
+        $fss = FeeSetupStudent::where('student_id', $student->id)->first();
+        $totalDue = FeeSetupCategory::where(['fee_setup_student_id' => $fss->id])->sum('amount') - FeeSetupCategory::where(['fee_setup_student_id' => $fss->id])->sum('paid');
+        // dd($totalDue);                                              
         $previousPayment = StudentPayment::where('student_id', $student->id)->latest()->get();
+
         if (!empty($student->studentId) && $student->studentId == $term) {
             // $feeSetup = $student->feeSetup;
-            return view('admin.feeCollection.view', compact('student', 'term', 'payment_method', 'paidAmount', 'previousPayment'));
+            return view('admin.feeCollection.view', compact('student', 'term', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment'));
         } else {
             return view('admin.feeCollection.index')->with('message', 'IT WORKS!');
         }
@@ -38,12 +44,37 @@ class FeeCollectionController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'date' => 'required|date',
+            'payment_method' =>'required',
+            'amount' => 'required'
+        ]);
         //   return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
         $academicClassID = $ss->academic_class_id;
         $feeSetupID = FeeSetup::where('academic_class_id', $academicClassID)->first();
 
-        StudentPayment::query()->create([
+        $fss = FeeSetupStudent::where('student_id', $request->student_id)->first();
+        $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fss->id)->get();
+        
+        $paying = $request->amount;
+        foreach ($categories as $category)
+         {
+            $amount = $category->amount;
+            $paid = $category->paid;
+            if ($amount > $paid) {
+                $due = $amount - $paid;
+                if ($paying > $due) {
+                    $category->update(['paid'=>$amount]);
+                    $paying = $paying - $due;
+                }else{
+                    $category->update(['paid'=>$paying]);
+                    $paying = 0;
+                }
+            }
+        }
+
+        $sp = StudentPayment::query()->create([
             'user_id' => Auth::user()->id,
             'student_id' => $request->student_id,
             'fee_setup_id' => $feeSetupID->id,
@@ -51,6 +82,17 @@ class FeeCollectionController extends Controller
             'amount' => $request->amount,
             'payment_method' => $request->payment_method
         ]);
+
+        // if ($previousPayment) {
+        //     $totalPaid = $previousPayment + $sp->amount;
+        //     FeeSetupCategory::where('fee_setup_student_id', $fss->id)->first()->update(['paid' => $totalPaid]);
+        // } else {
+        //     FeeSetupCategory::where('fee_setup_student_id', $fss->id)->first()->update(['paid' => $sp->amount]);
+        // }
+
+        // $fss = FeeSetupStudent::where('student_id' , $request->id)->first(); 
+        // $totalPaid = $previousPayment + $sp->amount;
+        // FeeSetupCategory::where('fee_setup_student_id', $fss->id)->update(['paid'=>$totalPaid]);
         return redirect('admin/fee/fee-collection')->with('message', 'Added Successfully!');
     }
 

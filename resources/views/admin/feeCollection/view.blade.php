@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Fee Collection</h1>
+                    <h1>Fee Collection</h1>             
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -96,13 +96,13 @@
                                 <div class="col">
                                     <label for="">{{ __('Date') }}</label>
                                     <div class="input-group">
-                                        {{ Form::date('date', null, ['class' => 'form-control', 'placeholder' => 'Select Date']) }}
+                                        {{ Form::date('date', null, ['class' => 'form-control'. ($errors->has('date') ? ' is-invalid' : null), 'placeholder' => 'Select Date']) }}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">{{ __('Balance') }}</label>
                                     <div class="input-group">
-                                        {{ Form::text('balance', null, ['class' => 'form-control', 'placeholder' => 'Balance']) }}
+                                        {{ Form::text('balance', $totalDue, ['class' => 'form-control', 'readonly']) }}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -114,7 +114,7 @@
                                 <div class="col">
                                     <label for="">{{ __('Paid Amount') }}</label>
                                     <div class="input-group">
-                                        {{ Form::text('amount', null, ['class' => 'form-control', 'placeholder' => 'Paid']) }}
+                                        {{ Form::text('amount', null, ['class' => 'form-control'. ($errors->has('amount') ? ' is-invalid' : null), 'placeholder' => 'Paid']) }}
                                     </div>
                                 </div>
                                 <div class="button text-center m-4">
@@ -149,7 +149,7 @@
                                             <td>{{ $value->amount }}</td>
                                         </tr>
                                     @empty
-                                        <td colspan="2">
+                                        <td colspan="3">
                                             <h5 class="text-center text-danger"> No data found!!</h5>
                                         </td>
                                     @endforelse
