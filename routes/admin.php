@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\FeeCartController;
@@ -267,7 +268,7 @@ Route::group(['prefix'=>'admin'], function(){
     //@MKH
     Route::post('student/store', 'Backend\StudentController@store');
     Route::get('student/optional','Backend\StudentController@optional');
-    Route::post('student/optional/assign','Backend\StudentController@assignOptional');
+    Route::get('student/optional/assign','Backend\StudentController@assignOptional');
     //End Students Route
 
     // ID Card Routes
@@ -437,7 +438,8 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
-//Staff Route 
+Route::get('csv','Backend\StudentController@csvDownload')->name('csv');
+//Staff Route
 Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');
 Route::get('staff/teacher','Backend\StaffController@teacher')->name('staff.teacher');
 Route::get('staff/staffadd','Backend\StaffController@addstaff')->name('staff.addstaff');
@@ -598,6 +600,14 @@ return view('form-pdf');
 
 
 
+    Route::get('role',[RolePermissionController::class, 'roleIndex'])->name('role.index');
+    Route::get('role-create',[RolePermissionController::class, 'roleCreate'])->name('role.create');
+    Route::post('role-store',[RolePermissionController::class, 'roleStore'])->name('role.store');
+    Route::get('role-edit/{role}',[RolePermissionController::class, 'roleEdit'])->name('role.edit');
+    Route::post('role-update',[RolePermissionController::class, 'roleUpdate'])->name('role.update');
+    //create module for development
+    Route::get('module-create',[RolePermissionController::class, 'moduleCreate'])->name('module.create');
+    Route::post('module-store',[RolePermissionController::class, 'moduleStore'])->name('module.store');
 
 
 

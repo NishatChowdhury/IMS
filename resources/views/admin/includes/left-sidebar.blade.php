@@ -189,7 +189,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('Backend\BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
+                            <a href="{{ action('Backend\BookController@show') }}" class="nav-link {{ isActive('admin/library/books') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Books</p>
                             </a>
@@ -899,6 +899,12 @@
                         <a href="{{ action('Backend\UserController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="{{ route('role.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Role</p>
                         </a>
                     </li>
                 </ul>

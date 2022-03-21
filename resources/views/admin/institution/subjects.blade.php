@@ -24,6 +24,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
@@ -57,6 +66,7 @@
                                     <th>Name</th>
                                     <th>Code</th>
                                     <th>Short Name </th>
+                                    <th>Type </th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -68,6 +78,16 @@
                                         <td>{{$subject->name}}</td>
                                         <td>{{$subject->code}}</td>
                                         <td>{{$subject->short_name}}</td>
+                                        <td>
+
+
+
+                                            <span class="badge badge-danger">
+                                                {{ $subject->type == 1 ? 'Compulsory' : ''  }}
+                                                {{ $subject->type == 2 ? 'Optional' : ''  }}
+                                                {{ $subject->type == 3 ? 'Selective' : ''  }}
+                                            </span>
+                                        </td>
                                         <td>
                                             <a type="button" class="btn btn-warning btn-sm edit" value='{{$subject->id}}'
                                                style="margin-left: 10px;" title="EDIT"> <i class="fas fa-edit"></i>
@@ -142,18 +162,18 @@
                             </div>
                         </div>
                     </div>
-                    {{--<div class="form-group row">
-                        <div class="col-sm-4">
-                            <div style="margin-left: 170px;">
-                                <div class="input-group">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                </div>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Is Split
-                                </label>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Subject Type</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <select name="type" class="form-control" id="">
+                                    <option value="1">Compulsory</option>
+                                    <option value="2">Optional</option>
+                                    <option value="3">Selective</option>
+                                </select>
                             </div>
                         </div>
-                    </div>--}}
+                    </div>
 
                     <div style="float: right">
                         <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i>Add</button>
@@ -220,6 +240,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Subject Type</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <select name="type" class="form-control" id="type_id">
+                                    <option value="1">Compulsory</option>
+                                    <option value="2">Optional</option>
+                                    <option value="3">Selective</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div style="float: right">
                         <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i>Update</button>
@@ -241,7 +273,7 @@
 
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-subject')}}",
+                url:"{{ url('admin/institution/edit-subject')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
@@ -253,6 +285,7 @@
                     $("#sub_short_name").val(response.short_name);
                     $("#sub_level").val(response.level);
                     $("#sub_credit_fee").val(response.credit_fee);
+                    $("#type_id").val(response.type);
 
                 },
                 error:function(err){

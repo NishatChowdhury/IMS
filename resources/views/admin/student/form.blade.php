@@ -117,6 +117,15 @@ option.customOption {
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-3 fancy-forms">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
              <!-- <div class="cardbox"> -->
                 <ul class="nav nav-tabs  mt-3" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -163,7 +172,7 @@ option.customOption {
                                         </div>
                                         <div class="form-group col-12">
                                             {{Form::label('name','Student\'s Birth Certificate',['class'=>'control-label'])}}
-                                            {{ Form::text('birth_certificate', null, ['placeholder' => 'Student\'s  Birth Certificate...', 'class' => 'form-control' ]) }}
+                                            {{ Form::number('birth_certificate', null, ['placeholder' => 'Student\'s  Birth Certificate...', 'class' => 'form-control' ]) }}
                                             @error('birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                             @enderror
@@ -352,7 +361,7 @@ option.customOption {
                                             </div>
                                             <div class="form-group col-6">
                                                 {{ Form::label('f_mobile',' Mobile',['class'=>'control-label']) }}
-                                                {{ Form::text('f_mobile',!empty($father) ? $father->f_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
+                                                {{ Form::number('f_mobile',!empty($father) ? $father->f_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
                                                 @error('f_mobile')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -382,14 +391,14 @@ option.customOption {
                                             
                                             <div class="form-group col-6">
                                                 {{ Form::label('f_nid',' NID',['class'=>'control-label']) }}
-                                                {{ Form::text('f_nid',!empty($father) ? $father->f_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
+                                                {{ Form::number('f_nid',!empty($father) ? $father->f_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
                                                 @error('f_nid')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
                                                 {{ Form::label('f_birth_certificate',' Birth Certificate',['class'=>'control-label']) }}
-                                                {{ Form::text('f_birth_certificate',!empty($father) ? $father->f_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
+                                                {{ Form::number('f_birth_certificate',!empty($father) ? $father->f_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
                                                 @error('f_birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -421,7 +430,7 @@ option.customOption {
                                             </div>
                                             <div class="form-group col-6">
                                                 {{ Form::label('m_mobile',' Mobile',['class'=>'control-label']) }}
-                                                {{ Form::text('m_mobile',!empty($mother) ? $mother->m_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
+                                                {{ Form::number('m_mobile',!empty($mother) ? $mother->m_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
                                                 @error('m_mobile')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -451,14 +460,14 @@ option.customOption {
                                             
                                             <div class="form-group col-6">
                                                 {{ Form::label('m_nid',' NID',['class'=>'control-label']) }}
-                                                {{ Form::text('m_nid',!empty($mother) ? $mother->m_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
+                                                {{ Form::number('m_nid',!empty($mother) ? $mother->m_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
                                                 @error('m_nid')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
                                                 {{ Form::label('m_birth_certificate',' Birth Certificate',['class'=>'control-label']) }}
-                                                {{ Form::text('m_birth_certificate',!empty($mother) ? $mother->m_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
+                                                {{ Form::number('m_birth_certificate',!empty($mother) ? $mother->m_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
                                                 @error('m_birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -491,7 +500,7 @@ option.customOption {
                                             </div>
                                             <div class="form-group col-6">
                                                 {{ Form::label('g_mobile',' Mobile',['class'=>'control-label']) }}
-                                                {{ Form::text('g_mobile',!empty($guardian) ? $guardian->g_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
+                                                {{ Form::number('g_mobile',!empty($guardian) ? $guardian->g_mobile : null,['class'=>'form-control', 'placeholder'=>' Mobile']) }}
                                                 @error('g_mobile')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -521,14 +530,14 @@ option.customOption {
                                             
                                             <div class="form-group col-6">
                                                 {{ Form::label('g_nid',' NID',['class'=>'control-label']) }}
-                                                {{ Form::text('g_nid',!empty($guardian) ? $guardian->g_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
+                                                {{ Form::number('g_nid',!empty($guardian) ? $guardian->g_nid : null,['class'=>'form-control', 'placeholder'=>' NID']) }}
                                                 @error('g_nid')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
                                                 {{ Form::label('g_birth_certificate',' Birth Certificate',['class'=>'control-label']) }}
-                                                {{ Form::text('g_birth_certificate',!empty($guardian) ? $guardian->g_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
+                                                {{ Form::number('g_birth_certificate',!empty($guardian) ? $guardian->g_birth_certificate : null,['class'=>'form-control', 'placeholder'=>' Birth Certificate']) }}
                                                 @error('g_birth_certificate')
                                                 <b style="color: red">{{ $message }}</b>
                                                 @enderror
@@ -598,7 +607,7 @@ option.customOption {
                                     <div class="col-md-6 col-lg-6 col-sm-12">
                                         <div class="form-group">
                                             {{ Form::label('contactMobile','Contact Mobile',['class'=>'control-label']) }}
-                                            {{ Form::text('mobile',null,['class'=>'form-control', 'placeholder'=>'Contact Mobile']) }}
+                                            {{ Form::number('mobile',null,['class'=>'form-control', 'placeholder'=>'Contact Mobile']) }}
                                             @error('mobile')
                                             <b style="color: red">{{ $message }}</b>
                                             @enderror

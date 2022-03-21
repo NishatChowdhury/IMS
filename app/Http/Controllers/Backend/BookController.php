@@ -131,6 +131,15 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'book_title' => 'required',
+            'book_code' => 'required|unique:books',
+            'author_name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'no_of_issue' => 'required',
+            'shelve' => 'required',
+        ]);
         Book::query()->create($request->all());
         return redirect('admin/library/books');
     }

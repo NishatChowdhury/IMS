@@ -27,6 +27,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
                         {{ Form::open(['action'=>'Backend\StudentController@index','role'=>'form','method'=>'get']) }}
@@ -96,7 +105,7 @@
                         <h3 class="card-title">Total Found : {{ $students->total() }}</h3>
                         <div class="card-tools">
                             <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
-                            <a href="{{ \Illuminate\Support\Facades\Request::fullUrlWithQuery(['csv' => 'csv']) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
+                            <a href="{{ route('csv') }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
                     </div>
                     <!-- /.card-header -->

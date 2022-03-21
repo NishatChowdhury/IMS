@@ -42,6 +42,17 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                     <div class="col-md-4">
                         <!-- Widget: user widget style 2 -->
                         <div class="card card-widget widget-user-2">
@@ -75,7 +86,7 @@
                 <div class="col-md-8">
                     <div class="card" style="margin: 10px;">
                         <div class="card-body">
-                            {{ Form::open(['action'=>['StudentController@assignSubject',$student->id],'method'=>'patch']) }}
+                            {{ Form::open(['action'=>['Backend\StudentController@assignSubject',$student->id],'method'=>'patch']) }}
                             <div class="row">
                                 <div class="col-md-4">
                                     <h6 class="text-center" style="border-bottom:1px solid #DDDDDD"><label for="">Compulsory</label></h6>

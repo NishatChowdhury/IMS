@@ -44,14 +44,7 @@ class InstitutionController extends Controller
             'start' => 'required',
             'end' => 'required'
         ]);
-        /*if ($validator->passes()){
-            $data = [
-                'year' => $request->year,
-                'start' => $request->start,
-                'end' => $request->end,
-                'description' => $request->description,
-            ];
-        }*/
+
         $request['active'] = 0;
         Session::query()->create($request->all());
         return redirect('admin/institution/academicyear')->with('success', 'Academic year added successfully');
@@ -92,6 +85,13 @@ class InstitutionController extends Controller
     }
 
     public function create_section(Request $req){
+
+//        return $req->all();
+
+        $req->validate([
+            'name' => 'required|unique:sections',
+        ]);
+
         Section::query()->create($req->all());
         return redirect('admin/institution/section-groups')->with('success', 'Section added successfully');
     }
@@ -102,6 +102,10 @@ class InstitutionController extends Controller
     }
 
     public function update_section(Request $req){
+        $req->validate([
+            'section_name' => 'required|unique:sections,name,'.$req->id,
+        ]);
+
         $section = Section::query()->findOrFail($req->id);
         $section->update(['name' => $req->section_name]);
         return redirect('admin/institution/section-groups')->with('success', 'Section has been Updated');
@@ -114,6 +118,9 @@ class InstitutionController extends Controller
     }
 
     public function create_group(Request $req){
+         $req->validate([
+            'name' => 'required|unique:groups',
+        ]);
         Group::query()->create($req->all());
         return redirect('admin/institution/section-groups')->with('success', 'Group added successfully');
     }
@@ -124,6 +131,11 @@ class InstitutionController extends Controller
     }
 
     public function update_group(Request $req){
+
+//        return $req->all();
+        $req->validate([
+            'group_name' => 'required|unique:groups,name,'.$req->group_id,
+        ]);
         $data = Group::query()->findOrFail($req->group_id);
         $info = ['name' => $req->group_name];
         $data->update($info);
@@ -148,7 +160,17 @@ class InstitutionController extends Controller
 
     public function storeAcademicClass(Request $req){
 
-        // return $req->all();
+        $checkexits = AcademicClass::query()
+                                    ->where('session_id', $req->session_id)
+                                    ->where('class_id', $req->class_id)
+                                    ->where('section_id', $req->section_id)
+                                    ->where('group_id', $req->group_id)
+                                    ->exists();
+        if($checkexits){
+            return back()->with('status','Academic Class Already Exist :) ');
+        }
+
+
         AcademicClass::query()->create($req->all());
         return redirect('admin/institution/academic-class');
     }
@@ -176,16 +198,28 @@ class InstitutionController extends Controller
 
     public function store_class(Request $req){
         //dd($req->all());
+        $validated = $req->validate([
+            'name' => 'required|unique:classes',
+            'numeric_class' => 'required|unique:classes',
+        ]);
+
+
         Classes::query()->create($req->all());
         return redirect('admin/institution/class');
     }
 
     public function edit_SessionClass(Request $req){
+
+//         return $req->id;
         $class = Classes::query()->findOrFail($req->id);
         return $class;
     }
 
     public function update_SessionClass(Request $req){
+        $validated = $req->validate([
+            'name' => 'required|unique:classes,name,'.$req->id,
+            'numeric_class' => 'required|unique:classes,numeric_class,'.$req->id,
+        ]);
         $class = Classes::query()->findOrFail($req->id);
         $class->update($req->all());
         return redirect('admin/institution/class')->with('success', 'Class has been Updated');
@@ -205,6 +239,14 @@ class InstitutionController extends Controller
     }
 
     public function create_subject(Request $request){
+
+        $request->validate([
+            'code' => 'required|unique:subjects',
+            'name' => 'required',
+            'short_name' => 'required',
+            'level' => 'required',
+            'type' => 'required',
+        ]);
         Subject::create($request->all());
         return redirect('admin/institution/subjects')->with('success', 'Subject Added Successfully');
     }

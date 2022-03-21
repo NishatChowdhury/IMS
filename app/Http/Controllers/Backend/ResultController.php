@@ -391,13 +391,6 @@ class ResultController extends Controller
                     $query->where('studentId',$request->get('studentId'));
                 });
             }
-//            if($request->get('session_id')){
-//                $r->where('session_id',$request->get('session_id'));
-//            }
-
-//            if($request->get('exam_id')){
-//                $r->where('exam_id',$request->get('exam_id'));
-//            }
 
             if($request->get('class_id')){
                 $r->where('class_id',$request->get('class_id'));

@@ -31,6 +31,10 @@ Route::get('system/reboot',function(){
     Artisan::call('view:clear');
     dd('all cleared');
 });
+Route::get('system/c',function(){
+    $gg = Artisan::call('storage:link');
+    dd($gg);
+});
 
 Route::get('process-attendances',function(){
     $start = Carbon::today()->startOfDay();

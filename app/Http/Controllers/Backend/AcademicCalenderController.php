@@ -20,6 +20,17 @@ class AcademicCalenderController extends Controller
 
     public function index()
     {
+
+     
+        
+
+
+
+
+
+
+
+
         $repository = $this->repository;
         $calenders = AcademicCalender::query()->orderBy('start','desc')->get();
         return view('admin.settings.academic_calender',compact('repository','calenders'));

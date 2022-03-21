@@ -39,7 +39,7 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                        {!!  Form::open(['action'=>'LeavePurposeController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!!  Form::open(['action'=>'Backend\LeavePurposeController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
 
                         <div class="card-body">
                             <div class="row">
@@ -72,7 +72,7 @@
                                         <td class="text-center"> {{ $purpose->leave_purpose }} </td>
                                         <td class="text-center">
                                             {{ Form::open(['route'=>['leavePurpose.delete',$purpose->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('LeavePurposeController@edit',$purpose->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ action('Backend\LeavePurposeController@edit',$purpose->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fas fa-trash"></i>
                                             </button>
