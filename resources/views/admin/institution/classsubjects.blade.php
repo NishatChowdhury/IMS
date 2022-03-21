@@ -103,7 +103,7 @@
                                         <td>{{$sub->is_optional ? 'YES' : 'NO'}}</td>
                                         <td></td>
                                         <td>
-                                            {{ Form::open(['action'=>['InstitutionController@unAssignSubject',$sub->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\InstitutionController@unAssignSubject',$sub->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
                                         </td>
@@ -133,13 +133,15 @@
 {{--                        {{ Form::model($subject,['action'=>'InstitutionController@assign_subject']) }}--}}
 
 {{--                        {{ Form::close() }}--}}
-                        {!! Form::open(['action'=>'InstitutionController@assign_subject', 'method'=>'post', 'class'=>'form-inline']) !!}
-
+                        {!! Form::open(['action'=>'Backend\InstitutionController@assign_subject', 'method'=>'post', 'class'=>'form-inline']) !!}
+                        <div class="col-12">
+                            <div class="form-check form-check-inline mb-2" style="justify-content: normal">
+                                <input type="checkbox"  class="form-check-input sub" id="allSelect">
+                                <label class="form-check-label" for="sub">All Select</label>
+                            </div>
+                        </div>
                         @foreach($subjects as $subject)
-{{--                            <div class="form-check form-check-inline">--}}
-{{--                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">--}}
-{{--                                <label class="form-check-label" for="inlineCheckbox1">1</label>--}}
-{{--                            </div>--}}
+
                         {{ Form::hidden('academic_class_id',$class->id) }}
                         <div class="col-6">
                             <div class="form-check form-check-inline mb-2" style="justify-content: normal">
@@ -294,5 +296,13 @@
             var x = confirm('Are you sure, you want to unmount this subject?');
             return !!x;
         }
+         // check all checkbox
+        $('#allSelect').click(function(){
+            if ($(this).is(':checked')) {
+            $('input[type=checkbox]').prop('checked', true);
+            }else{
+                $('input[type=checkbox]').prop('checked', false);
+            }
+        })
     </script>
 @stop

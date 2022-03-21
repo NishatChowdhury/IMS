@@ -429,11 +429,18 @@ class StudentController extends Controller
     {
         $classes = classes::all();
         $subjects = Subject::all();
-
         if($request->has('class_id')){
+
             $s = $academic->newQuery();
             $s->where('class_id',$request->get('class_id'));
-            $students = $s->get();
+            $s->with('studentSubject');
+//            $s->whereHas('academicClass', function($query){
+////                $query->has('subjects', function($query){
+////                    return $query;
+////                });
+//                return $query;
+//            })->with('subjects');
+             $students = $s->get();
         }else{
             $students = NULL;
         }

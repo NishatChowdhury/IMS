@@ -59,7 +59,34 @@
                     {{ Form::close() }}
                     @if($students)
                         <div class="card-body">
-                            hey
+                           <table class="table-striped table table-sm table-hover">
+
+                                   @foreach($students as $key => $student)
+                               <tr>
+                                   <td>{{$key+1}}</td>
+                                   <td>{{$student->student->name}}</td>
+
+
+                                       @foreach($student->studentSubject as $subject)
+                                            <td>{{$subject->subject->name}}</td>
+                                        @endforeach
+
+
+{{--                                   @for($x = 0; $x <= $student->student_subject->c; $x++)--}}
+{{--                                            <td>--}}
+{{--                                                <select name="subjects[]" id="">--}}
+{{--                                                @foreach($subjects as $key => $sb)--}}
+{{--                                                    <option value="{{$sb->id}}"--}}
+{{--                                                        {{$sb->type == 1 ? 'selected' : ''}}--}}
+{{--                                                    >{{$sb->name}}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </td>--}}
+{{--                                   @endfor--}}
+                               </tr>
+
+                                   @endforeach
+                           </table>
                         </div>
                     @else
                         <p>No Record Founds</p>

@@ -9,6 +9,8 @@ use App\Models\Backend\Classes;
 use App\Models\Backend\Group;
 use App\Models\Backend\Section;
 use App\Models\Backend\Session;
+use App\Models\Backend\StudentAcademic;
+use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
@@ -280,8 +282,10 @@ class InstitutionController extends Controller
     }
 
     public function assign_subject(Request $request){
-
+//        return $request->all();
         // delete unassigned subjects starts
+        $studentAcademic = StudentAcademic::where('academic_class_id', $request->academic_class_id)->get();
+//        dd($studentAcademic);
         $deletable = AssignSubject::query()
             ->where('academic_class_id',$request->academic_class_id)
             ->whereNotIn('subject_id',$request->subjects)
@@ -304,6 +308,15 @@ class InstitutionController extends Controller
                 AssignSubject::query()->create($data);
             }
         }
+                foreach ($studentAcademic as $stuAcademic) {
+                    foreach ($request->subjects as $sb){
+                        $storeSubject = new StudentSubject();
+                        $storeSubject->student_academic_id = $stuAcademic->id;
+                        $storeSubject->student_id = $stuAcademic->student_id;
+                        $storeSubject->subject_id = $sb;
+                        $storeSubject->save();
+                    }
+                }
 
         //AssignSubject::query()->create($request->all());
 
@@ -311,13 +324,13 @@ class InstitutionController extends Controller
         return redirect()->back();
     }
 
-//    public function unAssignSubject($id)
-//    {
-//        $subject = AssignSubject::query()->findOrFail($id);
-//        $subject->delete();
-//        \Illuminate\Support\Facades\Session::flash('success','Subject unmount successfully');
-//        return redirect()->back();
-//    }
+    public function unAssignSubject($id)
+    {
+        $subject = AssignSubject::query()->findOrFail($id);
+        $subject->delete();
+        \Illuminate\Support\Facades\Session::flash('success','Subject unmount successfully');
+        return redirect()->back();
+    }
 
     public function signature()
     {
