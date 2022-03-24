@@ -177,6 +177,11 @@ class Student extends Model
     {
         return $this->hasMany(StudentAcademic::class);
     }
+    public function studentAcademic()
+    {
+        // for single data show
+        return $this->hasOne(StudentAcademic::class,'student_id','id');
+    }
 
     // protected $dates = ['dob'];
 

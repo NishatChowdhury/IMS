@@ -22,22 +22,6 @@
     </div>
     <!-- /.content-header -->
 
-{{--    <div class="content">--}}
-{{--        <div class="container-fluid">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12">--}}
-{{--                    <div class="card">--}}
-{{--                        <div class="card-body">--}}
-{{--                            {{ Form::open(['action'=>'StudentController@subjects','method']) }}--}}
-{{--                            {{ Form::text('search',null,['class'=>'form-control','placeholder'=>'Search by student id']) }}--}}
-{{--                            {{ Form::close() }}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
@@ -59,7 +43,7 @@
                             <!-- Add the bg color to the header using any of the bg-* classes -->
                             <div class="widget-user-header bg-secondary-gradient">
                                 <div class="widget-user-image">
-                                    <img class="img-circle elevation-2" src="{{ asset('assets/img/students/') }}/{{ $student->image }}" alt="{{ $student->studentId }}">
+                                    <img class="img-circle elevation-2" src="{{ asset('storage/uploads/students/') }}/{{ $student->image }}" alt="{{ $student->studentId }}">
                                 </div>
                                 <!-- /.widget-user-image -->
                                 <h3 class="widget-user-username">{{ $student->name }}</h3>
@@ -68,10 +52,10 @@
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
                                     <li class="nav-item text-center p-2">
-                                            <label class="text-center">{{ $student->classes->name ?? 'undefined' }} {{ $student->group->name ?? '' }} {{ $student->section->name ?? '' }}</label>
+                                            <label class="text-center">{{ $student->studentAcademic->classes->name ?? 'undefined' }} {{ $student->studentAcademic->group->name ?? '' }} {{ $student->studentAcademic->section->name ?? '' }}</label>
                                     </li>
                                     <li class="nav-item p-2">
-                                        <label>Rank </label><span class="float-right badge bg-info">{{ $student->rank }}</span>
+                                        <label>Rank </label><span class="float-right badge bg-info">{{ $student->studentAcademic->rank }}</span>
                                     </li>
                                     <li class="nav-item p-2">
                                         <label>Phone </label><span class="float-right badge bg-warning">{{ $student->mobile }}</span>
@@ -96,6 +80,14 @@
                                             <label>
                                                 <input name="subjects[compulsory][]" value="{{ $com->id }}" type="checkbox" class="flat-red" {{ in_array($com->id,$subjects->compulsory ?? []) ? 'checked' : '' }}>
                                                 {{ $com->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    @foreach($studentSubject as $com)
+                                        <div class="form-group">
+                                            <label>
+                                                <input name="subjects[compulsory][]" value="" type="checkbox" class="flat-red">
+                                                {{$com->subject->name}}
                                             </label>
                                         </div>
                                     @endforeach

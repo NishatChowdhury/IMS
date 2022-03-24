@@ -20,6 +20,7 @@ use App\Models\Backend\Session;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
+use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
@@ -197,7 +198,7 @@ class StudentController extends Controller
             'birth_certificate' => 'required|integer',
             'nationality' => 'required',
             'disability' => 'required',
-            'studentId' => 'required',
+            'studentId' => 'required|unique:students',
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
@@ -318,7 +319,7 @@ class StudentController extends Controller
             'birth_certificate' => 'required|integer',
             'nationality' => 'required',
             'disability' => 'required',
-            'studentId' => 'required',
+            'studentId' => 'required|unique:students,studentId,'.$id,
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
@@ -427,33 +428,31 @@ class StudentController extends Controller
 
     public function optional(Request $request, StudentAcademic $academic)
     {
-        $classes = classes::all();
-        $subjects = Subject::all();
-        if($request->has('class_id')){
 
+        $academicclasses = AcademicClass::whereHas('sessions', function($query){
+                    return $query->where('active', '=', 1);
+                })->get();
+        $subjects = Subject::all();
+        if($request->has('academic_class_id')){
+            $className = AcademicClass::find($request->academic_class_id);
             $s = $academic->newQuery();
-            $s->where('class_id',$request->get('class_id'));
+            $s->where('academic_class_id',$request->get('academic_class_id'));
             $s->with('studentSubject');
-//            $s->whereHas('academicClass', function($query){
-////                $query->has('subjects', function($query){
-////                    return $query;
-////                });
-//                return $query;
-//            })->with('subjects');
              $students = $s->get();
         }else{
             $students = NULL;
+            $className = NULL;
         }
 
-        return view('admin.student.optional', compact('classes','subjects','students'));
+        return view('admin.student.optional', compact('subjects','students','academicclasses','className'));
     }
 
     public function assignOptional(Request $request)
     {
-        $class_id = $request->class_id;
+        $academic_class_id = $request->academic_class_id;
         $subjectType = $request->subject_type;
         $data = [];
-        $data['studentAcademic'] = StudentAcademic::where('class_id', $class_id)->get();
+         $data['studentAcademic'] = StudentAcademic::where('academic_class_id', $academic_class_id)->get();
         $data['subjects'] = Subject::where('type', $subjectType)->get();
         $data['allSubjects'] = Subject::count();
 
@@ -671,86 +670,7 @@ class StudentController extends Controller
         return Response::download($filename, 'students.csv', $headers);
     }
 
-//     public function csvDownload()
-//    {
-////        $table = Student::all()->where('session_id',2);
-//        $table = Student::orderBy('studentId')
-//                    ->whereHas('academics', function($query){
-//                         $query->whereHas('sessions', function($query){
-//                            return $query->where('active', '=', 1);
-//                         });
-//                    })->get();
-//        dd($table);
-//        $filename = "students.csv";
-//        $handle = fopen($filename, 'w+');
-//        fputcsv($handle, [
-//            'id',
-//            'name',
-//            'studentId',
-//            'session_id',
-//            'class_id',
-//            'section_id',
-//            'group_id',
-//            'rank',
-//            'father',
-//            'mother',
-//            'gender_id',
-//            'mobile',
-//            'dob',
-//            'blood_group_id',
-//            'religion_id',
-//            'image',
-//            'address',
-//            'area',
-//            'zip',
-//            'state_id',
-//            'country_id',
-//            'email',
-//            'father_mobile',
-//            'mother_mobile',
-//            'notification_type_id',
-//            'status'
-//        ]);
-//
-//        foreach($table as $row) {
-//            fputcsv($handle, [
-//                $row['id'],
-//                $row['name'],
-//                $row['studentId'],
-//                Session::query()->findOrFail($row['session_id'])->year,
-//                AcademicClass::query()->findOrNew($row['class_id'])->name,
-//                Section::query()->findOrNew($row['section_id'])->name,
-//                Group::query()->findOrNew($row['group_id'])->name,
-//                $row['rank'],
-//                $row['father'],
-//                $row['mother'],
-//                Gender::query()->findOrNew($row['gender_id'])->name,
-//                $row['mobile'],
-//                $row['dob'],
-//                BloodGroup::query()->findOrNew($row['blood_group_id'])->name,
-//                Religion::query()->findOrNew($row['religion_id'])->name,
-//                $row['image'],
-//                $row['address'],
-//                $row['area'],
-//                $row['zip'],
-//                City::query()->findOrNew($row['city_id'])->name,
-//                Country::query()->findOrNew($row['state_id'])->name,
-//                $row['email'],
-//                $row['father_mobile'],
-//                $row['mother_mobile'],
-//                $row['notification_type_id'],
-//                $row['status'],
-//            ]);
-//        }
-//
-//        fclose($handle);
-//
-//        $headers = array(
-//            'Content-Type' => 'text/csv',
-//        );
-//
-//        return Response::download($filename, 'students.csv', $headers);
-//    }
+
     public function downloadBlank($academicClassId)
     {
         $academicClass = AcademicClass::query()->findOrFail($academicClassId);
@@ -915,15 +835,13 @@ class StudentController extends Controller
         return view('admin.student.images',compact('students','repository'));
     }
 
-//    public function profile()
-//    {
-//        $student = Student::query()->findOrFail(1);
-//        return view('student.profile',compact('student'));
-//    }
 
     public function subjects($id)
     {
         $student = Student::query()->findOrFail($id);
+        $studentSubject = StudentSubject::query()
+                                        ->where('student_id',$id)
+                                        ->get();
 
         $compulsory = OnlineSubject::query()
             //->where('group_id',$student->group_id)
@@ -942,7 +860,7 @@ class StudentController extends Controller
 
         $subjects = json_decode($student->subjects);
 
-        return view('admin.student.subjects',compact('student','compulsory','selective','optional','subjects'));
+        return view('admin.student.subjects',compact('student','compulsory','selective','optional','subjects','studentSubject'));
     }
 
     public function assignSubject($id, Request $request)

@@ -34,8 +34,8 @@ class ResultController extends Controller
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-                $r->whereHas('studentId',function($query)use($request){
-                    $query->where('studentId',$request->get('studentId'));
+                $r->whereHas('student',function($query) use ($request){
+                    $query->where('studentId', $request->studentId);
                 });
             }
 
@@ -387,8 +387,8 @@ class ResultController extends Controller
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-                $r->whereHas('studentId',function($query)use($request){
-                    $query->where('studentId',$request->get('studentId'));
+                $r->whereHas('student',function($query) use ($request){
+                    $query->where('studentId', $request->studentId);
                 });
             }
 

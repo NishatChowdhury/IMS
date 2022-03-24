@@ -27,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>['ResultController@tabulation',2],'role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['action'=>['Backend\ResultController@tabulation',2],'role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">

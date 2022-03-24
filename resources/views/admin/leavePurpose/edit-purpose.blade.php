@@ -39,7 +39,7 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                            {{ Form::model($purpose,['action'=>['LeavePurposeController@update',$purpose->id],'method'=>'patch']) }}
+                            {{ Form::model($purpose,['action'=>['Backend\LeavePurposeController@update',$purpose->id],'method'=>'patch']) }}
 
 
                             <div class="card-body">

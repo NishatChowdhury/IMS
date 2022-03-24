@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['action'=>'ExamSeatPlanController@storeSeatPlan','role'=>'form','method'=>'post']) }}
+                        {{ Form::open(['action'=>'Backend\ExamSeatPlanController@storeSeatPlan','role'=>'form','method'=>'post']) }}
                         <div class="card-body">
                                 {{ Form::hidden('exam_id',$id) }}
                             <div class="form-row">
@@ -126,7 +126,7 @@
                                             <td>{{ $seat->roll_to }}</td>
                                             <td>{{ $seat->count }}</td>
                                             <td>
-                                                {!! Form::open(['action'=>['ExamSeatPlanController@destroy',$seat->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
+                                                {!! Form::open(['action'=>['Backend\ExamSeatPlanController@destroy',$seat->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
                                                 <a href="{{url('exam/pdf-seat-plan',$seat->id)}}" class="btn btn-success btn-sm" title="print Set Plan"><i class="fa fa-address-card"></i></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Set Plan"><i class="fa fa-trash"></i></button>
                                                 {!! Form::close() !!}

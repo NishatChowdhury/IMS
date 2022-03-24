@@ -284,9 +284,10 @@ class InstitutionController extends Controller
     public function assign_subject(Request $request){
 //        return $request->all();
         // delete unassigned subjects starts
-        $studentAcademic = StudentAcademic::where('academic_class_id', $request->academic_class_id)->get();
+         $studentAcademic = StudentAcademic::where('academic_class_id', $request->academic_class_id)->get();
 //        dd($studentAcademic);
-        $deletable = AssignSubject::query()
+         $academic = AcademicClass::find($request->academic_class_id);
+         $deletable = AssignSubject::query()
             ->where('academic_class_id',$request->academic_class_id)
             ->whereNotIn('subject_id',$request->subjects)
             ->get();
@@ -297,7 +298,11 @@ class InstitutionController extends Controller
 
         foreach($request->subjects as $subject){
             $data['academic_class_id'] = $request->academic_class_id;
+            $data['class_id'] = $academic->class_id;
+            $data['teacher_id'] = 0;
             $data['subject_id'] = $subject;
+
+//            dd($data);
 
             $isExist = AssignSubject::query()
                 ->where('academic_class_id',$request->academic_class_id)

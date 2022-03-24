@@ -23,7 +23,8 @@ class LeaveManagementController extends Controller
 
     public function index()
     {
-        $allData = StudentLeave::all()->groupBy('leaveId');
+//        StudentLeave::query()->truncate();
+         $allData = StudentLeave::all()->groupBy('leaveId');
         return view('admin.leaveManagement.view-leave',compact('allData'));
     }
 
@@ -37,7 +38,8 @@ class LeaveManagementController extends Controller
 
     public function store(Request $request)
     {
-        $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
+
+         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
 
         if(!$student){
             return redirect()->back();
@@ -50,16 +52,17 @@ class LeaveManagementController extends Controller
             $end = $start;
         }
 
-        $period = CarbonPeriod::create($start,$end);
+         $period = CarbonPeriod::create($start,$end);
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
             $data = [
-                'leaveId' => date('ymdHi'),
+                'leaveId' => date('ymd').$student->id,
                 'student_id' => $student->id,
                 'date' => $d,
                 'leave_purpose_id' => $request->get('leave_purpose_id'),
             ];
+
             StudentLeave::query()->create($data);
         }
 

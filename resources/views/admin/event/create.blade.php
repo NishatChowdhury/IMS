@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ Form::open(['action'=>'UpcomingEventController@store','method'=>'store','files'=>true]) }}
+                            {{ Form::open(['action'=>'Backend\UpcomingEventController@store','method'=>'store','files'=>true]) }}
                             @include('admin.event.form')
                             {{ Form::close() }}
                         </div>

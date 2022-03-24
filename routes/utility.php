@@ -24,6 +24,10 @@ Route::get('system/migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
+Route::get('system/migrate-refresh',function(){
+    Artisan::call('migrate:fresh --seed');
+    dd('migration refresh complete');
+});
 Route::get('system/reboot',function(){
     Artisan::call('config:cache');
     Artisan::call('config:clear');

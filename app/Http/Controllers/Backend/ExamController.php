@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AssignSubject;
+use App\Models\Backend\Classes;
 use App\Models\Backend\Exam;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\FinalResult;
@@ -51,20 +52,20 @@ class ExamController extends Controller
 
     public function examination()
     {
-        $exams = Exam::all();
+         $exams = Exam::all();
         $repository = $this->repository;
         return view ('admin.exam.examination', compact('exams','repository'));
     }
 
     public function store_exam(Request $request){
         Exam::query()->create($request->all());
-        return redirect('exam/examination')->with('success', 'Exam Added Successfully');
+        return redirect('admin/exam/examination')->with('success', 'Exam Added Successfully');
     }
 
     public function destroy($id){
         $exam = Exam::query()->findOrFail($id);
         $exam->delete();
-        return redirect('exam/examination')->with('success', 'Exam Deleted Successfully');
+        return redirect('admin/exam/examination')->with('success', 'Exam Deleted Successfully');
     }
 
     public function examitems()
@@ -78,6 +79,7 @@ class ExamController extends Controller
     }
 
     public function schedule(Request $request,$examId){
+//        return $request->all();
         //dd($examId);
         //dd('deprecated');
         $session_id = $request->session_id;
@@ -134,44 +136,47 @@ class ExamController extends Controller
      */
     public function admitCard(Student $student, Request $request)
     {
+//        return $request->all();
         if($request->all() == []){
             $students = [];
             $exam = null;
             $schedules = [];
         }else{
+//            return $request->all();
             $s = $student->newQuery();
-            $s->whereIn('session_id',activeYear())->where('status',1);
+//            $s->whereIn('session_id',activeYear())->where('status',1);
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
                 $s->where('studentId',$studentId);
+//                return $s->get();
             }
-            if($request->get('name')){
-                $name = $request->get('name');
-                $s->where('name','like','%'.$name.'%');
-            }
-            if($request->get('class_id')){
-                $class = $request->get('class_id');
-                $s->where('class_id',$class);
-            }
-            if($request->get('section_id')){
-                $section = $request->get('section_id');
-                $s->where('section_id',$section);
-            }
-            if($request->get('group_id')){
-                $group = $request->get('group_id');
-                $s->where('group_id',$group);
-            }
+//            if($request->get('name')){
+//                $name = $request->get('name');
+//                $s->where('name','like','%'.$name.'%');
+//            }
+//            if($request->get('class_id')){
+//                $class = $request->get('class_id');
+//                $s->where('class_id',$class);
+//            }
+//            if($request->get('section_id')){
+//                $section = $request->get('section_id');
+//                $s->where('section_id',$section);
+//            }
+//            if($request->get('group_id')){
+//                $group = $request->get('group_id');
+//                $s->where('group_id',$group);
+//            }
 
-            $students = $s->get();
-            $exam = Exam::query()->findOrFail($request->get('exam_id'));
-            $academicClass = AcademicClass::query()
+              $students = $s->with('studentAcademic')->get();
+             $exam = Exam::query()->findOrFail($request->get('exam_id'));
+             $academicClass = AcademicClass::query()
                 ->where('class_id',$request->get('class_id'))
                 ->where('section_id',$request->get('section_id'))
                 ->where('group_id',$request->get('group_id'))
                 ->first();
-            $schedules = ExamSchedule::query()
+             $schedules = ExamSchedule::query()
                 ->where('exam_id',$request->get('exam_id'))
-                ->where('academic_class_id',$academicClass->id)
+                ->where('class_id',$academicClass->id) // class_id means Academic Class Id By mistake some do that's why it can't be change
                 ->orderBy('date')
                 ->get();
         }

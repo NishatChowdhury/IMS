@@ -22,6 +22,7 @@ class ShiftController extends Controller
 
     public function store(Request $request)
     {
+//        return $request->all();
         $this->validate($request,[
             'name' => 'required',
             'start' => 'required',
@@ -32,7 +33,7 @@ class ShiftController extends Controller
         ]);
         Shift::query()->create($request->all());
         Session::flash('success','Shift add successfully');
-        return redirect('attendance/setting');
+        return redirect('admin/attendance/setting');
     }
 
     public function destroy($id)

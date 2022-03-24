@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-9">
-                            {{ Form::open(['action'=>'AttendanceController@report','method'=>'get']) }}
+                            {{ Form::open(['action'=>'Backend\AttendanceController@report','method'=>'get']) }}
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="col">

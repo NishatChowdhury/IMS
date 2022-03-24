@@ -57,7 +57,7 @@
                                         {{ $value->first()->purpose->leave_purpose }}
                                     </td>
                                     <td>
-                                        <a href="{{ action('LeaveManagementController@edit',$value->first()->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('Backend\LeaveManagementController@edit',$value->first()->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

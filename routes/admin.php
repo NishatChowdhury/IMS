@@ -272,7 +272,7 @@ Route::group(['prefix'=>'admin'], function(){
     //End Students Route
 
     // ID Card Routes
-    Route::post('student/card/pdf','IdCardController@pdf');
+    Route::post('student/card/pdf','Backend\IdCardController@pdf');
     // ID Card Routes
 
 
@@ -459,8 +459,9 @@ Route::get('institution/academicyear','Backend\InstitutionController@academicyea
 Route::post('institution/store-session', 'Backend\InstitutionController@store_session');
 Route::post('institution/edit-session', 'Backend\InstitutionController@edit_session');
 Route::post('institution/update-session', 'Backend\InstitutionController@update_session');
-Route::get('institution/{id}/delete-session', 'Backend\InstitutionController@delete_session');
+Route::get('institution/delete-session/{id}', 'Backend\InstitutionController@delete_session');
 Route::patch('institution/status/{id}','Backend\InstitutionController@sessionStatus');
+Route::get('institution/{id}/delete-session', 'Backend\InstitutionController@unAssignSubject');
 
 //Academic Classes $ Groups
 Route::get('institution/section-groups','Backend\InstitutionController@section_group')->name('section.group');
@@ -486,8 +487,8 @@ Route::post('institution/update-SessionClass','Backend\InstitutionController@upd
 Route::get('institution/{id}/delete-SessionClass','Backend\InstitutionController@delete_SessionClass');
 
 Route::get('institution/class/subject/{class}','Backend\InstitutionController@classSubjects');
+//Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@load_online_adminsion_id');
 Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@unAssignSubject');
-
 //Subjects
 Route::get('institution/subjects','Backend\InstitutionController@subjects')->name('institution.subjects');
 Route::post('institution/create-subject','Backend\InstitutionController@create_subject');
