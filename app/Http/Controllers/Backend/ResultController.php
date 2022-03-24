@@ -700,12 +700,16 @@ class ResultController extends Controller
     public function tabulation($examID,Request $request)
     {
         if($request->has('class_id')){
-            //$exam = Exam::query()->findOrFail($examID);
-            $results = ExamResult::query()->where('exam_id',$examID)->where('academic_class_id',$request->get('class_id'))->orderBy('rank')->get();
+
+            $results = ExamResult::query()
+                                    ->where('exam_id',$examID)
+                                    ->where('academic_class_id',$request->get('class_id'))
+                                    ->orderBy('rank')
+                                    ->get();
 
             //$subjects = $this->tabulationSubjects($request->get('class_id'),$request->get('group_id'));
-            $subjects = ExamSchedule::query()
-                ->where('academic_class_id',$request->get('class_id'))
+             $subjects = ExamSchedule::query()
+                ->where('class_id',$request->get('class_id'))
                 ->where('exam_id',$examID)
                 ->get();
         }else{

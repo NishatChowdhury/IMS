@@ -72,6 +72,11 @@ class LeaveManagementController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        StudentLeave::where('leaveId',$id)->delete();
+        return back();
+    }
     public function destroy($id)
     {
         //

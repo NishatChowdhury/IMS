@@ -127,7 +127,7 @@
                                             <td>{{ $seat->count }}</td>
                                             <td>
                                                 {!! Form::open(['action'=>['Backend\ExamSeatPlanController@destroy',$seat->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
-                                                <a href="{{url('exam/pdf-seat-plan',$seat->id)}}" class="btn btn-success btn-sm" title="print Set Plan"><i class="fa fa-address-card"></i></a>
+                                                <a href="{{url('admin/exam/pdf-seat-plan',$seat->id)}}" class="btn btn-success btn-sm" title="print Set Plan"><i class="fa fa-address-card"></i></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Set Plan"><i class="fa fa-trash"></i></button>
                                                 {!! Form::close() !!}
 
@@ -159,10 +159,10 @@
                 var classId     = $('#classId').val();
                 var rollFrom    = $('.rollFrom').val();
                 var rollTo      = $('.rollTo').val();
-                //console.log(rollTo);
+
 
                 $.ajax({
-                    url     :'{{ url('exam/check-roll') }}',
+                    url     :'{{ url('admin/exam/check-roll') }}',
                     type    :'POST',
                     csrf    :'{{csrf_token()}}',
                     data    : {classId:classId,rollFrom:rollFrom,rollTo:rollTo,"_token":"{{ csrf_token() }}"},

@@ -217,7 +217,7 @@
             var formData = $( this ).serialize();
 
             $.ajax({
-                url: '{{ url('/get_attendance_monthly') }}',
+                url: '{{ url('/admin/get_attendance_monthly') }}',
                 data: formData,
                 type: 'POST',
                 error: function(xhr, ajaxOptions, thrownError) {

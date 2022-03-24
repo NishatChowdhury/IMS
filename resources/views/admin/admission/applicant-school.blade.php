@@ -51,9 +51,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($students as $student)
+                            @foreach($students as $key => $student)
                                 <tr>
-                                    <td>{{ $student->applyId }}</td>
+                                    <td>{{ $key+1 }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->classes->name }}</td>
                                     <td>{{ $student->group_id ? $student->group->name : 'N/A' }}</td>
