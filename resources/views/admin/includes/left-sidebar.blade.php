@@ -443,6 +443,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('admin/fee/collections/report/generate') }}" class="nav-link {{ isActive('admin/fee/collections/report/generate') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Date Wise Report') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/fee/collections/report/academic_class') }}" class="nav-link {{ isActive('admin/fee/collections/report/academic_class') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Academic Class Report') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('transport.index')}}" class="nav-link {{ isActive('fee-category/transport') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Transport Location</p>

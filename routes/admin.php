@@ -294,7 +294,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush']);
 
     Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy']);
-//Route for fee setup ends here
+   //Route for fee setup ends here
 
     //Route for fee collection starts here
     Route::get('fee/fee-collection',[FeeCollectionController::class,'index']);
@@ -302,8 +302,13 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('fee/fee-collection/store',[FeeCollectionController::class,'store']);
     Route::get('fee/all-collections',[FeeCollectionController::class,'allCollections']);
     Route::get('fee/all-collection/report/{id}',[FeeCollectionController::class,'report']);
+    Route::get('fee/collections/report/generate',[FeeCollectionController::class,'reportGenerate'])->name('report.generate');
+    Route::get('fee/collections/report/academic_class',[FeeCollectionController::class,'academicClassReport'])->name('report.academic_class');
+
 
     //Route for fee collection ends here
+
+
 
     // Gallery Routes start
     Route::get('gallery/image','Backend\GalleryController@index')->name('settings.image');
@@ -334,7 +339,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
 
 
-    
+
     Route::get('academic-calender/index','Backend\AcademicCalenderController@index')->name('academic-calender.index');
     Route::post('academic-calender/store','Backend\AcademicCalenderController@store')->name('academic-calender.store');
     Route::post('academic-calender/edit','Backend\AcademicCalenderController@edit')->name('academic-calender.edit');
@@ -372,7 +377,7 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
 //Student profile start
 Route::get('student-profile/{studentId}','StudentController@studentProfile')->name('admin.student.profile');
-//Staff Route 
+//Staff Route
 Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');
 Route::get('staff/teacher','Backend\StaffController@teacher')->name('staff.teacher');
 Route::get('staff/staffadd','Backend\StaffController@addstaff')->name('staff.addstaff');

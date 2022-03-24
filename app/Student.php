@@ -36,40 +36,41 @@ class Student extends Model
 
 
 
-    public function academicClass()
-    {
-        return $this->belongsTo(AcademicClass::class, 'academic_class_id');
-    }
-    /**
-     * A student is belongs to a session
-     *
-     * @return BelongsTo
-     */
-
-    public function classes(): BelongsTo
-    {
-        return $this->belongsTo(Classes::class);
-    }
-
-    public function section()
-    {
-        return $this->belongsTo(Section::class);
-    }
+    // public function academicClass()
+    // {
+    //     return $this->belongsTo(AcademicClass::class, 'academic_class_id');
+    // }
 
     /**
      * A student is belongs to a session
      *
      * @return BelongsTo
      */
-    public function sessions(): BelongsTo
-    {
-        return $this->belongsTo(Session::class, 'session_id');
-    }
 
-    public function group()
-    {
-        return $this->belongsTo(Group::class);
-    }
+    // public function classes(): BelongsTo
+    // {
+    //     return $this->belongsTo(Classes::class);
+    // }
+
+    // public function section()
+    // {
+    //     return $this->belongsTo(Section::class);
+    // }
+
+    /**
+     * A student is belongs to a session
+     *
+     * @return BelongsTo
+     */
+    // public function sessions(): BelongsTo
+    // {
+    //     return $this->belongsTo(Session::class, 'session_id');
+    // }
+
+    // public function group()
+    // {
+    //     return $this->belongsTo(Group::class);
+    // }
 
     public function gender()
     {
@@ -141,6 +142,11 @@ class Student extends Model
         return $this->hasMany(FeeSetup::class);
     }
 
+    public function feeSetupStudent()
+    {
+        return $this->hasMany(FeeSetupStudent::class,'student_id','id');
+    }
+
 
     /**
      * A student has many fee setup pivot
@@ -162,14 +168,17 @@ class Student extends Model
     {
         return $this->belongsTo(Month::class);
     }
+
     public function father()
     {
         return $this->hasOne(Father::class);
     }
+
     public function mother()
     {
         return $this->hasOne(Mother::class);
     }
+
     public function guardian()
     {
         return $this->hasOne(Guardian::class);
@@ -180,7 +189,7 @@ class Student extends Model
      * A student has many academics
      *
      * @return HasMany
-     * 
+     *
      */
 
     public function academics(): HasMany
@@ -342,5 +351,9 @@ class Student extends Model
     // {
     //     return $this->belongsTo(Month::class);
     // }
+
+public function payments(){
+    return $this->hasMany(StudentPayment::class);
+}
 
 }

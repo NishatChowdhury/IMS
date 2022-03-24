@@ -68,6 +68,11 @@ class FeeSetupController extends Controller
         // get fee categories from session
         $fees = request()->session()->get('fees');
 
+         // sum session amount
+        $amount = array_column($fees,'amount');
+        $total = number_format(array_sum($amount),2);
+        //  dd($total);
+
         /** store fee setup information start */
         $feeSetupData = [
             'academic_class_id' => $request->get('academic_class_id'),
@@ -77,8 +82,11 @@ class FeeSetupController extends Controller
         $feeSetup = FeeSetup::query()->create($feeSetupData);
         /** store fee setup information end */
 
+        // $tamount = array_column($fees,'amount');
+        // $amount =  number_format(array_sum($tamount),2); dd($amount);
+
         foreach($students as $student){
-            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id]);
+            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
             foreach($fees as $fee){
                 $data = [
                     'fee_setup_student_id' => $feeSetupStudent->id,

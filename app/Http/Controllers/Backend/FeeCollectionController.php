@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\AcademicClass;
 use App\Student;
 use App\FeeSetup;
 use App\FeeSetupCategory;
@@ -11,7 +12,9 @@ use App\StudentAcademic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Month;
 use Illuminate\Support\Facades\Auth;
+// use Barryvdh\DomPDF\Facade\Pdf;
 
 class FeeCollectionController extends Controller
 {
@@ -22,16 +25,21 @@ class FeeCollectionController extends Controller
 
     public function view(Request $request)
     {
-
         $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
         $student = Student::query()->where('studentId', $term)->with('academics')->first();
         $paidAmount = StudentPayment::where('student_id', $student->id)->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
             ->groupBy('year', 'month')
             ->get();
-        $fss = FeeSetupStudent::where('student_id', $student->id)->first();
-        $totalDue = FeeSetupCategory::where(['fee_setup_student_id' => $fss->id])->sum('amount') - FeeSetupCategory::where(['fee_setup_student_id' => $fss->id])->sum('paid');
-        // dd($totalDue);                                              
+        $fss = FeeSetupStudent::where('student_id', $student->id)->get(['id', 'student_id']); //dd($fss);
+        $amount = 0;
+        $paid = 0;
+        foreach ($fss as $fs) {
+            $amount += FeeSetupCategory::where('fee_setup_student_id', $fs->id)->sum('amount');
+            $paid += FeeSetupCategory::where('fee_setup_student_id', $fs->id)->sum('paid');
+        }
+        $totalDue = $amount - $paid;
+        // dd($amount);
         $previousPayment = StudentPayment::where('student_id', $student->id)->latest()->get();
 
         if (!empty($student->studentId) && $student->studentId == $term) {
@@ -44,32 +52,32 @@ class FeeCollectionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'date' => 'required|date',
-            'payment_method' =>'required',
+            'payment_method' => 'required',
             'amount' => 'required'
         ]);
         //   return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
-        $academicClassID = $ss->academic_class_id;
-        $feeSetupID = FeeSetup::where('academic_class_id', $academicClassID)->first();
+        $feeSetupID = FeeSetup::where('academic_class_id', $ss->academic_class_id)->first();
 
-        $fss = FeeSetupStudent::where('student_id', $request->student_id)->first();
-        $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fss->id)->get();
-        
+        $fss = FeeSetupStudent::where('student_id', $request->student_id)->get(['id', 'student_id']);
         $paying = $request->amount;
-        foreach ($categories as $category)
-         {
-            $amount = $category->amount;
-            $paid = $category->paid;
-            if ($amount > $paid) {
-                $due = $amount - $paid;
-                if ($paying > $due) {
-                    $category->update(['paid'=>$amount]);
-                    $paying = $paying - $due;
-                }else{
-                    $category->update(['paid'=>$paying]);
-                    $paying = 0;
+        foreach ($fss as $fs) {
+            $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fs->id)->get();
+
+            foreach ($categories as $category) {
+                $amount = $category->amount;
+                $paid = $category->paid;
+                if ($amount > $paid) {
+                    $due = $amount - $paid;
+                    if ($paying > $due) {
+                        $category->update(['paid' => $amount]);
+                        $paying = $paying - $due;
+                    } else {
+                        $category->update(['paid' => $paying]);
+                        $paying = 0;
+                    }
                 }
             }
         }
@@ -83,16 +91,6 @@ class FeeCollectionController extends Controller
             'payment_method' => $request->payment_method
         ]);
 
-        // if ($previousPayment) {
-        //     $totalPaid = $previousPayment + $sp->amount;
-        //     FeeSetupCategory::where('fee_setup_student_id', $fss->id)->first()->update(['paid' => $totalPaid]);
-        // } else {
-        //     FeeSetupCategory::where('fee_setup_student_id', $fss->id)->first()->update(['paid' => $sp->amount]);
-        // }
-
-        // $fss = FeeSetupStudent::where('student_id' , $request->id)->first(); 
-        // $totalPaid = $previousPayment + $sp->amount;
-        // FeeSetupCategory::where('fee_setup_student_id', $fss->id)->update(['paid'=>$totalPaid]);
         return redirect('admin/fee/fee-collection')->with('message', 'Added Successfully!');
     }
 
@@ -120,4 +118,106 @@ class FeeCollectionController extends Controller
         }
         return view('admin.feeCollection.report', compact('student', 'fee_setup', 'payment_details'));
     }
+
+
+    public function reportGenerate(Request $request)
+    {
+
+        $academic_class = AcademicClass::get();
+
+        $stupays = StudentPayment::query();
+        $ac = $request->academic_class;
+
+        if ($request->from != null && $request->to != null && $request->academic_class != null) {
+            $stupays = $stupays->where('date', '>=', $request->from)->where('date', '<=', $request->to)->whereHas('feeSetup', function ($q) use ($ac) {
+                return  $q->where('academic_class_id', $ac);
+            })->get();
+        } elseif ($request->from != null && $request->to != null) {
+            $stupays =  $stupays->where('date', '>=', $request->from)->where('date', '<=', $request->to)->get();
+        } elseif ($request->from != null) {
+            $from = $request->from;
+            $stupays =  $stupays->where('date', $from)->get();
+        } elseif ($request->to != null) {
+            $stupays = $stupays->where('date', $request->to)->get();
+        } elseif ($request->academic_class != null) {
+            $stupays = $stupays->whereHas('feeSetup', function ($q) use ($ac) {
+                return  $q->where('academic_class_id', $ac);
+            })->get();
+        } else {
+            $stupays = null;
+        }
+
+
+
+        return view('admin.feeCollection.report_generate', compact('stupays', 'academic_class'));
+    }
+
+    public function academicClassReport(Request $request)
+    {
+
+        $academic_class = AcademicClass::get();
+        $reqMonth = Month::get(['id', 'name']);
+
+        $stupays = StudentPayment::query()->with(['student', 'student.feeSetupStudent']);
+        // $stupays = StudentPayment::query();
+
+        $students = Student::query()
+        ->whereHas('academics',function($query)use($request){
+            $query->where('academic_class_id',$request->academic_class);
+        })->get();
+
+        $ff = FeeSetup::query()->where('month_id',$request->month_id)->where('year',$request->year_id)->first();
+        //dd($ff->feeSetupStudent);
+
+        $data = [];
+        foreach($students as $student)
+        {
+            $allDue = $student->feeSetupStudent->sum('amount');
+            $allPaid = $student->payments->sum('amount');
+
+            $fs = $ff->feeSetupStudent->where('student_id',$student->id);
+            dd($fs);
+
+            $data [] = [
+                'id' => $student->studentId,
+                'name' => $student->name,
+                'paid' =>  number_format($student->payments->last()->amount,2),
+                'due' => $allDue - $allPaid,
+            ];
+        }
+
+        dd($data);
+
+        $ac = $request->academic_class;
+        $month = $request->month_id;
+        $year = $request->year_id;
+
+        if ($request->academic_class != null  && $request->month_id != null  && $request->year_id != null) {
+            $stupays = $stupays->whereHas('feeSetup', function ($q) use ($ac) {
+                return  $q->where('academic_class_id', $ac);
+            })->whereMonth('date', $month)->whereYear('date', $year)->get();
+        } elseif ($request->academic_class != null  && $request->month_id != null) {
+            $stupays = $stupays->whereHas('feeSetup', function ($q) use ($ac) {
+                return  $q->where('academic_class_id', $ac);
+            })->whereMonth('date', $month)->get();
+        } elseif ($request->academic_class != null) {
+
+            $stupays = $stupays->whereHas('feeSetup', function ($q) use ($ac) {
+                return  $q->where('academic_class_id', $ac);
+            })->get();
+        } elseif ($request->month_id != null) {
+            $stupays = $stupays->whereMonth('date', $month)->get();
+        } elseif ($request->year_id != null) {
+            $stupays = $stupays->whereYear('date', $year)->get();
+        } else {
+            $stupays = null;
+        }
+
+
+
+
+        return view('admin.feeCollection.academic_class_report', compact('academic_class', 'reqMonth', 'stupays','students'));
+    }
+
+
 }
