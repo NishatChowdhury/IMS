@@ -41,26 +41,26 @@
                                     </thead>
                                     <tbody>
                                     @foreach($fee as $class)
-                                        <tr>
-                                            <td>
-                                                {{ $class->academicClass->classes->name }}
-                                                {{ $class->academicClass->section->name ?? '' }}
-                                                {{ $class->academicClass->group->name ?? '' }}
-                                            </td>
-                                            <td> {{ $class->feeSetupCategories->count() ?? '' }}&nbsp;{{ __('Student(s)') }}</td>
-                                            <td>
-                                                {{ number_format($class->feeSetupCategories->sum('amount'),2) }}
-                                            </td>
-                                            <td>
-                                                {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$class->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                                <a href="{{ url('admin/fee/fee-setup/fee-students',$class->id) }}" class="btn btn-info btn-sm" ><i class="fas fa-eye"></i></a>
-                                                <a href="{{ url('admin/fee/fee-setup/edit',$class->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa fas fa-trash"></i>
-                                                </button>
-                                                {{ Form::close() }}
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $class->academicClass->classes->name }}
+                                            {{ $class->academicClass->section->name ?? '' }}
+                                            {{ $class->academicClass->group->name ?? '' }}
+                                        </td>
+                                        <td> {{ $class->feeSetupCategories->count() ?? '' }}&nbsp;{{ __('Student(s)') }}</td>
+                                        <td>
+                                            {{ number_format($class->feeSetupCategories->sum('amount'),2) }}
+                                        </td>
+                                        <td>
+                                            {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$class->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ url('admin/fee/fee-setup/fee-students',$class->id) }}" class="btn btn-info btn-sm" ><i class="fas fa-eye"></i></a>
+                                            <a href="{{ url('admin/fee/fee-setup/edit',$class->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fas fa-trash"></i>
+                                            </button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
                                     @endforeach
                                     </tbody>
                                 </table>

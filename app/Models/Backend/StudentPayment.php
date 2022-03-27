@@ -11,6 +11,8 @@ class StudentPayment extends Model
 {
     protected $table ='student_payments';
 
+    protected $dates = ['date'];
+
     protected $fillable =['student_id','user_id','fee_setup_id','date','payment_method','amount'];
 
     public function fee_categories(){
@@ -25,7 +27,7 @@ class StudentPayment extends Model
         return $this->belongsTo(PaymentMethod::class,'payment_method','id');
     }
    
-    public function roles(): BelongsToMany
+    public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user_table', 'user_id', 'role_id');
     }
@@ -34,4 +36,12 @@ class StudentPayment extends Model
     {
         return $this->belongsTo(Session::class,'session_id');
     }
+
+    public function feeSetup()
+    {
+        return $this->belongsTo(FeeSetup::class,'fee_setup_id');
+    }
+    
+
+   
 }

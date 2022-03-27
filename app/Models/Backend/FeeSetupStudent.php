@@ -11,7 +11,7 @@ class FeeSetupStudent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fee_setup_id','student_id'];
+    protected $fillable = ['fee_setup_id','student_id','amount'];
 
     /**
      * A fee setup is belongs to a student

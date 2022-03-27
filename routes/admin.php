@@ -248,10 +248,10 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('exam/mark/upload/{schedule}','Backend\MarkController@upload');
     Route::post('exam/mark/up','Backend\MarkController@up');
     Route::post('exam/mark/store','Backend\MarkController@store');
-    
+
     Route::get('exam/tabulationSheet','Backend\ExamController@tabulationSheet')->name('exam.tabulationSheet');
     //Exam management End
-    
+
 
     //Students Route by Rimon
     Route::get('student/designStudentCard','Backend\IdCardController@index');
@@ -359,7 +359,7 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
     Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush']);
 
     Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy']);
-//Route for fee setup ends here
+   //Route for fee setup ends here
 
     //Route for fee collection starts here
     Route::get('fee/fee-collection',[FeeCollectionController::class,'index']);
@@ -367,6 +367,9 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
     Route::post('fee/fee-collection/store',[FeeCollectionController::class,'store']);
     Route::get('fee/all-collections',[FeeCollectionController::class,'allCollections']);
     Route::get('fee/all-collection/report/{id}',[FeeCollectionController::class,'report']);
+    Route::get('fee/collections/report/generate',[FeeCollectionController::class,'reportGenerate'])->name('report.generate');
+    Route::get('fee/collections/report/academic_class',[FeeCollectionController::class,'academicClassReport'])->name('report.academic_class');
+
 
     //Route for fee collection ends here
 
@@ -399,7 +402,6 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
     Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
     Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent']);
 
-    
     Route::get('academic-calender/index','Backend\AcademicCalenderController@index')->name('academic-calender.index');
     Route::post('academic-calender/store','Backend\AcademicCalenderController@store')->name('academic-calender.store');
     Route::post('academic-calender/edit','Backend\AcademicCalenderController@edit')->name('academic-calender.edit');
