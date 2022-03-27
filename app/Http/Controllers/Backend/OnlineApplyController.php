@@ -348,20 +348,14 @@ class OnlineApplyController extends Controller
 
     public function onlineApplySetStore(Request $req)
     {
-        $rules = [
-            'session_id' => 'required',
-            'class_id' => 'required',
-            'start' => 'required',
-            'end' => 'required',
-            'type' => 'required',
-
-        ];
-    
-        $customMessages = [
-            'required' => 'The :attribute field is required.'
-            // 'division_id.required' => 'The Division Must be field is requi
-        ];
-
+    $queryValidation =  OnlineAdmission::query()
+                                ->where('class_id', $req->class_id)
+                                ->where('session_id', $req->session_id)
+                                ->where('group_id', $req->group_id)
+                                ->exists();
+        if ( $queryValidation){
+            return back()->with('status', 'Data Already Taken :)');
+        }
         $checkAcademic = AcademicClass::where('session_id', $req->session_id)
                                         ->where('class_id', $req->class_id)
                                         ->where('group_id', $req->group_id)
@@ -370,7 +364,7 @@ class OnlineApplyController extends Controller
         if(!$checkAcademic){
             return back()->with('status', 'Your Academic Class Not Match First You Have To Create Acadimic Classes Then Make It. :) ');
         }                                
-        $this->validate($req, $rules, $customMessages);
+//        $this->validate($req, $rules, $customMessages);
 
         OnlineAdmission::create($req->all());
         return back();
@@ -378,6 +372,7 @@ class OnlineApplyController extends Controller
 
     public function load_online_adminsion_id($id)
     {
+
         $onlineAdmission = OnlineAdmission::find($id);
         $classes = Classes::query()->get();
         $sessions = Session::query()->get();
@@ -388,7 +383,17 @@ class OnlineApplyController extends Controller
 
     public function onlineApplySetUpdate(Request $req)
     {
-        // return $req->all();
+
+
+//       $queryValidation =  OnlineAdmission::query()
+//                                ->where('class_id', $req->class_id)
+//                                ->where('session_id', $req->session_id)
+//                                ->where('group_id', $req->group_id)
+//                                ->exists();
+//        if ( $queryValidation){
+//            return back()->with('status', 'Data Already Taken :)');
+//        }
+
 
         $dataStore = OnlineAdmission::find($req->id);
         $dataStore->class_id = $req->class_id;
@@ -396,15 +401,13 @@ class OnlineApplyController extends Controller
         $dataStore->group_id = $req->group_id;
         $dataStore->start = $req->start;
         $dataStore->end = $req->end;
-        $dataStore->status = $req->status;
-        if(empty($req->status)){
-            $dataStore->status = 0;
-        }
-        // else{
-        //     $dataStore->status = $req->status;
-        // }
+        if($req->status == null){
+             $dataStore->status = 0;
+        }else{
+            $dataStore->status = $req->status;
+         }
         $dataStore->save();
-        return back();
+        return redirect('admin/admission/create');
     }
 
 }

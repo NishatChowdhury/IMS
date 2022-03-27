@@ -32,7 +32,7 @@
                             <h1>{{ $academicClass->academicClasses->name }}&nbsp;{{ $academicClass->section->name ?? '' }}{{ $academicClass->group->name ?? '' }}</h1>
                         </div>
                         <div class="card-body">
-                            {{ Form::open(['action'=>'StudentController@up','method'=>'post','files'=>true]) }}
+                            {{ Form::open(['action'=>'Backend\StudentController@up','method'=>'post','files'=>true]) }}
                             {{ Form::hidden('academic_class_id',$academicClass->id) }}
                             <input type="file" name="file">
                             <button type="submit">upload</button>

@@ -45,9 +45,14 @@
                                 </ul>
                             </div>
                         @endif
+                        @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form id="ChnageUrl" method="post" action="{{ route('online.typeUpdate') }}">
+                            <form method="post" action="{{ route('online.typeUpdate') }}">
                                 @csrf
                                 <div class="modal-body row">
                                  <div class="form-group col-12">

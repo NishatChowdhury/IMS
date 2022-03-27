@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td> : </td>
-                                    <th > {{ ucfirst($student->name) }} </th>
+                                    <th > {{ ucfirst($student->student->name) }} </th>
                                 </tr>
 
                                 <tr>

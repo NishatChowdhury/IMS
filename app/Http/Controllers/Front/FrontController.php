@@ -2,40 +2,41 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Models\Backend\AdmissionFee;
-use App\Models\Backend\Album;
-use App\Models\Backend\AppliedStudent;
+use Carbon\Carbon;
 use App\Models\Backend\Bank;
-use App\Models\Backend\BloodGroup;
 use App\Models\Backend\City;
-use App\Models\Backend\Classes;
-use App\Models\Backend\Country;
-use App\Models\Backend\Division;
-use App\Models\Backend\ExamResult;
-use App\Models\Backend\Feature;
-use App\Models\Backend\Gallery;
-use App\Models\Backend\GalleryCategory;
-use App\Models\Backend\Gender;
-use App\Models\Backend\Group;
-use App\Models\Backend\ImportantLink;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Menu;
-use App\Models\Backend\MeritList;
-use App\Models\Backend\Notice;
-use App\Models\Backend\NoticeCategory;
-use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\Page;
+use Illuminate\Http\Request;
+use App\Models\Backend\Album;
+use App\Models\Backend\Group;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Notice;
+use App\Models\Backend\Slider;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Country;
+use App\Models\Backend\Feature;
+use App\Models\Backend\Gallery;
+use App\Models\Backend\Session;
+use App\Models\Backend\Student;
+use App\Models\Backend\Division;
 use App\Models\Backend\Playlist;
 use App\Models\Backend\Religion;
-use App\Models\Backend\Session;
-use App\Models\Backend\Slider;
-use App\Models\Backend\Staff;
-use App\Models\Backend\Student;
-use App\Models\Backend\UpcomingEvent;
+use App\Models\Backend\MeritList;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\ExamResult;
 use App\Repository\FrontRepository;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\AdmissionFee;
+use Illuminate\Support\Facades\Gate;
+use App\Models\Backend\ImportantLink;
+use App\Models\Backend\UpcomingEvent;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\GalleryCategory;
+use App\Models\Backend\OnlineAdmission;
 
 class FrontController extends Controller
 {
@@ -158,6 +159,9 @@ class FrontController extends Controller
 //Gallery
     public function gallery()
     {
+        // if (! Gate::allows('gallery')) {
+        //     abort(403,"You Don't Access This Page");
+        // }
         $categories = GalleryCategory::all();
         $albums = Album::all();
         return view('front.gallery.index',compact('categories','albums'));

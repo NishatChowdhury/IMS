@@ -50,4 +50,10 @@ class StudentAcademic extends Model
         return$this->belongsTo(FeeSetup::class,'fee_setup_id','id');
     }
 
+    public function studentSubject(){
+        return $this->hasMany(StudentSubject::class);
+    }
+
+
+
 }

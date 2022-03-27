@@ -20,6 +20,7 @@ class CreateSubjectsTable extends Migration
             $table->string('short_name')->nullable();
             $table->string('level')->nullable();
             $table->decimal('credit_fee',5,2)->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

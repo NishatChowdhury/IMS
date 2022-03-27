@@ -67,7 +67,7 @@
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>Total</th>
-                                <th>Available</th>
+{{--                                <th>Available</th>--}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -75,12 +75,12 @@
                             @foreach($allBooks as $key => $value)
                                 <tr class="{{$value->id}}">
                                     <td>{{  $key+1 }}</td>
-                                    <td>{{  $value->title }}</td>
-                                    <td>{{  $value->author }}</td>
+                                    <td>{{  $value->book_title }}</td>
+                                    <td>{{  $value->author_name }}</td>
                                     <td>{{  $value->description }}</td>
                                     <td>{{  $value->category->book_category ?? '' }}</td>
                                     <td><a class="btn btn-success">{{  $total = $value->no_of_issue }} </a></td>
-                                    <td><a class="btn btn-success">{{  $total - $value->issue->count() + $value->return->count() }} </a></td>
+{{--                                    <td><a class="btn btn-success"> </a></td>--}}
                                     <td>
                                         {{ Form::open(['route'=>['newBook.delete',$value->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal" onclick="loadForm({{$value->id}})">
@@ -139,7 +139,7 @@
                 var csrf = "{{csrf_token()}}";
                 $.ajax({
                     type:"get",
-                    url:"{{route('allBooks.search')}}",
+                        url:"{{route('allBooks.search')}}",
                     data: {text:text,_token:csrf},
                     success:function(data) {
                         $('#search').html(data);

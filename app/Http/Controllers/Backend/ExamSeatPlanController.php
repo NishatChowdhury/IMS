@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AcademicClass;
 use App\Models\Backend\ExamSeatPlan;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
 
@@ -28,7 +30,7 @@ class ExamSeatPlanController extends Controller
 
     public function storeSeatPlan(Request $request)
     {
-        //dd($request->all());
+
         $this->validate($request,
             [
                 'room'  => 'required',
@@ -43,8 +45,17 @@ class ExamSeatPlanController extends Controller
 
     public function pdfSeatPlan($id)
     {
-        $seatData = ExamSeatPlan::query()->findOrFail($id);
-        $students = Student::query()->where('academic_class_id',$seatData->academic_class_id)->where('status',1)->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])->get();
+         $seatData = ExamSeatPlan::query()->findOrFail($id);
+          $students = StudentAcademic::query()
+                        ->where('academic_class_id',$seatData->academic_class_id)
+                        ->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])
+                        ->with('student')
+                        ->get();
+//        $students = Student::query()
+//                            ->where('academic_class_id',$seatData->academic_class_id)
+//                            ->where('status',1)
+//                            ->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])
+//                            ->get();
         //dd($students);
         return view('admin.exam.pdf-seat-plan',compact('students','seatData'));
     }
@@ -59,8 +70,11 @@ class ExamSeatPlanController extends Controller
         $rankFrom   =   $request->rollFrom;
         $rankTo     =   $request->rollTo;
 
-        $countRank  = Student::query()->where('academic_class_id',$classId)->where('status',1)->whereBetween('rank',[$rankFrom,$rankTo])->count('id');
-        return $countRank;
+         $academicData = AcademicClass::query()
+                                    ->where('id', $request->classId)
+                                    ->withCount('studentAcademic')->first();
+
+        return $academicData->student_academic_count;
 
     }
 

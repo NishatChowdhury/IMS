@@ -35,7 +35,7 @@ class StaffController extends Controller
     }
 
     public function store_staff(Request $req){
-        //dd($req->all());
+//        dd($req->all());
         $this->validate($req,[
             'name' => 'required',
             'mobile' => 'required',
@@ -62,7 +62,7 @@ class StaffController extends Controller
             Staff::query()->create($req->except('image'));
         }
 
-        return redirect(route('staff.addstaff'))->with('success','Staff Saved Successfully');
+        return redirect(route('staff.teacher'))->with('success','Staff Saved Successfully');
     }
 
     public function edit_staff($id){
@@ -100,7 +100,7 @@ class StaffController extends Controller
             $staff->update($req->all());
         }
 
-        return redirect(route('staff.addstaff'))->with('success','Staff Saved Successfully');
+        return redirect(route('staff.teacher'))->with('success','Staff Saved Successfully');
     }
 
     public function delete_staff($id){

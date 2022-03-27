@@ -28,15 +28,15 @@
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
+                                   @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>1000</p>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-{!!  Form::model($category,['action'=>['BookCategoryController@update',$category->id],'method'=>'patch','id'=>'edit-form']) !!}
+{!!  Form::model($category,['action'=>['Backend\BookCategoryController@update',$category->id],'method'=>'patch','id'=>'edit-form']) !!}
 <div class="modal-body">
     <div class="form-group">
         {{ Form::label('book_category', 'Book Category',['class'=>'control-label' ]) }}

@@ -39,14 +39,14 @@
                         @endif
                     <!-- /.card-header -->
                         <!-- form start -->
-                            {{ Form::model($book,['action'=>['BookController@update',$book->id],'method'=>'patch']) }}
+                            {{ Form::model($book,['action'=>['Backend\BookController@update',$book->id],'method'=>'patch']) }}
 
                             <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('title', 'Title Of Book',['class'=>'control-label' ]) }}
-                                        {{ Form::text('title', null, ['placeholder' => 'Enter Book Title','class'=>'form-control']) }}
+                                        {{ Form::label('book_title', 'Title Of Book',['class'=>'control-label' ]) }}
+                                        {{ Form::text('book_title', null, ['placeholder' => 'Enter Book Title','class'=>'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-sm-12">
@@ -59,8 +59,8 @@
 
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('author', 'Author Name',['class'=>'control-label' ]) }}
-                                        {{ Form::text('author', null, ['placeholder' => 'Enter Author Name','class'=>'form-control']) }}
+                                        {{ Form::label('author_name', 'Author Name',['class'=>'control-label' ]) }}
+                                        {{ Form::text('author_name', null, ['placeholder' => 'Enter Author Name','class'=>'form-control']) }}
                                     </div>
                                 </div>
 

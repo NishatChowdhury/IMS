@@ -18,6 +18,10 @@ class LeavePurposeController extends Controller
 
     public function store(Request $request)
     {
+
+          $validated = $request->validate([
+                'leave_purpose' => 'required|unique:leave_purposes|max:255',
+            ]);
         LeavePurpose::query()->create($request->all());
         return redirect('admin/attendance/leavePurpose');
     }
@@ -31,7 +35,10 @@ class LeavePurposeController extends Controller
 
     public function update($id, Request $request)
     {
-        $data=leavePurpose::query()->find($id);
+        $validated = $request->validate([
+                'leave_purpose' => 'required|unique:leave_purposes,leave_purpose,'.$id,
+            ]);
+         $data=leavePurpose::query()->find($id);
         $data->update($request->all());
         return redirect('admin/attendance/leavePurpose')->with('success','Updated successfully');
 

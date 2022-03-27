@@ -61,7 +61,7 @@
                                     <td>{{ $exam->notify == 1 ? "Notify" : "Don't Notify" }}</td>
                                     <td>
                                         {{ Form::open(['action'=>['Backend\ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
-                                        <a href="{{ action('ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
+                                        <a href="{{ action('Backend\ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
 
                                         <a href="{{ action('Backend\ExamController@schedule',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
                                         <a href="{{ action('Backend\ResultController@tabulation',$exam->id) }}" class="btn btn-dark btn-sm" title="Tabulation Sheet"><i class="fas fa-list-ol"></i></a>
