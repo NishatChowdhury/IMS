@@ -24,6 +24,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
@@ -196,19 +205,16 @@
         $(document).on('click', '.edit', function () {
             $("#edit").modal("show");
             var id = $(this).attr('value');
-
             $.ajax({
                 method:"post",
-                url:"{{ url('institution/edit-SessionClass')}}",
+                url:"{{ url('admin/institution/edit-SessionClass')}}",
                 data:{id:id,"_token":"{{ csrf_token() }}"},
                 dataType:"json",
                 success:function(response){
-                    console.log(response);
+                    // console.log(response);
                     $("#id").val(response.id);
                     $(".class_name").val(response.name);
                     $(".numeric_class").val(response.numeric_class);
-
-
                 },
                 error:function(err){
                     console.log(err);

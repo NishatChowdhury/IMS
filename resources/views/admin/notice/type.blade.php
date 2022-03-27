@@ -45,7 +45,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Total Notice</th>
-                                    <th>Action</th>
+{{--                                    <th>Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,9 +54,9 @@
                                         <td>{{ $type->id }}</td>
                                         <td>{{ $type->name }}</td>
                                         <td>{{ $type->notices->count() }}</td>
-                                        <td>
-                                            {{--<a href="{{ action('NoticeTypeController@edit',$type->id) }}" class="btn btn-warning btn-sm btn-disabled"><i class="fas fa-edit"></i></a>--}}
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <a href="{{ action('Backend\NoticeTypeController@edit',$type->id) }}" class="btn btn-warning btn-sm btn-disabled"><i class="fas fa-edit"></i></a>--}}
+{{--                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -94,7 +94,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'NoticeController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\NoticeController@store','method'=>'post']) }}
                     {{--<form>--}}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Name*</label>

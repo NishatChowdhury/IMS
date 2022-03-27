@@ -30,7 +30,7 @@ class StudentRepository
     public function sessions()
     {
         return Session::all()
-            //->where('active',1)
+            ->where('active',1)
             ->pluck('year','id');
     }
 

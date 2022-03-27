@@ -34,8 +34,8 @@ class ResultController extends Controller
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-                $r->whereHas('studentId',function($query)use($request){
-                    $query->where('studentId',$request->get('studentId'));
+                $r->whereHas('student',function($query) use ($request){
+                    $query->where('studentId', $request->studentId);
                 });
             }
 
@@ -387,17 +387,10 @@ class ResultController extends Controller
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-                $r->whereHas('studentId',function($query)use($request){
-                    $query->where('studentId',$request->get('studentId'));
+                $r->whereHas('student',function($query) use ($request){
+                    $query->where('studentId', $request->studentId);
                 });
             }
-//            if($request->get('session_id')){
-//                $r->where('session_id',$request->get('session_id'));
-//            }
-
-//            if($request->get('exam_id')){
-//                $r->where('exam_id',$request->get('exam_id'));
-//            }
 
             if($request->get('class_id')){
                 $r->where('class_id',$request->get('class_id'));
@@ -707,12 +700,16 @@ class ResultController extends Controller
     public function tabulation($examID,Request $request)
     {
         if($request->has('class_id')){
-            //$exam = Exam::query()->findOrFail($examID);
-            $results = ExamResult::query()->where('exam_id',$examID)->where('academic_class_id',$request->get('class_id'))->orderBy('rank')->get();
+
+            $results = ExamResult::query()
+                                    ->where('exam_id',$examID)
+                                    ->where('academic_class_id',$request->get('class_id'))
+                                    ->orderBy('rank')
+                                    ->get();
 
             //$subjects = $this->tabulationSubjects($request->get('class_id'),$request->get('group_id'));
-            $subjects = ExamSchedule::query()
-                ->where('academic_class_id',$request->get('class_id'))
+             $subjects = ExamSchedule::query()
+                ->where('class_id',$request->get('class_id'))
                 ->where('exam_id',$examID)
                 ->get();
         }else{

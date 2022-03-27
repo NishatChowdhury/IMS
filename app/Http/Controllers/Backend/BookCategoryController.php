@@ -28,6 +28,9 @@ class BookCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+        'book_category' => 'required|unique:book_categories',
+        ]);
         BookCategory::query()->create($request->all());
         return redirect('admin/library/bookCategory');
     }
@@ -47,6 +50,9 @@ class BookCategoryController extends Controller
 
     public function update($id, Request $request)
     {
+        $validated = $request->validate([
+        'book_category' => 'required|unique:book_categories,book_category,'.$id,
+        ]);
         $data=BookCategory::query()->find($id);
         $data->update($request->all());
         return redirect('admin/library/bookCategory')->with('success','Updated successfully');

@@ -11,6 +11,7 @@ use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentLeave;
 use App\Models\Backend\weeklyOff;
 use App\Repository\AttendanceRepository;
@@ -300,7 +301,7 @@ class AttendanceController extends Controller
             }
         }elseif($request->get('user') == 1){
             if($request->has('class_id') && $request->has('year') && $request->has('month')){
-                $students = Student::query()
+                 $students = StudentAcademic::query()
                     ->where('academic_class_id', $request->class_id)
                     ->orderBy('rank')
                     ->get();
@@ -311,7 +312,7 @@ class AttendanceController extends Controller
 
                 foreach($students as $student){
                     $attn[] = RawAttendance::query()
-                        ->where('registration_id',$student->studentId)
+                        ->where('registration_id',$student->student->studentId)
                         ->where('access_date','like',$date.'%')
                         ->get();
                 }

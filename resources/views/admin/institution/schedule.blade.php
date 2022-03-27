@@ -102,7 +102,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{ Form::open(['action'=>'ScheduleController@store','method'=>'post']) }}
+                {{ Form::open(['action'=>'Backend\ScheduleController@store','method'=>'post']) }}
                 {{ Form::hidden('academic_class_id',$class->id) }}
                 <div class="modal-body">
                     <div class="form-row">

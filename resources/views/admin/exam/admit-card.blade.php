@@ -143,15 +143,17 @@
                                     </tr>
                                     <tr>
                                         <th>Class :</th>
-                                        <td> {{ $student->classes->name }} - {{ $student->section->name ?? '' }}{{ $student->group->name ?? '' }}</td>
+                                        <td>{{ $student->studentAcademic->class_id ? $student->studentAcademic->classes->name : '' }}
+                                            {{ $student->studentAcademic->section_id ? '-'.$student->studentAcademic->section->name : '' }}
+                                            {{ $student->studentAcademic->group_id ? '-'.$student->studentAcademic->group->name : '' }}</td>
                                         <th>Rank :</th>
-                                        <td> {{ $student->rank }}</td>
+                                        <td> {{ $student->studentAcademic->rank }}</td>
                                     </tr>
                                     <tr>
                                         <th>Father's Name :</th>
-                                        <td>{{ $student->father }}</td>
+                                        <td>{{ $student->father ? $student->father->f_name : '' }}</td>
                                         <th>Mother's Name : </th>
-                                        <td>{{ $student->mother }}</td>
+                                        <td>{{ $student->mother ? $student->mother->m_name : '' }}</td>
                                     </tr>
                                     <tr>
                                         <th>Room No :</th>

@@ -27,10 +27,11 @@ class AndroidController extends Controller
             ->where('mobile',$mobile)
             ->exists();
 
+
         if($student){
             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
         }else{
-            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
+             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
         }
 
         $this->sms($mobile,$message);
@@ -147,27 +148,49 @@ class AndroidController extends Controller
         return $data;
     }
 
-    public function sms($number,$message)
+//    public function sms($number,$message)
+//    {
+//        $api_key = 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835';
+//        $senderid = 'BULKSMS';
+//        $URL = "https://sms.solutionsclan.com/api/sms/send?api_key=".$api_key."&type=text&contacts=".$number."&senderid=".$senderid."&msg=".urlencode($message);
+//
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_URL,$URL);
+//        curl_setopt($ch, CURLOPT_HEADER, 0);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+//        curl_setopt($ch, CURLOPT_POST, 0);
+//        try{
+//            $output = $content = curl_exec($ch);
+//            //print_r($output);
+//        }catch(Exception $ex){
+//            $output = "-100";
+//        }
+//        //return $output;
+//    }
+     public function sms($number,$message)
     {
-        $api_key = "C20044595d74d3f12b7ec2.28527507";
-        //$contacts = $number;
-        $senderid = 8809601000500;
-        //$sms = urlencode($message);
-        $URL = "http://esms.mimsms.com/smsapi?api_key=".$api_key."&type=text&contacts=".$number."&senderid=".$senderid."&msg=".urlencode($message);
+        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $data = [
+                "apiKey"=> 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+                "contactNumbers"=> $number,
+                "senderId"=> 'BULKSMS',
+                "textBody"=> $message
+        ];
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$URL);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($ch, CURLOPT_POST, 0);
-        try{
-            $output = $content = curl_exec($ch);
-            //print_r($output);
-        }catch(Exception $ex){
-            $output = "-100";
-        }
-        //return $output;
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $response = curl_exec($ch);
+        echo "$response";
+        curl_close($ch);
+
     }
+
+
 
 }

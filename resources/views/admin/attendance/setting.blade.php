@@ -133,15 +133,11 @@
                 </div>
                 {{ Form::open(['action'=>'Backend\ShiftController@store','method'=>'post']) }}
                 <div class="modal-body">
-                    {{--<form>--}}
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
                         <div class="col-sm-9">
                             <div class="">
                                 <input type="text" name="name" class="form-control" id=""  aria-describedby="" >
-                                {{--<div class="input-group-prepend">--}}
-                                {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
-                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -200,73 +196,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--<div class="form-group row">--}}
-                    {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exit Attendance Start Time*</label>--}}
-                    {{--<div class="col-sm-9">--}}
-                    {{--<div class="input-group">--}}
-                    {{--<input type="text" class="form-control" id=""  aria-describedby="" >--}}
-                    {{--<div class="input-group-prepend">--}}
-                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group row">--}}
-                    {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Exit Attendance End Time*</label>--}}
-                    {{--<div class="col-sm-9">--}}
-                    {{--<div class="input-group">--}}
-                    {{--<input type="text" class="form-control" id=""  aria-describedby="" >--}}
-                    {{--<div class="input-group-prepend">--}}
-                    {{--<span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-clock nav-icon"></i></span>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group row">--}}
-                    {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Process*</label>--}}
-                    {{--<div class="col-sm-9">--}}
-                    {{--<div class="input-group">--}}
-                    {{--<select id="inputState" class="form-control">--}}
-                    {{--<option selected>Choose...</option>--}}
-                    {{--<option>...</option>--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group row">--}}
-                    {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Notification*</label>--}}
-                    {{--<div class="col-sm-9">--}}
-                    {{--<div class="input-group">--}}
-                    {{--<select id="inputState" class="form-control">--}}
-                    {{--<option selected>Choose...</option>--}}
-                    {{--<option>...</option>--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group row">--}}
-                    {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Shift*</label>--}}
-                    {{--<div class="col-sm-9">--}}
-                    {{--<div class="input-group">--}}
-                    {{--<select id="inputState" class="form-control">--}}
-                    {{--<option selected>Choose...</option>--}}
-                    {{--<option>...</option>--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group row">--}}
-                    {{--<label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">User*</label>--}}
-                    {{--<div class="col-sm-9">--}}
-                    {{--<div class="input-group">--}}
-                    {{--<select id="inputState" class="form-control">--}}
-                    {{--<option selected>Choose...</option>--}}
-                    {{--<option>...</option>--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</form>--}}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>

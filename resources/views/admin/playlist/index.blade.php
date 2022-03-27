@@ -55,8 +55,8 @@
                                         <td>{{ $playlist->videos->count() }} Video(s)</td>
                                         <td>{{ $playlist->created_at }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['PlaylistController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('PlaylistController@show',$playlist->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-video"></i></a>
+                                            {{ Form::open(['action'=>['Backend\PlaylistController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('Backend\PlaylistController@show',$playlist->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-video"></i></a>
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                             {{ Form::close() }}
                                         </td>
@@ -83,7 +83,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'PlaylistController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\PlaylistController@store','method'=>'post']) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
                         <div class="col-sm-10">

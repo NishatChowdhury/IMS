@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ Form::model($feature,['action'=>['FeatureController@update',$feature->id],'method'=>'patch','files'=>true]) }}
+                            {{ Form::model($feature,['action'=>['Backend\FeatureController@update',$feature->id],'method'=>'patch','files'=>true]) }}
                             @include('admin.feature.form')
                             {{ Form::close() }}
                         </div>

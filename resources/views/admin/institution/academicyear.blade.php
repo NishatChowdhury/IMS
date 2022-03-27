@@ -27,17 +27,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                {{--<div class="col-md-12">--}}
-                                    {{--<div class="dec-block">--}}
-                                        {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
-                                            {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="dec-block-dec" style="float:left;">--}}
-                                            {{--<h5 style="margin-bottom: 0px;">Total Found</h5>--}}
-                                            {{--<p>{{ $sessions->count() }}</p>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
+
                             </div>
                             <div class="row">
                                 <div>
@@ -76,19 +66,19 @@
                                             {{ Form::close() }}
                                         </td>
                                         <td>
-                                            {{ Form::open(['action'=>['Backend\InstitutionController@delete_session',$session->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a type="button" class="btn btn-warning btn-sm edit_session" value='{{$session->id}}'
-                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>
-                                            </a>
+{{--                                            {{ Form::open(['action'=>['Backend\InstitutionController@delete_session',$session->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}--}}
+{{--                                            <a type="button" class="btn btn-warning btn-sm edit_session" value='{{$session->id}}'--}}
+{{--                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>--}}
+{{--                                            </a>--}}
 
-                                            {{--<a type="button" href="{{action('InstitutionController@delete_session', $session->id)}}"--}}
-                                            {{--class="btn btn-danger btn-sm delete_session"--}}
-                                            {{--style="margin-left: 10px;"> <i class="fas fa-trash"></i> Delete--}}
-                                            {{--</a>--}}
-                                            <button type="submit" class="btn btn-danger btn-sm" disabled=""><i class="fas fa-trash"></i></button>
+                                            <a type="button" href="{{action('Backend\InstitutionController@delete_session', $session->id)}}"
+                                            class="btn btn-danger btn-sm delete_session"
+                                            style="margin-left: 10px;"> <i class="fas fa-trash"></i>
+                                            </a>
+{{--                                            <button type="submit" class="btn btn-danger btn-sm" disabled=""><i class="fas fa-trash"></i></button>--}}
                                             {{ Form::close() }}
                                         </td>
-                                    </tr>web
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

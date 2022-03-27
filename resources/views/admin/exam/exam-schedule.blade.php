@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="">
-                                {{ Form::open(['action'=>['ExamScheduleController@create',$exam->id],'method'=>'get']) }}
+                                {{ Form::open(['action'=>['Backend\ExamScheduleController@create',$exam->id],'method'=>'get']) }}
                                 <div class="row">
                                     <div class="col-md-4">
                                         {{ Form::select('session_id',$sessions,$exam->session_id,['class'=>'form-control','placeholder'=>'Select a session']) }}
@@ -74,7 +74,7 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            {{ Form::open(['action'=>'ExamScheduleController@store','method'=>'post']) }}
+                            {{ Form::open(['action'=>'Backend\ExamScheduleController@store','method'=>'post']) }}
                             <table id="example2" class="table table-bordered table-striped table-hover">
                                 <thead>
                                 <tr>
@@ -100,6 +100,7 @@
                                         <td>{{ $subject->subject->code ?? $subject->code }}</td>
                                         <td>
                                             {{ Form::hidden('exam_id',$exam->id) }}
+                                            {{ Form::hidden('class_id',$ClassId->id) }}
                                             {{ Form::hidden('session_id',$exam->session_id) }}
                                             {{ Form::hidden('academic_class_id',$class->id) }}
                                             {{--{{ Form::hidden('section_id',$section) }}--}}
@@ -108,14 +109,14 @@
                                             {{ $subject->subject->name ?? $subject->name }}
                                         </td>
                                         <td>{{ Form::text('date[]',$subject->date ?? null,['class'=>'form-control datePicker']) }}</td>
-                                        <td>{{ Form::text('start[]',$subject->start ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('end[]',$subject->end ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('objective_full[]',$subject->objective_full ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('objective_pass[]',$subject->objective_pass ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('written_full[]',$subject->written_full ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('written_pass[]',$subject->written_pass ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('practical_full[]',$subject->practical_full ?? null,['class'=>'form-control']) }}</td>
-                                        <td>{{ Form::text('practical_pass[]',$subject->practical_pass ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::time('start[]',$subject->start ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::time('end[]',$subject->end ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::number('objective_full[]',$subject->objective_full ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::number('objective_pass[]',$subject->objective_pass ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::number('written_full[]',$subject->written_full ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::number('written_pass[]',$subject->written_pass ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::number('practical_full[]',$subject->practical_full ?? null,['class'=>'form-control']) }}</td>
+                                        <td>{{ Form::number('practical_pass[]',$subject->practical_pass ?? null,['class'=>'form-control']) }}</td>
                                         {{--                                        <td>{{ Form::select('type[]',['Written','MCQ','Practical','Viva'],$subject->type ?? null,['class'=>'form-control']) }}</td>--}}
                                         {{--                                        <td>{{ $subject->status }}</td>--}}
                                         {{--<td>--}}

@@ -189,7 +189,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ action('Backend\BookController@show') }}" class="nav-link {{ isActive('admin/library/allBooks') }}">
+                            <a href="{{ action('Backend\BookController@show') }}" class="nav-link {{ isActive('admin/library/books') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Books</p>
                             </a>
@@ -786,12 +786,12 @@
                             <p>Notice Category</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('Backend\NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Notice Type</p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                        <a href="{{ action('Backend\NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Notice Type</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ action('Backend\NoticeCategoryController@index') }}" class="nav-link {{ isActive(['notices']) }}">
                             <i class="far fa-circle nav-icon"></i>
@@ -855,12 +855,12 @@
                             <p>Image Album</p>
                         </a>
                     </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('Backend\PlaylistController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Playlists</p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                        <a href="{{ action('Backend\PlaylistController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Playlists</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     {{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
                     {{--                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
                     {{--                            <i class="far fa-circle nav-icon"></i>--}}
@@ -899,6 +899,12 @@
                         <a href="{{ action('Backend\UserController@index') }}" class="nav-link {{ isActive('gallery/image') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Role</p>
                         </a>
                     </li>
                 </ul>

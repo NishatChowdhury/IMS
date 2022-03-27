@@ -94,7 +94,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    {{ Form::open(['action'=>'HolidayController@store','method'=>'post']) }}
+                                    {{ Form::open(['action'=>'Backend\HolidayController@store','method'=>'post']) }}
                                     <div class="form-group">
                                         <label for="email">Name</label>
                                         <input class="form-control @error('name') is-invalid @enderror" placeholder="Holiday Name" name="name" type="text">
@@ -160,8 +160,8 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{ Form::open(['action'=>['HolidayController@destroy',$h->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
-                                                    <a href="{{ action('HolidayController@edit',$h->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    {{ Form::open(['action'=>['Backend\HolidayController@destroy',$h->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
+                                                    <a href="{{ action('Backend\HolidayController@edit',$h->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                     {{ Form::close() }}
                                                 </td>
@@ -193,7 +193,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{ Form::open(['action'=>'ShiftController@store','method'=>'post']) }}
+                {{ Form::open(['action'=>'Backend\ShiftController@store','method'=>'post']) }}
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>

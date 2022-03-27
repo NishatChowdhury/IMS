@@ -45,7 +45,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Total Notice</th>
-                                    <th>Action</th>
+{{--                                    <th>Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,9 +54,9 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->notices->count() }}</td>
-                                        <td>
-                                            <a href="{{ action('Backend\NoticeCategoryController@edit',$category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <a href="{{ action('Backend\NoticeCategoryController@edit',$category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
+{{--                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>

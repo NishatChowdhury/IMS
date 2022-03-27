@@ -16,12 +16,13 @@ class PlaylistController extends Controller
 
     public function index()
     {
-        $playlists = Playlist::query()->paginate(20);
+         $playlists = Playlist::query()->paginate(20);
         return view('admin.playlist.index',compact('playlists'));
     }
 
     public function store(Request $request)
     {
+         $request->all();
         Playlist::query()->create($request->all());
         Session::flash('success','Playlist has been created');
         return redirect()->back();

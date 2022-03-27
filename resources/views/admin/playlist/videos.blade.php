@@ -53,7 +53,7 @@
                                         <td>{{ $video->title }}</td>
                                         <td>{!! $video->code !!}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['VideoController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['action'=>['Backend\VideoController@destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="button" onclick="loadEditForm({{$video->id}})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button>
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                             {{ Form::close() }}
@@ -81,7 +81,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'VideoController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\VideoController@store','method'=>'post']) }}
                     {{ Form::hidden('playlist_id',$playlist->id) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Video Title*:</label>

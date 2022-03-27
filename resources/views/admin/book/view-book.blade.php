@@ -49,15 +49,15 @@
                             @foreach($allData as $key => $value)
                                 <tr class="{{$value->id}}">
                                     <td>{{  $key+1 }}</td>
-                                    <td>{{  $value->title }}</td>
-                                    <td>{{  $value->author }}</td>
+                                    <td>{{  $value->book_title }}</td>
+                                    <td>{{  $value->author_name }}</td>
                                     <td>{{  $value->description }}</td>
                                     <td>{{  $value->category->book_category }}</td>
                                     <td>{{  $value->no_of_issue }}</td>
                                     <td>{{  $value->shelve }}</td>
                                     <td class="text-center">
                                         {{ Form::open(['route'=>['newBook.delete',$value->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
-                                        <a href="{{ action('BookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ action('Backend\BookController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fa fas fa-trash"></i>
                                         </button>

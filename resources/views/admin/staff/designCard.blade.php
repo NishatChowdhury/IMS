@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['action'=>'IdCardController@staffPdf','method'=>'post']) }}
+                                {{ Form::open(['action'=>'Backend\IdCardController@staffPdf','method'=>'post']) }}
 
                                 <div class="card">
                                     <div class="card-body">

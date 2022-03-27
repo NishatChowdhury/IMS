@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <a href="{{ action('UpcomingEventController@create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i> Add Event</a>
+                                <a href="{{ action('Backend\UpcomingEventController@create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i> Add Event</a>
                             </div>
                         </div>
 
@@ -57,8 +57,8 @@
                                             <img src="{{ asset('assets/img/events/') }}/{{ $event->image }}" alt="" width="60">
                                         </td>
                                         <td>
-                                            {{ Form::model($event,['action'=>['UpcomingEventController@destroy',$event->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ action('UpcomingEventController@edit',$event->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            {{ Form::model($event,['action'=>['Backend\UpcomingEventController@destroy',$event->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('Backend\UpcomingEventController@edit',$event->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                             {{ Form::submit('X',['class'=>'btn btn-danger btn-sm']) }}
                                             {{ Form::close() }}
                                         </td>
