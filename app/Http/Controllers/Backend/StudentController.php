@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AssignSubject;
 use App\Models\Backend\BloodGroup;
 use App\Models\Backend\City;
 use App\Models\Backend\Classes;
@@ -429,22 +430,26 @@ class StudentController extends Controller
     public function optional(Request $request, StudentAcademic $academic)
     {
 
-        $academicclasses = AcademicClass::whereHas('sessions', function($query){
+         $academicclasses = AcademicClass::whereHas('sessions', function($query){
                     return $query->where('active', '=', 1);
                 })->get();
         $subjects = Subject::all();
         if($request->has('academic_class_id')){
             $className = AcademicClass::find($request->academic_class_id);
+             $notAssignsubjects = $className->subjects;
+             $academicsubjects = AssignSubject::where('academic_class_id', $request->academic_class_id)->get();
             $s = $academic->newQuery();
             $s->where('academic_class_id',$request->get('academic_class_id'));
             $s->with('studentSubject');
-             $students = $s->get();
+            $students = $s->get();
         }else{
             $students = NULL;
             $className = NULL;
+            $notAssignsubjects = NULL;
+            $academicsubjects = NULL;
         }
 
-        return view('admin.student.optional', compact('subjects','students','academicclasses','className'));
+        return view('admin.student.optional', compact('academicsubjects','subjects','students','academicclasses','className','notAssignsubjects'));
     }
 
     public function assignOptional(Request $request)
@@ -458,6 +463,21 @@ class StudentController extends Controller
 
         return redirect('admin/student/optional')->with($data);
 
+    }
+
+    function subjectStudent(Request $req){
+
+        $studentAcademic = StudentAcademic::where('student_id', $req->id)->first();
+         StudentSubject::where('student_id', $req->id)->delete();
+        foreach ($req->subjects as $sb){
+            StudentSubject::create([
+                'student_academic_id' => $studentAcademic->id,
+                'student_id' => $req->id,
+                'subject_id' => $sb,
+            ]);
+        }
+
+         return back();
     }
 
 

@@ -21,16 +21,6 @@ class AcademicCalenderController extends Controller
     public function index()
     {
 
-     
-        
-
-
-
-
-
-
-
-
         $repository = $this->repository;
         $calenders = AcademicCalender::query()->orderBy('start','desc')->get();
         return view('admin.settings.academic_calender',compact('repository','calenders'));
@@ -43,13 +33,21 @@ class AcademicCalenderController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+
         $this->validate($request,[
             'session_id' => 'required',
             'name'     =>  'required',
             'start'     =>  'required'
         ],[]);
-        AcademicCalender::query()->create($request->all());
+        AcademicCalender::query()->create([
+            'session_id' => $request->session_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'start' => $request->start,
+            'end' => $request->end,
+            'sms_in' => $request->sms_in,
+            'sms_out' => $request->sms_out,
+        ]);
         return redirect()->back();
     }
 

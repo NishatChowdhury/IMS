@@ -74,7 +74,7 @@
                                                 {!! Form::close() !!}
                                             </td>
                                             <td>
-                                                <a type="button" class="btn btn-warning btn-sm edit" value="{{ $calender->id }}">Edit</a> ||
+                                                <a type="button" class="btn btn-warning btn-sm edit" value="{{ $calender->id }}">Edit</a>
                                                 {!! Form::open(['action'=>['Backend\AcademicCalenderController@destroy',$calender->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 {!! Form::close() !!}
@@ -152,7 +152,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{--<input name="end" class="form-control" id="datePicker1"  aria-describedby="">--}}
-                                {{ Form::text('sms_in',null,['class'=>'form-control timepicker']) }}
+                                {{ Form::time('sms_in',null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{--<input name="end" class="form-control" id="datePicker1"  aria-describedby="">--}}
-                                {{ Form::text('sms_out',null,['class'=>'form-control']) }}
+                                {{ Form::time('sms_out',null,['class'=>'form-control']) }}
                             </div>
                         </div>
                     </div>
@@ -242,7 +242,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{--<input name="end" class="form-control" id="datePicker1"  aria-describedby="">--}}
-                                {{ Form::text('sms_in',null,['class'=>'form-control sms_id timepicker']) }}
+                                {{ Form::time('sms_in',null,['class'=>'form-control sms_in']) }}
                             </div>
                         </div>
                     </div>
@@ -252,7 +252,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{--<input name="end" class="form-control" id="datePicker1"  aria-describedby="">--}}
-                                {{ Form::text('sms_out',null,['class'=>'form-control sms_out']) }}
+                                {{ Form::time('sms_out',null,['class'=>'form-control sms_out']) }}
                             </div>
                         </div>
                     </div>
@@ -298,7 +298,7 @@
             //console.log(id);
             $.ajax({
                 method  : 'post',
-                url     :  '{{ url('academic-calender/edit') }}',
+                url     :  '{{ url('admin/academic-calender/edit') }}',
                 data    :   {id:id,"_token":"{{ csrf_token() }}"},
                 dataType : 'json',
                 success:function (response) {

@@ -205,13 +205,13 @@
                                                                     {{ Form::text('name',null,['class'=>'form-control']) }}
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row col-md-12">
-                                                                <label for="nick">Nick Name</label>
-                                                                <div class="input-group ">
-                                                                    {{--                                                                    <input id="" name="name" class="form-control" aria-describedby="" required value="{{$info->name ?? ''}}">--}}
-                                                                    {{ Form::text('nickname',null,['class'=>'form-control']) }}
-                                                                </div>
-                                                            </div>
+{{--                                                            <div class="form-group row col-md-12">--}}
+{{--                                                                <label for="nick">Nick Name</label>--}}
+{{--                                                                <div class="input-group ">--}}
+{{--                                                                    --}}{{--                                                                    <input id="" name="name" class="form-control" aria-describedby="" required value="{{$info->name ?? ''}}">--}}
+{{--                                                                    {{ Form::text('nickname',null,['class'=>'form-control']) }}--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">Father/Husband's Name</label>
@@ -247,7 +247,7 @@
                                                                 <div class="form-group col-md-6">
                                                                     <label for="">National ID</label>
                                                                     {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
-                                                                    {{ Form::text('nid',null,['class'=>'form-control']) }}
+                                                                    {{ Form::number('nid',null,['class'=>'form-control']) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">

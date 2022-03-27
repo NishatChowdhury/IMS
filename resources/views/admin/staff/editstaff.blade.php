@@ -61,7 +61,7 @@
                             </nav>
                             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                    {!! Form::model($info,['action'=>['StaffController@update_staff',$info->id], 'method' => 'PATCH', 'files'=>true]) !!}
+                                    {!! Form::model($info,['action'=>['Backend\StaffController@update_staff',$info->id], 'method' => 'PATCH', 'files'=>true]) !!}
                                     <div class="row">
                                         <div class="col-md-6">
                                             <table id="example2" class="table table-bordered" style="margin: 10px;">

@@ -42,28 +42,33 @@
                                 </div>
                             </div>
                             <div class="col-4 mt-4">
-                                <button class="btn btn-block btn-dark">Assign Subject</button>
+                                <button class="btn btn-block btn-dark">Search Students</button>
                             </div>
                         </div>
-                        <hr>
                     </div>
                     {{ Form::close() }}
+                </div>
+                <div class="card mt-5">
                     @if($students)
-                        <div class="card-header">
+                        <div class="card-header bg-primary">
                             <h6>Class {{ $className->classes->name }}{{$className->group_id ? '('. $cs->group->name .')' : ''}} All Students Information</h6>
                         </div>
                         <div class="card-body">
-                           <table class="table-striped table table-sm table-hover">
+                           <div class="table-responsive">
+                               <table class="table-striped table table-sm table-hover">
 
                                    @foreach($students as $key => $student)
                                <tr>
-                                   <td>{{$key+1}}</td>
+                                   <form action="{{ route('subject.student') }}" method="post">
+                                       @csrf
+                                       <input type="hidden" name="id" value="{{$student->student->id}}">
+                                       <td>{{$key+1}}</td>
                                    <td>{{$student->student->name}}</td>
 
-
+                                       @if($student->studentSubject->count() > 0)
                                        @foreach($student->studentSubject as $subject)
                                             <td>
-                                                <select name="subjects[]" id="">--}}
+                                                <select name="subjects[]" id="" class="form-control">
                                                     @foreach($subjects as $key => $sb)
                                                         <option value="{{$sb->id}}"
                                                             {{$subject->subject_id == $sb->id ? 'selected' : ''}}
@@ -72,23 +77,28 @@
                                                 </select>
                                                 </td>
                                         @endforeach
+                                       @else
+                                           @foreach( $notAssignsubjects as $srp)
+                                           <td>
+                                                <select name="subjects[]" id="" class="form-control">
+                                                    <option>--select--</option>
+                                                    @foreach($academicsubjects as $key => $sb)
+                                                        <option value="{{$sb->subject->id}}">{{$sb->subject->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                           </td>
+                                           @endforeach
 
-
-{{--                                   @for($x = 0; $x <= $student->student_subject->c; $x++)--}}
-{{--                                            <td>--}}
-{{--                                                <select name="subjects[]" id="">--}}
-{{--                                                @foreach($subjects as $key => $sb)--}}
-{{--                                                    <option value="{{$sb->id}}"--}}
-{{--                                                        {{$sb->type == 1 ? 'selected' : ''}}--}}
-{{--                                                    >{{$sb->name}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            </td>--}}
-{{--                                   @endfor--}}
+                                       @endif
+                                   <td>
+                                       <button type="submit" class="btn btn-primary btn-sm">Change</button>
+                                   </td>
+                                   </form>
                                </tr>
 
                                    @endforeach
                            </table>
+                           </div>
                         </div>
                     @else
                         <p>No Record Founds</p>

@@ -269,6 +269,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('student/store', 'Backend\StudentController@store');
     Route::get('student/optional','Backend\StudentController@optional');
     Route::get('student/optional/assign','Backend\StudentController@assignOptional');
+    Route::post('student/optional/subjectStudent','Backend\StudentController@subjectStudent')->name('subject.student');
     //End Students Route
 
     // ID Card Routes

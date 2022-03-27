@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Student</h1>
+                    <h1 class="m-0 text-dark">Theme</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Students</li>
+                        <li class="breadcrumb-item active">All Themes</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,52 +21,13 @@
     </div>
     <!-- /.content-header -->
 
-
-    <!-- /.Search-panel -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="margin: 10px;">
-                        <!-- form start -->
-                        {{ Form::open(['action'=>'Backend\StudentController@index','role'=>'form','method'=>'get']) }}
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="col">
-                                    <label for="">Student ID</label>
-                                    <div class="input-group">
-                                        {{ Form::text('id',null,['class'=>'form-control','placeholder'=>'User ID']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Name</label>
-                                    <div class="input-group">
-                                        {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-1" style="padding-top: 32px;">
-                                    <div class="input-group">
-                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        {{ Form::close() }}
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.Search-panel -->
-
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-12">
+                <div class="alert alert-danger">
+                    <p>It will avilable new version</p>
+                </div>
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">Total Found : {{ $themes->total() }}</h3>

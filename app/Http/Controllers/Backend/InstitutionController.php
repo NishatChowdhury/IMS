@@ -315,11 +315,22 @@ class InstitutionController extends Controller
         }
                 foreach ($studentAcademic as $stuAcademic) {
                     foreach ($request->subjects as $sb){
-                        $storeSubject = new StudentSubject();
-                        $storeSubject->student_academic_id = $stuAcademic->id;
-                        $storeSubject->student_id = $stuAcademic->student_id;
-                        $storeSubject->subject_id = $sb;
-                        $storeSubject->save();
+
+                        $check = StudentSubject::query()
+                                                ->where('student_academic_id', $stuAcademic->id)
+                                                ->where('student_id', $stuAcademic->student_id)
+                                                ->where('subject_id', $sb)
+                                                ->exists();
+
+                        if (!$check){
+
+                            $storeSubject = new StudentSubject();
+                            $storeSubject->student_academic_id = $stuAcademic->id;
+                            $storeSubject->student_id = $stuAcademic->student_id;
+                            $storeSubject->subject_id = $sb;
+                            $storeSubject->save();
+                        }
+
                     }
                 }
 
