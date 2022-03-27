@@ -34,7 +34,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label>Academic Class</label>
-                                    <select name="academic_class" id="" class="form-control ">
+                                    <select name="academic_class" id="" class="form-control " required>
                                         <option value="">Select class </option>
                                         @foreach ($academic_class as  $class)
                                             <option value="{{ $class->id }}">{{ $class->classes->name }}
@@ -45,21 +45,24 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>Month</label>
-                                    {{ Form::selectMonth('month_id',null,['class'=>'form-control']) }}
+                                    {{ Form::selectMonth('month_id', null, ['class' => 'form-control ','required']) }}
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>Year</label>
-                                    {{ Form::selectYear('year_id',1970,now()->format('Y'),null,['class'=>['form-control']]) }}
+                                    {{ Form::selectYear('year_id', date('Y'), date('Y') - 50, null, ['class' => 'form-control ','required']) }}
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button type="submit"
-                                        class="btn btn-info btn-md btn-block"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                    <button type="submit" class="btn btn-info btn-md btn-block"><i
+                                            class="fa fa-search"></i>&nbsp;Search</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button class="btn btn-success btn-md btn-block" onclick="window.print(); return false;"><i class="fa fa-print"></i>&nbsp;Print</button>
+                                    <button class="btn btn-success btn-md btn-block"
+                                        onclick="window.print(); return false;"><i
+                                            class="fa fa-print"></i>&nbsp;Print</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <a class="btn btn-success btn-md btn-block"><i class="fa fa-file-pdf"></i>&nbsp;Pdf</a>
+                                    <a href="" class="btn btn-success btn-md btn-block"><i
+                                            class="fa fa-file-pdf"></i>&nbsp;Pdf</a>
                                 </div>
 
                             </div>
@@ -72,7 +75,7 @@
         </div>{{-- end --}}
     </section>
 
-    @if (isset($stupays))
+    @if (isset($students))
 
 @php
     $previous_due = 0;
@@ -98,20 +101,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($students as $student)
-                                        <tr>
-                                            <td>{{ $student->studentId }}</td>
-                                            <td>{{ $student->name }}</td>
-                                            @php
-                                            $allDue = $student->feeSetupStudent->sum('amount');
-                                            $allPaid = $student->payments->sum('amount');
-                                            @endphp
-                                            <td>{{ number_format($student->payments->last()->amount,2) }}</td>
-                                            <td>{{ number_format($allDue - $allPaid,2) }}</td>
-                                        </tr>
-                                    @empty
-                                    <td colspan="6" class="text-center text-danger"><h5>No data found !!</h5></td>
-                                    @endforelse
+                                    @foreach ($students as $student)
+                                    <tr>
+                                        <td>{{ $student->studentId }}</td>
+                                        <td>{{ $student->name }}</td>
+                                        @php
+                                            $due = $student->feeSetupStudents->sum('amount');
+                                            $paid = $student->payments->sum('amount');
+                                            $currentDue = $due - $paid;
+                                        @endphp
+                                        <td>{{ $paid }}</td>
+                                        <td>{{ $currentDue }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

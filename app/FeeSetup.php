@@ -84,7 +84,7 @@ class FeeSetup extends Model
 //        return $this->belongsTo(Section::class);
 //    }
 
-    public function feeSetupStudent(){
+    public function students(){
           return $this->hasMany(FeeSetupStudent::class);
     }
 

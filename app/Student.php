@@ -142,7 +142,10 @@ class Student extends Model
         return $this->hasMany(FeeSetup::class);
     }
 
-    public function feeSetupStudent()
+    /**
+     * A student has many fee setup students
+     */
+    public function feeSetupStudents()
     {
         return $this->hasMany(FeeSetupStudent::class,'student_id','id');
     }
