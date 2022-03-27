@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Staffs</a></li>
-                        <li class="breadcrumb-item active">Teacher</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __ ('Staffs') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Teacher') }}</li>
                     </ol>
                 </div>
             </div>

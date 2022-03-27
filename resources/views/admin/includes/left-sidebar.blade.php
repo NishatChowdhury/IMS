@@ -220,11 +220,11 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ action('Backend\StudentController@index') }}" class="nav-link {{ isActive('students') }}">
+                        <a href="{{ action('Backend\StudentController@index') }}" class="nav-link {{ isActive('admin/students') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Students </p>
+                            <p>{{ __('Students') }} </p>
                         </a>
                     </li>
 

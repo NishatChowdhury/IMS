@@ -44,15 +44,19 @@ class StudentController extends Controller
     }
 
     public function index(Request $request,Student $student){
-        //dd($request->all());
 
+        $s = $student->newQuery()
+            ->whereHas('academics', function($query){
+                $query->whereHas('sessions', function($query){
+                    return $query->where('active',1);
+                });
+            });
 
-        $s = $student->newQuery()->whereIn('session_id',activeYear());
         if($request->get('studentId')){
             $studentId = $request->get('studentId');
-            //$s->where('studentId',$studentId);
-            $s->where('ssc_roll',$studentId);
+            $s->where('studentId',$studentId);
         }
+
         if($request->get('name')){
             $name = $request->get('name');
             $s->where('name','like','%'.$name.'%');
@@ -159,13 +163,17 @@ class StudentController extends Controller
         //     return $query->where('active', '=', 1);
         // })->with('student')->paginate(100);  
 
-        $students = Student::orderBy('studentId')
-            ->whereHas('academics', function($query){
-                $query->whereHas('sessions', function($query){
-                    return $query->where('active', '=', 1);
-                });
-            })->paginate(100);
+//        $students = Student::query()
+//            ->orderBy('studentId')
+//            ->whereHas('academics', function($query){
+//                $query->whereHas('sessions', function($query){
+//                    return $query->where('active', '=', 1);
+//                });
+//            })
+//            ->paginate(100);
         // $students = $s->orderBy('rank')->paginate(100);
+//        dd($s->get());
+        $students = $s->orderBy('studentId')->paginate(100);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
     }
@@ -787,7 +795,10 @@ class StudentController extends Controller
         // return $studentAcademic;
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
-        $payments = StudentPayment::query()->where('student_id',$studentId)
+        $payments = StudentPayment::query()
+            ->whereHas('sessions', function($query){
+                $query->where('active', '=', 1);
+            })->where('student_id',$studentId)
             ->get();
 
 
