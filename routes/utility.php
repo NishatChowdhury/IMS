@@ -364,11 +364,11 @@ Route::get('sync-group',function(){
     dd('group id synced');
 });
 
-Route::get('upload-csv','ExamController@upload');
-Route::get('bulk-upload-csv','ExamController@bulkUpload');
+Route::get('upload-csv','Backend\ExamController@upload');
+Route::get('bulk-upload-csv','Backend\ExamController@bulkUpload');
 
-Route::post('upload-file','ExamController@file');
-Route::post('bulk-upload-file','ExamController@bulkFile');
+Route::post('upload-file','Backend\ExamController@file');
+Route::post('bulk-upload-file','Backend\ExamController@bulkFile');
 
 Route::get('calc-final-result',function(){
     $sessionId = 2;

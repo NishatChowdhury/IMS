@@ -8,15 +8,17 @@ use App\Http\Controllers\Backend\FeeSetupController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
+use App\Http\Controllers\Backend\ExamController;
+use App\Http\Controllers\Backend\ExamScheduleController;
 
 Route::group(['prefix'=>'admin'], function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin');
     Route::get('backup',[HomeController::class,'backup'])->name('admin.backup');
 
-    Route::get('transactions','Backend\TransactionController@index');
-    Route::get('transaction/create','Backend\TransactionController@create');
-    Route::post('transaction/store','Backend\TransactionController@store');
+//    Route::get('transactions','Backend\TransactionController@index');
+//    Route::get('transaction/create','Backend\TransactionController@create');
+//    Route::post('transaction/store','Backend\TransactionController@store');
 
     //Student Routes
     Route::get('student/tod','Backend\StudentController@tod');
@@ -250,7 +252,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('exam/mark/up','Backend\MarkController@up');
     Route::post('exam/mark/store','Backend\MarkController@store');
 
-    Route::get('exam/tabulationSheet','Backend\ExamController@tabulationSheet')->name('exam.tabulationSheet');
+    Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
     //Exam management End
 
 
@@ -332,7 +334,7 @@ Route::post('message-store','Backend\MessagesController@store')->name('message.s
     Route::post('socials/update/{id}','Backend\SocialController@update')->name('social.store');
 //Social Links End
 
-    Route::get('page-media/destroy/{id}','PageMediaController@destroy');
+//    Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 
 
 
@@ -554,20 +556,20 @@ Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeac
 
 
 //Exam Route Start  by Rimon
-Route::get('exam/gradesystem','Backend\ExamController@gradesystem')->name('exam.gradesystem');
+Route::get('exam/gradesystem',[ExamController::class,'gradesystem'])->name('exam.gradesystem');
 //Grading System @MKH
-Route::post('exam/store-grade', 'Backend\ExamController@store_grade');
-Route::get('exam/delete-grade/{id}', 'Backend\ExamController@delete_grade');
-Route::get('exam/examination','Backend\ExamController@examination')->name('exam.examination');
-Route::post('exam/sotre-exam', 'Backend\ExamController@store_exam')->name('store.exam');
-Route::delete('exam/destroy/{id}', 'Backend\ExamController@destroy');
-Route::get('exam/examitems','Backend\ExamController@examitems')->name('exam.examitems');
-Route::get('exam/schedule/create/{exam}','Backend\ExamScheduleController@create');
-Route::post('exam/schedule/store','Backend\ExamScheduleController@store');
-Route::get('exam/schedule/{examId}', 'Backend\ExamController@schedule');
-Route::post('exam/store-schedule', 'Backend\ExamController@store_schedule');
-Route::get('exam/admit-card','Backend\ExamController@admitCard');
-Route::get('exam/seat-allocate','Backend\ExamController@seatAllocate');
+Route::post('exam/store-grade', [ExamController::class,'store_grade']);
+Route::get('exam/delete-grade/{id}', [ExamController::class,'delete_grade']);
+Route::get('exam/examination',[ExamController::class,'examination'])->name('exam.examination');
+Route::post('exam/sotre-exam', [ExamController::class,'store_exam'])->name('store.exam');
+Route::delete('exam/destroy/{id}', [ExamController::class,'destroy']);
+Route::get('exam/examitems',[ExamController::class,'examitems'])->name('exam.examitems');
+Route::get('exam/schedule/create/{exam}',[ExamScheduleController::class,'create']);
+Route::post('exam/schedule/store',[ExamScheduleController::class,'store']);
+Route::get('exam/schedule/{examId}', [ExamController::class,'schedule']);
+Route::post('exam/store-schedule', [ExamController::class,'store_schedule']);
+Route::get('exam/admit-card',[ExamController::class,'admitCard']);
+Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate']);
 
 // Exam Seat Plan Start
 Route::get('exam/seat-plan/{examId}','Backend\ExamSeatPlanController@seatPlan');
