@@ -449,7 +449,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/fee/collections/report/academic_class') }}" class="nav-link {{ isActive('admin/fee/collections/report/academic_class') }}">
+                            <a href="{{ route('report.academic_class') }}" class="nav-link {{ isActive('admin/fee/collections/report/academic_class') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Academic Class Report') }}</p>
                             </a>

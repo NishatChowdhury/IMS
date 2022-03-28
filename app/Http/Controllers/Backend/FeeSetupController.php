@@ -47,6 +47,7 @@ class FeeSetupController extends Controller
         $groups = Group::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
 
+
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
@@ -66,8 +67,8 @@ class FeeSetupController extends Controller
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
         // get fee categories from session
-        $fees = request()->session()->get('fees');
-
+         $fees = request()->session()->get('fees');
+        dd($fees);
          // sum session amount
         $amount = array_column($fees,'amount');
         $total = number_format(array_sum($amount),2);
@@ -80,13 +81,10 @@ class FeeSetupController extends Controller
             'year' => $request->get('year'),
         ];
         $feeSetup = FeeSetup::query()->create($feeSetupData);
-        /** store fee setup information end */
-
-        // $tamount = array_column($fees,'amount');
-        // $amount =  number_format(array_sum($tamount),2); dd($amount);
 
         foreach($students as $student){
-            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
+
+            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->student_id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
             foreach($fees as $fee){
                 $data = [
                     'fee_setup_student_id' => $feeSetupStudent->id,
@@ -116,6 +114,7 @@ class FeeSetupController extends Controller
             ->where('fee_setup_id',$request->id)->with('student')
             ->get();
         return view('admin.feeSetup.fee-students',compact('students'));
+
     }
 
     public function feeSetupDetails(Request $request){

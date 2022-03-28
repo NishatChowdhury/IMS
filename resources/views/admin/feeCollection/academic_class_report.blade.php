@@ -77,10 +77,7 @@
 
     @if (isset($students))
 
-@php
-    $previous_due = 0;
-    $paid = 0;
-@endphp
+{{-- {{dd($students)}} --}}
         <section class="content mt-4">
             <div class="container-fluid">
 
