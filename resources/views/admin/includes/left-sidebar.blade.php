@@ -431,13 +431,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/fee/fee-collection') }}" class="nav-link {{ isActive('fee/fee-collection') }}">
+                            <a href="{{ url('admin/fee/fee-collection') }}" class="nav-link {{ isActive('admin/fee/fee-collection') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee Collection') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/fee/all-collections') }}" class="nav-link {{ isActive('fee/all-collections') }}">
+                            <a href="{{ url('admin/fee/all-collections') }}" class="nav-link {{ isActive('admin/fee/all-collections') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee Collection Report') }}</p>
                             </a>

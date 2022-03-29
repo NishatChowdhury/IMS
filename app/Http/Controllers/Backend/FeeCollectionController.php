@@ -131,16 +131,15 @@ class FeeCollectionController extends Controller
         $ac = $request->academic_class;
 
         if ($request->from != null && $request->to != null && $request->academic_class != null) {
-            $stupays = $stupays->where('date', '>=', $request->from)->where('date', '<=', $request->to)->whereHas('feeSetup', function ($q) use ($ac) {
+            $stupays = $stupays->whereDate('date', '>=', $request->from)->whereDate('date', '<=', $request->to)->whereHas('feeSetup', function ($q) use ($ac) {
                 return  $q->where('academic_class_id', $ac);
             })->get();
         } elseif ($request->from != null && $request->to != null) {
-            $stupays =  $stupays->where('date', '>=', $request->from)->where('date', '<=', $request->to)->get();
+            $stupays =  $stupays->whereDate('date', '>=', $request->from)->whereDate('date', '<=', $request->to)->get();
         } elseif ($request->from != null) {
-            $from = $request->from;
-            $stupays =  $stupays->where('date', $from)->get();
+            $stupays =  $stupays->whereDate('date', $request->from)->get();
         } elseif ($request->to != null) {
-            $stupays = $stupays->where('date', $request->to)->get();
+            $stupays = $stupays->whereDate('date', $request->to)->get();
         } elseif ($request->academic_class != null) {
             $stupays = $stupays->whereHas('feeSetup', function ($q) use ($ac) {
                 return  $q->where('academic_class_id', $ac);
@@ -148,8 +147,6 @@ class FeeCollectionController extends Controller
         } else {
             $stupays = null;
         }
-
-
 
         return view('admin.feeCollection.report_generate', compact('stupays', 'academic_class'));
     }
@@ -166,10 +163,14 @@ class FeeCollectionController extends Controller
         // ]);
         $students = Student::query();
 
-        if($request->academic_class != null || $request->month_id != null || $request->year_id != null) {
+        if($request->academic_class != null && $request->month_id != null && $request->year_id != null) {
              $students = $students->whereHas('academics',function($query)use($request){
                 $query->where('academic_class_id',$request->academic_class);
-            })->get();
+            })
+            ->whereHas('feeSetupStudents.feeSetup',function($query)use($request){
+                $query->where('month_id',$request->month_id)->where('year',$request->year_id);
+            })
+            ->get();
         }else {
             $students = null;
         }
