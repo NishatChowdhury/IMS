@@ -6,6 +6,7 @@ use App\Models\Backend\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class SliderController extends Controller
 {
@@ -22,13 +23,14 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $validator = Validator::make($request->all(),[
             'title' => 'required',
-            //'description' => 'required',
-            //'start' => 'sometimes|date',
-            //'end' => 'sometimes|date',
-            'image' => 'required|max:2000'
+            'image' => 'required'
         ]);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         if($request->hasFile('image')){
             $name = time().$request->file('image')->getClientOriginalName();
@@ -42,9 +44,7 @@ class SliderController extends Controller
                 dd($e);
             }
         }
-
         return redirect('admin/sliders');
-
     }
 
     public function destroy($id)
