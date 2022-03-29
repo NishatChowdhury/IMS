@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>General Form</h1>
+                    <h1>{{__('General Form')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">General Form</li>
+                        <li class="breadcrumb-item"><a href="#">{{__('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{__('General Form')}}</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Quick Example</h3>
+                            <h3 class="card-title">{{__('Quick Example')}}</h3>
                         </div>
                         <div class="card-body">
                             @if($errors->any())
@@ -43,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {{ Form::model($page,['action'=>['PageController@update',$page->id],'method'=>'patch','files'=>true]) }}
+                        {{ Form::model($page,['action'=>['Backend\PageController@update',$page->id],'method'=>'patch','files'=>true]) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
