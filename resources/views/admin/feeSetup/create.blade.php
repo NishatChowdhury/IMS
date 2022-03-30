@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Fee Setup')
+@section('title', 'Fee Setup')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -25,11 +25,13 @@
         <div class="container-fluid">
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
-                    <div class="col-6 text-center" style="color:white;font-size:16px;background-color:rgb(167, 57, 29);padding:5px">{{$error}}</div>
+                    <div class="col-6 text-center"
+                        style="color:white;font-size:16px;background-color:rgb(167, 57, 29);padding:5px">{{ $error }}
+                    </div>
                 @endforeach
             @endif
             <br>
-            {{ Form::open(['url'=>'admin/fee/fee-setup/store','method'=>'POST', 'class'=>'form-horizontal','id'=>'dynamic_form']) }}
+            {{ Form::open(['url' => 'admin/fee/fee-setup/store','method' => 'POST','class' => 'form-horizontal','id' => 'dynamic_form']) }}
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -40,10 +42,12 @@
                                 <div class="col">
                                     <label for="">{{ __('Academic Class') }}</label>
                                     <div class="input-group">
-                                        <select name="academic_class_id" class="form-control" >
+                                        <select name="academic_class_id" class="form-control" id="academic_class_id">
                                             <option value=""> -- {{ __('Select Academic Class') }} -- </option>
-                                            @foreach($academic_classes as $value)
-                                                <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }}&nbsp;{{$value->section->name ?? ''}}&nbsp;{{ $value->group->name ?? '' }}</option>
+                                            @foreach ($academic_classes as $value)
+                                                <option value="{{ $value->id }}">
+                                                    {{ $value->academicClasses->name ?? '' }}&nbsp;{{ $value->section->name ?? '' }}&nbsp;{{ $value->group->name ?? '' }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -51,13 +55,13 @@
                                 <div class="col">
                                     <label for="">{{ __('Month') }}</label>
                                     <div class="input-group">
-                                        {{ Form::selectMonth('month_id',null,['class'=>'form-control','placeholder'=>'Select Month']) }}
+                                        {{ Form::selectMonth('month_id', null, ['class' => 'form-control','id' => 'month_id','placeholder' => 'Select Month']) }}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">{{ __('Year') }}</label>
                                     <div class="input-group">
-                                        {{ Form::selectYear('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),null,['class'=>'form-control','placeholder'=>'Select Year']) }}
+                                        {{ Form::selectYear('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),null,['class' => 'form-control', 'id' => 'year', 'placeholder' => 'Select Year']) }}
                                     </div>
                                 </div>
                             </div>
@@ -65,6 +69,10 @@
                     </div>
                 </div>
             </div>
+            @php
+                // $input_record = ['academic_class_id'=> request()->input('academic_class_id'), 'month_id'=>request()->input('month_id'), 'year'=>request()->input('year') ];
+                //     Session::put('input_record',$input_record);
+            @endphp
             <br>
             <div class="row">
                 <div class="col-md-6">
@@ -74,19 +82,21 @@
                                 <label for="">{{ __('Fee Category') }}</label>
                                 <select class="form-control form-control-sm" id="fee_category_id" name="fee_category_id">
                                     <option value="">{{ __('Select Fee Category') }}</option>
-                                    @foreach($fee_category as $key => $category)
-                                        <option value="{{$key}}">{{$category}}</option>
+                                    @foreach ($fee_category as $key => $category)
+                                        <option value="{{ $key }}">{{ $category }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">{{ __('Fee Amount') }}</label>
                                 <div class="input-group">
-                                    <input class="form-control form-control-sm" id="amount" placeholder="Amount here" name="amount" type="text">
+                                    <input class="form-control form-control-sm" id="amount" placeholder="Amount here"
+                                        name="amount" type="text">
                                 </div>
                             </div>
                             <div class="button text-right">
-                                <button onclick="addToFee()" type="button" class="btn btn-primary btn-sm">{{ __('Add To Fee') }}</button>
+                                <button onclick="addToFee()" type="button"
+                                    class="btn btn-primary btn-sm">{{ __('Add To Fee') }}</button>
                             </div>
                         </div>
                     </div>
@@ -96,15 +106,21 @@
                     <div>
                         <table class="table table-hover">
                             <thead>
-                            <tr>
-                                <th>{{ __('Sl') }}</th>
-                                <th>{{ __('Category') }}</th>
-                                <th>{{ __('Amount') }}</th>
-                                <th><button class="btn btn-danger btn-sm" onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
-                            </tr>
+                                <tr>
+                                    <th>{{ __('Sl') }}</th>
+                                    <th>{{ __('Category') }}</th>
+                                    <th>{{ __('Amount') }}</th>
+                                    <th><button class="btn btn-danger btn-sm"
+                                            onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
+                                </tr>
                             </thead>
                             <tbody id="tbody">
-                            <!-- Fee category list will appeared here -->
+                                @if (Session::has('fees'))
+                                    @php
+                                        $fees = Session::get('fees');
+                                    @endphp
+                                    @include('admin.feeSetup._fee-cart')
+                                @endif
                             </tbody>
                         </table>
                         <div class="button text-center">
@@ -119,7 +135,6 @@
         </div>
     </section>
 
-
 @stop
 
 @section('script')
@@ -131,9 +146,13 @@
             var token = "{{ @csrf_token() }}"
             $.ajax({
                 url: "{{ url('admin/fee/fee-cart/store') }}",
-                data: { _token:token,category_id:category_id,amount:amount},
+                data: {
+                    _token: token,
+                    category_id: category_id,
+                    amount: amount
+                },
                 type: "POST",
-            }).done(function(e){
+            }).done(function(e) {
                 $("#tbody").html(e);
                 $("#fee_category_id").val('');
                 $("#amount").val('');
@@ -141,14 +160,17 @@
             });
         }
 
-        function removeFeeFromCart(key){
+        function removeFeeFromCart(key) {
             "use strict";
             var token = "{{ @csrf_token() }}"
             $.ajax({
                 url: "{{ url('admin/fee/fee-cart/destroy') }}",
-                data: {_token:token,key:key},
+                data: {
+                    _token: token,
+                    key: key
+                },
                 type: "POST",
-            }).done(function(e){
+            }).done(function(e) {
                 $("#tbody").html(e);
                 console.log(e);
             });
@@ -159,9 +181,11 @@
             var token = "{{ @csrf_token() }}"
             $.ajax({
                 url: "{{ url('admin/fee/fee-cart/flush') }}",
-                data: {_token:token},
+                data: {
+                    _token: token
+                },
                 type: "POST",
-            }).done(function(e){
+            }).done(function(e) {
                 $("#tbody").html(e);
                 console.log(e);
             });

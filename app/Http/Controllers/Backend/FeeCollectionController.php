@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Month;
 use Illuminate\Support\Facades\Auth;
 // use Barryvdh\DomPDF\Facade\Pdf;
+// use PDF;
 
 class FeeCollectionController extends Controller
 {
@@ -175,10 +176,14 @@ class FeeCollectionController extends Controller
             $students = null;
         }
 
+        // $pdf = PDF::loadView('admin.feeCollection.pdf_class', compact('students'));
+        // return $pdf->download('report.pdf');
+
             // return $students;
 
         return view('admin.feeCollection.academic_class_report', compact('academic_class',  'reqMonth', 'students'));
     }
+
 
 
 }
