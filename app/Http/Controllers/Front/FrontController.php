@@ -308,10 +308,6 @@ class FrontController extends Controller
 
             $repository = $this->repository;
 
-         
-
-       
-
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
                             ->orderByDesc('start')
@@ -341,32 +337,32 @@ class FrontController extends Controller
                 
 
 
-                        $artilces.= '
-                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
-                            <div class="media align-items-center">
-                                <div class="text-center border-right pr-4">
-                                <strong class="text-primary font-size-38">
-                                            '. $date .'
-                                </strong>
-                                <p class="mb-0 text-gray">
-                                    '. $mm .'
-                                </p>
-                                </div>
-                                <div class="media-body p-4">
-                                <p class="mb-1 text-gray">
-                                <i class="ti-file"></i>
-                                    <span class="badge '. $types .'">
-                                        '. $typeN .'
-                                    </span>  
-                                </p>
-                                <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="h5">
-                                    '. $notice->title .'
-                                </a>
-                                </div>
-                            </div>
-                            '. $noticeFile .'
-                            <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="btn btn-outline-primary">Read More</a> 
-                            </div>';
+//                        $artilces.= '
+//                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
+//                            <div class="media align-items-center">
+//                                <div class="text-center border-right pr-4">
+//                                <strong class="text-primary font-size-38">
+//                                            '. $date .'
+//                                </strong>
+//                                <p class="mb-0 text-gray">
+//                                    '. $mm .'
+//                                </p>
+//                                </div>
+//                                <div class="media-body p-4">
+//                                <p class="mb-1 text-gray">
+//                                <i class="ti-file"></i>
+//                                    <span class="badge '. $types .'">
+//                                        '. $typeN .'
+//                                    </span>
+//                                </p>
+//                                <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="h5">
+//                                    '. $notice->title .'
+//                                </a>
+//                                </div>
+//                            </div>
+//                            '. $noticeFile .'
+//                            <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="btn btn-outline-primary">Read More</a>
+//                            </div>';
                     }
                     return $artilces;
                 }                           

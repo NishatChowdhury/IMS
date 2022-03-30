@@ -87,11 +87,11 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('attendance/dashboard') }}">
+                            <a href="{{ route('attendance.dashboard') }}" class="nav-link {{ isActive('admin/attendance/dashboard') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard</p>
+                                <p>{{ __('Dashboard') }}</p>
                             </a>
                         </li>
 

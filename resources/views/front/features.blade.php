@@ -3,7 +3,7 @@
         <div class="row text-center">
             @foreach($features as $feature)
             <div class="col-md-6 col-lg-4 marginTop-30">
-                <a href="{{ url('page/'.$feature->menu->uri ?? '') }}" class="card shadow-v1 align-items-center p-5 hover:transformTop">
+                <a href="#" class="card shadow-v1 align-items-center p-5 hover:transformTop">
                     <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}" alt="{{ $feature->name }}" height="80">
                     <h4 class="mt-2">
                         {{ $feature->name }}
