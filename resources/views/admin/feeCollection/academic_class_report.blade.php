@@ -77,10 +77,6 @@
 
     @if (isset($students))
 
-@php
-    $previous_due = 0;
-    $paid = 0;
-@endphp
         <section class="content mt-4">
             <div class="container-fluid">
 
@@ -101,7 +97,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($students as $student)
+                                    @forelse ($students as $student)
                                     <tr>
                                         <td>{{ $student->studentId }}</td>
                                         <td>{{ $student->name }}</td>
@@ -113,7 +109,9 @@
                                         <td>{{ $paid }}</td>
                                         <td>{{ $currentDue }}</td>
                                     </tr>
-                                @endforeach
+                                    @empty
+                                    <td colspan="6" class="text-center text-danger"><h5>No data found !!</h5></td>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>

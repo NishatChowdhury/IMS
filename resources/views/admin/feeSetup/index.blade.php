@@ -47,7 +47,8 @@
                                             {{ $class->academicClass->section->name ?? '' }}
                                             {{ $class->academicClass->group->name ?? '' }}
                                         </td>
-                                        <td> {{ $class->feeSetupCategories->count() ?? '' }}&nbsp;{{ __('Student(s)') }}</td>
+
+                                        <td> {{ $class->students->count() ?? '' }}&nbsp;{{ __('Student(s)') }}</td>
                                         <td>
                                             {{ number_format($class->feeSetupCategories->sum('amount'),2) }}
                                         </td>
