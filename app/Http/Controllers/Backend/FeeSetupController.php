@@ -46,8 +46,6 @@ class FeeSetupController extends Controller
         $session = Session::query()->pluck('year','id');
         $groups = Group::query()->pluck('name','id');
         $fee_category = FeeCategory::query()->pluck('name','id');
-
-
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
@@ -68,7 +66,6 @@ class FeeSetupController extends Controller
             ->get();
         // get fee categories from session
          $fees = request()->session()->get('fees');
-        dd($fees);
          // sum session amount
         $amount = array_column($fees,'amount');
         $total = number_format(array_sum($amount),2);

@@ -440,7 +440,6 @@ Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup'
 Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
 
-
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
 Route::get('csv','Backend\StudentController@csvDownload')->name('csv');
