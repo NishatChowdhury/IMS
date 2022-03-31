@@ -22,13 +22,13 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         ImportantLink::query()->create($request->all());
-        return redirect('settings/links');
+        return redirect('admin/settings/links');
     }
 
     public function destroy($id)
     {
         $link = ImportantLink::query()->findOrFail($id);
         $link->delete();
-        return redirect('settings/links');
+        return redirect('admin/settings/links');
     }
 }
