@@ -425,23 +425,23 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/fee/fee-setup/view') }}" class="nav-link {{ isActive('admin/fee/fee-setup/view') }}">
+                            <a href="{{ url('admin/fee/fee-setup/view') }}" class="nav-link {{ isActive(['admin/fee/fee-setup/view','admin/fee/fee-setup/edit/*','admin/fee/fee-setup/fee-students/*','admin/fee/fee-setup/edit-by-student/*']) }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee View') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/fee/fee-collection') }}" class="nav-link {{ isActive('admin/fee/fee-collection') }}">
+                            <a href="{{ url('admin/fee/fee-collection') }}" class="nav-link {{ isActive(['admin/fee/fee-collection','admin/fee/fee-collection/view*']) }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee Collection') }}</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ url('admin/fee/all-collections') }}" class="nav-link {{ isActive('admin/fee/all-collections') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Fee Collection Report') }}</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ url('admin/fee/collections/report/generate') }}" class="nav-link {{ isActive('admin/fee/collections/report/generate') }}">
                                 <i class="far fa-circle nav-icon"></i>

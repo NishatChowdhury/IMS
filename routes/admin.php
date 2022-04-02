@@ -431,7 +431,6 @@ Route::post('fee-category/update','Backend\FeeCategoryController@update_fee_cate
 Route::get('fee-category/{id}/delete','Backend\FeeCategoryController@delete_fee_category')->name('fee-category.delete');
 Route::put('fee-category/status/{id}','Backend\FeeCategoryController@status')->name('fee-category.status');
 //    Fee Category End
-
 //  Fee Setup Start
 Route::get('fee-category/fee_setup/{classId}','Backend\FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
 // Route::post('fee_setup/store/{classId}','Backend\FeeCategoryController@store_fee_setup')->name('fee-setup.store');
