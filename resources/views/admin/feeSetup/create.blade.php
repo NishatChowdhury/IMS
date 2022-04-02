@@ -115,12 +115,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tbody">
-                                @if (Session::has('fees'))
-                                    @php
-                                        $fees = Session::get('fees');
-                                    @endphp
-                                    @include('admin.feeSetup._fee-cart')
-                                @endif
+
                             </tbody>
                         </table>
                         <div class="button text-center">

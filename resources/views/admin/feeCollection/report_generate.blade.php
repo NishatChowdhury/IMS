@@ -31,7 +31,7 @@
     </section>
 
     <!-- /.Search-panel -->
-    <section class="content no-print">
+    <section class="content">
         <div class="container-fluid">
             {{-- start --}}
             <div class="col-lg-12 col-sm-8 col-md-8 col-xs-12 ">
@@ -91,7 +91,7 @@
             <div class="container-fluid">
 
                 <div class="col-md-12">
-                    <div class="card" id="printable" style="margin: 0px;">
+                    <div class="card"  style="margin: 0px;">
                         <div class="card-body">
                             <div class="text-center">
                                 <h3>Date Wise Payment Report</h3>

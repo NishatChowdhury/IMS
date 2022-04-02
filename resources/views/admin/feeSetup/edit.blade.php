@@ -39,7 +39,7 @@
                                 <div class="col">
                                     <label for="">Academic Class ID</label>
                                     <div class="input-group">
-                                        <p>{{ $fee_setup->academicClass->academicClasses->name }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name ??  '' }}</p>
+                                        <p>{{ $fee_setup->academicClass->academicClasses->name ?? '' }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name ??  '' }}</p>
                                     </div>
                                 </div>
                                 <div class="col">

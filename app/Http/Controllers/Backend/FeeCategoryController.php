@@ -42,7 +42,7 @@ class FeeCategoryController extends Controller
 
     public function edit_fee_category(Request $request){
         $feeCategory = FeeCategory::findOrFail($request->id);
-        return $feeCategory;
+        return response()->json($feeCategory);
     }
 
     public function update_fee_category(Request $request){

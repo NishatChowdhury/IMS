@@ -67,9 +67,7 @@
                                                 {{ Form::close() }}
                                             </td>
                                             <td style="text-align: center">
-                                                <a type="button" class="btn btn-warning btn-sm edit" value='{{$fee_category->id}}'
-                                                   style="margin-left: 10px;"> <i class="fas fa-edit"></i>
-                                                </a>
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit" onclick="loadEditForm({{$fee_category->id}})"><i class="fas fa-edit"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -179,31 +177,19 @@
 
 @section('script')
     <script>
-        $(document).on('click', '.edit', function () {
-            $("#edit").modal("show");
-            $("#form").hide();
-            $("#loader").show();
-            var id = $(this).attr('value');
-
+        function loadEditForm(id){
+            var token = "{{ csrf_token() }}";
             $.ajax({
-                method:"post",
-                url:"{{ url('fee-category/edit')}}",
-                data:{id:id,"_token":"{{ csrf_token() }}"},
-                dataType:"json",
-                success:function(response){
-                    $("#loader").hide();
-                    $("#form").show();
-                    console.log(response);
-                    $("#id").val(response.id);
-                    $(".name").val(response.name);
-                    $(".description").val(response.description);
-
-
-                },
-                error:function(err){
-                    console.log(err);
-                }
-            });
-        });
+                url:"{{ route('fee-category.edit') }}",
+                data: {_token:token,id:id},
+                type: 'post'
+            }).done(function(e){
+                $("#id").val(e.id);
+                $(".name").val(e.name);
+                $(".description").val(e.description);
+                $("#edit-form").remove();
+                $("#edit-model-header").after(e);
+            })
+        }
     </script>
 @stop
