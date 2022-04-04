@@ -137,7 +137,7 @@
                 $("#tbody").html(e);
                 $("#fee_category_id").val('');
                 $("#amount").val('');
-                console.log('d',e);
+                console.log(e);
             });
         }
 
