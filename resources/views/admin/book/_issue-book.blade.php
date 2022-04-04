@@ -3,8 +3,9 @@
         <label for="book_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Book:</label>
         <div class="col-sm-7">
             <div class="input-group">
-                {{ Form::text('book',$book->title,['class'=>'form-control','disabled']) }}
+                {{ Form::text('book',$book->book_title,['class'=>'form-control','disabled']) }}
                 {{ Form::hidden('book_id',$book->id) }}
+                {{ Form::hidden('book_code',$book->book_code) }}
             </div>
         </div>
     </div>

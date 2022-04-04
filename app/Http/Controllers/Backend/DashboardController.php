@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicCalender;
 use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Bank;
 use App\Models\Backend\Notice;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
@@ -18,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
 
+        
         // return Student::all();
 
         $data =[];

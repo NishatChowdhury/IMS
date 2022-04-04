@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class OnlineSubject extends Model
 {
-    //
+    protected $guarded = [];
 }

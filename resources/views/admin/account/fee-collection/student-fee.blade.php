@@ -12,8 +12,8 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('Home') }}</a></li>
-                        <li class="breadcrumb-item active">{{__('Location Assign') }}</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Location Assign</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -44,13 +44,13 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">{{__('Student ID') }}</label>
+                                    <label for="">Student ID</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Month') }}</label>
+                                    <label for="">Month</label>
                                     <div class="input-group">
                                         {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month']) }}
                                     </div>

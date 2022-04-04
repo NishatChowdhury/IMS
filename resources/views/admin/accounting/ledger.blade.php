@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="" class="col-form-label">&nbsp;</label><br>
-                        <button type="submit" class="btn btn-info">{{__('Search<') }}/button>
+                        <button type="submit" class="btn btn-dark">{{__('Search') }}</button>
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -74,7 +74,7 @@
                                     @php $debit = []; $credit = []; @endphp
                                     @foreach($accounts as $account)
                                         <tr>
-                                            <td><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('JournalController@show',$account->journal->id) }}">{{ $account->journal->journal_no }}</a></td>
+                                            <td><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('Backend\JournalController@show',$account->journal->id) }}">{{ $account->journal->journal_no }}</a></td>
                                             <td>{{ $account->journal->date }}</td>
                                             {{--                                        <td>{{ $account->journal->created_at->format('Y-m-d') }}</td>--}}
                                             <td>{{ $account->journal->description }}</td>

@@ -43,11 +43,11 @@
                             <table id="example2" class="table table-bordered table-striped table-sm">
                                 <thead class="thead-dark">
                                 <tr class="text-center">
-                                    <th>{{__('SL')}}</th>
-                                    <th>{{__('Category Name') }}</th>
-                                    <th>{{__('Short Description') }}</th>
-                                    <th>{{__('Status') }}</th>
-                                    <th>{{__('Action') }}</th>
+                                    <th>SL</th>
+                                    <th>Category Name</th>
+                                    <th>Short Description</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -88,7 +88,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{__('Add Fee Category') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Fee Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -97,7 +97,7 @@
 
                     {!! Form::open(['url'=>'admin/fee-category/store', 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{__('Category Name') }}*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Category Name','required']) !!}
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{__('Description') }}*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Description*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('description', null, ['class'=>'form-control', 'placeholder'=>'Short Description']) !!}
@@ -116,7 +116,7 @@
 
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{__('Add') }}</button>
+                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
                     {!! Form::close() !!}
 
@@ -132,7 +132,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{__('Update Fee Category')}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Fee Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -143,7 +143,7 @@
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{__('Category Name')}}*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Category Name*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('name', null, ['class'=>'form-control name', 'placeholder'=>'Category Name']) !!}
@@ -152,7 +152,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{__('Description')}}</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Description</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('description', null, ['class'=>'form-control description', 'placeholder'=>'Short Description']) !!}
@@ -163,7 +163,7 @@
 
                     <div style="float: right">
                         <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fas fa-plus-circle"></i> {{__('Update')}}
+                            <i class="fas fa-plus-circle"></i> Update
                         </button>
                     </div>
                     {!! Form::close() !!}

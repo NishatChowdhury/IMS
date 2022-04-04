@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{__('Ledger') }}</h1>
+                    <h1>Profit & Loss</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('Accounts') }}</a></li>
-                        <li class="breadcrumb-item active">{{__('Ledger') }}</li>
+                        <li class="breadcrumb-item"><a href="#">Accounts</a></li>
+                        <li class="breadcrumb-item active">Profit & Loss</li>
                     </ol>
                 </div>
             </div>
@@ -25,22 +25,22 @@
                 {{ Form::open(['action'=>'Backend\AccountingController@profitNLoss','method'=>'get']) }}
                 <div class="d-flex justify-content-center">
                     <div class="form-group col-md-3">
-                        <label for="" class="col-form-label">{{__('Start Date') }}</label>
+                        <label for="" class="col-form-label">Start Date</label>
                         {{ Form::date('start_date',null,['class'=>'form-control']) }}
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="" class="col-form-label">{{__('End Date') }}</label>
+                        <label for="" class="col-form-label">End Date</label>
                         {{ Form::date('end_date',null,['class'=>'form-control']) }}
                     </div>
                     <div class="form-group col-md-2">
                         <label for="" class="col-form-label">&nbsp;</label><br>
-                        <button type="submit" class="btn btn-info">{{__('Search') }}</button>
+                        <button type="submit" class="btn btn-info">Search</button>
                     </div>
                 </div>
                 {{ Form::close() }}
             </div>
     </div>
-   
+
     <!-- ***/Chart of Accounts page inner Content Start-->
     <section class="content">
         <div class="container-fluid">
@@ -48,7 +48,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h3> {{__('Profit & Loss') }}</h3>
+                            <h3>Profit & Loss </h3>
                         </div>
 
                         <div class="card-body">
@@ -56,12 +56,12 @@
                                 <thead>
                                 <tr>
                                     <th>
-                                        <span class="pull-left m-0"> {{__('Expense') }}</span>
-                                        <span class="pull-right m-0"> {{__('Amount') }}</span>
+                                        <span class="pull-left m-0">Expense</span>
+                                        <span class="pull-right m-0">Amount</span>
                                     </th>
                                     <th>
-                                        <span class="pull-left m-0"> {{__('Income') }}</span>
-                                        <span class="pull-right m-0"> {{__('Amount') }}</span>
+                                        <span class="pull-left m-0">Income</span>
+                                        <span class="pull-right m-0">Amount</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -95,7 +95,7 @@
                                     <td>
                                         @if($ex > $in)
                                             <div class="d-flex justify-content-between text-bold text-primary">
-                                                <span> {{__('To Gross Profit') }}</span>
+                                                <span>To Gross Profit</span>
                                                 <span>
                                                     {{ number_format($ex[] = netProfit($start,$end),2) }}
 {{--                                                    {{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}--}}
@@ -106,7 +106,7 @@
                                     <td>
                                         @if($in > $ex)
                                             <div class="d-flex justify-content-between text-bold text-primary">
-                                                <span> {{__('By Gross Loss') }}</span>
+                                                <span>By Gross Loss</span>
                                                 <span>
                                                     {{ number_format($in[] = netProfit($start,$end),2) }}
 {{--                                                    {{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}--}}

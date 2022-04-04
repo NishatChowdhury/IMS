@@ -286,7 +286,7 @@ class FrontController extends Controller
     public function onlineApplyStep()
     {
         $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
-    
+
         return view('front.pages.onlineApplyStep', compact('admissionStep'));
         // return view('front.pages.onlineApplyStep');
     }
@@ -295,27 +295,21 @@ class FrontController extends Controller
     {
         // $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
 
-        // return $uri;
-         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
-        // dd($content);
+        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+
         if($content->type == 3){
 
             $notices = null;
             $categories = null;
             $teachers = null;
             $staffs = null;
-            $albums = null;
 
             $repository = $this->repository;
 
-         
-
-       
-
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
-                            ->orderByDesc('start')
-                            ->paginate(3);
+                    ->orderByDesc('start')
+                    ->paginate(3);
                 $artilces = '';
                 if ($request->ajax()) {
                     foreach($notices as $key => $notice){
@@ -338,52 +332,21 @@ class FrontController extends Controller
                         }else{
                             $noticeFile = '';
                         }
-                
-
-
-                        $artilces.= '
-                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
-                            <div class="media align-items-center">
-                                <div class="text-center border-right pr-4">
-                                <strong class="text-primary font-size-38">
-                                            '. $date .'
-                                </strong>
-                                <p class="mb-0 text-gray">
-                                    '. $mm .'
-                                </p>
-                                </div>
-                                <div class="media-body p-4">
-                                <p class="mb-1 text-gray">
-                                <i class="ti-file"></i>
-                                    <span class="badge '. $types .'">
-                                        '. $typeN .'
-                                    </span>  
-                                </p>
-                                <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="h5">
-                                    '. $notice->title .'
-                                </a>
-                                </div>
-                            </div>
-                            '. $noticeFile .'
-                            <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="btn btn-outline-primary">Read More</a> 
-                            </div>';
                     }
                     return $artilces;
-                }                           
+                }
                 $categories = NoticeCategory::with('notices')->get();
-                return view('front.'.$uri.'.index',compact('categories','albums','teachers','notices','staffs','repository'));
+                return view('front.'.$uri.'.index',compact('categories','teachers','notices','staffs','repository'));
             }
             if($content->url === 'news'){
 
                 $newses = Notice::query()
-                        ->where('notice_type_id',1)
-                        ->orderByDesc('start')
-                        ->paginate(5);
-            $categories = NoticeCategory::all();
-            return view('front.'.$uri.'.index',compact('newses','categories'));
+                    ->where('notice_type_id',1)
+                    ->orderByDesc('start')
+                    ->paginate(5);
+                $categories = NoticeCategory::all();
+                return view('front.'.$uri.'.index',compact('newses','categories'));
             }
-
-
 
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
@@ -410,7 +373,7 @@ class FrontController extends Controller
                 return view('front.admission.validate-admission');
             }
             if($content->system_page === 'onlineApplyStep'){
-                
+
                 $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
                 return view('front.pages.onlineApplyStep', compact('admissionStep'));
             }
@@ -419,7 +382,15 @@ class FrontController extends Controller
                 $this->internal_exam($request);
             }
 
-            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','staffs','repository'));
+            if($content->sytem_page === 'gallery'){
+                $this->gallery();
+            }
+
+            if($content->system_page === 'contacts'){
+                $this->contact();
+            }
+
+            return view('front.pages.'.$content->system_page,compact('categories','teachers','notices','staffs','repository'));
         }
         $page = $content->page;
 

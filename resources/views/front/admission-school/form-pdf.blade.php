@@ -32,9 +32,12 @@
     <section class="padding-y-20 border-bottom" style="color:black">
         <div class="row mb-2">
             <div class="col-12 text-center">
-                <h3>{{ siteConfig('name') }}</h3>
+                <h1>
+                    <i>{{ siteConfig('name') }}</i>
+                </h1>
                 <h4>{{ __('Admission Form') }}</h4>
             </div>
+            <hr>
 
         </div>
         <div class="container" style="text-transform: uppercase">
@@ -44,28 +47,28 @@
                         <table class="table table-bordered table-personal">
                             <tr>
                                 <td style="font-weight:bold">Name</td>
-                                <td>{{ $getData->name }}</td>
+                                <td style="text-transform: initial">{{ $getData->name }}</td>
                                 <td style="font-weight:bold">Name Bangla</td>
-                                <td>{{ $getData->name_bn }} </td>
+                                <td style="text-transform: initial">{{ $getData->name_bn }} </td>
                             </tr>
                             <tr>
                                 <td style="font-weight:bold">Date of Birth</td>
-                                <td>{{ $getData->dob }}</td>
+                                <td style="text-transform: initial">{{ $getData->dob }}</td>
                                 <td style="font-weight:bold">Gender</td>
-                                <td>{{ $getData->gender->name }}</td>
+                                <td style="text-transform: initial">{{ $getData->gender->name }}</td>
                             </tr>
                        
                             <tr>
                                 <td style="font-weight:bold">Blood Group</td>
-                                <td>{{ $getData->name }}</td>
+                                <td style="text-transform: initial">{{ $getData->name }}</td>
                                 <td style="font-weight:bold">Birth Certificate</td>
-                                <td>{{ $getData->birth_certificate }}</td>
+                                <td style="text-transform: initial">{{ $getData->birth_certificate }}</td>
                             </tr>
                             <tr>
                                 <td style="font-weight:bold">Appliction ID</td>
-                               <td>{{ $getData->id }}</td> 
+                               <td style="text-transform: initial">{{ $getData->id }}</td>
                                <td style="font-weight:bold">Religion</td>
-                                <td>{{ $getData->religion_id ? $getData->religion->name : 'N/A'  }}</td>  
+                                <td style="text-transform: initial">{{ $getData->religion_id ? $getData->religion->name : 'N/A'  }}</td>
                             </tr>
        
                         </table>
@@ -73,33 +76,33 @@
                     <table class="table table-bordered table-personal">
                         <tr>
                             <td style="font-weight:bold">Address</td>
-                           <td>{{ $getData->address }}</td>
+                           <td style="text-transform: initial">{{ $getData->address }}</td>
                             <td style="font-weight:bold">Area / Town</td>
-                           <td>{{ $getData->area }} </td>
+                           <td style="text-transform: initial">{{ $getData->area }} </td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Post / Zip Code</td>
-                            <td>{{ $getData->zip }} </td>
+                            <td style="text-transform: initial">{{ $getData->zip }} </td>
                             <td style="font-weight:bold">City </td>
-                            <td>{{ $getData->city->name }}</td>
+                            <td style="text-transform: initial">{{ $getData->city->name }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Country</td>
-                            <td>{{ $getData->country->name }}</td>
+                            <td style="text-transform: initial">{{ $getData->country->name }}</td>
                             <td style="font-weight:bold">Nationality</td>
-                            <td>{{ $getData->nationality }}</td>
+                            <td style="text-transform: initial">{{ $getData->nationality }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Contact Mobile</td>
-                           <td>{{ $getData->mobile }}</td>
+                           <td style="text-transform: initial">{{ $getData->mobile }}</td>
                             <td style="font-weight:bold">E-mail</td>
-                           <td>{{ $getData->email ?  $getData->email : 'N/A'}} </td>
+                           <td style="text-transform: initial">{{ $getData->email ?  $getData->email : 'N/A'}} </td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Freedom Fighter</td>
-                            <td>{{ $getData->freedom_fighter == 1 ? 'Yes' : 'No' }}</td>
+                            <td style="text-transform: initial">{{ $getData->freedom_fighter == 1 ? 'Yes' : 'No' }}</td>
                             <td style="font-weight:bold">Disability </td>
-                            <td>{{ $getData->disability == 1 ? 'Yes' : 'No' }}</td>
+                            <td style="text-transform: initial">{{ $getData->disability == 1 ? 'Yes' : 'No' }}</td>
                         </tr>
                     </table>
                     </div>
@@ -113,19 +116,19 @@
                             <table class="table table-bordered table-personal">
                                 <tr>
                                     <td style="font-weight:bold">Class</td>
-                                    <td>{{ $getData->class_id ? $getData->classes->name : 'N\A' }}</td>
+                                    <td style="text-transform: initial">{{ $getData->class_id ? $getData->classes->name : 'N\A' }}</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight:bold">Session</td>
-                                    <td>{{ $getData->session_id ? $getData->sessions->year : 'N\A' }}</td>
+                                    <td style="text-transform: initial">{{ $getData->session_id ? $getData->sessions->year : 'N\A' }}</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight:bold">Group</td>
-                                    <td>{{ $getData->group_id ? $getData->group->name : 'N\A' }}</td>
+                                    <td style="text-transform: initial">{{ $getData->group_id ? $getData->group->name : 'N\A' }}</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight:bold">Applied Date</td>
-                                    <td>{{ $getData->created_at->format('Y-m-d') }}</td>
+                                    <td style="text-transform: initial">{{ $getData->created_at->format('Y-m-d') }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -139,79 +142,79 @@
                     <table class="table table-bordered table-guardian">
                         <tr>
                             <td style="font-weight:bold">Father Name</td>
-                            <td>{{ $getData->f_name }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_name }}</td>
                             <td style="font-weight:bold">Father Name Bangla</td>
-                            <td>{{ $getData->f_name_bn }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_name_bn }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Father Mobile </td>
-                            <td>{{ $getData->f_mobile ? $getData->f_mobile : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_mobile ? $getData->f_mobile : 'N\A' }}</td>
                             <td style="font-weight:bold">Father Email </td>
-                            <td>{{ $getData->f_email ? $getData->f_email : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_email ? $getData->f_email : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Father Date of Birth</td>
-                            <td>{{ $getData->f_dob ? $getData->f_dob : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_dob ? $getData->f_dob : 'N\A' }}</td>
                             <td style="font-weight:bold">Father Occupation</td>
-                            <td>{{ $getData->f_occupation ? $getData->f_occupation : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_occupation ? $getData->f_occupation : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Father NID</td>
-                            <td>{{ $getData->f_nid ? $getData->f_nid : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_nid ? $getData->f_nid : 'N\A' }}</td>
                             <td style="font-weight:bold">Father Birth Certificate.</td>
-                            <td>{{ $getData->f_birth_certificate ? $getData->f_birth_certificate : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->f_birth_certificate ? $getData->f_birth_certificate : 'N\A' }}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered table-guardian mt-4">
                         <tr>
                             <td style="font-weight:bold">Mother Name</td>
-                            <td>{{ $getData->m_name ? $getData->m_name : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_name ? $getData->m_name : 'N\A' }}</td>
                             <td style="font-weight:bold">Mother Name Bangla</td>
-                            <td>{{ $getData->m_name_bn ? $getData->m_name_bn : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_name_bn ? $getData->m_name_bn : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Mother Mobile </td>
-                            <td>{{ $getData->m_mobile ? $getData->m_mobile : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_mobile ? $getData->m_mobile : 'N\A' }}</td>
                             <td style="font-weight:bold">Mother Email </td>
-                            <td>{{ $getData->m_email ? $getData->m_email : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_email ? $getData->m_email : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Mother Date of Birth</td>
-                            <td>{{ $getData->m_dob ? $getData->m_dob : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_dob ? $getData->m_dob : 'N\A' }}</td>
                             <td style="font-weight:bold">Mother Occupation</td>
-                            <td>{{ $getData->m_occupation ? $getData->m_occupation : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_occupation ? $getData->m_occupation : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Mother NID</td>
-                            <td>{{ $getData->m_nid ? $getData->m_nid : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_nid ? $getData->m_nid : 'N\A' }}</td>
                             <td style="font-weight:bold">Mother Birth Certificate.</td>
-                            <td>{{ $getData->m_birth_certificate ? $getData->m_birth_certificate : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->m_birth_certificate ? $getData->m_birth_certificate : 'N\A' }}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered table-guardian mt-4">
                         <tr>
                             <td style="font-weight:bold">Guardian Name</td>
-                            <td>{{ $getData->g_name ? $getData->g_name : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_name ? $getData->g_name : 'N\A' }}</td>
                             <td style="font-weight:bold">Guardian Name Bangla</td>
-                            <td>{{ $getData->g_name_bn ? $getData->g_name_bn : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_name_bn ? $getData->g_name_bn : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Guardian Mobile </td>
-                            <td>{{ $getData->g_mobile ? $getData->g_mobile : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_mobile ? $getData->g_mobile : 'N\A' }}</td>
                             <td style="font-weight:bold">Guardian Email </td>
-                            <td>{{ $getData->g_email ? $getData->g_email : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_email ? $getData->g_email : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Guardian Date of Birth</td>
-                            <td>{{ $getData->g_dob ? $getData->g_dob : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_dob ? $getData->g_dob : 'N\A' }}</td>
                             <td style="font-weight:bold">Guardian Occupation</td>
-                            <td>{{ $getData->g_occupation ? $getData->g_occupation : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_occupation ? $getData->g_occupation : 'N\A' }}</td>
                         </tr>
                         <tr>
                             <td style="font-weight:bold">Guardian NID</td>
-                            <td>{{ $getData->g_nid ? $getData->g_nid : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_nid ? $getData->g_nid : 'N\A' }}</td>
                             <td style="font-weight:bold">Guardian Birth Certificate.</td>
-                            <td>{{ $getData->g_birth_certificate ? $getData->g_birth_certificate : 'N\A' }}</td>
+                            <td style="text-transform: initial">{{ $getData->g_birth_certificate ? $getData->g_birth_certificate : 'N\A' }}</td>
                         </tr>
                     </table>
                 </div>

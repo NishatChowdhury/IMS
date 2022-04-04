@@ -24,7 +24,7 @@
     </section>
 
     <!-- /.Search-panel -->
-    <section class="content no-print">
+    <section class="content ">
         <div class="container-fluid">
             {{-- start --}}
             <div class="col-lg-12 col-sm-8 col-md-8 col-xs-12 ">
@@ -56,7 +56,7 @@
                                             class="fa fa-search"></i>&nbsp;Search</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button class="btn btn-success btn-md btn-block"
+                                    <button class="btn btn-warning btn-md btn-block"
                                         onclick="window.print(); return false;"><i
                                             class="fa fa-print"></i>&nbsp;Print</button>
                                 </div>
@@ -77,10 +77,6 @@
 
     @if (isset($students))
 
-@php
-    $previous_due = 0;
-    $paid = 0;
-@endphp
         <section class="content mt-4">
             <div class="container-fluid">
 
@@ -101,7 +97,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($students as $student)
+                                    @forelse ($students as $student)
                                     <tr>
                                         <td>{{ $student->studentId }}</td>
                                         <td>{{ $student->name }}</td>
@@ -113,7 +109,9 @@
                                         <td>{{ $paid }}</td>
                                         <td>{{ $currentDue }}</td>
                                     </tr>
-                                @endforeach
+                                    @empty
+                                    <td colspan="6" class="text-center text-danger"><h5>No data found !!</h5></td>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>

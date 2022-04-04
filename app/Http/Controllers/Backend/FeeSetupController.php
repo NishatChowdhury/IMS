@@ -27,7 +27,7 @@ class FeeSetupController extends Controller
 
     public  function index(Request $request)
     {
-          $fees = FeeSetup::query()
+           $fees = FeeSetup::query()
             ->where('academic_class_id','!=',null)
             ->orderBy('month_id')
             ->get()
@@ -41,12 +41,10 @@ class FeeSetupController extends Controller
             ->whereIn('session_id',activeYear())
             ->with('academicClasses')
             ->get();
-
         $classes = Classes::query()->pluck('name','id');
         $session = Session::query()->pluck('year','id');
         $groups = Group::query()->pluck('name','id');
-        $fee_category = FeeCategory::query()->pluck('name','id');
-
+        $fee_category = FeeCategory::query()->where('status',1)->pluck('name','id');
         return view('admin.feeSetup.create',compact('session','classes','groups','fee_category','academic_classes'));
     }
 
@@ -66,11 +64,10 @@ class FeeSetupController extends Controller
             ->where('academic_class_id',$request->get('academic_class_id'))
             ->get();
         // get fee categories from session
-        $fees = request()->session()->get('fees');
-
+         $fees = request()->session()->get('fees');
          // sum session amount
         $amount = array_column($fees,'amount');
-        $total = number_format(array_sum($amount),2);
+        $total = intval(array_sum($amount));
         //  dd($total);
 
         /** store fee setup information start */
@@ -80,13 +77,9 @@ class FeeSetupController extends Controller
             'year' => $request->get('year'),
         ];
         $feeSetup = FeeSetup::query()->create($feeSetupData);
-        /** store fee setup information end */
-
-        // $tamount = array_column($fees,'amount');
-        // $amount =  number_format(array_sum($tamount),2); dd($amount);
 
         foreach($students as $student){
-            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
+$feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->student_id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
             foreach($fees as $fee){
                 $data = [
                     'fee_setup_student_id' => $feeSetupStudent->id,
@@ -97,7 +90,7 @@ class FeeSetupController extends Controller
             }
         }
 
-        sessions::forget('fees');
+        sessions::forget('fees'); // remove existing items from fees session
 
         \Illuminate\Support\Facades\Session::flash('success','Fee added successfully');
 
@@ -110,12 +103,61 @@ class FeeSetupController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function feeStudents(Request $request){
+    public function feeStudents(Request $request)
+    {
         $students = FeeSetupStudent::query()
             ->where('fee_setup_id',$request->id)->with('student')
             ->get();
         return view('admin.feeSetup.fee-students',compact('students'));
     }
+
+    public function editByStudent($id)
+    {
+        $fee_categories = FeeCategory::query()->pluck('name', 'id');  /* All Categories are here */
+        $feeSetupStudent = FeeSetupStudent::query()->findOrFail($id);
+
+        $categories = $feeSetupStudent->categories;
+        sessions::forget('fees'); // remove existing items from fees session
+        foreach ($categories as $result) {
+
+            $data = [
+                'fee_setup_student_id' => $result->fee_setup_student_id,
+                'category_id' => $result->category_id,
+                'amount' => $result->amount,
+                'paid' => $result->paid,
+            ];
+
+            if (session()->has('fees')) {
+                session()->push('fees', $data);
+            } else {
+                session()->put(['fees' => [$data]]);
+            }
+        }
+
+        return  view('admin.feeSetup.edit_by_student',compact('feeSetupStudent','categories','fee_categories'));
+    }
+
+    public function updateByStudent($id): RedirectResponse
+    {
+        $fees = session('fees'); /* New stored fees */
+        if (isset($fees)) {
+            foreach ($fees as $fee) {
+                $data = [
+                    'fee_setup_student_id' => $id,
+                    'category_id' => $fee['category_id'],
+                    'amount' => $fee['amount']
+                ];
+                FeeSetupCategory::query()->updateOrCreate($data);
+            }
+            FeeSetupStudent::query()->where('id', $id)->update(['amount'=>array_sum(array_column($fees, 'amount')) ]);
+
+        }
+        sessions::forget('fees'); // remove existing items from fees session
+        \Illuminate\Support\Facades\Session::flash('success', 'Fee Updated Successfully');
+
+        return redirect()->back();
+    }
+
 
     public function feeSetupDetails(Request $request){
         $fee_setup = FeeSetup::query()
@@ -168,7 +210,7 @@ class FeeSetupController extends Controller
     {
         $fees = session('fees');
         $feeSetup = FeeSetup::query()->findOrFail($id);
-        $students = $feeSetup->feeSetupStudent;
+        $students = $feeSetup->students;
 
         foreach($students as $student){
             $feeSetupCategories = $student->categories;
@@ -185,10 +227,11 @@ class FeeSetupController extends Controller
                     'category_id' => $fee['category_id'],
                     'amount' => $fee['amount']
                 ];
-                FeeSetupCategory::query()->create($data);
+                FeeSetupCategory::query()->updateOrCreate($data);
             }
+            FeeSetupStudent::query()->where('fee_setup_id',$student->fee_setup_id)->update(['amount'=>array_sum(array_column($fees, 'amount')) ]);
         }
-
+        sessions::forget('fees'); // remove existing items from fees session
         \Illuminate\Support\Facades\Session::flash('success','Fee Updated Successfully');
 
         return redirect()->back();

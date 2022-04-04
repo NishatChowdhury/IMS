@@ -13,13 +13,13 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">{{ __('Home') }}</a>
+                            <a href="#">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> {{ __('Elements') }}</a>
+                            <a href="#"> Elements</a>
                         </li>
                         <li class="breadcrumb-item">
-                            {{ __('About Us') }}t 
+                            About us
                         </li>
                     </ol>
                 </div>

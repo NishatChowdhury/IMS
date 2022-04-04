@@ -88,7 +88,7 @@
                                     @endif
                                 </div>
 
-                                <form action="{{ action('MessagesController@store') }}" method="POST" class="card p-4 p-md-5 shadow-v1">
+                                <form action="{{ action('Front\MessagesController@store') }}" method="POST" class="card p-4 p-md-5 shadow-v1">
                                     @csrf
 {{--                                    <p class="lead mt-2">--}}
 {{--                                        Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clear <br> tasest consectetur adipi sicing elitsed eusmod tempor cididunt.--}}

@@ -13,8 +13,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('Attendance')}}</a></li>
-                        <li class="breadcrumb-item active">{{__('Student Attendances')}}</li>
+                        <li class="breadcrumb-item"><a href="#">Attendance</a></li>
+                        <li class="breadcrumb-item active">Student Attendances</li>
                     </ol>
                 </div>
             </div>

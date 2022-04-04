@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Notices</h1>
+                    <h1>{{ __('Upcoming Events') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Event</a></li>
-                        <li class="breadcrumb-item active">Edit</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Event') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Edit') }}</li>
                     </ol>
                 </div>
             </div>
@@ -29,9 +29,6 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : 1000</h3>
-                            </div>
-                            <div class="row">
                                 <div>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                                 </div>
@@ -39,7 +36,7 @@
                         </div>
 
                         <div class="card-body">
-                            {{ Form::model($event,['action'=>['UpcomingEventController@update',$event->id],'method'=>'patch','files'=>true]) }}
+                            {{ Form::model($event,['action'=>['Backend\UpcomingEventController@update',$event->id],'method'=>'patch','files'=>true]) }}
                             @include('admin.event.form')
                             {{ Form::close() }}
                         </div>

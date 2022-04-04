@@ -30,7 +30,7 @@ class FeeSetupStudent extends Model
      */
     public function categories(): HasMany
     {
-        return $this->hasMany(FeeSetupCategory::class);
+        return $this->hasMany(FeeSetupCategory::class , 'fee_setup_student_id','id');
     }
 
     public function feeSetup():BelongsTo

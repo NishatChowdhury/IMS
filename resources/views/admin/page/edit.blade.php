@@ -43,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {{ Form::model($page,['action'=>['PageController@update',$page->id],'method'=>'patch','files'=>true]) }}
+                        {{ Form::model($page,['action'=>['Backend\PageController@update',$page->id],'method'=>'patch','files'=>true]) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
