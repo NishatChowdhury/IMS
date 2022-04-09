@@ -2,7 +2,14 @@
 
 @section('title', 'Fee Collection')
 @section('style')
+    <style>
+        @media print {
+            .no_print {
+                display: none;
+            }
+        }
 
+    </style>
 @stop
 
 @section('content')
@@ -24,7 +31,7 @@
     </section>
 
     <!-- /.Search-panel -->
-    <section class="content ">
+    <section class="content no_print ">
         <div class="container-fluid">
             {{-- start --}}
             <div class="col-lg-12 col-sm-8 col-md-8 col-xs-12 ">
@@ -34,9 +41,9 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label>Academic Class</label>
-                                    <select name="academic_class" id="" class="form-control " required>
+                                    <select name="academic_class" id="" class=" form-control  " required>
                                         <option value="">Select class </option>
-                                        @foreach ($academic_class as  $class)
+                                        @foreach ($academic_class as $class)
                                             <option value="{{ $class->id }}">{{ $class->classes->name }}
                                                 {{ $class->section->name ?? '' }} {{ $class->group->name ?? '' }}
                                             </option>
@@ -45,11 +52,11 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>Month</label>
-                                    {{ Form::selectMonth('month_id', null, ['class' => 'form-control ','required']) }}
+                                    {{ Form::selectMonth('month_id', null, ['class' => 'form-control ', 'required']) }}
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>Year</label>
-                                    {{ Form::selectYear('year_id', date('Y'), date('Y') - 50, null, ['class' => 'form-control ','required']) }}
+                                    {{ Form::selectYear('year_id', date('Y'), date('Y') - 50, null, ['class' => 'form-control ', 'required']) }}
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
                                     <button type="submit" class="btn btn-info btn-md btn-block"><i
@@ -61,7 +68,7 @@
                                             class="fa fa-print"></i>&nbsp;Print</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <a href="" class="btn btn-success btn-md btn-block"><i
+                                    <a href="{{ route('pdf.classReport') }}" target="_blank" id="pdfdown" class="btn btn-success btn-md btn-block"><i
                                             class="fa fa-file-pdf"></i>&nbsp;Pdf</a>
                                 </div>
 
@@ -76,16 +83,26 @@
     </section>
 
     @if (isset($students))
-
+        {{-- {{ dd($students[0]->academics[0]->classes->name) }} --}}
         <section class="content mt-4">
             <div class="container-fluid">
-
                 <div class="col-md-12">
                     <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="text-center">
                                 <h3>Class Report</h3>
-                                <h5 class="mb-4"> {{ request()->academic_class ? 'Class: '.request()->academic_class : ''  }} {{ request()->month_id ?  date('F', mktime(0, 0, 0, request()->month_id, 10)).','  : ''  }} {{ request()->year_id ? request()->year_id : ''  }}</h5>
+                                <h5 class="mb-4">
+                                    {{-- {{ request()->academic_class ? 'Class: ' . request()->academic_class : '' }}
+                                    {{ request()->month_id ? date('F', mktime(0, 0, 0, request()->month_id, 10)) . ',' : '' }}
+                                    {{ request()->year_id ? request()->year_id : '' }} --}}
+
+                                    {{ $students[0]->academics[0]->classes->name ?? '' }}
+                                    {{ $students[0]->academics[0]->section->name ?? '' }}
+                                    {{ $students[0]->academics[0]->group->name ?? '' }}
+                                    {{ request()->month_id ? date('F', mktime(0, 0, 0, request()->month_id, 10)) . ' - ' : '' }}
+                                    {{ request()->year_id ? request()->year_id : '' }}
+                                </h5>
+
                             </div>
                             <table class="table table-bordered  table-sm">
                                 <thead>
@@ -93,25 +110,30 @@
                                         <th>StudentID</th>
                                         <th>Name</th>
                                         <th>Paid</th>
+                                        <th>Discount</th>
                                         <th>Current Due</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody> {{-- dd($students) --}}
                                     @forelse ($students as $student)
-                                    <tr>
-                                        <td>{{ $student->studentId }}</td>
-                                        <td>{{ $student->name }}</td>
-                                        @php
-                                            $due = $student->feeSetupStudents->sum('amount');
-                                            $paid = $student->payments->sum('amount');
-                                            $currentDue = $due - $paid;
-                                        @endphp
-                                        <td>{{ $paid }}</td>
-                                        <td>{{ $currentDue }}</td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $student->studentId }}</td>
+                                            <td>{{ $student->name }}</td>
+                                            @php
+                                                $due = $student->feeSetupStudents->sum('amount');
+                                                $paid = $student->academics[0]->payments->sum('amount');
+                                                $currentDue = $due - $paid;
+                                                $discount = $student->academics[0]->payments->sum('discount');
+                                            @endphp
+                                            <td>{{ $paid }}</td>
+                                            <td>{{ $discount }}</td>
+                                            <td>{{ $currentDue }}</td>
+                                        </tr>
                                     @empty
-                                    <td colspan="6" class="text-center text-danger"><h5>No data found !!</h5></td>
-                                @endforelse
+                                        <td colspan="6" class="text-center text-danger">
+                                            <h5>No data found !!</h5>
+                                        </td>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -130,6 +152,6 @@
 @section('script')
     <!-- page script -->
     <script type="text/javascript">
-        $('.select2').select2()
+        $('.select2').select2();
     </script>
 @stop

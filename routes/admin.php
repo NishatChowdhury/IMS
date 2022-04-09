@@ -11,14 +11,14 @@ use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
 
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('/',[DashboardController::class,'index'])->name('admin');
-    Route::get('backup',[HomeController::class,'backup'])->name('admin.backup');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
+    Route::get('backup', [HomeController::class, 'backup'])->name('admin.backup');
 
-//    Route::get('transactions','Backend\TransactionController@index');
-//    Route::get('transaction/create','Backend\TransactionController@create');
-//    Route::post('transaction/store','Backend\TransactionController@store');
+    Route::get('transactions', 'Backend\TransactionController@index');
+    Route::get('transaction/create', 'Backend\TransactionController@create');
+    Route::post('transaction/store', 'Backend\TransactionController@store');
 
     //Student Routes
     Route::get('student/tod','Backend\StudentController@tod');
@@ -27,13 +27,13 @@ Route::group(['prefix'=>'admin'], function(){
     //Student Routes End
 
     //Accounts
-    Route::get('coa','Backend\ChartOfAccountController@index');
-    Route::get('coa/create','Backend\ChartOfAccountController@create');
-    Route::post('coa/store','Backend\ChartOfAccountController@store');
-    Route::get('coa/edit/{id}','Backend\ChartOfAccountController@edit');
-    Route::patch('coa/{id}/update','Backend\ChartOfAccountController@update');
-    Route::delete('coa/destroy/{id}','Backend\ChartOfAccountController@destroy');
-    Route::post('coa/status','Backend\ChartOfAccountController@isEnabled');
+    Route::get('coa', 'Backend\ChartOfAccountController@index');
+    Route::get('coa/create', 'Backend\ChartOfAccountController@create');
+    Route::post('coa/store', 'Backend\ChartOfAccountController@store');
+    Route::get('coa/edit/{id}', 'Backend\ChartOfAccountController@edit');
+    Route::patch('coa/{id}/update', 'Backend\ChartOfAccountController@update');
+    Route::delete('coa/destroy/{id}', 'Backend\ChartOfAccountController@destroy');
+    Route::post('coa/status', 'Backend\ChartOfAccountController@isEnabled');
     //Accounts End
 
     //Admission Routes
@@ -79,7 +79,7 @@ Route::group(['prefix'=>'admin'], function(){
     //Holiday Setup
 
 
-        // Imam Hasan Journal Routes
+    // Imam Hasan Journal Routes
     Route::resource('journals', "Backend\JournalController")->middleware('auth');
     Route::get('journal/classic','Backend\JournalController@classic');
     Route::get('cash-book','Backend\AccountingController@cashBook');
@@ -91,7 +91,7 @@ Route::group(['prefix'=>'admin'], function(){
     // Imam Hasan Journal Routes
     // Imam Hasan Journal Routes
     //Route::resource('journals', "JournalController")->middleware('auth');
-// Imam Hasan Journal Routes
+    // Imam Hasan Journal Routes
 
     // accounting Reports by Imam Hasan\
     //Route::get('balance-sheet', "Backend\AccountingController@balance_sheet")->name('balance_sheet');
@@ -178,7 +178,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('notice/type/store','Backend\NoticeTypeController@store');
     Route::get('notice/type/edit/{id}','Backend\NoticeTypeController@edit');
 
-// smartrahat end
+    // smartrahat end
 
     //Weekly Off Setting starts by Nishat
     Route::get('attendance/weeklyOff','Backend\WeeklyOffController@index');
@@ -316,13 +316,13 @@ Route::post('message-store','Backend\MessagesController@store')->name('message.s
 
 //    route for api setting ends here
 
-//    route for email setting starts here
-    Route::get('setting/email','Backend\emailSettingController@index')->name('setting.email');
-    Route::post('setting/email/store','Backend\emailSettingController@store')->name('email.store');
-    Route::post('setting/email/edit','Backend\emailSettingController@edit')->name('email.edit');
-    Route::post('setting/email/update','Backend\emailSettingController@update')->name('email.update');
-    Route::delete('setting/email/delete/{id}','Backend\emailSettingController@destroy')->name('email.delete');
-//    route for email setting ends here
+    //    route for email setting starts here
+    Route::get('setting/email', 'Backend\EmailSettingController@index')->name('setting.email');
+    Route::post('setting/email/store', 'Backend\EmailSettingController@store')->name('email.store');
+    Route::post('setting/email/edit', 'Backend\EmailSettingController@edit')->name('email.edit');
+    Route::post('setting/email/update', 'Backend\EmailSettingController@update')->name('email.update');
+    Route::delete('setting/email/delete/{id}', 'Backend\EmailSettingController@destroy')->name('email.delete');
+    //    route for email setting ends here
 
     //    route for google map setting starts here
     Route::get('setting/map','Backend\MapSettingController@index')->name('setting.map');
@@ -342,6 +342,7 @@ Route::post('message-store','Backend\MessagesController@store')->name('message.s
 Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index');
 Route::post('institution/class/schedule/store','Backend\ScheduleController@store');
 
+    Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
 //Route for fee setup starts here
     Route::get('fee/fee-setup',[FeeSetupController::class,'create'])->name('fee-setup.create');
@@ -366,16 +367,18 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
    //Route for fee setup ends here
 
     //Route for fee collection starts here
-    Route::get('fee/fee-collection',[FeeCollectionController::class,'index']);
-    Route::get('fee/fee-collection/view',[FeeCollectionController::class,'view']);
-    Route::post('fee/fee-collection/store',[FeeCollectionController::class,'store']);
-    Route::get('fee/all-collections',[FeeCollectionController::class,'allCollections']);
-    Route::get('fee/all-collection/report/{id}',[FeeCollectionController::class,'report']);
-    Route::get('fee/collections/report/generate',[FeeCollectionController::class,'reportGenerate'])->name('report.generate');
-    Route::get('fee/collections/report/academic_class',[FeeCollectionController::class,'academicClassReport'])->name('report.academic_class');
-
+    Route::get('fee/fee-collection', [FeeCollectionController::class, 'index']);
+    Route::get('fee/fee-collection/view', [FeeCollectionController::class, 'view']);
+    Route::post('fee/fee-collection/store', [FeeCollectionController::class, 'store']);
+    Route::get('fee/all-collections', [FeeCollectionController::class, 'allCollections']);
+    Route::get('fee/all-collection/report/{id}', [FeeCollectionController::class, 'report']);
+    Route::get('fee/collections/report/generate', [FeeCollectionController::class, 'reportGenerate'])->name('report.generate');
+    Route::get('fee/collections/report/academic_class', [FeeCollectionController::class, 'academicClassReport'])->name('report.academic_class');
+    Route::get('fee/collections/pdf/classReport', [FeeCollectionController::class, 'pdfClassReport'])->name('pdf.classReport');
+    Route::get('fee/collections/pdf/dateWiseReport', [FeeCollectionController::class, 'pdfDateReport'])->name('pdf.dateWiseReport');
 
     //Route for fee collection ends here
+
 
     // Gallery Routes start
     Route::get('gallery/image','Backend\GalleryController@index')->name('settings.image');
@@ -454,7 +457,7 @@ Route::get('staff/threshold','Backend\StaffController@threshold')->name('staff.t
 Route::get('staff/kpi','Backend\StaffController@kpi')->name('staff.kpi');
 Route::get('staff/payslip','Backend\StaffController@payslip')->name('staff.payslip');
 
-//End Staff Route
+    //End Staff Route
 
 //Institution Mgnt Route by Rimon
 //Session @MKH

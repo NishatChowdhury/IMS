@@ -2,7 +2,8 @@
 
 namespace App\Models\Backend;
 
-use App\FeeSetup;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\StudentPayment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,6 +55,8 @@ class StudentAcademic extends Model
         return $this->hasMany(StudentSubject::class);
     }
 
-
-
+    public function payments()
+    {
+        return $this->hasMany(StudentPayment::class,'student_academic_id');
+    }
 }
