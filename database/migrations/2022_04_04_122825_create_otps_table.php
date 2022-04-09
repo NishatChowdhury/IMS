@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColunmMarks extends Migration
+class CreateOtpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddColunmMarks extends Migration
      */
     public function up()
     {
-        Schema::table('marks', function (Blueprint $table) {
-            $table->unsignedBigInteger('academic_class_id')->after('id');
+        Schema::create('otps', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('student_id');
+            $table->string('otp');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddColunmMarks extends Migration
      */
     public function down()
     {
-        Schema::table('marks', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('otps');
     }
 }

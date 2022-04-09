@@ -41,6 +41,7 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+//        dd($request->all());
         $this->validator($request);
 
         if(Auth::guard('student')->attempt($request->only('studentId','password'))){

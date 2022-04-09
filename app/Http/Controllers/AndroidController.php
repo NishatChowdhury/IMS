@@ -55,7 +55,7 @@ class AndroidController extends Controller
             ->get()
             ->groupBy('date');
 
-        dd($attendances);
+        //dd($attendances);
 
         foreach($attendances as $date => $attendance){
             $entry = $attendances->min('access_date');
@@ -73,6 +73,11 @@ class AndroidController extends Controller
     public function president()
     {
         return Page::query()->where('name','president message')->get('content');
+    }
+
+    public function principalMessage()
+    {
+        return Page::query()->where('name','principal message')->get('content');
     }
 
     public function profile(Request $request)
@@ -112,6 +117,21 @@ class AndroidController extends Controller
         return $data;
     }
 
+    public function teacherProfile($id)
+    {
+        $teacher = Staff::query()
+            ->where('id',$id)
+            ->where('staff_type_id',2)
+            ->get();
+        if($teacher){
+            return response()->json([
+                'status' => true,
+                'teacher' => $teacher
+            ]);
+        }
+
+    }
+
     public function syllabus(Request $request)
     {
         $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
@@ -121,9 +141,16 @@ class AndroidController extends Controller
 
     public function notices()
     {
-        $categories = NoticeCategory::all()->pluck('name','id');
+//        $categories = NoticeCategory::all()->pluck('name','id');
         $notices = Notice::query()->where('notice_type_id',2)->get();
-        return ['categories'=>$categories,'notices'=>$notices];
+        return ['status'=>true,'notices'=>$notices];
+    }
+
+    public function notice($id)
+    {
+        $notice = Notice::query()->where('id',$id)->get();
+        return ['status'=>true,'notice'=>$notice];
+
     }
 
     public function classRoutine()
