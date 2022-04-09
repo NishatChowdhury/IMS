@@ -23,4 +23,9 @@ class FeeSetupCategory extends Model
     {
         return $this->belongsTo(FeeCategory::class);
     }
+
+    public function fee_setup_students()
+    {
+        return $this->belongsTo(FeeSetupStudent::class,'fee_setup_student_id');
+    }
 }

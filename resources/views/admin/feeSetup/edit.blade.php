@@ -94,7 +94,7 @@
                                 <th>{{ __('Sl') }}</th>
                                 <th>{{ __('Category') }}</th>
                                 <th>{{ __('Amount') }}</th>
-                                <th><button onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
+                                <th><button type="button" onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
                             </tr>
                             </thead>
                             <tbody id="tbody">

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Fee Collection</h1>             
+                    <h1>Fee Collection</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -36,7 +36,8 @@
                                         <span class="fas fa-search"></span>
                                     </button>
                                 </span>
-                                <a href="{{ url('admin/fee/fee-collection/view') }}" class="">
+                                {{-- <a href="{{ url('admin/fee/fee-collection/view') }}" class=""> --}}
+                                <a href="{{ request()->fullUrl() }}" class="">
                                     <span class="input-group-btn">
                                         <button class="btn btn-danger" type="button" title="Refresh page">
                                             <span class="fas fa-sync-alt"></span>
@@ -94,29 +95,47 @@
                                 {{ Form::hidden('student_id', $student->id, ['class' => 'form-control', 'placeholder' => '']) }}
 
                                 <div class="col">
-                                    <label for="">{{ __('Date') }}</label>
+                                    <label for="">{{ __('Date') }}</label> <i class="text-danger">*</i>
                                     <div class="input-group">
-                                        {{ Form::date('date', null, ['class' => 'form-control'. ($errors->has('date') ? ' is-invalid' : null), 'placeholder' => 'Select Date']) }}
+                                        {{ Form::date('date', null, ['class' => 'form-control' . ($errors->has('date') ? ' is-invalid' : null),'placeholder' => 'Select Date']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{ __('Balance') }}</label>
+                                    <label for="">{{ __('Due Balance ') }}</label>
                                     <div class="input-group">
                                         {{ Form::text('balance', $totalDue, ['class' => 'form-control', 'readonly']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Pay Method</label>
+                                    <label for="">Pay Method</label>  <i class="text-danger">*</i>
                                     <div class="input-group">
                                         {{ Form::select('payment_method', $payment_method, $payment_method, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
+
                                 <div class="col">
-                                    <label for="">{{ __('Paid Amount') }}</label>
+                                    <label for="">{{ __('Paid Amount') }}</label>  <i class="text-danger">*</i>
                                     <div class="input-group">
-                                        {{ Form::text('amount', null, ['class' => 'form-control'. ($errors->has('amount') ? ' is-invalid' : null), 'placeholder' => 'Paid']) }}
+                                        {{ Form::text('amount', null, ['class' => 'form-control' . ($errors->has('amount') ? ' is-invalid' : null),'placeholder' => 'Paid']) }}
                                     </div>
                                 </div>
+
+
+                                <div class="col">
+                                    <label for="">{{ __('Discount') }}</label>
+                                    <div class="input-group">
+                                        {{ Form::text('discount', null, ['class' => 'form-control' . ($errors->has('discount') ? ' is-invalid' : null),'placeholder' => 'discount']) }}
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">{{ __('Remarks') }}</label>
+                                    <div class="input-group">
+                                        {{ Form::text('remarks', null, ['class' => 'form-control' . ($errors->has('remarks') ? ' is-invalid' : null),'placeholder' => 'Comment']) }}
+                                    </div>
+                                </div>
+
+
                                 <div class="button text-center m-4">
                                     <button style="margin-top: 7px" type="submit"
                                         class="btn btn-primary">{{ __('Submit') }}</button>
@@ -194,5 +213,9 @@
 
     </section>
 
+
+@stop
+
+@section('script')
 
 @stop
