@@ -4,6 +4,7 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends Model
@@ -24,9 +25,9 @@ class Menu extends Model
     }
 
     /**\
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function page(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function page(): BelongsTo
     {
         return $this->belongsTo(Page::class);
     }

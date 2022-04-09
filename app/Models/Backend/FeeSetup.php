@@ -32,6 +32,7 @@ class FeeSetup extends Model
      *
      * @return BelongsTo
      */
+
     public function academicClass(): BelongsTo
     {
         return $this->belongsTo(AcademicClass::class);
@@ -90,5 +91,15 @@ class FeeSetup extends Model
 //    {
 //        return $this->belongsTo(Section::class);
 //    }
+
+    public function students(){
+          return $this->hasMany(FeeSetupStudent::class);
+    }
+
+    public function feeSetupCategories()
+    {
+        return $this->hasManyThrough(FeeSetupCategory::class, FeeSetupStudent::class);
+    }
+
 
 }

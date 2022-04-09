@@ -79,7 +79,8 @@ class FeeSetupController extends Controller
         $feeSetup = FeeSetup::query()->create($feeSetupData);
 
         foreach($students as $student){
-$feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->student_id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
+
+            $feeSetupStudent = FeeSetupStudent::query()->create(['student_id'=>$student->student_id,'fee_setup_id'=>$feeSetup->id,'amount'=>$total]);
             foreach($fees as $fee){
                 $data = [
                     'fee_setup_student_id' => $feeSetupStudent->id,

@@ -27,9 +27,12 @@ class FeeCollectionController extends Controller
 
     public function view(Request $request)
     {
-        $request->all();
+
         $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
+        $student = Student::query()->where('studentId', $term)->with('academics')->first();
+        $paidAmount = StudentPayment::where('student_id', $student->id)
+            ->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
          $student = Student::query()->where('studentId', $term)->with('academics')->first();
          $paidAmount = StudentPayment::where('student_id', $student->id)
             ->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
@@ -127,14 +130,14 @@ class FeeCollectionController extends Controller
 
     public function reportGenerate(Request $request)
     {
-//        return $request->all();
+
         $academic_class = AcademicClass::get();
 
-         $stupays = StudentPayment::query();
+        $stupays = StudentPayment::query();
         $ac = $request->academic_class;
 
         if ($request->from != null && $request->to != null && $request->academic_class != null) {
-             $stupays = $stupays->whereDate('date', '>=', $request->from)->whereDate('date', '<=', $request->to)->whereHas('feeSetup', function ($q) use ($ac) {
+            $stupays = $stupays->whereDate('date', '>=', $request->from)->whereDate('date', '<=', $request->to)->whereHas('feeSetup', function ($q) use ($ac) {
                 return  $q->where('academic_class_id', $ac);
             })->get();
         } elseif ($request->from != null && $request->to != null) {
