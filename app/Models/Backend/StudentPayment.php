@@ -9,24 +9,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentPayment extends Model
 {
-    protected $table ='student_payments';
+    protected $table = 'student_payments';
 
     protected $dates = ['date'];
 
-    protected $fillable =['student_id','user_id','fee_setup_id','date','payment_method','amount'];
+    protected $fillable = ['student_academic_id', 'user_id', 'fee_setup_id', 'date', 'payment_method', 'amount', 'discount', 'remarks'];
 
-    public function fee_categories(){
-        return $this->belongsToMany(FeeCategory::class,'payment_pivots')->withPivot('amount');
+    public function fee_categories()
+    {
+        return $this->belongsToMany(FeeCategory::class, 'payment_pivots')->withPivot('amount');
     }
 
-    public function student(){
-        return $this->belongsTo(Student::class,'student_id');
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id');
     }
 
-    public function payment_methods(){
-        return $this->belongsTo(PaymentMethod::class,'payment_method','id');
+    public function payment_methods()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method', 'id');
     }
-   
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user_table', 'user_id', 'role_id');
@@ -34,14 +37,16 @@ class StudentPayment extends Model
 
     public function sessions()
     {
-        return $this->belongsTo(Session::class,'session_id');
+        return $this->belongsTo(Session::class, 'session_id');
     }
 
     public function feeSetup()
     {
-        return $this->belongsTo(FeeSetup::class,'fee_setup_id');
+        return $this->belongsTo(FeeSetup::class, 'fee_setup_id');
     }
-    
 
-   
+    public function academics()
+    {
+        return $this->belongsTo(StudentAcademic::class, 'student_academic_id');
+    }
 }

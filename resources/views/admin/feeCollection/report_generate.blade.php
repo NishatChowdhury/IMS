@@ -3,13 +3,14 @@
 @section('title', 'Fee Collection')
 
 @section('style')
-   <style>
-       @media print {
-        #printable{
-             color: red!important;
-         }
-      }
-   </style>
+    <style>
+        @media print {
+            .no_print {
+                display: none;
+            }
+        }
+
+    </style>
 @stop
 
 @section('content')
@@ -31,7 +32,7 @@
     </section>
 
     <!-- /.Search-panel -->
-    <section class="content">
+    <section class="content no_print ">
         <div class="container-fluid">
             {{-- start --}}
             <div class="col-lg-12 col-sm-8 col-md-8 col-xs-12 ">
@@ -63,15 +64,17 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button type="submit"
-                                        class="btn btn-info btn-md btn-block"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                    <button type="submit" class="btn btn-info btn-md btn-block"><i
+                                            class="fa fa-search"></i>&nbsp;Search</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
                                     <button class="btn btn-warning btn-md btn-block"
-                                        onclick="window.print()"><i class="fa fa-print"></i>&nbsp;Print</button>
+                                        onclick="window.print(); return false;"><i
+                                            class="fa fa-print"></i>&nbsp;Print</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button class="btn btn-success btn-md btn-block"><i class="fa fa-file-pdf"></i>&nbsp;Pdf</button>
+                                    <a href="{{ route('pdf.dateWiseReport') }}" target="_blank" class="btn btn-success btn-md btn-block"><i
+                                            class="fa fa-file-pdf"></i>&nbsp;Pdf</a>
                                 </div>
 
                             </div>
@@ -91,11 +94,12 @@
             <div class="container-fluid">
 
                 <div class="col-md-12">
-                    <div class="card"  style="margin: 0px;">
+                    <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="text-center">
                                 <h3>Date Wise Payment Report</h3>
-                                <h5 class="mb-4">{{ request()->from }} {{ request()->to ? 'To '.request()->to : ''  }}</h5>
+                                <h5 class="mb-4">{{ request()->from }}
+                                    {{ request()->to ? 'To ' . request()->to : '' }}</h5>
                             </div>
                             <table class="table table-bordered table-sm">
                                 <thead>
@@ -111,15 +115,20 @@
                                 <tbody>
                                     @forelse ($stupays as $pay)
                                         <tr>
+                                            {{-- {{   dd(    $pay->academics->student->studentId    )  }} --}}
                                             <td>{{ $pay->date->format('Y-m-d') }}</td>
-                                            <td>{{ $pay->student->studentId }}</td>
-                                            <td>{{ $pay->student->name }}</td>
-                                            <td>{{ $pay->student->academics[0]->classes->name}} {{ $pay->student->academics[0]->section->name ?? ''}} {{ $pay->student->academics[0]->group->name ?? ''}}</td>
-                                            <td>{{ $pay->student->mobile }}</td>
+                                            <td>{{ $pay->academics->student->studentId ?? '' }}</td>
+                                            <td>{{ $pay->academics->student->name ?? '' }}</td>
+                                            <td>{{ $pay->academics->classes->name ?? '' }}
+                                                {{ $pay->academics->section->name ?? '' }}
+                                                {{ $pay->academics->group->name ?? '' }}</td>
+                                            <td>{{ $pay->academics->student->mobile ?? '' }}</td>
                                             <td>{{ $pay->amount }}</td>
                                         </tr>
                                     @empty
-                                    <td colspan="6" class="text-center text-danger"><h5>No data found !!</h5></td>
+                                        <td colspan="6" class="text-center text-danger">
+                                            <h5>No data found !!</h5>
+                                        </td>
                                     @endforelse
                                 </tbody>
                             </table>

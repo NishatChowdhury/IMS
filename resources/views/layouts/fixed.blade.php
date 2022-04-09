@@ -66,7 +66,7 @@
     </aside>
     <!-- /.control-sidebar -->
 
-    <footer class="main-footer">
+    <footer class="main-footer no_print">
         @include('admin.includes.footer')
     </footer>
 </div>
