@@ -26,8 +26,7 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                            <h3 class="card-title">Manage Employee Leave</h3>
-                            <a href="{{ route('leaveManagement.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> Add Employee Leave</a>
+                            <h3 class="card-title">Principal Message</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -43,18 +42,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($allData as $key => $value)
-                                <tr class="{{$value->id}}">
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $value->student_id }}</td>
-                                    <td>{{ $value->start_date }}</td>
-                                    <td>{{ $value->end_date }}</td>
-                                    <td>{{ $value->leave_purpose }}</td>
-                                    <td>
-                                        <a href="{{ action('LeaveManagementController@edit',$value->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
+
                             </tbody>
                         </table>
                     </div>

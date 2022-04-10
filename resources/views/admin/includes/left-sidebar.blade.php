@@ -661,9 +661,28 @@
                         </a>
                         <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                             <li class="nav-item">
+                                <a href="{{ route('chairmanMessage.index') }}" class="nav-link {{ isActive('chairmanMessage') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Chairman Message </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('principalMessage.index') }}" class="nav-link {{ isActive('principalMessage') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Principle Message </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ action('Backend\SiteInformationController@index') }}" class="nav-link {{ isActive('siteinfo') }}">
                                     <i class="far nav-icon"></i>
                                     <p>Site Basic Info </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('aboutInstitute.index') }}" class="nav-link {{ isActive('siteinfo') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>About Institute</p>
                                 </a>
                             </li>
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">

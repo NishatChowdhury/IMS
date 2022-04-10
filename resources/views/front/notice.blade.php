@@ -1,6 +1,4 @@
-@php
-  $intro = $content->where('name','introduction')->first();
-@endphp
+
 <section class="padding-y-100 bg-inner">
     <div class="container">
         <div class="row">
@@ -15,7 +13,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                     <div class="col-md-12 mt-4">
-                        {!! $intro->content !!}
+                        {!! $about->body !!}
 {{--                        <h2>--}}
 {{--                            <small class="d-block text-white">Welcome to</small>--}}
 {{--                            <span class="text-white">Educati</span> School--}}
