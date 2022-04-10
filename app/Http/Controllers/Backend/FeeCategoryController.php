@@ -22,11 +22,14 @@ class FeeCategoryController extends Controller
         return view('admin.account.fee-category.fee-category',compact('sessions','fee_categories'));
     }
 
-    public function store_fee_category(Request $request){
+    public function store_fee_category(Request $request)
+    {
         $validate = $this->validate($request,[
-            'name' => 'required'
+            'name' => 'required|unique:fee_categories'
         ],[
-            'name.required'=>'Name Field is Required'
+            'name.required'=>'Name Field is Required',
+            'name.unique'=>'Category already exist'
+
         ]);
 
         $request['status'] = 1;
@@ -36,7 +39,7 @@ class FeeCategoryController extends Controller
 
     public function edit_fee_category(Request $request){
         $feeCategory = FeeCategory::findOrFail($request->id);
-        return $feeCategory;
+        return response()->json($feeCategory);
     }
 
     public function update_fee_category(Request $request){

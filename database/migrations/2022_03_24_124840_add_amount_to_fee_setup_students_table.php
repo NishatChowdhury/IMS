@@ -14,7 +14,7 @@ class AddAmountToFeeSetupStudentsTable extends Migration
     public function up()
     {
         Schema::table('fee_setup_students', function (Blueprint $table) {
-            $table->float('amount',8,2)->after('fee_setup_id')->nullable();
+            $table->float('amount', 8, 2)->after('fee_setup_id')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddAmountToFeeSetupStudentsTable extends Migration
     public function down()
     {
         Schema::table('fee_setup_students', function (Blueprint $table) {
-             $table->float('amount',8,2);
+            $table->dropColumn('amount');
         });
     }
 }

@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-{{ Form::open(['action'=>'ExamController@file','method'=>'post','files'=>true]) }}
+{{ Form::open(['action'=>'Backend\ExamController@file','method'=>'post','files'=>true]) }}
 {{--<select name="exam_id" id="" required>--}}
 {{--<option value="">Select Exam</option>--}}
 {{--<option value="1" selected>1st Term Exam</option>--}}

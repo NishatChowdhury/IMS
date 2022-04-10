@@ -38,7 +38,7 @@
                                 <div class="col">
                                     <label for="">Academic Class ID</label>
                                     <div class="input-group">
-                                        <p>{{ $fee_setup->academicClass->academicClasses->name }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name }}</p>
+                                        <p>{{ $fee_setup->academicClass->academicClasses->name ?? '' }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name ??  '' }}</p>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -93,7 +93,7 @@
                                 <th>{{ __('Sl') }}</th>
                                 <th>{{ __('Category') }}</th>
                                 <th>{{ __('Amount') }}</th>
-                                <th><button onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
+                                <th><button type="button" onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
                             </tr>
                             </thead>
                             <tbody id="tbody">

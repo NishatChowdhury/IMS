@@ -69,7 +69,6 @@
                     </div>
                 </div>
 
-
                 <section class="padding-y-100 bg-light-v2">
                     <div class="container">
                         <div class="row">
@@ -117,7 +116,7 @@
                                             @if($errors->has('message'))
                                                 <p class="help is-danger" style="font-size: 12px; color: red">{{ $errors->first('message') }}</p>
                                             @endif
-                                            <button type="submit" class="btn btn-primary mt-4">Send Message</button>
+                                            <button type="submit" class="btn btn-primary mt-4">{{ __('Send Message') }}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -128,13 +127,6 @@
                 </section>
 
     {!! siteConfig('map') !!}
-
-{{--                <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>--}}
-
-
-{{--            </div> <!-- END row-->--}}
-{{--        </div> <!-- END container-->--}}
-{{--    </section>--}}
 
 @stop
 

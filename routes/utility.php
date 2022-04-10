@@ -17,6 +17,7 @@ use App\Models\Backend\StudentLogin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,10 +25,12 @@ Route::get('system/migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
+
 Route::get('system/migrate-refresh',function(){
     Artisan::call('migrate:fresh --seed');
     dd('migration refresh complete');
 });
+
 Route::get('system/reboot',function(){
     Artisan::call('config:cache');
     Artisan::call('config:clear');
@@ -35,9 +38,9 @@ Route::get('system/reboot',function(){
     Artisan::call('view:clear');
     dd('all cleared');
 });
-Route::get('system/c',function(){
-    $gg = Artisan::call('storage:link');
-    dd($gg);
+
+Route::get('system/symlink',function(){
+    Artisan::call('storage:link');
 });
 
 Route::get('process-attendances',function(){
@@ -364,11 +367,11 @@ Route::get('sync-group',function(){
     dd('group id synced');
 });
 
-Route::get('upload-csv','ExamController@upload');
-Route::get('bulk-upload-csv','ExamController@bulkUpload');
+Route::get('upload-csv','Backend\ExamController@upload');
+Route::get('bulk-upload-csv','Backend\ExamController@bulkUpload');
 
-Route::post('upload-file','ExamController@file');
-Route::post('bulk-upload-file','ExamController@bulkFile');
+Route::post('upload-file','Backend\ExamController@file');
+Route::post('bulk-upload-file','Backend\ExamController@bulkFile');
 
 Route::get('calc-final-result',function(){
     $sessionId = 2;

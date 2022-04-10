@@ -95,4 +95,5 @@ Route::post('load_applied_student_id','Front\AdmissionController@loadStudentId')
 
 Route::get('/load_online_student_info','Front\FrontController@loadStudentInfo');
 /** Applied Student */
+
 Route::get('page/{uri}','Front\FrontController@page');
