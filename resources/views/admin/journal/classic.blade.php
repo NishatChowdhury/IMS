@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ Form::open(['action'=>'JournalController@classic','method'=>'get','class'=>'form-inline']) }}
+                            {{ Form::open(['action'=>'Backend\JournalController@classic','method'=>'get','class'=>'form-inline']) }}
                             <label class="col-sm-2">Start Date</label>
                             {{ Form::date('start',null,['class'=>'form-control mr-sm-2']) }}
                             <label class="col-sm-2">End Date</label>
@@ -67,7 +67,7 @@
                                             @endforeach
                                             <small class="text-secondary"><em>{{ $journal->description }}</em></small>
                                         </td>
-                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('JournalController@show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
+                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('Backend\JournalController@show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
                                         <td>
                                             @foreach($journal->items as $item)
                                                 <p>{{ $item->debit }}</p>
@@ -106,7 +106,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['action'=>'PlaylistController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\PlaylistController@store','method'=>'post']) }}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Playlist Name</label>
                         <div class="col-sm-10">

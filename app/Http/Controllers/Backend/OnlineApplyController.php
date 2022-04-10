@@ -410,4 +410,11 @@ class OnlineApplyController extends Controller
         return redirect('admin/admission/create');
     }
 
+
+    function onlineStepDelete($id){
+        $dataStore = OnlineAdmission::find($id);
+        $dataStore->delete();
+        return back();
+    }
+
 }

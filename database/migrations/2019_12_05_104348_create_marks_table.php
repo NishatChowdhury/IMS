@@ -14,21 +14,21 @@ class CreateMarksTable extends Migration
     public function up()
     {
         Schema::create('marks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('academic_class_id');
-            $table->unsignedBigInteger('session_id');
-            $table->unsignedBigInteger('exam_id');
-            $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('section_id')->nullable();
-            $table->unsignedBigInteger('group_id')->nullable();
-            $table->unsignedBigInteger('subject_id');
-            $table->unsignedBigInteger('student_id');
+            $table->id();
+            $table->integer('academic_class_id');
+            $table->integer('session_id');
+            $table->integer('exam_id');
+            $table->integer('class_id');
+            $table->integer('section_id');
+            $table->integer('group_id');
+            $table->integer('subject_id');
+            $table->integer('student_id');
             $table->integer('full_mark');
-            $table->float('objective',4,2)->nullable();
-            $table->float('written',4,2)->nullable();
-            $table->float('practical',4,2)->nullable();
-            $table->float('viva',4,2)->nullable();
-            $table->float('total_mark',4,2)->nullable();
+            $table->float('objective')->nullable();
+            $table->float('written')->nullable();
+            $table->float('practical')->nullable();
+            $table->float('viva')->nullable();
+            $table->float('total_mark')->nullable();
             $table->string('gpa')->nullable();
             $table->string('grade')->nullable();
             $table->timestamps();

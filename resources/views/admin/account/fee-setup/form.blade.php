@@ -2,7 +2,7 @@
     <div class="card">
         <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
             <div class="card-header">
-                <h5 class="card-title">{{__('Select Month') }}</h5>
+                <h5 class="card-title">Select Month</h5>
             </div>
         </div>
         <div class="card-body">
@@ -12,7 +12,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="month[]" value="1" {{ $fee_setup->month  == 1 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="gridCheck">
-                                    {{__('January') }}
+                                    January
                                 </label>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                                 <input class="form-check-input" type="checkbox" name="month[]" value="2"
                                         {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 2 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="gridCheck">
-                                    {{__('February') }}
+                                    February
                                 </label>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                 <input class="form-check-input" type="checkbox" name="month[]" value="3"
                                         {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 3 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="gridCheck">
-                                    {{__('March') }}
+                                    March
                                 </label>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 <input class="form-check-input" type="checkbox" name="month[]" value="4"
                                         {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 4 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="gridCheck">
-                                    {{__('April') }}
+                                    April
                                 </label>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <input class="form-check-input" type="checkbox" name="month[]" value="5"
                                         {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 5 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="gridCheck">
-                                    {{__('May') }}
+                                    May
                                 </label>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                 <input class="form-check-input" type="checkbox" name="month[]" value="6"
                                         {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 6 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="gridCheck">
-                                    {{__('June') }}
+                                    June
                                 </label>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                <input class="form-check-input" type="checkbox" name="month[]" value="7"
                                        {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 7 ? 'checked' : '' }}>
                                <label class="form-check-label" for="gridCheck">
-                                   {{__('July') }}
+                                   July
                                </label>
                            </div>
                        </div>
@@ -91,7 +91,7 @@
                                <input class="form-check-input" type="checkbox" name="month[]" value="8"
                                        {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 8 ? 'checked' : '' }}>
                                <label class="form-check-label" for="gridCheck">
-                                  {{__(' August') }}
+                                   August
                                </label>
                            </div>
                        </div>
@@ -102,7 +102,7 @@
                                <input class="form-check-input" type="checkbox" name="month[]" value="9"
                                        {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 9 ? 'checked' : '' }}>
                                <label class="form-check-label" for="gridCheck">
-                                   {{__('September') }}
+                                   September
                                </label>
                            </div>
                        </div>
@@ -113,7 +113,7 @@
                                <input class="form-check-input" type="checkbox" name="month[]" value="10"
                                        {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 10 ? 'checked' : '' }}>
                                <label class="form-check-label" for="gridCheck">
-                                   {{__('October') }}
+                                   October
                                </label>
                            </div>
                        </div>
@@ -124,7 +124,7 @@
                                <input class="form-check-input" type="checkbox" name="month[]" value="11"
                                        {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 11 ? 'checked' : '' }}>
                                <label class="form-check-label" for="gridCheck">
-                                   {{__('November') }}
+                                   November
                                </label>
                            </div>
                        </div>
@@ -135,7 +135,7 @@
                                <input class="form-check-input" type="checkbox" name="month[]" value="12"
                                        {{  $fee_setup->first() !=null && $fee_setup->first()->month  == 12 ? 'checked' : '' }}>
                                <label class="form-check-label" for="gridCheck">
-                                   {{__('December') }}
+                                   December
                                </label>
                            </div>
                        </div>
@@ -147,7 +147,7 @@
     <div class="card">
         <div class="col-md-12 col-sm-12" style="margin-top: 20px; ">
             <div class="card-header">
-                <h5 class="card-title">{{__('Setup Amount Fee Category') }}</h5>
+                <h5 class="card-title">Setup Amount Fee Category</h5>
             </div>
         </div>
         <div class="card-body">
@@ -155,10 +155,10 @@
                 <table class="table table-bordered table-striped table-sm">
                     <thead class="table-dark">
                         <tr class="text-center">
-                            <td>{{__('SL') }}</td>
-                            <td>{{__('Category Name') }}</td>
-                            <td>{{__('Description') }}</td>
-                            <td>{{__('Amount') }}</td>
+                            <td>SL</td>
+                            <td>Category Name</td>
+                            <td>Description</td>
+                            <td>Amount</td>
                         </tr>
                     </thead>
                     @php $i=1; @endphp

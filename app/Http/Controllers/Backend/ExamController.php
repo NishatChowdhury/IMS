@@ -41,13 +41,13 @@ class ExamController extends Controller
 
     public function store_grade(Request $request){
         Grade::query()->create($request->all());
-        return redirect('exam/gradesystem')->with('success', 'Grading System Added Successfully');
+        return redirect('admin/exam/gradesystem')->with('success', 'Grading System Added Successfully');
     }
 
     public function delete_grade($id){
         $grade = Grade::query()->findOrFail($id);
         $grade->delete();
-        return redirect('exam/gradesystem')->with('success', 'Grading System Deleted Successfully');
+        return redirect('admin/exam/gradesystem')->with('success', 'Grading System Deleted Successfully');
     }
 
     public function examination()
@@ -125,7 +125,7 @@ class ExamController extends Controller
                 $is_exists->update($data);
             }
         }
-        return redirect('exam/examitems')->with('success', 'Exam Schedule Saved Successfully');
+        return redirect('admin/exam/examitems')->with('success', 'Exam Schedule Saved Successfully');
     }
 
     /**

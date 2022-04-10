@@ -19,7 +19,7 @@ class SeedUserTable extends Migration
             $data['email'] = 'admin@gmail.com';
             $data['role_id'] = 1;
             $data['password'] = bcrypt('admin123');
-            \App\Models\Backend\User::query()->create($data);
+            \App\Models\Backend\User::query()->updateOrCreate($data);
         });
     }
 

@@ -54,9 +54,9 @@
                 @foreach($images as $image)
                     <div class="col-lg-4 col-md-6 marginTop-30">
                         <div class="media-viewer">
-                            <img class="media-viewer__media" src="{{ asset('assets/img/gallery/') }}/{{ $image->album_id }}/{{ $image->image }}" alt="">
+                            <img class="media-viewer__media" src="{{ asset('storage/uploads/gallery') }}/{{ $image->album_id }}/{{ $image->image }}" alt="">
                             <div class="media-viewer__overlay bg-black-0_7 flex-center">
-                                <a href="{{ asset('assets/img/gallery/') }}/{{ $image->album_id }}/{{ $image->image }}" class="iconbox bg-white" data-fancybox="gallery">
+                                <a href="{{ asset('storage/uploads/gallery') }}/{{ $image->album_id }}/{{ $image->image }}" class="iconbox bg-white" data-fancybox="gallery">
                                     <i class="ti-search"></i>
                                 </a>
                             </div>

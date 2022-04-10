@@ -20,12 +20,14 @@ use App\Models\Backend\Section;
 use App\Models\Backend\Session;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
+use App\Models\Backend\StudentLogin;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
 //use App\State;
@@ -248,7 +250,12 @@ class StudentController extends Controller
                 dd($e);
             }
         }
-
+                StudentLogin::create([
+                    'name' =>  $studentStore->name,
+                    'student_id' => $studentStore->id,
+                    'studentId' => $studentStore->studentId,
+                    'password' => Hash::make('student123'),
+                ]);
         $getAcademicClass = AcademicClass::find($req->academic_class_id);
 
         StudentAcademic::create([
@@ -327,7 +334,7 @@ class StudentController extends Controller
             'birth_certificate' => 'required|integer',
             'nationality' => 'required',
             'disability' => 'required',
-            'studentId' => 'required|unique:students,studentId,'.$id,
+            'studentId' => 'required|unique:students,studentId,'.$student->id,
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
@@ -796,11 +803,12 @@ class StudentController extends Controller
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
         $payments = StudentPayment::query()
-            ->whereHas('sessions', function($query){
-                $query->where('active', '=', 1);
-            })->where('student_id',$studentId)
-            ->get();
-
+//                                    ->whereHas('sessions', function($query){
+//                                        $query->where('active', '=', 1);
+//                                    })
+                                    ->where('student_id',$studentId)
+                                    ->get();
+//            return $student;
 
         return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
 

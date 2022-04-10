@@ -88,91 +88,13 @@
                                 <li><i class="ti-time text-primary mr-2"></i>{{ $event->date->format('F d, Y') }}</li>
                                 <li><i class="ti-location-pin text-primary mr-2"></i>{{ $event->venue }}</li>
                             </ul>
-                            <a href="{{ action('FrontController@event',$event->id) }}" class="btn btn-link pl-0">View Details</a>
+                            <a href="{{ action('Front\FrontController@event',$event->id) }}" class="btn btn-link pl-0">View Details</a>
                         </div>
                     </div>
                 </div>
                 @endforeach
 
-{{--                <div class="col-lg-4 col-md-6 marginTop-30">--}}
-{{--                    <div class="card height-100p shadow-v1">--}}
-{{--                        <img class="card-img-top" src="assets/img/384x320/4.jpg" alt="">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <a href="#" class="h4">--}}
-{{--                                Farmer's Market at Harvard ceremony--}}
-{{--                            </a>--}}
-{{--                            <ul class="list-unstyled line-height-lg mt-4">--}}
-{{--                                <li><i class="ti-time text-primary mr-2"></i>25-30 Dec, 2018</li>--}}
-{{--                                <li><i class="ti-location-pin text-primary mr-2"></i>Cambridge, USA</li>--}}
-{{--                            </ul>--}}
-{{--                            <a href="page-event-details.html" class="btn btn-link pl-0">View Details</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
 
-{{--                <div class="col-lg-4 col-md-6 marginTop-30">--}}
-{{--                    <div class="card height-100p shadow-v1">--}}
-{{--                        <img class="card-img-top" src="assets/img/384x320/3.jpg" alt="">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <a href="#" class="h4">--}}
-{{--                                A Conversation with Wynton Marsalis--}}
-{{--                            </a>--}}
-{{--                            <ul class="list-unstyled line-height-lg mt-4">--}}
-{{--                                <li><i class="ti-time text-primary mr-2"></i>25-30 Dec, 2018</li>--}}
-{{--                                <li><i class="ti-location-pin text-primary mr-2"></i>Cambridge, USA</li>--}}
-{{--                            </ul>--}}
-{{--                            <a href="page-event-details.html" class="btn btn-link pl-0">View Details</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col-lg-4 col-md-6 marginTop-30">--}}
-{{--                    <div class="card height-100p shadow-v1">--}}
-{{--                        <img class="card-img-top" src="assets/img/384x320/2.jpg" alt="">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <a href="#" class="h4">--}}
-{{--                                Harvard Panel Examines Future of Cities--}}
-{{--                            </a>--}}
-{{--                            <ul class="list-unstyled line-height-lg mt-4">--}}
-{{--                                <li><i class="ti-time text-primary mr-2"></i>25-30 Dec, 2018</li>--}}
-{{--                                <li><i class="ti-location-pin text-primary mr-2"></i>Cambridge, USA</li>--}}
-{{--                            </ul>--}}
-{{--                            <a href="page-event-details.html" class="btn btn-link pl-0">View Details</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col-lg-4 col-md-6 marginTop-30">--}}
-{{--                    <div class="card height-100p shadow-v1">--}}
-{{--                        <img class="card-img-top" src="assets/img/384x320/1.jpg" alt="">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <a href="#" class="h4">--}}
-{{--                                Farmer's Market at Harvard ceremony--}}
-{{--                            </a>--}}
-{{--                            <ul class="list-unstyled line-height-lg mt-4">--}}
-{{--                                <li><i class="ti-time text-primary mr-2"></i>25-30 Dec, 2018</li>--}}
-{{--                                <li><i class="ti-location-pin text-primary mr-2"></i>Cambridge, USA</li>--}}
-{{--                            </ul>--}}
-{{--                            <a href="page-event-details.html" class="btn btn-link pl-0">View Details</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col-lg-4 col-md-6 marginTop-30">--}}
-{{--                    <div class="card height-100p shadow-v1">--}}
-{{--                        <img class="card-img-top" src="assets/img/384x320/5.jpg" alt="">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <a href="#" class="h4">--}}
-{{--                                A Conversation with Wynton Marsalis--}}
-{{--                            </a>--}}
-{{--                            <ul class="list-unstyled line-height-lg mt-4">--}}
-{{--                                <li><i class="ti-time text-primary mr-2"></i>25-30 Dec, 2018</li>--}}
-{{--                                <li><i class="ti-location-pin text-primary mr-2"></i>Cambridge, USA</li>--}}
-{{--                            </ul>--}}
-{{--                            <a href="page-event-details.html" class="btn btn-link pl-0">View Details</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
 
                 <div class="col-12 marginTop-80">
                     <ul class="pagination pagination-primary justify-content-center">
