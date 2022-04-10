@@ -662,23 +662,25 @@ class ResultController extends Controller
 
         }
 
-        return redirect('exam/examresult');
+        return redirect('admin/exam/examresult');
     }
 
     public function allDetails(Request $request,ExamResult $examResult)
     {
+//        return ExamResult::all();
         if($request->all()){
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-                $r->whereHas('studentId',function($query)use($request){
+                $r->whereHas('student',function($query)use($request){
                     $query->where('studentId',$request->get('studentId'));
                 });
             }
 
-            if($request->get('session_id')){
-                $r->where('session_id',$request->get('session_id'));
-            }
+//            if($request->get('session_id')){
+//                $r->where('session_id',$request->get('session_id'));
+//            }
+//            return $r->get();
 
             if($request->get('exam_id')){
                 $r->where('exam_id',$request->get('exam_id'));

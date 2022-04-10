@@ -166,6 +166,7 @@
                         $("#loader-gif").addClass('d-block').show();
                     }
                 }).done(function(e){
+                    console.log(e);
                     //$("#modal-body").remove();
                     //$("#edit-form").remove();
                     // $("#model-header").after(e);

@@ -188,7 +188,7 @@ class InstitutionController extends Controller
     {
         $data = AcademicClass::query()->findOrFail($request->id);
         $data->update($request->all());
-        return redirect('institution/academic-class');
+        return redirect('admin/institution/academic-class');
 
     }
 

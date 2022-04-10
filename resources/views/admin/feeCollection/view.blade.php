@@ -70,10 +70,10 @@
                                 <div class="col-md-6">
                                     <ul class="list-group ">
                                         <li class="list-group-item">
-                                            <span>Class:</span>&nbsp;{{ $student->academics->first()->classes->name }}
+                                            <span>Class:</span>&nbsp;{{ $student->academics->first()->classes->name }}{{ $student->academics->first()->group_id ? '('.$student->academics->first()->group->name.')' : ''}}
                                         </li>
                                         <li class="list-group-item">
-                                            <span>Section:</span>&nbsp;{{ $student->academics->first()->section->name }}
+                                            <span>Section:</span>&nbsp;{{ $student->section_id ? $student->academics->first()->section->name : 'N/A' }}
                                         </li>
                                         <li class="list-group-item">
                                             <span>Roll:</span>&nbsp;{{ $student->academics->first()->rank }}
@@ -164,7 +164,7 @@
                                     @forelse ($previousPayment as $value)
                                         <tr>
                                             <td>{{ $value->date }}</td>
-                                            <td>{{ $value->payment_methods->name ?? 'Undifined' }}</td>
+                                            <td>{{ $value->payment_method ?? 'Undifined' }}</td>
                                             <td>{{ $value->amount }}</td>
                                         </tr>
                                     @empty

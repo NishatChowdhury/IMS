@@ -16,18 +16,29 @@ class PageController extends Controller
 
     public function index()
     {
-        $pages = Page::query()->paginate(15);
+         $pages = Page::query()->paginate(15);
         return view('admin.page.index',compact('pages'));
     }
 
     public function create()
     {
+//        return Page::all();
         return view('admin.page.create');
     }
 
     public function store(Request $request)
     {
-        Page::query()->create($request->all());
+    $validated = $request->validate([
+        'name' => 'required',
+        'pageContent' => 'required',
+        'order' => 'required',
+    ]);
+        Page::create([
+            'name' => $request->name,
+            'content' => $request->pageContent,
+            'order' => $request->order,
+            'image' => 'jshdfhj'
+        ]);
         Session::flash('success','Page created successfully');
         return redirect('admin/pages');
     }
@@ -54,5 +65,11 @@ class PageController extends Controller
         }
 
         return redirect('admin/pages');
+    }
+
+    function  destroy($id){
+        $page = Page::query()->findOrFail($id);
+        $page->delete();
+        return back();
     }
 }

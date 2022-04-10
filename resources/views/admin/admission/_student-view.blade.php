@@ -14,12 +14,12 @@
                 Phone: {{ siteConfig('phone') }} Email: {{ siteConfig('email') }}<br>
                 Website: {{ url('/') }}
             </address>
-            <h3> {{__('HSC Admission Form (Session 2021-2022)')}}</h3>
+            <h3>HSC Admission Form (Session 2021-2022)</h3>
         </div>
         <div class="col-2">
             <table class="table-bordered" style="font-size: 14px;position: absolute;bottom: 50px;margin-left:25px">
                 <tr>
-                    <td colspan="2"> {{__('Only for office use')}}</td>
+                    <td colspan="2">Only for office use</td>
                 </tr>
                 <tr>
                     <td>Class Roll</td>
@@ -96,7 +96,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-guardian">
                     <tr>
-                        <td colspan="2"> {{__('Birth Registration Certificate Number')}}</td>
+                        <td colspan="2">Birth Registration Certificate Number</td>
                         <td colspan="2">{{ $student['brcn'] }}</td>
                     </tr>
                     <tr>
@@ -152,7 +152,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <h5> {{__('SSC Information') }}</h5>
+                <h5>SSC Information</h5>
             </div>
         </div>
         <div class="row" style="page-break-after: always">
@@ -255,7 +255,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <h3 class="col-md-12 text-center"> {{__('Registered Subject for HSC') }}</h3>
+                    <h3 class="col-md-12 text-center">Registered Subject for HSC</h3>
                     <table class="table table-bordered table-subject">
                         @foreach($subjects as $key => $subject)
                             <tr>

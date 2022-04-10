@@ -132,7 +132,7 @@
                                     <td>
                                         <a href="{{ url('admin/staff-profile',$staff->id) }}" class="btn btn-success btn-sm" ><i class="fas fa-eye"></i> </a>
                                         <a  class="btn btn-warning btn-sm edit" href="{{action('Backend\StaffController@edit_staff', $staff->id)}}" ><i class="fas fa-edit"></i> </a>
-                                        <a  href="{{url('staff/delete-staff', $staff->id)}}" class="btn btn-danger btn-sm delete"> <i class="fas fa-trash"></i> </a>
+                                        <a  href="{{url('admin/staff/delete-staff', $staff->id)}}" class="btn btn-danger btn-sm delete"> <i class="fas fa-trash"></i> </a>
                                     </td>
                                 </tr>
                                 @endforeach

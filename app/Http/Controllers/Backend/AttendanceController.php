@@ -33,6 +33,7 @@ class AttendanceController extends Controller
 
     public function index()
     {
+
         return view('admin.attendance.attendance');
     }
 
@@ -189,6 +190,7 @@ class AttendanceController extends Controller
 
     public function student(Student $student, Request $request)
     {
+
         if($request->all() == []){
             $attendances = [];
             $repository = $this->repository;
@@ -210,8 +212,10 @@ class AttendanceController extends Controller
         }
         if($request->get('class_id')){
             $class = $request->get('class_id');
-            $s->where('academic_class_id',$class);
-
+//            $s->where('academic_class_id',$class);
+            $s->whereHas('studentAcademic', function($query) use ($class){
+                    return $query->where('class_id', $class);
+            });
             $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
         }else{
             $academicClass = '';
@@ -227,7 +231,7 @@ class AttendanceController extends Controller
 
         $students = $s
             //->whereIn('studentId',['S194300','S194278'])
-            ->orderBy('rank')
+//            ->orderBy('rank')
             ->get();
         //dd($students);
 

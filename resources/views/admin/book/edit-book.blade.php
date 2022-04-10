@@ -84,6 +84,12 @@
                                         {{ Form::number('no_of_issue', null, ['placeholder' => 'How Many Issues Are There?','class'=>'form-control']) }}
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        {{ Form::label('shelve', 'Shelve No.',['class'=>'control-label' ]) }}
+                                        {{ Form::number('shelve', null, ['placeholder' => 'Shelve No.','class'=>'form-control']) }}
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="form-group">

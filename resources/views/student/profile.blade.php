@@ -26,13 +26,13 @@
                 <div class="col-lg-4 mt-4">
                     <div class="card shadow-v1">
                         <div class="card-header text-center border-bottom pt-5 mb-4">
-                            <img class="rounded-circle mb-4" src="{{ asset('assets/img/students') }}/{{ $student->image }}" width="200" height="200" alt="">
+                            <img class="rounded-circle mb-4" src="{{ asset('storage/uploads/students/') }}/{{ $student->image }}" width="200" height="200" alt="">
                             <h4>
                                 {{ auth()->guard('student')->user()->name }}
                             </h4>
                             <p>
                                 {{ $student->studentId }} <br>
-                                {{ $student->classes->name }} {{ $student->group->name ?? '' }} {{ $student->section->name ?? '' }}
+                                {{ $student->studentAcademic->classes->name }} {{ $student->studentAcademic->group->name ?? '' }} {{ $student->studentAcademic->section->name ?? '' }}
                             </p>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item m-2">
@@ -43,7 +43,7 @@
                                 <li class="list-inline-item m-2">
                                     <i class="ti-heart text-primary"></i>
                                     <span class="d-block">DOB</span>
-                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>
+{{--                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>--}}
                                 </li>
                             </ul>
                         </div>

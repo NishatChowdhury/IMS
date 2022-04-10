@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="card-body">
-                            {{ Form::model($coa = new \App\Models\Backend\COA,['action'=>'ChartOfAccountController@store','method'=>'post']) }}
+                            {{ Form::model($coa = new \App\Models\Backend\COA,['action'=>'Backend\ChartOfAccountController@store','method'=>'post']) }}
                             @include('admin.coa.form')
                             {{ Form::close() }}
                         </div>

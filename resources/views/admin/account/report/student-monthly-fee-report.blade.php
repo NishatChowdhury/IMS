@@ -32,12 +32,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{__('Finance') }}</h1>
+                    <h1 class="m-0 text-dark">Finance</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('Home') }}</a></li>
-                        <li class="breadcrumb-item active">{{__('Location Assign') }} </li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Location Assign</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -57,26 +57,26 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">{{__('Class') }}</label>
+                                    <label for="">Class</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Section') }}</label>
+                                    <label for="">Section</label>
                                     <div class="input-group">
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Group') }}</label>
+                                    <label for="">Group</label>
                                     <div class="input-group">
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
                                 </div>
 
                                 <div class="col">
-                                    <label for="">{{__('Month') }}</label>
+                                    <label for="">Month</label>
                                     <div class="input-group">
                                         {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month']) }}
                                     </div>
@@ -119,17 +119,17 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr class="text-center">
-                                <th>{{__('Rank') }}</th>
-                                <th>{{__('Student') }}</th>
-                                <th>{{__('Id') }}</th>
-                                <th>{{__('Class') }}</th>
-                                <th>{{__('Fee Amount') }}</th>
-                                <th>{{__('Transport') }}</th>
-                                <th>{{__('Arrears') }}</th>
-                                <th>{{__('Total Amount') }}</th>
-                                <th>{{__('Paid Amount') }}</th>
-                                <th>{{__('Discount') }}</th>
-                                <th>{{__('Due') }}</th>
+                                <th>Rank</th>
+                                <th>Student</th>
+                                <th>Id</th>
+                                <th>Class</th>
+                                <th>Fee Amount</th>
+                                <th>Transport</th>
+                                <th>Arrears</th>
+                                <th>Total Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Discount</th>
+                                <th>Due</th>
                             </tr>
                             </thead>
                             @php

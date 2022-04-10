@@ -151,7 +151,7 @@
                 $("#tbody").html(e);
                 $("#fee_category_id").val('');
                 $("#amount").val('');
-                console.log(e);
+                console.log('d',e);
             });
         }
 

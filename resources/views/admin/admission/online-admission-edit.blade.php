@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{__('Online Admission Type Set') }}</h1>
+                    <h1>Online Admission Type Set</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('Admission') }}</a></li>
-                        <li class="breadcrumb-item active">{{__('Online Admission') }}</li>
+                        <li class="breadcrumb-item"><a href="#">Admission</a></li>
+                        <li class="breadcrumb-item active">Online Admission</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="dec-block">
-                                       <h4>{{__('Edit Form') }}</h4>
+                                       <h4>Edit Form</h4>
                                     </div>
                                 </div>
                             </div>
