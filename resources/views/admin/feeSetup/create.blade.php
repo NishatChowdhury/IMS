@@ -110,7 +110,7 @@
                                     <th>{{ __('Sl') }}</th>
                                     <th>{{ __('Category') }}</th>
                                     <th>{{ __('Amount') }}</th>
-                                    <th><button class="btn btn-danger btn-sm"
+                                    <th><button class="btn btn-danger btn-sm" type="button"
                                             onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
                                 </tr>
                             </thead>
@@ -151,7 +151,7 @@
                 $("#tbody").html(e);
                 $("#fee_category_id").val('');
                 $("#amount").val('');
-                console.log(e);
+                console.log('d',e);
             });
         }
 

@@ -24,7 +24,7 @@
         </ul>
         <ul class="list-inline mb-0">
             <li class="list-inline-item mr-0 p-md-3 p-2 border-right border-left border-white-0_1">
-                <a href="{{ url('student/login') }}">{{__('Login') }}</a>
+                <a href="{{ url('student/login') }}">Login</a>
             </li>
         </ul>
     </div> <!-- END END row-->

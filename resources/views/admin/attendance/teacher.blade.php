@@ -69,7 +69,7 @@
                                 <div class="col-md-2">
                                     <div class="dec-block">
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Total')</h5>
+                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Total')}}</h5>
                                             <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($staffs) }}</span></p>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                 <div class="col-md-2">
                                     <div class="dec-block">
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Present')</h5>
+                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Present') }}</h5>
                                             <p>
                                                     <span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">
 00

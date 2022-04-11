@@ -160,14 +160,14 @@ class OnlineApplyController extends Controller
             'ssc_roll' => 'required|numeric|exists:merit_lists'
         ]);
 
-        $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
+         $student = AppliedStudent::query()->where('ssc_roll',$request->get('ssc_roll'))->first();
 
-        $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
+         $group = MeritList::query()->where('ssc_roll',$request->get('ssc_roll'))->first()->group_id;
 
         $compulsory = DB::table('online_subjects')
             ->where('type',1)
             ->pluck('name','id');
-        $selective = DB::table('online_subjects')
+         $selective = DB::table('online_subjects')
             ->where('type','like','%2%')
             ->where('group_id',$group)
             ->pluck('name','id');

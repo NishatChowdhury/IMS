@@ -32,12 +32,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{__('Finance') }}</h1>
+                    <h1 class="m-0 text-dark">Finance</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('Home') }}</a></li>
-                        <li class="breadcrumb-item active">{{__('Location Assign') }}</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Location Assign</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -57,31 +57,31 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">{{__('Student ID') }}</label>
+                                    <label for="">Student ID</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Name') }}</label>
+                                    <label for="">Name</label>
                                     <div class="input-group">
                                         {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Class') }}</label>
+                                    <label for="">Class</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Section') }}</label>
+                                    <label for="">Section</label>
                                     <div class="input-group">
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">{{__('Group') }}</label>
+                                    <label for="">Group</label>
                                     <div class="input-group">
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
@@ -123,13 +123,13 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr class="text-center">
-                                <th>{{__('Rank') }}</th>
-                                <th>{{__('Student') }}</th>
-                                <th>{{__('Id') }}</th>
-                                <th>{{__('Class') }}</th>
-                                <th>{{__('Payable Amount') }}</th>
-                                <th>{{__('Paid Amount') }}</th>
-                                <th>{{__('Due') }}</th>
+                                <th>Rank</th>
+                                <th>Student</th>
+                                <th>Id</th>
+                                <th>Class</th>
+                                <th>Payable Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Due</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -157,14 +157,14 @@
                                             <table class="table table-striped table-bordered">
                                                 <thead class="thead-dark">
                                                     <tr style="text-align: center">
-                                                        <th>{{__('Date')}}</th>
-                                                        <th>{{__('Inv No.')}}</th>
-                                                        <th>{{__('Setup Amount')}}</th>
-                                                        <th>{{__('Arrears')}}</th>
-                                                        <th>{{__('Fine')}}</th>
-                                                        <th>{{__('Discount')}}</th>
-                                                        <th>{{__('Paid Amount')}}</th>
-                                                        <th>{{__('Due')}}</th>
+                                                        <th>Date</th>
+                                                        <th>Inv No.</th>
+                                                        <th>Setup Amount</th>
+                                                        <th>Arrears</th>
+                                                        <th>Fine</th>
+                                                        <th>Discount</th>
+                                                        <th>Paid Amount</th>
+                                                        <th>Due</th>
                                                     </tr>
                                                 </thead>
                                                 @php

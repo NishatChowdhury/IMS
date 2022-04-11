@@ -126,7 +126,7 @@
                                     </td>
                                     <td>
                                         {{ Form::open(['action'=>['Backend\SliderController@destroy',$slider->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
+{{--                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>--}}
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         {{ Form::close() }}
                                     </td>

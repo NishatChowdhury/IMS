@@ -13,10 +13,10 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">{{ __('Institute') }}</a>
+                            <a href="#">Institute</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> {{ __('Infrastructure') }}</a>
+                            <a href="#"> Infrastructure</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ ucfirst($content->name) }}
