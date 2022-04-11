@@ -13,7 +13,9 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                     <div class="col-md-12 mt-4">
-                        {!! $about->body !!}
+                        <h2>About Institute</h2>
+                        {!! Str::limit($about->body,1000) !!}
+
 {{--                        <h2>--}}
 {{--                            <small class="d-block text-white">Welcome to</small>--}}
 {{--                            <span class="text-white">Educati</span> School--}}
@@ -21,9 +23,9 @@
 {{--                        <p class="my-4 text-white">--}}
 {{--                            Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clartas est consectetur adipi sicing elitsed kdo eusmod tempor cididunt wuti labore.--}}
 {{--                        </p>--}}
-                        <a href="{{ action('Front\FrontController@page','history') }}" class="btn btn-outline-white-hover">
+                        <p data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo" class="btn btn-outline-white-hover">
                             Read More
-                        </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -60,3 +62,31 @@
         </div> <!-- END row-->
     </div> <!-- END container-->
 </section>
+{{--read more--}}
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>
+                                    <h2>About Institute</h2>
+                                </h2>
+                                <span aria-hidden="true">{!! $about->body !!}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+{{--read more--}}

@@ -85,10 +85,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-4 ">
-                                    <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/'.$message->image)}}" alt="">
+                                <div class="col-md-4">
+                                    <img style="margin-top: 10px"  height="200px"  width="160px" src="{{asset('uploads/message/'.$message->image)}}" alt="">
                                 </div>
-                                <div class="col-md-7 ml-4">
+                                <div class="col-md-8">
                                     <h2>
                                         <small class="text-primary d-block">
                                             Chairman
@@ -96,7 +96,8 @@
                                         Message
                                     </h2>
 
-                                    <p>{!! $message->body !!}</p>
+                                    <span aria-hidden="true">{!!  Str::limit($message->body, 1000) !!}</span>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" > More..</button>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +105,59 @@
                 </div>
             </div>
     </section>
+    {{--read more--}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if($message->alias == 'chairman')
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <h5>Principal Message</h5>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                @if($errors->any())
+                                    <ul class="text-danger">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/'.$message->image)}}" alt="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h2>
+                                            <small class="text-primary d-block">
+                                                Principal
+                                            </small>
+                                            Message
+                                        </h2>
+                                        <p>{{$message->title}}</p>
+                                        <span aria-hidden="true">{!! $message->body !!}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    {{--read more--}}
 
 @stop
 

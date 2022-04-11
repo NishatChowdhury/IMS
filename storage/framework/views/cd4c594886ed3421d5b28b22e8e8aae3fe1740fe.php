@@ -1,1 +1,0 @@
-<?php /**PATH /home/maynuddin/PhpstormProjects/wpschool/resources/views/admin/includes/right-aside.blade.php ENDPATH**/ ?>
