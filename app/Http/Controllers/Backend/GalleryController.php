@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Gallery;
+use App\Models\Backend\GalleryCorner;
 use App\Repository\GalleryRepositories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -25,20 +26,20 @@ class GalleryController extends Controller
     {
         $images = Gallery::all();
         $repository = $this->repositories;
-        return view('admin.gallery.image',compact('images','repository'));
+        return view('admin.gallery.image', compact('images', 'repository'));
     }
 
     public function store(Request $request)
     {
-        if($request->hasFile('image')){
-            foreach($request->file('image') as $img){
-                $name = time().'.'.$img->getClientOriginalExtension();
-                $img->move(storage_path('app/public/uploads/gallery/').$request->album_id.'/', $name);
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $img) {
+                $name = time() . '.' . $img->getClientOriginalExtension();
+                $img->move(storage_path('app/public/uploads/gallery/') . $request->album_id . '/', $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 Gallery::query()->create($data);
             }
-        }else{
+        } else {
             Gallery::query()->create($request->all());
         }
         return back();
@@ -47,7 +48,34 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         $image = Gallery::query()->findOrFail($id);
-        File::delete(storage_path('app/public/uploads/gallery/').$image->album_id.'/'.$image->image);
+        File::delete(storage_path('app/public/uploads/gallery/') . $image->album_id . '/' . $image->image);
+        $image->delete();
+        return back();
+    }
+
+    public function galleryCornerCreate()
+    {
+        $image = GalleryCorner::all();
+        return view('admin.galleryCorner.galleryCorner',compact('image'));
+    }
+
+    public function galleryCornerStore(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $img) {
+                $name = rand(1000,100000).'-'.time() . '.' . $img->getClientOriginalExtension();
+                $img->move(storage_path('app/public/uploads/gallery/'), $name);
+                $data = $request->except('image');
+                $data['image'] = $name;
+                GalleryCorner::query()->create($data);
+            }
+        }
+        return redirect()->back();
+    }
+    public function GalleryImageDestroy($id)
+    {
+        $image = GalleryCorner::query()->findOrFail($id);
+        File::delete(storage_path('app/public/uploads/gallery/') . $image->image);
         $image->delete();
         return back();
     }

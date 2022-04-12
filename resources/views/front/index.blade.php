@@ -27,6 +27,9 @@
 
     @include('front.progress-bar')
 
+    @include('front.galleryCorner')
+
+
     @include('front.news')
 
     @include('front.result')

@@ -38,6 +38,7 @@ use App\Models\Backend\AppliedStudent;
 use App\Models\Backend\NoticeCategory;
 use App\Models\Backend\GalleryCategory;
 use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\GalleryCorner;
 
 class FrontController extends Controller
 {
@@ -63,6 +64,7 @@ class FrontController extends Controller
             ->where('active',1)
             ->get();
         $content = Page::all();
+        $galleryCorner =GalleryCorner::all();
         $principal = InstituteMessage::query()->where('alias','principal')->first();
         $chairman = InstituteMessage::query()->where('alias','chairman')->first();
         $about= InstituteMessage::query()->where('alias','about')->first();
@@ -79,7 +81,7 @@ class FrontController extends Controller
         $features = Feature::query()->where('active',1)->take(6)->get();
 
         //return view('front.index-navy');
-        return view('front.index',compact('about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+        return view('front.index',compact('galleryCorner','about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
     }
 
 

@@ -393,6 +393,10 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
     Route::get('gallery/albums','Backend\AlbumController@index');
     Route::post('gallery/album/store','Backend\AlbumController@store');
     Route::delete('gallery/album/delete/{id}','Backend\AlbumController@destroy');
+    Route::get('GalleryCornerCreate',[\App\Http\Controllers\Backend\GalleryController::class,'galleryCornerCreate'])->name('galleryCorner.create');
+    Route::post('GalleryCornerStore',[\App\Http\Controllers\Backend\GalleryController::class,'galleryCornerStore'])->name('GalleryCornerStore');
+    Route::get('GalleryImageDestroy/{id}',[\App\Http\Controllers\Backend\GalleryController::class,'GalleryImageDestroy'])->name('GalleryImage.destroy');
+
 // Gallery Routes ends
 
     Route::get('database-backup', [HomeController::class, 'database']);
@@ -618,7 +622,7 @@ return view('form-pdf');
     Route::get('module-create',[RolePermissionController::class, 'moduleCreate'])->name('module.create');
     Route::post('module-store',[RolePermissionController::class, 'moduleStore'])->name('module.store');
 
-//principal and chairman message route
+//CMS route
     Route::get('chairmanMessage',[\App\Http\Controllers\Backend\MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
     Route::get('principalMessage',[\App\Http\Controllers\Backend\MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
     Route::get('aboutInstitute',[\App\Http\Controllers\Backend\MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');

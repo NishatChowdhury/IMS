@@ -675,9 +675,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('aboutInstitute.index') }}" class="nav-link {{ isActive('siteinfo') }}">
+                                <a href="{{ route('aboutInstitute.index') }}" class="nav-link {{ isActive('aboutInstitute') }}">
                                     <i class="far nav-icon"></i>
                                     <p>About Institute</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
+                                    <i class="far nav-icon"></i>
+                                    <p>Gallery Corner</p>
                                 </a>
                             </li>
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
