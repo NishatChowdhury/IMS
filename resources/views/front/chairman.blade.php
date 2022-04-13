@@ -3,13 +3,15 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h2>
-                    {{ $chairman->title }}
+                    {{ $chairman->title ?? 'Chairman Message' }}
                 </h2>
-                {!! Str::limit($chairman->body,800) !!}
+                @if($chairman)
+                    {!! Str::limit($chairman->body,800) !!}
+                @endif
                 <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">...more</a>
             </div>
             <div class="col-md-6 mt-3">
-                <img src="{{ asset('uploads/message') }}/{{ $chairman->image }}" alt="">
+                <img src="{{ asset('uploads/message') }}/{{ $chairman->image ?? 'untitled.png' }}" alt="">
             </div>
         </div>
     </div>
@@ -29,13 +31,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/'.$chairman->image)}}" alt="">
+                                <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/') }}/{{ $chairman->image ?? '' }}" alt="">
                             </div>
                             <div class="col-md-8">
                                 <h2>
-                                    {{$chairman->title}}
+                                    {{ $chairman->title ?? 'Chairman Message'}}
                                 </h2>
-                                <span aria-hidden="true">{!! $chairman->body !!}</span>
+                                @if($chairman)
+                                    <span aria-hidden="true">{!! $chairman->body !!}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

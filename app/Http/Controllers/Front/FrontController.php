@@ -41,7 +41,7 @@ use App\Models\Backend\OnlineAdmission;
 
 class FrontController extends Controller
 {
-    private $repository;
+    protected $repository;
 
     public function __construct(FrontRepository $repository)
     {
