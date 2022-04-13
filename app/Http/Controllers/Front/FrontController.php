@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Backend\InstituteMessage;
 use Carbon\Carbon;
 use App\Models\Backend\Bank;
 use App\Models\Backend\City;
@@ -40,7 +41,7 @@ use App\Models\Backend\OnlineAdmission;
 
 class FrontController extends Controller
 {
-    private $repository;
+    protected $repository;
 
     public function __construct(FrontRepository $repository)
     {
@@ -62,6 +63,9 @@ class FrontController extends Controller
             ->where('active',1)
             ->get();
         $content = Page::all();
+        $principal = InstituteMessage::query()->where('alias','principal')->first();
+        $chairman = InstituteMessage::query()->where('alias','chairman')->first();
+        $about= InstituteMessage::query()->where('alias','about')->first();
         $teachers = Staff::all();
         $links = ImportantLink::all();
         $notices = Notice::all()->sortByDesc('start')->take(5);
@@ -75,7 +79,7 @@ class FrontController extends Controller
         $features = Feature::query()->where('active',1)->take(6)->get();
 
         //return view('front.index-navy');
-        return view('front.index',compact('sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+        return view('front.index',compact('about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
     }
 
 

@@ -20,6 +20,7 @@ use App\Repository\FrontRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class OnlineApplyController extends Controller
 {
@@ -43,6 +44,7 @@ class OnlineApplyController extends Controller
         $data['country'] = Country::all()->pluck('name', 'id');
         $data['religion'] = Religion::all()->pluck('name','id');
         $onlineAdmission = OnlineAdmission::find($id);
+
         return view('front.pages.school-admission-form',compact('data','onlineAdmission'));
         // return view('front.pages.applySchool',compact('content'));
     }
@@ -99,20 +101,21 @@ class OnlineApplyController extends Controller
 
         $req->studentId = 76576;
         $data = $req->all();
-      
+        //dd($data);
         if ($req->hasFile('pic')){
-
             $image = time().'.'.$req->file('pic')->getClientOriginalExtension();
             $req->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $req->except('pic');
             $data['image'] = $image;
             try{
+                $data['password']= Str::random(8);
                 $studentStore = OnlineApply::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
             }
         }else{
             try{
+                $data['password']= Str::random(8);
                 $studentStore = OnlineApply::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
@@ -136,7 +139,7 @@ class OnlineApplyController extends Controller
             $smsData = [];
             $smsData['mobile'] = $req->mobile;
             $smsData['id'] = $studentStore->id;
-            $smsData['textbody'] = "Application successfully done! You Application ID-".$studentStore->id;
+            $smsData['textbody'] = "Application successfully done! Check Your SMS for your password & your Application ID-".$studentStore->id;
             $this->sms($smsData);
         }
 

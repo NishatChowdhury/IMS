@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -617,7 +618,11 @@ return view('form-pdf');
     Route::get('module-create',[RolePermissionController::class, 'moduleCreate'])->name('module.create');
     Route::post('module-store',[RolePermissionController::class, 'moduleStore'])->name('module.store');
 
-
+//principal and chairman message route
+    Route::get('chairmanMessage',[\App\Http\Controllers\Backend\MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
+    Route::get('principalMessage',[\App\Http\Controllers\Backend\MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
+    Route::get('aboutInstitute',[\App\Http\Controllers\Backend\MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
+    Route::post('chairmanMessageUpdate',[\App\Http\Controllers\Backend\MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
 

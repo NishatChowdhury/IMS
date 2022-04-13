@@ -1,39 +1,49 @@
+@if($principal)
 <section class="pt-5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
-                {{--<img src="assets/img/avatar/1_1.png" alt="">--}}
-                <img src="{{ asset('assets/img/pages/') }}/{{ $content->where('name','principal message')->first()->image }}" alt="">
+                <img src="{{ asset('uploads/message') }}/{{ $principal->image }}" alt="">
             </div>
             <div class="col-md-6 mt-3">
-{{--                <h2>--}}
-{{--                    <small class="text-warning d-block">--}}
-{{--                        Principal Message--}}
-{{--                    </small>--}}
-{{--                    Principal Message--}}
-{{--                </h2>--}}
-                {!! substr($content->where('name','principal message')->first()->content,0,2000) !!}
-                <a href="{{ action('Front\FrontController@page','message-from-principal') }}">...more</a>
-                {{--<h2>--}}
-                {{--<small class="text-primary d-block">--}}
-                {{--Hello, and--}}
-                {{--</small>--}}
-                {{--welcome to Harvard.--}}
-                {{--</h2>--}}
-                {{--<p class="lead">--}}
-                {{--People make a university great, so whether you are a prospective student, current student, professor.--}}
-                {{--</p>--}}
-                {{--<p>--}}
-                {{--Investig ationes demons trave wanrunt lectores legere liushgfy quod legunt saeph claritas nvestig ationes demons trave rugngt investiga legere liushgfy quod legunt saeph claritas nvestig ationes.--}}
-                {{--</p>--}}
-                {{--<h4 class="mt-2">--}}
-                {{--Drew Faust--}}
-                {{--</h4>--}}
-                {{--<p>--}}
-                {{--President of Chipatali Madrasha <br> Lincoln Professor of History--}}
-                {{--</p>--}}
-                {{--<img src="assets/img/sign.png" alt="">--}}
+                <h2>
+                    {{ $principal->title }}
+                </h2>
+                {!! Str::limit($principal->body,800) !!}
+                <a style="color: blue" data-toggle="modal" data-target="#principalModal" data-whatever="@mdo">...more</a>
             </div>
         </div>
     </div>
 </section>
+{{--read more--}}
+<div class="modal fade" id="principalModal" tabindex="-1" role="dialog" aria-labelledby="principalModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/'.$principal->image)}}" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <h2>
+                                        {{$principal->title}}
+                                    </h2>
+                                    <span aria-hidden="true">{!! $principal->body !!}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+{{--read more--}}
+@endif

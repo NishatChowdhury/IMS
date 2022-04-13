@@ -1,31 +1,16 @@
-@php
-  $intro = $content->where('name','introduction')->first();
-@endphp
 <section class="padding-y-100 bg-inner">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="row align-items-center">
-{{--                    <div class="col-md-6 my-5">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img class="rounded w-100" src="{{ asset('assets/img/pages') }}/{{ $intro->image }}" alt="">--}}
-{{--                            <a href="https://www.youtube.com/watch?v=7e90gBu4pas" data-fancybox class="iconbox iconbox-lg bg-white position-absolute absolute-center">--}}
-{{--                                <i class="ti-control-play text-primary"></i>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <div class="col-md-12 mt-4">
-                        {!! $intro->content !!}
-{{--                        <h2>--}}
-{{--                            <small class="d-block text-white">Welcome to</small>--}}
-{{--                            <span class="text-white">Educati</span> School--}}
-{{--                        </h2>--}}
-{{--                        <p class="my-4 text-white">--}}
-{{--                            Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clartas est consectetur adipi sicing elitsed kdo eusmod tempor cididunt wuti labore.--}}
-{{--                        </p>--}}
-                        <a href="{{ action('Front\FrontController@page','history') }}" class="btn btn-outline-white-hover">
-                            Read More
-                        </a>
+                        <h2>{{ __('About Institute') }}</h2>
+                        @if($about)
+                            {!! Str::limit($about->body,1000) !!}
+                            <p data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo" class="btn btn-outline-white-hover">
+                                {{ __('Read More') }}
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -62,3 +47,30 @@
         </div> <!-- END row-->
     </div> <!-- END container-->
 </section>
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>{{ __('About Institute') }}</h2>
+                                @if($about)
+                                    <span aria-hidden="true">{!! $about->body !!}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
