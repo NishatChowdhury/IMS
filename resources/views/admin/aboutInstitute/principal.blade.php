@@ -42,7 +42,7 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <form action="{{route('instituteMessageUpadte')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('instituteMessageUpdate')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" value="{{$message->alias}}" name="alias">
                                 <div class="mb-3">
