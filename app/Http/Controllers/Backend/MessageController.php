@@ -50,32 +50,5 @@ class MessageController extends Controller
         return redirect()->back()->with('success','Chairman Message Saved Successfully!');
     }
 
-//    public function  updatePrincipalMessage(Request $request){
-//        $this->validate($request,[
-//            'title' => 'required|max:255',
-//            'body' => 'required',
-//        ]);
-//        $msg = PrincipalMessage::query()->first();
-//        $msg['title'] = $request->title;
-//        $msg['body'] = $request->body;
-//        if($request->file('image')){
-//            $file= $request->file('image');
-//            $filename= date('YmdHi').'.'.$file->getClientOriginalExtension();
-//            $file-> move(public_path('uploads/message'), $filename);
-//            $msg['image']= $filename;
-//        }
-//        $msg->update();
-//        Session::flash('success','Principal Message Saved Successfully!');
-//        return redirect('admin/principalMessage');
-//    }
 
-//    public function  updateAboutInstitute(Request $request){
-//        $this->validate($request,[
-//            'body' => 'required',
-//        ]);
-//        $msg = aboutInstitute::query()->first();
-//        $msg->update($request->all());
-//        Session::flash('success','About Saved Successfully!');
-//        return redirect('admin/aboutInstitute');
-//    }
 }
