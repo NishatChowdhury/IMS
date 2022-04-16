@@ -626,7 +626,7 @@ return view('form-pdf');
     Route::get('chairmanMessage',[\App\Http\Controllers\Backend\MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
     Route::get('principalMessage',[\App\Http\Controllers\Backend\MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
     Route::get('aboutInstitute',[\App\Http\Controllers\Backend\MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
-    Route::post('chairmanMessageUpdate',[\App\Http\Controllers\Backend\MessageController::class,'instituteMessageUpadte'])->name('instituteMessageUpadte');
+    Route::post('chairmanMessageUpdate',[\App\Http\Controllers\Backend\MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
 

@@ -1,3 +1,4 @@
+@if($principal)
 <section class="pt-5">
     <div class="container">
         <div class="row align-items-center">
@@ -45,3 +46,4 @@
     </div>
 </div>
 {{--read more--}}
+@endif

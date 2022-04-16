@@ -42,7 +42,7 @@ use App\Models\Backend\GalleryCorner;
 
 class FrontController extends Controller
 {
-    private $repository;
+    protected $repository;
 
     public function __construct(FrontRepository $repository)
     {

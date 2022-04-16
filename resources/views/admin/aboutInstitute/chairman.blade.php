@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Chairman Message</h1>
+                    <h1>{{ __('Chairman Message') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Chairman Message</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Chairman Message') }}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>Chairman Message</h5>
+                                <h5>{{ __('Chairman Message') }}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -42,16 +42,16 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <form action="{{route('instituteMessageUpadte')}}" enctype="multipart/form-data" method="POST">
+                            <form action="{{route('instituteMessageUpdate')}}" enctype="multipart/form-data" method="POST">
                                 @csrf
-                                <input type="hidden" value="{{$message->alias}}" name="alias">
+                                <input type="hidden" value="{{$message->alias ?? ''}}" name="alias">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Title" value="{{$message->title}}">
+                                    <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Title" value="{{$message->title ?? ''}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Chairman Message</label>
-                                    <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$message->body}}</textarea>
+                                    <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$message->body ?? '' }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Chairman Image</label>
@@ -70,7 +70,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <p>{{$message->title}}</p>
+                                <p>{{$message->title ?? ''}}</p>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -86,7 +86,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img style="margin-top: 10px"  height="200px"  width="160px" src="{{asset('uploads/message/'.$message->image)}}" alt="">
+                                    <img style="margin-top: 10px"  height="200px"  width="160px" src="{{asset('uploads/message/')}}/{{ $message->image ?? '' }}" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <h2>
@@ -96,7 +96,7 @@
                                         Message
                                     </h2>
 
-                                    <span aria-hidden="true">{!!  Str::limit($message->body, 1000) !!}</span>
+                                    <span aria-hidden="true">{!!  Str::limit($message->body ?? '', 1000) !!}</span>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" > More..</button>
                                 </div>
                             </div>
@@ -104,6 +104,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     {{--read more--}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,11 +116,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    @if($message->alias == 'chairman')
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <h5>Principal Message</h5>
+                                    <h5>{{ __('Principal Message') }}</h5>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -135,7 +135,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/'.$message->image)}}" alt="">
+                                        <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/')}}/{{ $message->image ?? '' }}" alt="">
                                     </div>
                                     <div class="col-md-8">
                                         <h2>
@@ -144,13 +144,12 @@
                                             </small>
                                             Message
                                         </h2>
-                                        <p>{{$message->title}}</p>
-                                        <span aria-hidden="true">{!! $message->body !!}</span>
+                                        <p>{{$message->title ?? ''}}</p>
+                                        <span aria-hidden="true">{!! $message->body ?? '' !!}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endif
 
                 </div>
                 <div class="modal-footer"></div>
