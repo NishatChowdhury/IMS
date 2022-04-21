@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models\Backend;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Backend\FeeSetupStudent;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Student extends Model
 {
@@ -95,6 +96,11 @@ class Student extends Model
     public function religion()
     {
         return $this->belongsTo(Religion::class);
+    }
+
+    public function bloodGroup(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(BloodGroup::class);
     }
 
     public function city()

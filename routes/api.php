@@ -22,9 +22,9 @@ use Illuminate\Validation\ValidationException;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-
-Route::middleware('auth:sanctum')
-    ->get('/students',[StudentController::class,'index']);
+//
+//Route::middleware('auth:sanctum')
+//    ->get('/students',[StudentController::class,'index']);
 
 
 Route::get('info-bar','FrontController@infoBar');
@@ -40,20 +40,22 @@ Route::post('about','AndroidController@about');
 Route::post('president','AndroidController@president');
 Route::post('principal','AndroidController@principalMessage');
 Route::post('profile','AndroidController@profile');
-Route::post('teachers','AndroidController@teachers');
-Route::post('teacher-profile/{id}','AndroidController@teacherProfile');
 Route::post('syllabus','AndroidController@syllabus');
-Route::post('notices','AndroidController@notices');
-Route::post('notice/{id}','AndroidController@notice');
 Route::post('class-routines','AndroidController@classRoutine');
 
+
+Route::get('teachers','AndroidController@teachers');
+Route::get('teacher-details','AndroidController@teacherDetails');
+Route::get('notices','AndroidController@noticeList');
+Route::get('notice-details','AndroidController@noticeDetails');
+Route::get('news','AndroidController@newsList');
+Route::post('news-details','AndroidController@newsDetails');
 Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
 Route::post('otp-match', [LoginController::class, 'matchOtp']);
-
-Route::middleware('auth:sanctum')->get('/v-1/students',[StudentController::class,'index']);
-
 Route::post('token/create', [LoginController::class, 'token']);
+Route::get('events','AndroidController@events');
+Route::get('event-details','AndroidController@eventDetails');
 
 
 
