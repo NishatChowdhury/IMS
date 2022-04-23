@@ -24,6 +24,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/print.css?ver:1.1') }}">
+    <style>
+        h1 i {
+    font-size: 53px;
+    font-weight: 800;
+    color: #5a8f6f;
+}
+    </style>
 </head>
 <body>
     <div class="text-center">
@@ -35,7 +42,7 @@
                 <h1>
                     <i>{{ siteConfig('name') }}</i>
                 </h1>
-                <h4>{{ __('Admission Form') }}</h4>
+                <h5>{{ __('Admission Form') }}</h5>
             </div>
             <hr>
 

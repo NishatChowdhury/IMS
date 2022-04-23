@@ -108,14 +108,14 @@ class OnlineApplyController extends Controller
             $data = $req->except('pic');
             $data['image'] = $image;
             try{
-                $data['password']= Str::random(8);
+                $data['password']= uniqid();
                 $studentStore = OnlineApply::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
             }
         }else{
             try{
-                $data['password']= Str::random(8);
+                $data['password']= uniqid();
                 $studentStore = OnlineApply::query()->create($data);
             }catch (\Exception $e){
                 dd($e);
@@ -139,7 +139,7 @@ class OnlineApplyController extends Controller
             $smsData = [];
             $smsData['mobile'] = $req->mobile;
             $smsData['id'] = $studentStore->id;
-            $smsData['textbody'] = "Application successfully done! Check Your SMS for your password & your Application ID-".$studentStore->id;
+            $smsData['textbody'] = "Application successfully done! Your Application ID-".$studentStore->id. ' & Your Password is '.$studentStore->password;
             $this->sms($smsData);
         }
 

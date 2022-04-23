@@ -29,19 +29,6 @@
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
-                                        </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>100</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
                                     <div style="float: left;">
                                         <a href="{{ action('Backend\ExamScheduleController@create',$examId) }}" role="button" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</a>
                                     </div>
@@ -57,57 +44,46 @@
                         </div>
 
                         <!-- /.card-header -->
+                        @foreach($schedules as $key => $schedule)
                         <div class="card-body">
+                            <div class="card-header">
+                            @php
+                            $academic = \App\Models\Backend\AcademicClass::find($key);
+                            @endphp
+                                <h4>{{$academic->classes->name ?? '' }} - {{$academic->group->name ?? '' }}</h4>
+                            </div>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Class</th>
+                                        <th>SL.</th>
                                         <th>Subject</th>
-                                        <th>Date</th>
+                                        <th>Dates</th>
                                         <th>Start</th>
                                         <th>End</th>
                                         <th>Mark</th>
-                                        <th>Type</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($schedules as $schedule)
-                                    {{--{{dd($schedule)}}--}}
                                     <tr>
-{{--                                        <td>{{ academicClass(1) }}</td>--}}
-                                        <td>{{ __('Class Name') }}</td>
-                                        <td>{{ $schedule->subject->name ?? '' }}</td>
-                                        <td>{{ $schedule->date }}</td>
-                                        <td>{{ $schedule->start }}</td>
-                                        <td>{{ $schedule->end }}</td>
-                                        <td>{{ $schedule->full_mark }}</td>
-                                        <td>{{ $schedule->type }}</td>
-                                        <td>{{ $schedule->status }}</td>
+                                @foreach($schedule as $key => $sc)
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $sc->subject->name ?? '' }}</td>
+                                        <td>{{ $sc->date }}</td>
+                                        <td>{{ $sc->start }}</td>
+                                        <td>{{ $sc->end }}</td>
+                                        <td>{{ $sc->objective_full + $sc->written_full + $sc->practical_full}}</td>
                                         <td>
-                                            {{--<label for="file">--}}
-                                            <a href="{{ action('Backend\MarkController@download',$schedule->id) }}" class="btn btn-success btn-sm"><i class="fas fa-file-download"></i></a>
-{{--                                            <label for="file">--}}
-                                                <a href="{{ action('Backend\MarkController@upload',$schedule->id) }}" class="btn btn-success btn-sm" role="button" style="color:white"><i class="fas fa-file-upload"></i></a>
-{{--                                            </label>--}}
-                                            {{--</label>--}}
-                                            <a href="{{ action('Backend\MarkController@index',$schedule->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
-{{--                                            <input type="file" name="file" id="file" style="display: none;">--}}
+                                            <a href="{{ action('Backend\MarkController@download',$sc->id) }}" class="btn btn-success btn-sm"><i class="fas fa-file-download"></i></a>
+                                            <a href="{{ action('Backend\MarkController@upload',$sc->id) }}" class="btn btn-success btn-sm" role="button" style="color:white"><i class="fas fa-file-upload"></i></a>
+                                            <a href="{{ action('Backend\MarkController@index',$sc->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-
-                                </div>
-                            </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

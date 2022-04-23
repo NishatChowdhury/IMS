@@ -52,7 +52,7 @@
                                     <div class="col">
                                         <label for="">Year</label>
                                         <div class="input-group">
-                                            {{ Form::selectRange('year',2020,2021,null,['class'=>'form-control','placeholder'=>'Session','required']) }}
+                                            {{ Form::selectRange('year',2020,2025,null,['class'=>'form-control','placeholder'=>'Session','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
@@ -126,10 +126,10 @@
                                     </thead>
                                     <tbody id="atn_result_show">
                                     @foreach($students as $student)
-                                        {{--            {{dd($student)}}--}}
+{{--                                                    {{dd($student)}}--}}
                                         <tr>
                                             <th>{{ $student->rank }}</th>
-                                            <th>{{ $student->name }}</th>
+                                            <th>{{ $student->student->name }}</th>
                                             @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
                                                 @if($i < 10)
                                                     @php $i = '0'.$i @endphp
@@ -138,12 +138,12 @@
 {{--                                                    @php $month = '0'.$month @endphp--}}
 {{--                                                @endif--}}
                                                 <td>
-                                                    @php
-                                                        $attn = \App\Models\Backend\RawAttendance::query()
+                                                    <?php
+                                                        $attn = \App\Models\Backend\Attendance::query()
                                                                     ->where(function($query)use($student){
-                                                                        $query->where('registration_id',$student->studentId)->orWhere('registration_id',$student->card_id);
+                                                                        $query->where('registration_id',$student->student->studentId)->orWhere('registration_id',$student->card_id);
                                                                     })
-                                                                    ->where('access_date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
+                                                                    ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->get();
 
                                                     $isWeeklyOff = \App\Models\Backend\weeklyOff::query()->where('show_option','like','%'.Carbon\Carbon::make($year.'-'.$month.'-'.$i)->dayOfWeekIso.'%')->exists();
@@ -154,24 +154,31 @@
                                                     $shiftOutTime = \App\Models\Backend\Shift::query()->first()->end;
                                                     $grace = \App\Models\Backend\Shift::query()->first()->grace;
 
-                                                    $shiftInTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftInTime)->addMinutes($grace);
-                                                    $shiftOutTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftOutTime);
+
+//                                                    $shiftInTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftInTime)->addMinutes($grace);
+//                                                    $shiftOutTime = Carbon\Carbon::make($year.'-'.$month.'-'.$i.' '.$shiftOutTime);
                                                     if($attn->count() > 0){
                                                         $enter = $attn->first()->access_date;
-                                                        $exit = $attn->last()->access_date;
+                                                        $exit = $attn->last()->date;
 
                                                        $isLate = $enter > $shiftInTime;
                                                        $isEarly = $exit < $shiftOutTime;
                                                     }
 
-                                                    @endphp
+                                                    ?>
+
+
                                                     @if($attn->count() > 0)
                                                         @if($isLate)
                                                             <span style="color:white; background: deepskyblue" class="badge">D</span>
                                                         @elseif($isEarly)
                                                             <span style="color:white; background: Orange" class="badge">E</span>
                                                         @else
-                                                            <span style="color:white; background: green" class="badge">P</span>
+                                                            @if($exit)
+                                                                <span style="color:white; background: green" class="badge">P</span>
+                                                            @else
+                                                                <span style="color:white;" class="badge badge-dark">-</span>
+                                                            @endif
                                                         @endif
                                                     @else
                                                         @if($isWeeklyOff)
@@ -181,7 +188,15 @@
                                                         @elseif($inLeave)
                                                             <span style="color:white; background: #878484" class="badge">L</span>
                                                         @else
+                                                            <?php
+                                                                $dare = Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i;
+                                                                $currentDate = Carbon\Carbon::now()->format('Y-m-d');
+                                                                    ?>
+                                                            @if($currentDate >= $dare)
                                                             <span style="color:white; background: red" class="badge">A</span>
+                                                                @else
+                                                            <span style="color:white;" class="badge badge-primary">-</span>
+                                                                @endif
                                                         @endif
                                                     @endif
                                                 </td>

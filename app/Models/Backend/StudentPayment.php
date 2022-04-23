@@ -2,9 +2,8 @@
 
 namespace App\Models\Backend;
 
-use App\FeeSetup;
-use App\StudentAcademic;
-use App\PaymentMethod;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\PaymentMethod;
 
 use Illuminate\Database\Eloquent\Model;
 

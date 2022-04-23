@@ -15,6 +15,7 @@ use App\Models\Backend\Group;
 use App\Models\Backend\Guardian;
 use App\Models\Backend\Mother;
 use App\Models\Backend\OnlineSubject;
+use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Section;
 use App\Models\Backend\Session;
@@ -454,8 +455,13 @@ class StudentController extends Controller
              $academicsubjects = AssignSubject::where('academic_class_id', $request->academic_class_id)->get();
             $s = $academic->newQuery();
             $s->where('academic_class_id',$request->get('academic_class_id'));
+//            $s->whereHas('studentSubject', function($query){
+//               return $query->whereHas('subject', function($q){
+//                   return $q->where('type', 1);
+//               });
+//            });
             $s->with('studentSubject');
-            $students = $s->get();
+             $students = $s->get();
         }else{
             $students = NULL;
             $className = NULL;
@@ -791,6 +797,7 @@ class StudentController extends Controller
 
     public function studentProfile($studentId)
     {
+
         $student = Student::query()->findOrFail($studentId);
         $data = [];
         $data['father'] = Father::query()->where('student_id', $studentId)->first();
@@ -803,11 +810,15 @@ class StudentController extends Controller
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
         $payments = StudentPayment::query()
-//                                    ->whereHas('sessions', function($query){
-//                                        $query->where('active', '=', 1);
-//                                    })
+                                    ->where('student_academic_id',$studentAcademic->id)
+                                    ->exists();
+        if($payments){
+            $payments = StudentPayment::query()
                                     ->where('student_id',$studentId)
-                                    ->get();
+                                    ->exists();
+        }else{
+            $payments = [];
+        }
 //            return $student;
 
         return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));

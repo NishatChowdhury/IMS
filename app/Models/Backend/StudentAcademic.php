@@ -6,6 +6,7 @@ use App\Models\Backend\FeeSetup;
 use App\Models\Backend\StudentPayment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StudentAcademic extends Model
 {
@@ -20,7 +21,7 @@ class StudentAcademic extends Model
     }
     public function classes()
     {
-        return $this->belongsTo(Classes::class,'class_id');
+        return $this->belongsTo(Classes::class,'class_id','id');
     }
     public function section()
     {
@@ -44,6 +45,10 @@ class StudentAcademic extends Model
     public function student(): BelongsTo
     {
         return$this->belongsTo(Student::class,'student_id');
+    }
+    public function feeSetup(): BelongsTo
+    {
+        return$this->belongsTo(FeeSetup::class,'fee_setup_id','id');
     }
 
     public function studentSubject(){

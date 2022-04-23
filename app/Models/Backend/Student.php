@@ -364,4 +364,8 @@ public function payments(){
     return $this->hasMany(StudentPayment::class);
 }
 
+public function studentSubject(){
+        return $this->belongsTo(StudentSubject::class);
+}
+
 }
