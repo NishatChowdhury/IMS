@@ -29,13 +29,13 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <div class="card-header">
-                            <h1>{{ $schedule->academicClass->academicClasses->name }}&nbsp;{{ $schedule->academicClass->section->name ?? '' }}{{ $schedule->academicClass->group->name ?? '' }}</h1>
+                            <h1>{{ $schedule->academicClassName->classes->name }}&nbsp;{{ $schedule->academicClassName->section->name ?? '' }}{{ $schedule->academicClassName->group->name ?? '' }}</h1>
                         </div>
                         <div class="card-body">
-                            {{ Form::open(['action'=>'MarkController@up','method'=>'post','files'=>true]) }}
+                            {{ Form::open(['action'=>'Backend\MarkController@up','method'=>'post','files'=>true]) }}
                             {{ Form::hidden('schedule',$schedule->id) }}
                             <input type="file" name="file">
-                            <button type="submit">upload</button>
+                            <button type="submit" class="btn btn-primary btn-sm">upload</button>
                             {{ Form::close() }}
                         </div>
                     </div>

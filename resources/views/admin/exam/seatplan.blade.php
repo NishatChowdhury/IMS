@@ -130,8 +130,6 @@
                                                 <a href="{{url('admin/exam/pdf-seat-plan',$seat->id)}}" class="btn btn-success btn-sm" title="print Set Plan"><i class="fa fa-address-card"></i></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Set Plan"><i class="fa fa-trash"></i></button>
                                                 {!! Form::close() !!}
-
-
                                             </td>
                                         </tr>
                                     @endforeach

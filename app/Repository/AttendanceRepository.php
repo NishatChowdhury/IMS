@@ -16,19 +16,4 @@ class AttendanceRepository
     {
         return AcademicClass::query()->whereIn('session_id',activeYear())->get();
     }
-
-//    public function classes()
-//    {
-//        return AcademicClass::all()->pluck('name','id');
-//    }
-//
-//    public function sections()
-//    {
-//        return Section::all()->pluck('name','id');
-//    }
-//
-//    public function groups()
-//    {
-//        return Group::all()->pluck('name','id');
-//    }
 }

@@ -51,10 +51,10 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    {{ Form::open(['action'=>'MarkController@store','method'=>'post']) }}
+                    {{ Form::open(['action'=>'Backend\MarkController@store','method'=>'post']) }}
                     {{--                    {{ Form::hidden('session_id',$schedule->session_id) }}--}}
                     {{--                    {{ Form::hidden('class_id',$schedule->class_id) }}--}}
-                    {{ Form::hidden('academic_class_id',$schedule->academic_class_id) }}
+                    {{ Form::hidden('academic_class_id',$schedule->class_id) }}
                     {{ Form::hidden('exam_id',$schedule->exam_id) }}
                     {{ Form::hidden('subject_id',$schedule->subject_id) }}
                     <div class="card-body">
@@ -84,22 +84,15 @@
                                         {{ Form::hidden('student_id[]',$table == 'students' ? $student->id : $student->student_id) }}
                                         {{ $student->student->studentId ?? $student->studentId }}
                                     </td>
-                                    {{--<td>--}}
-                                    {{--{{ $student->student->academicClass->name ?? $student->academicClass->name}}--}}
-                                    {{--{{ $student->section ? $student->section->name : ''}}--}}
-                                    {{--{{ $student->group ? $student->group->name : ''}}--}}
-                                    {{--</td>--}}
-                                    {{--<td>{{ $schedule->subject->name }}</td>--}}
-                                    {{--<td>{{ $schedule->exam->name ?? '' }}</td>--}}
                                     <td>{{ $student->student->rank ?? $student->rank }}</td>
                                     <td>{{ $student->student->name ?? $student->name }}</td>
                                     <td>100</td>
                                     <td>
-                                        {{ Form::text('objective[]',$student->objective ?? null,['class'=>'form-control']) }}
+                                        {{ Form::number('objective[]',$student->objective ?? null,['class'=>'form-control']) }}
                                     </td>
-                                    <td>{{ Form::text('written[]',$student->written ?? null,['class'=>'form-control']) }}</td>
-                                    <td>{{ Form::text('practical[]',$student->practical ?? null,['class'=>'form-control']) }}</td>
-                                    <td>{{ Form::text('viva[]',$student->viva ?? null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::number('written[]',$student->written ?? null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::number('practical[]',$student->practical ?? null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::number('viva[]',$student->viva ?? null,['class'=>'form-control']) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

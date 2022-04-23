@@ -172,55 +172,28 @@
                                     <th>Rank</th>
                                     <th>Student</th>
                                     <th>Card</th>
-{{--                                    <th>Date </th>--}}
-{{--                                    <th>Class</th>--}}
-                                    {{--<th>Subject</th>--}}
-                                    {{--<th>Teacher</th>--}}
                                     <th>Entry</th>
                                     <th>Exit</th>
                                     <th>Status</th>
-                                    <th>Is Notified</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($attendances as $attn)
                                     <tr>
                                         <td>
-                                            {{ $attn->rank }}
-                                            {{--@if($attn->student)--}}
-                                            {{--{{ $attn->student->rank }}--}}
-                                            {{--@endif--}}
+                                            {{ $attn->rank ?? 'N/A' }}
                                         </td>
                                         <td>
                                         {{ $attn->student }}
-                                        {{--@if($attn->student)--}}
-                                        {{--{{ $attn->student->name }}--}}
-                                        {{--@endif--}}
                                         </td>
                                         <td>{{ $attn->card }}</td>
-{{--                                        <td>{{ $attn->date }}</td>--}}
-{{--                                        <td>{{ $attn->class }}</td>--}}
-                                        {{--<td></td>--}}
-                                        {{--<td></td>--}}
-                                        <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter->format('H:i:s') }}</td>
-                                        <td class="text-center">{{ $attn->exit == '-' ? '-' : $attn->exit->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter }}</td>
+                                        <td class="text-center">{{ $attn->exit == '-' ? '-' : $attn->exit }}</td>
                                         <td>{{ $attn->status }}</td>
-                                        <td></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{--<div class="row" style="margin-top: 10px">--}}
-                                {{--<div class="col-sm-12 col-md-9">--}}
-                                    {{--<div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-sm-12 col-md-3">--}}
-                                    {{--{{ $attendances->appends(Request::except('page'))->links() }}--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        </div>
-                        <div class="card-body">
-{{--                            {{ $attendances->appends(Request::except('page'))->links() }}--}}
                         </div>
                     </div>
                 </div>

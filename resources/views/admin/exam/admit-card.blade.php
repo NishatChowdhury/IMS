@@ -92,7 +92,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        @foreach($students as $student)
+                        @foreach($students as $studentAcademic)
                             <div class="card-body page-break">
                                 <div class="row" style="padding-bottom: 50px;">
                                     <div class="col-md-2">
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="stuimg" style="float: right" >
-                                            <img style="width: 100px; height: auto;" src="{{ asset('assets/img/students') }}/{{ $student->studentId }}.jpg" alt="">
+                                            <img style="width: 100px; height: auto;" src="{{ asset('assets/img/students') }}/{{ $studentAcademic->studentId }}.jpg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -137,23 +137,23 @@
                                 <table id="example2" class="table table-bordered">
                                     <tr>
                                         <th>Student's Name : </th>
-                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $studentAcademic->student->name ?? '' }}</td>
                                         <th>StudentID : </th>
-                                        <td>{{ $student->studentId }}</td>
+                                        <td>{{ $studentAcademic->student->studentId ?? ''}}</td>
                                     </tr>
                                     <tr>
                                         <th>Class :</th>
-                                        <td>{{ $student->studentAcademic->class_id ? $student->studentAcademic->classes->name : '' }}
-                                            {{ $student->studentAcademic->section_id ? '-'.$student->studentAcademic->section->name : '' }}
-                                            {{ $student->studentAcademic->group_id ? '-'.$student->studentAcademic->group->name : '' }}</td>
+                                        <td>{{ $studentAcademic->classes->class_id ??  '' }}
+                                            {{ $studentAcademic->section->section_id ?? '' }}
+                                            {{ $studentAcademic->group->group_id ?? '' }}</td>
                                         <th>Rank :</th>
-                                        <td> {{ $student->studentAcademic->rank }}</td>
+                                        <td> {{ $studentAcademic->rank }}</td>
                                     </tr>
                                     <tr>
                                         <th>Father's Name :</th>
-                                        <td>{{ $student->father ? $student->father->f_name : '' }}</td>
+                                        <td>{{ $studentAcademic->student->father->f_name ?? '' }}</td>
                                         <th>Mother's Name : </th>
-                                        <td>{{ $student->mother ? $student->mother->m_name : '' }}</td>
+                                        <td>{{ $studentAcademic->student->mother->m_name ?? '' }}</td>
                                     </tr>
                                     <tr>
                                         <th>Room No :</th>

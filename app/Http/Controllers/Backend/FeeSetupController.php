@@ -164,6 +164,7 @@ class FeeSetupController extends Controller
      */
     public function update($id): RedirectResponse
     {
+
         $fees = session('fees');
         $feeSetup = FeeSetup::query()->findOrFail($id);
         $students = $feeSetup->students;

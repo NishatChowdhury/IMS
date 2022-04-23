@@ -12,6 +12,7 @@ use App\Models\Backend\FinalResult;
 use App\Models\Backend\Grade;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Repository\ResultRepository;
 use Illuminate\Http\Request;
 
@@ -58,7 +59,7 @@ class ResultController extends Controller
 
     public function generateResult($examId)
     {
-        $method = 1;
+        $method = 2;
 
         $sessionId = 1;
         //$examId = 1;
@@ -69,12 +70,13 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
+//             $classes = AcademicClass::where('id',9)->get();
             $classes = AcademicClass::all();
 
             foreach($classes as $class){
-
-                $subjectCount = ExamSchedule::query()
-                    ->where('academic_class_id',$class->id)
+//                return $class;
+                 $subjectCount = ExamSchedule::query()
+                    ->where('class_id',$class->id)   //class id means acadimic class id
                     ->where('exam_id',$examId)
                     ->count();
 
@@ -94,30 +96,31 @@ class ResultController extends Controller
                         ->exists();
 
                     $data['academic_class_id'] = $class->id;
-                    $data['session_id'] = $sessionId;
+//                    $data['session_id'] = $class->session_id;
                     $data['exam_id'] = $examId;
-                    $data['class_id'] = $class->id;
+//                    $data['class_id'] = $class->class_id;
                     $data['student_id'] = $student;
                     $data['total_mark'] = $mark->sum('total_mark');
 
-                    $optional = Student::query()->findOrFail($student)->subject_id;
-                    $optionalMark = $mark->where('subject_id',$optional)->first()->gpa ?? 0;
+                      $stuID = StudentAcademic::query()->findOrFail($student)->student_id;
+                      $optional = Student::query()->with('studentSubject')->findOrFail($stuID);
+                      $optionalMark = $mark->where('subject_id',0)->first()->gpa ?? 0;
                     //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
 
-                    $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') / $subjectCount);
-
+                    $data['gpa'] = $isFail ? 0 : $mark->sum('gpa');
+//                    dd($data['gpa']);
                     $grade = Grade::query()
                         ->where('system',1)
-                        ->where('point_from','<=',$mark->sum('gpa') / $subjectCount)
-                        ->where('point_to','>=',$mark->sum('gpa') / $subjectCount)
+                        ->where('point_from','<=',$mark->sum('gpa'))
+                        ->where('point_to','>=',$mark->sum('gpa'))
                         ->first();
-
+//    return $grade;
                     if($optionalMark >= 2){
                         $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
 
                         $data['total_mark'] = $mark->sum('total_mark') - 40;
 
-                        $grade = Grade::query()
+                         $grade = Grade::query()
                             ->where('system',1)
                             ->where('point_from','<=',$data['gpa'])
                             ->where('point_to','>=',$data['gpa'])
@@ -131,7 +134,7 @@ class ResultController extends Controller
                     }
 
                     $data['rank'] = null;
-
+//                    dd($data);
                     $result = ExamResult::query()
                         ->where('academic_class_id',$class->id)
                         ->where('exam_id',$examId)
@@ -148,7 +151,7 @@ class ResultController extends Controller
                 $results = ExamResult::query()
                     ->where('academic_class_id',$class->id)
                     ->where('exam_id',$examId)
-                    ->where('group_id',null)
+//                    ->where('group_id',null)
                     ->orderByDesc('gpa')
                     ->orderByDesc('total_mark')
                     ->get();
@@ -165,7 +168,7 @@ class ResultController extends Controller
 
         //dd('slipped');
 
-        return redirect('exam/examresult');
+        return redirect('admin/exam/examresult');
     }
 
     public function resultDetails($id)

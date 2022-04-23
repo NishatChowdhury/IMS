@@ -2,6 +2,7 @@
 
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\Attendance;
 use App\Models\Backend\BloodGroup;
 use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
@@ -53,43 +54,48 @@ Route::get('process-attendances',function(){
 });
 
 Route::get('download-raw-attendances',function(){
-    date_default_timezone_set('Asia/Dhaka');
 
-    $data2=array(
-        "get_log"=>array(
-//            "user_name" => "akschool",
-            "operation" => env('STELLAR_OPERATION','fetch_log'),
-            "user_name" => env('STELLAR_USERNAME','cgs'),
-//            "auth"=>"3rfd237cefa924564a362ceafd99633", //akschool
-            "auth" => env('STELLAR_AUTH','3efd234cefa324567a342deafd32672'), //cambrian
-            //"access_id" => env('STELLAR_ACCESS_ID',''),
-            "log" => array(
-                "date1"=>date('Y-m-d'),
-                "date2"=>date('Y-m-d')
-            )
-        )
-    );
+        $startDate=today()->subWeek();
+        $startDate=$startDate->format('Y-m-d');
+        $endDate = today();
+        $endDate = $endDate->format('Y-m-d');
+        $accessId = "00000000";
 
-    $url_send ="https://rumytechnologies.com/rams/api";
-    $str_data = json_encode($data2);
+        $data = array(
+            "operation" => "fetch_log",
+            "auth_user" => "bnsck",
+            "auth_code" => "3efd234cefa324567a342deafd32672",
+            "start_date" => "$startDate",
+            "end_date" => "$endDate",
+            "start_time" => "00:00:00",
+            "end_time" => "23:59:59",
+            "access_id" => "$accessId"
+        );
 
-    $ch = curl_init($url_send);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($str_data))
-    );
+            $url_send ="https://rumytechnologies.com/rams/json_api";
+            $str_data = json_encode($data);
 
-    $result = (curl_exec($ch));
+            $ch = curl_init($url_send);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($str_data))
+            );
 
-    $getvalue = json_decode($result);
+            $result = (curl_exec($ch));
+            $replace_syntax = str_replace('{"log":', "", $result);
+            $replace_syntax = substr($replace_syntax, 0, -1);
+            $responseBody = json_decode($replace_syntax);
 
-    dd($getvalue);
+//            dd( $responseBody);
+//            $getvalue = json_decode($result);
 
-    foreach($getvalue->log as $row){
+
+
+    foreach($responseBody as $row){
 
         ini_set('max_execution_time',30);
 
@@ -98,19 +104,104 @@ Route::get('download-raw-attendances',function(){
         if(!$isExists){
             $attendance = new RawAttendance();
             $attendance->registration_id = $row->registration_id;
-            $attendance->unit_name = $row->unit_name;
-            $attendance->user_name = $row->user_name;
-            $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
             $attendance->access_id = $row->access_id;
             $attendance->department = $row->department;
             $attendance->unit_id = $row->unit_id;
             $attendance->card = $row->card;
-
+            $attendance->unit_name = $row->unit_name;
+            $attendance->user_name = $row->user_name;
+            $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+            $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
             $attendance->save();
         }
     }
 
     dd('data saved successfully');
+});
+
+
+Route::get('getdata-attendance', function(){
+    $students = Student::query()->where('status',1)->get();
+
+        $today = Carbon::today()->format('Y-m-d');
+        foreach($students as $student){
+
+            $isExist = RawAttendance::query()
+                ->where('registration_id',$student->studentId)
+                ->where('access_date','like','%'.$today.'%')
+                ->get();
+//            return $isExist;
+            if($isExist){
+//                dd('hey');
+                $date = RawAttendance::query()
+                    ->where('registration_id',$student->studentId)
+                    ->get()
+                    ->groupBy('access_date');
+                foreach($date as $attendances){
+                    foreach($attendances as $attendance){
+                        $min = $attendances->min('access_time');
+                        $max = $attendances->max('access_time');
+                        $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date',$attendance->access_date)->first();
+                        $data = [
+                            'registration_id' => $attendance->registration_id,
+                            'access_id' => $attendance->access_id,
+                            'card' => $attendance->card,
+                            'unit_name' => $attendance->unit_name,
+                            'student_id' => $student->id,
+                            'staff_id' => null,
+                            'date' => $attendance->access_date,
+                            'entry' => $min,
+                            'exit' => $max,
+                            'late' => 0,
+                            'early' => 0,
+                            'status' => 'P',
+//                            'sms_sent' => 0,
+                        ];
+
+                        if($hasAttendance == null){
+                            Attendance::query()->create($data);
+//                            $attendance->update(['processed'=>1]);
+                        }else{
+                            //$hasAttendance->update($data); TODO: fixed it after showing demo. compare edit time with existing time.
+//                            $attendance->update(['processed'=>1]);
+                        }
+                        //dd(!$hasAttendance);
+                    }
+                    //dd('$max');
+                }
+            }else{
+
+                $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date','like','%'.$today.'%')->first();
+
+                $data = [
+                    'registration_id' => $student->studentId,
+                    'access_id' => null,
+                    'card' => null,
+                    'unit_name' => 'demo',
+                    'student_id' => $student->id,
+                    'staff_id' => null,
+                    'date' => $today,
+                    'entry' => 0,
+                    'exit' => 0,
+                    'late' => 0,
+                    'early' => 0,
+                    'status' => "A",
+//                    'sms_sent' => 0,
+                ];
+
+                if($hasAttendance == null){
+                    Attendance::query()->create($data);
+                    //$attendance->update(['processed'=>1]);
+                }else{
+                    $hasAttendance->update($data);
+                    //$attendance->update(['processed'=>1]);
+                }
+
+                //Attendance::query()->create($data);
+            }
+        }
+        //dd('one');
+        return 0;
 });
 
 Route::get('download-attendances',function(){
