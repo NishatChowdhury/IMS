@@ -237,7 +237,7 @@ class InstitutionController extends Controller
     /*Subjects Start*/
     public function subjects()
     {
-        $subjects = Subject::all();
+         $subjects = Subject::all();
         return view ('admin.institution.subjects', compact('subjects'));
     }
 
@@ -276,7 +276,8 @@ class InstitutionController extends Controller
     {
         $class = AcademicClass::query()->findOrFail($classId);
         //$classes = AcademicClass::all()->pluck('name', 'id');
-        $subjects = Subject::all();
+         $subject = Subject::all();
+         $subjects = $subject->groupBy('type');
         //$staffs = Staff::all()->pluck('name','id');
         $assignedSubjects = AssignSubject::query()->where('academic_class_id',$classId)->get();
         return view('admin.institution.classsubjects', compact( 'subjects','assignedSubjects','class'));

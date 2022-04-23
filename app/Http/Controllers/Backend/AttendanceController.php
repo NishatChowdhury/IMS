@@ -214,63 +214,59 @@ class AttendanceController extends Controller
             $class = $request->get('class_id');
 //            $s->where('academic_class_id',$class);
             $s->whereHas('studentAcademic', function($query) use ($class){
-                    return $query->where('class_id', $class);
+                    return $query->where('academic_class_id', $class);
             });
             $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
         }else{
             $academicClass = '';
         }
-//        if($request->get('section_id')){
-//            $section = $request->get('section_id');
-//            $s->where('section_id',$section);
-//        }
-//        if($request->get('group_id')){
-//            $group = $request->get('group_id');
-//            $s->where('group_id',$group);
-//        }
 
         $students = $s
-            //->whereIn('studentId',['S194300','S194278'])
 //            ->orderBy('rank')
             ->get();
-        //dd($students);
 
-//        $attendances = Attendance::query()
-//            ->whereIn('registration_id',$students)
-//            ->whereDate('access_date',$today)
-//            ->paginate(20);
+
 
         $attend = [];
         foreach($students as $student){
-            $attn = RawAttendance::query()
-                ->where('access_date','like','%'.$today.'%')
+//        return $today;
+//            return strval($today);
+            $attn = Attendance::query()
+                ->whereDate('date', $today)
                 ->where('registration_id',$student->studentId)
                 ->get();
+//            return $attn->first()->entry;
+
+            if($attn){
+                $hh = 1;
+            }else{
+                $hh = 2;
+            }
 
             if($attn->count() > 0){
                 $attend[] = (object)[
                     'student' => $student->name,
                     'card' => $student->studentId,
-                    'rank' => $student->rank,
+                    'rank' => $student->studentAcademic->rank,
                     'date' => $today,
-                    'class' => $student->academicClass->name,
+                    'class' => $student->studentAcademic->classes->name,
                     'subject' => 'Subject',
                     'teacher' => 'Teacher',
-                    'enter' => $attn->first()->access_time,
-                    'exit' => $attn->last()->access_time,
-                    'status' => $this->status($student->id,$today,$attn->first()->access_date,$attn->last()->access_date),
+                    'enter' => $attn ? $attn->first()->entry : '-',
+                    'exit' => $attn ? $attn->first()->exit : '-',
+                    'status' => $this->status($student->id,$today,$attn->first()->date,$attn->last()->date),
                     'is_notified' => 'Is Notified'
                 ];
             }else{
                 $attend[] = (object)[
                     'student' => $student->name,
                     'card' => $student->studentId,
-                    'rank' => $student->rank,
+                    'rank' => $student->studentAcademic->rank,
                     'date' => $today,
-                    'class' => $student->academicClass->name,
+                    'class' => $student->studentAcademic->classes->name,
                     'subject' => 'Subject',
                     'teacher' => 'Teacher',
-                    'enter' => '-',
+                    'enter' =>  '-',
                     'exit' => '-',
                     'status' => $this->status($student->id,$today),
                     'is_notified' => 'Is Notified'
@@ -281,7 +277,7 @@ class AttendanceController extends Controller
         $repository = $this->repository;
         $attendances = collect($attend);
         //$attendances = [];
-
+//        return $attendances;
         return view('admin.attendance.student',compact('attendances','repository','academicClass','today'));
     }
 
@@ -305,17 +301,19 @@ class AttendanceController extends Controller
             }
         }elseif($request->get('user') == 1){
             if($request->has('class_id') && $request->has('year') && $request->has('month')){
-                 $students = StudentAcademic::query()
+                $request->class_id;
+                $students = StudentAcademic::query()
                     ->where('academic_class_id', $request->class_id)
                     ->orderBy('rank')
                     ->get();
                 $month = $request->month;
                 $year = $request->year;
-                $date = Carbon::createFromDate($year,$month)->format('Y-m');
+                 $date = Carbon::createFromDate($year,$month)->format('Y-m-d');
+
                 $attn = [];
 
                 foreach($students as $student){
-                    $attn[] = RawAttendance::query()
+                     $attn[] = RawAttendance::query()
                         ->where('registration_id',$student->student->studentId)
                         ->where('access_date','like',$date.'%')
                         ->get();
@@ -383,7 +381,6 @@ class AttendanceController extends Controller
     {
         if(!$enter && !$exit){
             $isHoliday = HolidayDuration::query()->whereDate('date',$date)->exists();
-
             $dayOfWeekIso = Carbon::parse($date)->dayOfWeekIso;
             $isWeeklyOff = weeklyOff::query()->where('show_option','like','%'.$dayOfWeekIso.'%')->exists();
 

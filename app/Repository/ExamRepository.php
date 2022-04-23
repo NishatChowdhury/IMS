@@ -44,6 +44,6 @@ class ExamRepository
 
     public function sessions()
     {
-        return Session::all()->pluck('year','id');
+        return Session::where('active', 1)->pluck('year','id');
     }
 }

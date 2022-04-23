@@ -36,7 +36,7 @@
                                     <lable>Class Name</lable>
                                     <select name="academic_class_id" class="form-control" id="">
                                         @foreach($academicclasses as $cs)
-                                            <option value="{{$cs->id}}">{{$cs->classes->name}} {{$cs->group_id ? '('. $cs->group->name .')' : ''}}</option>
+                                            <option value="{{$cs->id}}">{{$cs->classes->name ?? ''}} {{$cs->section->name ?? ''}} {{$cs->group->name ?? ''}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -51,11 +51,19 @@
                 <div class="card mt-5">
                     @if($students)
                         <div class="card-header bg-primary">
-                            <h6>Class {{ $className->classes->name }}{{$className->group_id ? '('. $cs->group->name .')' : ''}} All Students Information</h6>
+
                         </div>
                         <div class="card-body">
                            <div class="table-responsive">
                                <table class="table-striped table table-sm table-hover">
+                                   <tr>
+                                       <th>SL.</th>
+                                       <th>Name</th>
+                                       <th>Compulsory</th>
+                                       <th>Selective</th>
+                                       <th>Optional</th>
+                                       <th>Action</th>
+                                   </tr>
 
                                    @foreach($students as $key => $student)
                                <tr>
@@ -63,33 +71,22 @@
                                        @csrf
                                        <input type="hidden" name="id" value="{{$student->student->id}}">
                                        <td>{{$key+1}}</td>
-                                   <td>{{$student->student->name}}</td>
-
+                                   <td width="15%">{{$student->student->name}}</td>
+                                   <td width="15%%">
                                        @if($student->studentSubject->count() > 0)
                                        @foreach($student->studentSubject as $subject)
-                                            <td>
-                                                <select name="subjects[]" id="" class="form-control">
+                                                <select name="subjects[]" id="" class="form-control mb-1">
                                                     @foreach($subjects as $key => $sb)
                                                         <option value="{{$sb->id}}"
                                                             {{$subject->subject_id == $sb->id ? 'selected' : ''}}
                                                         >{{$sb->name}}</option>
                                                     @endforeach
                                                 </select>
-                                                </td>
                                         @endforeach
-                                       @else
-                                           @foreach( $notAssignsubjects as $srp)
-                                           <td>
-                                                <select name="subjects[]" id="" class="form-control">
-                                                    <option>--select--</option>
-                                                    @foreach($academicsubjects as $key => $sb)
-                                                        <option value="{{$sb->subject->id}}">{{$sb->subject->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                           </td>
-                                           @endforeach
-
-                                       @endif
+                                        @endif
+                                   </td>
+                                   <td>selective</td>
+                                   <td>optional</td>
                                    <td>
                                        <button type="submit" class="btn btn-primary btn-sm">Change</button>
                                    </td>
@@ -101,7 +98,7 @@
                            </div>
                         </div>
                     @else
-                        <p>No Record Founds</p>
+                        <p>No Record Founds :) </p>
                     @endif
                 </div>
                 <!-- /.card -->

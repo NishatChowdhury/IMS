@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Repository\StudentRepository;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class IdCardController extends Controller
         return view('admin.staff.designCard',compact('repository'));
     }
 
-    public function pdf(Request $request, Student $student)
+    public function pdf(Request $request, StudentAcademic $student)
     {
         //dd($request->all());
         $std = $student->newquery();
@@ -55,7 +56,8 @@ class IdCardController extends Controller
             $std->whereIn('rank',$ranks);
         }
 
-        $students = $std->where('status','<>',2)->orderBy('rank')->get();
+//        $students = $std->where('status','<>',2)->orderBy('rank')->get();
+          $students = $std->orderBy('rank')->with('student')->get();
 
         $card = $request->except('_token');
 

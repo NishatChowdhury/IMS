@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\AcademicClass;
-use App\Student;
-use App\FeeSetup;
-use App\FeeSetupCategory;
-use App\FeeSetupStudent;
-use App\StudentPayment;
-use App\StudentAcademic;
+use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Student;
+use App\Models\Backend\FeeSetup;
+use App\Models\Backend\FeeSetupCategory;
+use App\Models\Backend\FeeSetupStudent;
+use App\Models\Backend\StudentPayment;
+use App\Models\Backend\StudentAcademic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Month;
+use App\Models\Backend\Month;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -28,6 +28,12 @@ class FeeCollectionController extends Controller
 
     public function view(Request $request)
     {
+
+//         StudentPayment::truncate();
+//         FeeSetupStudent::truncate();
+//         FeeSetupCategory::truncate();
+//         FeeSetup::truncate();
+//         return "done";
         Session::forget(['receipt','spay']);
         $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
@@ -170,13 +176,7 @@ class FeeCollectionController extends Controller
         $academic_class = AcademicClass::get();
         $reqMonth = Month::all()->pluck('id', 'name');
         Session::forget('request');
-        // $this->validate($request,[
-        //     'academic_class'=>'required',
-        //     'month_id'=>'required',
-        //     'year_id'=>'required'
-        // ]);
         $students = Student::query();
-
         if ($request->academic_class != null && $request->month_id != null && $request->year_id != null) {
             $students = $students->whereHas('academics', function ($query) use ($request) {
                 $query->where('academic_class_id', $request->academic_class);
@@ -187,6 +187,7 @@ class FeeCollectionController extends Controller
             $students = null;
         }
 
+//            return $students;
         Session::put('request',['class'=>$request->academic_class,'month'=>$request->month_id, 'year'=>$request->year_id]);
 
         // return $students;

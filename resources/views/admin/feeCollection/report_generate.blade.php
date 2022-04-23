@@ -72,10 +72,10 @@
                                         onclick="window.print(); return false;"><i
                                             class="fa fa-print"></i>&nbsp;Print</button>
                                 </div>
-                                <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <a href="{{ route('pdf.dateWiseReport') }}" target="_blank" class="btn btn-success btn-md btn-block"><i
-                                            class="fa fa-file-pdf"></i>&nbsp;Pdf</a>
-                                </div>
+{{--                                <div class="form-group col-md-1" style="margin-top: 30px">--}}
+{{--                                    <a href="{{ route('pdf.dateWiseReport') }}" target="_blank" class="btn btn-success btn-md btn-block"><i--}}
+{{--                                            class="fa fa-file-pdf"></i>&nbsp;Pdf</a>--}}
+{{--                                </div>--}}
 
                             </div>
                         </form>
@@ -115,13 +115,10 @@
                                 <tbody>
                                     @forelse ($stupays as $pay)
                                         <tr>
-                                            {{-- {{   dd(    $pay->academics->student->studentId    )  }} --}}
                                             <td>{{ $pay->date->format('Y-m-d') }}</td>
                                             <td>{{ $pay->academics->student->studentId ?? '' }}</td>
                                             <td>{{ $pay->academics->student->name ?? '' }}</td>
-                                            <td>{{ $pay->academics->classes->name ?? '' }}
-                                                {{ $pay->academics->section->name ?? '' }}
-                                                {{ $pay->academics->group->name ?? '' }}</td>
+                                            <td>{{ $pay->academics->classes->name ?? '' }}</td>
                                             <td>{{ $pay->academics->student->mobile ?? '' }}</td>
                                             <td>{{ $pay->amount }}</td>
                                         </tr>

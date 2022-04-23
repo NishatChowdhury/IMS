@@ -52,14 +52,14 @@ class FrontController extends Controller
     {
 
         $sliders = Slider::query()
-            //->where('start','<',Carbon::today())
-            ->where(function($query){
-                $query->where('start','<',Carbon::today())->orWhere('start',null);
-            })
-            //->where('end','>',Carbon::today())
-            ->where(function($query){
-                $query->where('end','>',Carbon::today())->orWhere('end',null);
-            })
+            //->where('start','<',Carbon::StudentControllertoday())
+//            ->where(function($query){
+//                $query->where('start','<',Carbon::today())->orWhere('start',null);
+//            })
+//            //->where('end','>',Carbon::today())
+//            ->where(function($query){
+//                $query->where('end','>',Carbon::today())->orWhere('end',null);
+//            })
             ->where('active',1)
             ->get();
         $content = Page::all();

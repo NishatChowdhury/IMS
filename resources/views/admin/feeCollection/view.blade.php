@@ -70,10 +70,10 @@
                                 <div class="col-md-6">
                                     <ul class="list-group ">
                                         <li class="list-group-item">
-                                            <span>Class:</span>&nbsp;{{ $student->academics->first()->classes->name }}
+                                            <span>Class:</span>&nbsp;{{ $student->academics->first()->classes->name ?? 'N\A' }} {{ $student->academics->first()->group->name ?? 'N\A' }}
                                         </li>
                                         <li class="list-group-item">
-                                            <span>Section:</span>&nbsp;{{ $student->academics->first()->section->name }}
+                                            <span>Section:</span>&nbsp;{{ $student->academics->first()->section->name ?? 'N\A'}}
                                         </li>
                                         <li class="list-group-item">
                                             <span>Roll:</span>&nbsp;{{ $student->academics->first()->rank }}

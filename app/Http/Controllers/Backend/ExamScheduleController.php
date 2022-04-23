@@ -26,27 +26,26 @@ class ExamScheduleController extends Controller
 
     public function create(Request $request,$examId)
     {
-//        dd($request->all());
-          $exam = Exam::query()->findOrFail($examId);
-          $sessions = Session::where('active',1)->pluck('year','id');
-        $repository = $this->repository;
 
-        $class = $request->get('academic_class_id');
+            $exam = Exam::query()->findOrFail($examId);
+            $sessions = Session::where('active',1)->pluck('year','id');
+            $repository = $this->repository;
+
+         $class = $request->get('academic_class_id');
          $ClassId = AcademicClass::where('id', $class)->first();
-        //$session = $request->get('session_id');
 
         if($class){
 
             $isExist = ExamSchedule::query()
-                ->where('session_id',$exam->session_id)
-//                ->where('academic_class_id',$class)
+                ->where('session_id',$ClassId->secssion_id)
+                ->where('class_id',$class)
                 ->where('exam_id',$examId)
                 ->exists();
 
             if($isExist){
                 $subjects = ExamSchedule::query()
-                    ->where('session_id',$exam->session_id)
-//                    ->where('academic_class_id',$class)
+                    ->where('session_id',$ClassId->secssion_id)
+                    ->where('class_id',$class)
                     ->where('exam_id',$examId)
                     ->get();
             }else{

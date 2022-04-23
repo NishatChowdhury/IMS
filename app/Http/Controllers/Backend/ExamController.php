@@ -14,6 +14,7 @@ use App\Models\Backend\Mark;
 use App\Models\Backend\Session;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\Subject;
 use App\Repository\ExamRepository;
 use Illuminate\Contracts\View\Factory;
@@ -52,7 +53,9 @@ class ExamController extends Controller
 
     public function examination()
     {
-         $exams = Exam::all();
+          $exams = Exam::whereHas('session', function($q){
+             return $q->where('active', 1);
+         })->get();
         $repository = $this->repository;
         return view ('admin.exam.examination', compact('exams','repository'));
     }
@@ -89,7 +92,8 @@ class ExamController extends Controller
         $subjects = AssignSubject::query()->where('academic_class_id', $class_id)->get();
         $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
 
-        $schedules = ExamSchedule::query()->where('exam_id',$examId)->get();
+         $sc = ExamSchedule::query()->where('exam_id',$examId)->with('academicClassName')->get();
+         $schedules = $sc->groupBy('class_id');
         $sessions = Session::all()->pluck('year', 'id');
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
@@ -134,7 +138,7 @@ class ExamController extends Controller
      * Created by smartrahat
      * @return Factory|View
      */
-    public function admitCard(Student $student, Request $request)
+    public function admitCard(StudentAcademic $student, Request $request)
     {
 //        return $request->all();
         if($request->all() == []){
@@ -147,34 +151,37 @@ class ExamController extends Controller
 //            $s->whereIn('session_id',activeYear())->where('status',1);
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
-                $s->where('studentId',$studentId);
+                $s->whereHas('student', function($query) use($studentId){
+                    $query->where('studentId', $studentId);
+                });
 //                return $s->get();
             }
 //            if($request->get('name')){
 //                $name = $request->get('name');
 //                $s->where('name','like','%'.$name.'%');
 //            }
-//            if($request->get('class_id')){
-//                $class = $request->get('class_id');
-//                $s->where('class_id',$class);
-//            }
-//            if($request->get('section_id')){
-//                $section = $request->get('section_id');
-//                $s->where('section_id',$section);
-//            }
-//            if($request->get('group_id')){
-//                $group = $request->get('group_id');
-//                $s->where('group_id',$group);
-//            }
+            if($request->get('class_id')){
+                $class = $request->get('class_id');
+                $s->where('class_id',$class);
+            }
+            if($request->get('section_id')){
+                $section = $request->get('section_id');
+                $s->where('section_id',$section);
+            }
+            if($request->get('group_id')){
+                $group = $request->get('group_id');
+                $s->where('group_id',$group);
+            }
 
-              $students = $s->with('studentAcademic')->get();
+
+                $students = $s->with('student')->get();
              $exam = Exam::query()->findOrFail($request->get('exam_id'));
              $academicClass = AcademicClass::query()
                 ->where('class_id',$request->get('class_id'))
                 ->where('section_id',$request->get('section_id'))
                 ->where('group_id',$request->get('group_id'))
                 ->first();
-             $schedules = ExamSchedule::query()
+              $schedules = ExamSchedule::query()
                 ->where('exam_id',$request->get('exam_id'))
                 ->where('class_id',$academicClass->id) // class_id means Academic Class Id By mistake some do that's why it can't be change
                 ->orderBy('date')
