@@ -56,8 +56,9 @@ class AdmissionController extends Controller
 
     public function downloadSchoolPdf($id = null)
     {
+//        return $id;
 
-       $getData =  OnlineApply::find($id);
+        $getData =  OnlineApply::where('password', $id)->first();
        if(empty($getData)){
             return back()->with('status', 'Your Application ID Not Match :)');
        }

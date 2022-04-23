@@ -49,8 +49,8 @@
                                 @foreach($studentPayment as $key=>$payment)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{{$payment->student->name}}</td>
-                                        <td>{{$payment->student->studentId}}</td>
+                                        <td>{{$payment->academics}}</td>
+                                        <td>{{$payment->academics}}</td>
                                         <td>{{$payment->payment_date}}</td>
                                         <td>{{$payment->balance}}</td>
                                         <td>{{$payment->payment_method}}</td>

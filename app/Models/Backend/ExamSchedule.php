@@ -12,6 +12,10 @@ class ExamSchedule extends Model
     {
         return $this->belongsTo(AcademicClass::class,'academic_class_id');
     }
+    public function academicClassName()
+    {
+        return $this->belongsTo(AcademicClass::class,'class_id', 'id');
+    }
 
     public function subject()
     {

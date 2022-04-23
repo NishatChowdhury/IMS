@@ -45,8 +45,8 @@ class ExamSeatPlanController extends Controller
 
     public function pdfSeatPlan($id)
     {
-         $seatData = ExamSeatPlan::query()->findOrFail($id);
-          $students = StudentAcademic::query()
+        $seatData = ExamSeatPlan::query()->findOrFail($id);
+         $students = StudentAcademic::query()
                         ->where('academic_class_id',$seatData->academic_class_id)
                         ->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])
                         ->with('student')

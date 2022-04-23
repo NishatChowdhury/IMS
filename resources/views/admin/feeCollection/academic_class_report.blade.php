@@ -67,10 +67,10 @@
                                         onclick="window.print(); return false;"><i
                                             class="fa fa-print"></i>&nbsp;Print</button>
                                 </div>
-                                <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <a href="{{ route('pdf.classReport') }}" target="_blank" id="pdfdown" class="btn btn-success btn-md btn-block"><i
-                                            class="fa fa-file-pdf"></i>&nbsp;Pdf</a>
-                                </div>
+{{--                                <div class="form-group col-md-1" style="margin-top: 30px">--}}
+{{--                                    <a href="{{ route('pdf.classReport') }}" target="_blank" id="pdfdown" class="btn btn-success btn-md btn-block"><i--}}
+{{--                                            class="fa fa-file-pdf"></i>&nbsp;Pdf</a>--}}
+{{--                                </div>--}}
 
                             </div>
                         </form>
@@ -109,12 +109,16 @@
                                     <tr>
                                         <th>StudentID</th>
                                         <th>Name</th>
-                                        <th>Paid</th>
                                         <th>Discount</th>
                                         <th>Current Due</th>
+                                        <th>Paid</th>
                                     </tr>
                                 </thead>
                                 <tbody> {{-- dd($students) --}}
+
+                                <?php
+                                    $total = 0;
+                                ?>
                                     @forelse ($students as $student)
                                         <tr>
                                             <td>{{ $student->studentId }}</td>
@@ -124,16 +128,26 @@
                                                 $paid = $student->academics[0]->payments->sum('amount');
                                                 $currentDue = $due - $paid;
                                                 $discount = $student->academics[0]->payments->sum('discount');
+                                                $total += $paid;
                                             @endphp
-                                            <td>{{ $paid }}</td>
                                             <td>{{ $discount }}</td>
                                             <td>{{ $currentDue }}</td>
+                                            <td>{{ $paid }}</td>
                                         </tr>
+
                                     @empty
                                         <td colspan="6" class="text-center text-danger">
                                             <h5>No data found !!</h5>
                                         </td>
                                     @endforelse
+                                    <tr>
+                                        <td colspan="4">
+                                            <b>Total</b>
+                                        </td>
+                                        <td>
+                                           <b> {{$total}} TK</b>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -53,14 +53,14 @@ class FrontController extends Controller
     {
 
         $sliders = Slider::query()
-            //->where('start','<',Carbon::today())
-            ->where(function($query){
-                $query->where('start','<',Carbon::today())->orWhere('start',null);
-            })
-            //->where('end','>',Carbon::today())
-            ->where(function($query){
-                $query->where('end','>',Carbon::today())->orWhere('end',null);
-            })
+            //->where('start','<',Carbon::StudentControllertoday())
+//            ->where(function($query){
+//                $query->where('start','<',Carbon::today())->orWhere('start',null);
+//            })
+//            //->where('end','>',Carbon::today())
+//            ->where(function($query){
+//                $query->where('end','>',Carbon::today())->orWhere('end',null);
+//            })
             ->where('active',1)
             ->get();
         $content = Page::all();
@@ -292,7 +292,7 @@ class FrontController extends Controller
     public function onlineApplyStep()
     {
         $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
-
+    
         return view('front.pages.onlineApplyStep', compact('admissionStep'));
         // return view('front.pages.onlineApplyStep');
     }
@@ -301,21 +301,27 @@ class FrontController extends Controller
     {
         // $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
 
-        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
-
+        // return $uri;
+         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+        // dd($content);
         if($content->type == 3){
 
             $notices = null;
             $categories = null;
             $teachers = null;
             $staffs = null;
+            $albums = null;
 
             $repository = $this->repository;
 
+         
+
+       
+
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
-                    ->orderByDesc('start')
-                    ->paginate(3);
+                            ->orderByDesc('start')
+                            ->paginate(3);
                 $artilces = '';
                 if ($request->ajax()) {
                     foreach($notices as $key => $notice){
@@ -383,6 +389,8 @@ class FrontController extends Controller
                 return view('front.'.$uri.'.index',compact('newses','categories'));
             }
 
+
+
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
@@ -408,7 +416,7 @@ class FrontController extends Controller
                 return view('front.admission.validate-admission');
             }
             if($content->system_page === 'onlineApplyStep'){
-
+                
                 $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
                 return view('front.pages.onlineApplyStep', compact('admissionStep'));
             }
@@ -417,15 +425,7 @@ class FrontController extends Controller
                 $this->internal_exam($request);
             }
 
-            if($content->sytem_page === 'gallery'){
-                $this->gallery();
-            }
-
-            if($content->system_page === 'contacts'){
-                $this->contact();
-            }
-
-            return view('front.pages.'.$content->system_page,compact('categories','teachers','notices','staffs','repository'));
+            return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','staffs','repository'));
         }
         $page = $content->page;
 

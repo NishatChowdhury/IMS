@@ -112,26 +112,29 @@
                                 <!-- info row -->
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
-
+                                        <?php
+                                        $data = session()->get('spay');
+                                            $studentAcademic = \App\Models\Backend\StudentAcademic::query()
+                                                                                                    ->where('id', $data['student_academic_id'])
+                                                                                                    ->with('student')
+                                                                                                    ->first();
+                                        ?>
                                         <address>
-                                            <strong>{{ $receipt[0]->fee_setup_students->student->name ?? '' }}</strong><br>
+                                            <strong>{{ $studentAcademic->student->name ?? '' }}</strong><br>
                                             <span>Father's Name:</span> Clinton<br>
                                             <span>Id:</span>
-                                            {{ $receipt[0]->fee_setup_students->student->studentId ?? '' }}<br>
+                                            {{ $studentAcademic->student->studentId ?? '' }}<br>
                                             <span>Phone No:</span>
-                                            {{ $receipt[0]->fee_setup_students->student->mobile ?? '' }}<br>
+                                            {{ $studentAcademic->student->mobile ?? '' }}<br>
                                         </address>
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-sm-4 invoice-col">
                                         <address>
-                                            <span>Class:</span>
-                                            {{ $receipt[0]->fee_setup_students->student->academics[0]->classes->name ?? '' }}<br>
-                                            <span>Section:</span>{{ $receipt[0]->fee_setup_students->student->academics[0]->section->name ?? '' }}<br>
-                                            <span>Group:</span>
-                                            {{ $receipt[0]->fee_setup_students->student->academics[0]->group->name ?? '' }}<br>
-                                            <span>Roll No:</span>
-                                            {{ $receipt[0]->fee_setup_students->student->academics[0]->rank ?? '' }}<br>
+                                            <span>Class:</span>{{ $studentAcademic->classes->name ?? 'N/A'  }}<br>
+                                            <span>Section:</span>{{ $studentAcademic->section->name ?? 'N/A'  }}<br>
+                                            <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A'  }}<br>
+                                            <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A'  }}<br>
                                         </address>
                                     </div>
                                     <!-- /.col -->

@@ -357,12 +357,12 @@
                                 <p>{{ __('Grade System')}}</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ action('Backend\ExamController@admitCard') }}" class="nav-link {{ isActive('admin/exam/admit-card') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Admit Card</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ action('Backend\ExamController@admitCard') }}" class="nav-link {{ isActive('admin/exam/admit-card') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Admit Card</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                             <a href="{{route('exam.examination')}}" class="nav-link {{ isActive('admin/exam/examination') }}">
                                 <i class="far fa-circle nav-icon"></i>
