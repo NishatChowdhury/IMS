@@ -16,11 +16,10 @@ class CreateMarksTable extends Migration
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
             $table->integer('academic_class_id');
-            $table->integer('session_id');
             $table->integer('exam_id');
-            $table->integer('class_id');
-            $table->integer('section_id');
-            $table->integer('group_id');
+//            $table->integer('class_id');
+//            $table->integer('section_id');
+//            $table->integer('group_id');
             $table->integer('subject_id');
             $table->integer('student_id');
             $table->integer('full_mark');
@@ -31,6 +30,7 @@ class CreateMarksTable extends Migration
             $table->float('total_mark')->nullable();
             $table->string('gpa')->nullable();
             $table->string('grade')->nullable();
+            $table->unsignedBigInteger('grade_id');
             $table->timestamps();
         });
     }

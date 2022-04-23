@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Exam Schedules</h1>
+                    <h1>{{ __('Exam Schedules') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam</a></li>
-                        <li class="breadcrumb-item active">Exam Schedules</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Schedules') }}</li>
                     </ol>
                 </div>
             </div>
@@ -37,16 +37,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-header">
                             <div class="">
                                 {{ Form::open(['action'=>['Backend\ExamScheduleController@create',$exam->id],'method'=>'get']) }}
                                 <div class="row">
@@ -71,7 +62,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             {{ Form::open(['action'=>'Backend\ExamScheduleController@store','method'=>'post']) }}
-                            <table id="example2" class="table table-bordered table-striped table-hover">
+                            <table id="example2" class="table table-bordered table-striped table-hover table-sm">
                                 <thead>
                                 <tr>
                                     <th>Code</th>
@@ -96,9 +87,9 @@
                                         <td>{{ $subject->subject->code ?? $subject->code }}</td>
                                         <td>
                                             {{ Form::hidden('exam_id',$exam->id) }}
-                                            {{ Form::hidden('class_id',$ClassId->id) }}
+                                            {{-- {{ Form::hidden('class_id',$ClassId->id) }} --}}
                                             {{ Form::hidden('session_id',$exam->session_id) }}
-                                            {{ Form::hidden('academic_class_id',$class->id) }}
+                                            {{ Form::hidden('academic_class_id',$ClassId->id) }}
                                             {{--{{ Form::hidden('section_id',$section) }}--}}
                                             {{--{{ Form::hidden('group_id',$group) }}--}}
                                             {{ Form::hidden('subject_id[]',$subject->subject_id ?? $subject->id) }}

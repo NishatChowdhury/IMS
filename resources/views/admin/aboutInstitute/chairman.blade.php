@@ -51,18 +51,16 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Chairman Message</label>
-                                    <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$message->body ?? '' }}</textarea>
+                                    <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $message->body ?? '' }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Chairman Image</label>
-                                    <input name="image" class="form-control" class="btn btn-outline-success" type="file" id="formFile">
+                                    <label for="formFile" class="form-label">{{ __('Chairman Image') }}</label>
+                                    <input name="image" class="btn btn-outline-success" type="file" id="formFile">
                                 </div>
                                 <div class="mb-3">
                                     <input type="submit" class="btn btn-info" value=" Save ">
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -116,40 +114,40 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <h5>{{ __('Principal Message') }}</h5>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <h5>{{ __('Principal Message') }}</h5>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @if($errors->any())
+                                <ul class="text-danger">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/')}}/{{ $message->image ?? '' }}" alt="">
                                 </div>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                @if($errors->any())
-                                    <ul class="text-danger">
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/')}}/{{ $message->image ?? '' }}" alt="">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h2>
-                                            <small class="text-primary d-block">
-                                                Principal
-                                            </small>
-                                            Message
-                                        </h2>
-                                        <p>{{$message->title ?? ''}}</p>
-                                        <span aria-hidden="true">{!! $message->body ?? '' !!}</span>
-                                    </div>
+                                <div class="col-md-8">
+                                    <h2>
+                                        <small class="text-primary d-block">
+                                            Principal
+                                        </small>
+                                        Message
+                                    </h2>
+                                    <p>{{$message->title ?? ''}}</p>
+                                    <span aria-hidden="true">{!! $message->body ?? '' !!}</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                 </div>
                 <div class="modal-footer"></div>

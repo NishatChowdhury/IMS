@@ -69,7 +69,7 @@
                                 @php $ass = []; $lib = []; $equ = [] @endphp
                                 <tr>
                                     <td>
-                                        @foreach($assets->childs as $parents)
+                                        @foreach($assets->childs as $parents)zz
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
                                                 <div class="d-flex justify-content-between">

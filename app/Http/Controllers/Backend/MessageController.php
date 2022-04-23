@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\InstituteMessage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 
 class MessageController extends Controller
 {
@@ -22,8 +24,16 @@ class MessageController extends Controller
         return view('admin.aboutInstitute.principal',compact('message'));
     }
 
-    public function instituteMessageUpdate(Request $request){
-//        return $request->all();
+    /**
+     * Store/Update messages in storage
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
+     *
+     */
+    public function instituteMessageUpdate(Request $request): RedirectResponse
+    {
         $this->validate($request,[
             'body' => 'required',
         ]);
@@ -39,7 +49,7 @@ class MessageController extends Controller
             $file->move(public_path('uploads/message'), $filename);
             $data['image'] = $filename;
         }
-//        dd($data);
+
         if($msg){
             $msg->update($data);
         }else{

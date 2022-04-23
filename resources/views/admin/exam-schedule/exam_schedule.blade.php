@@ -8,18 +8,18 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Exam Schedules : {{\App\Models\Backend\Exam::query()->FindOrfail($examId)->name}}</h1>
+                    {{ dd('two') }}
+                    <h1>{{ __('Exam Schedules') }} : {{\App\Models\Backend\Exam::query()->FindOrfail($examId)->name}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam</a></li>
-                        <li class="breadcrumb-item active">Exam Schedules</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Schedules') }}</li>
                     </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
 
     <section class="content">
         <div class="row">

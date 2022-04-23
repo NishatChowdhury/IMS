@@ -572,7 +572,7 @@ Route::delete('exam/destroy/{id}', [ExamController::class,'destroy']);
 Route::get('exam/examitems',[ExamController::class,'examitems'])->name('exam.examitems');
 Route::get('exam/schedule/create/{exam}',[ExamScheduleController::class,'create']);
 Route::post('exam/schedule/store',[ExamScheduleController::class,'store']);
-Route::get('exam/schedule/{examId}', [ExamController::class,'schedule']);
+Route::get('exam/schedule/{examId}', [ExamScheduleController::class,'index']);
 Route::post('exam/store-schedule', [ExamController::class,'store_schedule']);
 Route::get('exam/admit-card',[ExamController::class,'admitCard']);
 Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate']);

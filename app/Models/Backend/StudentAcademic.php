@@ -7,7 +7,6 @@ use App\Models\Backend\FeeSetup;
 use App\Models\Backend\StudentPayment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StudentAcademic extends Model
 {

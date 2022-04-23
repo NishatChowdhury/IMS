@@ -26,18 +26,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
+                        <div class="card-header">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
-                                        <a href="{{ action('Backend\ExamScheduleController@create',$examId) }}" role="button" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</a>
-                                    </div>
-                                    <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Schedules" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;" disabled> <i class="fa fa-calendar"></i> </button>
-                                        {{--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#allocateseat" data-whatever="@mdo" data-toggle="tooltip" data-placement="top" title="Allocate Seat"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-server"></i> </button>--}}
-                                        <a href="{{ action('Backend\ExamController@seatAllocate') }}" class="btn btn-info btn-sm" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"><i class="fa fa-server"></i></a>
-                                        {{--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#admitcard" data-whatever="@mdo" data-placement="top" title="AdmitCard Preview"  style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fa fa-spinner"></i></button>--}}
-                                        <a href="{{ action('Backend\ExamController@admitCard') }}" class="btn btn-primary btn-sm" style="padding:5px 15px; margin-top: 10px; margin-left: 10px; float: right !important;"><i class="far fa-id-card"></i></a>
+                                        <a href="{{ action('Backend\ExamScheduleController@create',$examId) }}" role="button" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Create Schedule') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -56,8 +50,8 @@
                                 <thead>
                                     <tr>
                                         <th>SL.</th>
-                                        <th>Subject</th>
-                                        <th>Dates</th>
+                                        <th>{{ __('Subject') }}</th>
+                                        <th>{{ __('Dates') }}</th>
                                         <th>Start</th>
                                         <th>End</th>
                                         <th>Mark</th>
@@ -74,9 +68,9 @@
                                         <td>{{ $sc->end }}</td>
                                         <td>{{ $sc->objective_full + $sc->written_full + $sc->practical_full}}</td>
                                         <td>
-                                            <a href="{{ action('Backend\MarkController@download',$sc->id) }}" class="btn btn-success btn-sm"><i class="fas fa-file-download"></i></a>
-                                            <a href="{{ action('Backend\MarkController@upload',$sc->id) }}" class="btn btn-success btn-sm" role="button" style="color:white"><i class="fas fa-file-upload"></i></a>
-                                            <a href="{{ action('Backend\MarkController@index',$sc->id) }}" class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
+                                            <a href="{{ action('Backend\MarkController@download',$sc->id) }}" class="btn btn-success btn-sm" title="{{ __('Download Result') }}"><i class="fas fa-file-download"></i></a>
+                                            <a href="{{ action('Backend\MarkController@upload',$sc->id) }}" class="btn btn-success btn-sm" role="button" style="color:white" title="{{ __('Upload Result') }}"><i class="fas fa-file-upload"></i></a>
+                                            <a href="{{ action('Backend\MarkController@index',$sc->id) }}" class="btn btn-info btn-sm" title="{{ __('Input Marks') }}"><i class="fas fa-file-invoice"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -102,7 +96,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>['Backend\ExamController@schedule',5], 'method'=>'post']) !!}
+                    {!! Form::open(['action'=>['Backend\ExamScheduleController@index',5], 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session*</label>
                         <div class="col-sm-8">

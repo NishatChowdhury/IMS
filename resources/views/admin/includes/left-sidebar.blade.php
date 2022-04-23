@@ -346,7 +346,7 @@
                     <a href="#" class="nav-link {{ isActive(['admin/exam*']) }}">
                         <i class="nav-icon fas fa-diagnoses"></i>
                         <p>
-                            Exam Mgmt
+                            {{ __('Exam') }}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AssignSubject;
 use App\Models\Backend\Exam;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\Session;
+use App\Models\Backend\Staff;
 use App\Models\Backend\Subject;
 use App\Repository\ExamRepository;
 use Illuminate\Http\Request;
@@ -24,32 +26,51 @@ class ExamScheduleController extends Controller
         $this->repository = $repository;
     }
 
+    public function index(Request $request,$examId){
+//        return $request->all();
+        //dd($examId);
+        //dd('deprecated');
+        $session_id = $request->session_id;
+        //$exam_id = $request->exam_id;
+        $class_id = $request->class_id;
+        $exam_type = $request->exam_type;
+        $subjects = AssignSubject::query()->where('academic_class_id', $class_id)->get();
+        $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
+
+        $sc = ExamSchedule::query()->where('exam_id',$examId)->with('academicClassName')->get();
+        $schedules = $sc->groupBy('class_id');
+        $sessions = Session::all()->pluck('year', 'id');
+        $exams = Exam::all()->pluck('name', 'id');
+        $classes = AcademicClass::all()->pluck('name', 'id');
+
+        return view('admin.exam-schedule.index', compact('session_id', 'examId','schedules','sessions','exams','classes', 'class_id', 'exam_type', 'subjects', 'teachers'));
+    }
+
     public function create(Request $request,$examId)
     {
+        $exam = Exam::query()->findOrFail($examId);
+        $sessions = Session::query()->where('active',1)->pluck('year','id');
+        $repository = $this->repository;
 
-            $exam = Exam::query()->findOrFail($examId);
-            $sessions = Session::where('active',1)->pluck('year','id');
-            $repository = $this->repository;
-
-         $class = $request->get('academic_class_id');
-         $ClassId = AcademicClass::where('id', $class)->first();
+        $class = $request->get('academic_class_id');
+        $ClassId = AcademicClass::query()->where('id', $class)->first();
 
         if($class){
 
             $isExist = ExamSchedule::query()
-                ->where('session_id',$ClassId->secssion_id)
-                ->where('class_id',$class)
+                ->where('academic_class_id',$class)
+                //->where('class_id',$class)
                 ->where('exam_id',$examId)
                 ->exists();
 
             if($isExist){
                 $subjects = ExamSchedule::query()
-                    ->where('session_id',$ClassId->secssion_id)
-                    ->where('class_id',$class)
+                    ->where('academic_class_id',$class)
+                    //->where('class_id',$class)
                     ->where('exam_id',$examId)
                     ->get();
             }else{
-                 $subjects = Subject::query()
+                $subjects = Subject::query()
                     ->whereHas('ass_subject',function($query) use($class){
                         $query->where('academic_class_id',$class);
                     })->get();
@@ -58,19 +79,18 @@ class ExamScheduleController extends Controller
             $subjects = [];
         }
 
-        return view('admin.exam.exam-schedule',compact('repository','class','subjects','exam','sessions','ClassId'));
+        return view('admin.exam-schedule.create',compact('repository','class','subjects','exam','sessions','ClassId'));
     }
 
     public function store(Request $request)
     {
-//        return $request->all();
         $subjects = $request->get('subject_id');
 
         foreach($subjects as $key => $subject){
             if($request->get('date')[$key] != null){
-                $data['session_id'] = $request->get('session_id');
+//                $data['session_id'] = $request->get('session_id');
                 $data['exam_id'] = $request->get('exam_id');
-                $data['class_id'] = $request->get('class_id');
+//                $data['class_id'] = $request->get('class_id');
                 $data['academic_class_id'] = $request->get('academic_classes');
                 $data['subject_id'] = $request->get('subject_id')[$key];
                 $data['date'] = $request->get('date')[$key];
@@ -84,8 +104,8 @@ class ExamScheduleController extends Controller
                 $data['practical_pass'] = $request->get('practical_pass')[$key];
 
                 $schedule = ExamSchedule::query()
-                    ->where('session_id',$request->get('session_id'))
-                    ->where('class_id',$request->get('class_id'))
+                    ->where('academic_class_id',$request->get('academic_class_id'))
+                    //->where('class_id',$request->get('class_id'))
                     ->where('exam_id',$request->get('exam_id'))
                     ->where('subject_id',$subject)
                     ->first();

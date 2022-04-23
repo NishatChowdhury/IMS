@@ -15,9 +15,8 @@ class CreateExamSchedulesTable extends Migration
     {
         Schema::create('exam_schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('session_id');
+            $table->unsignedBigInteger('academic_class_id');
             $table->unsignedBigInteger('exam_id');
-            $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('teacher_id')->nullable();
             $table->date('date')->nullable();

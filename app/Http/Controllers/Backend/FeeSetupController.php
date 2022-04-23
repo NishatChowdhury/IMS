@@ -167,13 +167,13 @@ class FeeSetupController extends Controller
 
         $fees = session('fees');
         $feeSetup = FeeSetup::query()->findOrFail($id);
-        $students = $feeSetup->students;
+        $students = $feeSetup->feeSetupStudent;
 
         foreach($students as $student){
             $feeSetupCategories = $student->categories;
 
              foreach ($feeSetupCategories as $category) {
-                 $category->where('paid', null)->delete();
+                 $category->delete();
              }
 
             foreach($fees as $fee)
@@ -183,8 +183,9 @@ class FeeSetupController extends Controller
                     'category_id' => $fee['category_id'],
                     'amount' => $fee['amount']
                 ];
-                FeeSetupCategory::query()->updateOrCreate($data);
+                FeeSetupCategory::query()->create($data);
             }
+
             FeeSetupStudent::query()->where('fee_setup_id',$student->fee_setup_id)->update(['amount'=>array_sum(array_column($fees, 'amount')) ]);
         }
         sessions::forget('fees'); // remove existing items from fees session

@@ -2,12 +2,17 @@
 
 namespace App\Models\Backend;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Backend\FeeSetupStudent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Student1 extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $dates = ['dob'];
 
     protected $fillable = [
         'name',
@@ -68,6 +73,11 @@ class Student1 extends Model
     public function religion()
     {
         return $this->belongsTo(Religion::class);
+    }
+
+    public function bloodGroup(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(BloodGroup::class);
     }
 
     public function city()
@@ -150,6 +160,4 @@ class Student1 extends Model
     {
         return $this->hasOne(Guardian::class);
     }
-
-
 }
