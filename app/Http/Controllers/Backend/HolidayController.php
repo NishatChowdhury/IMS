@@ -52,7 +52,7 @@ class HolidayController extends Controller
             );
         }
 
-        Session::flash('success',$request->name.' has been added successfully!');
+        Session::flash('success','Holiday has been added successfully!');
 
         return redirect('admin/holidays');
     }

@@ -6,7 +6,7 @@
                     <div class="col-md-12 mt-4">
                         <h2>{{ __('About Institute') }}</h2>
                         @if($about)
-                            {!! Str::limit($about->body,1000) !!}
+                            {!! Str::limit($about->body,800) !!}
                             <p data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo" class="btn btn-outline-white-hover">
                                 {{ __('Read More') }}
                             </p>

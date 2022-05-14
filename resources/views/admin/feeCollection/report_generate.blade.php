@@ -63,8 +63,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button type="submit" class="btn btn-info btn-md btn-block"><i
+                                <div class="form-group col-md-1" style="margin-top: 30px; margin-right:0px;padding-right: 0px;">
+                                    <button type="submit" class="btn btn-info btn-md btn-block" style="padding-left:8px;"><i
                                             class="fa fa-search"></i>&nbsp;Search</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">

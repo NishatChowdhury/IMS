@@ -26,9 +26,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : 1000</h3>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : 1000</h3>--}}
+{{--                            </div>--}}
                             <div class="row">
                                 <div>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>

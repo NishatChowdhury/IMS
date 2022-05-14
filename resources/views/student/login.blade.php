@@ -35,7 +35,10 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-white ti-lock"></span>
                                     </div>
-                                    <input type="password" name="password" class="form-control border-left-0 pl-0" placeholder="Password">
+                                    <input type="password" name="password" class="form-control border-left-0 pl-0" id="password" placeholder="Password">
+                                    <div class="input-group-append">
+                                        <span class=" input-group-text"><i class="far fa-eye" onclick="myPass()" id="togglePassword"></i></span>
+                                    </div>
                                 </div>
                                 <div class="d-md-flex justify-content-between my-4">
                                     <label class="ec-checkbox check-sm my-2 clearfix">
@@ -56,5 +59,17 @@
             </div> <!-- END row-->
         </div> <!-- END container-->
     </section>
+    <script>
+        function myPass() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            var element = document.getElementById("togglePassword");
+            element.classList.toggle("fa-eye-slash");
+        }
+    </script>
 
 @stop

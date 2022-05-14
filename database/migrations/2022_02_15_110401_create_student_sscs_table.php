@@ -15,7 +15,7 @@ class CreateStudentSscsTable extends Migration
     {
         Schema::create('student_sscs', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id')->unsigned();
+            //$table->integer('student_id')->unsigned();
             $table->string('board');
             $table->string('ssc_session');
             $table->string('type');

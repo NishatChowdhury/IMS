@@ -903,21 +903,21 @@
             </li>
 
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
-            @cannot('cms')
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+{{--            @cannot('cms')--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a href="#" class="nav-link">--}}
 
-                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
-                        <p>SC Invoices</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file"></i>
-                        <p>Activities</p>
-                    </a>
-                </li>
-            @endcannot
+{{--                        <i class="nav-icon fas fa-file-invoice-dollar"></i>--}}
+{{--                        <p>SC Invoices</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a href="#" class="nav-link">--}}
+{{--                        <i class="nav-icon fas fa-file"></i>--}}
+{{--                        <p>Activities</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endcannot--}}
             <li class="nav-item has-treeview {{ isActive(['admin/user*']) }}">
                 <a href="#" class="nav-link {{ isActive(['admin/user*']) }}">
                     <i class="fas fa-users-cog"></i>

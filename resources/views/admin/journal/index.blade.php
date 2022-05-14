@@ -49,7 +49,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex">
-                            <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $journals->count() }}</h3>
+{{--                            <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff;"></i></span>Total Found : {{ $journals->count() }}</h3>--}}
                             {{--                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>--}}
                             <div class="ml-auto media">
                                 <a href="{{ action('Backend\JournalController@create') }}" class="btn btn-success align-self-center"><i class="fas fa-plus-circle"></i> Create Journal</a>

@@ -34,8 +34,8 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>00</p>
+{{--                                            <h5 style="margin-bottom: 0px;">Total Found</h5>--}}
+{{--                                            <p>00</p>--}}
                                         </div>
                                     </div>
                                     <div style="float: right;">
