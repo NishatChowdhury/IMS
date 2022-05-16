@@ -31,16 +31,16 @@
                         {{ Form::open(['action'=>'Backend\ResultController@index','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="col">
-                                    <label for="">Session</label>
-                                    <div class="input-group">
-                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
-                                    </div>
-                                </div>
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Session</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col">
                                     <label for="">Exam Name</label>
                                     <div class="input-group">
-                                        {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Exam Name','required']) }}
+                                        {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -53,32 +53,14 @@
                                     <label for="class">Class</label>
                                     <div class="input-group">
 {{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
-                                        <select name="class_id" id="class" class="form-control">
+                                        <select name="academic_class_id" id="class" class="form-control">
+                                            <option value="" disabled selected>--Select Class--</option>
                                             @foreach($repository->academicClasses() as $class)
-                                                <option value="{{ $class }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                                <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Class</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Section</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Group</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
                                         <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
@@ -136,10 +118,16 @@
                                 <tbody>
                                 @foreach($results as $result)
                                     <tr>
-                                        <td>{{ $result->student->name ?? '' }}</td>
-                                        <td>{{ $result->student->studentId ?? '' }}</td>
-                                        <td>{{ $result->academicClass->name ?? '' }} {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
-                                        <td>{{ $result->student->rank ?? '' }}</td>
+                                        <td>{{ $result->studentAcademic->student->name ?? '' }}</td>
+                                        <td>{{ $result->studentAcademic->student->studentId ?? '' }}</td>
+                                        <td>
+                                            <span class="badge badge-primary">
+                                                {{ $result->studentAcademic->classes->name ?? '' }}
+                                            {{ $result->studentAcademic->section->name ?? '' }}
+                                            {{ $result->studentAcademic->group->name ?? '' }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $result->studentAcademic->rank ?? '' }}</td>
                                         <td>{{ $result->exam->name ?? '' }}</td>
                                         <td>{{ $result->exam->start }} <br> {{ $result->exam->end }}</td>
                                         <td>{{ $result->grade }}</td>

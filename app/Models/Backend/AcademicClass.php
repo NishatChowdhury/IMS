@@ -54,4 +54,18 @@ class AcademicClass extends Model
     public function fee_setup(){
         return $this->hasMany(FeeSetup::class,'class_id');
     }
+
+    //
+     /**
+     * Scope a query to only include active users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return void
+     */
+    public function scopeActive($query)
+    {
+        $query->whereHas('sessions', function ($q){
+            return $q->where('active', 1);
+        });
+    }
 }

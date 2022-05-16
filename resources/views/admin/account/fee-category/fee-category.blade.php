@@ -27,12 +27,26 @@
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <form action="{{ route('fee_categories.search') }}" method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="form-group">
+                                                    <input type="text" name="searchQuery" placeholder="Search. . . . " class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group" style="float: left">
+                                                    <button type="submit" class="btn btn-dark btn-sm">Search</button>
+                                                    <a href="{{route('fee-category.index')}}" class="btn btn-primary btn-sm">Reload</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
                                     <div style="float: left;">
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
-                                    </div>
-                                    <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> </button>
                                     </div>
                                 </div>
                             </div>
@@ -51,26 +65,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @php $i= 1; @endphp
-                                    @foreach($fee_categories as $fee_category)
-                                        <tr>
-                                            <td>{{$i++}}</td>
-                                            <td>{{ucwords($fee_category->name)}}</td>
-                                            <td>{{ucfirst($fee_category->description)}}</td>
-                                            <td style="text-align: center;">
-                                                {{ Form::open(['method'=>'PUT','url'=>['admin/fee-category/status/'.$fee_category->id],'style'=>'display:inline']) }}
-                                                    @if($fee_category->status == 1)
-                                                        {{ Form::submit('Active',['class'=>'btn btn-success btn-sm']) }}
-                                                    @else
-                                                        {{ Form::submit('In Active',['class'=>'btn btn-danger btn-sm']) }}
-                                                    @endif
-                                                {{ Form::close() }}
-                                            </td>
-                                            <td style="text-align: center">
-                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit" onclick="loadEditForm({{$fee_category->id}})"><i class="fas fa-edit"></i></button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @php $i= 1; @endphp
+                                @foreach($fee_categories as $fee_category)
+                                    <tr>
+                                        <td>{{$i++}}</td>
+                                        <td>{{ucwords($fee_category->name)}}</td>
+                                        <td>{{ucfirst($fee_category->description)}}</td>
+                                        <td style="text-align: center;">
+                                            {{ Form::open(['method'=>'PUT','url'=>['admin/fee-category/status/'.$fee_category->id],'style'=>'display:inline']) }}
+                                            @if($fee_category->status == 1)
+                                                {{ Form::submit('Active',['class'=>'btn btn-success btn-sm']) }}
+                                            @else
+                                                {{ Form::submit('In Active',['class'=>'btn btn-danger btn-sm']) }}
+                                            @endif
+                                            {{ Form::close() }}
+                                        </td>
+                                        <td style="text-align: center">
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit" onclick="loadEditForm({{$fee_category->id}})"><i class="fas fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                                 </tbody>
                             </table>
@@ -180,7 +194,7 @@
         function loadEditForm(id){
             var token = "{{ csrf_token() }}";
             $.ajax({
-                url:"{{ route('fee-category.edit') }}",
+                url:"{{ url('admin/fee-category/edit') }}",
                 data: {_token:token,id:id},
                 type: 'post'
             }).done(function(e){

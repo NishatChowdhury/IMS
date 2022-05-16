@@ -27,10 +27,26 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-4 control-label" style="font-weight: 500; text-align: right">Fare*</label>
+                        <label for="" class="col-sm-4 control-label" style="font-weight: 500; text-align: right">Home To Institute*</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                {!! Form::number('amount', null, ['class'=>'form-control', 'placeholder'=>'Location Fare']) !!}
+                                {!! Form::number('home_to_institute', null, ['class'=>'form-control', 'placeholder'=>'Location Home To Institute Fare']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 control-label" style="font-weight: 500; text-align: right">Institute To Home*</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                {!! Form::number('institute_to_home', null, ['class'=>'form-control', 'placeholder'=>'Location Institute To Home Fare']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 control-label" style="font-weight: 500; text-align: right">Both*</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                {!! Form::number('both', null, ['class'=>'form-control', 'placeholder'=>'Location Both Fare']) !!}
                             </div>
                         </div>
                     </div>

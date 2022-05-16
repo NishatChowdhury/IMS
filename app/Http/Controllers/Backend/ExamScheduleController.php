@@ -27,9 +27,8 @@ class ExamScheduleController extends Controller
     }
 
     public function index(Request $request,$examId){
-//        return $request->all();
-        //dd($examId);
-        //dd('deprecated');
+//        ExamSchedule::truncate();
+//        dd('done');
         $session_id = $request->session_id;
         //$exam_id = $request->exam_id;
         $class_id = $request->class_id;
@@ -38,7 +37,7 @@ class ExamScheduleController extends Controller
         $teachers = Staff::all()->pluck('name', 'id')->prepend('Select Teacher', '')->toArray();
 
         $sc = ExamSchedule::query()->where('exam_id',$examId)->with('academicClassName')->get();
-        $schedules = $sc->groupBy('class_id');
+        $schedules = $sc->groupBy('academic_class_id');
         $sessions = Session::all()->pluck('year', 'id');
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
@@ -48,6 +47,7 @@ class ExamScheduleController extends Controller
 
     public function create(Request $request,$examId)
     {
+//        return $request->all();
         $exam = Exam::query()->findOrFail($examId);
         $sessions = Session::query()->where('active',1)->pluck('year','id');
         $repository = $this->repository;
@@ -64,13 +64,13 @@ class ExamScheduleController extends Controller
                 ->exists();
 
             if($isExist){
-                $subjects = ExamSchedule::query()
+                 $subjects = ExamSchedule::query()
                     ->where('academic_class_id',$class)
                     //->where('class_id',$class)
                     ->where('exam_id',$examId)
                     ->get();
             }else{
-                $subjects = Subject::query()
+                 $subjects = Subject::query()
                     ->whereHas('ass_subject',function($query) use($class){
                         $query->where('academic_class_id',$class);
                     })->get();
@@ -84,14 +84,13 @@ class ExamScheduleController extends Controller
 
     public function store(Request $request)
     {
+
         $subjects = $request->get('subject_id');
 
         foreach($subjects as $key => $subject){
             if($request->get('date')[$key] != null){
-//                $data['session_id'] = $request->get('session_id');
                 $data['exam_id'] = $request->get('exam_id');
-//                $data['class_id'] = $request->get('class_id');
-                $data['academic_class_id'] = $request->get('academic_classes');
+                $data['academic_class_id'] = $request->get('academic_class_id');
                 $data['subject_id'] = $request->get('subject_id')[$key];
                 $data['date'] = $request->get('date')[$key];
                 $data['start'] = $request->get('start')[$key];
@@ -114,6 +113,7 @@ class ExamScheduleController extends Controller
                     $schedule->update($data);
                     \Illuminate\Support\Facades\Session::flash('success','Exam Schedule updated successfully!');
                 }else{
+//                    return $data;
                     ExamSchedule::query()->create($data);
                     \Illuminate\Support\Facades\Session::flash('success','Exam Schedule created successfully!');
                 }

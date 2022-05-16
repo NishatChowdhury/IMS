@@ -157,15 +157,15 @@
                                     <tr>
                                         <th>{{ __('Date') }}</th>
                                         <th>{{ __('Method') }}</th>
-                                        <th>{{ __('Amount') }}</th>
+                                        <th class="text-right">{{ __('Amount') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($previousPayment as $value)
                                         <tr>
-                                            <td>{{ $value->date }}</td>
+                                            <td>{{ $value->date->format('Y-m-d') }}</td>
                                             <td>{{ $value->payment_methods->name ?? 'Undifined' }}</td>
-                                            <td>{{ $value->amount }}</td>
+                                            <td class="text-right">{{ number_format($value->amount, 2, '.', ',') }}</td>
                                         </tr>
                                     @empty
                                         <td colspan="3">
@@ -194,7 +194,7 @@
                                     @forelse ($paidAmount as $value)
                                         <tr>
                                             <td> {{ $value->month }}, &nbsp;{{ $value->year }}</td>
-                                            <td> {{ $value->amount }}</td>
+                                            <td> {{ number_format($value->amount, 2, '.', ',') }}</td>
                                         </tr>
                                     @empty
                                         <td colspan="2">
