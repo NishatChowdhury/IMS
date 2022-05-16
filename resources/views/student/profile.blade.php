@@ -138,8 +138,8 @@
                                             <th scope="row" class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
                                             <td>{{$day->entry}} </td>
                                             <td>{{$day->exit}} </td>
-{{--                                            <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
-{{--                                            <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
+{{--                                          <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
+{{--                                          <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
                                             <td>
                                                 <a href="#" class="btn btn-link">View</a>
                                             </td>
