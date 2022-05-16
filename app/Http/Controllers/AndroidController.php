@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Attendance;
-use App\ClassSchedule;
+use App\Http\Resources\EventsCollection;
+use App\Models\Backend\Attendance;
+use App\Models\Backend\ClassSchedule;
 use App\Http\Resources\NewsCollection;
 use App\Http\Resources\NewsResource;
 use App\Http\Resources\NoticeResource;
@@ -51,85 +52,131 @@ class AndroidController extends Controller
 
     public function attendance(Request $request)
     {
-        $student = $request->get('studentId');
-        $start = Carbon::parse($request->get('start'))->startOfDay();
-        $end = Carbon::parse($request->get('end'))->endOfDay();
-
+        $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
+        $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
+        $registrationId = $request->get('registrationId');
         $attendances = Attendance::query()
-            ->whereBetween('access_date',[$start,$end])
-            ->where('registration_id',$student)
-            ->get()
-            ->groupBy('date');
-
-        //dd($attendances);
-
-        foreach($attendances as $date => $attendance){
-            $entry = $attendances->min('access_date');
-            $exit = $attendances->max('access_date');
-        }
-
-        dd($attendances->min('access_date'));
+            ->where('registration_id',$registrationId)
+            ->whereBetween('date',[$dateFrom,$dateTo])
+            ->get();
+         if($attendances) {
+             $data = [];
+             foreach ($attendances as $attendance){
+                 $data[] = [
+                     'id' => $attendance->id,
+                     'date' => $attendance->date,
+                     'inTime' => $attendance->entry,
+                     'outTime' => $attendance->exit,
+                     'status' => $attendance->status,
+                 ];
+             }
+             return response()->json([
+                 'status' => true,
+                 'dateFrom' => date('d-m-Y', strtotime($dateFrom)),
+                 'dateTo' => date('d-m-Y', strtotime($dateTo)),
+                 'shiftFrom' => '10:00:00',
+                 'shiftTo' => '06:00:00',
+                 'attendances' => $data
+             ]);
+         }
     }
 
     public function about()
     {
-        return Page::query()->where('name','introduction')->get('content');
+        $about = InstituteMessage::query()->where('alias','about')->first();
+        if($about){
+            return response()->json([
+                'status' => true,
+                'about' => $about->body,
+                'image' => null
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+
     }
 
-    public function president()
+    public function chairmanMessage()
     {
-        return Page::query()->where('name','president message')->get('content');
+        $chairmanMessage = InstituteMessage::query()->where('alias','chairman')->first();
+        if($chairmanMessage){
+            return response()->json([
+                'status'=>true,
+                'message'=>[
+                    'name'=> $chairmanMessage->title,
+                    'quote' => $chairmanMessage->body,
+                    'designation' => "Chairman",
+                    'image' =>$chairmanMessage->image ? asset('uploads/message/' . $chairmanMessage->image) : null
+                ],
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+
     }
 
     public function principalMessage()
     {
         $principalMessage = InstituteMessage::query()->where('alias','principal')->first();
-        return response()->json([
-            'status' => true,
-            'quote' => $principalMessage,
-            'designation' => "Principal"
-        ]);
+        if($principalMessage){
+            return response()->json([
+                'status'=>true,
+                'message'=>[
+                    'name'=> $principalMessage->title,
+                    'quote' => $principalMessage->body,
+                    'designation' => "Principal",
+                    'image' =>$principalMessage->image ? asset('uploads/message/' . $principalMessage->image) : null
+                ],
+
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+
     }
 
     public function profile(Request $request)
     {
-        $studentId = $request->get('studentId');
-        $profile= Student::query()->where('studentId',$studentId)->latest()->first();
+        $profile = Student::where('studentId', 'N0110')->first();
         if ($profile){
             return response()->json([
                 'status'=>true,
                 'student'=>[
                     'personal'=>[
-                        'name'=> $profile->name,
-                        'student_id'=> $profile->studentId,
-                        'picture'=> asset('storage/img/students').'/'.$profile->image,
-                        'class'=> $profile->class->name ?? null,
-                        'rank'=> $profile->rank,
+                        'name'=> $profile->name ?? '',
+                        'student_id'=> $profile->studentId ?? '',
+                        'picture'=>$profile->image ? asset('storage/uploads/students').'/'.$profile->image : null,
+                        'class'=> $profile->class->name ?? '',
+                        'rank'=> $profile->rank ?? '',
                         'status'=> $profile->status == 1 ? 'Active' : 'Inactive',
-                        'dob'=> date('d-m-Y', strtotime($profile->dob)),
-                        'blood'=> $profile->bloodGroup->name,
-                        'religion'=> $profile->religion->name,
+                        'dob'=> date('d-m-Y', strtotime($profile->dob)) ?? '',
+                        'blood'=> $profile->bloodGroup->name ?? '',
+                        'religion'=> $profile->religion->name ?? '',
                         'nationality'=> 'Bangladeshi',
-                        'mobile'=> $profile->mobile,
-                        'email'=> $profile->email,
+                        'mobile'=> $profile->mobile ?? '',
+                        'email'=> $profile->email ?? '',
+                    ],
+                    'father'=>[
+                        'name'=>$profile->father->f_name ?? '',
+                        'mobile'=>$profile->father->f_mobile ?? '',
+                        'occupation'=>$profile->father->f_occupation ?? '',
+                    ],
+                    'mother'=>[
+                        'name'=>$profile->mother->m_name ?? '',
+                        'mobile'=>$profile->mother->m_mobile ?? '',
+                        'occupation'=>$profile->mother->m_occupation ?? '',
+                    ],
+                    'address'=>[
+                        'city'=> $profile->city->name ?? '',
+                        'country'=> $profile->country->name ?? '',
+                        'postcode'=> $profile->zip ?? '',
+                        'address'=> $profile->address ?? '',
                     ]
                 ],
-                'father'=>[
-                    'name'=>$profile->father->f_name,
-                    'mobile'=>$profile->father->f_mobile,
-                    'occupation'=>$profile->f_occupation,
-                ],
-                'mother'=>[
-                    'name'=>$profile->mother->m_name,
-                    'mobile'=>$profile->mother->m_mobile,
-                    'occupation'=>$profile->mother->m_occupation,
-                ],
-                'address'=>[
-                    'city'=> $profile->city->name,
-                    'country'=> $profile->country->name,
-                    'postcode'=> $profile->zip,
-                    'address'=> $profile->address,
-                ]
+
             ]);
         }
         else{
@@ -189,7 +236,7 @@ class AndroidController extends Controller
 
     public function teachers()
     {
-        $teachers = Staff::query()->where('staff_type_id',2)->get();
+        $teachers = Staff::query()->where('staff_type_id',2)->paginate();
         if($teachers->count() > 0){
             $data = [];
             foreach($teachers as $teacher){
@@ -238,7 +285,6 @@ class AndroidController extends Controller
         else{
             return response(null,204);
         }
-
     }
 
     public function syllabus(Request $request)
@@ -275,7 +321,7 @@ class AndroidController extends Controller
                     'date' => date('d-m-Y', strtotime($notice->created_at)),
                     'category' => $noticeCategory->name ?? null,
                     'type' => $notice->notice_type_id == 1 ? 'News' : 'Notice',
-                    'image' => asset('storage/uploads/notice/' . $notice->file),
+                    'image' => $notice->file ? asset('storage/uploads/notice/' . $notice->file) : null,
                     'download_link' => null,
                     'facebook_link' => null,
                     'twitter_link' => null,
@@ -309,17 +355,18 @@ class AndroidController extends Controller
             $noticeCategory =  NoticeCategory::find($news->notice_category_id);
             return [
                 'status'=>true,
-                'title' => $news->title,
-                'body' => $news->description,
-                'date' => date('d-m-Y', strtotime($news->created_at)),
-                'category' => $noticeCategory->name,
-                'type' => $news->notice_type_id == 1 ? 'News' : 'Notice',
-                'image' => asset('storage/uploads/notice/' . $news->file),
-                'download_link' => null,
-                'facebook_link' => null,
-                'twitter_link' => null,
-                'linkedin_link' => null,
-
+                'news' =>[
+                    'title' => $news->title,
+                    'body' => $news->description,
+                    'date' => date('d-m-Y', strtotime($news->created_at)),
+                    'category' => $noticeCategory->name,
+                    'type' => $news->notice_type_id == 1 ? 'News' : 'Notice',
+                    'image' => asset('storage/uploads/notice/' . $news->file),
+                    'download_link' => null,
+                    'facebook_link' => null,
+                    'twitter_link' => null,
+                    'linkedin_link' => null,
+                ],
             ];
         }
         else{
@@ -388,6 +435,17 @@ class AndroidController extends Controller
         $response = curl_exec($ch);
         echo "$response";
         curl_close($ch);
-
     }
+
+    public function events2()
+    {
+        $events = UpcomingEvent::query()->paginate();
+        if($events){
+            return new EventsCollection($events);
+        }
+        else{
+            return response(null,204);
+        }
+    }
+
 }
