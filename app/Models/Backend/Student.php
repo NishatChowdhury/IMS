@@ -3,6 +3,7 @@
 namespace App\Models\Backend;
 
 use App\Models\Backend\FeeSetupStudent;
+use App\Models\LocationStudent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,7 @@ class Student extends Model
         'name_bn',
         'studentId',
         'gender_id',
+        'location_id',
         'mobile',
         'dob',
         'birth_certificate',
@@ -75,6 +77,11 @@ class Student extends Model
     public function gender()
     {
         return $this->belongsTo(Gender::class);
+    }
+
+    public function locationStudent()
+    {
+        return $this->hasOne(LocationStudent::class)->latest();
     }
 
     public function religion()

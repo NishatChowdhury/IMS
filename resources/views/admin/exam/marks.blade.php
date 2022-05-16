@@ -54,7 +54,7 @@
                     {{ Form::open(['action'=>'Backend\MarkController@store','method'=>'post']) }}
                     {{--                    {{ Form::hidden('session_id',$schedule->session_id) }}--}}
                     {{--                    {{ Form::hidden('class_id',$schedule->class_id) }}--}}
-                    {{ Form::hidden('academic_class_id',$schedule->class_id) }}
+                    {{ Form::hidden('academic_class_id',$schedule->academic_class_id) }}
                     {{ Form::hidden('exam_id',$schedule->exam_id) }}
                     {{ Form::hidden('subject_id',$schedule->subject_id) }}
                     <div class="card-body">
@@ -82,11 +82,11 @@
                                     <td>{{ $x++ }}</td>
                                     <td>
                                         {{ Form::hidden('student_id[]',$table == 'students' ? $student->id : $student->student_id) }}
-                                        {{ $student->student->studentId ?? $student->studentId }}
+                                        {{ $student->student ? $student->student->studentId : $student->studentInfo->student->studentId  }}
                                     </td>
-                                    <td>{{ $student->student->rank ?? $student->rank }}</td>
-                                    <td>{{ $student->student->name ?? $student->name }}</td>
-                                    <td>100</td>
+                                    <td>{{ $student->student ? $student->rank : $student->studentInfo->rank }}</td>
+                                    <td>{{ $student->student ? $student->student->name : $student->studentInfo->student->name}}</td>
+                                    <td>100 </td>
                                     <td>
                                         {{ Form::number('objective[]',$student->objective ?? null,['class'=>'form-control']) }}
                                     </td>

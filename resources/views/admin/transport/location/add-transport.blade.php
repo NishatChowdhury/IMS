@@ -38,10 +38,10 @@
                                         </div>
                                     @endif
                                     {{ Form::model(['route'=>'transport.store','method'=>'POST']) }}
-                                        @include('admin.account.transport.location.form')
-                                        <div class="from-group">
-                                            {{ Form::button('SAVE',['type'=>'submit','class'=>'btn btn-primary']) }}
-                                        </div>
+                                    @include('admin.transport.location.form')
+                                    <div class="from-group">
+                                        {{ Form::button('SAVE',['type'=>'submit','class'=>'btn btn-primary']) }}
+                                    </div>
                                     {{ Form::close() }}
                                 </div>
                             </div>
@@ -61,33 +61,45 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <table  class="table table-bordered table-striped table-sm" >
+                                                    <table class="table table-bordered table-striped table-sm">
                                                         <thead class="table-dark text-center">
-                                                            <tr>
-                                                               <th>Sl</th>
-                                                               <th>Location</th>
-                                                               <th>Description</th>
-                                                               <th>Fare</th>
-                                                               <th>Action</th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th>Sl</th>
+                                                            <th>Location</th>
+                                                            <th>Description</th>
+                                                            <th>Home To Institute</th>
+                                                            <th>Institute To Home</th>
+                                                            <th>Both</th>
+                                                            <th>Action</th>
+                                                        </tr>
                                                         </thead>
                                                         @php $i=1 @endphp
                                                         <tbody>
-                                                            @foreach($locations as $location)
-                                                                <tr>
-                                                                    <td>{{$i++}}</td>
-                                                                    <td>{{ucwords($location->name)}}</td>
-                                                                    <td>{{ucfirst($location->description)}}</td>
-                                                                    <td style="text-align: right">{{number_format($location->amount,2)}}</td>
-                                                                    <td>
-                                                                        <a type="button" href="{{route('transport.edit',$location->id)}}" class="btn btn-warning btn-sm edit" style="margin-left: 10px;"> <i class="fas fa-edit"></i>
-                                                                        </a>
+                                                        @foreach($locations as $location)
+                                                            <tr>
+                                                                <td>{{$i++}}</td>
+                                                                <td>{{ucwords($location->name)}}</td>
+                                                                <td>{{ucfirst($location->description)}}</td>
+                                                                <td style="text-align: right">{{number_format($location->home_to_institute,2)}}</td>
+                                                                <td style="text-align: right">{{number_format($location->institute_to_home,2)}}</td>
+                                                                <td style="text-align: right">{{number_format($location->both,2)}}</td>
+                                                                <td>
+                                                                    <a type="button"
+                                                                       href="{{route('transport.edit',$location->id)}}"
+                                                                       class="btn btn-warning btn-sm edit"
+                                                                       style="margin-left: 10px;"> <i
+                                                                                class="fas fa-edit"></i>
+                                                                    </a>
 
-                                                                        <a type="button" href="{{action('Backend\FeeCategoryController@delete_fee_category', $location->id)}}" class="btn btn-danger btn-sm delete_session"style="margin-left: 10px;"> <i class="fas fa-trash"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
+                                                                    <a type="button"
+                                                                       href="{{action('Backend\FeeCategoryController@delete_fee_category', $location->id)}}"
+                                                                       class="btn btn-danger btn-sm delete_session"
+                                                                       style="margin-left: 10px;"> <i
+                                                                                class="fas fa-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                         </tbody>
                                                         {{ $locations->links() }}
                                                     </table>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
-use App\Models\Backend\ClassSchedule;
+use App\Models\ClassSchedule;
 use App\Models\Backend\Staff;
 use App\Repository\ScheduleRepository;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class ScheduleController extends Controller
 
     public function index($classId)
     {
-        $schedules = ClassSchedule::query()
+         $schedules = ClassSchedule::query()
             ->where('academic_class_id',$classId)
             ->get()
             ->sortBy('start')

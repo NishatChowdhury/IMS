@@ -118,13 +118,14 @@ class ExamController extends Controller
      * Created by smartrahat
      * @return Factory|View
      */
-    public function admitCard(StudentAcademic $student, Request $request)
+    public function admitCard(StudentAcademic $student, Request $request, Exam $exam_id)
     {
-//        return $request->all();
+
         if($request->all() == []){
             $students = [];
             $exam = null;
             $schedules = [];
+            $academicClass = [];
         }else{
 //            return $request->all();
             $s = $student->newQuery();
@@ -136,10 +137,7 @@ class ExamController extends Controller
                 });
 //                return $s->get();
             }
-//            if($request->get('name')){
-//                $name = $request->get('name');
-//                $s->where('name','like','%'.$name.'%');
-//            }
+
             if($request->get('class_id')){
                 $class = $request->get('class_id');
                 $s->where('class_id',$class);
@@ -154,7 +152,7 @@ class ExamController extends Controller
             }
 
 
-                $students = $s->with('student')->get();
+            $students = $s->with('student')->get();
              $exam = Exam::query()->findOrFail($request->get('exam_id'));
              $academicClass = AcademicClass::query()
                 ->where('class_id',$request->get('class_id'))
@@ -163,13 +161,13 @@ class ExamController extends Controller
                 ->first();
               $schedules = ExamSchedule::query()
                 ->where('exam_id',$request->get('exam_id'))
-                ->where('class_id',$academicClass->id) // class_id means Academic Class Id By mistake some do that's why it can't be change
+//                ->where('class_id',$academicClass->id) // class_id means Academic Class Id By mistake some do that's why it can't be change
                 ->orderBy('date')
                 ->get();
         }
 
         $repository = $this->repository;
-        return view('admin.exam.admit-card',compact('repository','students','exam','schedules'));
+        return view('admin.exam.admit-card',compact('repository','academicClass','students','exam','schedules'));
     }
 
     public function seatAllocate(Request $request)

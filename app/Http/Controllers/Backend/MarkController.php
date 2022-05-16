@@ -9,6 +9,7 @@ use App\Models\Backend\Grade;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -21,6 +22,9 @@ class MarkController extends Controller
 
     public function index($schedule)
     {
+
+
+
         $schedule = ExamSchedule::query()->findOrFail($schedule);
 
 
@@ -34,19 +38,16 @@ class MarkController extends Controller
             ->exists();
 
         if($isExist){
-            $students = Mark::query()
-                //->where('session_id',$schedule->session_id)
-                //->where('class_id',$schedule->class_id)
+              $students = Mark::query()
                 ->where('academic_class_id',$schedule->academic_class_id)
                 ->where('exam_id',$schedule->exam_id)
                 ->where('subject_id',$schedule->subject_id)
-                //->where('student_id',$request->get('student_id'))
+                ->with('studentInfo')
                 ->get();
             $table = 'marks';
         }else{
-            $students = StudentAcademic::query()
-                                        ->where('academic_class_id', $schedule->class_id)
-                                        ->where('session_id',$schedule->session_id)
+             $students = StudentAcademic::query()
+                                        ->where('academic_class_id', $schedule->academic_class_id)
                                         ->orderBy('rank')
                                         ->get();
              $table = 'students';
@@ -63,11 +64,11 @@ class MarkController extends Controller
 
         $schedule = ExamSchedule::query()->findOrFail($schedule);
 
-        $table = StudentAcademic::query()->where('academic_class_id',$schedule->class_id)->get();
+        $table = StudentAcademic::query()->where('academic_class_id',$schedule->academic_class_id)->get();
 
-        $group = $schedule->academicClassName->group != null ? $schedule->academicClassName->group->name : '';
-        $section = $schedule->academicClassName->section != null ? $schedule->academicClassName->section->name : '';
-        $filename = $schedule->academicClassName->classes->name.$group.$section.$schedule->subject->short_name.".csv";
+        $group = $schedule->academicClass->group != null ? $schedule->academicClass->group->name : '';
+        $section = $schedule->academicClass->section != null ? $schedule->academicClass->section->name : '';
+        $filename = $schedule->academicClass->classes->name.$group.$section.$schedule->subject->short_name.".csv";
 
         $handle = fopen($filename, 'w+');
 
@@ -118,18 +119,18 @@ class MarkController extends Controller
     public function up(Request $request)
     {
         $schedule = ExamSchedule::query()->findOrFail($request->schedule);
-
+//        return $schedule;
         $file = file($request->file('file'));
 
         $sl = 0;
         foreach($file as $row){
             if($sl != 0){
                 $col = explode(',',$row);
-
                 $data['academic_class_id'] = $schedule->academic_class_id;
                 $data['exam_id'] = $schedule->exam_id;
                 $data['subject_id'] = $schedule->subject_id;
-                $data['student_id'] = $col[3];
+
+//                $data['rank'] = intval($col[0]);
                 //$data['studentId'] = $academicClass->class_id;
                 $data['full_mark'] = $schedule->objective_full + $schedule->written_full + $schedule->practical_full + $schedule->viva_full;
                 $data['objective'] = (int)$col[4];
@@ -145,16 +146,16 @@ class MarkController extends Controller
                     $data['gpa'] = $this->gpa($data['total_mark']);
                     $data['grade'] = $this->grade($data['total_mark']);
                 }
-
                 $data['grade_id'] = 1;
-
+                $getStudentAcademic = StudentAcademic::where('rank', intval($col[0]))->first();
+                $data['student_id'] = $getStudentAcademic->id;
+//                    return $data;
                 $mark = Mark::query()
-                    ->where('student_id',$col[3])
-                    ->where('academic_class_id',$schedule->academic_class_id)
-                    ->where('exam_id',$schedule->exam_id)
-                    ->where('subject_id',$schedule->subject_id)
-                    ->first();
-
+                            ->where('student_id', $getStudentAcademic->id)
+                            ->where('academic_class_id',$schedule->academic_class_id)
+                            ->where('exam_id',$schedule->exam_id)
+                            ->where('subject_id', $schedule->subject_id)
+                            ->first();
                 if($mark){
                     $mark->update($data);
                 }else{
@@ -173,10 +174,10 @@ class MarkController extends Controller
 //        return $request->all();
         $students = $request->get('student_id');
 
-         $schedule = ExamSchedule::query()
+           $schedule = ExamSchedule::query()
             ->where('exam_id',$request->exam_id)
             ->where('subject_id',$request->subject_id)
-            ->where('class_id',$request->academic_class_id)
+            ->where('academic_class_id',$request->academic_class_id)
             ->first();
 
         foreach($students as $key => $student){
@@ -184,9 +185,9 @@ class MarkController extends Controller
             $getClassID = AcademicClass::where('id', $request->get('academic_class_id'))->first();
 
 
-            $data['session_id'] = 0;
+//            $data['session_id'] = 0;
             $data['academic_class_id'] = $request->get('academic_class_id');
-            $data['class_id'] = $getClassID->class_id;
+//            $data['class_id'] = $getClassID->class_id;
             $data['exam_id'] = $request->get('exam_id');
             $data['subject_id'] = $request->get('subject_id');
             $data['student_id'] = $request->get('student_id')[$key];
@@ -197,20 +198,25 @@ class MarkController extends Controller
             $data['full_mark'] = ExamSchedule::all()
                                                 ->where('exam_id',$request->get('exam_id'))
                                                 ->where('subject_id',$request->get('subject_id'))
-                                                ->where('class_id',$request->get('academic_class_id'))
+                                                ->where('academic_class_id',$request->get('academic_class_id'))
                                                 ->sum(function($t){return $t->objective_full + $t->written_full;});
             $data['total_mark'] = $request->get('objective')[$key] + $request->get('written')[$key] + $request->get('practical')[$key] + $request->get('viva')[$key];
 
 
 
             if($schedule->objective_pass > $data['objective'] || $schedule->written_pass > $data['written'] || $schedule->practical_pass > $data['practical'] || $schedule->viva_pass > $data['viva']){
+//               dd('hey');
                 $data['gpa'] = 0;
                 $data['grade'] = 'F';
             }else{
+//                dd('hey not');
+//                return $data['total_mark'];
                 $data['gpa'] = $this->gpa($data['total_mark']);
                 $data['grade'] = $this->grade($data['total_mark']);
+                $data['grade_id'] = 1;
             }
 
+//            dd($data);
             //$data['gpa'] = $this->gpa($data['total_mark']);
             //$data['grade'] = $this->grade($data['total_mark']);
 
