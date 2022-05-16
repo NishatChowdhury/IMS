@@ -58,10 +58,10 @@ class LoginController extends Controller
         if(Auth::guard('student'))
         {
             $mobile = $request->get('mobile');
-            $studentId = $request->get('studentId');
+//            $studentId = $request->get('studentId');
             $otp = rand(1000,9999);
             $student = Student::query()
-                ->where('studentId',$studentId)
+//                ->where('studentId',$studentId)
                 ->where('mobile',$mobile)
                 ->first();
             if($student)
@@ -116,60 +116,80 @@ class LoginController extends Controller
         }
     }
 
-//    public function matchOtp(Request $request)
-//    {
-//        if(Auth::guard('student')) {
-//            $otpRequest = $request->get('otp');
-//            $otp = Otp::all();
-//            foreach ($otp as $t){
-//                if ($t->otp == $otpRequest){
-//                    return response()
-//                        ->json(['status' => true,'message' => 'OTP matched!'],200);
-//                }
-//                else{
-//                    return response()
-//                        ->json(['status' => false,'message' => 'OTP is not matched!'],500);
-//                }
-//            }
-//        }
-//    }
-
     public function matchOtp(Request $request)
     {
         if(Auth::guard('student')) {
             $otpRequest = $request->get('otp');
-            $otp = Otp::all();
-            foreach ($otp as $t){
-                if ($t->otp == $otpRequest){
-                    $student_id = $t->student_id;
-
-                    $student = Student::query()
-                        ->where('id',$student_id)
-                        ->first();
-
-                    $studentInfo = Student::query()
-                        ->where('id',$student_id)
-                        ->select('name','mobile','image','email')
+            $otp = Otp::query()->where('otp',$otpRequest)->first();
+            if($otp){
+                $studentId = $otp->student_id;
+                $studentInfo = Student::query()
+                                ->where('id',$studentId)
+                                ->select('name','mobile','image','email')
+                                ->first();
+                $student = Student::query()
+                        ->where('id',$studentId)
                         ->get();
 
-                    $token = $student->createToken($student->name);
+                foreach ($student as $t){
+                    $token = $t->createToken($t->name);
+                }
 
-                    $sliders = Slider::query()->select('image','description')->get();
-                    return response()
-                        ->json(
-                            [
-                                'status'        => true,
-                                'message'       => 'Request was successful!',
-                                'auth_token'    =>$token->plainTextToken,
-                                'user'          => $studentInfo,
-                                'sliders'       =>$sliders
-                            ],200);
-                }
-                else{
-                    return response()
-                        ->json(['status' => false,'message' => 'Invalid OTP, Please Try Again!'],500);
-                }
+                $sliders = Slider::query()->select('image','description')->get();
+                return response()
+                    ->json(
+                        [
+                            'status'        => true,
+                            'message'       => 'Request was successful!',
+                            'auth_token'    =>$token->plainTextToken,
+                            'user'          => $studentInfo,
+                            'sliders'       =>$sliders
+                        ],200);
             }
+            else{
+                return response()
+                        ->json(['status' => false,'message' => 'OTP is not matched!'],500);
+            }
+
         }
     }
+
+//    public function matchOtp(Request $request)
+//    {
+//        if(Auth::guard('student')) {
+//            $otpRequest = $request->get('otp');
+//             $otp = Otp::all();
+//            foreach ($otp as $t){
+//                if ($t->otp == $otpRequest){
+//                    $student_id = $t->student_id;
+//
+//                    $student = Student::query()
+//                        ->where('id',$student_id)
+//                        ->first();
+//
+//                    $studentInfo = Student::query()
+//                        ->where('id',$student_id)
+//                        ->select('name','mobile','image','email')
+//                        ->first();
+//
+//                    $token = $student->createToken($student->name);
+//
+//                    $sliders = Slider::query()->select('image','description')->get();
+//                    return response()
+//                        ->json(
+//                            [
+//                                'status'        => true,
+//                                'message'       => 'Request was successful!',
+//                                'auth_token'    =>$token->plainTextToken,
+//                                'user'          => $studentInfo,
+//                                'sliders'       =>$sliders
+//                            ],200);
+//                }
+//                else{
+//                    return response()
+//                        ->json(['status' => false,'message' => 'Invalid OTP, Please Try Again!'],500);
+//                }
+//            }
+//        }
+//    }
 }

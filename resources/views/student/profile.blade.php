@@ -32,7 +32,7 @@
                             </h4>
                             <p>
                                 {{ $student->studentId }} <br>
-                                {{ $student->classes->name }} {{ $student->group->name ?? '' }} {{ $student->section->name ?? '' }}
+{{--                                {{ $student->classes->name }} {{ $student->group->name ?? '' }} {{ $student->section->name ?? '' }}--}}
                             </p>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item m-2">
@@ -43,7 +43,7 @@
                                 <li class="list-inline-item m-2">
                                     <i class="ti-heart text-primary"></i>
                                     <span class="d-block">DOB</span>
-                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>
+{{--                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>--}}
                                 </li>
                             </ul>
                         </div>
