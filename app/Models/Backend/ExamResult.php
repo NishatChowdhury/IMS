@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamResult extends Model
 {
-    protected $fillable = ['academic_class_id','session_id','exam_id','class_id','section_id','group_id','student_id','total_mark','gpa','grade','rank'];
+    protected $fillable = ['student_academic_id','exam_id','class_id','total_mark','gpa','grade','rank'];
 
     public function student()
     {
@@ -31,5 +31,9 @@ class ExamResult extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+    public function studentAcademic()
+    {
+        return $this->belongsTo(StudentAcademic::class);
     }
 }

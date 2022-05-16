@@ -2,6 +2,17 @@
 
 @section('title', 'Exam Mgmt | Exam Schedules')
 
+@section('style')
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+    </style>
+@endsection
+
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">

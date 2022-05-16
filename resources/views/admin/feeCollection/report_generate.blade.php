@@ -3,12 +3,21 @@
 @section('title', 'Fee Collection')
 
 @section('style')
+
     <style>
         @media print {
             .no_print {
                 display: none;
             }
         }
+              span.showDiscountMsg {
+    background: #90abb1;
+    padding: 2px 5px 2px 4px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 900;
+    cursor: pointer;
+}
 
     </style>
 @stop
@@ -42,15 +51,24 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label>From</label>
-                                    <input type="date" name="from"
+                                    <input type="text" name="from"
                                         @if (isset($from)) value="{{ $from }}" @endif
-                                        class="form-control">
+                                        class="form-control datePicker" placeholder="2000-02-22">
                                 </div>
+{{--                                <div class="form-group col-md-3">--}}
+{{--                                  <label>From</label>--}}
+{{--                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">--}}
+{{--                                        <input type="text" name="from"  @if (isset($from)) value="{{ $from }}" @endif class="form-control datetimepicker-input" data-target="#reservationdate"/>--}}
+{{--                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">--}}
+{{--                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-group col-md-3">
                                     <label>To</label>
-                                    <input type="date" name="to"
+                                    <input type="text" name="to"
                                         @if (isset($to)) value="{{ $to }}" @endif
-                                        class="form-control">
+                                        class="form-control datePicker" placeholder="2000-02-22">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>Academic Class</label>
@@ -65,12 +83,12 @@
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
                                     <button type="submit" class="btn btn-info btn-md btn-block"><i
-                                            class="fa fa-search"></i>&nbsp;Search</button>
+                                            class="fa fa-search"></i>&nbsp</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
                                     <button class="btn btn-warning btn-md btn-block"
                                         onclick="window.print(); return false;"><i
-                                            class="fa fa-print"></i>&nbsp;Print</button>
+                                            class="fa fa-print"></i>&nbsp</button>
                                 </div>
 {{--                                <div class="form-group col-md-1" style="margin-top: 30px">--}}
 {{--                                    <a href="{{ route('pdf.dateWiseReport') }}" target="_blank" class="btn btn-success btn-md btn-block"><i--}}
@@ -97,7 +115,7 @@
                     <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="text-center">
-                                <h3>Date Wise Payment Report</h3>
+                                <h3>{{ __('Date Wise Collection Report') }}</h3>
                                 <h5 class="mb-4">{{ request()->from }}
                                     {{ request()->to ? 'To ' . request()->to : '' }}</h5>
                             </div>
@@ -108,25 +126,44 @@
                                         <th>StudentID</th>
                                         <th>Name</th>
                                         <th>Class</th>
-                                        <th>mobile</th>
-                                        <th>Paid</th>
+                                        <th class="text-right">Discount</th>
+                                        <th class="text-right">Paid</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    $total = 0;
+                                ?>
                                     @forelse ($stupays as $pay)
                                         <tr>
                                             <td>{{ $pay->date->format('Y-m-d') }}</td>
                                             <td>{{ $pay->academics->student->studentId ?? '' }}</td>
                                             <td>{{ $pay->academics->student->name ?? '' }}</td>
                                             <td>{{ $pay->academics->classes->name ?? '' }}</td>
-                                            <td>{{ $pay->academics->student->mobile ?? '' }}</td>
-                                            <td>{{ $pay->amount }}</td>
+                                            <td class="text-right">
+                                                @if($pay->discount > 0)
+                                                    <span
+                                                            class="showDiscountMsg"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            title="{{ $pay->remarks ??  'Nothing'}}">i</span>
+                                                @endif
+                                                {{ $pay->discount ?? '' }}
+                                            </td>
+                                            <td class="text-right">{{ number_format(intval($pay->amount), 2, '.', ',')  }}</td>
                                         </tr>
+                                        @php $total += $pay->amount @endphp
                                     @empty
                                         <td colspan="6" class="text-center text-danger">
                                             <h5>No data found !!</h5>
                                         </td>
                                     @endforelse
+                                <tr>
+                                    <td colspan="5">
+                                        <b>Total</b>
+                                    </td>
+                                    <td class="text-right">{{ number_format($total, 2, '.', ',')  }}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -140,3 +177,25 @@
 
 
 @stop
+
+<!-- *** External CSS File-->
+@section('style')
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+@stop
+<!-- *** External JS File-->
+@section('plugin')
+    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+@stop
+
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.datePicker')
+                .datepicker({
+                    format: 'yyyy-mm-dd'
+                })
+        });
+    </script>
+@stop
+

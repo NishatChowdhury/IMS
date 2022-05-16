@@ -25,25 +25,25 @@
                             <table id="" class="table">
                                 <tr>
                                     <th>Student's Name : </th>
-                                    <td>{{ $result->student->name ?? '' }}</td>
+                                    <td>{{ $result->studentAcademic->student->name ?? '' }}</td>
                                     <th>Exam Name : </th>
                                     <td>{{ $result->exam->name ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <th>StudentID : </th>
-                                    <td>{{ $result->student->studentId }}</td>
+                                    <td>{{ $result->studentAcademic->student->studentId }}</td>
                                     <th>Date : </th>
                                     <td>{{ $result->exam->start }} - {{ $result->exam->end }}</td>
                                 </tr>
                                 <tr>
                                     <th>Class :</th>
-                                    <td>{{ academicClass($result->academic_class_id) }}</td>
+                                    <td>{{ $result->studentAcademic->classes->name ? $result->studentAcademic->classes->name : ''  }}</td>
                                     <th>Grade : </th>
                                     <td>{{ $result->grade }}</td>
                                 </tr>
                                 <tr>
                                     <th>Current Rank :</th>
-                                    <td>{{ $result->student->rank }}</td>
+                                    <td>{{ $result->studentAcademic->rank }}</td>
                                     <th>Grade Point :</th>
                                     <td>{{ $result->gpa }}</td>
                                 </tr>

@@ -52,8 +52,8 @@ ul.parent_info li {
 
                             <h2 class="profile-username text-center">{{ $student->name }}</h2>
                             <p class="text-muted text-center">
-                                {{ $student->studentId }} <br>
-                                {{ $student->mobile }} <br>
+                                {{ $student->studentId ?? $student->studentId}} <br>
+                                {{ $student->mobile ?? $student->mobile }} <br>
                                 {{ $student->email ? $student->email : 'N/A' }} <br>
                                 Date Of Birth : {{ $student->dob ? \Carbon\Carbon::parse($student->dob)->format('d m Y') : 'N/A' }}
                             </p>
@@ -61,16 +61,16 @@ ul.parent_info li {
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Class</b> <a class="float-right">{{ $studentAcademic->classes->name }}</a>
+                                    <b>Class</b> <a class="float-right">{{ $studentAcademic->classes ? $studentAcademic->classes->name : 'N/A' }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Section</b> <a class="float-right">{{ $studentAcademic->section ? $studentAcademic->section->name : 'N/A'  }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Group</b> <a class="float-right">{{ $studentAcademic->group->name }}</a>
+                                    <b>Group</b> <a class="float-right">{{ $studentAcademic->group ? $studentAcademic->group->name : 'N/A' }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Roll</b> <a class="float-right">{{ $studentAcademic->rank }}</a>
+                                    <b>Roll</b> <a class="float-right">{{ $studentAcademic ? $studentAcademic->rank : 'N/A' }}</a>
                                 </li>
                             </ul>
                                 @if($student->status ==1)
@@ -205,13 +205,8 @@ ul.parent_info li {
                                         <thead class="thead-dark">
                                         <tr style="text-align: center">
                                             <th>Date</th>
-                                            <th>Inv No.</th>
-                                            <th>Setup Amount</th>
-                                            <th>Arrears</th>
-                                            <th>Fine</th>
-                                            <th>Discount</th>
-                                            <th>Paid Amount</th>
-                                            <th>Due</th>
+                                            <th class="text-right">Discount</th>
+                                            <th class="text-right">Paid Amount</th>
                                         </tr>
                                         </thead>
 
@@ -220,13 +215,8 @@ ul.parent_info li {
                                             @forelse ($payments as $payment)
                                             <tr>
                                                 <td style="text-align: center">{{\Carbon\Carbon::parse($payment->created_at)->format('m F Y')}}</td>
-                                                <td style="text-align: center">{{$payment->id}}</td>
-                                                <td style="text-align: right">{{ number_format($payment->setup_amount,2) }} </td>
-                                                <td style="text-align: right">{{ number_format($payment->arrears,2) }} </td>
-                                                <td style="text-align: right">{{ number_format($payment->fine,2) }}</td>
                                                 <td style="text-align: right">{{ number_format($payment->discount,2) }}</td>
-                                                <td style="text-align: right">{{ number_format($payment->paid_amount,2) }}</td>
-                                                <td style="text-align: right">{{ number_format($payment->due,2) }}</td>
+                                                <td style="text-align: right">{{ number_format($payment->amount,2) }}</td>
                                             </tr>
                                             @empty
                                             <tr>

@@ -13,9 +13,9 @@ use App\Models\Backend\Father;
 use App\Models\Backend\Gender;
 use App\Models\Backend\Group;
 use App\Models\Backend\Guardian;
+use App\Models\Backend\Location;
 use App\Models\Backend\Mother;
 use App\Models\Backend\OnlineSubject;
-use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Section;
 use App\Models\Backend\Session;
@@ -25,6 +25,7 @@ use App\Models\Backend\StudentLogin;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
+use App\Models\LocationStudent;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -313,6 +314,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::query()->findOrFail($id);
+
         $father = Father::query()->where('student_id', $id)->first();
         $mother = Mother::query()->where('student_id', $id)->first();
         $guardian = Guardian::query()->where('student_id', $id)->first();
@@ -803,23 +805,24 @@ class StudentController extends Controller
         $data['father'] = Father::query()->where('student_id', $studentId)->first();
         $data['mother'] = Mother::query()->where('student_id', $studentId)->first();
         $data['guardian'] = Guardian::query()->where('student_id', $studentId)->first();
-        $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
+         $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
             ->with('classes','section','group')
             ->first();
         // return $studentAcademic;
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
-        $payments = StudentPayment::query()
+          $payments = StudentPayment::query()
                                     ->where('student_academic_id',$studentAcademic->id)
-                                    ->exists();
-        if($payments){
-            $payments = StudentPayment::query()
-                                    ->where('student_id',$studentId)
-                                    ->exists();
-        }else{
-            $payments = [];
-        }
-//            return $student;
+                                    ->get();
+//        if($payments){
+//            $payments = StudentPayment::query()
+//                                    ->whereHas('academics', function($q) use($studentId){
+//                                      return $q->where('student_id',$studentId);
+//                                    })->exists();
+//        }else{
+//            $payments = [];
+//        }
+//            return $payments;
 
         return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
 
@@ -919,6 +922,44 @@ class StudentController extends Controller
         $student->update(['subjects'=>$subjects]);
         \Illuminate\Support\Facades\Session::flash('success','Subject has been assigned!');
         return redirect()->back();
+    }
+
+    public function assignTransport(Request $request)
+    {
+         $academicClass = AcademicClass::query()
+                                        ->whereHas('sessions', function($q){
+                                            return $q->where('active', 1);
+                                        })->get();
+         if($request->get('academic_class_id')){
+                 $students = StudentAcademic::query()
+                                                    ->where('academic_class_id', $request->academic_class_id)
+                                                    ->with('student')
+                                                    ->get();
+             $locations = Location::all();
+             $locationStudents = LocationStudent::all();
+         }else{
+             $students = [];
+             $locations = [];
+             $locationStudents = [];
+         }
+        return view('admin.student.assignTransport', compact('academicClass','students','locations','locationStudents'));
+    }
+
+    public function storeAssignTransport(Request $request)
+    {
+
+        $student = $request->student_id;
+         foreach ($student as $key => $stu){
+
+             LocationStudent::create([
+                 'student_id' => $stu,
+                 'location_id' => $request->location_id[$key] ?? 0,
+                 'direction' => $request->direction[$key] ?? 0,
+             ]);
+         }
+
+        return back();
+
     }
 
 }
