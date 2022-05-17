@@ -150,7 +150,7 @@
                                                 <tr>
                                                     <th>SL.</th>
                                                     <th>Category</th>
-                                                    <th>Amount</th>
+                                                    <th class="text-right">Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -161,7 +161,7 @@
                                                     <tr>
                                                         <td>{{ $key + 1 }}</td>
                                                         <td>{{ $rcpt->category->name }}</td>
-                                                        <td>{{ $rcpt->paid }} /-</td>
+                                                        <td class="text-right">{{ number_format($rcpt->paid, 2) }} /-</td>
                                                     </tr>
                                                     {{-- @php
                                                     $total += $rcpt->paid;
@@ -171,20 +171,20 @@
                                                     <td colspan="2">
                                                         <strong class="float-right">Paid =</strong>
                                                     </td>
-                                                    <td>{{ session()->get('spay')['amount'] }}/-</td>
+                                                    <td class="text-right">{{ number_format(session()->get('spay')['amount'], 2) }}/-</td>
                                                 </tr>
 {{--                                                @if (session()->has(['discount']))--}}
                                                     <tr>
                                                         <td colspan="2">
                                                             <strong class="float-right">discount =</strong>
                                                         </td>
-                                                        <td>{{ session()->get('spay')['discount'] ?? 0.00 }}/-</td>
+                                                        <td class="text-right">{{ number_format(session()->get('spay')['discount'], 2) ?? 0.00 }}/-</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
                                                             <strong class="float-right">Total =</strong>
                                                         </td>
-                                                        <td>{{ session()->get('spay')['amount'] + session()->get('spay')['discount'] }}/-
+                                                        <td class="text-right">{{ number_format(session()->get('spay')['amount'] + session()->get('spay')['discount'], 2)  }}/-
                                                         </td>
                                                     </tr>
 {{--                                                @endif--}}

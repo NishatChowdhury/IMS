@@ -346,6 +346,8 @@ Route::post('message-store','Backend\MessagesController@store')->name('message.s
 //Class Schedule
 Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index');
 Route::post('institution/class/schedule/store','Backend\ScheduleController@store');
+Route::post('institution/class/schedule/update','Backend\ScheduleController@update');
+Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
 
     Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 

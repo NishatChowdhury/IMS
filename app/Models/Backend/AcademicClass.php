@@ -42,6 +42,8 @@ class AcademicClass extends Model
         return $this->hasMany(AssignSubject::class,'academic_class_id');
     }
 
+
+
     /**
      * An academic class is belongs to a class
      *
