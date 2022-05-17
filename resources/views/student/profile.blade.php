@@ -133,11 +133,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($period as $day)
+                                        @foreach($attendances as $day)
                                         <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">{{ $day->format('Y-m-d') }}</th>
-                                            <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>
-                                            <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>
+                                            <th scope="row" class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
+                                            <td>{{$day->entry}} </td>
+                                            <td>{{$day->exit}} </td>
+{{--                                          <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
+{{--                                          <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
                                             <td>
                                                 <a href="#" class="btn btn-link">View</a>
                                             </td>
@@ -145,11 +147,63 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $attendances->links() }}
                                 </div>
                             </div> <!-- END tab-pane -->
                             <div class="tab-pane fade" id="Tabs_1-2" role="tabpanel">
                                 <div class="row">
-                                    <button id="bKash_button" class="btn btn-danger" disabled>Pay With bKash</button>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col"><b>Name</b></th>
+                                            <th scope="col"><b>Date</b></th>
+                                            <th scope="col"><b>Mark's</b></th>
+                                            <th scope="col"><b>GPA</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-toggle="modal" data-target=".bd-example-modal-lg" >
+                                                <td>Maynuddin</td>
+                                                <td>10.21.22</td>
+                                                <td>89</td>
+                                                <td>A</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="result">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content p-4">
+                                                    <div class="row">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title h4" id="mySmallModalLabel">Mark Sheet</h5>
+                                                        </div>
+
+                                                        <table class="table table-bordered p-8">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col"><b>Name</b></th>
+                                                                <th scope="col"><b>Date</b></th>
+                                                                <th scope="col"><b>Mark's</b></th>
+                                                                <th scope="col"><b>GPA</b></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Maynuddin</td>
+                                                                    <td>10.21.22</td>
+                                                                    <td>89</td>
+                                                                    <td>A</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div> <!-- END row-->
                             </div> <!-- END tab-pane -->
                         </div> <!-- END tab-content-->

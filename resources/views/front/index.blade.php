@@ -29,7 +29,6 @@
 
     @include('front.galleryCorner')
 
-
     @include('front.news')
 
     @include('front.result')

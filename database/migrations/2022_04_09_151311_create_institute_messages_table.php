@@ -18,9 +18,14 @@ class CreateInstituteMessagesTable extends Migration
             $table->string('title')->nullable();
             $table->longText('body')->nullable();
             $table->string('image')->nullable();
-            $table->string('alias')->nullable();
+            $table->string('alias')->nullable()->uniqid;
             $table->timestamps();
         });
+        DB::table('institute_messages')->insert([
+            ['alias' => 'about'],
+            ['alias' => 'chairman'],
+            ['alias' => 'principal'],
+        ]);
     }
 
     /**

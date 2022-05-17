@@ -33,10 +33,10 @@
                                         <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
-                                            <p>1000</p>
-                                        </div>
+{{--                                        <div class="dec-block-dec" style="float:left;">--}}
+{{--                                            <h5 style="margin-bottom: 0px;">Total Found</h5>--}}
+{{--                                            <p>1000</p>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>

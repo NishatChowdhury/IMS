@@ -102,7 +102,7 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Total Found : {{ $students->total() }}</h3>
+{{--                        <h3 class="card-title">Total Found : {{ $students->total() }}</h3>--}}
                         <div class="card-tools">
                             <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
                             <a href="{{ route('csv') }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>

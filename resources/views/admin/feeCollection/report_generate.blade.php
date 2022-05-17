@@ -3,21 +3,12 @@
 @section('title', 'Fee Collection')
 
 @section('style')
-
     <style>
         @media print {
             .no_print {
                 display: none;
             }
         }
-              span.showDiscountMsg {
-    background: #90abb1;
-    padding: 2px 5px 2px 4px;
-    border-radius: 16px;
-    font-size: 11px;
-    font-weight: 900;
-    cursor: pointer;
-}
 
     </style>
 @stop
@@ -55,15 +46,6 @@
                                         @if (isset($from)) value="{{ $from }}" @endif
                                         class="form-control datePicker" placeholder="2000-02-22">
                                 </div>
-{{--                                <div class="form-group col-md-3">--}}
-{{--                                  <label>From</label>--}}
-{{--                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">--}}
-{{--                                        <input type="text" name="from"  @if (isset($from)) value="{{ $from }}" @endif class="form-control datetimepicker-input" data-target="#reservationdate"/>--}}
-{{--                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">--}}
-{{--                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="form-group col-md-3">
                                     <label>To</label>
                                     <input type="text" name="to"

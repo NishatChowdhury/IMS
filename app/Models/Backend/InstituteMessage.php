@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class InstituteMessage extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['title','body','image'];
 }
