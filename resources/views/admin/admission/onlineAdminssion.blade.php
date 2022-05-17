@@ -83,7 +83,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('onlineStepEdit', $onlineAdmission->id) }}"  class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('onlineStepDelete', $onlineAdmission->id) }}"  class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -190,7 +190,6 @@
     </div>
 
 @stop
-
 
 @section('script')
     <script>

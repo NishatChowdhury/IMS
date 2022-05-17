@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Fee Collection</h1>
+                    <h1>Fee Collections</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -187,14 +187,14 @@
                                 <thead class="thead-white">
                                     <tr>
                                         <th>{{ __('Month') }}</th>
-                                        <th>{{ __('Amount') }}</th>
+                                        <th class="text-right">{{ __('Amount') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($paidAmount as $value)
                                         <tr>
                                             <td> {{ $value->month }}, &nbsp;{{ $value->year }}</td>
-                                            <td> {{ number_format($value->amount, 2, '.', ',') }}</td>
+                                            <td class="text-right"> {{ number_format($value->amount, 2, '.', ',') }}</td>
                                         </tr>
                                     @empty
                                         <td colspan="2">
