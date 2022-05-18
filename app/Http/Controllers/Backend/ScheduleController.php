@@ -25,26 +25,46 @@ class ScheduleController extends Controller
 
     public function index($classId)
     {
-         $schedules = ClassSchedule::query()
+           $schedules = ClassSchedule::query()
             ->where('academic_class_id',$classId)
             ->get()
-            ->sortBy('start')
-            ->groupBy('day_id')
-            ->sortBy('day_id');
+//            ->sortBy('start')
+            ->groupBy('day')
+            ->sortBy('day');
 
-        $class = AcademicClass::query()->findOrFail($classId);
-        $subjects = $class->subjects;
-        $teachers = Staff::query()->where('staff_type_id',2)->pluck('name','id');
+             $academicClass = AcademicClass::query()->findOrFail($classId);
+             $subjects = $academicClass->subjects;
+         $teachers = Staff::query()->where('staff_type_id',2)->get();
 
         $repository = $this->repository;
-        return view('admin.institution.schedule',compact('class','subjects','teachers','schedules','repository'));
+        return view('admin.institution.schedule',compact('academicClass','subjects','teachers','schedules','repository'));
     }
 
     public function store(Request $request)
     {
-        //dd($request->all());
+//        dd($request->all());
         ClassSchedule::query()->create($request->all());
         Session::flash('success','Routine has been added');
         return redirect()->back();
+    }
+
+    public function update(Request $request)
+    {
+//        return $request->all();
+        ClassSchedule::find($request->id)->update([
+            'day' => $request->day,
+            'start' => $request->start,
+            'end' => $request->end,
+            'subject_id' => $request->subject_id,
+            'teacher_id' => $request->teacher_id,
+//            'onlineId' => $request->onlineId,
+            'academic_class_id' => $request->academic_class_id,
+        ]);
+        return back();
+    }
+    function delete($id){
+         $del = ClassSchedule::find($id);
+         $del->delete();
+         return back();
     }
 }

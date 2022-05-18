@@ -104,7 +104,6 @@ class ExamScheduleController extends Controller
 
                 $schedule = ExamSchedule::query()
                     ->where('academic_class_id',$request->get('academic_class_id'))
-                    //->where('class_id',$request->get('class_id'))
                     ->where('exam_id',$request->get('exam_id'))
                     ->where('subject_id',$subject)
                     ->first();

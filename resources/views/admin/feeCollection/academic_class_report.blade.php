@@ -8,14 +8,14 @@
                 display: none;
             }
         }
-        span.showDiscountMsg {
-    background: #90abb1;
-    padding: 2px 5px 2px 4px;
-    border-radius: 16px;
-    font-size: 11px;
-    font-weight: 900;
-    cursor: pointer;
-}
+        /*span.showDiscountMsg {*/
+        /*    background: #90abb1;*/
+        /*    padding: 2px 5px 2px 4px;*/
+        /*    border-radius: 16px;*/
+        /*    font-size: 11px;*/
+        /*    font-weight: 900;*/
+        /*    cursor: pointer;*/
+        /*}*/
 
     </style>
 @stop
@@ -48,7 +48,7 @@
                         <form method="get" action="{{ route('report.academic_class') }}">
                             <div class="form-row">
                                 <div class="form-group col-md-3">
-                                    <label>Academic Class</label>
+                                    <label>Academic Class  </label>
                                     <select name="academic_class" id="" class=" form-control  " required>
                                         <option value="">Select class </option>
                                         @foreach ($academic_class as $class)
@@ -140,15 +140,13 @@
                                             @endphp
                                             <td class="text-right">
                                                 @if($discount > 0)
-                                                    <span
-                                                            class="showDiscountMsg"
-                                                            data-bs-toggle="tooltip"
+                                                    <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip"
                                                             data-bs-placement="top"
                                                             title="
                                                                 @foreach($student->academics[0]->payments as $rr)
                                                                     {{ $rr->remarks ? $rr->remarks : 'Nothing'}}
                                                                 @endforeach
-                                                            ">i</span>
+                                                            "></i>
                                                 @endif
                                                 {{ $discount }}
                                             </td>

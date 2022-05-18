@@ -26,6 +26,10 @@ Route::get('system/migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
+Route::get('storage-link',function(){
+    Artisan::call('storage:link');
+    dd('storage complete');
+});
 
 Route::get('system/migrate-refresh',function(){
     Artisan::call('migrate:fresh --seed');

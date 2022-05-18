@@ -13,16 +13,16 @@ class DairyController extends Controller
 {
     public function index(Request $request)
     {
-        $diaries = Diary::query();
+         $diaries = Diary::query();
         $academicClass = AcademicClass::active()->get();
-//        if($request->get('date')){
-//            $diaries->where('date', $request->get('date'));
-//        }
-//        if($request->get('academic_class_id')){
-//            $diaries->where('academic_class_id', $request->get('academic_class_id'));
-//        }
+        if($request->get('date')){
+            $diaries->where('date', $request->get('date'));
+        }
+        if($request->get('academic_class_id')){
+            $diaries->where('academic_class_id', $request->get('academic_class_id'));
+        }
 
-         $diaries->orderBy('id', 'DESC')->get();
+          $diaries = $diaries->orderBy('id', 'DESC')->get();
         return view('admin.dairy.index', compact('academicClass','diaries'));
     }
     public function create()
