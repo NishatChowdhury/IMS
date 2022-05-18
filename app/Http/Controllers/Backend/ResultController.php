@@ -66,6 +66,8 @@ class ResultController extends Controller
             $results = [];
         }
 
+//        return $results;
+
         $repository = $this->repository;
         return view ('admin.exam.examresult',compact('repository','results'));
     }
@@ -83,14 +85,14 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
-            $classes = AcademicClass::all();
+             $classes = AcademicClass::all();
             foreach($classes as $class){
                 $subjectCount = ExamSchedule::query()
                     ->where('academic_class_id',$class->id)   //class id means acadimic class id
                     ->where('exam_id',$examId)
                     ->count();
 
-                 $marks = Mark::query()
+                  $marks = Mark::query()
                                     ->where('academic_class_id',$class->id)
                                     ->where('exam_id',$examId)
                                     ->with('subject')
@@ -126,16 +128,16 @@ class ResultController extends Controller
 
                     $optionalMark = $mark->where('subject_id',0)->first()->gpa ?? 0;
                     //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
-
+//                    return $mark;
                     $mainSubjectGpa = $mark->sum('gpa') - $countOptionalSubject * 3;
                     $mainSubject = $subjectCount - $countOptionalSubject;
                     $mainGpa = $mainSubjectGpa / $subjectCount;
-                     $data['gpa'] = $isFail ? 0 : $mainGpa;
+                    $data['gpa'] = $isFail ? 0 : $mainGpa;
 
 
 
 
-//                    return $mark->sum('gpa');
+//                    return $data;
                      $grade = Grade::query()
                         ->where('system',1)
                         ->where('point_from','<=',$data['gpa'])

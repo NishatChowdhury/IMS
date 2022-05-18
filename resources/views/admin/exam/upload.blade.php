@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <div class="card-header">
-                            <h1>{{ $schedule->academicClass->classes->name }}&nbsp;{{ $schedule->academicClass->section->name ?? '' }}{{ $schedule->academicClass->group->name ?? '' }}</h1>
+                            <h1>{{ $schedule->academicClass->classes->name ?? '' }}&nbsp;{{ $schedule->academicClass->section->name ?? '' }}{{ $schedule->academicClass->group->name ?? '' }}</h1>
                         </div>
                         <div class="card-body">
                             {{ Form::open(['action'=>'Backend\MarkController@up','method'=>'post','files'=>true]) }}
