@@ -39,9 +39,10 @@
         <div class="container-fluid">
             <div class="row no_print">
                 <div class="col-md-12">
-                    <div class="card" style="margin: 0px;">
+                    <div class="card" style="margin: 1px;">
                         <h5 class="text-center" style="background-color: rgb(45 136 151);padding:10px;color:white">
-                            <b>Search by Student ID for Collect Fees</b></h3>
+                            <b>Search by Student ID for Collect Fees</b>
+                        </h5>
                             <div class="mx-auto pull-right">
                                 <form action="{{ url('admin/fee/fee-collection/view') }}" method="GET" role="search">
                                     <div class="input-group">
@@ -90,13 +91,9 @@
                             <div class="card-body">
 
                                 <div class="row">
-                                    <div class="col-12">
-                                        <h4 class="text-center"><u>Money Receit</u></h4>
-                                        <h4 class="text-center">
-                                            {{-- </i> Web Point Ltd.<br> --}}
-                                            {{-- <span>Money Receit</span> --}}
-
-                                        </h4>
+                                    <div class="col-12 text-center">
+                                        <h2>{{ siteConfig('name') }}</h2>
+                                        <h3 class="text-center"><u>Money Receit</u></h3>
                                         <div>
                                             <strong class="float-left">Receipt No:
                                                 #00{{ session()->get('spay')['id'] }}</strong>
@@ -153,7 +150,7 @@
                                                 <tr>
                                                     <th>SL.</th>
                                                     <th>Category</th>
-                                                    <th>Amount</th>
+                                                    <th class="text-right">Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -164,7 +161,7 @@
                                                     <tr>
                                                         <td>{{ $key + 1 }}</td>
                                                         <td>{{ $rcpt->category->name }}</td>
-                                                        <td>{{ $rcpt->paid }} /-</td>
+                                                        <td class="text-right">{{ number_format($rcpt->paid, 2) }} /-</td>
                                                     </tr>
                                                     {{-- @php
                                                     $total += $rcpt->paid;
@@ -174,20 +171,20 @@
                                                     <td colspan="2">
                                                         <strong class="float-right">Paid =</strong>
                                                     </td>
-                                                    <td>{{ session()->get('spay')['amount'] }}/-</td>
+                                                    <td class="text-right">{{ number_format(session()->get('spay')['amount'], 2) }}/-</td>
                                                 </tr>
 {{--                                                @if (session()->has(['discount']))--}}
                                                     <tr>
                                                         <td colspan="2">
                                                             <strong class="float-right">discount =</strong>
                                                         </td>
-                                                        <td>{{ session()->get('spay')['discount'] ?? 0.00 }}/-</td>
+                                                        <td class="text-right">{{ number_format(session()->get('spay')['discount'], 2) ?? 0.00 }}/-</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
                                                             <strong class="float-right">Total =</strong>
                                                         </td>
-                                                        <td>{{ session()->get('spay')['amount'] + session()->get('spay')['discount'] }}/-
+                                                        <td class="text-right">{{ number_format(session()->get('spay')['amount'] + session()->get('spay')['discount'], 2)  }}/-
                                                         </td>
                                                     </tr>
 {{--                                                @endif--}}

@@ -14,6 +14,7 @@ use App\Models\Backend\Mark;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Repository\ResultRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
@@ -32,11 +33,16 @@ class ResultController extends Controller
     public function index(Request $request,ExamResult $examResult)
     {
         if($request->all()){
+//            return $request->all();
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-                $r->whereHas('student',function($query) use ($request){
-                    $query->where('studentId', $request->studentId);
+//                $getStudent = StudentAcademic::find($request->get('studentId'))->first();
+                $r->whereHas('studentAcademic',function($query) use ($request){
+                    $query->whereHas('student', function($q) use ($request){
+                        $q->where('studentId', $request->studentId);
+                    });
+//                    $query->where('studentId', $request->studentId);
                 });
             }
 
@@ -44,14 +50,23 @@ class ResultController extends Controller
                 $r->where('exam_id',$request->get('exam_id'));
             }
 
-            if($request->get('class_id')){
-                $r->where('academic_class_id',$request->get('class_id'));
+            if($request->has('academic_class_id')){
+//                    return $request->academic_class_id;
+                  $r->whereHas('studentAcademic',function($query) use ($request){
+                        $query->where('academic_class_id',$request->get('academic_class_id'));
+//                    $query->whereHas('student', function($q) use ($request){
+//                        $q->where('studentId', $request->studentId);
+//                    });
+//                    $query->where('studentId', $request->studentId);
+                });
             }
 
             $results = $r->get();
         }else{
             $results = [];
         }
+
+//        return $results;
 
         $repository = $this->repository;
         return view ('admin.exam.examresult',compact('repository','results'));
@@ -70,24 +85,32 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
-//             $classes = AcademicClass::where('id',9)->get();
-            $classes = AcademicClass::all();
-
+             $classes = AcademicClass::all();
             foreach($classes as $class){
-//                return $class;
-                 $subjectCount = ExamSchedule::query()
-                    ->where('class_id',$class->id)   //class id means acadimic class id
+                $subjectCount = ExamSchedule::query()
+                    ->where('academic_class_id',$class->id)   //class id means acadimic class id
                     ->where('exam_id',$examId)
                     ->count();
 
-                $marks = Mark::query()
-                    ->where('academic_class_id',$class->id)
-                    ->where('exam_id',$examId)
-                    ->get()
-                    ->groupBy('student_id');
+                  $marks = Mark::query()
+                                    ->where('academic_class_id',$class->id)
+                                    ->where('exam_id',$examId)
+                                    ->with('subject')
+                                    ->get()
+                                    ->groupBy('student_id');
 
                 foreach($marks as $student => $mark){
+                    $countOptionalSubject = 0;
+                    foreach ($mark as $m){
+                        if($m->subject->type == 3){
+                             $countOptionalSubject++;
+                        }
+                    }
+                     //$countOptionalSubject;
 
+
+
+//                    return $mark->subject ?? 'hey';
                     $isFail = Mark::query()
                         ->where('academic_class_id',$class->id)
                         ->where('exam_id',$examId)
@@ -95,26 +118,32 @@ class ResultController extends Controller
                         ->where('grade','F')
                         ->exists();
 
-                    $data['academic_class_id'] = $class->id;
-//                    $data['session_id'] = $class->session_id;
+//                    $data['academic_class_id'] = $class->id;
                     $data['exam_id'] = $examId;
-//                    $data['class_id'] = $class->class_id;
-                    $data['student_id'] = $student;
+                    $data['student_academic_id'] = $student;
                     $data['total_mark'] = $mark->sum('total_mark');
 
-                      $stuID = StudentAcademic::query()->findOrFail($student)->student_id;
-                      $optional = Student::query()->with('studentSubject')->findOrFail($stuID);
-                      $optionalMark = $mark->where('subject_id',0)->first()->gpa ?? 0;
-                    //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
+                    $stuID = StudentAcademic::query()->findOrFail($student)->student_id;
+                    $optional = Student::query()->with('studentSubject')->findOrFail($stuID);
 
-                    $data['gpa'] = $isFail ? 0 : $mark->sum('gpa');
-//                    dd($data['gpa']);
-                    $grade = Grade::query()
+                    $optionalMark = $mark->where('subject_id',0)->first()->gpa ?? 0;
+                    //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
+//                    return $mark;
+                    $mainSubjectGpa = $mark->sum('gpa') - $countOptionalSubject * 3;
+                    $mainSubject = $subjectCount - $countOptionalSubject;
+                    $mainGpa = $mainSubjectGpa / $subjectCount;
+                    $data['gpa'] = $isFail ? 0 : $mainGpa;
+
+
+
+
+//                    return $data;
+                     $grade = Grade::query()
                         ->where('system',1)
-                        ->where('point_from','<=',$mark->sum('gpa'))
-                        ->where('point_to','>=',$mark->sum('gpa'))
+                        ->where('point_from','<=',$data['gpa'])
+                        ->where('point_to','>=',$data['gpa'])
                         ->first();
-//    return $grade;
+
                     if($optionalMark >= 2){
                         $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
 
@@ -127,6 +156,7 @@ class ResultController extends Controller
                             ->first();
                     }
 
+
                     if($grade){
                         $data['grade'] = $isFail ? 'F' : $grade->grade;
                     }else{
@@ -134,24 +164,25 @@ class ResultController extends Controller
                     }
 
                     $data['rank'] = null;
-//                    dd($data);
-                    $result = ExamResult::query()
-                        ->where('academic_class_id',$class->id)
-                        ->where('exam_id',$examId)
-                        ->where('student_id',$data['student_id'])
-                        ->first();
 
+                    $result = ExamResult::query()
+//                        ->where('academic_class_id',$class->id) remove
+                        ->where('exam_id',$examId)
+                        ->where('student_academic_id',$data['student_academic_id'])
+                        ->first();
+//                    return $data;
                     if($result != null){
                         $result->update($data);
                     }else{
                         ExamResult::query()->create($data);
                     }
                 }
+
+//                return back();
                 /* update exam rank start */
                 $results = ExamResult::query()
-                    ->where('academic_class_id',$class->id)
+//                    ->where('academic_class_id',$class->id)
                     ->where('exam_id',$examId)
-//                    ->where('group_id',null)
                     ->orderByDesc('gpa')
                     ->orderByDesc('total_mark')
                     ->get();
@@ -173,14 +204,12 @@ class ResultController extends Controller
 
     public function resultDetails($id)
     {
-        $result = ExamResult::query()->findOrFail($id);
+         $result = ExamResult::query()->with('studentAcademic')->findOrFail($id);
 
-        $marks = Mark::query()
-            ->where('student_id',$result->student_id)
+         $marks = Mark::query()
+            ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
             ->where('exam_id',$result->exam_id)
-            //->where('class_id',$result->class_id)
-            //->where('session_id',$result->session_id)
-            ->where('academic_class_id',$result->academic_class_id)
+//            ->where('student_academic_id',$result->studentAcademic->id)
             ->join('subjects','subjects.id','=','marks.subject_id')
             ->select('marks.*','subjects.level')
             ->orderBy('level')
@@ -208,15 +237,15 @@ class ResultController extends Controller
 
     public function setfinalresultrule()
     {
-        $exams = Exam::query()->where('session_id',2)->get();
+        $exams = Exam::query()->get();
         return view ('admin.exam.setfinalresultrule',compact('exams'));
     }
 
     public function finalResultNew(Request $request)
     {
         $students = Student::query()
-            ->where('session_id',2)
-            ->where('class_id',11)
+//            ->where('session_id',2)
+//            ->where('class_id',11)
             //->where('section_id',4)
             ->get();
         //$subjects = Subject::all();
@@ -714,7 +743,7 @@ class ResultController extends Controller
 
             //$subjects = $this->tabulationSubjects($request->get('class_id'),$request->get('group_id'));
              $subjects = ExamSchedule::query()
-                ->where('class_id',$request->get('class_id'))
+                ->where('academic_class_id',$request->get('class_id'))
                 ->where('exam_id',$examID)
                 ->get();
         }else{

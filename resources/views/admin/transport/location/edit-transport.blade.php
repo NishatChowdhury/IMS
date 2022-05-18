@@ -38,7 +38,7 @@
                                         </div>
                                     @endif
                                     {{ Form::model($single_location,['route'=>['transport.update',$single_location->id],'method'=>'PATCH']) }}
-                                        @include('admin.account.transport.location.form')
+                                        @include('admin.transport.location.form')
                                         <div class="from-group">
                                             {{ Form::button('UPDATE',['type'=>'submit','class'=>'btn btn-warning']) }}
                                         </div>

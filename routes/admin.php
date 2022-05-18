@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\DairyController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -260,6 +261,9 @@ Route::group(['prefix' => 'admin'], function () {
     //Students Route by Rimon
     Route::get('student/designStudentCard','Backend\IdCardController@index');
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
+    Route::get('student/assign-transport','Backend\StudentController@assignTransport')->name('student.transport');
+    Route::post('student/storeAssignTransport','Backend\StudentController@storeAssignTransport')->name('storeAssignTransport');
+
 
     Route::get('student/download-blank-csv/{academicClassId}','Backend\StudentController@downloadBlank');
     Route::get('student/upload-student/{academicClassId}','Backend\StudentController@uploadStudent');
@@ -342,6 +346,8 @@ Route::post('message-store','Backend\MessagesController@store')->name('message.s
 //Class Schedule
 Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index');
 Route::post('institution/class/schedule/store','Backend\ScheduleController@store');
+Route::post('institution/class/schedule/update','Backend\ScheduleController@update');
+Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
 
     Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
@@ -433,6 +439,7 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
 // Student Transport management End
 //  Fee Category Start
 Route::get('/fee-category/index','Backend\FeeCategoryController@index')->name('fee-category.index');
+Route::post('/fee-category/search','Backend\FeeCategoryController@search')->name('fee_categories.search');
 Route::post('fee-category/store','Backend\FeeCategoryController@store_fee_category')->name('fee-category.store');
 Route::post('fee-category/edit','Backend\FeeCategoryController@edit_fee_category')->name('fee-category.edit');
 Route::post('fee-category/update','Backend\FeeCategoryController@update_fee_category')->name('fee-category.update');
@@ -446,6 +453,14 @@ Route::get('fee_setup/list/{classId}','Backend\FeeCategoryController@list_fee_se
 Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup')->name('fee-setup.show');
 Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
+
+    // Dairy Management Here
+
+    Route::get('diary-list', [DairyController::class, 'index'])->name('diary.index');
+    Route::get('diary-create', [DairyController::class, 'create'])->name('diary.create');
+    Route::post('diary-store', [DairyController::class, 'store'])->name('diary.store');
+    Route::get('diary-edit/{diary}', [DairyController::class, 'edit'])->name('diary.edit');
+    Route::post('diary-update/{diary}', [DairyController::class, 'update'])->name('diary.update');
 
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
@@ -574,7 +589,7 @@ Route::get('exam/schedule/create/{exam}',[ExamScheduleController::class,'create'
 Route::post('exam/schedule/store',[ExamScheduleController::class,'store']);
 Route::get('exam/schedule/{examId}', [ExamScheduleController::class,'index']);
 Route::post('exam/store-schedule', [ExamController::class,'store_schedule']);
-Route::get('exam/admit-card',[ExamController::class,'admitCard']);
+Route::get('exam/admit-card/{exam_id}',[ExamController::class,'admitCard']);
 Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate']);
 
 // Exam Seat Plan Start

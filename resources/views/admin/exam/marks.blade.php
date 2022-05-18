@@ -30,18 +30,15 @@
                         <h3 class="card-title">
                             <span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>
                             <span>
-{{--                                {{ $students->first()->student->academicClass->name ?? $students->first()->academicClass->name}}--}}
-{{--                                {{ $students->first()->section ? $students->first()->section->name : ''}}--}}
-{{--                                {{ $students->first()->group ? $students->first()->group->name : ''}}--}}
-                                {{ $schedule->academicClass->academicClasses->name ?? '' }}
-                                {{ $schedule->academicClass->section->name ?? '' }}
-                                {{ $schedule->academicClass->group->name ?? '' }}
+                                {{ $examSchedule->academicClass->academicClasses->name ?? '' }}
+                                {{ $examSchedule->academicClass->section->name ?? '' }}
+                                {{ $examSchedule->academicClass->group->name ?? '' }}
                             </span>|
                             <span>
-                                {{ $schedule->subject->name }}
+                                {{ $examSchedule->exam->name ?? '' }}
                             </span>|
                             <span>
-                                {{ $schedule->exam->name ?? '' }}
+                                {{ $examSchedule->subject->name ?? '' }}
                             </span>
                         </h3>
                         <div class="card-tools">
@@ -54,18 +51,17 @@
                     {{ Form::open(['action'=>'Backend\MarkController@store','method'=>'post']) }}
                     {{--                    {{ Form::hidden('session_id',$schedule->session_id) }}--}}
                     {{--                    {{ Form::hidden('class_id',$schedule->class_id) }}--}}
-                    {{ Form::hidden('academic_class_id',$schedule->class_id) }}
-                    {{ Form::hidden('exam_id',$schedule->exam_id) }}
-                    {{ Form::hidden('subject_id',$schedule->subject_id) }}
+{{--                    {{ $schedule->academic_class_id }}--}}
+{{--                    {{ Form::hidden('academic_class_id',$schedule->academic_class_id) }}--}}
+                    <input type="hidden" name="academic_class_id" value="{{ $examSchedule->academic_class_id }}">
+                    {{ Form::hidden('exam_id',$examSchedule->exam_id) }}
+                    {{ Form::hidden('subject_id',$examSchedule->subject_id) }}
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
                                 <th>SL</th>
                                 <th>Id</th>
-                                {{--<th>Class</th>--}}
-                                {{--<th>Subject Code</th>--}}
-                                {{--<th>Exam</th>--}}
                                 <th>Roll</th>
                                 <th>Student</th>
                                 <th>Full Marks</th>
@@ -82,11 +78,11 @@
                                     <td>{{ $x++ }}</td>
                                     <td>
                                         {{ Form::hidden('student_id[]',$table == 'students' ? $student->id : $student->student_id) }}
-                                        {{ $student->student->studentId ?? $student->studentId }}
+                                        {{ $table == 'marks' ? $student->studentInfo->student->studentId : $student->student->studentId }}
                                     </td>
-                                    <td>{{ $student->student->rank ?? $student->rank }}</td>
-                                    <td>{{ $student->student->name ?? $student->name }}</td>
-                                    <td>100</td>
+                                    <td>{{ $table == 'marks' ? $student->studentInfo->rank : $student->rank }}</td>
+                                    <td>{{ $table == 'marks' ? $student->studentInfo->student->name : $student->student->name }}</td>
+                                    <td>100 </td>
                                     <td>
                                         {{ Form::number('objective[]',$student->objective ?? null,['class'=>'form-control']) }}
                                     </td>

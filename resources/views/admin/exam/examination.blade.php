@@ -62,7 +62,7 @@
                                     <td>
                                         {{ Form::open(['action'=>['Backend\ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
                                         <a href="{{ action('Backend\ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
-                                        <a href="{{ url('/admin/exam/admit-card') }}" class="btn btn-primary btn-sm" title="Admit Card"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                                        <a href="{{ url('/admin/exam/admit-card') }}/{{$exam->id}}" class="btn btn-primary btn-sm" title="Admit Card"><i class="fa fa-id-badge" aria-hidden="true"></i></a>
                                         <a href="{{ action('Backend\ExamScheduleController@index',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
                                         <a href="{{ action('Backend\ResultController@tabulation',$exam->id) }}" class="btn btn-dark btn-sm" title="Tabulation Sheet"><i class="fas fa-list-ol"></i></a>
 {{--                                        <a type="button" href="{{ action('Backend\ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>--}}

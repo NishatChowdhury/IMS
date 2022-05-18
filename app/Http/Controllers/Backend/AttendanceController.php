@@ -197,7 +197,7 @@ class AttendanceController extends Controller
             return view('admin.attendance.student',compact('attendances','repository'));
         }
 
-        $today = $request->get('date');
+          $today = $request->get('date');
         //$today = '2019-11-06';
 
         $s = $student->newQuery();

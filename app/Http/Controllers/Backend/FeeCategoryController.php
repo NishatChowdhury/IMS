@@ -22,6 +22,14 @@ class FeeCategoryController extends Controller
         return view('admin.account.fee-category.fee-category',compact('sessions','fee_categories'));
     }
 
+    public function search(Request $request)
+    {
+        $query =  $request->searchQuery;
+        $sessions = Session::query()->where('active',1)->pluck('year','id');
+        $fee_categories = FeeCategory::where('name', 'Like', "%$query%")->get();
+        return view('admin.account.fee-category.fee-category',compact('sessions','fee_categories'));
+    }
+
     public function store_fee_category(Request $request)
     {
         $validate = $this->validate($request,[

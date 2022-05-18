@@ -58,7 +58,7 @@
                     <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="heading">
-                                <h3>Date Wise Payment Report</h3>
+                                <h3>{__('Date Wise Collection Report')}</h3>
 {{--                                <h5 class="mb-4">{{  $r['from'] }}--}}
 {{--                                    {{  $r['to'] ? 'To ' .  $r['to'] : '' }}</h5>--}}
                             </div>

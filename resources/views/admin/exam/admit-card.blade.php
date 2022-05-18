@@ -30,16 +30,11 @@
                     <div class="card">
                         <!-- form start -->
                         {{--<form method="GET" action="http://localhost/wpschool/public/students" accept-charset="UTF-8" role="form">--}}
-                        {{ Form::open(['action'=>'Backend\ExamController@admitCard','method'=>'get','role'=>'form']) }}
+                        {{ Form::open(['action'=>['Backend\ExamController@admitCard', basename(request()->path())],'method'=>'get','role'=>'form']) }}
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="col">
-                                    <label for="">Examination</label>
-                                    <div class="input-group">
-                                        {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
-                                        {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Select Exam','required']) }}
-                                    </div>
-                                </div>
+
+                                        <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">
                                 <div class="col">
                                     <label for="">Student ID</label>
                                     <div class="input-group">
@@ -143,9 +138,9 @@
                                     </tr>
                                     <tr>
                                         <th>Class :</th>
-                                        <td>{{ $studentAcademic->classes->class_id ??  '' }}
-                                            {{ $studentAcademic->section->section_id ?? '' }}
-                                            {{ $studentAcademic->group->group_id ?? '' }}</td>
+                                        <td>{{ $academicClass->classes->name ??  '' }}
+                                            {{ $academicClass->section->name ?? '' }}
+                                            {{ $academicClass->group->name ?? '' }}</td>
                                         <th>Rank :</th>
                                         <td> {{ $studentAcademic->rank }}</td>
                                     </tr>

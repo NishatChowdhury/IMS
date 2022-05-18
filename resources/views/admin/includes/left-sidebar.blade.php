@@ -171,7 +171,7 @@
                         {{--                    <i class="nav-icon fas fa-user-graduate"></i>--}}
                         <i class="nav-icon fas fa-book"></i>
                         <p>
-                            Library Management
+                            Library
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -216,7 +216,7 @@
                 <a href="#" class="nav-link {{ isActive('admin/student*') }}">
                     <i class="nav-icon fas fa-user-graduate"></i>
                     <p>
-                        Student Mgmt
+                        Student
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -228,16 +228,22 @@
                         </a>
                     </li>
 
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('Backend\StudentController@optional') }}" class="nav-link {{ isActive('admin/student/optional') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Optional Subject </p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                        <a href="{{ action('Backend\StudentController@optional') }}" class="nav-link {{ isActive('admin/student/optional') }}">--}}
+{{--                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                            <p>Optional Subject </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Testimonial</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('student.transport')}}" class="nav-link {{ isActive('admin/student/assign-transport') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Assign Transport</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -276,7 +282,7 @@
                 <a href="#" class="nav-link {{ isActive(['admin/institution*']) }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
-                        Institution Management
+                        Institution
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -451,7 +457,7 @@
                         <li class="nav-item">
                             <a href="{{ route('report.academic_class') }}" class="nav-link {{ isActive('admin/fee/collections/report/academic_class') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Academic Class Report') }}</p>
+                                <p>{{ __('Monthly Wise Report') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -805,6 +811,7 @@
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
+
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" >
                         <a href="{{ action('Backend\NoticeController@index') }}" class="nav-link {{ isActive('admin/notices') }}">
@@ -828,6 +835,12 @@
                         <a href="{{ action('Backend\NoticeCategoryController@index') }}" class="nav-link {{ isActive(['notices']) }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>News</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{ route('diary.index') }}" class="nav-link {{ isActive(['dairy-list']) }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Dairy List</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">

@@ -167,6 +167,9 @@ class FeeCollectionController extends Controller
             $stupays = null;
         }
 
+//        return $stupays;
+
+
         Session::put('request1',['class'=>$request->academic_class,'from'=>$request->from, 'to'=>$request->to]);
         return view('admin.feeCollection.report_generate', compact('stupays', 'academic_class'));
     }
@@ -187,7 +190,6 @@ class FeeCollectionController extends Controller
             $students = null;
         }
 
-//            return $students;
         Session::put('request',['class'=>$request->academic_class,'month'=>$request->month_id, 'year'=>$request->year_id]);
 
         // return $students;

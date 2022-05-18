@@ -8,6 +8,14 @@
                 display: none;
             }
         }
+        /*span.showDiscountMsg {*/
+        /*    background: #90abb1;*/
+        /*    padding: 2px 5px 2px 4px;*/
+        /*    border-radius: 16px;*/
+        /*    font-size: 11px;*/
+        /*    font-weight: 900;*/
+        /*    cursor: pointer;*/
+        /*}*/
 
     </style>
 @stop
@@ -18,7 +26,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Academic Class Report</h1>
+                    <h1>{{ __('Monthly Wise Class Report') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -40,7 +48,7 @@
                         <form method="get" action="{{ route('report.academic_class') }}">
                             <div class="form-row">
                                 <div class="form-group col-md-3">
-                                    <label>Academic Class</label>
+                                    <label>Academic Class  </label>
                                     <select name="academic_class" id="" class=" form-control  " required>
                                         <option value="">Select class </option>
                                         @foreach ($academic_class as $class)
@@ -60,12 +68,12 @@
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
                                     <button type="submit" class="btn btn-info btn-md btn-block"><i
-                                            class="fa fa-search"></i>&nbsp;Search</button>
+                                            class="fa fa-search"></i>&nbsp</button>
                                 </div>
                                 <div class="form-group col-md-1" style="margin-top: 30px">
                                     <button class="btn btn-warning btn-md btn-block"
                                         onclick="window.print(); return false;"><i
-                                            class="fa fa-print"></i>&nbsp;Print</button>
+                                            class="fa fa-print"></i>&nbsp</button>
                                 </div>
 {{--                                <div class="form-group col-md-1" style="margin-top: 30px">--}}
 {{--                                    <a href="{{ route('pdf.classReport') }}" target="_blank" id="pdfdown" class="btn btn-success btn-md btn-block"><i--}}
@@ -109,9 +117,9 @@
                                     <tr>
                                         <th>StudentID</th>
                                         <th>Name</th>
-                                        <th>Discount</th>
-                                        <th>Current Due</th>
-                                        <th>Paid</th>
+                                        <th class="text-right">Discount</th>
+                                        <th class="text-right">Current Due</th>
+                                        <th class="text-right">Paid</th>
                                     </tr>
                                 </thead>
                                 <tbody> {{-- dd($students) --}}
@@ -130,9 +138,20 @@
                                                 $discount = $student->academics[0]->payments->sum('discount');
                                                 $total += $paid;
                                             @endphp
-                                            <td>{{ $discount }}</td>
-                                            <td>{{ $currentDue }}</td>
-                                            <td>{{ $paid }}</td>
+                                            <td class="text-right">
+                                                @if($discount > 0)
+                                                    <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            title="
+                                                                @foreach($student->academics[0]->payments as $rr)
+                                                                    {{ $rr->remarks ? $rr->remarks : 'Nothing'}}
+                                                                @endforeach
+                                                            "></i>
+                                                @endif
+                                                {{ $discount }}
+                                            </td>
+                                            <td class="text-right">{{ $currentDue }}</td>
+                                            <td class="text-right">{{ number_format($paid, 2) }}</td>
                                         </tr>
 
                                     @empty
@@ -144,8 +163,8 @@
                                         <td colspan="4">
                                             <b>Total</b>
                                         </td>
-                                        <td>
-                                           <b> {{$total}} TK</b>
+                                        <td class="text-right">
+                                           <b> {{ number_format(intval($total), 2) }} TK</b>
                                         </td>
                                     </tr>
                                 </tbody>
