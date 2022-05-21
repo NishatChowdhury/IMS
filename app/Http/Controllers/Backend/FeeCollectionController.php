@@ -43,7 +43,7 @@ class FeeCollectionController extends Controller
             ->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
             ->groupBy('year', 'month')
             ->get();
-        $fss = FeeSetupStudent::where('student_id', $student->id)->get();
+        $fss = FeeSetupStudent::query()->where('student_id', $student->id)->get();
         $amount = 0;
         $paid = $paidAmount[0]->amount ?? 0;
         foreach ($fss as $fs) {

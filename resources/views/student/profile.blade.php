@@ -7,7 +7,8 @@
         $user = auth()->guard('student')->user();
         $student = $user->student;
     @endphp
-    <div class="padding-y-80 bg-cover" data-dark-overlay="6" style="background:url(assets/img/breadcrumb-bg.jpg) no-repeat">
+    <div class="padding-y-80 bg-cover" data-dark-overlay="6"
+         style="background:url(assets/img/breadcrumb-bg.jpg) no-repeat">
         <div class="container">
             <h2 class="text-white">
                 Students Profile
@@ -26,7 +27,9 @@
                 <div class="col-lg-4 mt-4">
                     <div class="card shadow-v1">
                         <div class="card-header text-center border-bottom pt-5 mb-4">
-                            <img class="rounded-circle mb-4" src="{{ asset('storage/uploads/students/') }}/{{ $student->image }}" width="200" height="200" alt="">
+                            <img class="rounded-circle mb-4"
+                                 src="{{ asset('storage/uploads/students/') }}/{{ $student->image }}" width="200"
+                                 height="200" alt="">
                             <h4>
                                 {{ auth()->guard('student')->user()->name }}
                             </h4>
@@ -43,7 +46,7 @@
                                 <li class="list-inline-item m-2">
                                     <i class="ti-heart text-primary"></i>
                                     <span class="d-block">DOB</span>
-{{--                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>--}}
+                                    {{--                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>--}}
                                 </li>
                             </ul>
                         </div>
@@ -68,30 +71,36 @@
                                 Quick Action:
                             </p>
                             <ul class="list-inline mb-0">
-{{--                                <li class="list-inline-item">--}}
-{{--                                    <a href="#" class="btn btn-outline-facebook iconbox iconbox-sm">--}}
-{{--                                        <i class="ti-facebook"></i>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li class="list-inline-item">--}}
-{{--                                    <a href="#" class="btn btn-outline-twitter iconbox iconbox-sm">--}}
-{{--                                        <i class="ti-twitter"></i>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li class="list-inline-item">--}}
-{{--                                    <a href="#" class="btn btn-outline-google-plus iconbox iconbox-sm">--}}
-{{--                                        <i class="ti-google"></i>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
+                                {{--                                <li class="list-inline-item">--}}
+                                {{--                                    <a href="#" class="btn btn-outline-facebook iconbox iconbox-sm">--}}
+                                {{--                                        <i class="ti-facebook"></i>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
+                                {{--                                <li class="list-inline-item">--}}
+                                {{--                                    <a href="#" class="btn btn-outline-twitter iconbox iconbox-sm">--}}
+                                {{--                                        <i class="ti-twitter"></i>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
+                                {{--                                <li class="list-inline-item">--}}
+                                {{--                                    <a href="#" class="btn btn-outline-google-plus iconbox iconbox-sm">--}}
+                                {{--                                        <i class="ti-google"></i>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm"  href="{{ route('logout') }}"
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" title="Logout">
                                         <i class="ti-control-stop"></i>
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{route('show.diary')}}" title="Diary">
+                                        <i class="fas fa-book"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -101,7 +110,8 @@
                     <div class="card padding-30 shadow-v1">
                         <ul class="nav tab-line tab-line border-bottom mb-4" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#Tabs_1-1" role="tab" aria-selected="true">
+                                <a class="nav-link active" data-toggle="tab" href="#Tabs_1-1" role="tab"
+                                   aria-selected="true">
                                     <i class="ti-download mr-1"></i>
                                     Attendance
                                 </a>
@@ -113,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#Tabs_1-2" role="tab" aria-selected="true">
+                                <a class="nav-link" data-toggle="tab" href="#Tabs_1-3" role="tab" aria-selected="true">
                                     <i class="fas fa-dollar-sign mr-1"></i>
                                     Payment
                                 </a>
@@ -134,76 +144,33 @@
                                         </thead>
                                         <tbody>
                                         @foreach($attendances as $day)
-                                        <tr>
-                                            <th scope="row" class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
-                                            <td>{{$day->entry}} </td>
-                                            <td>{{$day->exit}} </td>
-{{--                                          <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
-{{--                                          <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
-                                            <td>
-                                                <a href="#" class="btn btn-link">View</a>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <th scope="row"
+                                                    class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
+                                                <td>{{$day->entry}} </td>
+                                                <td>{{$day->exit}} </td>
+                                                {{--                                          <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
+                                                {{--                                          <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
+                                                <td>
+                                                    <a href="#" class="btn btn-link">{{$day->status}}</a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    {{ $attendances->links() }}
+
                                 </div>
-                            </div> <!-- END tab-pane -->
+                            </div>
+                            <!-- END tab-pane -->
                             <div class="tab-pane fade" id="Tabs_1-2" role="tabpanel">
                                 <div class="row">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col"><b>Name</b></th>
-                                            <th scope="col"><b>Date</b></th>
-                                            <th scope="col"><b>Mark's</b></th>
-                                            <th scope="col"><b>GPA</b></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr data-toggle="modal" data-target=".bd-example-modal-lg" >
-                                                <td>Maynuddin</td>
-                                                <td>10.21.22</td>
-                                                <td>89</td>
-                                                <td>A</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="result">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content p-4">
-                                                    <div class="row">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title h4" id="mySmallModalLabel">Mark Sheet</h5>
-                                                        </div>
-
-                                                        <table class="table table-bordered p-8">
-                                                            <thead>
-                                                            <tr>
-                                                                <th scope="col"><b>Name</b></th>
-                                                                <th scope="col"><b>Date</b></th>
-                                                                <th scope="col"><b>Mark's</b></th>
-                                                                <th scope="col"><b>GPA</b></th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Maynuddin</td>
-                                                                    <td>10.21.22</td>
-                                                                    <td>89</td>
-                                                                    <td>A</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @include('student.profile_exam')
+                                </div> <!-- END row-->
+                            </div>
+                            <!-- END tab-pane -->
+                            <div class="tab-pane fade" id="Tabs_1-3" role="tabpanel">
+                                <div class="row">
+                                    @include('student.profile_payment')
                                 </div> <!-- END row-->
                             </div> <!-- END tab-pane -->
                         </div> <!-- END tab-content-->
@@ -212,5 +179,79 @@
             </div> <!--END row-->
         </div> <!--END container-->
     </section>
+    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">1'st Term (static)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <div class="table-responsive">
+                       <table class="table table-bordered table-hover">
+                           <thead>
+                           <tr>
+                               <th scope="col"><b>Subject</b></th>
+                               <th scope="col"><b>Full Mark</b></th>
+                               <th scope="col"><b>Objective</b></th>
+                               <th scope="col"><b>Written</b></th>
+                               <th scope="col"><b>Prectical</b></th>
+                               <th scope="col"><b>Total Mark</b></th>
+                               <th scope="col"><b>GPA</b></th>
+                               <th scope="col"><b>Grade</b></th>
+                           </tr>
+                           </thead>
+                           <tbody>
+
+                           @foreach($result as $data)
+                               <tr data-toggle="modal" data-target="#exampleModal">
+                                   <td>{{$data->subject->name}} </td>
+                                   <td>{{$data->full_mark}} </td>
+                                   <td>{{$data->objective}}</td>
+                                   <td>{{$data->written}}</td>
+                                   <td>{{$data->practical}}</td>
+                                   <td>{{$data->total_mark}}</td>
+                                   <td>{{$data->gpa}}</td>
+                                   <td>{{$data->grade}}</td>
+                               </tr>
+                           @endforeach
+
+                           </tbody>
+                       </table>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            /* When click show user */
+            $('.resultDetails').on('click', function () {
+                alert('ready!');
+                var user_id = $(this).data('id');
+                $.get('ajax-crud/' + user_id +'/edit', function (data) {
+                    $('#userShowModal').html("User Details");
+                    $('#ajax-modal').modal('show');
+                    $('#user_id').val(data.id);
+                    $('#name').val(data.name);
+                    $('#email').val(data.email);
+                })
+            });
+
+        });
+    </script>
+@endsection

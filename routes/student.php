@@ -1,7 +1,11 @@
 <?php
+use App\Http\Controllers\StudentLoginController;
+
 
 Route::get('student/login','StudentLoginController@showLoginForm');
 Route::get('student/profile','StudentLoginController@profile')->name('student.profile');
+Route::get('student/diary',[StudentLoginController::class, 'showDiary'])->name('show.diary');
+
 
 Route::prefix('student')->name('student.')->namespace('Student')->group(function(){
 
@@ -18,6 +22,7 @@ Route::prefix('student')->name('student.')->namespace('Student')->group(function
         //Reset Password Routes
         Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+//        student diary
     });
 
 });
