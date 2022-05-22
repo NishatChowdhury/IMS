@@ -4,6 +4,7 @@ use App\Http\Controllers\StudentLoginController;
 
 Route::get('student/login','StudentLoginController@showLoginForm');
 Route::get('student/profile','StudentLoginController@profile')->name('student.profile');
+Route::post('student/resultDetails','StudentLoginController@resultDetails');
 Route::get('student/diary',[StudentLoginController::class, 'showDiary'])->name('show.diary');
 
 
