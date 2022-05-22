@@ -164,7 +164,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                             <!-- END tab-pane -->
