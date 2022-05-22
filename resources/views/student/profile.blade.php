@@ -23,7 +23,7 @@
 
     <section class="paddingTop-50 paddingBottom-100 bg-light">
         <div class="container">
-            <div class="row">
+            <div class="row profile">
                 <div class="col-lg-4 mt-4">
                     <div class="card shadow-v1">
                         <div class="card-header text-center border-bottom pt-5 mb-4">
@@ -133,6 +133,12 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="Tabs_1-1" role="tabpanel">
                                 <div class="table-responsive my-4">
+                                    <select name="" id="" class="btn btn-outline-secondary mb-2" >
+                                        <option value="" class="btn btn-outline-secondary">Month</option>
+                                    </select>
+                                    <select name="" id="" class=" btn btn-outline-secondary ml-2 mb-2" >
+                                        <option value="" class="btn btn-outline-secondary">Year</option>
+                                    </select>
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
@@ -162,9 +168,35 @@
                                 </div>
                             </div>
                             <!-- END tab-pane -->
-                            <div class="tab-pane fade" id="Tabs_1-2" role="tabpanel">
+                            <div class="tab-pane fade exam-data" id="Tabs_1-2" role="tabpanel">
                                 <div class="row">
-                                    @include('student.profile_exam')
+
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col"><b>Examination</b></th>
+                                            <th scope="col"><b>Start Date</b></th>
+                                            <th scope="col"><b>End Date</b></th>
+                                            <th scope="col"><b>Full Mark's</b></th>
+                                            <th scope="col"><b>GPA</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        @foreach($exam as $data)
+                                            <tr data-toggle="modal" data-id="{{$data->exam->id}}" data-target="#exampleModal" class="result-details example">
+                                                <input class="exam-id" type="hidden" value="{{$data->exam_id}}">
+                                                <td>{{$data->exam->name}}</td>
+                                                <td>{{$data->exam->start}} </td>
+                                                <td>{{$data->exam->end}} </td>
+                                                <td>{{$data->total_mark}}</td>
+                                                <td>{{$data->gpa}}</td>
+                                            </tr>
+                                        @endforeach
+
+                                        </tbody>
+                                    </table>
+
                                 </div> <!-- END row-->
                             </div>
                             <!-- END tab-pane -->
@@ -183,7 +215,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">1'st Term (static)</h5>
+                    <h5 class="modal-title" id="resultModalTitle">1'st Term (static)</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -203,20 +235,7 @@
                                <th scope="col"><b>Grade</b></th>
                            </tr>
                            </thead>
-                           <tbody>
-
-                           @foreach($result as $data)
-                               <tr data-toggle="modal" data-target="#exampleModal">
-                                   <td>{{$data->subject->name}} </td>
-                                   <td>{{$data->full_mark}} </td>
-                                   <td>{{$data->objective}}</td>
-                                   <td>{{$data->written}}</td>
-                                   <td>{{$data->practical}}</td>
-                                   <td>{{$data->total_mark}}</td>
-                                   <td>{{$data->gpa}}</td>
-                                   <td>{{$data->grade}}</td>
-                               </tr>
-                           @endforeach
+                           <tbody id="resultBody">
 
                            </tbody>
                        </table>
@@ -233,25 +252,24 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            /* When click show user */
-            $('.resultDetails').on('click', function () {
-                alert('ready!');
-                var user_id = $(this).data('id');
-                $.get('ajax-crud/' + user_id +'/edit', function (data) {
-                    $('#userShowModal').html("User Details");
-                    $('#ajax-modal').modal('show');
-                    $('#user_id').val(data.id);
-                    $('#name').val(data.name);
-                    $('#email').val(data.email);
+        $(document).ready(function() {
+
+            $('.result-details').click(function () {
+                var id = $('.exam-id').val();
+                var token="{{csrf_token()}}";
+                $.ajax({
+                    url: 'resultDetails',
+                    method:'POST',
+                    data:{
+                        _token:token,
+                        'id' : id,
+                    },
+                    success:function(res){
+                        $('#resultBody').html(res.html);
+                        $('#resultModalTitle').html(res.title);
+                    }
                 })
             });
-
         });
     </script>
 @endsection

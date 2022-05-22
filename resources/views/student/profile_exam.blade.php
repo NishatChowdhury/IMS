@@ -12,7 +12,7 @@
             <tbody>
 
                 @foreach($exam as $data)
-                    <tr data-toggle="modal" data-id="{{$data->exam->id}}" data-target="#exampleModal">
+                    <tr data-toggle="modal" data-id="{{$data->exam->id}}" data-target="" calss="result-details">
                         <td>{{$data->exam->name}}</td>
                         <td>{{$data->exam->start}} </td>
                         <td>{{$data->exam->end}} </td>

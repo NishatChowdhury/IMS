@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Backend\Attendance;
+use App\Models\Backend\Exam;
 use App\Models\Backend\ExamResult;
 use App\Models\Backend\FeeSetupStudent;
 use App\Models\Backend\Mark;
@@ -12,6 +13,8 @@ use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
 use App\Models\Diary;
 use Carbon\CarbonPeriod;
+use Illuminate\Http\Request;
+use Response;
 
 class StudentLoginController extends Controller
 {
@@ -103,6 +106,32 @@ class StudentLoginController extends Controller
             ->with('subject')
             ->get();
         return $marks;
+    }
+    public function resultDetails(Request $request){
+        $id = auth()->guard('student')->user()->student_id;
+        $exam_id = $request->input('id');
+        $exam_name =Exam::query()->where('id',$exam_id)->first();
+
+        $student = StudentAcademic::query()->where('student_id',$id)->first();
+        $resultDetails = Mark::query()
+            ->where('student_id',$id)
+            ->where('exam_id',$exam_id)
+            ->with('subject')
+            ->get();
+        $html_data='';
+        foreach ($resultDetails as $data){
+            $html_data.='<tr data-toggle="modal" data-target="#exampleModal">'.
+                                   '<td>'.$data->subject->name .'</td>'.
+                                   '<td>'.$data->full_mark .'</td>'.
+                                   '<td>'.$data->objective.'</td>'.
+                                   '<td>'.$data->written.'</td>'.
+                                   '<td>'.$data->practical.'</td>'.
+                                   '<td>'.$data->total_mark.'</td>'.
+                                   '<td>'.$data->gpa.'</td>'.
+                                   '<td>'.$data->grade.'</td>'.
+                               '</tr>';
+        }
+        return response()->json(['html'=>$html_data,'title'=>$exam_name->name]);
     }
 
 }
