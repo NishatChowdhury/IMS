@@ -532,13 +532,10 @@ Route::get('institution/profile','Backend\InstitutionController@profile')->name(
 Route::get('institution/signature','Backend\InstitutionController@signature');
 Route::post('institution/sig','Backend\InstitutionController@sig');
 
-
-
-
 // Student Fee Collection start
-Route::get('student/fee','Backend\FinanceController@index')->name('student.fee');
-Route::post('student/fee-store','Backend\FinanceController@store_payment')->name('student.fee-store');
-Route::get('student/fee-invoice/{id}','Backend\FinanceController@fee_invoice')->name('student.fee-invoice');
+//Route::get('student/fee','Backend\FinanceController@index')->name('student.fee');
+//Route::post('student/fee-store','Backend\FinanceController@store_payment')->name('student.fee-store');
+//Route::get('student/fee-invoice/{id}','Backend\FinanceController@fee_invoice')->name('student.fee-invoice');
 // Student Fee Collection End
 
 // Student Fee Collection Report Start

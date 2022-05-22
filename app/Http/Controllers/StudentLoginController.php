@@ -30,7 +30,8 @@ class StudentLoginController extends Controller
 
         $attendances = Attendance::query()
             ->where('registration_id',$student->studentId)
-            ->orderBy('id', 'DESC')
+            ->where('date','like',now()->format('Y-m-').'%')
+            ->orderBy('date')
             ->get();
 
         $stuAcademic =  StudentAcademic::query()
@@ -54,7 +55,6 @@ class StudentLoginController extends Controller
 
         //$cal = cal_days_in_month(CAL_GREGORIAN,3,2020);
         $period = CarbonPeriod::create('2020-03-01', '2020-03-31')->toArray();
-        //dd($period);
 
         return view('student.profile',compact('student','attendances','period','payments','due','exam','result'));
     }

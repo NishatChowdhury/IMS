@@ -7,16 +7,15 @@
         $user = auth()->guard('student')->user();
         $student = $user->student;
     @endphp
-    <div class="padding-y-80 bg-cover" data-dark-overlay="6"
-         style="background:url(assets/img/breadcrumb-bg.jpg) no-repeat">
+    <div class="padding-y-80 bg-cover" data-dark-overlay="6" style="background:url({{ asset('assets/img/breadcrumb-bg.jpg') }}) no-repeat">
         <div class="container">
             <h2 class="text-white">
-                Students Profile
+                {{ __('Students Profile') }}
             </h2>
             <ol class="breadcrumb breadcrumb-double-angle text-white bg-transparent p-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Page</a></li>
-                <li class="breadcrumb-item">Students Profile</li>
+                <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ __('Page') }}</a></li>
+                <li class="breadcrumb-item">{{ __('Students Profile') }}</li>
             </ol>
         </div>
     </div>
@@ -113,19 +112,25 @@
                                 <a class="nav-link active" data-toggle="tab" href="#Tabs_1-1" role="tab"
                                    aria-selected="true">
                                     <i class="ti-download mr-1"></i>
-                                    Attendance
+                                    {{ __('Attendance') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#Tabs_1-2" role="tab" aria-selected="true">
                                     <i class="fas fa-file-contract mr-1"></i>
-                                    Result
+                                    {{ __('Result') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#Tabs_1-3" role="tab" aria-selected="true">
                                     <i class="fas fa-dollar-sign mr-1"></i>
-                                    Payment
+                                    {{ __('Payment') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#Tabs_1-4" role="tab" aria-selected="true">
+                                    <i class="far fa-clock mr-1"></i>
+                                    {{ __('Class Schedule') }}
                                 </a>
                             </li>
                         </ul>
@@ -133,12 +138,9 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="Tabs_1-1" role="tabpanel">
                                 <div class="table-responsive my-4">
-                                    <select name="" id="" class="btn btn-outline-secondary mb-2" >
-                                        <option value="" class="btn btn-outline-secondary">Month</option>
-                                    </select>
-                                    <select name="" id="" class=" btn btn-outline-secondary ml-2 mb-2" >
-                                        <option value="" class="btn btn-outline-secondary">Year</option>
-                                    </select>
+{{--                                    {{ Form::select('year',[now()->subYear()->format('Y'),now()->format('Y'),now()->addYear()->format('Y')],null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Year']) }}--}}
+                                    {{ Form::selectMonth('month',null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Month']) }}
+                                    {{ Form::selectRange('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Year']) }}
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
@@ -155,8 +157,6 @@
                                                     class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
                                                 <td>{{$day->entry}} </td>
                                                 <td>{{$day->exit}} </td>
-                                                {{--                                          <td>{{ minTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
-                                                {{--                                          <td>{{ maxTime($student->studentId,$day->format('Y-m-d')) }}</td>--}}
                                                 <td>
                                                     <a href="#" class="btn btn-link">{{$day->status}}</a>
                                                 </td>

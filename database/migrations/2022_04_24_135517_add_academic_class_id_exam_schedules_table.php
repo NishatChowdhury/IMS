@@ -14,7 +14,7 @@ class AddAcademicClassIdExamSchedulesTable extends Migration
     public function up()
     {
         Schema::table('exam_schedules', function (Blueprint $table) {
-            $table->integer('academic_class_id')->after('id');
+            $table->unsignedBigInteger('academic_class_id')->after('id');
         });
     }
 
