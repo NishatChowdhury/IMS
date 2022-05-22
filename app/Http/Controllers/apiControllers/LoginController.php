@@ -4,7 +4,7 @@ namespace App\Http\Controllers\apiControllers;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
-use App\Slider;
+use App\Models\Backend\Slider;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +59,8 @@ class LoginController extends Controller
         {
             $mobile = $request->get('mobile');
 //            $studentId = $request->get('studentId');
-            $otp = rand(1000,9999);
+            $otp = 1234;
+//            $otp = rand(1000,9999);
             $student = Student::query()
 //                ->where('studentId',$studentId)
                 ->where('mobile',$mobile)
@@ -135,15 +136,24 @@ class LoginController extends Controller
                     $token = $t->createToken($t->name);
                 }
 
-                $sliders = Slider::query()->select('image','description')->get();
+                $sliders = Slider::query()->get();
+                if ($sliders->isNotEmpty()){
+                    $data = [];
+                    foreach ($sliders as $slider){
+                        $data[] = [
+                            'id'=> $slider->id,
+                            'image' => $slider->image ? asset('assets/img/sliders/' . $slider->image) : null,
+                        ];
+                    }
+                }
                 return response()
                     ->json(
                         [
-                            'status'        => true,
+                            'status'        =>  true,
                             'message'       => 'Request was successful!',
-                            'auth_token'    =>$token->plainTextToken,
-                            'user'          => $studentInfo,
-                            'sliders'       =>$sliders
+                            'auth_token'    =>  $token->plainTextToken,
+                            'user'          =>  $studentInfo,
+                            'sliders'       =>  $data
                         ],200);
             }
             else{

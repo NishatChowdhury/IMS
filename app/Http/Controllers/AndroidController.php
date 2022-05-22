@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Backend\ExamResult;
 use App\Http\Resources\EventsCollection;
+use App\Http\Resources\EventsResource;
+use App\Http\Resources\RoutineResource;
+use App\Http\Resources\TeacherCollection;
+use App\Http\Resources\TeacherResource;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\ClassSchedule;
 use App\Http\Resources\NewsCollection;
@@ -15,7 +20,9 @@ use App\Models\Backend\Page;
 use App\SiteInformation;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
+use App\Models\Backend\Slider;
 use App\Syllabus;
+use App\Models\Diary;
 use App\Models\Backend\UpcomingEvent;
 use App\Models\Backend\NoticeCategory;
 use Carbon\Carbon;
@@ -54,31 +61,43 @@ class AndroidController extends Controller
     {
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
-        $registrationId = $request->get('registrationId');
+//        $registrationId = $request->get('registrationId');
         $attendances = Attendance::query()
-            ->where('registration_id',$registrationId)
+            ->where('registration_id',1662622)
             ->whereBetween('date',[$dateFrom,$dateTo])
             ->get();
-         if($attendances) {
-             $data = [];
-             foreach ($attendances as $attendance){
-                 $data[] = [
-                     'id' => $attendance->id,
-                     'date' => $attendance->date,
-                     'inTime' => $attendance->entry,
-                     'outTime' => $attendance->exit,
-                     'status' => $attendance->status,
-                 ];
-             }
-             return response()->json([
-                 'status' => true,
-                 'dateFrom' => date('d-m-Y', strtotime($dateFrom)),
-                 'dateTo' => date('d-m-Y', strtotime($dateTo)),
-                 'shiftFrom' => '10:00:00',
-                 'shiftTo' => '06:00:00',
-                 'attendances' => $data
-             ]);
-         }
+
+        $attendanceToday = Attendance::query()
+            ->where('registration_id',1662622)
+            ->whereDate('date',now()->format('Y-m-d'))
+            ->first();
+
+        if($attendances) {
+            $data = [];
+            foreach ($attendances as $attendance){
+                $data[] = [
+                    'id' => $attendance->id,
+                    'date' => date('d-m-Y', strtotime($attendance->date)),
+                    'inTime' => $attendance->entry,
+                    'outTime' => $attendance->exit,
+                    'status' => $attendance->status,
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'today' =>[
+                    'date' => date('d-m-Y', strtotime(now())),
+                    'inTime' => $attendanceToday->entry ?? '',
+                    'outTime' => $attendanceToday->exit ?? '',
+                    'status' => $attendanceToday->status ?? '',
+                ],
+                'dateFrom' => date('d-m-Y', strtotime($dateFrom)),
+                'dateTo' => date('d-m-Y', strtotime($dateTo)),
+                'shiftFrom' => '10:00:00',
+                'shiftTo' => '06:00:00',
+                'attendances' => $data
+            ]);
+        }
     }
 
     public function about()
@@ -185,108 +204,6 @@ class AndroidController extends Controller
 
     }
 
-    public function events()
-    {
-        $events = UpcomingEvent::query()->paginate();
-        if($events->count() > 0){
-            $data = [];
-            foreach($events as $event){
-                $data[] = [
-                    'id' => $event->id,
-                    'title' => $event->title,
-                    'date' => date('d-m-Y', strtotime($event->date)),
-                    'image' => asset('assets/img/events').'/'.$event->image,
-                    'location' => $event->venue
-                ];
-            }
-            return response()->json([
-                'status' => true,
-                'events' => $data
-            ]);
-        }
-        else{
-            return response()->json([
-                'status' => false,
-                'message' => 'No data found!',
-                'events' => []
-            ]);
-        }
-    }
-
-    public function eventDetails(Request $request)
-    {
-        $event = UpcomingEvent::query()
-            ->where('id',$request->id)
-            ->first();
-        if($event){
-            return [
-                'status' => true,
-                'title' => $event->title,
-                'body' => null,
-                'date' => date('d-m-Y', strtotime($event->date)),
-                'location' => $event->venue,
-                'image' => asset('assets/img/events').'/'.$event->image
-            ];
-        }
-        else{
-            return response(null,204);
-        }
-    }
-
-
-    public function teachers()
-    {
-        $teachers = Staff::query()->where('staff_type_id',2)->paginate();
-        if($teachers->count() > 0){
-            $data = [];
-            foreach($teachers as $teacher){
-                $data[] = [
-                    'id' => $teacher->id,
-                    'name' => $teacher->name,
-                    'designation' => $teacher->staff_type_id == 2 ? 'Teacher' : 'Staff',
-                    'phone' => $teacher->mobile,
-                    'empNo' => $teacher->card_id,
-                    'joiningDate' => $teacher->joining,
-                    'email' => $teacher->email,
-                    'image' => asset('assets/img/staffs').'/'.$teacher->image,
-                ];
-            }
-            return response()->json([
-                'status' => true,
-                'teachers' => $data
-            ]);
-        }
-        else
-        {
-            return response(null,204);
-        }
-    }
-
-    public function teacherDetails(Request $request)
-    {
-        $teacher = Staff::query()
-            ->where('staff_type_id',2)
-            ->where('id',$request->id)
-            ->first();
-        if($teacher->count() > 0){
-            return [
-                'status' => true,
-                'name' => $teacher->name,
-                'designation' => $teacher->staff_type_id == 2 ? 'Teacher' : 'Staff',
-                'phone' => $teacher->mobile,
-                'empNo' => $teacher->card_id,
-                'joiningDate' => $teacher->joining,
-                'email' => $teacher->email,
-                'image' => asset('assets/img/staffs').'/'.$teacher->image,
-                'gender' => $teacher->gender->name,
-                'bloodGroup' => $teacher->blood->name,
-            ];
-        }
-        else{
-            return response(null,204);
-        }
-    }
-
     public function syllabus(Request $request)
     {
         $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
@@ -376,23 +293,30 @@ class AndroidController extends Controller
 
     public function classRoutine()
     {
-        $routines = ClassSchedule::all();
-
-        $data = [];
-
-        foreach($routines as $routine){
-            $data[] = [
-                'class_name' => 1,
-                'name' => $routine->name,
-                'subject' => $routine->subject->name,
-                'teacher' => $routine->teacher->name ?? '',
-                'day' => $routine->day->short_name,
-                'start' => $routine->start,
-                'end' => $routine->end,
+        $routines = ClassSchedule::query()
+            ->where('academic_class_id',1)
+            ->get()
+            ->groupBy('day');
+        $r = [];
+        foreach($routines as $key => $routine){
+            $hours = [];
+            foreach($routine as $rou){
+                $hours[] = [
+                    'name' => $rou->name,
+                    'start' => $rou->start,
+                    'end' => $rou->end,
+                    'subject' => $rou->subject->name,
+                    'isBreak'=>false
+                ];
+            }
+            $r[] = [
+                'id' => 1,
+                'weekday' => $key,
+                'hours' => $hours
             ];
         }
 
-        return $data;
+        return response()->json(['status'=>true,'routine'=>$r]);
     }
 
     public function sms($number,$message)
@@ -418,15 +342,140 @@ class AndroidController extends Controller
         //return $output;
     }
 
-    public function events2()
+    public function events()
     {
-        $events = UpcomingEvent::query()->paginate();
-        if($events){
-            return new EventsCollection($events);
+        return new EventsCollection(UpcomingEvent::paginate(10));
+    }
+
+    public function eventDetails(Request $request)
+    {
+        $event = UpcomingEvent::query()
+            ->where('id',$request->id)
+            ->first();
+        if($event){
+            return [
+                'status' => true,
+                'event'=>[
+                    'title' => $event->title,
+                    'body' => $event->details,
+                    'date' => date('d-m-Y', strtotime($event->date)),
+                    'location' => $event->venue,
+                    'image' => asset('assets/img/events').'/'.$event->image
+                ],
+
+            ];
+        }
+        else{
+            return response(null,204);
+        }
+
+    }
+
+    public function teachers()
+    {
+        return new TeacherCollection(Staff::query()->where('staff_type_id',2)->paginate());
+    }
+
+    public function teacherDetails(Request $request)
+    {
+        $teacher = Staff::query()
+            ->where('staff_type_id',2)
+            ->where('id',$request->id)
+            ->first();
+        if($teacher->count() > 0){
+            return [
+                'status' => true,
+                'name' => $teacher->name,
+                'designation' => $teacher->staff_type_id == 2 ? 'Teacher' : 'Staff',
+                'phone' => $teacher->mobile,
+                'empNo' => $teacher->card_id,
+                'joiningDate' => $teacher->joining,
+                'email' => $teacher->email,
+                'image' => asset('assets/img/staffs').'/'.$teacher->image,
+                'gender' => $teacher->gender->name,
+                'bloodGroup' => $teacher->blood->name,
+            ];
+        }
+        else{
+            return response(null,204);
+        }
+
+    }
+
+    public function diary(Request $request)
+    {
+        $date = $request->date ?? Carbon::parse()->format('Y-m-d');
+        $day = Carbon::createFromFormat('Y-m-d',$date)->format('l');
+        $diary = Diary::query()
+            ->whereDate('date', $date)
+            ->get();
+        if ($diary->isNotEmpty()) {
+            $data = [];
+            foreach ($diary as $d) {
+                $data[] = [
+                    'id' => $d->id,
+                    'subject' => $d->subject->name,
+                    'diary' => $d->description,
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'date'=>$date,
+                'weekDay'=>$day,
+                'diaries' => $data
+            ]);
         }
         else{
             return response(null,204);
         }
     }
 
+    public function result()
+    {
+        $examResult = ExamResult::query()
+                        ->where('student_academic_id',42)
+                        ->with('exam','studentAcademic')
+                        ->get();
+        if ($examResult){
+            $data = [];
+            foreach ($examResult as $result) {
+                $data[] = [
+                    'id' => $result->id,
+                    'title' => $result->exam->name,
+                    'isPassed' => $result->grade == 'F' ? 'false' : 'true',
+                    'result'=>[
+//                        'student' => $result->studentAcademic->student->studentId,
+                        'label'=> 'GPA',
+                        'obtained'=> $result->gpa,
+                        'total'=> $result->total_mark,
+                    ]
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'results'=>$data
+            ]);
+        }
+    }
+
+    public function home()
+    {
+      $sliders = Slider::query()->get();
+      if ($sliders->isNotEmpty()){
+          $data = [];
+          foreach ($sliders as $slider){
+            $data[] = [
+                'id'=> $slider->id,
+                'image' => $slider->image ? asset('assets/img/sliders/' . $slider->image) : null,
+            ];
+          }
+          return response()->json([
+              'status' => true,
+              'sliders'=> $data
+          ]);
+      }
+      else{
+          return response(null,204);
+      }
+    }
 }
