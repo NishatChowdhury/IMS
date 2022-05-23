@@ -21,6 +21,7 @@ use App\SiteInformation;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Backend\Slider;
+use App\Models\Backend\ExamSchedule;
 use App\Syllabus;
 use App\Models\Diary;
 use App\Models\Backend\UpcomingEvent;
@@ -28,6 +29,7 @@ use App\Models\Backend\NoticeCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class AndroidController extends Controller
 {
@@ -432,22 +434,50 @@ class AndroidController extends Controller
 
     public function result()
     {
+        $studentAcademic = \App\Models\Backend\StudentAcademic::where('student_id', 47)->first();
+//        return $studentAcademic->student;
         $examResult = ExamResult::query()
-                        ->where('student_academic_id',42)
-                        ->with('exam','studentAcademic')
-                        ->get();
+            ->where('student_academic_id',42)
+            ->with('exam','studentAcademic')
+            ->get();
         if ($examResult){
             $data = [];
             foreach ($examResult as $result) {
+                $AttendanceCount = Attendance::query()
+                    ->where('student_id',$result->studentAcademic->student_id)
+                    ->get();
+                $TotalNumbers = DB::table('exam_schedules')
+                    ->where('exam_id', $result->exam_id)
+                    ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                    ->selectRaw('SUM(objective_full) as obj, SUM(written_full) as wri, 
+                                SUM(practical_full) as pra, SUM(viva_full) as viva')
+                    ->first();
+
+                $obj_full = $TotalNumbers->obj ?? 0;
+                $written_full = $TotalNumbers->wri ?? 0;
+                $practical_full = $TotalNumbers->pra ?? 0;
+                $viva_full = $TotalNumbers->viva ?? 0;
+                $total = $obj_full + $written_full + $practical_full + $viva_full;
+
                 $data[] = [
                     'id' => $result->id,
                     'title' => $result->exam->name,
                     'isPassed' => $result->grade == 'F' ? 'false' : 'true',
                     'result'=>[
-//                        'student' => $result->studentAcademic->student->studentId,
-                        'label'=> 'GPA',
-                        'obtained'=> $result->gpa,
-                        'total'=> $result->total_mark,
+                        [
+                            'label'=> 'GPA',
+                            'obtained'=> $result->gpa,
+                            'total'=> '5.00',
+                        ],[
+                            'label'=> 'TOTAL',
+                            'obtained'=> $result->total_mark,
+                            'total'=>strval($total) ,
+                        ],[
+                            'label'=> 'ATTENDANCE',
+                            'obtained'=> '35',
+                            'total'=> '98',
+                        ],
+
                     ]
                 ];
             }
@@ -460,22 +490,22 @@ class AndroidController extends Controller
 
     public function home()
     {
-      $sliders = Slider::query()->get();
-      if ($sliders->isNotEmpty()){
-          $data = [];
-          foreach ($sliders as $slider){
-            $data[] = [
-                'id'=> $slider->id,
-                'image' => $slider->image ? asset('assets/img/sliders/' . $slider->image) : null,
-            ];
-          }
-          return response()->json([
-              'status' => true,
-              'sliders'=> $data
-          ]);
-      }
-      else{
-          return response(null,204);
-      }
+        $sliders = Slider::query()->get();
+        if ($sliders->isNotEmpty()){
+            $data = [];
+            foreach ($sliders as $slider){
+                $data[] = [
+                    'id'=> $slider->id,
+                    'image' => $slider->image ? asset('assets/img/sliders/' . $slider->image) : null,
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'sliders'=> $data
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
     }
 }
