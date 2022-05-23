@@ -165,9 +165,7 @@ class FrontController extends Controller
 //Gallery
     public function gallery()
     {
-        // if (! Gate::allows('gallery')) {
-        //     abort(403,"You Don't Access This Page");
-        // }
+
         $categories = GalleryCategory::all();
         $albums = Album::all();
         return view('front.gallery.index',compact('categories','albums'));
@@ -299,9 +297,7 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-        // $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
 
-        // return $uri;
          $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
         // dd($content);
         if($content->type == 3){
@@ -319,9 +315,9 @@ class FrontController extends Controller
        
 
             if($content->system_page === 'notice'){
-                $notices = Notice::query()
+                 $notices = Notice::query()
                             ->orderByDesc('start')
-                            ->paginate(3);
+                            ->paginate(7);
                 $artilces = '';
                 if ($request->ajax()) {
                     foreach($notices as $key => $notice){
@@ -376,11 +372,11 @@ class FrontController extends Controller
                     }
                     return $artilces;
                 }
+//                return $notices;
                 $categories = NoticeCategory::with('notices')->get();
                 return view('front.'.$uri.'.index',compact('categories','teachers','notices','staffs','repository'));
             }
             if($content->url === 'news'){
-
                 $newses = Notice::query()
                     ->where('notice_type_id',1)
                     ->orderByDesc('start')

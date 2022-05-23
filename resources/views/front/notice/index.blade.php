@@ -33,6 +33,58 @@
             <div class="row">
                 <div class="col-lg-9 mt-5 " id="data-wrapper">
                     {{--  show Data Here --}}
+                    @foreach($notices as $key => $notice)
+                        @php
+                        if($notice->start != null){
+                            $date = $notice->start->format('d');
+                        }
+                        if($notice->start != null){
+                            $mm = $notice->start->format('M, Y');
+                        }
+                        if($notice->notice_type_id == 1){
+                            $typeN = 'Notice';
+                            $types = 'badge-danger';
+                        }else{
+                            $typeN = 'News';
+                            $types = 'badge-info';
+                        }
+
+
+                        @endphp
+                         <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
+                            <div class="media align-items-center">
+                                <div class="text-center border-right pr-4">
+                                <strong class="text-primary font-size-38">
+                                            {{$date}}
+                                </strong>
+                                <p class="mb-0 text-gray">
+                                    {{$mm}}
+                                </p>
+                                </div>
+                                <div class="media-body p-4">
+                                <p class="mb-1 text-gray">
+                                <i class="ti-file"></i>
+                                    <span class="badge {{$types}} ">
+                                        {{$typeN}}
+                                    </span>
+                                </p>
+                                <a href="{{ action('Front\FrontController@noticeDetails',$notice->id) }}" class="h5">
+                                    {{$notice->title}}
+                                </a>
+                                </div>
+                            </div>
+                            @if($notice->file)
+                           <a href="{{ asset('assets/files/notice') }}/{{$notice->file}}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i></a>
+                            @endif
+                            <a href=" {{ action('Front\FrontController@noticeDetails',$notice->id) }}" class="btn btn-outline-primary">Read More</a>
+                            </div>
+
+                    @endforeach
+
+                <div>
+                    {{ $notices->links() }}
+                </div>
+
                 </div>
 
                 <div class="col-lg-3 mt-5">

@@ -85,7 +85,8 @@
                                                             </p>
                                                             <p>
 {{--                                                                <i class="fas fa-clock"></i>--}}
-                                                                 {{ $s->start }} to {{ $s->end }}</p>
+
+                                                                 {{date('g:i A', strtotime($s->start)) }} to {{date('g:i A', strtotime($s->end)) }}</p>
                                                         </div>
                                                     </li>
                                                     @endforeach
@@ -180,6 +181,7 @@
 @section('script')
     <script>
         function createClassSchedule(){
+            $('#foredit').hide();
              let Createaction = "{{ url('admin/institution/class/schedule/store') }}";
             $("#ChnageUrl").attr("action", Createaction);
             $('#day').val('');
@@ -187,6 +189,7 @@
             $('#end').val('');
             $('#subject_id').val('');
             $('#teacher_id').val('');
+            $('#onlineId').val('');
         }
         function editClassSchedule(id){
             $('#foredit').show();

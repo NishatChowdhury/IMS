@@ -24,6 +24,7 @@
                         <div class="card-body">
                             <table id="" class="table">
                                 <tr>
+
                                     <th>Student's Name : </th>
                                     <td>{{ $result->studentAcademic->student->name ?? '' }}</td>
                                     <th>Exam Name : </th>

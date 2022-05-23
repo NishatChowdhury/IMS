@@ -19,7 +19,7 @@ class CreateDiariesTable extends Migration
             $table->date('date');
             $table->integer('teacher_id');
             $table->integer('subject_id');
-            $table->text('description');
+            $table->longText('description');
             $table->timestamps();
         });
     }

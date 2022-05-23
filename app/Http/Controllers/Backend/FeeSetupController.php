@@ -153,6 +153,7 @@ class FeeSetupController extends Controller
         }
         $fees = session('fees');
 
+//        return $fee_setup;
         return view('admin.feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
     }
 

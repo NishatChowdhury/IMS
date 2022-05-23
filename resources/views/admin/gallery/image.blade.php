@@ -72,7 +72,9 @@
                                         </td>
                                         <td>
                                             {{ Form::open(['action'=>['Backend\GalleryController@destroy',$image->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>
@@ -90,7 +92,7 @@
     <!-- ***/ Pop Up Model for button -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content"  style="width: 700px">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -100,52 +102,44 @@
                 <div class="modal-body">
                     {{--<form>--}}
                     {{ Form::open(['action'=>'Backend\GalleryController@store','method'=>'post','files'=>true]) }}
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title</label>
-                        <div class="col-sm-10">
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Title</label>
                             <div class="input-group">
-                                <input type="text" name="title" class="form-control" id=""  aria-describedby="">
+                                <input type="text" name="title" class="form-control" id=""  aria-describedby="" placeholder="Title">
                             </div>
-                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <textarea type="text" name="description" class="form-control" rows="5" id=""> </textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Album</label>
-                        <div class="col-sm-10">
+                        <div class="form-group col-md-6">
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Album</label>
                             <div class="input-group">
                                 {{ Form::select('album_id',$repository->albums(),null,['class'=>'form-control','id'=>'inputState']) }}
                             </div>
-                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tags</label>
-                        <div class="col-sm-10">
+                     <div class="form-group col-md-12">
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Tags</label>
                             <div class="input-group">
-                                <input type="text" name="tags" class="form-control" id=""  aria-describedby="">
+                                <input type="text" name="tags" class="form-control" id=""  aria-describedby="" placeholder="Enter Tags Here ..">
                             </div>
-                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>
-                        <div class="col-sm-10">
+                    <div class="form-group col-md-6">
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
+                            <div class="input-group">
+                                <textarea type="text" name="description" class="form-control" rows="5" id="" placeholder="Enter Some Description About Images . . ."> </textarea>
+                            </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Image*</label>
                             <div class="form-group files color">
-                                <input type="file" name="image[]" class="form-control" multiple="">
+                                <input type="file" name="image[]" class="form-control" multiple="" style="padding: 48px 0px 85px 24%!important">
                             </div>
+                    </div>
+                        <div class="col-12">
+
+                        <button type="submit" class="btn btn-success  btn-sm btn-block" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
-                    </div>
-                    <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
-                    </div>
                     {{ Form::close() }}
                     {{--</form>--}}
-
+                    </div>
                 </div>
                 <div class="modal-footer"></div>
             </div>

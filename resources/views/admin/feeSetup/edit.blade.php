@@ -38,7 +38,7 @@
                                 <div class="col">
                                     <label for="">Academic Class ID</label>
                                     <div class="input-group">
-                                        <p>{{ $fee_setup->academicClass->academicClasses->name ?? '' }} - {{ $fee_setup->academicClass->section->name }} - {{ $fee_setup->academicClass->group->name ??  '' }}</p>
+                                        <p>{{ $fee_setup->academicClass->classes->name ?? '' }} - {{ $fee_setup->academicClass->section->name ?? ''}} - {{ $fee_setup->academicClass->group->name ??  '' }}</p>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -93,7 +93,7 @@
                                 <th>{{ __('Sl') }}</th>
                                 <th>{{ __('Category') }}</th>
                                 <th>{{ __('Amount') }}</th>
-                                <th><button type="button" onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
+                                <th><button type="button" onclick="clearFeeCart()" class="btn btn-sm btn-dark">{{ __('Clear All') }}</button></th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
@@ -103,7 +103,7 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{ \App\Models\Backend\FeeCategory::query()->find($fee['category_id'])->name }}</td>
                                     <td>{{$fee['amount']}}</td>
-                                    <td class="text-center"><button type="button" onclick="removeFeeFromEditCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
+                                    <td class="text-center"><button class="btn btn-sm btn-danger" type="button" onclick="removeFeeFromEditCart({{ $key }})"><span class="fas fa-trash-alt"></span></button></td>
                                 </tr>
                             @endforeach
                             </tbody>

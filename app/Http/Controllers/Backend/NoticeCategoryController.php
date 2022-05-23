@@ -22,6 +22,6 @@ class NoticeCategoryController extends Controller
     public function store(Request $request)
     {
         NoticeCategory::query()->create($request->all());
-        return redirect('notice/category');
+        return redirect('admin/notice/category');
     }
 }
