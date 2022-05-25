@@ -4,8 +4,8 @@ namespace App\Http\Controllers\apiControllers;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
-use App\Slider;
-use App\Student;
+use App\Models\Backend\Slider;
+use App\Models\Backend\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +13,14 @@ class LoginController extends Controller
 {
     public function studentLogin(Request $request)
     {
-        $this->validator($request);
+
+        $validated = $request->validate([
+            'studentId' => 'required|exists:student_logins|min:2|max:191',
+            'password' => 'required|string|min:4|max:255',
+        ]);
 
         if(Auth::guard('student')->attempt($request->only('studentId','password')))
         {
-            //Authentication passed...
             return response()
                 ->json(['status' => true,'message' => 'Login was Successful'],200);
         }
@@ -27,6 +30,25 @@ class LoginController extends Controller
                 ->json(['status' => false,'message' => 'Invalid Username or Password !'],500);
         }
     }
+//    public function studentLogin(Request $request)
+//    {
+//        $studentId = $request->get('studentId');
+//        $password = $request->get('password');
+//        $otp = rand(1000,9999);
+//        $student = Student::query()
+//            ->where('studentId',$studentId)
+//            ->where('password',$password)
+//            ->exists();
+//        if($student)
+//        {
+//            return response()
+//                ->json(['status' => true,'message' => 'Login was Successful'],200);
+//        }
+//        else{
+//            return response()
+//                ->json(['status' => false,'message' => 'Invalid Username or Password !'],500);
+//        }
+//    }
 
     private function validator(Request $request)
     {
@@ -59,7 +81,8 @@ class LoginController extends Controller
         {
             $mobile = $request->get('mobile');
 //            $studentId = $request->get('studentId');
-            $otp = rand(1000,9999);
+            $otp = 1234;
+//            $otp = rand(1000,9999);
             $student = Student::query()
 //                ->where('studentId',$studentId)
                 ->where('mobile',$mobile)
@@ -135,15 +158,24 @@ class LoginController extends Controller
                     $token = $t->createToken($t->name);
                 }
 
-                $sliders = Slider::query()->select('image','description')->get();
+                $sliders = Slider::query()->get();
+                if ($sliders->isNotEmpty()){
+                    $data = [];
+                    foreach ($sliders as $slider){
+                        $data[] = [
+                            'id'=> $slider->id,
+                            'image' => $slider->image ? asset('assets/img/sliders/' . $slider->image) : null,
+                        ];
+                    }
+                }
                 return response()
                     ->json(
                         [
-                            'status'        => true,
+                            'status'        =>  true,
                             'message'       => 'Request was successful!',
-                            'auth_token'    =>$token->plainTextToken,
-                            'user'          => $studentInfo,
-                            'sliders'       =>$sliders
+                            'auth_token'    =>  $token->plainTextToken,
+                            'user'          =>  $studentInfo,
+                            'sliders'       =>  $data
                         ],200);
             }
             else{
@@ -154,42 +186,4 @@ class LoginController extends Controller
         }
     }
 
-//    public function matchOtp(Request $request)
-//    {
-//        if(Auth::guard('student')) {
-//            $otpRequest = $request->get('otp');
-//             $otp = Otp::all();
-//            foreach ($otp as $t){
-//                if ($t->otp == $otpRequest){
-//                    $student_id = $t->student_id;
-//
-//                    $student = Student::query()
-//                        ->where('id',$student_id)
-//                        ->first();
-//
-//                    $studentInfo = Student::query()
-//                        ->where('id',$student_id)
-//                        ->select('name','mobile','image','email')
-//                        ->first();
-//
-//                    $token = $student->createToken($student->name);
-//
-//                    $sliders = Slider::query()->select('image','description')->get();
-//                    return response()
-//                        ->json(
-//                            [
-//                                'status'        => true,
-//                                'message'       => 'Request was successful!',
-//                                'auth_token'    =>$token->plainTextToken,
-//                                'user'          => $studentInfo,
-//                                'sliders'       =>$sliders
-//                            ],200);
-//                }
-//                else{
-//                    return response()
-//                        ->json(['status' => false,'message' => 'Invalid OTP, Please Try Again!'],500);
-//                }
-//            }
-//        }
-//    }
 }

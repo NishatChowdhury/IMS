@@ -41,7 +41,7 @@ Route::get('chairman-message','AndroidController@chairmanMessage');
 Route::get('principal-message','AndroidController@principalMessage');
 Route::get('student-profile','AndroidController@profile');
 Route::post('syllabus','AndroidController@syllabus');
-Route::post('class-routines','AndroidController@classRoutine');
+Route::get('class-routines','AndroidController@classRoutine');
 Route::get('teachers','AndroidController@teachers');
 Route::get('teacher-details','AndroidController@teacherDetails');
 Route::get('notices','AndroidController@noticeList');
@@ -54,8 +54,9 @@ Route::post('otp-match', [LoginController::class, 'matchOtp']);
 Route::post('token/create', [LoginController::class, 'token']);
 Route::get('events','AndroidController@events');
 Route::get('event-details','AndroidController@eventDetails');
-Route::get('events2','AndroidController@events2');
-Route::get('event-details-2','AndroidController@eventDetails2');
+Route::get('diary','AndroidController@diary');
+Route::get('result','AndroidController@result');
+Route::get('home','AndroidController@home');
 
 
 
