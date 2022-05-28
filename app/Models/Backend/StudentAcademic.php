@@ -2,6 +2,8 @@
 
 namespace App\Models\Backend;
 
+use App\Models\LocationStudent;
+use App\Models\TransportPayment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Backend\FeeSetup;
 use App\Models\Backend\StudentPayment;
@@ -59,4 +61,16 @@ class StudentAcademic extends Model
     {
         return $this->hasMany(StudentPayment::class,'student_academic_id');
     }
+        public function locationStudent()
+    {
+        return $this->hasOne(LocationStudent::class)->latest();
+    }
+
+    function transport(){
+        return $this->hasMany(Transport::class);
+    }
+    function transportPayment(){
+        return $this->hasMany(TransportPayment::class);
+    }
+
 }

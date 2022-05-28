@@ -23,10 +23,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
+                    <div class="card mb-2">
+                         <div class="card-body" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <form action="{{ route('fee_categories.search') }}" method="post">
                                         @csrf
                                         <div class="row">
@@ -44,14 +53,14 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-12">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
                                     <div style="float: left;">
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-striped table-sm">

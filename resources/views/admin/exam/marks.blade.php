@@ -29,6 +29,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>
+
                             <span>
                                 {{ $examSchedule->academicClass->academicClasses->name ?? '' }}
                                 {{ $examSchedule->academicClass->section->name ?? '' }}
@@ -72,6 +73,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                                    <input type="hidden" id="objectiveFull" value="{{  $examSchedule->objective_full }}">
+                                    <input type="hidden" id="writtenFull" value="{{  $examSchedule->written_full  }}">
+                                    <input type="hidden" id="practicalFull" value="{{ $examSchedule->practical_full  }}">
+
                             @php $x = 1 @endphp
                             @foreach($students as $student)
                                 <tr>
@@ -83,11 +88,12 @@
                                     <td>{{ $table == 'marks' ? $student->studentInfo->rank : $student->rank }}</td>
                                     <td>{{ $table == 'marks' ? $student->studentInfo->student->name : $student->student->name }}</td>
                                     <td>100 </td>
+
                                     <td>
-                                        {{ Form::number('objective[]',$student->objective ?? null,['class'=>'form-control']) }}
+                                        {{ Form::number('objective[]',$student->objective ?? null,['class'=>'form-control objective']) }}
                                     </td>
-                                    <td>{{ Form::number('written[]',$student->written ?? null,['class'=>'form-control']) }}</td>
-                                    <td>{{ Form::number('practical[]',$student->practical ?? null,['class'=>'form-control']) }}</td>
+                                    <td>{{ Form::number('written[]',$student->written ?? null,['class'=>'form-control writtenInput']) }}</td>
+                                    <td>{{ Form::number('practical[]',$student->practical ?? null,['class'=>'form-control practical']) }}</td>
                                     <td>{{ Form::number('viva[]',$student->viva ?? null,['class'=>'form-control']) }}</td>
                                 </tr>
                             @endforeach
@@ -110,3 +116,36 @@
     <!-- /.content -->
 
 @stop
+
+@section('script')
+    <script>
+        $('.objective').keyup(function(){
+            let marks = $(this).val();
+            let fullMarks = $('#objectiveFull').val();
+            if(fullMarks <= marks){
+                alert("Objective Marks Can't biger then " + fullMarks);
+                // $(this).val(0)
+            }
+        });
+        $('.writtenInput').keyup(function(){
+            let marks = $(this).val();
+            let fullMarks = $('#writtenFull').val();
+            if( fullMarks <= marks){
+                alert("Written Marks Can't biger then " + fullMarks);
+                // $(this).val(0)
+            }
+        });
+        $('.practical').keyup(function(){
+            let marks = $(this).val();
+            let fullMarks = $('#practicalFull').val();
+            if( fullMarks <= marks){
+                alert("Practical Marks Can't biger then " + fullMarks);
+                // $(this).val(0)
+            }
+        });
+
+
+// writtenFull
+// practicalFull
+    </script>
+@endsection

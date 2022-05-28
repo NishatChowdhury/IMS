@@ -25,10 +25,10 @@ class ScheduleController extends Controller
 
     public function index($classId)
     {
+
            $schedules = ClassSchedule::query()
             ->where('academic_class_id',$classId)
             ->get()
-//            ->sortBy('start')
             ->groupBy('day')
             ->sortBy('day');
 

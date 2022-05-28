@@ -45,11 +45,41 @@ class MenuController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+         $validated = $request->validate([
+            'menu_id' => 'required',
+            'name' => 'required',
+            'type' => 'required|integer',
+            'order' => 'required|integer',
+        ]);
         Menu::query()->create($request->all());
         Session::flash('success','Menu added successfully');
         return redirect()->back();
     }
 
+    public function search(Request $request)
+    {
+         $query =  $request->searchQuery;
+      $parents = Menu::all()->pluck('name','id');
+        $pages = Page::all()->pluck('name','id');
+        $systemPages = [
+            'contacts' => 'Contacts',
+            'gallery' => 'Gallery',
+            'notice' => 'Notice',
+            'news' => 'News',
+            'internal-result' => 'Internal Result',
+            'teacher' => 'Teacher',
+            'apply-school' => 'Online Admission (School)',
+            'applyCollege' => 'Online Admission (College)'
+        ];
+        $menus = Menu::query()
+            ->where('name', 'Like', "%$query%")
+            ->orderBy('order')
+            ->get();
+        return view('admin.menu.index',compact('parents','menus','pages','systemPages'));
+
+    }
+    
+    
     public function edit(Request $request)
     {
         $parents = Menu::all()->pluck('name','id');

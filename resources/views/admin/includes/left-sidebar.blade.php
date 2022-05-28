@@ -107,6 +107,12 @@
                                 <p>Leave Purpose</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/holidays') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Calendar</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview {{ isActive('admin/attendance*') }}">
                             <a href="#" class="nav-link {{ isActive('admin/attendance*') }}">
                                 <i class="nav-icon far fa-circle"></i>
@@ -116,12 +122,7 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/attendance/report') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Holiday Settings</p>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ action('Backend\ShiftController@index') }}" class="nav-link {{ isActive('admin/attendance/setting') }}">
                                         <i class="far nav-icon"></i>
@@ -387,25 +388,25 @@
                                 <p>Exam Results</p>
                             </a>
                         </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('exam.setfinalresultrule')}}" class="nav-link {{ isActive('admin/exam/setfinalresultrule') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Generate Final Result</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('exam.getfinalresultrule')}}" class="nav-link {{ isActive('admin/exam/getfinalresultrule') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Final Result</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                            <a href="{{route('exam.setfinalresultrule')}}" class="nav-link {{ isActive('admin/exam/setfinalresultrule') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Generate Final Result</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                            <a href="{{route('exam.getfinalresultrule')}}" class="nav-link {{ isActive('admin/exam/getfinalresultrule') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Final Result</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('exam.tabulationSheet')}}" class="nav-link {{ isActive('admin/exam/tabulationSheet') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tabulation Sheet</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                            <a href="{{route('exam.tabulationSheet')}}" class="nav-link {{ isActive('admin/exam/tabulationSheet') }}">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Tabulation Sheet</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 
@@ -816,7 +817,7 @@
                     <li class="nav-item" >
                         <a href="{{ action('Backend\NoticeController@index') }}" class="nav-link {{ isActive('admin/notices') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Notice Management</p>
+                            <p>Notice & News</p>
                         </a>
                     </li>
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -825,18 +826,7 @@
                             <p>Notice Category</p>
                         </a>
                     </li>
-{{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                        <a href="{{ action('Backend\NoticeTypeController@index') }}" class="nav-link {{ isActive('notice/type') }}">--}}
-{{--                            <i class="far fa-circle nav-icon"></i>--}}
-{{--                            <p>Notice Type</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('Backend\NoticeCategoryController@index') }}" class="nav-link {{ isActive(['notices']) }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>News</p>
-                        </a>
-                    </li>
+
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                         <a href="{{ route('diary.index') }}" class="nav-link {{ isActive(['dairy-list']) }}">
                             <i class="far fa-circle nav-icon"></i>

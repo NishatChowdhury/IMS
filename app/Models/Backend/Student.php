@@ -79,10 +79,7 @@ class Student extends Model
         return $this->belongsTo(Gender::class);
     }
 
-    public function locationStudent()
-    {
-        return $this->hasOne(LocationStudent::class)->latest();
-    }
+
 
     public function religion()
     {

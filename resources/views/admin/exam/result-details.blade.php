@@ -22,8 +22,16 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-12 text-center">
+                                    <img src="{{ asset('/assets/img/logos/') }}/{{ siteConfig('logo') }}" alt="">
+                                    <h1>{{ siteConfig('name') }}</h1>
+                                    <p>{{ siteConfig('address') }}</p>
+                                </div>
+                            </div>
                             <table id="" class="table">
                                 <tr>
+
                                     <th>Student's Name : </th>
                                     <td>{{ $result->studentAcademic->student->name ?? '' }}</td>
                                     <th>Exam Name : </th>
@@ -73,27 +81,27 @@
                                 </thead>
                                 <tbody>
                                 @foreach($marks as $mark)
-                                <tr>
-                                    <td>{{ $mark->subject->name }}</td>
-                                    <td>{{ $mark->subject->code }}</td>
-                                    <td>{{ $mark->full_mark }}</td>
-                                    <td>
-                                        @if($mark->objective > 0)
-                                            Objective: {{ $mark->objective }}<br>
-                                        @endif
-                                        @if($mark->written > 0)
-                                            Written: {{ $mark->written }}<br>
-                                        @endif
-                                        @if($mark->practical > 0)
-                                            Practical: {{ $mark->practical }}<br>
-                                        @endif
-                                        @if($mark->viva > 0)
-                                            Viva: {{ $mark->viva }}
-                                        @endif
-                                    </td>
-                                    <td>{{ $mark->grade }}</td>
-                                    <td>{{ $mark->gpa }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $mark->subject->name }}</td>
+                                        <td>{{ $mark->subject->code }}</td>
+                                        <td>{{ $mark->full_mark }}</td>
+                                        <td>
+                                            @if($mark->objective > 0)
+                                                Objective: {{ $mark->objective }}<br>
+                                            @endif
+                                            @if($mark->written > 0)
+                                                Written: {{ $mark->written }}<br>
+                                            @endif
+                                            @if($mark->practical > 0)
+                                                Practical: {{ $mark->practical }}<br>
+                                            @endif
+                                            @if($mark->viva > 0)
+                                                Viva: {{ $mark->viva }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $mark->grade }}</td>
+                                        <td>{{ $mark->gpa }}</td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
