@@ -1,15 +1,18 @@
 <?php
-use App\Http\Controllers\StudentLoginController;
+
+use App\Http\Controllers\Student\ProfileController;
 
 
-Route::get('student/login','StudentLoginController@showLoginForm');
-Route::get('student/profile','StudentLoginController@profile')->name('student.profile');
-Route::post('student/resultDetails','StudentLoginController@resultDetails');
-Route::get('student/diary',[StudentLoginController::class, 'showDiary'])->name('show.diary');
-
+Route::get('student/login','Student\ProfileController@showLoginForm');
+Route::get('student/profile','Student\ProfileController@profile')->name('student.profile');
+Route::post('student/resultDetails','Student\ProfileController@resultDetails');
+Route::post('student/diary',[ProfileController::class, 'showDiary'])->name('show.diary');
+Route::post('student/stdAttendance',[ProfileController::class, 'stdAttendance']);
+Route::post('student/classSchedule',[ProfileController::class, 'classSchedule']);
+Route::post('student/examRoutine',[ProfileController::class, 'examRoutine']);
+Route::post('student/syllabus',[ProfileController::class, 'syllabus']);
 
 Route::prefix('student')->name('student.')->namespace('Student')->group(function(){
-
     Route::namespace('Auth')->group(function(){
         //Login Routes
         Route::get('/login','LoginController@showLoginForm')->name('login');

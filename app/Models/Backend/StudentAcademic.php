@@ -36,7 +36,6 @@ class StudentAcademic extends Model
     {
         return $this->belongsTo(Group::class);
     }
-
     /**
      * An academic class is belongs to a student
      *

@@ -7,7 +7,8 @@
         $user = auth()->guard('student')->user();
         $student = $user->student;
     @endphp
-    <div class="padding-y-80 bg-cover" data-dark-overlay="6" style="background:url({{ asset('assets/img/breadcrumb-bg.jpg') }}) no-repeat">
+    <div class="padding-y-80 bg-cover" data-dark-overlay="6"
+         style="background:url({{ asset('assets/img/breadcrumb-bg.jpg') }}) no-repeat">
         <div class="container">
             <h2 class="text-white">
                 {{ __('Students Profile') }}
@@ -38,13 +39,14 @@
                             </p>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item m-2">
-                                    <i class="ti-shopping-cart text-primary"></i>
+                                    {{--                                    <i class="ti-shopping-cart text-primary"></i>--}}
                                     <span class="d-block">Rank</span>
-                                    <span class="h6">{{ $student->rank }}</span>
+                                    <span class="h6">{{ $student->studentAcademic->rank }}</span>
                                 </li>
                                 <li class="list-inline-item m-2">
-                                    <i class="ti-heart text-primary"></i>
+                                    {{--                                    <i class="ti-heart text-primary"></i>--}}
                                     <span class="d-block">DOB</span>
+                                    <span class="h6">{{ $student->dob}}</span>
                                     {{--                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>--}}
                                 </li>
                             </ul>
@@ -97,7 +99,29 @@
                                     </form>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{route('show.diary')}}" title="Diary">
+                                    {{--                                    {{route('show.diary')}}--}}
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="diary"
+                                       data-toggle="modal" data-target="#diaryModal" href="#" title="Diary">
+                                        <i class="fas fa-book"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    {{--{{route('classSchedule.view')}}--}}
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="class-schedule" data-toggle="modal" data-target="#classscheduleModal" href="#"
+                                       title="Class Schedule">
+                                        <i class="fas fa-book"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#examScheduleModal"
+                                       title="Exam Routine">
+                                        <i class="fas fa-book"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus"  href="#"data-toggle="modal" data-target="#syllabusModal"
+                                       title="Syllabus">
                                         <i class="fas fa-book"></i>
                                     </a>
                                 </li>
@@ -106,7 +130,7 @@
                     </div>
                 </div> <!-- END col-md-4 -->
                 <div class="col-lg-8 mt-4">
-                    <div class="card padding-30 shadow-v1">
+                    <div class="card padding-30 shadow-v1" id="main-div">
                         <ul class="nav tab-line tab-line border-bottom mb-4" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#Tabs_1-1" role="tab"
@@ -138,9 +162,9 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="Tabs_1-1" role="tabpanel">
                                 <div class="table-responsive my-4">
-{{--                                    {{ Form::select('year',[now()->subYear()->format('Y'),now()->format('Y'),now()->addYear()->format('Y')],null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Year']) }}--}}
-                                    {{ Form::selectMonth('month',null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Month']) }}
-                                    {{ Form::selectRange('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Year']) }}
+                                    {{-- {{ Form::select('year',[now()->subYear()->format('Y'),now()->format('Y'),now()->addYear()->format('Y')],null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Year']) }}--}}
+                                    {{ Form::selectMonth('month',$present_month,['class'=>'btn btn-outline-secondary mb-2 att-serch','id'=>'attendance-month']) }}
+                                    {{ Form::selectRange('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),$present_year,['class'=>'btn btn-outline-secondary mb-2 att-serch','id'=>'attendance-year']) }}
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
@@ -150,7 +174,7 @@
                                             <th scope="col">Status</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="attendance_search">
                                         @foreach($attendances as $day)
                                             <tr>
                                                 <th scope="row"
@@ -183,7 +207,8 @@
                                         <tbody>
 
                                         @foreach($exam as $data)
-                                            <tr data-toggle="modal" data-id="{{$data->exam->id}}" data-target="#exampleModal" class="result-details example">
+                                            <tr data-toggle="modal" data-id="{{$data->exam->id}}"
+                                                data-target="#exampleModal" class="result-details example">
                                                 <input class="exam-id" type="hidden" value="{{$data->exam_id}}">
                                                 <td>{{$data->exam->name}}</td>
                                                 <td>{{$data->exam->start}} </td>
@@ -210,7 +235,8 @@
             </div> <!--END row-->
         </div> <!--END container-->
     </section>
-    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -220,25 +246,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                   <div class="table-responsive">
-                       <table class="table table-bordered table-hover">
-                           <thead>
-                           <tr>
-                               <th scope="col"><b>Subject</b></th>
-                               <th scope="col"><b>Full Mark</b></th>
-                               <th scope="col"><b>Objective</b></th>
-                               <th scope="col"><b>Written</b></th>
-                               <th scope="col"><b>Prectical</b></th>
-                               <th scope="col"><b>Total Mark</b></th>
-                               <th scope="col"><b>GPA</b></th>
-                               <th scope="col"><b>Grade</b></th>
-                           </tr>
-                           </thead>
-                           <tbody id="resultBody">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col"><b>Subject</b></th>
+                                <th scope="col"><b>Full Mark</b></th>
+                                <th scope="col"><b>Objective</b></th>
+                                <th scope="col"><b>Written</b></th>
+                                <th scope="col"><b>Prectical</b></th>
+                                <th scope="col"><b>Total Mark</b></th>
+                                <th scope="col"><b>GPA</b></th>
+                                <th scope="col"><b>Grade</b></th>
+                            </tr>
+                            </thead>
+                            <tbody id="resultBody">
 
-                           </tbody>
-                       </table>
-                   </div>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -247,28 +273,104 @@
         </div>
     </div>
 
+
+
+
+    @include('student.modal')
 @stop
 
 @section('script')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('.result-details').click(function () {
                 var id = $('.exam-id').val();
-                var token="{{csrf_token()}}";
+                var token = "{{csrf_token()}}";
                 $.ajax({
                     url: 'resultDetails',
-                    method:'POST',
-                    data:{
-                        _token:token,
-                        'id' : id,
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                        'id': id,
                     },
-                    success:function(res){
+                    success: function (res) {
                         $('#resultBody').html(res.html);
                         $('#resultModalTitle').html(res.title);
                     }
                 })
             });
+            //search attendance
+            $('.att-serch').click(function () {
+                var month_id = $('#attendance-month').val();
+                var year_id = $('#attendance-year').val();
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: 'stdAttendance',
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                        'month_id': month_id,
+                        'year_id': year_id,
+                    },
+                    success: function (res) {
+                        $('#attendance_search').html(res.html);
+                    }
+                })
+            });
+            //    end search attendance
+            $('#diary').click(function () {
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: 'diary',
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                    },
+                    success: function (res) {
+                        $('#diaryBody').html(res.html);
+                    }
+                })
+            });
+            $('#class-schedule').click(function () {
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: 'classSchedule',
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                    },
+                    success: function (res) {
+                        $('#scheduleBody').html(res.html);
+                    }
+                })
+            });
+            $('#exam-routine').click(function () {
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: 'examRoutine',
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                    },
+                    success: function (res) {
+                        $('#examScheduleBody').html(res.html);
+                    }
+                })
+            });
+            $('#syllabus').click(function () {
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: 'syllabus',
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                    },
+                    success: function (res) {
+                        $('#syllabusBody').html(res.html);
+                    }
+                })
+            });
+
         });
     </script>
 @endsection
