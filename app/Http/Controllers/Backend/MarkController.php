@@ -62,8 +62,8 @@ class MarkController extends Controller
 
         // class_id means amademic_class_id
 
-          $schedule = ExamSchedule::query()->findOrFail($schedule);
-         $table = StudentAcademic::query()->where('academic_class_id',$schedule->academic_class_id)->get();
+         $schedule = ExamSchedule::query()->findOrFail($schedule);
+          $table = StudentAcademic::query()->where('academic_class_id',$schedule->academic_class_id)->get();
 
         $group = $schedule->academicClass->group != null ? $schedule->academicClass->group->name : '';
         $section = $schedule->academicClass->section != null ? $schedule->academicClass->section->name : '';
@@ -87,7 +87,12 @@ class MarkController extends Controller
         ]);
 
         foreach($table as $row) {
-            $getMarks = Mark::where('student_id', $row->id)->where('subject_id', $schedule->subject_id)->with('studentInfo','subject')->first();
+                $getMarks = Mark::query()
+                                ->where('student_id', $row->id)
+                                ->where('subject_id', $schedule->subject_id)
+                                ->with('studentInfo','subject')
+                                ->orderBy('id', 'DESC')
+                                ->first();
 
             fputcsv($handle, [
                 $row['rank'],
@@ -171,15 +176,18 @@ class MarkController extends Controller
 
     public function store(Request $request)
     {
+//        return $request->all();
         $students = $request->get('student_id');
 
-            $schedule = ExamSchedule::query()
+             $schedule = ExamSchedule::query()
             ->where('exam_id',$request->exam_id)
             ->where('subject_id',$request->subject_id)
             ->where('academic_class_id',$request->academic_class_id)
             ->first();
 
         foreach($students as $key => $student){
+
+
 
             $getClassID = AcademicClass::where('id', $request->get('academic_class_id'))->first();
 
@@ -202,7 +210,7 @@ class MarkController extends Controller
             $data['total_mark'] = $request->get('objective')[$key] + $request->get('written')[$key] + $request->get('practical')[$key] + $request->get('viva')[$key];
 
 
-//            return $data;
+//            return $schedule->objective_pass;
             if($schedule->objective_pass > $data['objective'] || $schedule->written_pass > $data['written'] || $schedule->practical_pass > $data['practical'] || $schedule->viva_pass > $data['viva']){
 //               dd('hey');
                 $data['gpa'] = 0;

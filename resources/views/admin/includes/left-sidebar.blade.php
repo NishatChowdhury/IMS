@@ -107,6 +107,12 @@
                                 <p>Leave Purpose</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/holidays') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Calendar</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview {{ isActive('admin/attendance*') }}">
                             <a href="#" class="nav-link {{ isActive('admin/attendance*') }}">
                                 <i class="nav-icon far fa-circle"></i>
@@ -116,12 +122,7 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/attendance/report') }}">
-                                        <i class="far nav-icon"></i>
-                                        <p>Holiday Settings</p>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ action('Backend\ShiftController@index') }}" class="nav-link {{ isActive('admin/attendance/setting') }}">
                                         <i class="far nav-icon"></i>

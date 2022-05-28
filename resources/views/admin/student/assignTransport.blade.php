@@ -13,6 +13,10 @@
             margin-left: 2px;
             line-height: 12px;
         }
+        .input_date {
+    width: 69%;
+    display: inline-block;
+}
     </style>
 @endsection
 @section('title','Student Profile')
@@ -83,11 +87,12 @@
                                            <th>SL</th>
                                            <th>Name</th>
                                            <th>Rank</th>
-                                           <th>Is_Transport</th>
+                                           <th>Location</th>
                                            <th>Direction</th>
+                                           <th>Date</th>
                                        </tr>
                                        @foreach($students as $key => $s)
-                                           <input type="hidden" name="student_id[]" value="{{ $s->student->id ?? '' }}">
+                                           <input type="hidden" name="student_academic_id[]" value="{{ $s->id ?? '' }}">
                                        <tr>
                                            <td>{{ $key+1 }} </td>
                                            <td>{{ $s->student->name ?? '' }}</td>
@@ -100,8 +105,8 @@
                                                        @foreach($locations as $l)
                                                             <option
                                                                     value="{{ $l->id }}"
-                                                                    @isset($s->student->locationStudent)
-                                                                    {{ $s->student->locationStudent->location_id == $l->id ? 'selected' : ''}}
+                                                                    @isset($s->locationStudent)
+                                                                    {{ $s->locationStudent->location_id == $l->id ? 'selected' : ''}}
                                                                     @endisset
                                                                     >{{ $l->name }}</option>
                                                        @endforeach
@@ -113,27 +118,40 @@
                                                    <select name="direction[]" id="" class="form-control">
                                                        <option value="0">Not Taking Transport</option>
                                                        <option value="1"
-                                                               @isset($s->student->locationStudent)
-                                                               {{ $s->student->locationStudent->direction == 1 ? 'selected' : ''}}
+                                                               @isset($s->locationStudent)
+                                                               {{ $s->locationStudent->direction == 1 ? 'selected' : ''}}
                                                                @endisset
                                                        >Home To Institute </option>
                                                        <option value="2"
-                                                               @isset($s->student->locationStudent)
-                                                               {{ $s->student->locationStudent->direction == 2 ? 'selected' : ''}}
+                                                               @isset($s->locationStudent)
+                                                               {{ $s->locationStudent->direction == 2 ? 'selected' : ''}}
                                                                @endisset
                                                        >Institute To Home </option>
                                                        <option value="3"
-                                                               @isset($s->student->locationStudent)
-                                                               {{ $s->student->locationStudent->direction == 3 ? 'selected' : ''}}
+                                                               @isset($s->locationStudent)
+                                                               {{ $s->locationStudent->direction == 3 ? 'selected' : ''}}
                                                                @endisset
                                                        >Both</option>
                                                    </select>
                                                </div>
                                            </td>
+                                           <td>
+                                               <div class="input_date">
+                                                    <input type="date" name="starting_date[]" class="form-control" value="{{ $s->locationStudent->starting_date ?? '' }}">
+                                               </div>
+                                        <button type="button" onclick="getId({{$s->id}})"  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> <i class="fas fa-sign-out-alt"></i>
+                                          </button>
+                                               @isset($s->locationStudent)
+                                               @if($s->locationStudent->ending_date && $s->locationStudent->ending_date >= $s->locationStudent->starting_date)
+                                               <br>
+                                               <span><b>Ending Date : {{$s->locationStudent->ending_date}}</b> </span>
+                                               @endif
+                                               @endisset
+                                           </td>
                                        </tr>
                                        @endforeach
                                        <tr>
-                                           <td colspan="5">
+                                           <td colspan="6">
                                                <button class="btn btn-block btn-dark">Save Data</button>
                                            </td>
                                        </tr>
@@ -149,5 +167,47 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ending Transport</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
+                <form action="{{ route('assign.transport.end') }}" method="post">
+                    @csrf
+                    <div class="modal-body row">
+                        <div class="form-group col-12">
+                            <label for="">Ending Date</label>
+                            <input type="date" name="ending_date" id="end" class="form-control">
+                        </div>
+                        <input type="hidden" name="id" id="onlineId" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group col-12">
+                            <button type="submit" class="btn btn-primary btn-sm">Save Change</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 @stop
+
+@section('script')
+    <script>
+
+        // create action url here
+        function getId(id){
+            $('#onlineId').val(id);
+        }
+
+        // update action url here
+
+
+    </script>
+@endsection

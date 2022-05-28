@@ -3,6 +3,17 @@
 @section('title', 'Fee Collection')
 
 @section('content')
+@section('content')
+@section('style')
+    <style>
+        .customInWidth{
+             width: 80%;
+            float: right;
+            margin-bottom: 10px;
+        }
+
+    </style>
+@endsection
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -86,67 +97,178 @@
                 </div>
             </div>
 
+{{--            <div class="row mt-4 mb-4">--}}
+{{--                <div class="col-md-12">--}}
+{{--                    <div class="card">--}}
+{{--                        <div class="card-header">--}}
+{{--                            <h6>Academic Fee Collection</h6>--}}
+{{--                        </div>--}}
+{{--                        <div class="card-body">--}}
+{{--                            {{ Form::open(['url' => 'admin/fee/fee-collection/store', 'method' => 'POST', 'class' => 'form-horizontal']) }}--}}
+{{--                            <div class="form-row">--}}
+{{--                                {{ Form::hidden('student_id', $student->id, ['class' => 'form-control', 'placeholder' => '']) }}--}}
+
+{{--                                <div class="col">--}}
+{{--                                    <label for="">{{ __('Date') }}</label> <i class="text-danger">*</i>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::date('date', null, ['class' => 'form-control' . ($errors->has('date') ? ' is-invalid' : null),'placeholder' => 'Select Date']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">{{ __('Due Balance ') }}</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::text('balance', $totalDue, ['class' => 'form-control', 'readonly']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Pay Method</label>  <i class="text-danger">*</i>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('payment_method', $payment_method, $payment_method, ['class' => 'form-control']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+{{--                                <div class="col">--}}
+{{--                                    <label for="">{{ __('Paid Amount') }}</label>  <i class="text-danger">*</i>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::text('amount', null, ['class' => 'form-control' . ($errors->has('amount') ? ' is-invalid' : null),'placeholder' => 'Paid']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+
+{{--                                <div class="col">--}}
+{{--                                    <label for="">{{ __('Discount') }}</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::text('discount', null, ['class' => 'form-control' . ($errors->has('discount') ? ' is-invalid' : null),'placeholder' => 'discount']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+{{--                                <div class="col">--}}
+{{--                                    <label for="">{{ __('Remarks') }}</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::text('remarks', null, ['class' => 'form-control' . ($errors->has('remarks') ? ' is-invalid' : null),'placeholder' => 'Comment']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+
+{{--                                <div class="button text-center m-4">--}}
+{{--                                    <button style="margin-top: 7px" type="submit"--}}
+{{--                                        class="btn btn-primary">{{ __('Submit') }}</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            {{ Form::close() }}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
             <div class="row mt-4 mb-4">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             {{ Form::open(['url' => 'admin/fee/fee-collection/store', 'method' => 'POST', 'class' => 'form-horizontal']) }}
-                            <div class="form-row">
-                                {{ Form::hidden('student_id', $student->id, ['class' => 'form-control', 'placeholder' => '']) }}
 
-                                <div class="col">
-                                    <label for="">{{ __('Date') }}</label> <i class="text-danger">*</i>
-                                    <div class="input-group">
-                                        {{ Form::date('date', null, ['class' => 'form-control' . ($errors->has('date') ? ' is-invalid' : null),'placeholder' => 'Select Date']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">{{ __('Due Balance ') }}</label>
-                                    <div class="input-group">
-                                        {{ Form::text('balance', $totalDue, ['class' => 'form-control', 'readonly']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Pay Method</label>  <i class="text-danger">*</i>
-                                    <div class="input-group">
-                                        {{ Form::select('payment_method', $payment_method, $payment_method, ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
+                            {{ Form::hidden('student_id', $student->id, ['class' => 'form-control', 'placeholder' => '']) }}
+                           <div class="row">
+                                <div class="col-6">
+                                <table width="100%" class="text-right">
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="date" class="form-control customInWidth" name="date"  style="width: 80%" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuition Fee Balance</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" name="balance" value="{{ $totalDue }}" class="form-control customInWidth text-right" placeholder="00.00" readonly>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transport Balance</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" name="transportBalance" value="{{ $transportAmount - $paymentTransportAmount}}" class="form-control text-right customInWidth" readonly placeholder="00.00">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Payable</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control customInWidth text-right" value="{{  $totalDue + ($transportAmount - $paymentTransportAmount)  }}" readonly placeholder="00.00">
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                <div class="col">
-                                    <label for="">{{ __('Paid Amount') }}</label>  <i class="text-danger">*</i>
-                                    <div class="input-group">
-                                        {{ Form::text('amount', null, ['class' => 'form-control' . ($errors->has('amount') ? ' is-invalid' : null),'placeholder' => 'Paid']) }}
-                                    </div>
-                                </div>
-
-
-                                <div class="col">
-                                    <label for="">{{ __('Discount') }}</label>
-                                    <div class="input-group">
-                                        {{ Form::text('discount', null, ['class' => 'form-control' . ($errors->has('discount') ? ' is-invalid' : null),'placeholder' => 'discount']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <label for="">{{ __('Remarks') }}</label>
-                                    <div class="input-group">
-                                        {{ Form::text('remarks', null, ['class' => 'form-control' . ($errors->has('remarks') ? ' is-invalid' : null),'placeholder' => 'Comment']) }}
-                                    </div>
-                                </div>
-
-
-                                <div class="button text-center m-4">
-                                    <button style="margin-top: 7px" type="submit"
-                                        class="btn btn-primary">{{ __('Submit') }}</button>
-                                </div>
+                                </table>
                             </div>
+                             <div class="col-6">
+                                <table width="100%" class="text-right">
+                                    <tr>
+                                        <td>Payment Method</td>
+                                        <td>
+                                            <div class="form-group">
+{{--                                                <select name="" id="" class="form-control customInWidth">--}}
+                                               {{ Form::select('payment_method', $payment_method, $payment_method, ['class' => 'form-control customInWidth']) }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuition Fee </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" name="amount" id="am" class="form-control customInWidth text-right" placeholder="00.00">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transport </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" name="transportAmount" id="tAm" class="form-control text-right customInWidth"  placeholder="00.00">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" name="discount" id="dis" class="form-control text-right customInWidth"  placeholder="00.00">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Remarks </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" name="remarks" class="form-control text-right customInWidth"  placeholder="Optional Remarks">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Payable</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control customInWidth text-right" id="playA" readonly placeholder="00.00">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button class="btn btn-dark btn-sm">Payment</button>
+                            </div>
+                           </div>
                             {{ Form::close() }}
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row mt-4">
                 <div class="col-sm-6">
                     <div class="card mb-4">
@@ -217,5 +339,41 @@
 @stop
 
 @section('script')
+    <script>
 
+//         am
+// tAm
+// dis
+// playA
+
+        let amount = 0;
+        let transport = 0;
+        let discount = 0;
+        let playA = 0;
+                $('#am').keyup(function(){
+                    amount = $(this).val();
+                    amount = amount > 0 ? amount : 0;
+                    getTotal();
+                });
+                $('#tAm').keyup(function(){
+                    transport = $(this).val();
+                    transport = transport > 0 ? transport : 0;
+                    getTotal();
+                });
+                $('#dis').keyup(function(){
+                    discount = $(this).val();
+
+                    discount = discount > 0 ? discount : 0;
+                    getTotal();
+                });
+
+        function getTotal(){
+            let total = parseFloat(amount) + parseFloat(transport);
+            let disCOunt = total - parseFloat(discount) ?? 0;
+            $('#playA').val(disCOunt);
+        }
+        getTotal();
+
+
+    </script>
 @stop

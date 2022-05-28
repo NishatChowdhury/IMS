@@ -26,6 +26,40 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    <div class="card mb-2">
+                         <div class="card-body" style="border-bottom: none !important;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="{{ route('menus.search') }}" method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="form-group">
+                                                    <input type="text" name="searchQuery" placeholder="Search. . . . " class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group" style="float: left">
+                                                    <button type="submit" class="btn btn-dark btn-sm">Search</button>
+                                                    <a href="{{url('admin/menus')}}" class="btn btn-primary btn-sm">Reload</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
 {{--                            <div class="row">--}}

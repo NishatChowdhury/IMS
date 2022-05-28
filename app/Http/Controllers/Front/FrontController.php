@@ -299,7 +299,7 @@ class FrontController extends Controller
     {
 
          $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
-        // dd($content);
+//         dd($content);
         if($content->type == 3){
 
             $notices = null;

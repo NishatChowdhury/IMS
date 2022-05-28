@@ -9,6 +9,8 @@ use App\Models\Backend\FeeSetupCategory;
 use App\Models\Backend\FeeSetupStudent;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentAcademic;
+use App\Models\Backend\Transport;
+use App\Models\TransportPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -54,8 +56,12 @@ class FeeCollectionController extends Controller
         $previousPayment = StudentPayment::query()->where('student_academic_id', $student->academics[0]->id)->latest()->get();
 
         if (!empty($student->studentId) && $student->studentId == $term) {
+            $studentAcademic =  StudentAcademic::where('student_id', $student->id)->first();
+            $transportAmount =  Transport::where('student_academic_id',$studentAcademic->id)->sum('amount');
+            $paymentTransportAmount =  TransportPayment::where('student_academic_id',$studentAcademic->id)->sum('amount');
             // $feeSetup = $student->feeSetup;
-            return view('admin.feeCollection.view', compact('student', 'term', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment'));
+            $totalTransportDue = 00;
+            return view('admin.feeCollection.view', compact('student','totalTransportDue','paymentTransportAmount','transportAmount', 'term', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment'));
         } else {
             return view('admin.feeCollection.index')->with('message', 'IT WORKS!');
         }
@@ -66,7 +72,7 @@ class FeeCollectionController extends Controller
         $this->validate($request, [
             'date' => 'required|date',
             'payment_method' => 'required',
-            'amount' => 'required'
+//            'amount' => 'required'
         ]);
         // return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
@@ -79,42 +85,62 @@ class FeeCollectionController extends Controller
         } else {
             $paying = $request->amount;
         }
-        // $paying = $request->amount;
-        foreach ($fss as $fs) {
-            $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fs->id)->get();
+        // $paying = ;
 
-            foreach ($categories as $category) {
-                $amount = $category->amount;
-                $paid = $category->paid;
-                if ($amount > $paid) {
-                    $due = $amount - $paid;
-                    if ($paying > $due) {
-                        $category->update(['paid' => $amount]);
-                        $paying = $paying - $due;
-                    } else {
-                        $adjust = $paid + $paying;
-                        $category->update(['paid' => $adjust]);
-                        $paying = 0;
+        if($request->amount){
+                foreach ($fss as $fs) {
+                        $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fs->id)->get();
+
+                        foreach ($categories as $category) {
+                            $amount = $category->amount;
+                            $paid = $category->paid;
+                            if ($amount > $paid) {
+                                $due = $amount - $paid;
+                                if ($paying > $due) {
+                                    $category->update(['paid' => $amount]);
+                                    $paying = $paying - $due;
+                                } else {
+                                    $adjust = $paid + $paying;
+                                    $category->update(['paid' => $adjust]);
+                                    $paying = 0;
+                                }
+                            }
+                        }
                     }
-                }
-            }
+
+                    $sp = StudentPayment::query()->create([
+                        'user_id' => Auth::user()->id,
+                        'student_academic_id' => $ss->id,
+                        'fee_setup_id' => $feeSetupID->id,
+                        'date' => $request->date,
+                        'amount' => $request->amount,
+                        'discount' => $request->discount,
+                        'remarks' => $request->remarks,
+                        'payment_method' => $request->payment_method
+                    ]);
+        }else{
+            $sp = []; // when only payment as transport then its will be runing
         }
 
-        $sp = StudentPayment::query()->create([
-            'user_id' => Auth::user()->id,
-            'student_academic_id' => $ss->id,
-            'fee_setup_id' => $feeSetupID->id,
-            'date' => $request->date,
-            'amount' => $request->amount,
-            'discount' => $request->discount,
-            'remarks' => $request->remarks,
-            'payment_method' => $request->payment_method
-        ]);
+        // transport
+        if($request->transportAmount){
+            $trans = TransportPayment::create([
+               'date' => $request->date,
+               'month' => date('M', strtotime($request->date)),
+               'payment_method' => $request->payment_method,
+               'amount' => $request->transportAmount,
+               'student_academic_id' => $ss->id,
+            ]);
+        }else{
+            $trans = [];
+        }
+
 
         $receipt =  FeeSetupCategory::query()->where('fee_setup_student_id', $fss->first()->id)->get();
         return redirect('admin/fee/fee-collection')
             ->with('receipt', $receipt)
-            ->with('spay', $sp);
+            ->with('spay', $sp)
+            ->with('trans', $trans);
     }
 
     public function allCollections()
