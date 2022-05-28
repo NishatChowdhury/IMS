@@ -12,6 +12,7 @@ use App\Models\Backend\Mark;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
+use App\Models\Backend\Syllabus;
 use App\Models\ClassSchedule;
 use App\Models\Diary;
 use Carbon\CarbonPeriod;
@@ -227,6 +228,26 @@ public function classSchedule()
 
         }
         return response()->json(['html'=>$html_exam]);
+    }
+    public function syllabus(){
+        $id = auth()->guard('student')->user()->student_id;
+        $student = StudentAcademic::query()->where('student_id', $id)->first();
+        $syllabuses = Syllabus::query()
+            ->where('academic_class_id', $student->academic_class_id)
+            ->get();
+        $syllabus = '';
+        foreach ($syllabuses as $data) {
+            $syllabus .=
+                '<tr>' .
+                    '<td>' . $data->title . '</td>' .
+                    '<td>' .
+
+                        '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
+                    '</td>'.
+                '</tr>';
+
+        }
+        return response()->json(['html'=>$syllabus]);
     }
 }
 

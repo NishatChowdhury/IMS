@@ -113,15 +113,14 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    {{--                                    {{route('show.diary')}}--}}
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#examScheduleModal"
                                        title="Exam Routine">
                                         <i class="fas fa-book"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    {{--                                    {{route('show.diary')}}--}}
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus" href=""
+
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus"  href="#"data-toggle="modal" data-target="#syllabusModal"
                                        title="Syllabus">
                                         <i class="fas fa-book"></i>
                                     </a>
@@ -359,7 +358,17 @@
                 })
             });
             $('#syllabus').click(function () {
-                alert('syllabus');
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: 'syllabus',
+                    method: 'POST',
+                    data: {
+                        '_token': token,
+                    },
+                    success: function (res) {
+                        $('#syllabusBody').html(res.html);
+                    }
+                })
             });
 
         });
