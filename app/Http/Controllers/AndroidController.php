@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Backend\Holiday;
+use App\Models\Backend\Mark;
 use App\Models\Backend\ExamResult;
 use App\Http\Resources\EventsCollection;
 use App\Http\Resources\EventsResource;
@@ -443,9 +445,9 @@ class AndroidController extends Controller
         if ($examResult){
             $data = [];
             foreach ($examResult as $result) {
-                $AttendanceCount = Attendance::query()
-                    ->where('student_id',$result->studentAcademic->student_id)
-                    ->get();
+//                $AttendanceCount = Attendance::query()
+//                    ->where('student_id',$result->studentAcademic->student_id)
+//                    ->get();
                 $TotalNumbers = DB::table('exam_schedules')
                     ->where('exam_id', $result->exam_id)
                     ->where('academic_class_id', $result->studentAcademic->academic_class_id)
@@ -462,7 +464,7 @@ class AndroidController extends Controller
                 $data[] = [
                     'id' => $result->id,
                     'title' => $result->exam->name,
-                    'isPassed' => $result->grade == 'F' ? 'false' : 'true',
+                    'isPassed' => $result->grade == 'F' ? false : true,
                     'result'=>[
                         [
                             'label'=> 'GPA',
@@ -486,6 +488,9 @@ class AndroidController extends Controller
                 'results'=>$data
             ]);
         }
+        else{
+            return response(null,204);
+        }
     }
 
     public function home()
@@ -507,5 +512,129 @@ class AndroidController extends Controller
         else{
             return response(null,204);
         }
+    }
+    public function marksheet()
+    {
+       $examResult = ExamResult::query()
+            ->where('student_academic_id',42)
+            ->with('exam','studentAcademic')
+            ->get();
+        if ($examResult){
+            $data = [];
+            foreach ($examResult as $result) {
+
+                $TotalNumbers = ExamSchedule::query()
+                    ->get();
+
+                foreach ($TotalNumbers as $totalNumber)
+                {
+                    $obj_full = $totalNumber->objective_full;
+                    $obj_pass = $totalNumber->objective_pass;
+                    $wri_full = $totalNumber->written_full;
+                    $wri_pass = $totalNumber->written_pass;
+                    $pra_full = $totalNumber->practical_full;
+                    $pra_pass = $totalNumber->practical_pass;
+                    $viva_full = $totalNumber->viva_full;
+                    $viva_pass = $totalNumber->viva_pass;
+                }
+
+                $detailsNumbers = Mark::query()
+                    ->where('exam_id', $result->exam_id)
+                    ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                    ->with('exam')
+                    ->get();
+
+                $mcqHighest = DB::table('marks')->max('objective');
+                $wriHighest = DB::table('marks')->max('written');
+                $praHighest = DB::table('marks')->max('practical');
+                $vivaHighest = DB::table('marks')->max('viva');
+
+                foreach ($detailsNumbers as $number)
+                {
+                    $mcq = $number->objective ?? 0;
+                    $written = $number->written ?? 0;
+                    $practical = $number->practical ?? 0;
+                    $viva = $number->viva ?? 0;
+                    $totalObtain = $mcq+$written+$practical+$viva;
+
+                    $data[] = [
+                        'title' => $number->subject->name,
+                        'isPassed' => $number->grade == 'F' ? false : true,
+                        'total'=> strval($totalObtain),
+                        'marks' => [
+                            [
+                                'label' => 'MCQ',
+                                'obtained' => $number->objective ?? '',
+                                'total' => $obj_full ?? '',
+                                'pass' => $obj_pass ?? '',
+                                'highest' => $mcqHighest,
+                            ],
+                            [
+                                'label' => 'WRITTEN',
+                                'obtained' => $number->written ?? '',
+                                'total' => $wri_full ?? '',
+                                'pass' => $wri_pass ?? '',
+                                'highest' => $wriHighest ?? '',
+                            ],
+                            [
+                                'label' => 'PRACTICAL',
+                                'obtained' => $number->practical ?? '',
+                                'total' => $pra_full ?? '',
+                                'pass' => $pra_pass ?? '',
+                                'highest' => $praHighest ?? '',
+                            ],
+                            [
+                                'label' => 'VIVA',
+                                'obtained' => $number->viva ?? '',
+                                'total' => $viva_full ?? '',
+                                'pass' => $viva_pass ?? '',
+                                'highest' => $vivaHighest ?? '',
+                            ]
+
+                        ]
+                    ];
+                }
+                return response()->json([
+                    'status' => true,
+                    'examName'=>$result->exam->name,
+                    'marksheet'=>$data
+                ]);
+            }
+
+        }
+        else{
+            return response(null,204);
+        }
+    }
+
+    public function calendar()
+    {
+        $calendars = DB::table('holidays')
+            ->selectRaw('(id) as id,(start) as start, (end) as end, 
+                                (name) as name')
+            ->selectRaw("MONTHNAME(start) as monthname")
+            ->get()
+            ->groupBy('monthname');
+
+        $r = [];
+        foreach ($calendars as $day => $calendar){
+            $data = [];
+            foreach ($calendar as $cal)
+            {
+                $data[] =
+                    [
+                        'date'=>$cal->start ?? '',
+                        'day'=>Carbon::parse($cal->start)->format('l') ?? '',
+                        'title'=>$cal->name ?? '',
+                    ];
+            }
+            $r[] = [
+                'id' => $cal->id,
+                'month' => $day,
+                'events' => $data
+            ];
+
+        }
+        return response()->json(['status'=>true,'calendar'=>$r]);
     }
 }
