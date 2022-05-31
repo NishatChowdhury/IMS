@@ -3,12 +3,12 @@
 use App\Http\Controllers\Student\ProfileController;
 
 
-Route::get('student/login','Student\ProfileController@showLoginForm');
+Route::get('student/login','Student\ProfileController@showLoginForm')->name('student.login');
 Route::get('student/profile','Student\ProfileController@profile')->name('student.profile');
-Route::post('student/resultDetails','Student\ProfileController@resultDetails');
-Route::post('student/diary',[ProfileController::class, 'showDiary'])->name('show.diary');
+Route::post('student/marks','Student\ProfileController@marks')->name('student.marks');
+Route::post('student/diary',[ProfileController::class, 'diary'])->name('student.diary');
 Route::post('student/stdAttendance',[ProfileController::class, 'stdAttendance']);
-Route::post('student/classSchedule',[ProfileController::class, 'classSchedule']);
+Route::post('student/class-schedule',[ProfileController::class, 'classSchedule'])->name('student.class-schedule');
 Route::post('student/examRoutine',[ProfileController::class, 'examRoutine']);
 Route::post('student/syllabus',[ProfileController::class, 'syllabus']);
 

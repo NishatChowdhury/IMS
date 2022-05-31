@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Student\StudentLogin;
+
 return [
 
     /*
@@ -83,7 +85,7 @@ return [
 
         'students' => [
             'driver' => 'eloquent',
-            'model' => \App\Models\Backend\StudentLogin::class,
+            'model' => StudentLogin::class,
         ]
     ],
 

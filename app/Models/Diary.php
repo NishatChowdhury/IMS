@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 class Diary extends Model
 {
     use HasFactory;
+
+    protected $dates = ['date'];
+
     protected $guarded;
 
     function academicClass(){

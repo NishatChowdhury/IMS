@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models\Backend;
+namespace App\Models\Student;
 
+use App\Models\Backend\Student;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -29,6 +30,8 @@ class StudentLogin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $redirectTo = 'student.login';
 
     /**
      * A User is belongs to a student

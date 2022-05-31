@@ -40,12 +40,12 @@
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item m-2">
                                     {{--                                    <i class="ti-shopping-cart text-primary"></i>--}}
-                                    <span class="d-block">Rank</span>
+                                    <span class="d-block">{{ __('Rank') }}</span>
                                     <span class="h6">{{ $student->studentAcademic->rank }}</span>
                                 </li>
                                 <li class="list-inline-item m-2">
                                     {{--                                    <i class="ti-heart text-primary"></i>--}}
-                                    <span class="d-block">DOB</span>
+                                    <span class="d-block">{{ __('DOB') }}</span>
                                     <span class="h6">{{ $student->dob}}</span>
                                     {{--                                    <span class="h6">{{ $student->dob ? $student->dob->format('Y-m-d') : '' }}</span>--}}
                                 </li>
@@ -54,16 +54,16 @@
                         <div class="card-body border-bottom">
                             <ul class="list-unstyled">
                                 <li class="mb-3">
-                                    <span class="d-block">Email address:</span>
+                                    <span class="d-block">{{ __('Email address') }}</span>
                                     <a class="h6" href="mailto:{{ $student->email }}">{{ $student->email }}</a>
                                 </li>
                                 <li class="mb-3">
-                                    <span class="d-block">Phone:</span>
+                                    <span class="d-block">{{ __('Phone') }}</span>
                                     <a class="h6" href="callto:{{ $student->mobile }}">{{ $student->mobile }}</a>
                                 </li>
                                 <li class="mb-3">
-                                    <span class="d-block">Location:</span>
-                                    <a class="h6" href="#">{{ $student->address }}</a>
+                                    <span class="d-block">{{ __('Location') }}</span>
+                                    <p class="h6">{{ $student->address }}</p>
                                 </li>
                             </ul>
                         </div>
@@ -87,42 +87,43 @@
                                 {{--                                        <i class="ti-google"></i>--}}
                                 {{--                                    </a>--}}
                                 {{--                                </li>--}}
-                                <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" title="Logout">
-                                        <i class="ti-control-stop"></i>
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
+                                {{--                                <li class="list-inline-item">--}}
+                                {{--                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{ route('logout') }}"--}}
+                                {{--                                       onclick="event.preventDefault();--}}
+                                {{--                                                     document.getElementById('logout-form').submit();" title="Logout">--}}
+                                {{--                                        <i class="fas fa-sign-out-alt"></i>--}}
+                                {{--                                    </a>--}}
+                                {{--                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
+                                {{--                                          style="display: none;">--}}
+                                {{--                                        @csrf--}}
+                                {{--                                    </form>--}}
+                                {{--                                </li>--}}
                                 <li class="list-inline-item">
                                     {{--                                    {{route('show.diary')}}--}}
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="diary"
-                                       data-toggle="modal" data-target="#diaryModal" href="#" title="Diary">
+                                       data-toggle="modal" data-target="#exampleModal" href="#" title="Diary">
                                         <i class="fas fa-book"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     {{--{{route('classSchedule.view')}}--}}
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="class-schedule" data-toggle="modal" data-target="#classscheduleModal" href="#"
-                                       title="Class Schedule">
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="class-schedule" data-toggle="modal" data-target="#exampleModal" href="#" title="Class Schedule">
                                         <i class="fas fa-clock"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#examScheduleModal"
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#"
+                                       data-toggle="modal" data-target="#examScheduleModal"
                                        title="Exam Routine">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="fas fa-calendar-week"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
 
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus"  href="#"data-toggle="modal" data-target="#syllabusModal"
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus" href="#"
+                                       data-toggle="modal" data-target="#syllabusModal"
                                        title="Syllabus">
-                                        <i class="fas fa-file-alt"></i>
+                                        <i class="fas fa-book-reader"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -149,12 +150,6 @@
                                 <a class="nav-link" data-toggle="tab" href="#Tabs_1-3" role="tab" aria-selected="true">
                                     <i class="fas fa-dollar-sign mr-1"></i>
                                     {{ __('Payment') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#Tabs_1-4" role="tab" aria-selected="true">
-                                    <i class="far fa-clock mr-1"></i>
-                                    {{ __('Class Schedule') }}
                                 </a>
                             </li>
                         </ul>
@@ -197,11 +192,11 @@
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th scope="col"><b>Examination</b></th>
-                                            <th scope="col"><b>Start Date</b></th>
-                                            <th scope="col"><b>End Date</b></th>
-                                            <th scope="col"><b>Full Mark's</b></th>
-                                            <th scope="col"><b>GPA</b></th>
+                                            <th scope="col"><b>{{ __('Examination') }}</b></th>
+                                            <th scope="col"><b>{{ __('Start Date') }}</b></th>
+                                            <th scope="col"><b>{{ __('End Date') }}</b></th>
+                                            <th scope="col"><b>{{ __('Full Marks') }}</b></th>
+                                            <th scope="col"><b>{{ __('GPA') }}</b></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -235,45 +230,6 @@
             </div> <!--END row-->
         </div> <!--END container-->
     </section>
-    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="resultModalTitle">1'st Term (static)</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th scope="col"><b>Subject</b></th>
-                                <th scope="col"><b>Full Mark</b></th>
-                                <th scope="col"><b>Objective</b></th>
-                                <th scope="col"><b>Written</b></th>
-                                <th scope="col"><b>Prectical</b></th>
-                                <th scope="col"><b>Total Mark</b></th>
-                                <th scope="col"><b>GPA</b></th>
-                                <th scope="col"><b>Grade</b></th>
-                            </tr>
-                            </thead>
-                            <tbody id="resultBody">
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
 
     @include('student.modal')
@@ -283,22 +239,29 @@
     <script>
         $(document).ready(function () {
 
+            /**
+             * Display marks of an exam
+             */
             $('.result-details').click(function () {
                 var id = $('.exam-id').val();
                 var token = "{{csrf_token()}}";
                 $.ajax({
-                    url: 'resultDetails',
+                    url: "{{ route('student.marks') }}",
                     method: 'POST',
                     data: {
                         '_token': token,
                         'id': id,
                     },
+                    beforeSuccess: function(){
+                        $("#loader").show();
+                    },
                     success: function (res) {
-                        $('#resultBody').html(res.html);
-                        $('#resultModalTitle').html(res.title);
+                        $("#loader").hide();
+                        $('#modal-body').html(res);
                     }
                 })
             });
+
             //search attendance
             $('.att-serch').click(function () {
                 var month_id = $('#attendance-month').val();
@@ -318,32 +281,43 @@
                 })
             });
             //    end search attendance
+
+            /**
+             * Display diary for a certain date
+             */
             $('#diary').click(function () {
                 var token = "{{csrf_token()}}";
                 $.ajax({
-                    url: 'diary',
+                    url: "{{ route('student.diary') }}",
                     method: 'POST',
                     data: {
                         '_token': token,
                     },
+                    beforeSuccess: function () {
+                        $("#loader").show();
+                    },
                     success: function (res) {
-                        $('#diaryBody').html(res.html);
+                        $("#loader").hide();
+                        $('#modal-body').html(res);
                     }
                 })
             });
+
+            /**
+             * Display class schedule of the current student
+             */
             $('#class-schedule').click(function () {
                 var token = "{{csrf_token()}}";
                 $.ajax({
-                    url: 'classSchedule',
+                    url: "{{ route('student.class-schedule') }}",
                     method: 'POST',
-                    data: {
-                        '_token': token,
-                    },
+                    data: {_token: token},
                     success: function (res) {
-                        $('#scheduleBody').html(res.html);
+                        $('#modal-body').html(res);
                     }
                 })
             });
+
             $('#exam-routine').click(function () {
                 var token = "{{csrf_token()}}";
                 $.ajax({

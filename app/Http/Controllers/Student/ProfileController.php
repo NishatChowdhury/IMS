@@ -18,7 +18,6 @@ use App\Models\Diary;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Response;
 
 class ProfileController extends Controller
 {
@@ -49,7 +48,7 @@ class ProfileController extends Controller
             ->get();
 
         $due   = $this->due($id);
-        $exam  = $this->exam($id);
+        $exam  = $this->exam($stuAcademic->id);
         $result  = $this->result($id);
 //        return $result;
 
@@ -61,15 +60,15 @@ class ProfileController extends Controller
         $period = CarbonPeriod::create('2020-03-01', '2020-03-31')->toArray();
 
         return view('student.profile',compact(
-                                        'present_month',
-                                        'present_year',
-                                        'student',
-                                        'attendances',
-                                        'period',
-                                        'payments',
-                                        'due',
-                                        'exam',
-                                        'result'));
+            'present_month',
+            'present_year',
+            'student',
+            'attendances',
+            'period',
+            'payments',
+            'due',
+            'exam',
+            'result'));
     }
 
     public function due($id)
@@ -90,123 +89,110 @@ class ProfileController extends Controller
 
         return $amount - $paid;
     }
+
     public function exam($id){
-        $student = Student::query()->findOrFail($id);
-        $exam = ExamResult::query()->where('student_academic_id', $student->academics[0]->id)
-            ->orderBy('id', 'DESC')
+        return ExamResult::query()
+            ->where('student_academic_id', $id)
+            ->latest()
             ->get();
-//        dd($exam);
-        return $exam;
     }
-    public function showDiary(){
+
+    public function diary()
+    {
         $id = auth()->guard('student')->user()->student_id;
-        $student = StudentAcademic::query()->where('student_id',$id)->first();
-        $diary = Diary::query()->with('subject')
+        $student = StudentAcademic::query()->where('student_id',$id)->latest()->first();
+        $date = today();
+        $date = Carbon::createFromDate(2022,05,17)->format('Y-m-d');
+        //$label = __('Diary');
+
+        $diaries = Diary::query()->with('subject')
             ->with('teacher')
             ->where('academic_class_id', $student->academic_class_id)
+            ->where('date',$date)
             ->get();
 
-        $html_data='';
-        foreach ($diary as $data){
-            $html_data.='<tr data-toggle="modal" data-target="#diaryModal">'.
-                '<td>'.$data->date .'</td>'.
-                '<td>'.$data->subject->name .'</td>'.
-                '<td>'.$data->teacher->name.'</td>'.
-                '<td>'.$data->description.'</td>'.
-                '</tr>';
-        }
-        return response()->json(['html'=>$html_data,'title'=>'Diary']);
+//        $html_data='';
+//        foreach ($diary as $data){
+//            $html_data.='<tr data-toggle="modal" data-target="#diaryModal">'.
+//                '<td>'.$data->date .'</td>'.
+//                '<td>'.$data->subject->name .'</td>'.
+//                '<td>'.$data->teacher->name.'</td>'.
+//                '<td>'.$data->description.'</td>'.
+//                '</tr>';
+//        }
+        //return response()->json(['html'=>$html_data,'title'=>'Diary']);
+        return view('student._diary',compact('diaries'));
     }
+
     public function result($id){
-//        dd($id);
-        $student = StudentAcademic::query()->where('student_id',$id)->first();
-        $marks = Mark::query()
-            //->where('session_id',$request->get('session_id'))
-            //->where('class_id',$request->get('class_id'))
+        return Mark::query()
             ->where('student_id',$id)
             ->with('subject')
             ->get();
-        return $marks;
     }
 
-    public function resultDetails(Request $request){
+    public function marks(Request $request)
+    {
         $id = auth()->guard('student')->user()->student_id;
         $exam_id = $request->input('id');
-        $exam_name =Exam::query()->where('id',$exam_id)->first();
 
-        $student = StudentAcademic::query()->where('student_id',$id)->first();
         $resultDetails = Mark::query()
             ->where('student_id',$id)
             ->where('exam_id',$exam_id)
             ->with('subject')
             ->get();
-        $html_data='';
-        foreach ($resultDetails as $data){
-            $html_data.='<tr data-toggle="modal" data-target="#exampleModal">'.
-                '<td>'.$data->subject->name .'</td>'.
-                '<td>'.$data->full_mark .'</td>'.
-                '<td>'.$data->objective.'</td>'.
-                '<td>'.$data->written.'</td>'.
-                '<td>'.$data->practical.'</td>'.
-                '<td>'.$data->total_mark.'</td>'.
-                '<td>'.$data->gpa.'</td>'.
-                '<td>'.$data->grade.'</td>'.
-                '</tr>';
-        }
-        return response()->json(['html'=>$html_data,'title'=>$exam_name->name]);
-    }
-public function stdAttendance(Request $request){
-    $id = auth()->guard('student')->user()->student_id;
-    $student = Student::query()->with('academics')->findOrFail($id);
-    $month_id = $request->input('month_id');
-    if (strlen($month_id) == 1){
-        $cng_month = '0'.$month_id;
-    }else{
-        $cng_month = $month_id;
-    }
-    $year_id = $request->input('year_id');
-    $attendances = Attendance::query()
-                            ->where('registration_id',$student->studentId)
-                            ->where('date' ,'like', now()->format($year_id.'-'.$cng_month.'-').'%')
-                            ->orderBy('date')
-                            ->get();
-    $html_attendance ='';
-    if (Attendance::query()->where('date' ,'like', now()->format('%'.'-'.$cng_month.'-'.'%'))->where('date' ,'like', now()->format($year_id.'-'.'%'))->exists()){
-        foreach ($attendances as $data){
-            $html_attendance .=
-                '<tr>'.
-                '<th scope="row" class="text-dark font-weight-semiBold">'.$data->date->format('Y-m-d') .'</th>'.
-                '<td>'.$data->entry.'</td>'.
-                '<td>'.$data->exit.'</td>'.
-                '<td>'.'<a href="#" class="btn btn-link">'.$data->status.'</a>'.'</td>
-        </tr>';
-        }
-    }else{
-        $html_attendance .= '<tr><td colspan="4"><h1 class="text-center text-info">No record found</h1></td></tr>';
-    }
-    return response()->json(['html'=>$html_attendance]);
-    }
-public function classSchedule()
-    {
-    $id = auth()->guard('student')->user()->student_id;
-    $student = StudentAcademic::query()->where('student_id', $id)->first();
-    $classschedule = ClassSchedule::query()
-        ->where('academic_class_id', $student->academic_class_id)
-        ->with('subject')
-        ->with('teacher')
-        ->get();
-    $html_schedule = '';
-    foreach ($classschedule as $data) {
-        $html_schedule .=
-            '<tr>' .
-            '<td>' . $data->subject->name . '</td>' .
-            '<td>' . $data->start . '</td>' .
-            '<td>' . $data->end . '</td>' .
-            '<td>' . $data->teacher->name . '</td>' .
-            '</tr>';
 
+        return view('student._result',compact('resultDetails'));
+    }
+
+    public function stdAttendance(Request $request){
+        $id = auth()->guard('student')->user()->student_id;
+        $student = Student::query()->with('academics')->findOrFail($id);
+        $month_id = $request->input('month_id');
+        if (strlen($month_id) == 1){
+            $cng_month = '0'.$month_id;
+        }else{
+            $cng_month = $month_id;
         }
-        return response()->json(['html'=>$html_schedule]);
+        $year_id = $request->input('year_id');
+        $attendances = Attendance::query()
+            ->where('registration_id',$student->studentId)
+            ->where('date' ,'like', now()->format($year_id.'-'.$cng_month.'-').'%')
+            ->orderBy('date')
+            ->get();
+        $html_attendance ='';
+        if (Attendance::query()->where('date' ,'like', now()->format('%'.'-'.$cng_month.'-'.'%'))->where('date' ,'like', now()->format($year_id.'-'.'%'))->exists()){
+            foreach ($attendances as $data){
+                $html_attendance .=
+                    '<tr>'.
+                    '<th scope="row" class="text-dark font-weight-semiBold">'.$data->date->format('Y-m-d') .'</th>'.
+                    '<td>'.$data->entry.'</td>'.
+                    '<td>'.$data->exit.'</td>'.
+                    '<td>'.'<a href="#" class="btn btn-link">'.$data->status.'</a>'.'</td>
+        </tr>';
+            }
+        }else{
+            $html_attendance .= '<tr><td colspan="4"><h1 class="text-center text-info">No record found</h1></td></tr>';
+        }
+        return response()->json(['html'=>$html_attendance]);
+    }
+
+    public function classSchedule()
+    {
+        $id = auth()->guard('student')->user()->student_id;
+        $student = StudentAcademic::query()
+            ->where('student_id', $id)
+            ->latest()
+            ->first();
+
+        $schedules = ClassSchedule::query()
+            ->where('academic_class_id', $student->academic_class_id)
+            ->with('subject')
+            ->with('teacher')
+            ->get()
+            ->groupBy('day');
+
+        return view('student._class-schedule',compact('schedules'));
     }
     public function examRoutine(){
         $id = auth()->guard('student')->user()->student_id;
@@ -244,11 +230,11 @@ public function classSchedule()
         foreach ($syllabuses as $data) {
             $syllabus .=
                 '<tr>' .
-                    '<td>' . $data->title . '</td>' .
-                    '<td>' .
+                '<td>' . $data->title . '</td>' .
+                '<td>' .
 
-                        '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
-                    '</td>'.
+                '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
+                '</td>'.
                 '</tr>';
 
         }
