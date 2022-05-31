@@ -112,6 +112,7 @@ class ProfileController extends Controller
                 '<td>'.$data->date .'</td>'.
                 '<td>'.$data->subject->name .'</td>'.
                 '<td>'.$data->teacher->name.'</td>'.
+                '<td>'.$data->description.'</td>'.
                 '</tr>';
         }
         return response()->json(['html'=>$html_data,'title'=>'Diary']);
@@ -215,6 +216,10 @@ public function classSchedule()
             ->with('subject')
             ->with('teacher')
             ->get();
+//        foreach ($examRoutine as $exam){
+//            if ($exam->ecademic_class_id==)
+//        }
+//        return response()->json(['html'=>$examRoutine]);
         $html_exam = '';
         foreach ($examRoutine as $data) {
             $html_exam .=

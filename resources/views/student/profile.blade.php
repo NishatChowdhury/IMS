@@ -109,20 +109,20 @@
                                     {{--{{route('classSchedule.view')}}--}}
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="class-schedule" data-toggle="modal" data-target="#classscheduleModal" href="#"
                                        title="Class Schedule">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-clock"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#examScheduleModal"
                                        title="Exam Routine">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-calendar"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
 
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus"  href="#"data-toggle="modal" data-target="#syllabusModal"
                                        title="Syllabus">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-file-alt"></i>
                                     </a>
                                 </li>
                             </ul>
