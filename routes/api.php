@@ -30,12 +30,12 @@ Route::get('database',function (){
 });
 
 
-//Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('about','AndroidController@about');
     Route::get('chairman-message','AndroidController@chairmanMessage');
     Route::get('principal-message','AndroidController@principalMessage');
     Route::get('student-profile','AndroidController@profile');
-    Route::post('syllabus','AndroidController@syllabus');
+    Route::get('syllabus','AndroidController@syllabus');
     Route::get('class-routines','AndroidController@classRoutine');
     Route::get('teachers','AndroidController@teachers');
     Route::get('teacher-details','AndroidController@teacherDetails');
@@ -51,7 +51,9 @@ Route::get('database',function (){
     Route::get('marksheet','AndroidController@marksheet');
     Route::get('attendance','AndroidController@attendance');
     Route::get('calendar','AndroidController@calendar');
-//});
+    Route::get('payment-history','AndroidController@paymentHistory');
+    Route::get('monthly-payment','AndroidController@monthlyPayment');
+});
 Route::post('token/create', [LoginController::class, 'token']);
 
 Route::post('student-login', [LoginController::class, 'studentLogin']);

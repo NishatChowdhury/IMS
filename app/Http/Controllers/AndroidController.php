@@ -24,14 +24,18 @@ use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Backend\Slider;
 use App\Models\Backend\ExamSchedule;
-use App\Syllabus;
+use App\Models\Backend\StudentPayment;
+use App\Models\Backend\FeeSetupStudent;
+use App\Models\Backend\Syllabus;
 use App\Models\Diary;
 use App\Models\Backend\UpcomingEvent;
 use App\Models\Backend\NoticeCategory;
 use Carbon\Carbon;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class AndroidController extends Controller
 {
@@ -208,11 +212,22 @@ class AndroidController extends Controller
 
     }
 
-    public function syllabus(Request $request)
+    public function syllabus()
     {
-        $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
-        $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
-        return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
+        $syllabus = Syllabus::query()->first();
+        if ($syllabus){
+            return response()->json([
+                'status'=>true,
+                'file'=>asset('assets/syllabus').'/'.$syllabus->file ?? ''
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+
+//        $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
+//        $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
+//        return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
     }
 
     public function noticeList()
@@ -616,25 +631,113 @@ class AndroidController extends Controller
             ->get()
             ->groupBy('monthname');
 
-        $r = [];
-        foreach ($calendars as $day => $calendar){
-            $data = [];
-            foreach ($calendar as $cal)
-            {
-                $data[] =
-                    [
-                        'date'=>$cal->start ?? '',
-                        'day'=>Carbon::parse($cal->start)->format('l') ?? '',
-                        'title'=>$cal->name ?? '',
-                    ];
-            }
-            $r[] = [
-                'id' => $cal->id,
-                'month' => $day,
-                'events' => $data
-            ];
+        if ($calendars->isNotEmpty()){
+            $r = [];
+            foreach ($calendars as $day => $calendar){
+                $data = [];
+                foreach ($calendar as $cal)
+                {
+                    $data[] = [
+                            'date'=>Carbon::parse($cal->start)->format('d') ?? '',
+                            'day'=> Carbon::parse($cal->start)->format('D') ?? '',
+                            'title'=>$cal->name ?? '',
+                        ];
+                }
+                $r[] = [
+                    'id' => intval($cal->id),
+                    'month' =>  $day,
+                    'events' => $data
+                ];
 
+            }
+            return response()->json(['status'=>true,'calendar'=>$r]);
         }
-        return response()->json(['status'=>true,'calendar'=>$r]);
+        else{
+            return response(null,204);
+        }
+
+    }
+
+    public function paymentHistory(Request $request)
+    {
+        $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
+        $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
+        $payment = StudentPayment::query()
+            ->whereBetween('date',[$dateFrom,$dateTo])
+            ->with('payment_methods')
+            ->get();
+        $amount = DB::table('student_payments')->whereBetween('date',[$dateFrom,$dateTo])->sum('amount');
+        if ($payment->isNotEmpty()){
+            $data = [];
+            foreach ($payment as $pay){
+                $data[] = [
+                    'date'=> date('Y-m-d', strtotime($pay->date)) ?? '',
+                    'method'=> $pay->payment_methods->name ?? '',
+                    'amount'=> $pay->amount ?? '',
+                ];
+            }
+            return response()->json([
+                'history'=> $data,
+                'total'=> $amount,
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+    }
+
+    public function monthlyPayment(Request $request)
+    {
+        $yr = $request->year??Carbon::parse()->format('Y');
+        $monthlyPayment = StudentPayment::whereYear('date',$yr)
+          ->where('student_academic_id',14)
+          ->get()
+            ->groupBy(function($val) {
+                return Carbon::parse($val->date)->format('F');
+            });
+
+        if($monthlyPayment->isNotEmpty())
+        {
+            $years = StudentPayment::query()
+                ->where('student_academic_id',14)
+                ->get('date')
+                ->unique();
+
+            $t = [];
+            foreach ($years as $year){
+                $t[] = [
+                    'label' => Carbon::parse($year->date)->format('Y') ?? '',
+                    'value' => Carbon::parse($year->date)->format('Y') ?? ''
+                ];
+            }
+
+            $totalAmount = FeeSetupStudent::query()
+                ->where('student_id',19)
+                ->get()
+                ->sum('amount');
+
+            $totalCollection = StudentPayment::query()
+                ->where('student_academic_id',14)
+                ->get()
+                ->sum('amount');
+
+            $due = $totalAmount - $totalCollection;
+
+                $data = [];
+                foreach ($monthlyPayment as $month => $payment){
+                    foreach ($payment as $pay)
+                    {
+                        $data[] = [
+                            'month'=>$month,
+                            'due'=>strval($totalAmount)  ?? '',
+                            'paid'=>$pay->amount ?? '0',
+                        ];
+                    }
+                }
+                return response()->json(['years'=>$t,'payments'=>$data,'due'=>strval($due)]);
+        }
+        else{
+            return response(null,204);
+        }
     }
 }
