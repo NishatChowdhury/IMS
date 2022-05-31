@@ -10,7 +10,7 @@
         </thead>
         <tbody>
         @foreach($payments as $payment)
-            <tr data-toggle="modal" data-target=".bd-example-modal-lg" >
+            <tr>
                 <td>{{$payment->date}}</td>
                 <td>{{$payment->amount}}</td>
                 <td>{{$payment->discount}}</td>

@@ -15,6 +15,7 @@
                             <th scope="col">Date</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Teacher</th>
+                            <th scope="col">Description</th>
                         </tr>
                         </thead>
                         <tbody id="diaryBody">
