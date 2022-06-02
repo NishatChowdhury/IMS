@@ -16,6 +16,7 @@ use App\Models\Backend\Syllabus;
 use App\Models\ClassSchedule;
 use App\Models\Diary;
 use Carbon\CarbonPeriod;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -90,20 +91,26 @@ class ProfileController extends Controller
         return $amount - $paid;
     }
 
-    public function exam($id){
+    public function exam($id)
+    {
         return ExamResult::query()
             ->where('student_academic_id', $id)
             ->latest()
             ->get();
     }
 
-    public function diary()
+    /**
+     * Display diary for a certain date of the current logged in student
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function diary(Request $request): View
     {
         $id = auth()->guard('student')->user()->student_id;
         $student = StudentAcademic::query()->where('student_id',$id)->latest()->first();
-        $date = today();
-        $date = Carbon::createFromDate(2022,05,17)->format('Y-m-d');
-        //$label = __('Diary');
+
+        $date = $request->has('date') ? $request->get('date') : today()->format('Y-m-d');
 
         $diaries = Diary::query()->with('subject')
             ->with('teacher')
@@ -111,16 +118,6 @@ class ProfileController extends Controller
             ->where('date',$date)
             ->get();
 
-//        $html_data='';
-//        foreach ($diary as $data){
-//            $html_data.='<tr data-toggle="modal" data-target="#diaryModal">'.
-//                '<td>'.$data->date .'</td>'.
-//                '<td>'.$data->subject->name .'</td>'.
-//                '<td>'.$data->teacher->name.'</td>'.
-//                '<td>'.$data->description.'</td>'.
-//                '</tr>';
-//        }
-        //return response()->json(['html'=>$html_data,'title'=>'Diary']);
         return view('student._diary',compact('diaries'));
     }
 

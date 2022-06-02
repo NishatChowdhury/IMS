@@ -9,7 +9,6 @@
                 </button>
             </div>
             <div class="modal-body" id="modal-body">
-                <img class="mx-auto d-block" id="loader" src="{{ asset('assets/img/loader-2.gif') }}" alt="" style="display: none">
                 <!-- Body will appeared here -->
             </div>
             <div class="modal-footer">

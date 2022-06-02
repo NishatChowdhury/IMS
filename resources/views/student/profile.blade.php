@@ -231,7 +231,6 @@
         </div> <!--END container-->
     </section>
 
-
     @include('student.modal')
 @stop
 
@@ -298,10 +297,36 @@
                     },
                     success: function (res) {
                         $("#loader").hide();
+                        $("#exampleModalLabel").text('Dairy');
                         $('#modal-body').html(res);
+                        diarySearch();
                     }
                 })
             });
+
+            function diarySearch(){
+                $("#diary-search").click(function(){
+                    var token = "{{csrf_token()}}";
+                    var date = $("#date").val();
+
+                    $.ajax({
+                        url: "{{ route('student.diary') }}",
+                        method: 'POST',
+                        data: {
+                            '_token': token,date:date,
+                        },
+                        beforeSuccess: function () {
+                            $("#loader").show();
+                        },
+                        success: function (res) {
+                            $("#loader").hide();
+                            $("#exampleModalLabel").text('Dairy');
+                            $('#modal-body').html(res);
+                            diarySearch();
+                        }
+                    })
+                })
+            }
 
             /**
              * Display class schedule of the current student

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Backend\DairyController;
+use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -456,11 +456,11 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
     // Dairy Management Here
 
-    Route::get('diary-list', [DairyController::class, 'index'])->name('diary.index');
-    Route::get('diary-create', [DairyController::class, 'create'])->name('diary.create');
-    Route::post('diary-store', [DairyController::class, 'store'])->name('diary.store');
-    Route::get('diary-edit/{diary}', [DairyController::class, 'edit'])->name('diary.edit');
-    Route::post('diary-update/{diary}', [DairyController::class, 'update'])->name('diary.update');
+    Route::get('diary-list', [DiaryController::class, 'index'])->name('diary.index');
+    Route::get('diary-create', [DiaryController::class, 'create'])->name('diary.create');
+    Route::post('diary-store', [DiaryController::class, 'store'])->name('diary.store');
+    Route::get('diary-edit/{diary}', [DiaryController::class, 'edit'])->name('diary.edit');
+    Route::post('diary-update/{diary}', [DiaryController::class, 'update'])->name('diary.update');
 
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
