@@ -217,25 +217,27 @@ class ProfileController extends Controller
         }
         return response()->json(['html'=>$html_exam]);
     }
+
     public function syllabus(){
         $id = auth()->guard('student')->user()->student_id;
-        $student = StudentAcademic::query()->where('student_id', $id)->first();
-        $syllabuses = Syllabus::query()
+        $student = StudentAcademic::query()->where('student_id', $id)->latest()->first();
+        $syllabus = Syllabus::query()
             ->where('academic_class_id', $student->academic_class_id)
-            ->get();
-        $syllabus = '';
-        foreach ($syllabuses as $data) {
-            $syllabus .=
-                '<tr>' .
-                '<td>' . $data->title . '</td>' .
-                '<td>' .
-
-                '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
-                '</td>'.
-                '</tr>';
-
-        }
-        return response()->json(['html'=>$syllabus]);
+            ->first();
+//        $syllabus = '';
+//        foreach ($syllabuses as $data) {
+//            $syllabus .=
+//                '<tr>' .
+//                '<td>' . $data->title . '</td>' .
+//                '<td>' .
+//
+//                '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
+//                '</td>'.
+//                '</tr>';
+//
+//        }
+//        return response()->json(['html'=>$syllabus]);
+        return view('student._syllabus',compact('syllabus'));
     }
 }
 

@@ -338,6 +338,8 @@
                     method: 'POST',
                     data: {_token: token},
                     success: function (res) {
+                        console.log('class schedule');
+                        $("#exampleModalLabel").text('Class Schedule');
                         $('#modal-body').html(res);
                     }
                 })
@@ -356,16 +358,18 @@
                     }
                 })
             });
+
             $('#syllabus').click(function () {
                 var token = "{{csrf_token()}}";
                 $.ajax({
-                    url: 'syllabus',
+                    url: '{{ route('student.syllabus') }}',
                     method: 'POST',
                     data: {
                         '_token': token,
                     },
                     success: function (res) {
-                        $('#syllabusBody').html(res.html);
+                        $('#modal-body').html(res);
+                        $("#exampleModalLabel").text('Syllabus');
                     }
                 })
             });
