@@ -36,6 +36,17 @@ class ShiftController extends Controller
         return redirect('admin/attendance/setting');
     }
 
+    public function edit($id)
+    {
+        $shift = Shift::find($id);
+        return view('admin.attendance.setting-edit',compact('shift'));
+    }
+    public function update(Request $request)
+    {
+        $shift = Shift::find($request->id)->update($request->all());
+        return redirect('admin/attendance/setting')->with(['status' => 'Attendance Setting Edit Successfully']);
+    }
+
     public function destroy($id)
     {
         $shift = Shift::query()->findOrFail($id);

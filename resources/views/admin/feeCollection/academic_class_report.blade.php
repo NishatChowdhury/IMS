@@ -118,7 +118,8 @@
                                         <th>StudentID</th>
                                         <th>Name</th>
                                         <th class="text-right">Discount</th>
-                                        <th class="text-right">Current Due</th>
+                                        <th class="text-right">Current Fee Due</th>
+                                        <th class="text-right">Current Transport Due</th>
                                         <th class="text-right">Paid</th>
                                     </tr>
                                 </thead>
@@ -128,6 +129,7 @@
                                     $total = 0;
                                 ?>
                                     @forelse ($students as $student)
+
                                         <tr>
                                             <td>{{ $student->studentId }}</td>
                                             <td>{{ $student->name }}</td>
@@ -151,6 +153,7 @@
                                                 {{ $discount }}
                                             </td>
                                             <td class="text-right">{{ $currentDue }}</td>
+                                            <td class="text-right">{{ $student->studentAcademic->transport->sum('amount') - $student->studentAcademic->transportPayment->sum('amount') ?? 00.00}}</td>
                                             <td class="text-right">{{ number_format($paid, 2) }}</td>
                                         </tr>
 
@@ -160,7 +163,7 @@
                                         </td>
                                     @endforelse
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <b>Total</b>
                                         </td>
                                         <td class="text-right">

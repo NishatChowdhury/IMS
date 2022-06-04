@@ -32,12 +32,8 @@ class FeeCategoryController extends Controller
 
     public function store_fee_category(Request $request)
     {
-        $validate = $this->validate($request,[
-            'name' => 'required|unique:fee_categories'
-        ],[
-            'name.required'=>'Name Field is Required',
-            'name.unique'=>'Category already exist'
-
+        $request->validate([
+                'name' => 'required|unique:fee_categories'
         ]);
 
         $request['status'] = 1;

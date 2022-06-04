@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiariesTable extends Migration
+class CreateTransportPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateDiariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('diaries', function (Blueprint $table) {
+        Schema::create('transport_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('academic_class_id');
-            $table->date('date');
-            $table->integer('teacher_id');
-            $table->integer('subject_id');
-            $table->longText('description');
+            $table->string('date');
+            $table->integer('student_academic_id');
+            $table->string('payment_method');
+            $table->decimal('amount');
+            $table->string('month');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateDiariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diaries');
+        Schema::dropIfExists('transport_payments');
     }
 }
