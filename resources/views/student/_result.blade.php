@@ -2,9 +2,9 @@
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th scope="col"><b>Subject</b></th>
-            <th scope="col"><b>Full Mark</b></th>
-            <th scope="col"><b>Objective</b></th>
+            <th scope="col"><b>{{ __('Subject') }}</b></th>
+            <th scope="col"><b>{{ __('Full Mark') }}</b></th>
+            <th scope="col"><b>{{ __('Objective') }}</b></th>
             <th scope="col"><b>Written</b></th>
             <th scope="col"><b>Practical</b></th>
             <th scope="col"><b>Total Mark</b></th>
@@ -13,16 +13,16 @@
         </tr>
         </thead>
         <tbody id="resultBody">
-        @foreach($resultDetails as $result)
+        @foreach($marks as $mark)
             <tr>
-                <td>{{ $result->subject->name }}</td>
-                <td>{{ $result->full_mark }}</td>
-                <td>{{ $result->objective }}</td>
-                <td>{{ $result->written }}</td>
-                <td>{{ $result->practical }}</td>
-                <td>{{ $result->total_mark }}</td>
-                <td>{{ $result->gpa }}</td>
-                <td>{{ $result->grade }}</td>
+                <td>{{ $mark->subject->name }}</td>
+                <td>{{ $mark->full_mark }}</td>
+                <td>{{ $mark->objective }}</td>
+                <td>{{ $mark->written }}</td>
+                <td>{{ $mark->practical }}</td>
+                <td>{{ $mark->total_mark }}</td>
+                <td>{{ $mark->gpa }}</td>
+                <td>{{ $mark->grade }}</td>
             </tr>
         @endforeach
         </tbody>

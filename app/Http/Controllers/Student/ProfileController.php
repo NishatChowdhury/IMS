@@ -133,13 +133,13 @@ class ProfileController extends Controller
         $id = auth()->guard('student')->user()->student_id;
         $exam_id = $request->input('id');
 
-        $resultDetails = Mark::query()
+        $marks = Mark::query()
             ->where('student_id',$id)
             ->where('exam_id',$exam_id)
             ->with('subject')
             ->get();
 
-        return view('student._result',compact('resultDetails'));
+        return view('student._result',compact('marks'));
     }
 
     public function stdAttendance(Request $request){
@@ -214,19 +214,7 @@ class ProfileController extends Controller
             ->where('academic_class_id', $student->academic_class_id)
             ->latest()
             ->first();
-//        $syllabus = '';
-//        foreach ($syllabuses as $data) {
-//            $syllabus .=
-//                '<tr>' .
-//                '<td>' . $data->title . '</td>' .
-//                '<td>' .
-//
-//                '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
-//                '</td>'.
-//                '</tr>';
-//
-//        }
-//        return response()->json(['html'=>$syllabus]);
+
         return view('student._syllabus',compact('syllabus'));
     }
 }

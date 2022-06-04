@@ -155,36 +155,7 @@
                             </div>
                             <!-- END tab-pane -->
                             <div class="tab-pane fade exam-data" id="Tabs_1-2" role="tabpanel">
-                                <div class="row">
-
-                                    <table class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col"><b>{{ __('Examination') }}</b></th>
-                                            <th scope="col"><b>{{ __('Start Date') }}</b></th>
-                                            <th scope="col"><b>{{ __('End Date') }}</b></th>
-                                            <th scope="col"><b>{{ __('Full Marks') }}</b></th>
-                                            <th scope="col"><b>{{ __('GPA') }}</b></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        @foreach($exam as $data)
-                                            <tr data-toggle="modal" data-id="{{$data->exam->id}}"
-                                                data-target="#exampleModal" class="result-details example">
-                                                <input class="exam-id" type="hidden" value="{{$data->exam_id}}">
-                                                <td>{{$data->exam->name}}</td>
-                                                <td>{{$data->exam->start}} </td>
-                                                <td>{{$data->exam->end}} </td>
-                                                <td>{{$data->total_mark}}</td>
-                                                <td>{{$data->gpa}}</td>
-                                            </tr>
-                                        @endforeach
-
-                                        </tbody>
-                                    </table>
-
-                                </div> <!-- END row-->
+                                @include('student.profile_exam')
                             </div>
                             <!-- END tab-pane -->
                             <div class="tab-pane fade" id="Tabs_1-3" role="tabpanel">
@@ -210,20 +181,20 @@
              * Display marks of an exam
              */
             $('.result-details').click(function () {
-                var id = $('.exam-id').val();
+                var id = $(this).data('id');
                 var token = "{{csrf_token()}}";
+                var name = $(this).data('name');
+                console.log(name);
                 $.ajax({
                     url: "{{ route('student.marks') }}",
                     method: 'POST',
-                    data: {
-                        '_token': token,
-                        'id': id,
-                    },
+                    data: {_token:token,id:id},
                     beforeSuccess: function(){
                         $("#loader").show();
                     },
                     success: function (res) {
                         $("#loader").hide();
+                        $("#exampleModalLabel").text(name);
                         $('#modal-body').html(res);
                     }
                 })
