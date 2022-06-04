@@ -9,7 +9,7 @@ Route::post('student/marks','Student\ProfileController@marks')->name('student.ma
 Route::post('student/diary',[ProfileController::class, 'diary'])->name('student.diary');
 Route::post('student/stdAttendance',[ProfileController::class, 'stdAttendance']);
 Route::post('student/class-schedule',[ProfileController::class, 'classSchedule'])->name('student.class-schedule');
-Route::post('student/examRoutine',[ProfileController::class, 'examRoutine']);
+Route::post('student/exam-routine',[ProfileController::class, 'examRoutine'])->name('student.exam-routine');
 Route::post('student/syllabus',[ProfileController::class, 'syllabus'])->name('student.syllabus');
 
 Route::prefix('student')->name('student.')->namespace('Student')->group(function(){

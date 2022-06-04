@@ -112,9 +112,7 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#"
-                                       data-toggle="modal" data-target="#examScheduleModal"
-                                       title="Exam Routine">
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#exampleModal" title="Exam Routine">
                                         <i class="fas fa-calendar-week"></i>
                                     </a>
                                 </li>
@@ -345,16 +343,18 @@
                 })
             });
 
+            /**
+             * Display exam routine for the student
+             */
             $('#exam-routine').click(function () {
-                var token = "{{csrf_token()}}";
+                var token = "{{ csrf_token() }}";
                 $.ajax({
-                    url: 'examRoutine',
+                    url: '{{ route('student.exam-routine') }}',
                     method: 'POST',
-                    data: {
-                        '_token': token,
-                    },
+                    data: {_token: token,},
                     success: function (res) {
-                        $('#examScheduleBody').html(res.html);
+                        $("#exampleModalLabel").text('Exam Routine');
+                        $('#modal-body').html(res);
                     }
                 })
             });

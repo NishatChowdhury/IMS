@@ -191,31 +191,20 @@ class ProfileController extends Controller
 
         return view('student._class-schedule',compact('schedules'));
     }
+
     public function examRoutine(){
         $id = auth()->guard('student')->user()->student_id;
-        $student = StudentAcademic::query()->where('student_id', $id)->first();
-        $examRoutine = ExamSchedule::query()
+
+        $student = StudentAcademic::query()->where('student_id', $id)->latest()->first();
+
+        $routines = ExamSchedule::query()
             ->where('academic_class_id', $student->academic_class_id)
             ->with('subject')
             ->with('teacher')
-            ->get();
-//        foreach ($examRoutine as $exam){
-//            if ($exam->ecademic_class_id==)
-//        }
-//        return response()->json(['html'=>$examRoutine]);
-        $html_exam = '';
-        foreach ($examRoutine as $data) {
-            $html_exam .=
-                '<tr>' .
-                '<td>' . $data->subject->name . '</td>' .
-                '<td>' . $data->date . '</td>' .
-                '<td>' . $data->start . '</td>' .
-                '<td>' . $data->end . '</td>' .
-                '<td>' . $data->teacher->name. '</td>' .
-                '</tr>';
+            ->get()
+            ->groupBy('exam_id');
 
-        }
-        return response()->json(['html'=>$html_exam]);
+        return view('student._exam-routine',compact('routines'));
     }
 
     public function syllabus(){

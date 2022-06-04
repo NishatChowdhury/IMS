@@ -2,12 +2,12 @@
     <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
-        <tr>
+        <tr class="table-active">
             <th colspan="4" class="text-center">{{ $key }}</th>
         </tr>
         <tr>
-            <th scope="col">Subject</th>
-            <th scope="col">Start</th>
+            <th scope="col">{{ __('Subject') }}</th>
+            <th scope="col">{{ __('Start') }}</th>
             <th scope="col">End</th>
             <th scope="col">Teacher</th>
         </tr>
