@@ -14,7 +14,7 @@ use App\Models\Backend\Mark;
 use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Student;
-use App\Models\Backend\StudentLogin;
+use App\Models\Student\StudentLogin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;

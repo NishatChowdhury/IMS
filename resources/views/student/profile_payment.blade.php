@@ -28,7 +28,7 @@
                     token="if you have any token validation"
                     postdata="your javascript arrays or objects which requires in backend"
                     order="If you already have the transaction generated for current order"
-                    endpoint="/pay-via-ajax"> Pay Now
+                    endpoint="{{ route('student.pay-via-ajax') }}"> Pay Now
             </button>
         </td>
     </tr>
@@ -36,6 +36,14 @@
 
 @push('js')
     <script>
+        var obj = {};
+        //obj.cus_name = 'lorem ipsum';
+        //obj.cus_phone = 3748742;
+        //obj.cus_email = 'example@gmail.com';
+        //obj.cus_addr1 = 'dsafdasa';
+        obj.amount = parseFloat("{{ $due }}");
+
+        $('#sslczPayBtn').prop('postdata', obj);
         (function (window, document) {
             var loader = function () {
                 var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];

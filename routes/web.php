@@ -48,6 +48,7 @@ Route::get('/album/{name}','Front\FrontController@album');
 
 //Download
 Route::get('/download','Front\FrontController@download');
+Route::get('/contacts','Front\FrontController@contact');
 
 Route::post('api/login','AndroidController@login');
 
@@ -87,6 +88,7 @@ Route::get('playlist/{id}','Front\FrontController@playlist');
 Route::get('notice','Front\FrontController@notice');
 /** Playlist Ends */
 
+Route::post('message-store','Front\MessagesController@store')->name('message.store');
 
 
 Route::post('admission-form-submit',[OnlineApplyController::class,'storeCollege']);
