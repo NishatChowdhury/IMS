@@ -72,34 +72,7 @@
                                 Quick Action:
                             </p>
                             <ul class="list-inline mb-0">
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a href="#" class="btn btn-outline-facebook iconbox iconbox-sm">--}}
-                                {{--                                        <i class="ti-facebook"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a href="#" class="btn btn-outline-twitter iconbox iconbox-sm">--}}
-                                {{--                                        <i class="ti-twitter"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a href="#" class="btn btn-outline-google-plus iconbox iconbox-sm">--}}
-                                {{--                                        <i class="ti-google"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{ route('logout') }}"--}}
-                                {{--                                       onclick="event.preventDefault();--}}
-                                {{--                                                     document.getElementById('logout-form').submit();" title="Logout">--}}
-                                {{--                                        <i class="fas fa-sign-out-alt"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
-                                {{--                                          style="display: none;">--}}
-                                {{--                                        @csrf--}}
-                                {{--                                    </form>--}}
-                                {{--                                </li>--}}
                                 <li class="list-inline-item">
-                                    {{--                                    {{route('show.diary')}}--}}
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="diary"
                                        data-toggle="modal" data-target="#exampleModal" href="#" title="Diary">
                                         <i class="fas fa-book"></i>
@@ -117,10 +90,7 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus" href="#"
-                                       data-toggle="modal" data-target="#syllabusModal"
-                                       title="Syllabus">
+                                    <a class="btn btn-outline-success iconbox iconbox-sm" id="syllabus" href="#" data-toggle="modal" data-target="#exampleModal" title="Syllabus">
                                         <i class="fas fa-book-reader"></i>
                                     </a>
                                 </li>
@@ -280,7 +250,7 @@
             //    end search attendance
 
             /**
-             * Display diary for a certain date
+             * Display diary for the current date
              */
             $('#diary').click(function () {
                 var token = "{{csrf_token()}}";
@@ -302,6 +272,9 @@
                 })
             });
 
+            /**
+             * Search the diary with a certain date
+             */
             function diarySearch(){
                 $("#diary-search").click(function(){
                     var token = "{{csrf_token()}}";
@@ -359,21 +332,21 @@
                 })
             });
 
+            /**
+             * Display & download syllabus
+             */
             $('#syllabus').click(function () {
                 var token = "{{csrf_token()}}";
                 $.ajax({
                     url: '{{ route('student.syllabus') }}',
                     method: 'POST',
-                    data: {
-                        '_token': token,
-                    },
+                    data: {_token: token},
                     success: function (res) {
                         $('#modal-body').html(res);
                         $("#exampleModalLabel").text('Syllabus');
                     }
                 })
             });
-
         });
     </script>
 @endsection

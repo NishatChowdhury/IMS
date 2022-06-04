@@ -182,7 +182,7 @@ class SeedMenuTable extends Migration
                 [
                     'menu_id' => 15,
                     'name' => 'Dairy',
-                    'uri' => 'dairy',
+                    'uri' => 'diary',
                     'type' => 1,
                     'order' => 4,
                     'editable' => 0,

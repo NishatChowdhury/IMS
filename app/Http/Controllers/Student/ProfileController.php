@@ -212,6 +212,7 @@ class ProfileController extends Controller
         $student = StudentAcademic::query()->where('student_id', $id)->latest()->first();
         $syllabus = Syllabus::query()
             ->where('academic_class_id', $student->academic_class_id)
+            ->latest()
             ->first();
 //        $syllabus = '';
 //        foreach ($syllabuses as $data) {

@@ -1,1 +1,1 @@
-<p>lorem ipsum dolor sumit.</p>
+<embed src="{{ asset('assets/syllabus') }}/{{ $syllabus->file }}" type="application/pdf" width="100%" height="500">

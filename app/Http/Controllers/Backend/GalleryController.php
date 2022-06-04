@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\Gallery;
 use App\Models\Backend\GalleryCorner;
 use App\Repository\GalleryRepositories;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -29,23 +30,35 @@ class GalleryController extends Controller
         return view('admin.gallery.image', compact('images', 'repository'));
     }
 
-    public function store(Request $request)
+    /**
+     * Upload images to gallery folder
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
-        if ($request->hasFile('image')) {
-            foreach ($request->file('image') as $img) {
-                $name = time() . '.' . $img->getClientOriginalExtension();
+        if($request->hasFile('image')){
+            foreach($request->file('image') as $key => $img){
+                $name = time().'-'.$key.'.'.$img->getClientOriginalExtension();
                 $img->move(storage_path('app/public/uploads/gallery/') . $request->album_id . '/', $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 Gallery::query()->create($data);
             }
-        } else {
+        }else{
             Gallery::query()->create($request->all());
         }
-        return back();
+        return redirect('admin/gallery/image');
     }
 
-    public function destroy($id)
+    /**
+     * Remove images from storage
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
     {
         $image = Gallery::query()->findOrFail($id);
         File::delete(storage_path('app/public/uploads/gallery/') . $image->album_id . '/' . $image->image);
@@ -72,6 +85,7 @@ class GalleryController extends Controller
         }
         return redirect()->back();
     }
+
     public function GalleryImageDestroy($id)
     {
         $image = GalleryCorner::query()->findOrFail($id);

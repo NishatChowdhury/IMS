@@ -64,10 +64,11 @@ class FrontController extends Controller
             ->where('active',1)
             ->get();
         $content = Page::all();
-        $galleryCorner =GalleryCorner::all();
+        $galleryCorner = GalleryCorner::all();
         $principal = InstituteMessage::query()->where('alias','principal')->first();
         $chairman = InstituteMessage::query()->where('alias','chairman')->first();
-        $about= InstituteMessage::query()->where('alias','about')->first();
+        $about = InstituteMessage::query()->where('alias','about')->first();
+
         $teachers = Staff::all();
         $links = ImportantLink::all();
         $notices = Notice::all()->sortByDesc('start')->take(5);
@@ -165,12 +166,9 @@ class FrontController extends Controller
 //Gallery
     public function gallery()
     {
-        // if (! Gate::allows('gallery')) {
-        //     abort(403,"You Don't Access This Page");
-        // }
         $categories = GalleryCategory::all();
         $albums = Album::all();
-        return view('front.gallery.index',compact('categories','albums'));
+        return view('front.pages.gallery',compact('categories','albums'));
     }
 
     public function album($id)
@@ -292,7 +290,7 @@ class FrontController extends Controller
     public function onlineApplyStep()
     {
         $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
-    
+
         return view('front.pages.onlineApplyStep', compact('admissionStep'));
         // return view('front.pages.onlineApplyStep');
     }
@@ -302,8 +300,7 @@ class FrontController extends Controller
         // $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
 
         // return $uri;
-         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
-        // dd($content);
+        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
         if($content->type == 3){
 
             $notices = null;
@@ -314,15 +311,11 @@ class FrontController extends Controller
 
             $repository = $this->repository;
 
-         
-
-       
-
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
-                            ->orderByDesc('start')
-                            ->paginate(3);
-                $artilces = '';
+                    ->orderByDesc('start')
+                    ->paginate(3);
+                $articles = '';
                 if ($request->ajax()) {
                     foreach($notices as $key => $notice){
                         if($notice->start != null){
@@ -344,41 +337,13 @@ class FrontController extends Controller
                         }else{
                             $noticeFile = '';
                         }
-                
-
-
-//                        $artilces.= '
-//                        <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
-//                            <div class="media align-items-center">
-//                                <div class="text-center border-right pr-4">
-//                                <strong class="text-primary font-size-38">
-//                                            '. $date .'
-//                                </strong>
-//                                <p class="mb-0 text-gray">
-//                                    '. $mm .'
-//                                </p>
-//                                </div>
-//                                <div class="media-body p-4">
-//                                <p class="mb-1 text-gray">
-//                                <i class="ti-file"></i>
-//                                    <span class="badge '. $types .'">
-//                                        '. $typeN .'
-//                                    </span>
-//                                </p>
-//                                <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="h5">
-//                                    '. $notice->title .'
-//                                </a>
-//                                </div>
-//                            </div>
-//                            '. $noticeFile .'
-//                            <a href="'. action('Front\FrontController@noticeDetails',$notice->id) .'" class="btn btn-outline-primary">Read More</a>
-//                            </div>';
                     }
-                    return $artilces;
+                    return $articles;
                 }
                 $categories = NoticeCategory::with('notices')->get();
                 return view('front.'.$uri.'.index',compact('categories','teachers','notices','staffs','repository'));
             }
+
             if($content->url === 'news'){
 
                 $newses = Notice::query()
@@ -389,12 +354,11 @@ class FrontController extends Controller
                 return view('front.'.$uri.'.index',compact('newses','categories'));
             }
 
-
-
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
             }
+
             if($content->system_page === 'apply-school'){
                 // $playlists = Playlist::query()->get();
                 // return $content;
@@ -415,14 +379,24 @@ class FrontController extends Controller
                 // $playlists = Playlist::query()->get();
                 return view('front.admission.validate-admission');
             }
+
             if($content->system_page === 'onlineApplyStep'){
-                
+
                 $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
                 return view('front.pages.onlineApplyStep', compact('admissionStep'));
             }
 
             if($content->system_page === 'internal-result'){
                 $this->internal_exam($request);
+            }
+
+            if($content->system_page === 'gallery'){
+                $this->gallery();
+            }
+
+            dd($content);
+            if($content->system_page === 'contacts' ){
+                $this->contact();
             }
 
             return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','staffs','repository'));
