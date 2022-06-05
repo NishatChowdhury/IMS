@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Backend\AcademicClass;
+use App\Models\Backend\Journal;
+use App\Models\Backend\JournalItem;
 use App\Models\Backend\Student;
 use App\Models\Backend\FeeSetup;
 use App\Models\Backend\FeeSetupCategory;
@@ -11,6 +13,7 @@ use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\Transport;
 use App\Models\TransportPayment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -122,6 +125,8 @@ class FeeCollectionController extends Controller
             $sp = []; // when only payment as transport then its will be runing
         }
 
+
+
         // transport
         if($request->transportAmount){
             $trans = TransportPayment::create([
@@ -135,12 +140,63 @@ class FeeCollectionController extends Controller
             $trans = [];
         }
 
+        // get total for account
+
+        if($request->amount OR $request->transportAmount){
+            $feeAm = intval($request->amount) ?? 00;
+            $transAm = intval($request->transportAmount) ?? 00;
+            $totalAMount = $feeAm + $transAm;
+        }else{
+            $totalAMount = 00;
+        }
+
+        $this->makeJournal($ss->id, $totalAMount);
+
 
         $receipt =  FeeSetupCategory::query()->where('fee_setup_student_id', $fss->first()->id)->get();
         return redirect('admin/fee/fee-collection')
             ->with('receipt', $receipt)
             ->with('spay', $sp)
             ->with('trans', $trans);
+    }
+
+    public function makeJournal($stuAcaId, $total)
+    {
+        $journal_id = [35,34];
+        $len = count($journal_id);
+
+        $debit =[$total,null];
+        $credit = [null, $total];
+
+        $journalNo = $this->journalNumber();
+        $date = Carbon::now()->format('Y-m-d');
+        $reference = $stuAcaId;
+        $description = 'From Fee Collection';
+
+        $journal = Journal::query()->create([
+            'date' => $date,
+            'reference' => $reference,
+            'description' => $description. ' & Student Academic ID With Reference',
+            'journal_no' => $journalNo,
+            'user_id' =>  auth()->id(),
+        ]);
+
+        for ($i=0;$i<$len;$i++){
+            $items['journal_id'] = $journal->id;
+            $items['coa_id'] = $journal_id[$i];
+            $items['description'] = $description;
+            $items['debit'] = $debit[$i];
+            $items['credit'] = $credit[$i];
+            JournalItem::query()->create($items);
+        }
+    }
+
+    public function journalNumber(): string
+    {
+        $maxJournalId = Journal::query()->max('id');
+        $increment = $maxJournalId + 1;
+        $journalNumber = str_pad($increment,7,0,STR_PAD_LEFT);
+        return 'JUR'.$journalNumber;
     }
 
     public function allCollections()
@@ -176,9 +232,19 @@ class FeeCollectionController extends Controller
         $ac = $request->academic_class;
         Session::forget('request1'); //forget session data when first load page
         if ($request->from != null && $request->to != null && $request->academic_class != null) {
-            $stupays = $stupays->whereDate('date', '>=', $request->from)->whereDate('date', '<=', $request->to)->whereHas('feeSetup', function ($q) use ($ac) {
-                return  $q->where('academic_class_id', $ac);
-            })->get();
+            $stupays =  $stupays->whereDate('date', '>=', $request->from)
+                                ->whereDate('date', '<=', $request->to)
+                                ->whereHas('feeSetup', function ($q) use ($ac) {
+                                        return  $q->where('academic_class_id', $ac);
+                                })->get();
+        }elseif ($request->studentId != null && $request->from != null && $request->to != null){
+            $stuID = $request->studentId;
+            $stupays->whereHas('academics', function ($q) use ($stuID){
+                $q->whereHas('student', function ($qs) use ($stuID){
+                    return $qs->where('studentId', $stuID );
+                });
+            });
+             $stupays = $stupays->get();
         } elseif ($request->from != null && $request->to != null) {
             $stupays =  $stupays->whereDate('date', '>=', $request->from)->whereDate('date', '<=', $request->to)->get();
         } elseif ($request->from != null) {

@@ -69,6 +69,9 @@ class StudentAcademic extends Model
     function transport(){
         return $this->hasMany(Transport::class);
     }
+    function attendance(){
+        return $this->hasMany(Attendance::class);
+    }
     function transportPayment(){
         return $this->hasMany(TransportPayment::class);
     }

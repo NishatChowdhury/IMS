@@ -15,18 +15,14 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('registration_id');
-            $table->string('access_id')->nullable();
-            $table->string('card')->nullable();
-            $table->string('unit_name');
-            $table->unsignedBigInteger('student_id')->nullable();
-            $table->unsignedBigInteger('staff_id')->nullable();
+            $table->string('student_academic_id');
             $table->date('date');
-            $table->time('entry')->nullable();
-            $table->time('exit')->nullable();
-            $table->time('late');
-            $table->time('early');
-            $table->string('status');
+            $table->time('in_time')->nullable();
+            $table->time('out_time')->nullable();
+            $table->time('manual_in_time')->nullable();;
+            $table->time('manual_out_time')->nullable();
+            $table->integer('shift_id')->default(1);
+            $table->integer('attendance_status_id');
             $table->timestamps();
         });
     }

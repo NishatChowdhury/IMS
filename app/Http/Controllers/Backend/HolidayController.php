@@ -31,27 +31,9 @@ class HolidayController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-//        $start = $request->get('start');
-//        $end = $request->get('end');
-//
-//        if(!$end){
-//            $end = $start;
-//        }
-//
-//        $period = CarbonPeriod::create($start,$end);
-
         $holiday = Holiday::query()->create($request->all());
 
-        // Iterate over the period
-//        foreach ($period as $date) {
-//            $d = $date->format('Y-m-d');
-//            DB::table('holiday_durations')->insert(
-//                [
-//                    'holiday_id' => $holiday->id,
-//                    'date' => $d,
-//                ]
-//            );
-//        }
+
 
         Session::flash('status','Holiday has been added successfully!');
 

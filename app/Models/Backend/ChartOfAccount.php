@@ -8,7 +8,7 @@ class ChartOfAccount extends Model
 {
     protected $table = 'coa';
 
-    protected $fillable = ['name','code','coa_parents_id','coa_grandparents_id','is_enabled','description'];
+    protected $fillable = ['name','code','coa_parents_id','coa_grandparents_id','is_enabled','description','is_delete'];
 
     public function parent()
     {

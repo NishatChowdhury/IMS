@@ -487,12 +487,6 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('student.fee')}}" class="nav-link {{ isActive('admin/fee-category/student') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Student Fee Collection</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ action('Backend\ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chart of Accounts</p>

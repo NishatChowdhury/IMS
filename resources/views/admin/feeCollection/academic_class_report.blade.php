@@ -153,7 +153,7 @@
                                                 {{ $discount }}
                                             </td>
                                             <td class="text-right">{{ $currentDue }}</td>
-                                            <td class="text-right">{{ $student->studentAcademic->transport->sum('amount') - $student->studentAcademic->transportPayment->sum('amount') ?? 00.00}}</td>
+                                            <td class="text-right">{{ $student->studentAcademic->transport->sum('amount') ?? 00.00 - $student->studentAcademic->transportPayment->sum('amount') ?? 00.00}}</td>
                                             <td class="text-right">{{ number_format($paid, 2) }}</td>
                                         </tr>
 

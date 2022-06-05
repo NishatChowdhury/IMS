@@ -38,7 +38,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="6" type="checkbox" name="show_option[]" {{ in_array(6,$weeklyOffs) ? 'checked' : '' }}>
+                                                        <input class="form-check-input" value="6" type="checkbox" name="show_option" >
                                                         <label class="form-check-label" for="">
                                                             Saturday
                                                         </label>
@@ -46,15 +46,14 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="7" type="checkbox" name="show_option[]" {{ in_array(7,$weeklyOffs) ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="">
+                                                        <input class="form-check-input" value="7" type="checkbox" name="show_option""">
                                                             Sunday
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="1" type="checkbox" name="show_option[]" {{ in_array(1,$weeklyOffs) ? 'checked' : '' }}>
+                                                        <input class="form-check-input" value="1" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
                                                             Monday
                                                         </label>
@@ -62,7 +61,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="2" type="checkbox" name="show_option[]" {{ in_array(2,$weeklyOffs) ? 'checked' : '' }}>
+                                                        <input class="form-check-input" value="2" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
                                                             Tuesday
                                                         </label>
@@ -72,7 +71,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="3" type="checkbox" name="show_option[]" {{ in_array(3,$weeklyOffs) ? 'checked' : '' }}>
+                                                        <input class="form-check-input" value="3" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
                                                             Wednesday
                                                         </label>
@@ -80,7 +79,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="4" type="checkbox" name="show_option[]" {{ in_array(4,$weeklyOffs) ? 'checked' : '' }}>
+                                                        <input class="form-check-input" value="4" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
                                                             Thursday
                                                         </label>
@@ -88,7 +87,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="5" type="checkbox" name="show_option[]" {{ in_array(5,$weeklyOffs) ? 'checked' : '' }}>
+                                                        <input class="form-check-input" value="5" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
                                                             Friday
                                                         </label>
@@ -108,12 +107,49 @@
 
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <br>
-                                        <br>
-                                        @foreach ($all as $item)
-                                        <h3 style="background-color: #0c5460;padding-top: 5px;padding-bottom: 5px;color: white;text-align: center">Existing Weekly Off Of the School: <span style="margin-left: 5px">{{$item->show_option}}</span> </h3>
-                                        <h3>Wanna Customize?</h3>
-                                            <a href="{{ route('weeklyOff.edit',$item->id) }}" class="btn btn-xs btn-info ">Edit</a>
-                                        @endforeach
+                                        <div class="card-body mt-5">
+                                            <table class="table table-sm table-striped text-center table-hover">
+                                                <tr>
+                                                    <td>SL.</td>
+                                                    <td>Name</td>
+                                                    <td>Active</td>
+                                                </tr>
+                                                @foreach($all as $key => $a)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>
+                                                    @if($a->show_option == 1)
+                                                        <span class="badge badge-dark">Monday</span>
+                                                    @elseif($a->show_option == 2)
+                                                        <span class="badge badge-dark">Tuesday</span>
+                                                    @elseif($a->show_option == 3)
+                                                        <span class="badge badge-dark">Wednesday</span>
+                                                    @elseif($a->show_option == 4)
+                                                        <span class="badge badge-dark">Thursday</span>
+                                                    @elseif($a->show_option == 5)
+                                                        <span class="badge badge-dark">Friday</span>
+                                                    @elseif($a->show_option == 6)
+                                                        <span class="badge badge-dark">Saturday</span>
+                                                    @elseif($a->show_option == 7)
+                                                        <span class="badge badge-dark">Sunday</span>
+                                                    @endif
+
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ url('admin/attendance/weeklyOff/delete') }}/{{$a->id}}" class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
+                                        </div>
+{{--                                        <br>--}}
+{{--                                        @foreach ($all as $item)--}}
+{{--                                        <h3 style="background-color: #0c5460;padding-top: 5px;padding-bottom: 5px;color: white;text-align: center">Existing Weekly Off Of the School: <span style="margin-left: 5px">{{$item->show_option}}</span> </h3>--}}
+{{--                                        <h3>Wanna Customize?</h3>--}}
+{{--                                            <a href="{{ route('weeklyOff.edit',$item->id) }}" class="btn btn-xs btn-info ">Edit</a>--}}
+{{--                                        @endforeach--}}
                                     </div>
 
                                 </form>

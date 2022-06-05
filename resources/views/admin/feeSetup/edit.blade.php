@@ -23,9 +23,23 @@
     <!-- /.Search-panel -->
     <section class="content">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    @if (session('feeMsg'))
+                        <div class="alert alert-success">
+                            {{ session('feeMsg') }}
+                        </div>
+                    @endif
+{{--                    {{dd(session('status'))}}--}}
+{{--                      <div class="alert alert-success">--}}
+{{--                            it's done--}}
+{{--                        </div>--}}
+                </div>
+            </div>
             {{ Form::model($fee_setup,['url'=>['admin/fee/fee-setup/update',$fee_setup->id],'method'=>'patch', 'class'=>'form-horizontal']) }}
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="card" style="margin: 0px;">
                         <!-- form start -->
                         <div class="card-body">

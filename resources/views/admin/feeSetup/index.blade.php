@@ -27,13 +27,14 @@
                 {{ session()->get('message') }}
             </div>
         @endif
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     @foreach($fees as $fee)
-                        <div class="card">
+                        <div class="card mb-4">
                             <div class="card-header">
-                                {{ $fee->first()->month->name }}&nbsp;{{ $fee->first()->year }}
+                                <b>{{ $fee->first()->month->name }}&nbsp;{{ $fee->first()->year }}</b>
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered table-sm">

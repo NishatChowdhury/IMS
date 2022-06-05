@@ -187,7 +187,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('attendance/weeklyOff','Backend\WeeklyOffController@index');
     Route::post('attendance/weeklyOff/store','Backend\WeeklyOffController@store')->name('weeklyOff.store');
     Route::get('attendance/weeklyOff/edit/{id}','Backend\WeeklyOffController@edit')->name('weeklyOff.edit');
-    Route::delete('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy');
+    Route::get('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy');
 //Weekly Off Setting ends by Nishat
 
     /** User Routes */
