@@ -47,6 +47,7 @@ class JournalController extends Controller
 
     public function create()
     {
+
         $coa = COA::all()->where('is_enabled',1)->pluck('name','id');
         $journalNo = $this->journalNumber();
         return view('admin.journal.create',compact('coa','journalNo'));
@@ -54,6 +55,7 @@ class JournalController extends Controller
 
     public function store(Request $request)
     {
+//        return $request->all();
         $validator = Validator::make($request->all(),[
             'date' => 'required|date',
             'reference' => 'required',

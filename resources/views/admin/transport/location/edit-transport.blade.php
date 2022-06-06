@@ -67,7 +67,9 @@
                                                                <th>Sl</th>
                                                                <th>Location</th>
                                                                <th>Description</th>
-                                                               <th>Fare</th>
+                                                                <th>Home To Institute</th>
+                                                                <th>Institute To Home</th>
+                                                                <th>Both</th>
                                                                <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -78,11 +80,16 @@
                                                                     <td>{{$i++}}</td>
                                                                     <td>{{ucwords($location->name)}}</td>
                                                                     <td>{{ucfirst($location->description)}}</td>
-                                                                    <td style="text-align: right">{{number_format($location->amount,2)}}</td>
+                                                                     <td style="text-align: right">{{number_format($location->home_to_institute,2)}}</td>
+                                                                <td style="text-align: right">{{number_format($location->institute_to_home,2)}}</td>
+                                                                <td style="text-align: right">{{number_format($location->both,2)}}</td>
                                                                     <td>
-                                                                        <a type="button" class="btn btn-warning btn-sm edit" value='{{$location->id}}'
-                                                                           style="margin-left: 10px;"> <i class="fas fa-edit"></i>
-                                                                        </a>
+                                                                         <a type="button"
+                                                                       href="{{route('transport.edit',$location->id)}}"
+                                                                       class="btn btn-warning btn-sm edit"
+                                                                       style="margin-left: 10px;"> <i
+                                                                                class="fas fa-edit"></i>
+                                                                    </a>
 
                                                                         <a type="button" href="{{action('Backend\FeeCategoryController@delete_fee_category', $location->id)}}"
                                                                         class="btn btn-danger btn-sm delete_session"

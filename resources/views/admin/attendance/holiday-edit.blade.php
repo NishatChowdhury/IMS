@@ -21,69 +21,29 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    @if($errors->any())
-        <div class="container">
-            <div class="card border-danger">
-                <div class="card-body">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li class="text-danger">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    @endif
-
-    <!-- /.Search-panel -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="margin: 10px;">
-                        <!-- form start -->
-                        <form role="form">
-                            <div class="card-body">
-                                <div class="form-group row col-md-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search" aria-hidden="true"></i></span>
-                                        </div>
-                                        <input id="" type="search" name="search" class="form-control" aria-describedby="">
-                                        <span class="input-group-append">
-                                    <button type="button" class="btn btn-info btn-flat">Go!</button>
-                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </form>
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.Search-panel -->
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
-                                </div>
-                            </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
+                    @endif
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
                                     {{ Form::model($holiday,['action'=>['Backend\HolidayController@update',$holiday->id],'method'=>'patch']) }}
                                     <div class="form-group">
                                         <label for="email">Name</label>
@@ -95,7 +55,7 @@
                                     <div class="form-group">
                                         <label for="">Start Date</label>
                                         <div class="input-group">
-                                            <input class="form-control datePicker @error('start') is-invalid @enderror" name="start" type="text" value="{{ $holiday->duration->count() > 0 ? $holiday->duration->first()->date : '' }}">
+                                            <input class="form-control datePicker @error('start') is-invalid @enderror" name="start" type="text" value="{{ $holiday->start ?? '' }}">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend2">
                                                     <i class="far fa-calendar-alt"></i>
@@ -109,7 +69,7 @@
                                     <div class="form-group">
                                         <label for="">End Date</label>
                                         <div class="input-group">
-                                            <input class="form-control datePicker @error('end') is-invalid @enderror" name="end" type="text" value="{{ $holiday->duration->count() > 0 ? $holiday->duration->last()->date : '' }}">
+                                            <input class="form-control datePicker @error('end') is-invalid @enderror" name="end" type="text" value="{{ $holiday->end ?? '' }}">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend2">
                                                     <i class="far fa-calendar-alt"></i>
@@ -120,10 +80,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                    <div class="form-group">
+                                        <label for="">Is Holiday</label>
+                                        <input class="checkboxCustom @error('is_holiday') is-invalid @enderror" name="is_holiday" {{ $holiday->is_holiday == 1 ? 'checked' : '' }}   value="1" type="checkbox">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Is SmS</label>
+                                        <input class="checkboxCustom @error('is_holiday') is-invalid @enderror" name="is_sms" {{ $holiday->is_sms == 1 ? 'checked' : '' }} value="1" type="checkbox">
+                                    </div>
+                                    <input class="btn btn-primary btn-block" type="submit" value="Submit">
                                     {{ Form::close() }}
                                 </div>
-                                <div class="col">
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
@@ -140,13 +113,23 @@
                                                 <td>{{ $h->id }}</td>
                                                 <td>{{ $h->name }}</td>
                                                 <td>
-                                                    @if($h->duration->count() > 0)
-                                                        {{ $h->duration->first()->date }}
+                                                    {{ $h->start}}
+                                                </td>
+                                                <td>
+                                                    {{ $h->end }}
+                                                </td>
+                                                <td>
+                                                    @if($h->is_holiday)
+                                                        <span class="badge badge-primary">Yes</span>
+                                                    @else
+                                                        <span class="badge badge-danger">No</span>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if($h->duration->count() > 0)
-                                                        {{ $h->duration->last()->date }}
+                                                    @if($h->is_sms)
+                                                        <span class="badge badge-primary">Yes</span>
+                                                    @else
+                                                        <span class="badge badge-danger">No</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -161,15 +144,11 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 

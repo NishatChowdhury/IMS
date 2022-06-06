@@ -79,10 +79,7 @@ class Student extends Model
         return $this->belongsTo(Gender::class);
     }
 
-    public function locationStudent()
-    {
-        return $this->hasOne(LocationStudent::class)->latest();
-    }
+
 
     public function religion()
     {
@@ -209,8 +206,16 @@ class Student extends Model
     public function studentAcademic()
     {
         // for single data show
-        return $this->hasOne(StudentAcademic::class,'student_id','id');
+        return $this->hasOne(StudentAcademic::class,'student_id','id')->latest();
     }
+    public function studentAcademicInfo()
+    {
+        // for single data show
+        return $this->belongsTo(StudentAcademic::class,'student_id','id');
+    }
+
+
+
 
     // protected $dates = ['dob'];
 

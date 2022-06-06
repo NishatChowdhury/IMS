@@ -125,6 +125,7 @@ class FeeSetupController extends Controller
     public function edit($id)
     {
         sessions::forget('fees');
+
         $classes = Classes::query()->pluck('name', 'id');
         $fee_category = FeeCategory::query()->where('status',1)->pluck('name', 'id');
         $fee_setup = FeeSetup::query()->findOrFail($id);
@@ -153,6 +154,7 @@ class FeeSetupController extends Controller
         }
         $fees = session('fees');
 
+//        return $fee_setup;
         return view('admin.feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
     }
 
@@ -188,10 +190,8 @@ class FeeSetupController extends Controller
 
             FeeSetupStudent::query()->where('fee_setup_id',$student->fee_setup_id)->update(['amount'=>array_sum(array_column($fees, 'amount')) ]);
         }
-        sessions::forget('fees'); // remove existing items from fees session
-        \Illuminate\Support\Facades\Session::flash('success', 'Fee Updated Successfully');
 
-        return redirect()->back();
+        return redirect()->route('fee-setup.index')->with(['message' => 'Fee Updated Successfully']);
     }
 
     public function editByStudent($id)

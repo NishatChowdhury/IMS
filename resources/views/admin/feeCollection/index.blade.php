@@ -80,9 +80,12 @@
     </section>
 
     @if (session()->has('receipt'))
-        @php
-            $receipt = session()->get('receipt');
-        @endphp
+       <?php
+       $receipt = session()->get('receipt');
+            $checkSP = session()->get('spay');
+
+
+       ?>
         <section class="content ">
             <div class="container-fluid">
                 <div class="row m-5">
@@ -96,9 +99,16 @@
                                         <h3 class="text-center"><u>Money Receit</u></h3>
                                         <div>
                                             <strong class="float-left">Receipt No:
-                                                #00{{ session()->get('spay')['id'] }}</strong>
+                                                #00{{ session()->get('spay')['id'] ?? session()->get('trans')['id']}}</strong>
                                             <b class="float-right">Date:
-                                                {{ date('d-m-Y', strtotime(session()->get('spay')['date'])) }}
+                                                @if(session()->get('spay') != null)
+                                                {{  date('d-m-Y', strtotime(session()->get('spay')['date'])) }}
+                                                @else
+                                                    <?php
+                                                        $tD = session()->get('trans');
+                                                    ?>
+                                                     {{$tD->date }}
+                                                @endif
                                             </b><br>
 
                                         </div>
@@ -111,10 +121,23 @@
                                     <div class="col-sm-4 invoice-col">
                                         <?php
                                         $data = session()->get('spay');
-                                            $studentAcademic = \App\Models\Backend\StudentAcademic::query()
-                                                                                                    ->where('id', $data['student_academic_id'])
+                                        $trans = session()->get('trans');
+                                        if ($data != null){
+                                          $stuId = $data['student_academic_id'];
+                                        }else{
+                                           $stuId =  $trans['student_academic_id'];
+                                        }
+
+                                          $studentAcademic = \App\Models\Backend\StudentAcademic::query()
+                                                                                                    ->where('id', $stuId)
                                                                                                     ->with('student')
                                                                                                     ->first();
+
+                                        $tranPay = \App\Models\TransportPayment::where('student_academic_id', $stuId)->sum('amount');
+                                        $tranAm = \App\Models\Backend\Transport::where('student_academic_id', $stuId)->sum('amount');
+                                        $stuPayment = \App\Models\Backend\StudentPayment::where('student_academic_id', $stuId)->sum('amount');
+                                        $feeSetUpStudent = \App\Models\Backend\FeeSetupStudent::where('student_id', $studentAcademic->student->id)->sum('amount');
+
                                         ?>
                                         <address>
                                             <strong>{{ $studentAcademic->student->name ?? '' }}</strong><br>
@@ -148,43 +171,89 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>SL.</th>
                                                     <th>Category</th>
                                                     <th class="text-right">Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @php
-                                                    $total = 0;
-                                                @endphp
+                                                <?php
+                                                $total = 0;
+                                                ?>
                                                 @foreach ($receipt as $key => $rcpt)
                                                     <tr>
-                                                        <td>{{ $key + 1 }}</td>
                                                         <td>{{ $rcpt->category->name }}</td>
                                                         <td class="text-right">{{ number_format($rcpt->paid, 2) }} /-</td>
                                                     </tr>
-                                                    {{-- @php
+
+                                                     @php
                                                     $total += $rcpt->paid;
-                                                @endphp --}}
+                                                @endphp
                                                 @endforeach
+                                                @if($trans != null)
+                                                    <tr>
+                                                        <td> Transport Cost </td>
+                                                        <td class="text-right">{{ number_format($trans->amount, 2) }} /-</td>
+                                                    </tr>
+                                                @endif
                                                 <tr>
-                                                    <td colspan="2">
+                                                    <td colspan="1">
                                                         <strong class="float-right">Paid =</strong>
                                                     </td>
-                                                    <td class="text-right">{{ number_format(session()->get('spay')['amount'], 2) }}/-</td>
+                                                    @if($trans != null)
+                                                        <td class="text-right">
+                                                            <?php
+                                                                if($data != null){
+                                                                    $am1 =  number_format(session()->get('spay')['amount'], 2);
+                                                                }else{
+                                                                    $am1 = 0;
+                                                                }
+                                                            ?>
+
+                                                            {{  $am1 + intVal($trans['amount'])}}/-
+                                                        </td>
+                                                    @else
+                                                        <td class="text-right">{{ number_format(session()->get('spay')['amount'], 2) }}/-</td>
+                                                    @endif
                                                 </tr>
 {{--                                                @if (session()->has(['discount']))--}}
+                                                    @if($data != null)
                                                     <tr>
-                                                        <td colspan="2">
+                                                        <td colspan="1">
                                                             <strong class="float-right">discount =</strong>
                                                         </td>
                                                         <td class="text-right">{{ number_format(session()->get('spay')['discount'], 2) ?? 0.00 }}/-</td>
                                                     </tr>
+                                                    @endif
                                                     <tr>
-                                                        <td colspan="2">
+                                                        <td colspan="1">
+                                                            <strong class="float-right">Fee Due =</strong>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{ $feeSetUpStudent - $stuPayment}}
+                                                            /-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1">
+                                                            <strong class="float-right">Transport Due =</strong>
+                                                        </td>
+                                                        <td class="text-right"> {{ $tranAm > $tranPay ? $tranAm - $tranPay : 0}} /-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1">
                                                             <strong class="float-right">Total =</strong>
                                                         </td>
-                                                        <td class="text-right">{{ number_format(session()->get('spay')['amount'] + session()->get('spay')['discount'], 2)  }}/-
+                                                        @if($trans != null)
+                                                             <?php
+                                                                if($data != null){
+                                                                    $am =  number_format(session()->get('spay')['amount'] - session()->get('spay')['discount'], 2);
+                                                                }else{
+                                                                    $am = 0;
+                                                                }
+                                                            ?>
+                                                        <td class="text-right">{{  $am + number_format($trans->amount, 2) }}/-
+                                                         @else
+                                                        <td class="text-right">{{ number_format(session()->get('spay')['amount'] - session()->get('spay')['discount'], 2)  }}/-
+                                                         @endif
                                                         </td>
                                                     </tr>
 {{--                                                @endif--}}

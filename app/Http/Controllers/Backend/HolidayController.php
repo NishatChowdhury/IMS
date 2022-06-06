@@ -20,6 +20,7 @@ class HolidayController extends Controller
 
     public function store(Request $request)
     {
+//        return $request->all();
         $validator = Validator::make($request->all(),[
             'name' => 'required',
             'start' => 'required|date',
@@ -30,29 +31,11 @@ class HolidayController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $start = $request->get('start');
-        $end = $request->get('end');
+        $holiday = Holiday::query()->create($request->all());
 
-        if(!$end){
-            $end = $start;
-        }
 
-        $period = CarbonPeriod::create($start,$end);
 
-        $holiday = Holiday::query()->create($request->only('name'));
-
-        // Iterate over the period
-        foreach ($period as $date) {
-            $d = $date->format('Y-m-d');
-            DB::table('holiday_durations')->insert(
-                [
-                    'holiday_id' => $holiday->id,
-                    'date' => $d,
-                ]
-            );
-        }
-
-        Session::flash('success','Holiday has been added successfully!');
+        Session::flash('status','Holiday has been added successfully!');
 
         return redirect('admin/holidays');
     }
@@ -78,34 +61,11 @@ class HolidayController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $start = $request->get('start');
-        $end = $request->get('end');
 
-        if(!$end){
-            $end = $start;
-        }
+        $holiday->update($request->all());
 
-        $period = CarbonPeriod::create($start,$end);
 
-        $holiday->duration()->delete();
-        $holiday->update($request->only('name'));
-
-        $holiday->duration;
-
-        // Iterate over the period
-        foreach ($period as $date) {
-            $d = $date->format('Y-m-d');
-            DB::table('holiday_durations')->insert(
-                [
-                    'holiday_id' => $holiday->id,
-                    'date' => $d,
-                ]
-            );
-        }
-
-        Session::flash('success','Holiday has been updated!');
-
-        return redirect('admin/holidays');
+        return redirect('admin/holidays')->with(['status' => 'Holiday has been updated!']);
     }
 
     public function destroy($id)

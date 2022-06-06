@@ -41,12 +41,17 @@
                         <form method="get" action="{{ route('report.generate') }}">
                             <div class="form-row">
                                 <div class="form-group col-md-3">
+                                    <label>Student ID</label>
+                                    <input type="text" name="studentId"
+                                        class="form-control" placeholder="Student ID">
+                                </div>
+                                <div class="form-group col-md-2">
                                     <label>From</label>
                                     <input type="text" name="from"
                                         @if (isset($from)) value="{{ $from }}" @endif
                                         class="form-control datePicker" placeholder="2000-02-22">
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-2">
                                     <label>To</label>
                                     <input type="text" name="to"
                                         @if (isset($to)) value="{{ $to }}" @endif
@@ -63,12 +68,10 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button type="submit" class="btn btn-info btn-md btn-block"><i
+                                <div class="form-group col-md-2" style="margin-top: 30px">
+                                    <button type="submit" class="btn btn-info"><i
                                             class="fa fa-search"></i>&nbsp</button>
-                                </div>
-                                <div class="form-group col-md-1" style="margin-top: 30px">
-                                    <button class="btn btn-warning btn-md btn-block"
+                                    <button class="btn btn-warning"
                                         onclick="window.print(); return false;"><i
                                             class="fa fa-print"></i>&nbsp</button>
                                 </div>

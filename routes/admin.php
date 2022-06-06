@@ -104,6 +104,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Route for test
     /** Menu Routes Starts */
     Route::get('menus','Backend\MenuController@index');
+    Route::post('menus-search','Backend\MenuController@search')->name('menus.search');
     Route::post('menu/store','Backend\MenuController@store')->name('menu.store');
     Route::get('menu/edit','Backend\MenuController@edit')->name('menu.edit');
     Route::patch('menu/{id}/update','Backend\MenuController@update')->name('menu.update');
@@ -186,7 +187,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('attendance/weeklyOff','Backend\WeeklyOffController@index');
     Route::post('attendance/weeklyOff/store','Backend\WeeklyOffController@store')->name('weeklyOff.store');
     Route::get('attendance/weeklyOff/edit/{id}','Backend\WeeklyOffController@edit')->name('weeklyOff.edit');
-    Route::delete('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy');
+    Route::get('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy');
 //Weekly Off Setting ends by Nishat
 
     /** User Routes */
@@ -246,6 +247,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('attendance/setting','Backend\ShiftController@index');
     Route::post('attendance/shift/store','Backend\ShiftController@store');
+    Route::get('attendance/shift/edit/{id}','Backend\ShiftController@edit');
+    Route::post('attendance/shift/update','Backend\ShiftController@update');
     Route::delete('attendance/shift/delete/{id}','Backend\ShiftController@destroy');
 
     Route::get('exam/marks/{schedule}','Backend\MarkController@index');
@@ -262,6 +265,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('student/designStudentCard','Backend\IdCardController@index');
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
     Route::get('student/assign-transport','Backend\StudentController@assignTransport')->name('student.transport');
+    Route::post('student/assign-transport-ending','Backend\StudentController@assignTransportEnd')->name('assign.transport.end');
     Route::post('student/storeAssignTransport','Backend\StudentController@storeAssignTransport')->name('storeAssignTransport');
 
 

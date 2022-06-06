@@ -24,6 +24,7 @@ use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
+use App\Models\Backend\Transport;
 use App\Models\LocationStudent;
 use App\Models\Student\StudentLogin;
 use App\Repository\StudentRepository;
@@ -926,6 +927,7 @@ class StudentController extends Controller
 
     public function assignTransport(Request $request)
     {
+
          $academicClass = AcademicClass::query()
                                         ->whereHas('sessions', function($q){
                                             return $q->where('active', 1);
@@ -934,6 +936,7 @@ class StudentController extends Controller
                  $students = StudentAcademic::query()
                                                     ->where('academic_class_id', $request->academic_class_id)
                                                     ->with('student')
+                                                    ->with('locationStudent')
                                                     ->get();
              $locations = Location::all();
              $locationStudents = LocationStudent::all();
@@ -948,17 +951,45 @@ class StudentController extends Controller
     public function storeAssignTransport(Request $request)
     {
 
-        $student = $request->student_id;
+            $student = $request->student_academic_id;
          foreach ($student as $key => $stu){
+//             return $request->location_id[$key] .'-'.$request->direction[$key];
+             $dataExists = LocationStudent::where('student_academic_id', $stu)->first();
+             if($dataExists){
+                $dataExists->update([
+                    'student_academic_id' => $stu,
+                     'location_id' => $request->location_id[$key] ?? 0,
+                     'direction' => $request->direction[$key] ?? 0,
+                     'starting_date' => $request->starting_date[$key] ?? 0,
+//                     'student_id' => 0,
+                ]);
+             }else{
+                 LocationStudent::create([
+                     'student_academic_id' => $stu,
+                     'location_id' => $request->location_id[$key] ?? 0,
+                     'direction' => $request->direction[$key] ?? 0,
+                     'starting_date' => $request->starting_date[$key] ?? 0,
+                 ]);
+             }
 
-             LocationStudent::create([
-                 'student_id' => $stu,
-                 'location_id' => $request->location_id[$key] ?? 0,
-                 'direction' => $request->direction[$key] ?? 0,
-             ]);
          }
 
         return back();
+
+    }
+
+    public function assignTransportEnd(Request $request)
+    {
+
+        $ending =  LocationStudent::where('student_academic_id',$request->id)->first();
+        $ending->update([
+            'ending_date' => $request->ending_date
+        ]);
+
+        return back();
+
+
+
 
     }
 

@@ -243,12 +243,14 @@ class InstitutionController extends Controller
 
     public function create_subject(Request $request){
 
+//        return $request->all(); credit_fee
         $request->validate([
             'code' => 'required|unique:subjects',
             'name' => 'required',
             'short_name' => 'required',
             'level' => 'required',
             'type' => 'required',
+//            'credit_fee' => 'decimal',
         ]);
         Subject::create($request->all());
         return redirect('admin/institution/subjects')->with('success', 'Subject Added Successfully');

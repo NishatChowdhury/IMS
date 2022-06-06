@@ -149,7 +149,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tuition Fee</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="credit_fee" class="form-control" id="credit_fee"  aria-describedby="">
+                                <input type="text" name="creditfee" class="form-control" id="credit_fee"  aria-describedby="">
                             </div>
                         </div>
                     </div>
@@ -227,7 +227,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Tuition Fee</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="credit_fee" class="form-control" id="sub_credit_fee"  aria-describedby="">
+                                <input type="text" name="creditfee" class="form-control" id="sub_credit_fee"  aria-describedby="">
                             </div>
                         </div>
                     </div>
@@ -275,7 +275,7 @@
                     $("#sub_code").val(response.code);
                     $("#sub_short_name").val(response.short_name);
                     $("#sub_level").val(response.level);
-                    $("#sub_credit_fee").val(response.credit_fee);
+                    $("#sub_credit_fee").val(response.creditfee);
                     $("#type_id").val(response.type);
 
                 },

@@ -94,7 +94,7 @@
                                 <th>{{ __('Sl') }}</th>
                                 <th>{{ __('Category') }}</th>
                                 <th>{{ __('Amount') }}</th>
-                                <th><button onclick="clearFeeCart()">{{ __('Clear All') }}</button></th>
+                                <th><button onclick="clearFeeCart()" class="btn btn-sm btn-dark">{{ __('Clear All') }}</button></th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
@@ -105,7 +105,7 @@
                                     <td>{{ $category->category->name }}</td>
                                     <td>{{$category['amount']}}</td>
                                     <td class="text-center">
-                                        <button type="button" onclick="removeFeeFromEditCart({{ $key }},{{$category->category->id}},{{ $feeSetupStudent->id }})">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="removeFeeFromEditCart({{ $key }},{{$category->category->id}},{{ $feeSetupStudent->id }})">
                                             <span class="fas fa-trash-alt"></span>
                                         </button>
                                     </td>

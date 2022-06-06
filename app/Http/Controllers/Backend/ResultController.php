@@ -85,7 +85,7 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
-             $classes = AcademicClass::all();
+              $classes = AcademicClass::with('classes')->get();
             foreach($classes as $class){
                 $subjectCount = ExamSchedule::query()
                     ->where('academic_class_id',$class->id)   //class id means acadimic class id
@@ -132,7 +132,7 @@ class ResultController extends Controller
                     $mainSubjectGpa = $mark->sum('gpa') - $countOptionalSubject * 3;
                     $mainSubject = $subjectCount - $countOptionalSubject;
                     $mainGpa = $mainSubjectGpa / $subjectCount;
-                    $data['gpa'] = $isFail ? 0 : $mainGpa;
+                    $data['gpa'] = $isFail ? 0 : number_format($mainGpa, 2);
 
 
 
@@ -141,9 +141,9 @@ class ResultController extends Controller
                      $grade = Grade::query()
                         ->where('system',1)
                         ->where('point_from','<=',$data['gpa'])
-                        ->where('point_to','>=',$data['gpa'])
+                        ->where('point_to','>=', $data['gpa'])
                         ->first();
-
+//                return $grade;
                     if($optionalMark >= 2){
                         $data['gpa'] = $isFail ? 0 : ($mark->sum('gpa') - 2) / $subjectCount;
 

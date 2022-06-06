@@ -25,36 +25,28 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="col-md-12">
-                            <div class="card" style="margin: 10px;">
-                                <div class="card-header">
-                                    <h3 class="card-title">Quick  Search</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <form role="form">
-                                    <div class="card-body">
-                                        <div class="form-group row col-md-12">
-                                            <div class="input-group ">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search" aria-hidden="true"></i></span>
-                                                </div>
-                                                <input id="" type="search" name="search" class="form-control" aria-describedby="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Search</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-md-12">--}}
+{{--                    <div class="card">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <form role="form">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="form-group row col-md-11">--}}
+{{--                                    <div class="input-group ">--}}
+{{--                                        <div class="input-group-prepend">--}}
+{{--                                            <span class="input-group-text" id="inputGroupPrepend2"> <i class="fa fa-search" aria-hidden="true"></i></span>--}}
+{{--                                        </div>--}}
+{{--                                        <input id="" type="search" name="search" class="form-control" aria-describedby="">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <!-- /.card-body -->--}}
+{{--                                <div class="col-md-1">--}}
+{{--                                    <button type="submit" class="btn btn-primary">Search</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>
@@ -66,14 +58,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : 1000</h3>
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
-                                </div>
-                            </div>
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -101,8 +86,11 @@
                                         <td>{{ $shift->late_fee }}</td>
                                         <td>{{ $shift->absent_fee }}</td>
                                         <td>
-                                            {{ Form::open(['action'=>['Backend\ShiftController@destroy',$shift->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                            <a  class="btn btn-sm btn-primary" href="{{ url('admin/attendance/shift/edit') }}/{{ $shift->id }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            {{ Form::open(['action'=>['Backend\ShiftController@destroy',$shift->id],'method'=>'delete','style' => 'display: inline-block','onsubmit'=>'return deleteConfirm()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>
