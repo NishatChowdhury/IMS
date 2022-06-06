@@ -11,6 +11,7 @@
         <div class="form-group">
             <label for="">Account Name</label>
             {{ Form::text('name',null,['class'=>'form-control','required']) }}
+            <input type="hidden" name="is_delete" value="1">
         </div>
         <div class="form-group">
             <label>

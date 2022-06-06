@@ -124,34 +124,7 @@
 
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="Tabs_1-1" role="tabpanel">
-                                <div class="table-responsive my-4">
-                                    {{-- {{ Form::select('year',[now()->subYear()->format('Y'),now()->format('Y'),now()->addYear()->format('Y')],null,['class'=>'btn btn-outline-secondary mb-2','placeholder'=>'Select Year']) }}--}}
-                                    {{ Form::selectMonth('month',$present_month,['class'=>'btn btn-outline-secondary mb-2 att-serch','id'=>'attendance-month']) }}
-                                    {{ Form::selectRange('year',now()->subYear()->format('Y'),now()->addYear()->format('Y'),$present_year,['class'=>'btn btn-outline-secondary mb-2 att-serch','id'=>'attendance-year']) }}
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">In Time</th>
-                                            <th scope="col">Out Time</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="attendance_search">
-                                        @foreach($attendances as $day)
-                                            <tr>
-                                                <th scope="row"
-                                                    class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
-                                                <td>{{$day->entry}} </td>
-                                                <td>{{$day->exit}} </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-link">{{$day->status}}</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                @include('student.profile_attendance')
                             </div>
                             <!-- END tab-pane -->
                             <div class="tab-pane fade exam-data" id="Tabs_1-2" role="tabpanel">
@@ -201,12 +174,12 @@
             });
 
             //search attendance
-            $('.att-serch').click(function () {
+            $('.attn-search').click(function () {
                 var month_id = $('#attendance-month').val();
                 var year_id = $('#attendance-year').val();
                 var token = "{{csrf_token()}}";
                 $.ajax({
-                    url: 'stdAttendance',
+                    url: '{{ route('student.attendance') }}',
                     method: 'POST',
                     data: {
                         '_token': token,
@@ -214,7 +187,7 @@
                         'year_id': year_id,
                     },
                     success: function (res) {
-                        $('#attendance_search').html(res.html);
+                        $('#attendance_search').html(res);
                     }
                 })
             });

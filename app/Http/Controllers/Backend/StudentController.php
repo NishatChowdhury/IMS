@@ -927,9 +927,7 @@ class StudentController extends Controller
 
     public function assignTransport(Request $request)
     {
-//        return Transport::toSql();
-//        LocationStudent::truncate();
-//        dd('doen');
+
          $academicClass = AcademicClass::query()
                                         ->whereHas('sessions', function($q){
                                             return $q->where('active', 1);
@@ -938,6 +936,7 @@ class StudentController extends Controller
                  $students = StudentAcademic::query()
                                                     ->where('academic_class_id', $request->academic_class_id)
                                                     ->with('student')
+                                                    ->with('locationStudent')
                                                     ->get();
              $locations = Location::all();
              $locationStudents = LocationStudent::all();
@@ -951,7 +950,7 @@ class StudentController extends Controller
 
     public function storeAssignTransport(Request $request)
     {
-//        return $request->all();
+
             $student = $request->student_academic_id;
          foreach ($student as $key => $stu){
 //             return $request->location_id[$key] .'-'.$request->direction[$key];
@@ -970,7 +969,6 @@ class StudentController extends Controller
                      'location_id' => $request->location_id[$key] ?? 0,
                      'direction' => $request->direction[$key] ?? 0,
                      'starting_date' => $request->starting_date[$key] ?? 0,
-//                     'student_id' => 0,
                  ]);
              }
 

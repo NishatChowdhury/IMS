@@ -87,84 +87,79 @@
                                 {{ $today ?? '' }}
                             </h4>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <div class="row" style="padding: 10px;">
-                                    <div class="col-md-2">
-                                        <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
-                                            <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Total</h5>
-                                                <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($attendances) }}</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00b249; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
-                                            <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Present</h5>
-                                                <p><span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">00</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #007bff; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
-                                            <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Late</h5>
-                                                <p><span class="badge badge-primary" style="color: black; padding: 5px 45px; font-size: 18px">00</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ffa500; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
-                                            <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Left Early</h5>
-                                                <p><span class="badge badge-warning" style="color: black; padding: 5px 35px; font-size: 18px">00</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
-                                            <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Absent</h5>
-                                                <p><span class="badge badge-danger" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="dec-block">
-                                            {{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >--}}
-                                                {{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
-                                            {{--</div>--}}
-                                            <div class="dec-block-dec" style="float:left;">
-                                                <h5 style="margin-bottom: 0px; font-weight: bold">Leave</h5>
-                                                <p><span class="badge badge-dark" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-{{--                            <div class="col-md-2">--}}
-{{--                                <div style="padding-top: 40px;">--}}
-{{--                                    <button type="button" class="btn btn-info  btn-sm" style=" padding: .25rem 0.9rem; margin-right: 10px"> <i class="fas fa-cloud-download-alt"></i> Pdf </button>--}}
-{{--                                    <button type="button" class="btn btn-info  btn-sm" style=" padding: .25rem 0.9rem;"> <i class="fas fa-cloud-download-alt"></i> Csv </button>--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-12 text-center">--}}
+{{--                                <div class="row" style="padding: 10px;">--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <div class="dec-block">--}}
+{{--                                            --}}{{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >--}}
+{{--                                                --}}{{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                            --}}{{--</div>--}}
+{{--                                            <div class="dec-block-dec" style="float:left;">--}}
+{{--                                                <h5 style="margin-bottom: 0px; font-weight: bold">Total</h5>--}}
+{{--                                                <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($attendances) }}</span></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <div class="dec-block">--}}
+{{--                                            --}}{{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00b249; border-radius: 50%;" >--}}
+{{--                                                --}}{{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                            --}}{{--</div>--}}
+{{--                                            <div class="dec-block-dec" style="float:left;">--}}
+{{--                                                <h5 style="margin-bottom: 0px; font-weight: bold">Present</h5>--}}
+{{--                                                <p><span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">00</span></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <div class="dec-block">--}}
+{{--                                            --}}{{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #007bff; border-radius: 50%;" >--}}
+{{--                                                --}}{{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                            --}}{{--</div>--}}
+{{--                                            <div class="dec-block-dec" style="float:left;">--}}
+{{--                                                <h5 style="margin-bottom: 0px; font-weight: bold">Late</h5>--}}
+{{--                                                <p><span class="badge badge-primary" style="color: black; padding: 5px 45px; font-size: 18px">00</span></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <div class="dec-block">--}}
+{{--                                            --}}{{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ffa500; border-radius: 50%;" >--}}
+{{--                                                --}}{{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                            --}}{{--</div>--}}
+{{--                                            <div class="dec-block-dec" style="float:left;">--}}
+{{--                                                <h5 style="margin-bottom: 0px; font-weight: bold">Left Early</h5>--}}
+{{--                                                <p><span class="badge badge-warning" style="color: black; padding: 5px 35px; font-size: 18px">00</span></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <div class="dec-block">--}}
+{{--                                            --}}{{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >--}}
+{{--                                                --}}{{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                            --}}{{--</div>--}}
+{{--                                            <div class="dec-block-dec" style="float:left;">--}}
+{{--                                                <h5 style="margin-bottom: 0px; font-weight: bold">Absent</h5>--}}
+{{--                                                <p><span class="badge badge-danger" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <div class="dec-block">--}}
+{{--                                            --}}{{--<div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #ff0000; border-radius: 50%;" >--}}
+{{--                                                --}}{{--<i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>--}}
+{{--                                            --}}{{--</div>--}}
+{{--                                            <div class="dec-block-dec" style="float:left;">--}}
+{{--                                                <h5 style="margin-bottom: 0px; font-weight: bold">Leave</h5>--}}
+{{--                                                <p><span class="badge badge-dark" style="color: black; padding: 5px 28px; font-size: 18px">00</span></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                        </div>
+
+{{--                        </div>--}}
                         <div class="card-body" style="padding: 1.00rem;">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
@@ -172,9 +167,9 @@
                                     <th>Rank</th>
                                     <th>Student</th>
                                     <th>Card</th>
-                                    <th>Entry</th>
-                                    <th>Exit</th>
-                                    <th>Status</th>
+                                    <th class="text-center">Entry</th>
+                                    <th class="text-center">Exit</th>
+                                    <th class="text-center">Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -184,12 +179,12 @@
                                             {{ $attn->rank ?? 'N/A' }}
                                         </td>
                                         <td>
-                                        {{ $attn->student }}
+                                        {{ $attn->student ?? 'N/A' }}
                                         </td>
-                                        <td>{{ $attn->card }}</td>
-                                        <td class="text-center">{{ $attn->enter == '-' ? '-' : $attn->enter }}</td>
-                                        <td class="text-center">{{ $attn->exit == '-' ? '-' : $attn->exit }}</td>
-                                        <td>{{ $attn->status }}</td>
+                                        <td>{{ $attn->card ?? 'N/A' }}</td>
+                                        <td class="text-center">{{ $attn->in_time ?? '-' }}</td>
+                                        <td class="text-center">{{ $attn->out_time ?? '-' }}</td>
+                                        <td class="text-center">{{ $attn->status ?? 'N/A' }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

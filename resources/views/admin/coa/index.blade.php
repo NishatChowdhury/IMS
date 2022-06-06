@@ -67,7 +67,9 @@
                                     <td>
                                         {{ Form::open(['action'=>['Backend\ChartOfAccountController@destroy',$coa->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                         <a href="{{ action('Backend\ChartOfAccountController@edit',$coa->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        @if($coa->is_delete == 0)
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        @endif
                                         {{ Form::close() }}
                                     </td>
                                 </tr>

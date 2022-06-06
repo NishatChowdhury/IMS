@@ -85,7 +85,7 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
-             $classes = AcademicClass::all();
+              $classes = AcademicClass::with('classes')->get();
             foreach($classes as $class){
                 $subjectCount = ExamSchedule::query()
                     ->where('academic_class_id',$class->id)   //class id means acadimic class id

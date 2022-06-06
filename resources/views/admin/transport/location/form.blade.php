@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-4 control-label" style="font-weight: 500; text-align: right">Description*</label>
+                        <label for="" class="col-sm-4 control-label" style="font-weight: 500; text-align: right">Description</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {!! Form::text('description', null, ['class'=>'form-control', 'placeholder'=>'Location Description']) !!}

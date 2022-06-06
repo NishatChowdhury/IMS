@@ -1,35 +1,37 @@
-@extends('layouts.fixed')
+<!-- pdf.blade.php -->
 
-@section('title', 'Exam Mgmt | Result Details')
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Marks Sheet</title>
+      <style>
+          table.table {
+    border: 1px solid#d5d5d5;
+    padding: 10px;
+}
 
-@section('content')
-
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Result Details</h1>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-12 text-center">
-                                    <img src="{{ asset('/assets/img/logos/') }}/{{ siteConfig('logo') }}" alt="">
-                                    <h1>{{ siteConfig('name') }}</h1>
+      </style>
+  </head>
+  <body>
+  <table class="table" width="100%">
+      <tr style="text-align: center">
+          <td>
+{{--              <img src="{{ asset('/assets/img/logos') }}/{{$logo}}" alt="">--}}
+{{--              <img src="{{ $logo }}" alt="">--}}
+                                    <h1 style="margin-top: 0px">{{ siteConfig('name') }}</h1>
                                     <p>{{ siteConfig('address') }}</p>
-                                </div>
-                            </div>
-                            <table id="" class="table">
+          </td>
+      </tr>
+  </table>
+<table>
+    <tr>
+        <td>
+            <h4>Student Information</h4>
+        </td>
+    </tr>
+</table>
+                        <table id="" class="table" width="100%" >
                                 <tr>
 
                                     <th>Student's Name : </th>
@@ -62,13 +64,14 @@
                                     <td>{{ $result->total_mark }}</td>
                                 </tr>
                             </table>
-
-                            <div style="float: right;" class="no-print">
-                                <a href="javascript:window.print()" role="button" class="btn btn-success btn-sm" title="PRINT"><i class="fas fa-print"></i></a>
-                                <a href="{{ url('c-p') }}/{{ $result->id }}" role="button" class="btn btn-danger btn-sm" title="Download PDF"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>
-                            </div>
-
-                            <table id="" class="table table-bordered" style="margin-top: 60px;">
+<table>
+    <tr>
+        <td>
+            <h4>Result Information</h4>
+        </td>
+    </tr>
+</table>
+    <table id="" class="table" style="" width="100%">
                                 <thead>
                                 <tr>
                                     <th>Subject</th>
@@ -79,7 +82,7 @@
                                     <th>Grade point</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="text-align: center">
                                 @foreach($marks as $mark)
                                     <tr>
                                         <td>{{ $mark->subject->name }}</td>
@@ -105,12 +108,5 @@
                                 @endforeach
                                 </tbody>
                             </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-@stop
+  </body>
+</html>

@@ -12,32 +12,28 @@ class WeeklyOffController extends Controller
 
     public function index()
     {
-        $weeklyOffs = json_decode(weeklyOff::query()->firstOrNew()->show_option);
-        if(!$weeklyOffs){
-            $weeklyOffs = []; // return empty array if no record in database
-            $all = weeklyOff::all();
-            return view('admin.attendance.weeklyOffSetting',compact('weeklyOffs','all'));
-        }
-//        $weeklyOff = weeklyOff::pluck('show_option')->first();
-        $weeklyOff = weeklyOff::all()->pluck('show_option');
-        $weeklyOffId = weeklyOff::all()->pluck('id');
+//
+//        weeklyOff::truncate();
+//        dd('deone');
         $all = weeklyOff::all();
 
-        return view('admin.attendance.weeklyOffSetting',compact('weeklyOff','weeklyOffId','all','weeklyOffs'));
+        return view('admin.attendance.weeklyOffSetting',compact('all'));
     }
 
 
     public function store(Request $request)
     {
-        $inputValue = $request->all();
+//      return  $inputValue = $request->all();
 
         $request->validate([
             'show_option' =>'required'
         ]);
 
-        $arrayToJson = json_encode($request->get('show_option'));
-        $inputValue['show_option'] = $arrayToJson;
-        $success = weeklyOff::query()->create($inputValue);
+//        $arrayToJson = json_encode($request->get('show_option'));
+//        $inputValue['show_option'] = $arrayToJson;
+        $success = weeklyOff::query()->create([
+            'show_option' => $request->get('show_option')
+        ]);
         if ($success){
             Session::flash('status', 'success');
         }
@@ -66,6 +62,9 @@ class WeeklyOffController extends Controller
 
     public function destroy($id)
     {
-        //
+        $finds = weeklyOff::find($id);
+       $finds->delete();
+
+       return back();
     }
 }

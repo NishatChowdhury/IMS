@@ -206,8 +206,16 @@ class Student extends Model
     public function studentAcademic()
     {
         // for single data show
-        return $this->hasOne(StudentAcademic::class,'student_id','id');
+        return $this->hasOne(StudentAcademic::class,'student_id','id')->latest();
     }
+    public function studentAcademicInfo()
+    {
+        // for single data show
+        return $this->belongsTo(StudentAcademic::class,'student_id','id');
+    }
+
+
+
 
     // protected $dates = ['dob'];
 

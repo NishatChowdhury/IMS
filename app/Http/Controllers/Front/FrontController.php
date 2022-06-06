@@ -297,10 +297,9 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-        // $admissionStep = OnlineAdmission::query()->where('status', 1)->get();
 
-        // return $uri;
-        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+//         dd($content);
         if($content->type == 3){
 
             $notices = null;
@@ -345,7 +344,6 @@ class FrontController extends Controller
             }
 
             if($content->url === 'news'){
-
                 $newses = Notice::query()
                     ->where('notice_type_id',1)
                     ->orderByDesc('start')

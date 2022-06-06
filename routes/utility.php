@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AttendanceStatus;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AppliedStudent;
 use App\Models\Backend\Attendance;
@@ -14,11 +15,16 @@ use App\Models\Backend\Mark;
 use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Student;
+use App\Models\Backend\weeklyOff;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Student\StudentLogin;
 use Carbon\Carbon;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -130,11 +136,134 @@ Route::get('t', function(){
     return dd('done');
 });
 
+Route::get('a-s', function(){
+    dd('nothing');
+    // the joob is done
+//    return AttendanceStatus::all();
+//   Schema::table('attendance_statuses', function (Blueprint $table) {
+//            $data = [
+//                ['name'=>'Present','code'=>'P'],
+//                ['name'=>'Absent','code'=>'A'],
+//                ['name'=>'Late','code'=>'L'],
+//                ['name'=>'Early Leave','code'=>'E'],
+//                ['name'=>'Holiday','code'=>'H'],
+//                ['name'=>'Weekly Off','code'=>'W'],
+//                ['name'=>'Leave','code'=>'Le'],
+//                ['name'=>'Late & Early Leave','code'=>'LRE'],
+//            ];
+//
+//            foreach ($data as $d){
+//                AttendanceStatus::query()->create($d);
+//            }
+//        });
+});
+
+
+Route::get('update-attendance/{d}', function ($d){
+
+
+       $todayCount =  Carbon::parse($d);
+       $today =  Carbon::parse($d)->format('Y-m-d');
+////      $today = \Carbon\Carbon::today()->format('Y-m-d');
+//        $todayCount = \Carbon\Carbon::today();
+//    return $today->format('N');
+
+     $students = Student::query()->get();
+
+    foreach ($students as $key => $student){
+
+          $rawData = RawAttendance::query()
+                ->where('access_date', $today)
+                ->where('registration_id', $student->studentId)
+                ->get();
+
+        if ($rawData->isEmpty()) {
+
+                $min = null;
+                $max = null;
+
+                $leave = \App\Models\Backend\StudentLeave::query()
+                    ->where('student_id', $student->id)
+                    ->where('date', '=', $today)
+                    ->exists();
+//       return         $weeklyOff = weeklyOff::where('id', 1)->first();
+                $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
+//                return $today;
+                $holiday = \App\Models\Backend\Holiday::query()
+                                ->where('start', '<=', $today)
+                                ->where('end', '>=', $today)
+                                ->where('is_holiday', 1)
+                                ->exists();
+
+                if ($holiday) {
+                    $attendanceStatus = '5'; // Holiday
+                } elseif ($leave) {
+                    $attendanceStatus = '7'; // Leave
+                } elseif ($weeklyOff) {
+                    $attendanceStatus = '6'; // Weekly Off
+                } else {
+                    $attendanceStatus = '2'; // Absent
+                }
+        }else{
+                $min = $rawData->min('access_time');
+                $max = $rawData->max('access_time');
+
+                $shift = \App\Models\Backend\Shift::query()->first();
+                $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
+                $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
+
+                if($min >= $shiftIn && $max <= $shiftOut){
+                    $attendanceStatus = '8'; // Late & Early Leave
+                }elseif ($min <= $shiftIn && $max <= $shiftOut) {
+                    $attendanceStatus = '4'; // Early Leave
+                } elseif ($min <= $shiftIn) {
+                    $attendanceStatus = '1';  // Present
+                } elseif ($min > $shiftIn) {
+                    $attendanceStatus = '3'; // Late
+                }
+
+
+        }
+
+         $data = [
+                'student_academic_id' => $student->studentAcademic->id ?? 0,
+                'date' => $today,
+                'in_time' => $min,
+                'out_time' => $max,
+                'attendance_status_id' => $attendanceStatus,
+            ];
+
+
+        $attendanceExists = Attendance::query()
+                ->where('student_academic_id', $student->studentAcademic->id ?? 0)
+                ->where('date', $today)
+                ->exists();
+
+
+        if ($attendanceExists) {
+                $attendance = Attendance::query()
+                    ->where('student_academic_id', $student->studentAcademic->id ?? 0)
+                    ->where('date', $today)
+                    ->first();
+                $attendance->update($data);
+            } else {
+                Attendance::create($data);
+            }
+
+
+
+    }
+        dd('done');
+
+
+
+
+
+});
+
 
 
 Route::get('download-raw-attendances',function(){
-
-//   return Attendance::query()->get();
 
         $startDate=today()->subWeek();
         $startDate=$startDate->format('Y-m-d');
@@ -171,8 +300,6 @@ Route::get('download-raw-attendances',function(){
             $replace_syntax = substr($replace_syntax, 0, -1);
             $responseBody = json_decode($replace_syntax);
 
-//            dd( $responseBody);
-//           return $getvalue = json_decode($responseBody);
 
 
 
@@ -180,9 +307,9 @@ Route::get('download-raw-attendances',function(){
 
         ini_set('max_execution_time',30);
 
-        $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
+//        $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
 
-        if(!$isExists){
+//        if(!$isExists){
             $attendance = new RawAttendance();
             $attendance->registration_id = $row->registration_id;
             $attendance->access_id = $row->access_id;
@@ -194,7 +321,7 @@ Route::get('download-raw-attendances',function(){
             $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
             $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
             $attendance->save();
-        }
+//        }
     }
 
     dd('data saved successfully');
@@ -206,7 +333,6 @@ Route::get('getdata-attendance', function(){
 
         $today = Carbon::today()->format('Y-m-d');
         foreach($students as $student){
-
             $isExist = RawAttendance::query()
                 ->where('registration_id',$student->studentId)
                 ->where('access_date','like','%'.$today.'%')
@@ -243,7 +369,7 @@ Route::get('getdata-attendance', function(){
                             Attendance::query()->create($data);
 //                            $attendance->update(['processed'=>1]);
                         }else{
-                            //$hasAttendance->update($data); TODO: fixed it after showing demo. compare edit time with existing time.
+                            //$hasAttendance->update($data);// TODO: fixed// it after showing demo. compare edit time with existing time.
 //                            $attendance->update(['processed'=>1]);
                         }
                         //dd(!$hasAttendance);
@@ -283,6 +409,41 @@ Route::get('getdata-attendance', function(){
         }
         //dd('one');
         return 0;
+});
+
+Route::get('c-p/{id}', function ($id){
+//    return $id;
+     $data = [
+            'title' => 'Welcome to IMS',
+            'date' => date('m/d/Y')
+        ];
+
+
+
+    $result = \App\Models\Backend\ExamResult::query()->with('studentAcademic')->findOrFail($id);
+
+         $marks = \App\Models\Backend\Mark::query()
+            ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
+            ->where('exam_id',$result->exam_id)
+//            ->where('student_academic_id',$result->studentAcademic->id)
+            ->join('subjects','subjects.id','=','marks.subject_id')
+            ->select('marks.*','subjects.level')
+            ->orderBy('level')
+            ->get();
+//         $logo = siteConfig('logo');
+         $logo = '5.jpg';
+    $pdf = PDF::loadView('resultPdf', compact('result','marks','logo'));
+    return $pdf->download('invoice.pdf');
+        return view('resultPdf',compact('result','marks','logo'));
+
+
+
+
+
+
+
+
+
 });
 
 Route::get('download-attendances',function(){

@@ -8,7 +8,7 @@ Route::get('student/login','Student\ProfileController@showLoginForm')->name('stu
 Route::get('student/profile','Student\ProfileController@profile')->name('student.profile');
 Route::post('student/marks','Student\ProfileController@marks')->name('student.marks');
 Route::post('student/diary',[ProfileController::class, 'diary'])->name('student.diary');
-Route::post('student/stdAttendance',[ProfileController::class, 'stdAttendance']);
+Route::post('student/stdAttendance',[ProfileController::class, 'stdAttendance'])->name('student.attendance');
 Route::post('student/class-schedule',[ProfileController::class, 'classSchedule'])->name('student.class-schedule');
 Route::post('student/exam-routine',[ProfileController::class, 'examRoutine'])->name('student.exam-routine');
 Route::post('student/syllabus',[ProfileController::class, 'syllabus'])->name('student.syllabus');
