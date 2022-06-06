@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Attendance;
+use App\Models\Student\Attendance;
 use App\Models\Backend\Exam;
 use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
@@ -32,16 +32,16 @@ class ProfileController extends Controller
         $id = auth()->guard('student')->user()->student_id;
         $student = Student::query()->with('academics')->findOrFail($id);
 
-        $attendances = Attendance::query()
-            ->where('registration_id',$student->studentId)
-            ->where('date' ,'like', now()->format('Y-m-').'%')
-            ->orderBy('date')
-            ->get();
-
         $stuAcademic =  StudentAcademic::query()
             ->where('student_id', $student->id)
             ->latest()
             ->first();
+
+        $attendances = Attendance::query()
+            ->where('student_academic_id',$stuAcademic->id)
+            ->where('date' ,'like', now()->format('Y-m-').'%')
+            ->orderBy('date')
+            ->get();
 
         $payments = StudentPayment::query()
             ->where('student_academic_id',$stuAcademic->id)
@@ -145,33 +145,42 @@ class ProfileController extends Controller
     public function stdAttendance(Request $request){
         $id = auth()->guard('student')->user()->student_id;
         $student = Student::query()->with('academics')->findOrFail($id);
+
+        $stuAcademic =  StudentAcademic::query()
+            ->where('student_id', $student->id)
+            ->latest()
+            ->first();
+
         $month_id = $request->input('month_id');
         if (strlen($month_id) == 1){
             $cng_month = '0'.$month_id;
         }else{
             $cng_month = $month_id;
         }
+
         $year_id = $request->input('year_id');
         $attendances = Attendance::query()
-            ->where('registration_id',$student->studentId)
+            ->where('student_academic_id',$stuAcademic->id)
             ->where('date' ,'like', now()->format($year_id.'-'.$cng_month.'-').'%')
             ->orderBy('date')
             ->get();
-        $html_attendance ='';
-        if (Attendance::query()->where('date' ,'like', now()->format('%'.'-'.$cng_month.'-'.'%'))->where('date' ,'like', now()->format($year_id.'-'.'%'))->exists()){
-            foreach ($attendances as $data){
-                $html_attendance .=
-                    '<tr>'.
-                    '<th scope="row" class="text-dark font-weight-semiBold">'.$data->date->format('Y-m-d') .'</th>'.
-                    '<td>'.$data->entry.'</td>'.
-                    '<td>'.$data->exit.'</td>'.
-                    '<td>'.'<a href="#" class="btn btn-link">'.$data->status.'</a>'.'</td>
-        </tr>';
-            }
-        }else{
-            $html_attendance .= '<tr><td colspan="4"><h1 class="text-center text-info">No record found</h1></td></tr>';
-        }
-        return response()->json(['html'=>$html_attendance]);
+
+//        $html_attendance ='';
+//        if (Attendance::query()->where('date' ,'like', now()->format('%'.'-'.$cng_month.'-'.'%'))->where('date' ,'like', now()->format($year_id.'-'.'%'))->exists()){
+//            foreach ($attendances as $data){
+//                $html_attendance .=
+//                    '<tr>'.
+//                    '<th scope="row" class="text-dark font-weight-semiBold">'.$data->date->format('Y-m-d') .'</th>'.
+//                    '<td>'.$data->in_time.'</td>'.
+//                    '<td>'.$data->out_time.'</td>'.
+//                    '<td>'.'<a href="#" class="btn btn-link">'.$data->status->name ?? "Undefined".'</a>'.'</td>
+//        </tr>';
+//            }
+//        }else{
+//            $html_attendance .= '<tr><td colspan="4"><h1 class="text-center text-info">No record found</h1></td></tr>';
+//        }
+        //return response()->json(['html'=>$html_attendance]);
+        return view('student._attendance',compact('attendances'));
     }
 
     public function classSchedule()
