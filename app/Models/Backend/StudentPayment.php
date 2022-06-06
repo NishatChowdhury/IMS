@@ -6,6 +6,7 @@ use App\Models\Backend\FeeSetup;
 use App\Models\Backend\PaymentMethod;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StudentPayment extends Model
 {
@@ -48,5 +49,15 @@ class StudentPayment extends Model
     public function academics()
     {
         return $this->belongsTo(StudentAcademic::class, 'student_academic_id');
+    }
+
+    /**
+     * A payment is belongs to a method
+     *
+     * @return BelongsTo
+     */
+    public function method(): BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class,'payment_method');
     }
 }

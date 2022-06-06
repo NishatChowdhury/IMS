@@ -487,12 +487,6 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('student.fee')}}" class="nav-link {{ isActive('admin/fee-category/student') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Student Fee Collection</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ action('Backend\ChartOfAccountController@index') }}" class="nav-link {{ isActive('admin/coa') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chart of Accounts</p>
@@ -574,53 +568,6 @@
                             <a href="{{route('communication.apiSetting')}}" class="nav-link {{ isActive('admin/communication/apiSetting') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p> API Settings</p>
-                            </a>
-                        </li>
-                        {{--<li class="nav-item">--}}
-                        {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
-                        {{--<i class="far fa-circle nav-icon"></i>--}}
-                        {{--<p>Starter Page</p>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview {{ isActive(['admin/extra*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/extra*']) }}">
-                        <i class="nav-icon fas fa-scroll"></i>
-                        <p>
-                            Reports
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview"  style="background-color: rgb(40, 40, 45);">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ isActive('admin/extra/404') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Profit and Loss </p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="#" class="nav-link {{ isActive('admin/extra/500') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Balance Sheet</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="#" class="nav-link {{ isActive('admin/extra/blank') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Annual Payments</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('Backend\ReportController@student_fee_report') }}" class="nav-link {{ isActive('admin/extra/blank') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fee Collection</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('Backend\ReportController@student_monthly_fee_report') }}" class="nav-link {{ isActive('admin/extra/blank') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Monthly Fee Report</p>
                             </a>
                         </li>
                         {{--<li class="nav-item">--}}
@@ -828,7 +775,7 @@
                     </li>
 
                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ route('diary.index') }}" class="nav-link {{ isActive(['dairy-list']) }}">
+                        <a href="{{ route('diary.index') }}" class="nav-link {{ isActive(['diary-list']) }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Dairy List</p>
                         </a>

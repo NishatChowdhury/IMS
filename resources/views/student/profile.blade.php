@@ -72,34 +72,7 @@
                                 Quick Action:
                             </p>
                             <ul class="list-inline mb-0">
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a href="#" class="btn btn-outline-facebook iconbox iconbox-sm">--}}
-                                {{--                                        <i class="ti-facebook"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a href="#" class="btn btn-outline-twitter iconbox iconbox-sm">--}}
-                                {{--                                        <i class="ti-twitter"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a href="#" class="btn btn-outline-google-plus iconbox iconbox-sm">--}}
-                                {{--                                        <i class="ti-google"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li class="list-inline-item">--}}
-                                {{--                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" href="{{ route('logout') }}"--}}
-                                {{--                                       onclick="event.preventDefault();--}}
-                                {{--                                                     document.getElementById('logout-form').submit();" title="Logout">--}}
-                                {{--                                        <i class="fas fa-sign-out-alt"></i>--}}
-                                {{--                                    </a>--}}
-                                {{--                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
-                                {{--                                          style="display: none;">--}}
-                                {{--                                        @csrf--}}
-                                {{--                                    </form>--}}
-                                {{--                                </li>--}}
                                 <li class="list-inline-item">
-                                    {{--                                    {{route('show.diary')}}--}}
                                     <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="diary"
                                        data-toggle="modal" data-target="#exampleModal" href="#" title="Diary">
                                         <i class="fas fa-book"></i>
@@ -112,17 +85,12 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#"
-                                       data-toggle="modal" data-target="#examScheduleModal"
-                                       title="Exam Routine">
+                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#exampleModal" title="Exam Routine">
                                         <i class="fas fa-calendar-week"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="syllabus" href="#"
-                                       data-toggle="modal" data-target="#syllabusModal"
-                                       title="Syllabus">
+                                    <a class="btn btn-outline-success iconbox iconbox-sm" id="syllabus" href="#" data-toggle="modal" data-target="#exampleModal" title="Syllabus">
                                         <i class="fas fa-book-reader"></i>
                                     </a>
                                 </li>
@@ -187,36 +155,7 @@
                             </div>
                             <!-- END tab-pane -->
                             <div class="tab-pane fade exam-data" id="Tabs_1-2" role="tabpanel">
-                                <div class="row">
-
-                                    <table class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col"><b>{{ __('Examination') }}</b></th>
-                                            <th scope="col"><b>{{ __('Start Date') }}</b></th>
-                                            <th scope="col"><b>{{ __('End Date') }}</b></th>
-                                            <th scope="col"><b>{{ __('Full Marks') }}</b></th>
-                                            <th scope="col"><b>{{ __('GPA') }}</b></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        @foreach($exam as $data)
-                                            <tr data-toggle="modal" data-id="{{$data->exam->id}}"
-                                                data-target="#exampleModal" class="result-details example">
-                                                <input class="exam-id" type="hidden" value="{{$data->exam_id}}">
-                                                <td>{{$data->exam->name}}</td>
-                                                <td>{{$data->exam->start}} </td>
-                                                <td>{{$data->exam->end}} </td>
-                                                <td>{{$data->total_mark}}</td>
-                                                <td>{{$data->gpa}}</td>
-                                            </tr>
-                                        @endforeach
-
-                                        </tbody>
-                                    </table>
-
-                                </div> <!-- END row-->
+                                @include('student.profile_exam')
                             </div>
                             <!-- END tab-pane -->
                             <div class="tab-pane fade" id="Tabs_1-3" role="tabpanel">
@@ -231,7 +170,6 @@
         </div> <!--END container-->
     </section>
 
-
     @include('student.modal')
 @stop
 
@@ -243,20 +181,20 @@
              * Display marks of an exam
              */
             $('.result-details').click(function () {
-                var id = $('.exam-id').val();
+                var id = $(this).data('id');
                 var token = "{{csrf_token()}}";
+                var name = $(this).data('name');
+                console.log(name);
                 $.ajax({
                     url: "{{ route('student.marks') }}",
                     method: 'POST',
-                    data: {
-                        '_token': token,
-                        'id': id,
-                    },
+                    data: {_token:token,id:id},
                     beforeSuccess: function(){
                         $("#loader").show();
                     },
                     success: function (res) {
                         $("#loader").hide();
+                        $("#exampleModalLabel").text(name);
                         $('#modal-body').html(res);
                     }
                 })
@@ -283,7 +221,7 @@
             //    end search attendance
 
             /**
-             * Display diary for a certain date
+             * Display diary for the current date
              */
             $('#diary').click(function () {
                 var token = "{{csrf_token()}}";
@@ -298,10 +236,39 @@
                     },
                     success: function (res) {
                         $("#loader").hide();
+                        $("#exampleModalLabel").text('Dairy');
                         $('#modal-body').html(res);
+                        diarySearch();
                     }
                 })
             });
+
+            /**
+             * Search the diary with a certain date
+             */
+            function diarySearch(){
+                $("#diary-search").click(function(){
+                    var token = "{{csrf_token()}}";
+                    var date = $("#date").val();
+
+                    $.ajax({
+                        url: "{{ route('student.diary') }}",
+                        method: 'POST',
+                        data: {
+                            '_token': token,date:date,
+                        },
+                        beforeSuccess: function () {
+                            $("#loader").show();
+                        },
+                        success: function (res) {
+                            $("#loader").hide();
+                            $("#exampleModalLabel").text('Dairy');
+                            $('#modal-body').html(res);
+                            diarySearch();
+                        }
+                    })
+                })
+            }
 
             /**
              * Display class schedule of the current student
@@ -313,38 +280,44 @@
                     method: 'POST',
                     data: {_token: token},
                     success: function (res) {
+                        console.log('class schedule');
+                        $("#exampleModalLabel").text('Class Schedule');
                         $('#modal-body').html(res);
                     }
                 })
             });
 
+            /**
+             * Display exam routine for the student
+             */
             $('#exam-routine').click(function () {
-                var token = "{{csrf_token()}}";
+                var token = "{{ csrf_token() }}";
                 $.ajax({
-                    url: 'examRoutine',
+                    url: '{{ route('student.exam-routine') }}',
                     method: 'POST',
-                    data: {
-                        '_token': token,
-                    },
+                    data: {_token: token,},
                     success: function (res) {
-                        $('#examScheduleBody').html(res.html);
-                    }
-                })
-            });
-            $('#syllabus').click(function () {
-                var token = "{{csrf_token()}}";
-                $.ajax({
-                    url: 'syllabus',
-                    method: 'POST',
-                    data: {
-                        '_token': token,
-                    },
-                    success: function (res) {
-                        $('#syllabusBody').html(res.html);
+                        $("#exampleModalLabel").text('Exam Routine');
+                        $('#modal-body').html(res);
                     }
                 })
             });
 
+            /**
+             * Display & download syllabus
+             */
+            $('#syllabus').click(function () {
+                var token = "{{csrf_token()}}";
+                $.ajax({
+                    url: '{{ route('student.syllabus') }}',
+                    method: 'POST',
+                    data: {_token: token},
+                    success: function (res) {
+                        $('#modal-body').html(res);
+                        $("#exampleModalLabel").text('Syllabus');
+                    }
+                })
+            });
         });
     </script>
 @endsection

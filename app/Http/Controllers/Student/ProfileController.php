@@ -16,6 +16,7 @@ use App\Models\Backend\Syllabus;
 use App\Models\ClassSchedule;
 use App\Models\Diary;
 use Carbon\CarbonPeriod;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -90,20 +91,26 @@ class ProfileController extends Controller
         return $amount - $paid;
     }
 
-    public function exam($id){
+    public function exam($id)
+    {
         return ExamResult::query()
             ->where('student_academic_id', $id)
             ->latest()
             ->get();
     }
 
-    public function diary()
+    /**
+     * Display diary for a certain date of the current logged in student
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function diary(Request $request): View
     {
         $id = auth()->guard('student')->user()->student_id;
         $student = StudentAcademic::query()->where('student_id',$id)->latest()->first();
-        $date = today();
-        $date = Carbon::createFromDate(2022,05,17)->format('Y-m-d');
-        //$label = __('Diary');
+
+        $date = $request->has('date') ? $request->get('date') : today()->format('Y-m-d');
 
         $diaries = Diary::query()->with('subject')
             ->with('teacher')
@@ -111,16 +118,6 @@ class ProfileController extends Controller
             ->where('date',$date)
             ->get();
 
-//        $html_data='';
-//        foreach ($diary as $data){
-//            $html_data.='<tr data-toggle="modal" data-target="#diaryModal">'.
-//                '<td>'.$data->date .'</td>'.
-//                '<td>'.$data->subject->name .'</td>'.
-//                '<td>'.$data->teacher->name.'</td>'.
-//                '<td>'.$data->description.'</td>'.
-//                '</tr>';
-//        }
-        //return response()->json(['html'=>$html_data,'title'=>'Diary']);
         return view('student._diary',compact('diaries'));
     }
 
@@ -136,13 +133,13 @@ class ProfileController extends Controller
         $id = auth()->guard('student')->user()->student_id;
         $exam_id = $request->input('id');
 
-        $resultDetails = Mark::query()
+        $marks = Mark::query()
             ->where('student_id',$id)
             ->where('exam_id',$exam_id)
             ->with('subject')
             ->get();
 
-        return view('student._result',compact('resultDetails'));
+        return view('student._result',compact('marks'));
     }
 
     public function stdAttendance(Request $request){
@@ -194,51 +191,31 @@ class ProfileController extends Controller
 
         return view('student._class-schedule',compact('schedules'));
     }
+
     public function examRoutine(){
         $id = auth()->guard('student')->user()->student_id;
-        $student = StudentAcademic::query()->where('student_id', $id)->first();
-        $examRoutine = ExamSchedule::query()
+
+        $student = StudentAcademic::query()->where('student_id', $id)->latest()->first();
+
+        $routines = ExamSchedule::query()
             ->where('academic_class_id', $student->academic_class_id)
             ->with('subject')
             ->with('teacher')
-            ->get();
-//        foreach ($examRoutine as $exam){
-//            if ($exam->ecademic_class_id==)
-//        }
-//        return response()->json(['html'=>$examRoutine]);
-        $html_exam = '';
-        foreach ($examRoutine as $data) {
-            $html_exam .=
-                '<tr>' .
-                '<td>' . $data->subject->name . '</td>' .
-                '<td>' . $data->date . '</td>' .
-                '<td>' . $data->start . '</td>' .
-                '<td>' . $data->end . '</td>' .
-                '<td>' . $data->teacher->name. '</td>' .
-                '</tr>';
+            ->get()
+            ->groupBy('exam_id');
 
-        }
-        return response()->json(['html'=>$html_exam]);
+        return view('student._exam-routine',compact('routines'));
     }
+
     public function syllabus(){
         $id = auth()->guard('student')->user()->student_id;
-        $student = StudentAcademic::query()->where('student_id', $id)->first();
-        $syllabuses = Syllabus::query()
+        $student = StudentAcademic::query()->where('student_id', $id)->latest()->first();
+        $syllabus = Syllabus::query()
             ->where('academic_class_id', $student->academic_class_id)
-            ->get();
-        $syllabus = '';
-        foreach ($syllabuses as $data) {
-            $syllabus .=
-                '<tr>' .
-                '<td>' . $data->title . '</td>' .
-                '<td>' .
+            ->latest()
+            ->first();
 
-                '<a href="/assets/syllabus/'.$data->file.'" class="btn btn-success btn-sm" target="_blank">View Syllabus <i class="fas fa-eye"></i></a>'.
-                '</td>'.
-                '</tr>';
-
-        }
-        return response()->json(['html'=>$syllabus]);
+        return view('student._syllabus',compact('syllabus'));
     }
 }
 

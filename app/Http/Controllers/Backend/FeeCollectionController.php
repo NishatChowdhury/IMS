@@ -137,6 +137,7 @@ class FeeCollectionController extends Controller
 
 
         $receipt =  FeeSetupCategory::query()->where('fee_setup_student_id', $fss->first()->id)->get();
+
         return redirect('admin/fee/fee-collection')
             ->with('receipt', $receipt)
             ->with('spay', $sp)
