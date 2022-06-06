@@ -24,11 +24,6 @@ class CreateAttendanceStatusesTable extends Migration
 
 
 
-
-
-
-
-
     /**
      * Reverse the migrations.
      *
