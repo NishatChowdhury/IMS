@@ -65,91 +65,33 @@
                             <h5 class="text-center">Date: {{ $date }}</h5>
                         </div>
                         <div class="card-body" style="padding: 1.00rem;">
-                            <div class="row" style="padding: 10px;">
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Total')}}</h5>
-                                            <p><span class="badge badge-info" style="color: black; padding: 5px 45px; font-size: 18px">{{ count($staffs) }}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">{{__('Present') }}</h5>
-                                            <p>
-                                                    <span class="badge badge-success" style="color: black; padding: 5px 30px; font-size: 18px">
-00
-                                                    </span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">Late</h5>
-                                            <p><span class="badge badge-primary" style="color: black; padding: 5px 45px; font-size: 18px">00</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">Left Early</h5>
-                                            <p><span class="badge badge-warning" style="color: black; padding: 5px 35px; font-size: 18px">00</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">Absent</h5>
-                                            <p><span class="badge badge-danger" style="color: black; padding: 5px 28px; font-size: 18px">
-00
-                                                </span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px; font-weight: bold">Leave</h5>
-                                            <p><span class="badge badge-dark" style="color: black; padding: 5px 28px; font-size: 18px">
-00
-                                                </span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
+                           <div class="card-body" style="padding: 1.00rem;">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th style="text-align: center">{{__('Employee') }}</th>
-                                    <th style="text-align: center">{{__('Card ID') }}</th>
-                                    <th style="text-align: center">{{__('Designation ') }}</th>
-                                    <th style="text-align: center">{{__('Enter') }}</th>
-                                    <th style="text-align: center">{{__('Exit') }}</th>
-                                    <th style="text-align: center">{{__('Status') }}</th>
-                                    <th style="text-align: center">{{__('Is Notified') }}</th>
+                                    <th>Teacher</th>
+                                    <th>Card</th>
+                                    <th class="text-center">Entry</th>
+                                    <th class="text-center">Exit</th>
+                                    <th class="text-center">Status</th>
                                 </tr>
                                 </thead>
-                                <tbody id="indTeacher">
-                                @foreach($attend as $staff)
+                                <tbody>
+                                @foreach($attendances as $attn)
                                     <tr>
-                                        <td><a href="">{{ $staff->name }}</a> </td>
-                                        <td>{{ $staff->card }}</td>
-                                        <td>{{ $staff->designation }}</td>
-                                        <td style="text-align: center">{{ $staff->enter }}</td>
-                                        <td style="text-align: center">{{ $staff->exit }}</td>
-                                        <td style="text-align: center">{{ $staff->status }}</td>
-                                        <td>{{ $staff->is_notified }}</td>
+                                        <td>
+                                        {{ $attn->teacher ?? 'N/A' }}
+                                        </td>
+                                        <td>{{ $attn->card ?? 'N/A' }}</td>
+                                        <td class="text-center">{{ $attn->in_time ?? '-' }}</td>
+                                        <td class="text-center">{{ $attn->out_time ?? '-' }}</td>
+                                        <td class="text-center">{{ $attn->status ?? 'N/A' }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>
