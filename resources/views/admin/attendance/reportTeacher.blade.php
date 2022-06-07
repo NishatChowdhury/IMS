@@ -117,7 +117,7 @@
                                 <table class="table table-bordered table-responsive" id="atn_result_show">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">{{$personStatus ?? ''}}</th>
+                                        <th class="text-center">Roll</th>
                                         <th style="padding-left: 10px">Name</th>
                                         @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
                                             <th style="padding-left: 10px">{{ $i }}</th>
@@ -127,26 +127,18 @@
                                     <tbody id="atn_result_show">
                                     @foreach($students as $student)
                                         <tr>
-                                            <th>{{ $student->rank ?? '' }}{{ $student->code ?? ''}}</th>
-                                            <th>{{ $student->student->name ?? ''}} {{ $student->name ?? ''}}</th>
+                                            <th>{{ $student->rank }}</th>
+                                            <th>{{ $student->student->name ?? ''}}</th>
                                             @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
                                                 @if($i < 10)
                                                     @php $i = '0'.$i @endphp
                                                 @endif
                                                 <td>
                                                     <?php
-                                                    if(isset($student->student)){
                                                         $attn = \App\Models\Backend\Attendance::query()
                                                                     ->where('student_academic_id',$student->id)
                                                                     ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->first();
-                                                    }else{
-                                                        $attn = \App\Models\Backend\AttendanceTeacher::query()
-                                                                    ->where('staff_id',$student->code)
-                                                                    ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
-                                                                    ->first();
-                                                    }
-
 
                                                     ?>
 {{--                                                {{ $attn->attendanceStatus->code ?? '' }}--}}
@@ -230,12 +222,18 @@
             let statusValue = $(this).val();
             if(statusValue == 3){    // Teacher for 3
                 $('#forStudent').hide();
+                let action = "{{ action('Backend\AttendanceController@reportTeacher') }}";
+                $('#changeAction').attr("action", action);
             }
             if(statusValue == 1){   // Student for 1
                 $('#forStudent').show();
+               let action = "{{ action('Backend\AttendanceController@report') }}";
+                $('#changeAction').attr("action", action);
             }
         })
 
+         let action = "{{ action('Backend\AttendanceController@report') }}";
+        $('#changeAction').attr("action", action);
 
 
 

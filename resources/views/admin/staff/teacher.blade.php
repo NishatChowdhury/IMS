@@ -74,25 +74,13 @@
     <!-- /.Search-panel -->
 
     <!-- ***/teacher page inner Content Start-->
-    <section class="content">
+    <section class="content mt-5">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
-                                            <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
-                                        </div>
-                                        <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0;">Total Found</h5>
-                                            <p>{{ $staffs->count() }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div>
                                     <a href="{{route('staff.addstaff')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>

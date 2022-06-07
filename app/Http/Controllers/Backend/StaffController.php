@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\BloodGroup;
 use App\Models\Backend\Gender;
+use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
 use App\Repository\StaffRepository;
 use Illuminate\Http\Request;
@@ -30,8 +31,9 @@ class StaffController extends Controller
     public function addstaff()
     {
         $genders = Gender::all()->pluck('name', 'id');
+        $shifts = Shift::query()->pluck('name', 'id');
         $blood_groups = BloodGroup::all()->pluck('name', 'id');
-        return view ('admin.staff.addstaff', compact('genders', 'blood_groups'));
+        return view ('admin.staff.addstaff', compact('genders', 'blood_groups','shifts'));
     }
 
     public function store_staff(Request $req){
@@ -67,9 +69,10 @@ class StaffController extends Controller
 
     public function edit_staff($id){
         $info = Staff::query()->findOrFail($id);
+        $shifts = Shift::query()->pluck('name', 'id');
         $genders = Gender::all()->pluck('name', 'id');
         $blood_groups = BloodGroup::all()->pluck('name', 'id');
-        return view ('admin.staff.editstaff', compact('genders', 'blood_groups','info'))->with('update',$info);
+        return view ('admin.staff.editstaff', compact('genders', 'blood_groups','info','shifts'))->with('update',$info);
     }
 
     public function update_staff(Request $req){
