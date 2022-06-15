@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Attendance;
+use App\Models\Backend\AttendanceTeacher;
 use App\Models\Backend\Classes;
 use App\Models\Backend\HolidayDuration;
 use App\Models\Backend\RawAttendance;
@@ -115,78 +116,53 @@ class AttendanceController extends Controller
 
     public function teacher(Request $request)
     {
-
+//        return AttendanceTeacher::all();
+//        return $request->all();
         if($request->has('staff_type_id') && $request->has('date')){
             $staffs = Staff::query()
                 ->where('staff_type_id',$request->get('staff_type_id'))
-                ->orderBy('code')
+                ->orderBy('card_id')
                 ->get();
-
             $date = $request->get('date');
 
-            $attend = [];
-            foreach($staffs as $staff){
-                $attn = RawAttendance::query()
-                    ->where('registration_id',$staff->card_id)
-                    ->where('access_date','like','%'.$date.'%')
-                    ->get();
+             $attend = [];
+                foreach($staffs as $staff){
+        //            return strval($today);
+//                    $stuAca = StudentAcademic::where('student_id',$student->id)->first();
+                    $attn = AttendanceTeacher::query()
+                        ->whereDate('date', $date)
+                        ->where('staff_id',$staff->card_id)
+                        ->first();
 
-                if($attn->count() > 0){
-                    $attend[] = (object)[
-                        'name'=>$staff->name,
-                        'card'=>$staff->card_id,
-                        'designation' => $staff->title,
-                        //'date'=>$request->date,
-                        'enter'=>Carbon::parse($attn->first()->access_date)->format('H:i:s'),
-                        'exit'=>Carbon::parse($attn->last()->access_date)->format('H:i:s'),
-                        'status'=>'P',
-                        'is_notified'=>''
-                    ];
-                }else{
-                    $attend[] = (object)[
-                        'name'=>$staff->name,
-                        'card'=>$staff->card_id,
-                        'designation' => $staff->title,
-                        //'date'=>$request->date,
-                        'enter'=>'-',
-                        'exit'=>'-',
-                        'status'=>'A',
-                        'is_notified'=>''
-                    ];
-                    //dd($attendances);
+
+                    if($attn != null) {
+                        $attendArr[] = (object)[
+                            'teacher' => $staff->name,
+                            'card' => $staff->card_id,
+                            'date' => $date,
+                            'in_time' => $attn->manual_in_time ?? $attn->in_time,
+                            'out_time' => $attn->manual_out_time ?? $attn->out_time,
+                            'status' => $attn->attendanceStatus->name ?? '',
+                            'is_notified' => 'Is Notified'
+                        ];
+                    }
+        //                array_push($attend, $attendArr);
                 }
-            }
+                $repository = $this->repository;
+                $attendances = $attendArr ?? [];
+
+//                return $attendances;
         }else{
             $attend = [];
             $staffs = [];
+            $attendances = [];
             $date = '';
         }
 
-//        $today_date = date('Y-m-d');
-//        $teachers = Staff::query()->get();
-//        //dd($teachers);
-//        $total_attendance_teacher = $n =0;
-//        foreach ($teachers as $teacher){
-//            $total_attendance_teachers[$n] = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('registration_id', $teacher->card_id)->first();
-//            if($total_attendance_teachers[$n] != null){
-//                $total_attendance_teacher++;
-//            }
-//            $n++;
-//        }
-//        $total_teacher = count($teachers);
-//        $total_absents_teacher = $total_teacher - $total_attendance_teacher;
-//
-//        $teachers_data =DB::select(DB::raw("SELECT attendances.registration_id, staffs.role_id, attendances.access_date, staffs.name FROM attendances INNER JOIN staffs ON attendances.registration_id=staffs.card_id WHERE attendances.access_date like'".$today_date."%'"));
-//
-//        $teacher_late_data = Attendance::query()->where('access_date','like','%'.$today_date.'%')->where('access_date', '<' ,$today_date.' 09:00:00')->get();
-
-        return view('admin.attendance.teacher', compact('attend','staffs','date'));
+        return view('admin.attendance.teacher', compact('attend','staffs','date','attendances'));
     }
 
-//    public function setting()
-//    {
-//        return view('admin.attendance.setting');
-//    }
+
 
    public function student(Student $student, Request $request)
     {
@@ -260,20 +236,14 @@ class AttendanceController extends Controller
 
         $allClasses = Classes::query()->get(['id','name']);
 
-        if($request->get('user') == 2){
-            $students = Staff::query()->get();
-
+        if($request->get('user') == 3){
+            $students = Staff::query()->where('staff_type_id', 2)->get();
             $month = $request->month;
             $year = $request->year;
             $date = Carbon::createFromDate($year,$month)->format('Y-m');
             $attn = [];
+            $personStatus = 'Code';
 
-            foreach($students as $student){
-                $attn[] = RawAttendance::query()
-                    ->where('registration_id',$student->card_id)
-                    ->where('access_date','like',$date.'%')
-                    ->get();
-            }
         }elseif($request->get('user') == 1){
             if($request->has('class_id') && $request->has('year') && $request->has('month')){
                 $request->class_id;
@@ -284,32 +254,28 @@ class AttendanceController extends Controller
                 $month = $request->month;
                 $year = $request->year;
                 $date = Carbon::createFromDate($year,$month)->format('Y-m-d');
-//
-//                $attn = [];
-//
-//                foreach($students as $student){
-//                     $attn[] = Attendance::query()
-//                        ->where('student_academic_id',$student->id)
-//                        ->where('date','like',$date.'%')
-//                        ->get();
-//                }
+                $personStatus = 'Roll';
+
             }else{
                 $students = [];
                 $month = 0;
                 $year = 0;
+                $personStatus = 'Roll';
             }
         }else{
             $students = [];
             $month = 0;
             $year = 0;
+            $personStatus = 'Roll';
         }
 
 
 //return $students;
         $repository = $this->repository;
 
-        return view('admin.attendance.report',compact('allClasses','repository','year','month','students'));
+        return view('admin.attendance.report',compact('allClasses','repository','year','month','students','personStatus'));
     }
+
 
     public function individualAttendance(Request $request){
         $explode = explode(' - ',$request->dateRangeStudent);

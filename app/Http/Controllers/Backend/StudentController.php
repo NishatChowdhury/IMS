@@ -29,6 +29,7 @@ use App\Models\LocationStudent;
 use App\Models\Student\StudentLogin;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
@@ -991,6 +992,27 @@ class StudentController extends Controller
 
 
 
+    }
+
+
+    public function studentPasswordReset(Request $request)
+    {
+                $this->validate($request,[
+                    'password' => 'required|confirmed'
+                ]);
+
+                    if($request->password){
+
+                        $student = StudentLogin::query()
+                                            ->where('student_id',$request->id)
+                                            ->first();
+                        $student->password = Hash::make($request->password);
+                        $student->save();
+
+                        return redirect()->back()->with('status', 'Your Password has been Change');
+
+                    }
+                    return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
     }
 
 }
