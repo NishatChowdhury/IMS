@@ -42,7 +42,9 @@ class ProfileController extends Controller
             ->where('date' ,'like', now()->format('Y-m-').'%')
             ->orderBy('date')
             ->get();
-
+        if ($attendances==NULL){
+            return 'hello';
+        }
         $payments = StudentPayment::query()
             ->where('student_academic_id',$stuAcademic->id)
             ->orderBy('date', 'DESC')

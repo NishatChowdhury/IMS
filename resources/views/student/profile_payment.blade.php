@@ -24,12 +24,16 @@
         <td>{{ __('Total Due') }}</td>
         <td>{{ number_format($due,2) }}</td>
         <td>
+            @if($due>10000)
             <button class="your-button-class" id="sslczPayBtn"
                     token="if you have any token validation"
                     postdata="your javascript arrays or objects which requires in backend"
                     order="If you already have the transaction generated for current order"
-                    endpoint="{{ route('student.pay-via-ajax') }}"> Pay Now
+                    endpoint="{{ route('student.pay-via-ajax') }}"> {{ __('Pay Now') }}
             </button>
+            @else
+                <span class="bg-warning"> Your paymant ammount greater then 10tk</span>
+            @endif
         </td>
     </tr>
 </table>
