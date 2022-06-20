@@ -468,6 +468,7 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
+Route::post('student-password-reset','Backend\StudentController@studentPasswordReset')->name('student.resetPassword');
 Route::get('csv','Backend\StudentController@csvDownload')->name('csv');
 //Staff Route
 Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');

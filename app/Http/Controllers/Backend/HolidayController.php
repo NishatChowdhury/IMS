@@ -34,10 +34,7 @@ class HolidayController extends Controller
         $holiday = Holiday::query()->create($request->all());
 
 
-
-        Session::flash('status','Holiday has been added successfully!');
-
-        return redirect('admin/holidays');
+        return redirect('admin/holidays')->with(['status' => 'Holiday has been added successfully!']);
     }
 
     public function edit($id)
@@ -73,6 +70,6 @@ class HolidayController extends Controller
         $holiday = Holiday::query()->findOrFail($id);
         $holiday->delete();
         Session::flash('success',$holiday->name.' is deleted successfully!');
-        return redirect('admin/holidays');
+        return redirect('admin/holidays')->with(['status' => 'Event has been Deleted successfully!']);
     }
 }
