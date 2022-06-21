@@ -12,14 +12,6 @@
             </tr>
             </thead>
             <tbody>
-            <?php
-            $present = 0;
-            $absent = 0;
-            $late = 0;
-            $EL = 0;
-            $le = 0;
-            $LRE = 0;
-            ?>
             @foreach($attendances as $day)
                 <tr>
                     <th scope="row" class="text-dark font-weight-semiBold">{{ $day->date->format('Y-m-d') }}</th>
@@ -29,47 +21,26 @@
                         <a href="#" class="btn btn-link">{{ $day->status->name ?? 'undefined' }}</a>
                     </td>
                 </tr>
-                @if($day->status->code=='P')
-                    <?php $present++; ?>
-                @elseif($day->status->code=='A')
-                    <?php $absent++; ?>
-                @elseif($day->status->code=='L')
-                    <?php  $late++; ?>
-                @elseif($day->status->code=='E')
-                    <?php  $EL++; ?>
-                @elseif($day->status->code=='Le')
-                    <?php  $le++; ?>
-                @elseif($day->status->code=='LRE')
-                    <?php  $LRE++; ?>
-                @endif
-
             @endforeach
             </tbody>
         </table>
-        <table class="table table-bordered font-weight-bold">
-            <thead>
-            <tr>
-                <th colspan="7" class="text-center bg-secondary font-weight-bold text-white">Student summery</th>
-            </tr>
-            <tr>
-                <th scope="col">{{ __('Total present') }}</th>
-                <th scope="col">{{ __('Total Absent') }}</th>
-                <th scope="col">{{ __('Total Late') }}</th>
-                <th scope="col">{{ __('Early Leave') }}</th>
-                <th scope="col">{{ __('Leave') }}</th>
-                <th scope="col">{{ __('Late & Leave Leave') }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><?php echo $present; ?> </td>
-                <td><?php echo $absent; ?> </td>
-                <td><?php echo $late; ?> </td>
-                <td><?php echo $EL; ?> </td>
-                <td><?php echo $le; ?> </td>
-                <td><?php echo $LRE; ?> </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered table-secondary">
+                <tbody>
+                <tr>
+                    <td>Present: {{ $attendances->where('attendance_status_id',1)->count() }}</td>
+                    <td>Absent: {{ $attendances->where('attendance_status_id',2)->count() }}</td>
+                    <td>Delay: {{ $attendances->where('attendance_status_id',3)->count() }}</td>
+                    <td>Early Leave: {{ $attendances->where('attendance_status_id',4)->count() }}</td>
+                </tr>
+                <tr>
+                    <td>Holiday: {{ $attendances->where('attendance_status_id',5)->count() }}</td>
+                    <td>Weekly Off: {{ $attendances->where('attendance_status_id',6)->count() }}</td>
+                    <td>Leave: {{ $attendances->where('attendance_status_id',7)->count() }}</td>
+                    <td>Late & Early Leave: {{ $attendances->where('attendance_status_id',8)->count() }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

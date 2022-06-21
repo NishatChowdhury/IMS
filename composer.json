@@ -1,5 +1,5 @@
 {
-     "name": "laravel/laravel",
+    "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -8,18 +8,17 @@
     ],
     "license": "MIT",
     "require": {
-          "php": "^7.4|^8.0",
-          "ext-curl": "*",
-          "ext-json": "*",
-          "barryvdh/laravel-dompdf": "^1.0",
-          "doctrine/dbal": "^3.3",
-          "fideloper/proxy": "^4.0",
-          "laravel/framework": "^8.0",
-          "laravel/sanctum": "^2.15",
-          "laravel/tinker": "^2.0",
-          "laravel/ui": "^3.0",
-          "laravelcollective/html": "^6.2.0"
-     },
+        "php": "^7.4|^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "barryvdh/laravel-dompdf": "^1.0",
+        "fideloper/proxy": "^4.0",
+        "laravel/framework": "^8.0",
+        "laravel/sanctum": "^2.15",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.0",
+        "laravelcollective/html": "^6.2.0"
+    },
     "require-dev": {
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",

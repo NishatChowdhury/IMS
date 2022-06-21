@@ -24,7 +24,7 @@
         <td>{{ __('Total Due') }}</td>
         <td>{{ number_format($due,2) }}</td>
         <td>
-            @if($due>10000)
+            @if($due > 10)
             <button class="your-button-class" id="sslczPayBtn"
                     token="if you have any token validation"
                     postdata="your javascript arrays or objects which requires in backend"
@@ -32,7 +32,7 @@
                     endpoint="{{ route('student.pay-via-ajax') }}"> {{ __('Pay Now') }}
             </button>
             @else
-                <span class="bg-warning"> Your paymant ammount greater then 10tk</span>
+                <span class="bg-warning"> {{ __('Payment amount should be more than 10.00') }}</span>
             @endif
         </td>
     </tr>
@@ -41,10 +41,6 @@
 @push('js')
     <script>
         var obj = {};
-        //obj.cus_name = 'lorem ipsum';
-        //obj.cus_phone = 3748742;
-        //obj.cus_email = 'example@gmail.com';
-        //obj.cus_addr1 = 'dsafdasa';
         obj.amount = parseFloat("{{ $due }}");
 
         $('#sslczPayBtn').prop('postdata', obj);

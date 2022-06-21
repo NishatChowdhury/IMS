@@ -7,8 +7,7 @@
         $user = auth()->guard('student')->user();
         $student = $user->student;
     @endphp
-    <div class="padding-y-80 bg-cover" data-dark-overlay="6"
-         style="background:url({{ asset('assets/img/breadcrumb-bg.jpg') }}) no-repeat">
+    <div class="padding-y-80 bg-cover" data-dark-overlay="6" style="background:url({{ asset('assets/img/breadcrumb-bg.jpg') }}) no-repeat">
         <div class="container">
             <h2 class="text-white">
                 {{ __('Students Profile') }}

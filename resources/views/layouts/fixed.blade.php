@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.6.3-web/css/all.min.css') }}">
     <!-- Nano Scroller -->
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
-{{--    select2--}}
-{{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
+    {{--    select2--}}
+    {{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
     <!-- Ionicons -->
-{{--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
+    {{--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
     <!-- w3school switch -->
     <link rel="stylesheet" href="{{ asset('plugins/w3school-switch/w3school-switch.css') }}">
-{{--    sweet alwert css--}}
+    {{--    sweet alwert css--}}
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
 
@@ -33,11 +33,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Google Font: Source Sans Pro -->
-{{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
+    {{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-{{--    @livewireStyles--}}
-{{--    <livewire:styles />--}}
+    {{--    @livewireStyles--}}
+    {{--    <livewire:styles />--}}
     @yield('style')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -52,7 +52,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         @include('admin.includes.left-sidebar')
-    <!-- /.sidebar -->
+        <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -61,7 +61,7 @@
     </div>
     <!-- /.content-wrapper -->
     {{--<footer class="main-footer">--}}
-        {{--@include('includes.footer')--}}
+    {{--@include('includes.footer')--}}
     {{--</footer>--}}
 
     <!-- Control Sidebar -->
@@ -117,11 +117,11 @@
         icon: "success",
     });
     @endif
-  $(function () {
-    $('#reservationdate').datetimepicker({
-        format: 'YYYY-MM-DD'
-    });
-  })
+    $(function () {
+        $('#reservationdate').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+    })
 
 </script>
 

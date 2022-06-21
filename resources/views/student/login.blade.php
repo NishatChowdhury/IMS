@@ -17,9 +17,9 @@
                         <div class="card-body">
                             @if($errors->any())
                                 <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
                                 </ul>
                             @endif
 
@@ -44,13 +44,13 @@
                                     <label class="ec-checkbox check-sm my-2 clearfix">
                                         <input type="checkbox" name="remember">
                                         <span class="ec-checkbox__control"></span>
-                                        <span class="ec-checkbox__lebel">Remember Me</span>
+                                        <span class="ec-checkbox__lebel">{{ __('Remember Me') }}</span>
                                     </label>
-                                    <a href="#" class="text-primary my-2 d-block">Forgot password?</a>
+                                    {{--                                    <a href="#" class="text-primary my-2 d-block">Forgot password?</a>--}}
                                 </div>
-                                <button class="btn btn-block btn-primary">Log In</button>
+                                <button class="btn btn-block btn-primary">{{ __('Log In') }}</button>
                                 <p class="my-5 text-center">
-{{--                                    Don’t have an account? <a href="page-signup.html" class="text-primary">Register</a>--}}
+                                    {{--                                    Don’t have an account? <a href="page-signup.html" class="text-primary">Register</a>--}}
                                 </p>
                             </form>
                         </div>
@@ -59,6 +59,9 @@
             </div> <!-- END row-->
         </div> <!-- END container-->
     </section>
+@stop
+
+@push('js')
     <script>
         function myPass() {
             var x = document.getElementById("password");
@@ -71,5 +74,4 @@
             element.classList.toggle("fa-eye-slash");
         }
     </script>
-
-@stop
+@endpush

@@ -167,21 +167,6 @@ class ProfileController extends Controller
             ->orderBy('date')
             ->get();
 
-//        $html_attendance ='';
-//        if (Attendance::query()->where('date' ,'like', now()->format('%'.'-'.$cng_month.'-'.'%'))->where('date' ,'like', now()->format($year_id.'-'.'%'))->exists()){
-//            foreach ($attendances as $data){
-//                $html_attendance .=
-//                    '<tr>'.
-//                    '<th scope="row" class="text-dark font-weight-semiBold">'.$data->date->format('Y-m-d') .'</th>'.
-//                    '<td>'.$data->in_time.'</td>'.
-//                    '<td>'.$data->out_time.'</td>'.
-//                    '<td>'.'<a href="#" class="btn btn-link">'.$data->status->name ?? "Undefined".'</a>'.'</td>
-//        </tr>';
-//            }
-//        }else{
-//            $html_attendance .= '<tr><td colspan="4"><h1 class="text-center text-info">No record found</h1></td></tr>';
-//        }
-        //return response()->json(['html'=>$html_attendance]);
         return view('student._attendance',compact('attendances'));
     }
 

@@ -39,6 +39,7 @@ use App\Models\Backend\NoticeCategory;
 use App\Models\Backend\GalleryCategory;
 use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\GalleryCorner;
+use Illuminate\Support\Facades\Route;
 
 class FrontController extends Controller
 {
