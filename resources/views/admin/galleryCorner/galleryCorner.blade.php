@@ -43,7 +43,7 @@
                                             <div class="card p-1 bg-dark">
                                                     <img height="250px" class="card-img-top"  src="{{ url('storage/uploads/gallery/'.$img->image) }}" alt="Card image cap">
                                                 <div class="card-body m-0 p-1">
-                                                    <a href="{{ route('GalleryImage.destroy', [$img->id]) }}" class="btn btn-danger">Delete</a>
+                                                    <a href="{{ route('GalleryImage.destroy', [$img->id]) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                                                 </div>
                                             </div>
                                     </div>
@@ -99,9 +99,16 @@
 
 @section('script')
     <script>
+        @if(session('status'))
+        Swal.fire({
+            title: "Web Point Ltd.",
+            text: "{{ session('status') }}",
+            icon: "success",
+        });
+        @endif
         function confirmDelete(){
-            var x = confirm('Are you sure you want to delete this album? All images in this album will also be deleted!!!');
-            return !!x;
+            // var x = confirm('Are you sure you want to delete this album? All images in this album will also be deleted!!!');
+            // return !!x;
         }
     </script>
 @stop

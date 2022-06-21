@@ -73,19 +73,19 @@
                             </p>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="diary"
+                                    <a class="btn btn-outline-success iconbox iconbox-sm" id="diary"
                                        data-toggle="modal" data-target="#exampleModal" href="#" title="Diary">
                                         <i class="fas fa-book"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     {{--{{route('classSchedule.view')}}--}}
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="class-schedule" data-toggle="modal" data-target="#exampleModal" href="#" title="Class Schedule">
+                                    <a class="btn btn-outline-success iconbox iconbox-sm" id="class-schedule" data-toggle="modal" data-target="#exampleModal" href="#" title="Class Schedule">
                                         <i class="fas fa-clock"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-linkedin iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#exampleModal" title="Exam Routine">
+                                    <a class="btn btn-outline-success iconbox iconbox-sm" id="exam-routine" href="#" data-toggle="modal" data-target="#exampleModal" title="Exam Routine">
                                         <i class="fas fa-calendar-week"></i>
                                     </a>
                                 </li>

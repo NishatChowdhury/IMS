@@ -18,6 +18,9 @@
 {{--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
     <!-- w3school switch -->
     <link rel="stylesheet" href="{{ asset('plugins/w3school-switch/w3school-switch.css') }}">
+{{--    sweet alwert css--}}
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
 
     @yield('plugin-css')
 
@@ -92,6 +95,8 @@
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+{{--sweet alert js--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
 @yield('plugin')
 
@@ -105,6 +110,13 @@
     });
 </script>
 <script>
+    @if(session('success'))
+    Swal.fire({
+        title: "Web Point Ltd.",
+        text: "{{ session('success') }}",
+        icon: "success",
+    });
+    @endif
   $(function () {
     $('#reservationdate').datetimepicker({
         format: 'YYYY-MM-DD'

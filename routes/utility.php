@@ -137,7 +137,7 @@ Route::get('t', function(){
 });
 
 Route::get('a-s', function(){
-    dd('nothing');
+//    dd('nothing');
     // the joob is done
 //    return AttendanceStatus::all();
 //   Schema::table('attendance_statuses', function (Blueprint $table) {

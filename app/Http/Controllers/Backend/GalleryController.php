@@ -49,7 +49,7 @@ class GalleryController extends Controller
         }else{
             Gallery::query()->create($request->all());
         }
-        return redirect('admin/gallery/image');
+        return redirect('admin/gallery/image')->with('status','Image Successfully Stored.');
     }
 
     /**
@@ -63,7 +63,7 @@ class GalleryController extends Controller
         $image = Gallery::query()->findOrFail($id);
         File::delete(storage_path('app/public/uploads/gallery/') . $image->album_id . '/' . $image->image);
         $image->delete();
-        return back();
+        return back()->with('status','Image has been deleted Successfully.');
     }
 
     public function galleryCornerCreate()
@@ -75,15 +75,17 @@ class GalleryController extends Controller
     public function galleryCornerStore(Request $request)
     {
         if ($request->hasFile('image')) {
+            $i=0;
             foreach ($request->file('image') as $img) {
                 $name = rand(1000,100000).'-'.time() . '.' . $img->getClientOriginalExtension();
                 $img->move(storage_path('app/public/uploads/gallery/'), $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 GalleryCorner::query()->create($data);
+                $i++;
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('status', $i.' Image Added Successfully');
     }
 
     public function GalleryImageDestroy($id)
@@ -91,6 +93,6 @@ class GalleryController extends Controller
         $image = GalleryCorner::query()->findOrFail($id);
         File::delete(storage_path('app/public/uploads/gallery/') . $image->image);
         $image->delete();
-        return back();
+        return back()->with('status','Image has been Successfully deleted');
     }
 }
