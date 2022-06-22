@@ -31,15 +31,28 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    {{ Form::label('USER') }}
-                                    {{ Form::select('staff_type_id',[0=>'Select User',1=>'STAFF',2=>'TEACHER'],null,['class'=>'form-control']) }}
+                                    {{ Form::label('Teacher') }}
+                                    {{ Form::select('staff_id', $teachers,null,['class'=>'form-control']) }}
                                 </div>
-                                <div class="form-group">
-                                    <label>Date</label>
-                                    <div class="form-group">
-                                        {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}
+                                <div class="col">
+                                        <label for="">Year</label>
+                                        <div class="input-group">
+                                            {{ Form::selectRange('year',2020,2025,null,['class'=>'form-control','placeholder'=>'Session','required']) }}
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col">
+                                        <label for="">Month</label>
+                                        <div class="input-group">
+                                            {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month','required']) }}
+                                        </div>
+                                    </div>
+
+{{--                                <div class="form-group">--}}
+{{--                                    <label>Date</label>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="form-group col-md-1" style=" margin:29px 0 0 0;">
                                     <input type="submit" class="btn btn-info" value="search">
@@ -61,8 +74,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="text-center">{{__('Daily Employee Attendance Report') }}</h4>
-                            <h5 class="text-center">Date: {{ $date }}</h5>
+                            <h4 class="text-center">{{__('Monthly Wise Employee Attendance Report') }}</h4>
+                            <h5 class="text-center"><b>Name: </b>{{ $staffs->name ?? '' }} & <b>Card Numner :</b> {{ $staffs->card_id ?? ''}}</h5>
+                            <h6 class="text-center"><b>Year :</b> {{ $year ?? '' }} & <b>Month :</b> {{ $month }}</h6>
                         </div>
                         <div class="card-body" style="padding: 1.00rem;">
 
@@ -70,8 +84,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Teacher</th>
-                                    <th>Card</th>
+                                    <th>Date</th>
                                     <th class="text-center">Entry</th>
                                     <th class="text-center">Exit</th>
                                     <th class="text-center">Status</th>
@@ -79,14 +92,23 @@
                                 </thead>
                                 <tbody>
                                 @foreach($attendances as $attn)
-                                    <tr>
+                                    <tr @if($attn->attendanceStatus->name == 'Weekly Off') style="background: #9b9b9b" @endif>
                                         <td>
-                                        {{ $attn->teacher ?? 'N/A' }}
+                                        {{ \Carbon\Carbon::parse($attn->date)->format('Y-m-d') ?? 'N/A' }}
                                         </td>
-                                        <td>{{ $attn->card ?? 'N/A' }}</td>
-                                        <td class="text-center">{{ $attn->in_time ?? '-' }}</td>
-                                        <td class="text-center">{{ $attn->out_time ?? '-' }}</td>
-                                        <td class="text-center">{{ $attn->status ?? 'N/A' }}</td>
+                                        <td class="text-center">
+                                            @if(!is_null($attn))
+                                            {{ $attn->manual_in_time ?? $attn->in_time }}
+                                            @else
+                                            -
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $attn->manual_out_time ?? $attn->out_time}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{$attn->attendanceStatus->name ?? '',}}
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

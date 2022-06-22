@@ -43,7 +43,7 @@
                                     <tbody>
                                     @foreach($fee as $class)
                                     <tr>
-                                        <td>
+                                        <td width="40%">
                                             {{ $class->academicClass->classes->name }}
                                             {{ $class->academicClass->section->name ?? '' }}
                                             {{ $class->academicClass->group->name ?? '' }}
@@ -53,7 +53,7 @@
                                         <td>
                                             {{ number_format($class->feeSetupCategories->sum('amount'),2) }}
                                         </td>
-                                        <td>
+                                        <td class="text-right">
                                             {{ Form::open(['url'=>['admin/fee/fee-setup/delete',$class->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
                                             <a href="{{ url('admin/fee/fee-setup/fee-students',$class->id) }}" class="btn btn-info btn-sm" ><i class="fas fa-eye"></i></a>
                                             <a href="{{ url('admin/fee/fee-setup/edit',$class->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>

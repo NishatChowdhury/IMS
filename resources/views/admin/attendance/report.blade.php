@@ -141,10 +141,12 @@
                                                                     ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->first();
                                                     }else{
+//                                                        dd($student);
                                                         $attn = \App\Models\Backend\AttendanceTeacher::query()
-                                                                    ->where('staff_id',$student->code)
+                                                                    ->where('staff_id',$student->card_id)
                                                                     ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->first();
+//
                                                     }
 
 

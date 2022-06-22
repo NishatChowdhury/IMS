@@ -54,6 +54,7 @@ Route::get('system/reboot',function(){
 
 Route::get('system/symlink',function(){
     Artisan::call('storage:link');
+    dd('done');
 });
 
 Route::get('process-attendances',function(){
@@ -164,22 +165,23 @@ Route::get('a-s', function(){
 Route::get('update-attendance/{d}', function ($d){
 
 
-       $todayCount =  Carbon::parse($d);
-       $today =  Carbon::parse($d)->format('Y-m-d');
+
+        $todayCount = Carbon::parse($d);
+        $today = Carbon::parse($d)->format('Y-m-d');
 ////      $today = \Carbon\Carbon::today()->format('Y-m-d');
 //        $todayCount = \Carbon\Carbon::today();
 //    return $today->format('N');
 
-     $students = Student::query()->get();
+        $students = Student::query()->get();
 
-    foreach ($students as $key => $student){
+        foreach ($students as $key => $student) {
 
-          $rawData = RawAttendance::query()
+            $rawData = RawAttendance::query()
                 ->where('access_date', $today)
                 ->where('registration_id', $student->studentId)
                 ->get();
 
-        if ($rawData->isEmpty()) {
+            if ($rawData->isEmpty()) {
 
                 $min = null;
                 $max = null;
@@ -192,10 +194,10 @@ Route::get('update-attendance/{d}', function ($d){
                 $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
 //                return $today;
                 $holiday = \App\Models\Backend\Holiday::query()
-                                ->where('start', '<=', $today)
-                                ->where('end', '>=', $today)
-                                ->where('is_holiday', 1)
-                                ->exists();
+                    ->where('start', '<=', $today)
+                    ->where('end', '>=', $today)
+                    ->where('is_holiday', 1)
+                    ->exists();
 
                 if ($holiday) {
                     $attendanceStatus = '5'; // Holiday
@@ -206,17 +208,17 @@ Route::get('update-attendance/{d}', function ($d){
                 } else {
                     $attendanceStatus = '2'; // Absent
                 }
-        }else{
+            } else {
                 $min = $rawData->min('access_time');
                 $max = $rawData->max('access_time');
 
                 $shift = \App\Models\Backend\Shift::query()->first();
-                $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
+                $shiftIn = Carbon::parse($shift->start)->addMinutes($shift->grace);
                 $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
 
-                if($min >= $shiftIn && $max <= $shiftOut){
+                if ($min >= $shiftIn && $max <= $shiftOut) {
                     $attendanceStatus = '8'; // Late & Early Leave
-                }elseif ($min <= $shiftIn && $max <= $shiftOut) {
+                } elseif ($min <= $shiftIn && $max <= $shiftOut) {
                     $attendanceStatus = '4'; // Early Leave
                 } elseif ($min <= $shiftIn) {
                     $attendanceStatus = '1';  // Present
@@ -225,9 +227,9 @@ Route::get('update-attendance/{d}', function ($d){
                 }
 
 
-        }
+            }
 
-         $data = [
+            $data = [
                 'student_academic_id' => $student->studentAcademic->id ?? 0,
                 'date' => $today,
                 'in_time' => $min,
@@ -236,13 +238,13 @@ Route::get('update-attendance/{d}', function ($d){
             ];
 
 
-        $attendanceExists = Attendance::query()
+            $attendanceExists = Attendance::query()
                 ->where('student_academic_id', $student->studentAcademic->id ?? 0)
                 ->where('date', $today)
                 ->exists();
 
 
-        if ($attendanceExists) {
+            if ($attendanceExists) {
                 $attendance = Attendance::query()
                     ->where('student_academic_id', $student->studentAcademic->id ?? 0)
                     ->where('date', $today)
@@ -253,12 +255,12 @@ Route::get('update-attendance/{d}', function ($d){
             }
 
 
+        }
 
-    }
         dd('done');
 
 
-
+//        dd('done');
 
 
 });
@@ -267,7 +269,7 @@ Route::get('u-a-t/{d}', function ($d){
 
        $todayCount =  Carbon::parse($d);
        $today =  Carbon::parse($d)->format('Y-m-d');
-////      $today = \Carbon\Carbon::today()->format('Y-m-d');
+//        $today = \Carbon\Carbon::today()->format('Y-m-d');
 //        $todayCount = \Carbon\Carbon::today();
 //    return $today->format('N');
 
@@ -312,7 +314,7 @@ Route::get('u-a-t/{d}', function ($d){
                 $min = $rawData->min('access_time');
                 $max = $rawData->max('access_time');
 
-                $shift = \App\Models\Backend\Shift::query()->where('id', $staff->shift_id)->first();
+                $shift = \App\Models\Backend\Shift::find($staff->shift_id);
                 $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
                 $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
 
@@ -365,6 +367,38 @@ Route::get('u-a-t/{d}', function ($d){
 
 });
 
+
+Route::get('r-l', function(){
+    $route_name = [];
+    foreach (Route::getRoutes()->getRoutes() as $route) {
+           $action = $route->getAction();
+//           $action = $route->getName();
+        if (array_key_exists('as', $action)) {
+                $route_name[] = $action['as'];
+        }
+//                $route_name[] = $action;
+    }
+     return $route_name;
+
+    return $data = json_encode($route_name);
+
+        return in_array('generated', $route_name);
+    $getaName = [];
+    foreach ($route_name as $key => $n){
+//        return $n;
+         if (array_key_exists('journals.index', $route_name)) {
+//             $getaName[] = $route_name;
+             dd('ace');
+         }else{
+             dd('ney');
+         }
+    }
+
+    return $getaName;
+
+
+
+});
 
 Route::get('download-raw-attendances',function(){
 
@@ -432,6 +466,12 @@ Route::get('download-raw-attendances',function(){
     dd('data saved successfully');
 });
 
+
+Route::get('database-backup', function(){
+   $data = Artisan::call('db:backup');
+
+   dd($data);
+});
 
 Route::get('getdata-attendance', function(){
     $students = Student::query()->where('status',1)->get();
@@ -527,6 +567,11 @@ Route::get('c-p/{id}', function ($id){
 
     $result = \App\Models\Backend\ExamResult::query()->with('studentAcademic')->findOrFail($id);
 
+    $subjectCount = ExamSchedule::query()
+                                ->where('exam_id', $result->exam_id)
+                                ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                                ->count('subject_id');
+
          $marks = \App\Models\Backend\Mark::query()
             ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
             ->where('exam_id',$result->exam_id)
@@ -537,9 +582,9 @@ Route::get('c-p/{id}', function ($id){
             ->get();
 //         $logo = siteConfig('logo');
          $logo = '5.jpg';
-    $pdf = PDF::loadView('resultPdf', compact('result','marks','logo'));
-    return $pdf->download('invoice.pdf');
-        return view('resultPdf',compact('result','marks','logo'));
+        $pdf = PDF::loadView('resultPdf', compact('result','marks','logo','subjectCount'));
+        return $pdf->download('invoice.pdf');
+        return view('resultPdf',compact('result','marks','logo','subjectCount'));
 
 
 

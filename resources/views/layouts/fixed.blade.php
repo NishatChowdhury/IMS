@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+    <style>
+        span.brand-text.font-weight-light {
+    font-size: 13px;
+}
+    </style>
 {{--    select2--}}
 {{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
     <!-- Ionicons -->
@@ -35,6 +40,30 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 {{--    @livewireStyles--}}
 {{--    <livewire:styles />--}}
+
+    <style>
+
+#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #e3e4e7;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #dddfe2;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #5b636a;
+}
+
+    </style>
     @yield('style')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -86,7 +115,7 @@
 {{--<script src="{{ asset('plugins/fontawesome-free-5.6.3-web/js/all.min.js') }}"></script>--}}
 
 <!-- Nano Scroller -->
-<script src="{{ asset('plugins/nanoScroller/jquery.nanoscroller.min.js') }}"></script>
+{{--<script src="{{ asset('plugins/nanoScroller/jquery.nanoscroller.min.js') }}"></script>--}}
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>

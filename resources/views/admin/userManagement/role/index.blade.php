@@ -26,10 +26,9 @@
     <section class="content">
         <div class="row">
             <div class="col-12">
-                <div class="card card-info">
+                <div class="card">
                     <div class="card-header">
                         <a href="{{ route('role.create')  }}" class="btn btn-dark btn-sm">Create Role</a>
-                        <a href="{{ route('module.create')  }}" class="btn btn-primary btn-sm">Create Module</a>
 
                     </div>
                     <!-- /.card-header -->

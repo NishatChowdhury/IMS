@@ -37,7 +37,8 @@ class ResultController extends Controller
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-//                $getStudent = StudentAcademic::find($request->get('studentId'))->first();
+//                return $request->get('studentId');
+                //                $getStudent = StudentAcademic::find($request->get('studentId'))->first();
                 $r->whereHas('studentAcademic',function($query) use ($request){
                     $query->whereHas('student', function($q) use ($request){
                         $q->where('studentId', $request->studentId);

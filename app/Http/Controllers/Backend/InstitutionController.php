@@ -9,6 +9,7 @@ use App\Models\Backend\Classes;
 use App\Models\Backend\Group;
 use App\Models\Backend\Section;
 use App\Models\Backend\Session;
+use App\Models\Backend\Staff;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
@@ -370,5 +371,23 @@ class InstitutionController extends Controller
     public function profile()
     {
         return view ('admin.institution.profile');
+    }
+
+
+    public function assignTeacher($id)
+    {
+         $subjects = AssignSubject::query()
+                ->where('academic_class_id',$id)
+                ->get();
+         $academic = AcademicClass::find($id);
+        $teachers = Staff::query()->where('staff_type_id', 2)->get();
+        return view('admin.institution.assign-teacher', compact('subjects', 'teachers','academic'));
+    }
+
+    public function assignTeacherStore(Request $request)
+    {
+     $assignSubject = AssignSubject::find($request->assign_subject_id);
+     $assignSubject->update(['teacher_id' => $request->staff_id]);
+     return back();
     }
 }

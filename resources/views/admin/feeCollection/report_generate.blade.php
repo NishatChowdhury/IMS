@@ -135,9 +135,13 @@
                                                 @endif
                                                 {{ $pay->discount ?? '' }}
                                             </td>
-                                            <td class="text-right">{{ number_format(intval($pay->amount), 2, '.', ',')  }}</td>
+                                            @php $transport = intval($pay->academics->transportPayment->sum('amount'));
+                                                $payamount = intval($pay->amount);
+                                                $payAMT = $payamount;
+                                            @endphp
+                                            <td class="text-right">{{ number_format($payAMT, 2)  }}</td>
                                         </tr>
-                                        @php $total += $pay->amount @endphp
+                                        @php $total += $payAMT @endphp
                                     @empty
                                         <td colspan="6" class="text-center text-danger">
                                             <h5>No data found !!</h5>

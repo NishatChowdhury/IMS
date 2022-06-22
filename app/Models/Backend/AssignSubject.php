@@ -28,4 +28,8 @@ class AssignSubject extends Model
     {
         return $this->belongsTo(Staff::class);
     }
+
+    function academicClass(){
+        return $this->belongsTo(AcademicClass::class);
+    }
 }

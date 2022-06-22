@@ -44,6 +44,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapStudentRoutes();
 
         $this->mapUtilityRoutes();
+
+        $this->mapTeacherRoutes();
     }
 
     /**
@@ -118,5 +120,20 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/utility.php'));
+    }
+
+    /**
+     * Define the "Teacher" routes for the application.
+     *
+     * These routes help developers test codes, generate data and calculate.
+     * This is another web route, created to avoid messy codes.
+     *
+     * @return void
+     */
+    protected function mapTeacherRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/teacher.php'));
     }
 }

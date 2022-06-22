@@ -118,7 +118,7 @@ class MarkController extends Controller
     public function upload($schedule)
     {
          $schedule = ExamSchedule::query()->findOrFail($schedule);
-        return view('admin.exam.upload',compact('schedule'));
+         return view('admin.exam.upload',compact('schedule'));
     }
 
     public function up(Request $request)

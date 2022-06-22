@@ -61,7 +61,7 @@
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
                                                 <h6 class="card-title text-bold cname"> Student Name </h6>
                                                 <div class="row">
-                                                    <div class="right" style="float:left; margin-top: 10px;">
+                                                    <div class="right col-12" style="float:left; margin-top: 10px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                                 <tbody>
