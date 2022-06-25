@@ -216,9 +216,7 @@
                         Percentage
                     </td>
                     <td>
-                        {{
-                                    $result->total_mark / $subjectCount
-                        }} %
+
                     </td>
                 </tr>
                  <tr>

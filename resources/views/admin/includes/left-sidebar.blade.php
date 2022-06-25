@@ -246,7 +246,7 @@
             @endcannot
 
             {{--            @can('student.index')--}}
-{{--            @if(in_array("student.index", auth()->user()->permissions))--}}
+            @if(in_array("student.list", auth()->user()->permissions))
                 <li class="nav-item has-treeview {{ isActive('admin/student*') }}">
                     <a href="#" class="nav-link {{ isActive('admin/student*') }}">
                         <i class="nav-icon fas fa-user-graduate"></i>
@@ -256,57 +256,74 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ action('Backend\StudentController@index') }}" class="nav-link {{ isActive('admin/students') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Students') }} </p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Testimonial</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('student.transport')}}" class="nav-link {{ isActive('admin/student/assign-transport') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Assign Transport</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('Backend\IdCardController@index') }}" class="nav-link {{ isActive('admin/student/designStudentCard') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Design ID Card</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{route('student.promotion')}}" class="nav-link {{ isActive('admin/student/promotion') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Promotion</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('Backend\StudentController@tod') }}" class="nav-link {{ isActive('admin/student/tod*') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tod List</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('Backend\StudentController@esif') }}" class="nav-link {{ isActive('admin/student/esif*') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>eSIF</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ action('Backend\StudentController@images') }}" class="nav-link {{ isActive('admin/student/images*') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Images</p>
-                            </a>
-                        </li>
+                        @if(in_array("student.list", auth()->user()->permissions))
+                            <li class="nav-item">
+                                <a href="{{ action('Backend\StudentController@index') }}" class="nav-link {{ isActive('admin/students') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Students') }} </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.testimonial", auth()->user()->permissions))
+
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Testimonial</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.transport", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.transport')}}" class="nav-link {{ isActive('admin/student/assign-transport') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Assign Transport</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.designStudentCard", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('Backend\IdCardController@index') }}" class="nav-link {{ isActive('admin/student/designStudentCard') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Design ID Card</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.promotion", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.promotion')}}" class="nav-link {{ isActive('admin/student/promotion') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Promotion</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.tod", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('Backend\StudentController@tod') }}" class="nav-link {{ isActive('admin/student/tod*') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tod List</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.esif", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('Backend\StudentController@esif') }}" class="nav-link {{ isActive('admin/student/esif*') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>eSIF</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("student.images", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('Backend\StudentController@images') }}" class="nav-link {{ isActive('admin/student/images*') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Images</p>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
-{{--            @endif--}}
+            @endif
             {{--            @endcan--}}
             @if(in_array("institution.classes", auth()->user()->permissions))
                 <li class="nav-item has-treeview {{ isActive(['admin/institution*']) }}">
@@ -955,67 +972,66 @@
             @endif
 
             {{--Syllabus Section Start babu--}}
-            <li class="nav-item has-treeview {{ isActive(['admin/syllabus*']) }}">
-                <a href="#" class="nav-link {{ isActive(['admin/syllabus*']) }}">
-                    <i class="fas fa-book"></i>
-                    <p>
-                        Syllabus
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item" >
-                        <a href="{{ route('syllabus.index') }}" class="nav-link {{ isActive('admin/syllabus/syllabus') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Syllabus Management</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            @if(in_array("syllabus.index", auth()->user()->permissions))
+                <li class="nav-item has-treeview {{ isActive(['admin/syllabus*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/syllabus*']) }}">
+                        <i class="fas fa-book"></i>
+                        <p>
+                            Syllabus
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        @if(in_array("syllabus.index", auth()->user()->permissions))
+                            <li class="nav-item" >
+                                <a href="{{ route('syllabus.index') }}" class="nav-link {{ isActive('admin/syllabus/syllabus') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Syllabus Management</p>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
 
             {{--Syllabus Section End babu--}}
-
-            <li class="nav-item has-treeview {{ isActive(['admin/gallery*']) }}">
-                <a href="#" class="nav-link {{ isActive(['admin/gallery*']) }}">
-                    <i class="fas fa-camera-retro"></i>
-                    <p>
-                        Gallery
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                    <li class="nav-item" >
-                        <a href="{{ action('Backend\GalleryController@index') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Image Mgmt</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('Backend\GalleryCategoryController@index') }}" class="nav-link {{ isActive('admin/gallery/category') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Image Category</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                        <a href="{{ action('Backend\AlbumController@index') }}" class="nav-link {{ isActive('admin/gallery/albums') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Image Album</p>
-                        </a>
-                    </li>
-                    {{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-                    {{--                        <a href="{{ action('Backend\PlaylistController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
-                    {{--                            <i class="far fa-circle nav-icon"></i>--}}
-                    {{--                            <p>Playlists</p>--}}
-                    {{--                        </a>--}}
-                    {{--                    </li>--}}
-                    {{--                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-                    {{--                        <a href="{{ action('VideoController@index') }}" class="nav-link {{ isActive('gallery/albums') }}">--}}
-                    {{--                            <i class="far fa-circle nav-icon"></i>--}}
-                    {{--                            <p>Videos</p>--}}
-                    {{--                        </a>--}}
-                    {{--                    </li>--}}
-                </ul>
-            </li>
+            @if(in_array("settings.image", auth()->user()->permissions))
+                <li class="nav-item has-treeview {{ isActive(['admin/gallery*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/gallery*']) }}">
+                        <i class="fas fa-camera-retro"></i>
+                        <p>
+                            Gallery
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        @if(in_array("settings.image", auth()->user()->permissions))
+                            <li class="nav-item" >
+                                <a href="{{ action('Backend\GalleryController@index') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Image Mgmt</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("gallery-category.index", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('Backend\GalleryCategoryController@index') }}" class="nav-link {{ isActive('admin/gallery/category') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Image Category</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("gallery-albums.index", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ action('Backend\AlbumController@index') }}" class="nav-link {{ isActive('admin/gallery/albums') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Image Album</p>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
 
             {{--<li class="nav-header">MISCELLANEOUS</li>--}}
             {{--            @cannot('cms')--}}

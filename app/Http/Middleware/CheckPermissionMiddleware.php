@@ -21,7 +21,7 @@ class CheckPermissionMiddleware
     {
         $routeName = $request->route()->getName();
 //        dd($routeName);
-        if($routeName == 'admin' || auth()->user()->id === 1){
+        if($routeName == 'admin'){ // for dashboard
             return $next($request);
         }
 
@@ -34,7 +34,7 @@ class CheckPermissionMiddleware
             }
         }
 
-        return $next($request);
-//        abort(403,"You Don't Have Permission On This Page");
+//        return $next($request);
+        abort(403,"You Don't Have Permission On This Page");
     }
 }

@@ -9,7 +9,7 @@
                 <div class="items pay">
                     <a href="">
                         <div class="menu_icon">
-                          <i class="fab fa-cc-amazon-pay"></i>
+                          <i class="fas fa-coins"></i>
                         </div>
                     </a>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="items admission">
                     <a href="{{ route('teacher.attendance.view') }}">
                         <div class="menu_icon">
-                           <i class="fas fa-sitemap"></i>
+                       <i class="fas fa-users-cog"></i>
                         </div>
                     </a>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="items result">
                     <a href="{{ route('teacher.examination.list') }}">
                         <div class="menu_icon">
-                       <i class="fas fa-poll"></i>
+                      <i class="fas fa-user-graduate"></i>
                         </div>
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="items leave">
                     <a href="{{ route('teacher.leave.student') }}">
                         <div class="menu_icon">
-                         <i class="fas fa-location-arrow"></i>
+                        <i class="fas fa-holly-berry"></i>
                         </div>
                     </a>
                 </div>

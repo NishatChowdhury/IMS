@@ -46,7 +46,7 @@ class MainController extends Controller
     {
         $teacher_id = auth()->guard('teacher')->user()->staff_id;
         $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
-        $subjects = AssignSubject::query()
+         $subjects = AssignSubject::query()
                                     ->where('teacher_id', $teacher_id)
                                     ->get();
         $teachers = Staff::where('staff_type_id', 2)->get();
@@ -104,7 +104,7 @@ class MainController extends Controller
 
     public function attendanceView(Request $request)
     {
-//        return $request->all();
+
         $repository = $this->repository;
         if($request->user == 1){
 
@@ -180,7 +180,6 @@ class MainController extends Controller
     }
 
 
-
     /// leave Start
     public function leaveStudent()
     {
@@ -216,6 +215,7 @@ class MainController extends Controller
             $data = [
                 'leaveId' => date('ymd').$student->id,
                 'student_id' => $student->id,
+                'teacher_id' => auth()->guard('teacher')->user()->staff_id,
                 'date' => $d,
                 'leave_purpose_id' => $request->get('leave_purpose_id'),
             ];
