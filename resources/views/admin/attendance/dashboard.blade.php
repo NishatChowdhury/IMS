@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Attendance Dashboard </h1>
+                    <h1>{{ __('Attendance Dashboard ')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Attendance Dashboard</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Attendance Dashboard')}}</li>
                     </ol>
                 </div>
             </div>
@@ -28,9 +28,9 @@
                     <!-- DONUT CHART -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4 class="card-title">Student Attendance <br> Month : {{ $month_name }}</h4>
+                            <h4 class="card-title">{{ __('Student Attendance')}} <br> {{ __('Month')}} : {{ $month_name }}</h4>
                             <h6>
-                                <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">present : {{ $total_attendance }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">Total Students : {{ $total_student }}</span>
+                                <span class="badge badge-warning" style="padding: 5px">{{ __('Date')}} : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">{{ __('present')}} : {{ $total_attendance }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">{{ __('Absent')}} : {{ $total_absents }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">{{ __('Total Students')}} : {{ $total_student }}</span>
                             </h6>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -51,9 +51,9 @@
                     <!-- DONUT CHART -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Teacher Attendance <br> Month : {{ $month_name }} </h3>
+                            <h3 class="card-title">{{ __('Teacher Attendance')}} <br> {{ __('Month')}} : {{ $month_name }} </h3>
                             <h6>
-                                <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">present : {{ $total_attendance_teacher }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents_teacher }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">Total Teachers : {{ $total_teacher }}</span>
+                                <span class="badge badge-warning" style="padding: 5px">Date : {{ $today_date }} </span> || <span class="badge badge-success" style="color: black; padding: 5px">{{ __('present')}} : {{ $total_attendance_teacher }}</span> || <span class="badge badge-danger" style="color: black; padding: 5px">Absent : {{ $total_absents_teacher }}</span> || <span class="badge badge-info" style="color: black; padding: 5px">{{ __('Total Teachers ')}}: {{ $total_teacher }}</span>
                             </h6>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
@@ -75,7 +75,7 @@
                     <!-- DONUT CHART -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Attendance Notification <br> {{ $month_name }}</h3>
+                            <h3 class="card-title">{{ __('Attendance Notification')}} <br> {{ $month_name }}</h3>
                             <h6>10000</h6>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
@@ -103,7 +103,7 @@
                     <!-- BAR CHART -->
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Student Attendance</h3>
+                            <h3 class="card-title">{{ __('Student Attendance')}}</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
@@ -133,7 +133,7 @@
                 <!-- BAR CHART -->
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">Teacher Attendance</h3>
+                        <h3 class="card-title">{{ __('Teacher Attendance')}}</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
@@ -165,21 +165,21 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-chalkboard-teacher"></i> Teacher Attendance</h3>
+                        <h3 class="card-title"><i class="fas fa-chalkboard-teacher"></i> {{ __('Teacher Attendance')}}</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Day</th>
-                                <th>Status</th>
-                                <th>Present</th>
-                                <th>Late</th>
-                                <th>Left Early</th>
-                                <th>Absent</th>
-                                <th>Action</th>
+                                <th>{{ __('Date')}}</th>
+                                <th>{{ __('Day')}}</th>
+                                <th>{{ __('Status')}}</th>
+                                <th>{{ __('Present')}}</th>
+                                <th>{{ __('Late')}}</th>
+                                <th>{{ __('Left Early')}}</th>
+                                <th>{{ __('Absent')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -215,20 +215,20 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-graduate"></i> Student Attendance</h3>
+                        <h3 class="card-title"><i class="fas fa-user-graduate"></i> {{ __('Student Attendance')}}</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Class</th>
-                                <th>Date</th>
-                                <th>Day</th>
-                                <th>Status</th>
-                                <th>Present</th>
-                                <th>Absent</th>
-                                <th>Action</th>
+                                <th>{{ __('Class')}}</th>
+                                <th>{{ __('Date')}}</th>
+                                <th>{{ __('Day')}}</th>
+                                <th>{{ __('Status')}}</th>
+                                <th>{{ __('Present')}}</th>
+                                <th>{{ __('Absent')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -247,7 +247,7 @@
                                     @endforeach
                                     @else
                                     <tr>
-                                        <td colspan="7" style="text-align: center; color: #7b9726; font-size: 20px">{{'CARD NOT PUNCH TODAY'}}</td>
+                                        <td colspan="7" style="text-align: center; color: #7b9726; font-size: 20px">{{ __('CARD NOT PUNCH TODAY')}}</td>
                                     </tr>
                                 @endif
 

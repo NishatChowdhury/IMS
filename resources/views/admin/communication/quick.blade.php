@@ -13,8 +13,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Communication</a></li>
-                        <li class="breadcrumb-item active"> Quick SMS</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Communication')}}</a></li>
+                        <li class="breadcrumb-item active"> {{ __('Quick SMS')}}</li>
                     </ol>
                 </div>
             </div>
@@ -34,12 +34,12 @@
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-5">
-                                            <label for="">Numbers <small>(add multiple numbers with "+" sign)</small></label>
+                                            <label for="">{{ __('Numbers')}} <small>{{ __('add multiple numbers with "+" sign')}}</small></label>
                                             <div class="input-group">
                                                 <textarea class="form-control descriptionLen" rows="5"  placeholder="01XXXXXXXXX+01XXXXXXXXX+01XXXXXXXXX" name="numbers" cols="50" id="textarea"></textarea>
                                             </div>
                                             <p></p>
-                                            <label for="">SMS Description</label>
+                                            <label for="">{{ __('SMS Description')}}</label>
                                             <div class="input-group">
                                                 <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50" id="textarea"></textarea>
                                             </div>

@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Weekly Off Setting </h1>
+                    <h1>{{ __('Weekly Off Setting')}} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Weekly Off Setting</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Weekly Off Setting')}}</li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="card" style="margin: 10px;">
                                 <div class="card-header">
-                                    <h3 class="card-title">Select Off Day/Days:</h3>
+                                    <h3 class="card-title">{{ __('Select Off Day/Days')}}:</h3>
                                 </div>
                                 <form role="form" action="{{ route('weeklyOff.store') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                                     {{ csrf_field() }} {{ method_field('POST') }}
@@ -40,14 +40,14 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="6" type="checkbox" name="show_option" >
                                                         <label class="form-check-label" for="">
-                                                            Saturday
+                                                            {{ __('Saturday')}}
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="7" type="checkbox" name="show_option""">
-                                                            Sunday
+                                                        {{ __('Sunday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -55,7 +55,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="1" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
-                                                            Monday
+                                                            {{ __('Monday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -63,7 +63,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="2" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
-                                                            Tuesday
+                                                            {{ __('Tuesday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -73,7 +73,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="3" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
-                                                            Wednesday
+                                                            {{ __('Wednesday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -81,7 +81,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="4" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
-                                                            Thursday
+                                                            {{ __('Thursday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="5" type="checkbox" name="show_option">
                                                         <label class="form-check-label" for="">
-                                                            Friday
+                                                            {{ __('Friday')}}
                                                         </label>
 {{--                                                            @if--}}
 {{--                                                            ($errors->has('show_option'))--}}
@@ -105,31 +105,31 @@
                                     <div class="card-footer">
 
 
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary">{{ __('Save')}}</button>
                                         <br>
                                         <div class="card-body mt-5">
                                             <table class="table table-sm table-striped text-center table-hover">
                                                 <tr>
-                                                    <td>SL.</td>
-                                                    <td>Name</td>
-                                                    <td>Active</td>
+                                                    <td>{{ __('SL')}}.</td>
+                                                    <td>{{ __('Name')}}</td>
+                                                    <td>{{ __('Active')}}</td>
                                                 </tr>
                                                 @foreach($all as $key => $a)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>
                                                     @if($a->show_option == 1)
-                                                        <span class="badge badge-dark">Monday</span>
+                                                        <span class="badge badge-dark">{{ __('Monday')}}</span>
                                                     @elseif($a->show_option == 2)
-                                                        <span class="badge badge-dark">Tuesday</span>
+                                                        <span class="badge badge-dark">{{ __('Tuesday')}}</span>
                                                     @elseif($a->show_option == 3)
-                                                        <span class="badge badge-dark">Wednesday</span>
+                                                        <span class="badge badge-dark">{{ __('Wednesday')}}</span>
                                                     @elseif($a->show_option == 4)
-                                                        <span class="badge badge-dark">Thursday</span>
+                                                        <span class="badge badge-dark">{{ __('Thursday')}}</span>
                                                     @elseif($a->show_option == 5)
-                                                        <span class="badge badge-dark">Friday</span>
+                                                        <span class="badge badge-dark">{{ __('Friday')}}</span>
                                                     @elseif($a->show_option == 6)
-                                                        <span class="badge badge-dark">Saturday</span>
+                                                        <span class="badge badge-dark">{{ __('Saturday')}}</span>
                                                     @elseif($a->show_option == 7)
                                                         <span class="badge badge-dark">Sunday</span>
                                                     @endif

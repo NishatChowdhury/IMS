@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Examinations</h1>
+                    <h1>{{ __('Examinations')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam Mgmt</a></li>
-                        <li class="breadcrumb-item active">Examinations</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam Mgmt')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Examinations')}}</li>
                     </ol>
                 </div>
             </div>
@@ -41,12 +41,12 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Exam Name</th>
-                                    <th>Session</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
-                                    <th>Notify Exam</th>
+                                    <th>{{ __('Exam Name')}}</th>
+                                    <th>{{ __('Session')}}</th>
+                                    <th>{{ __('Start Date')}}</th>
+                                    <th>{{ __('End Date')}}</th>
+                                    <th>{{ __('Status')}}</th>
+                                    <th>{{ __('Notify Exam')}}</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -81,10 +81,10 @@
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -101,7 +101,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Exam</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Exam')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -110,7 +110,7 @@
                     {!! Form::open(['action'=>'Backend\ExamController@store_exam', 'method'=>'post']) !!}
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Name')}}*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input type="text" name="name" class="form-control" id="name"  aria-describedby="" placeholder="">
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Year</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Year')}}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control']) }}
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Start')}}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     {{ Form::text('start',null,['class'=>'form-control datePicker', 'placeholder'=>'Starting Date']) }}
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End</label>
+                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('End')}}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     {{ Form::text('end',null,['class'=>'form-control datePicker', 'placeholder'=>'Ending Date']) }}
@@ -149,7 +149,7 @@
                                 <div class="form-check">
                                     <input name="notify" class="form-check-input" type="checkbox" value=1 id="">
                                     <label class="form-check-label" for="defaultCheck1">
-                                       Notify Exam Result
+                                        {{ __('Notify Exam Result')}}
                                     </label>
                                 </div>
                             </div>

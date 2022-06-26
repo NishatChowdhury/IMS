@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Admission Examinations Results</h1>
+                    <h1>{{ __('Admission Examinations Results')}}</h1>{ __{('')}}
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Admission</a></li>
-                        <li class="breadcrumb-item active">Examinations Result</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Admission')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Examinations Result')}}</li>
                     </ol>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">Total Found</h5>
+                                            <h5 style="margin-bottom: 0px;">{{ __('Total Found')}}</h5>
                                             <p>0</p>
                                         </div>
                                     </div>
@@ -47,14 +47,14 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Student</th>
-                                    <th>Reference</th>
-                                    <th>Class</th>
-                                    <th>Academic Year</th>
-                                    <th>Exam Mark</th>
-                                    <th>Achieved Mark</th>
-                                    <th>Rank</th>
-                                    <th>Status</th>
+                                    <th>{{ __('Student')}}</th>
+                                    <th>{{ __('Reference')}}</th>
+                                    <th>{{ __('Class')}}</th>
+                                    <th>{{ __('Academic Year')}}</th>
+                                    <th>{{ __('Exam Mark')}}</th>
+                                    <th>{{ __('Achieved Mark')}}</th>
+                                    <th>{{ __('Rank')}}</th>
+                                    <th>{{ __('Status')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -77,10 +77,10 @@
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>

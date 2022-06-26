@@ -11,12 +11,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dairy List</h1>
+                    <h1 class="m-0 text-dark">{{ __('Dairy List')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Dairy List</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Dairy List')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -63,7 +63,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <select name="academic_class_id" id="" class="form-control">
-                                            <option disabled selected>--Select Class--</option>
+                                            <option disabled selected>{{ __('--Select Class--')}}</option>
                                             @foreach($academicClass as $ac)
                                                 <option value="{{ $ac->id }}" @isset($data){{ $data['academic_class_id'] == $ac->id ? 'selected' : '' }} @endisset>{{ $ac->classes->name ?? '' }} {{ $ac->section->name ?? '' }} {{ $ac->group->name ?? '' }}</option>
                                             @endforeach
@@ -73,7 +73,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <select name="subject_id" id="" class="form-control">
-                                            <option disabled selected>--Select Subject--</option>
+                                            <option disabled selected>{{ __('--Select Subject--')}}</option>
                                             @foreach($subjects as $sb)
                                                 <option value="{{ $sb->id }}" @isset($data) {{ $data['subject_id'] == $sb->id ? 'selected' : '' }}  @endisset>{{ $sb->name ?? '' }}</option>
                                             @endforeach
@@ -83,7 +83,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <select name="teacher_id" id="" class="form-control">
-                                            <option disabled selected>--Select Teacher--</option>
+                                            <option disabled selected>{{ __('--Select Teacher--')}}</option>
                                             @foreach($teachers as $t)
                                                 <option value="{{ $t->id }}" @isset($data) {{ $data['teacher_id'] == $t->id ? 'selected' : '' }}  @endisset>{{ $t->name ?? '' }}</option>
                                             @endforeach
@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button class="btn btn-block btn-primary">Save Dairy</button>
+                                    <button class="btn btn-block btn-primary">{{ __('Save Dairy')}}</button>
                                 </div>
                             </div>
                         </form>

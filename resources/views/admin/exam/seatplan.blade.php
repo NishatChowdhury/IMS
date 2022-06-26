@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Examination</h1>
+                    <h1 class="m-0 text-dark">{{ __('Examination')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam</a></li>
-                        <li class="breadcrumb-item active">Set Plan</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Set Plan')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -34,13 +34,13 @@
                                 {{ Form::hidden('exam_id',$id) }}
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Room</label>
+                                    <label for="">{{ __('Room')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('room',null,['class'=>'form-control room','placeholder'=>'Room No','required']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Academic Class</label>
+                                    <label for="">{{ __('Academic Class')}}</label>
                                     <div class="input-group">
                                         <select name="academic_class_id" id="classId" class="form-control">
                                             <option > Select Class </option>
@@ -53,19 +53,19 @@
 
 
                                 <div class="col">
-                                    <label for="">Roll From</label>
+                                    <label for="">{{ __('Roll From')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('roll_form',null,['class'=>'form-control rollFrom','placeholder'=>'Roll Form']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Roll To</label>
+                                    <label for="">{{ __('Roll To')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('roll_to',null,['class'=>'form-control rollTo','placeholder'=>'Roll To']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Total Count</label>
+                                    <label for="">{{ __('Total Count')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('count',null,['class'=>'form-control count','placeholder'=>'Student Count','readonly']) }}
                                     </div>
@@ -96,7 +96,7 @@
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Exam Seat Plan </h3>
+                            <h3 class="card-title">{{ __('Exam Seat Plan')}} </h3>
                             <div class="card-tools">
                                 {{--<a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>--}}
                                 {{--<a href="{{ \Illuminate\Support\Facades\Request::fullUrlWithQuery(['csv' => 'csv']) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>--}}
@@ -107,13 +107,13 @@
                             <table id="example1" class="table table-bordered table-sm">
                                 <thead class="thead-dark text-center">
                                     <tr>
-                                        <th>Room No</th>
-                                        <th>Class</th>
-                                        <th>Section</th>
-                                        <th>Roll Form</th>
-                                        <th>Roll To</th>
-                                        <th>Count</th>
-                                        <th>Action</th>
+                                        <th>{{ __('Room No')}}</th>
+                                        <th>{{ __('Class')}}</th>
+                                        <th>{{ __('Section')}}</th>
+                                        <th>{{ __('Roll Form')}}</th>
+                                        <th>{{ __('Roll To')}}</th>
+                                        <th>{{ __('Count')}}</th>
+                                        <th>{{ __('Action')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

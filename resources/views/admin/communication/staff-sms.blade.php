@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Staff SMS</h1>
+                    <h1>{{ __('Staff SMS')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Communication</a></li>
-                        <li class="breadcrumb-item active"> Staff SMS</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Communication')}}</a></li>
+                        <li class="breadcrumb-item active"> {{ __('Staff SMS')}}</li>
                     </ol>
                 </div>
             </div>
@@ -31,11 +31,11 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="">Staff Type</label>
+                                    <label for="">{{ __('Staff Type')}}</label>
                                     <div class="input-group">
                                         <select class="form-control" name="staff_type_id">
-                                            <option selected="selected" value="2">Teacher</option>
-                                            <option value="1">Staff</option>
+                                            <option selected="selected" value="2">{{ __('Teacher')}}</option>
+                                            <option value="1">{{ __('Staff')}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col-md-5">
-                                    <label for="">SMS Description</label>
+                                    <label for="">{{ __('SMS Description')}}</label>
                                     <div class="input-group">
                                         {{ Form::hidden('group','staff') }}
                                         <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50" id="textarea"></textarea>
@@ -65,7 +65,7 @@
 
                                     </div>
                                     <p>
-                                        <code>length : </code><span id="msgcount">0</span>/<span id="charcount">0</span>
+                                        <code>{{ __('length')}} : </code><span id="msgcount">0</span>/<span id="charcount">{{ __('0')}}</span>
                                         {{ Form::hidden('sms_count',0,['id'=>'inputsmscount']) }}
                                     </p>
                                 </div>
@@ -75,15 +75,15 @@
                     <!-- list -->
                     <div class="card">
                         <div class="card-body">
-                            <label for=""> Staff List </label>
+                            <label for=""> {{ __('Staff List')}} </label>
                             <table id="" class="table table-bordered" style=>
                                 <thead>
                                 <tr>
                                     <td colspan="3">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" checked id="select_all_head">
-                                            <label class="form-check-label" for="exampleCheck1">Select All</label>
-                                            <span style="color:blue">Selected:<span id="check-box-length"></span></span>
+                                            <label class="form-check-label" for="exampleCheck1">{{ __('Select All')}}</label>
+                                            <span style="color:blue">{{ __('Selected')}}:<span id="check-box-length"></span></span>
                                         </div>
                                     </td>
                                 </thead>
@@ -97,9 +97,9 @@
                                         <img src="{{ asset('assets/img/staffs') }}/{{ $staff->image }}" alt="" height="75">
                                     </td>
                                     <td>
-                                        ID: {{ $staff->card_id }}<br>
-                                        Name: {{ $staff->name }}<br>
-                                        Designation: {{ $staff->title }}
+                                        {{ __('ID')}}: {{ $staff->card_id }}<br>
+                                        {{ __('Name')}}: {{ $staff->name }}<br>
+                                        {{ __('Designation')}}: {{ $staff->title }}
                                     </td>
                                 </tr>
                                 @endforeach

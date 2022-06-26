@@ -8,8 +8,8 @@
         <tr>
             <th scope="col">{{ __('Subject') }}</th>
             <th scope="col">{{ __('Start') }}</th>
-            <th scope="col">End</th>
-            <th scope="col">Teacher</th>
+            <th scope="col">{{ __('End') }}</th>
+            <th scope="col">{{ __('Teacher')}}</th>
         </tr>
         </thead>
         <tbody id="scheduleBody">

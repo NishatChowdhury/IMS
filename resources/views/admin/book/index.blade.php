@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">All Books In Library</h1>
+                    <h1 class="m-0 text-dark">{{ __('All Books In Library')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Books</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Books')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -31,7 +31,7 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Search Your Book By Name:</label>
+                                    <label for="">{{ __('Search Your Book By Name')}}:</label>
                                     <div class="input-group">
                                         {{ Form::text('book_title',null,['class'=>'form-control','id'=>'book_title','placeholder'=>'Enter Your book Name Here:']) }}
                                     </div>
@@ -103,13 +103,13 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>#SL</th>
-                                <th>Book Title</th>
-                                <th>Author Name</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>Available</th>
-                                <th>Action</th>
+                                <th>#{{ __('SL')}}</th>
+                                <th>{{ __('Book Title')}}</th>
+                                <th>{{ __('Author Name')}}</th>
+                                <th>{{ __('Description')}}</th>
+                                <th>{{ __('Category')}}</th>
+                                <th>{{ __('Available')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody id="search">
@@ -152,7 +152,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" id="model-header">
-                    <h5 class="modal-title" id="modalLabel">Issue A Book</h5>
+                    <h5 class="modal-title" id="modalLabel">{{ __('Issue A Book')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -160,7 +160,8 @@
                 {{ Form::open(['route'=>'issueBook.store']) }}
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Student ID</label>
+                        <label for="student_id" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">{{ __('Student
+                            ID')}}</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{ Form::select('student_id',$studentID,null,['class'=>'form-control','id'=>'student_id','placeholder'=>'Select Student ID']) }}
@@ -169,7 +170,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="book_code" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Book ID</label>
+                        <label for="book_code" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">{{ __('Book
+                            ID')}}</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{ Form::select('book_code',$bookCode,null,['class'=>'form-control','placeholder'=>'Select Book ID']) }}
@@ -179,7 +181,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Issue Book</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                 </div>
                 {{ Form::close() }}
             </div>

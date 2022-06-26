@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Online Applicants') }}</h1>
+                    <h1>{{ __('{{ __('Online Applicants')}}') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Admission') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Applicants') }}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('{{ __('Admission')}}') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('{{ __('Applicants')}}') }}</li>
                     </ol>
                 </div>
             </div>
@@ -39,11 +39,16 @@
                                         </div>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Details Pdf </button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Details Pdf </button>
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Notify</button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Summery Pdf</button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> CSV</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>{{ __('
+                                            Details Pdf ')}}</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Details Pdf ')}}</button>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Notify')}}</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>{{ __('
+                                            Summery Pdf')}}</button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('CSV')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -56,12 +61,12 @@
                                 <tr>
                                     <th></th>
                                     <th></th>
-                                    <th>Student</th>
-                                    <th>Father</th>
-                                    <th>Mother</th>
-                                    <th>Class</th>
-                                    <th>Academic Year</th>
-                                    <th>Status</th>
+                                    <th>{{ __('Student')}}</th>
+                                    <th>{{ __('Father')}}</th>
+                                    <th>{{ __('Mother')}}</th>
+                                    <th>{{ __('Class')}}</th>
+                                    <th>{{ __('Academic Year')}}</th>
+                                    <th>{{ __('Status')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -79,15 +84,16 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>

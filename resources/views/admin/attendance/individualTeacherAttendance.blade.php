@@ -13,6 +13,6 @@
     @endforeach
 @else
     <tr>
-        <td colspan="11"><h2 style="text-align:center; color: darkred">Attendance Not Found</h2></td>
+        <td colspan="11"><h2 style="text-align:center; color: darkred">{{ __('Attendance Not Found')}}</h2></td>
     </tr>
 @endif

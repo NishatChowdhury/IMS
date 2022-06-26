@@ -3,8 +3,8 @@
     <table class="table table-striped table-hover">
 <thead>
     <tr>
-        <th class="text-center">Roll</th>
-        <th style="padding-left: 10px">Name</th>
+        <th class="text-center">{{ __('Roll')}}</th>
+        <th style="padding-left: 10px">{{ __('Name')}}</th>
         @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
             <th style="padding-left: 10px">{{ $i }}</th>
         @endfor
@@ -22,9 +22,9 @@
                 <th>
                     @php $attn = DB::table('attendances')->where('registration_id',$teacher->card_id)->where('access_date','like',$year.'-'.$month.'-'.$i.' %')->min('access_date') @endphp
                     @if($attn == null)
-                        <span style="color:white; background: red; padding: 2px 3px; border-radius: 15%;">A</span>
+                        <span style="color:white; background: red; padding: 2px 3px; border-radius: 15%;">{{ __('A')}}</span>
                     @else
-                        <span style="color:white; background: green; padding: 2px 3px; border-radius: 15%;">P</span>
+                        <span style="color:white; background: green; padding: 2px 3px; border-radius: 15%;">{{ __('P')}}</span>
                     @endif
                 </th>
             @endfor

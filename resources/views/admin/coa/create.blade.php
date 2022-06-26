@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Chart of Account</h1>
+                    <h1>{{ __('Chart of Account')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Chart of Account</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Chart of Account')}}</li>
                     </ol>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-                            <h2>Add new account head</h2>
+                            <h2>{{ __('Add new account head')}}</h2>
                         </div>
 
                         <div class="card-body">

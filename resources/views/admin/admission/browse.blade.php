@@ -80,7 +80,7 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Found : {{ $students->total() }} | Total Submitted : {{ $applied }} | Total Approved : {{ $approved }}</h3>
+                        <h3 class="card-title">{{ __('Found')}} : {{ $students->total() }} | Total Submitted : {{ $applied }} | Total Approved : {{ $approved }}</h3>
                         <div class="card-tools">
 {{--                            <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>--}}
 {{--                            <a href="{{ \Illuminate\Support\Facades\Request::fullUrlWithQuery(['csv' => 'csv']) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>--}}
@@ -91,12 +91,12 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>SSC Roll</th>
-                                <th>Student</th>
-                                <th>Board (Passing Year)</th>
-                                <th>Class</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>{{ __('SSC Roll')}}</th>
+                                <th>{{ __('Student')}}</th>
+                                <th>{{ __('Board (Passing Year)')}}</th>
+                                <th>{{ __('Class')}}</th>
+                                <th>{{ __('Status')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -115,12 +115,12 @@
                                         @endphp
                                         @if($stdnt)
                                             @if($stdnt->approved == 1)
-                                                <span class="text-success">Approved</span>
+                                                <span class="text-success">{{ __('Approved')}}</span>
                                             @else
-                                                <span class="text-warning">Submitted</span>
+                                                <span class="text-warning">{{ __('Submitted')}}</span>
                                             @endif
                                         @else
-                                            <span class="text-danger">Not Submitted</span>
+                                            <span class="text-danger">{{ __('Not Submitted')}}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -156,7 +156,7 @@
             <div class="modal-content">
                 {{ Form::open(['action'=>'Backend\AdmissionController@store']) }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="studentModalLabel">Applied Student</h5>
+                    <h5 class="modal-title" id="studentModalLabel">{{ __('Applied Student')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -165,8 +165,8 @@
                     <!-- Body will be here -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Approve</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Approve')}}</button>
                 </div>
                 {{ Form::close() }}
             </div>

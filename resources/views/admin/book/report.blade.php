@@ -9,8 +9,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Library Book Checkout Sheet</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Library Book Checkout Sheet')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -23,22 +23,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group  col-md-2" style="padding-bottom:10px; margin: 30px 0 0 0;" >
-                    <button class="btn btn-success" onclick="window.print(); return false;">Print</button>
+                    <button class="btn btn-success" onclick="window.print(); return false;">{{ __('Print')}}</button>
                 </div>
                 <div class="col-12">
                     <div class="card card-info">
                         <div class="card-body">
-                            <h3 style="background-color: #117a8b;color: white;margin-bottom: 10px;padding-left: 20px;padding-bottom: 10px;padding-top: 10px;"><i class="fas fa-book-open"></i> Library Book Checkout Sheet</h3>
+                            <h3 style="background-color: #117a8b;color: white;margin-bottom: 10px;padding-left: 20px;padding-bottom: 10px;padding-top: 10px;"><i class="fas fa-book-open"></i>
+                                {{ __('Library Book Checkout Sheet')}}</h3>
                             <table id="example1" class="table table-bordered table-striped table-sm">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>#SL</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <th>Book ID</th>
-                                    <th>Date Borrowed</th>
-                                    <th>Date Returned</th>
-                                    <th>Total Days</th>
+                                    <th>#{{ __('SL')}}</th>
+                                    <th>{{ __('Student ID')}}</th>
+                                    <th>{{ __('Student Name')}}</th>
+                                    <th>{{ __('Book ID')}}</th>
+                                    <th>{{ __('Date Borrowed')}}</th>
+                                    <th>{{ __('Date Returned')}}</th>
+                                    <th>{{ __('Total Days')}}</th>
                                 </tr>
                                 </thead>
 

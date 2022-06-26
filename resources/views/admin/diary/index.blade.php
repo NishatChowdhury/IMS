@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dairy List</h1>
+                    <h1 class="m-0 text-dark">{{ __('Dairy List')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Dairy List</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Dairy List')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('diary.create') }}" class="btn btn-sm btn-primary">Create Dairy</a>
+                        <a href="{{ route('diary.create') }}" class="btn btn-sm btn-primary">{{ __('Create Dairy')}}</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -43,7 +43,7 @@
                                       <div class="col">
                                           <div class="form-group">
                                               <select name="academic_class_id" id="" class="form-control">
-                                                  <option disabled selected>--Select Class--</option>
+                                                  <option disabled selected>{{ __('--Select Class--')}}</option>
                                                   @foreach($academicClass as $ac)
                                                   <option value="{{ $ac->id }}">{{ $ac->classes->name ?? '' }} {{ $ac->group->name ?? '' }}</option>
                                                   @endforeach
@@ -63,12 +63,12 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>Id</th>
-                                <th>Date</th>
-                                <th>Class Name</th>
-                                <th>Subject</th>
-                                <th>Teacher</th>
-                                <th>Action</th>
+                                <th>{{ __('Id')}}</th>
+                                <th>{{ __('Date')}}</th>
+                                <th>{{ __('Class Name')}}</th>
+                                <th>{{ __('Subject')}}</th>
+                                <th>{{ __('Teacher')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>

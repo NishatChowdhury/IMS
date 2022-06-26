@@ -39,15 +39,15 @@
                         <table id="example1" class="table table-bordered table-sm">
                             <thead class="thead-light">
                             <tr>
-                                <th>Id</th>
-                                <th>Student</th>
-                                <th>Class</th>
-                                <th>Group</th>
-                                <th>Mobile</th>
-                                <th>Father/Mother</th>
-                                <th>Image</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>{{ __('Id')}}</th>
+                                <th>{{ __('Student')}}</th>
+                                <th>{{ __('Class')}}</th>
+                                <th>{{ __('Group')}}</th>
+                                <th>{{ __('Mobile')}}</th>
+                                <th>{{ __('Father/Mother')}}</th>
+                                <th>{{ __('Image')}}</th>
+                                <th>{{ __('Status')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,9 +66,9 @@
                                     <td><img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>
                                         @if ($student->status == 0 )
-                                            <span class="badge badge-danger">Applied</span>
+                                            <span class="badge badge-danger">{{ __('Applied')}}</span>
                                         @else
-                                            <span class="badge badge-primary">Approve</span>
+                                            <span class="badge badge-primary">{{ __('Approve')}}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -105,7 +105,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Approve Student</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Approve Student')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -113,15 +113,15 @@
                 {!!  Form::open(['action'=>'Backend\OnlineApplyController@moveToStudent', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                 <div class="modal-body row">
                     <div class="form-group col-6">
-                        <label for="">Class Name</label>
+                        <label for="">{{ __('Class Name')}}</label>
                         <input type="text" class="form-control" id="className" readonly>
                     </div>
                     <div class="form-group col-6">
-                        <label for="">Group Name</label>
+                        <label for="">{{ __('Group Name')}}</label>
                         <input type="text" class="form-control" id="groupName" readonly>
                     </div>
                     <div class="form-group col-6">
-                        <label for="">Session Name</label>
+                        <label for="">{{ __('Session Name')}}</label>
                         <input type="text" class="form-control fff" id="sessionName" readonly>
                     </div>
                     <input type="hidden" name="session_id" id="sessionId">
@@ -139,8 +139,8 @@
                     </div> --}}
                     <div class="form-group col-6">
                         <label for="">Sections</label>
-                        <select class="form-control" name="section_id">
-                            <option value="">--Select Section--</option>
+                        <select class="form-control" {{ __('name')}}="section_id">
+                            <option value="">{{ __('--Select Section--')}}</option>
                             @foreach ($sections as $item)
                                 <option value="{{ $item->id }}" class="customOption">
                                     {{ $item->name }}
