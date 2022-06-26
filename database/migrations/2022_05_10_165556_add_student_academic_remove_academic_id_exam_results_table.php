@@ -14,9 +14,9 @@ class AddStudentAcademicRemoveAcademicIdExamResultsTable extends Migration
     public function up()
     {
          Schema::table('exam_results', function (Blueprint $table) {
-            $table->dropColumn('academic_class_id');
+//            $table->dropColumn('academic_class_id');
             $table->dropColumn('student_id');
-            $table->unsignedBigInteger('student_academic_id');
+            //$table->unsignedBigInteger('student_academic_id');
         });
     }
 

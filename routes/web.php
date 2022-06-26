@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\AdmissionController;
@@ -97,5 +98,7 @@ Route::post('load_applied_student_id','Front\AdmissionController@loadStudentId')
 
 Route::get('/load_online_student_info','Front\FrontController@loadStudentInfo');
 /** Applied Student */
+
+Route::get('lang/{id}',[FrontController::class,'lang'])->name('lang');
 
 Route::get('page/{uri}','Front\FrontController@page');

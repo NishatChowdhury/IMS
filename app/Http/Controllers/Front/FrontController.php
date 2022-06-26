@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Backend\InstituteMessage;
+use App\Models\Frontend\Language;
 use Carbon\Carbon;
 use App\Models\Backend\Bank;
 use App\Models\Backend\City;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Menu;
 use App\Models\Backend\Page;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Backend\Album;
 use App\Models\Backend\Group;
@@ -31,6 +34,7 @@ use App\Models\Backend\ExamResult;
 use App\Repository\FrontRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AdmissionFee;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Backend\ImportantLink;
 use App\Models\Backend\UpcomingEvent;
@@ -454,6 +458,32 @@ class FrontController extends Controller
         ];
 
         return response($info);
+    }
+
+    /**
+     * Change website language
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function lang($id): RedirectResponse
+    {
+        $language = Language::query()->findOrFail($id);
+
+        $data = [
+            'id' => $id,
+            'name' => $language->name,
+            'alias' => $language->alias,
+            'direction' => $language->direction,
+        ];
+
+        //Cookie::queue(Cookie::make('language',json_encode($data)));
+        Cookie::queue('language',json_encode($data));
+//        cookie('language',json_encode($data));
+        session()->put('locale',$language->alias);
+
+        //return response($data);
+        return redirect()->back();
     }
 
 }

@@ -14,8 +14,8 @@ class RemoveColExamScheduleTable extends Migration
     public function up()
     {
         Schema::table('exam_schedules', function (Blueprint $table) {
-            $table->dropColumn('session_id');
-            $table->dropColumn('class_id');
+//            $table->dropColumn('session_id');
+//            $table->dropColumn('class_id');
         });
     }
 

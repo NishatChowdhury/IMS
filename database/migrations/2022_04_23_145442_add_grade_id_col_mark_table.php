@@ -14,7 +14,7 @@ class AddGradeIdColMarkTable extends Migration
     public function up()
     {
         Schema::table('marks', function (Blueprint $table) {
-            $table->unsignedBigInteger('grade_id');
+//            $table->unsignedBigInteger('grade_id');
         });
     }
 
