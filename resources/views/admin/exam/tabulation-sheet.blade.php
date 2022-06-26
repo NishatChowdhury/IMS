@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tabulation Sheet</h1>
+                    <h1>{{ __('Tabulation Sheet')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam Management</a></li>
-                        <li class="breadcrumb-item active">Tabulation Sheet</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam Management')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Tabulation Sheet')}}</li>
                     </ol>
                 </div>
             </div>
@@ -31,19 +31,19 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="">{{ __('Class')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Section</label>
+                                    <label for="">{{ __('Section')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Group</label>
+                                    <label for="">{{ __('Group')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="scl-name" style="float: left; padding-left:50px; padding-top: 20px; text-align: center;">
                                             <h2>{{ siteConfig('name') }}</h2>
-                                            <h4>Result Sheet of Yearly</h4>
+                                            <h4>{{ __('Result Sheet of Yearly')}}</h4>
                                             <hr>
                                         </div>
                                     </div>
@@ -98,15 +98,15 @@
                                             <table id="example2" class="table table-bordered table-hover">
                                                 <thead>
                                                 <tr>
-                                                    <th>Student ID</th>
-                                                    <th>Student Name</th>
-                                                    <th>Roll No</th>
+                                                    <th>{{ __('Student ID')}}</th>
+                                                    <th>{{ __('Student Name')}}</th>
+                                                    <th>{{ __('Roll No')}}</th>
                                                     @foreach($subjects as $subject)
                                                         <td>{{ $subject->subject->short_name }}</td>
                                                     @endforeach
-                                                    <th>Total Mark</th>
-                                                    <th>GPA</th>
-                                                    <th>Rank</th>
+                                                    <th>{{ __('Total Mark')}}</th>
+                                                    <th>{{ __('GPA')}}</th>
+                                                    <th>{{ __('Rank')}}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

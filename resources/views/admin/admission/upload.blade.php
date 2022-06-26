@@ -33,10 +33,10 @@
               
                             <div class="form-group">
                                 <div class="row">
-                                    <label for="upload" class="col-sm-3">Academic Class*:</label>
+                                    <label for="upload" class="col-sm-3">{{ __('Academic Class*:')}}</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="academic_class_id" id="getAcademicYear">
-                                            <option value="">--Select Academics Class--</option>
+                                            <option value="">{{ __('--Select Academics Class--')}}</option>
                                             @foreach ($onlineApplyStep as $item)
                                             <option value="{{ $item->id }}" class="customOption">
                                               {{ $item->classes->name ?? '' }}-{{ $item->group->name ?? '' }}-{{ $item->session_id ? $item->sessions->year : '' }}
@@ -52,7 +52,7 @@
                                     <label for="upload" class="col-sm-3">Session*:</label>
                                     <div class="col-sm-9">
                                         {{ Form::select('session_id',$sessions,null,['class'=>'form-control','placeholder'=>'Select a session','required']) }}
-                                    </div>
+                                    </div>{ __{('}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -73,14 +73,14 @@
                             </div> --}}
                             <div class="form-group">
                                 <div class="row">
-                                    <label for="upload" class="col-sm-3">Browse Merit List (CSV)*:</label>
+                                    <label for="upload" class="col-sm-3">{{ __('Browse Merit List (CSV)*:')}}</label>
                                     <div class="col-sm-9">
                                         <input type="file" name="list">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group text-center">
-                                {{ Form::submit('SUBMIT',['class'=>'btn btn-success']) }}
+                                {{ Form::submit( __('SUBMIT'),['class'=>'btn btn-success']) }}
                             </div>
                             {{ Form::close() }}
                         </div>

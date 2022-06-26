@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Academic Report</title>
+    <title>{{ __('Academic Report')}}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -57,7 +57,7 @@
                     <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="heading">
-                                <h3>Class Report</h3>
+                                <h3>{{ __('Class Report')}}</h3>
                                 <h5 class="mb-4">
                                     {{ $students[0]->academics[0]->classes->name ?? '' }}
                                     {{ $students[0]->academics[0]->section->name ?? '' }}
@@ -69,11 +69,11 @@
                             <table style="width:100%; " >
                                 <thead>
                                 <tr>
-                                    <th>StudentID</th>
-                                    <th>Name</th>
-                                    <th>Paid</th>
-                                    <th>Discount</th>
-                                    <th>Current Due</th>
+                                    <th>{{ __('StudentID')}}</th>
+                                    <th>{{ __('Name')}}</th>
+                                    <th>{{ __('Paid')}}</th>
+                                    <th>{{ __('Discount')}}</th>
+                                    <th>{{ __('Current Due')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -93,7 +93,7 @@
                                     </tr>
                                 @empty
                                     <td colspan="6" class="text-center text-danger">
-                                        <h5>No data found !!</h5>
+                                        <h5>{{ __('No data found')}} !!</h5>
                                     </td>
                                 @endforelse
                                 </tbody>

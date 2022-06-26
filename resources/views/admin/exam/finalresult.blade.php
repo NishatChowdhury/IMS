@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+{ __{('')}}@extends('layouts.fixed')
 
 @section('title', 'Exam Mgmt | Examination Results')
 
@@ -8,14 +8,18 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Examination Results</h1>
+                    <h1>{{ __('Examination Results')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam Mgmt</a></li>
-                        <li class="breadcrumb-item active">Examination Results</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam Mgmt')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Examination Results')}}</li>
                     </ol>
-                </div>
+                    {
+                    {
+                 __('/div')
+                }
+                }
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -32,7 +36,7 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Session</label>
+                                    <label for="">{{ __('Session')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
                                     </div>
@@ -50,19 +54,19 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="">{{ __('Class')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Section</label>
+                                    <label for="">{{ __('Section')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Group</label>
+                                    <label for="">{{ __('Group')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
                                     </div>
@@ -95,10 +99,14 @@
                                 <div class="col-md-12">
 
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Details Pdf </button>
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Notify</button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Summery Pdf</button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> CSV</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Details Pdf')}} </button>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Notify')}}</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Summery Pdf')}}</button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('CSV')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -109,15 +117,15 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>ID</th>
-                                    <th>Class</th>
-                                    <th>Current Rank</th>
-                                    <th>Grade</th>
-                                    <th>Grade Point</th>
-                                    <th>Result Rank</th>
-                                    <th>Total Marks</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Name')}}</th>
+                                    <th>{{ __('ID')}}</th>
+                                    <th>{{ __('Class')}}</th>
+                                    <th>{{ __('Current Rank')}}</th>
+                                    <th>{{ __('Grade')}}</th>
+                                    <th>{{ __('Grade Point')}}</th>
+                                    <th>{{ __('Result Rank')}}</th>
+                                    <th>{{ __('Total Marks')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -143,10 +151,10 @@
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>

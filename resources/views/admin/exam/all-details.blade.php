@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Result Details</h1>
+                    <h1>{{ __('Result Details')}}</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -26,25 +26,25 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Session</label>
+                                    <label for="">{{ __('Session')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Exam Name</label>
+                                    <label for="">{{ __('Exam Name')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="class">Class</label>
+                                    <label for="class">{{ __('Class')}}</label>
                                     <div class="input-group">
                                         <select name="class_id" id="class" class="form-control">
                                             @foreach($repository->academicClasses() as $class)
@@ -99,33 +99,33 @@
 
                                 <table id="" class="table">
                                     <tr>
-                                        <th>Student's Name : </th>
+                                        <th>{{ __('Student\'s Name')}} : </th>
                                         <td>{{ $result->student->name ?? '' }}</td>
-                                        <th>Exam Name : </th>
+                                        <th>{{ __('Exam Name')}} : </th>
                                         <td>{{ $result->exam->name ?? '' }}</td>
                                     </tr>
                                     <tr>
-                                        <th>StudentID : </th>
+                                        <th>{{ __('StudentID')}} : </th>
                                         <td>{{ $result->student->studentId }}</td>
-                                        <th>Date : </th>
+                                        <th>{{ __('Date')}} : </th>
                                         <td>{{ $result->exam->start }} - {{ $result->exam->end }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Class :</th>
+                                        <th>{{ __('Class')}} :</th>
                                         <td>{{ academicClass($result->academic_class_id) }}</td>
-                                        <th>Grade : </th>
+                                        <th>{{ __('Grade')}} : </th>
                                         <td>{{ $result->grade }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Current Rank :</th>
+                                        <th>{{ __('Current Rank')}} :</th>
                                         <td>{{ $result->student->rank }}</td>
                                         <th>Grade Point :</th>
                                         <td>{{ $result->gpa }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Result Rank :</th>
+                                        <th>{{ __('Result Rank')}} :</th>
                                         <td>{{ $result->rank }}</td>
-                                        <th>Total Marks :</th>
+                                        <th>{{ __('Total Marks')}} :</th>
                                         <td>{{ $result->total_mark }}</td>
                                     </tr>
                                 </table>
@@ -146,13 +146,13 @@
                                 <table id="" class="table table-bordered" style="margin-top: 60px;">
                                     <thead>
                                     <tr>
-                                        <th>Subject</th>
-                                        <th>Code</th>
-                                        <th>Exam Mark</th>
-                                        <th>Result Mark</th>
+                                        <th>{{ __('Subject')}}</th>
+                                        <th>{{ __('Code')}}</th>
+                                        <th>{{ __('Exam Mark')}}</th>
+                                        <th>{{ __('Result Mark')}}</th>
                                         {{--                                    <th>Description</th>--}}
-                                        <th>Grade</th>
-                                        <th>Grade point</th>
+                                        <th>{{ __('Grade')}}</th>
+                                        <th>{{ __('Grade point')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -163,16 +163,16 @@
                                             <td>{{ $mark->full_mark }}</td>
                                             <td>
                                                 @if($mark->objective > 0)
-                                                    Objective: {{ $mark->objective }}<br>
+                                                {{ __('Objective')}}: {{ $mark->objective }}<br>
                                                 @endif
                                                 @if($mark->written > 0)
-                                                    Written: {{ $mark->written }}<br>
+                                                {{ __('Written')}}: {{ $mark->written }}<br>
                                                 @endif
                                                 @if($mark->practical > 0)
-                                                    Practical: {{ $mark->practical }}<br>
+                                                {{ __('Practical')}}: {{ $mark->practical }}<br>
                                                 @endif
                                                 @if($mark->viva > 0)
-                                                    Viva: {{ $mark->viva }}
+                                                {{ __('Viva')}}: {{ $mark->viva }}
                                                 @endif
                                             </td>
                                             {{--                                        <td></td>--}}
@@ -184,7 +184,7 @@
 
                                 </table>
                                 <div class="row">
-                                    <div class="col text-center mt-4">Powered By <b> Web Point Ltd.</b></div>
+                                    <div class="col text-center mt-4">{{ __('Powered By')}} <b> {{ __('Web Point Ltd')}}.</b></div>
                                 </div>
 
                             </div>

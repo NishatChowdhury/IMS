@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Book Category</h1>
+                    <h1 class="m-0 text-dark">{{ __('Book Category')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add New Category</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Add New Category')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -68,9 +68,9 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">#SL</th>
-                                        <th class="text-center">Category Name</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">#{{ __('SL')}}</th>
+                                        <th class="text-center">{{ __('Category Name')}}</th>
+                                        <th class="text-center">{{ __('Action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -111,7 +111,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" id="edit-model-header">
-                    <h5 class="modal-title" id="exampleEditModalLabel">Edit Book Category</h5>
+                    <h5 class="modal-title" id="exampleEditModalLabel">{{ __('Edit Book Category')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

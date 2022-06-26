@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Student SMS</h1>
+                    <h1>{{ __('Student SMS')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Communication</a></li>
-                        <li class="breadcrumb-item active"> Student SMS</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Communication')}}</a></li>
+                        <li class="breadcrumb-item active"> {{ __('Student SMS')}}</li>
                     </ol>
                 </div>
             </div>
@@ -31,27 +31,27 @@
                             {{ Form::open(['action'=>'CommunicationController@student','method'=>'get']) }}
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
                                         <input class="form-control" placeholder="Student ID" name="studentId" type="text">
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Session</label>
+                                    <label for="">{{ __('Session')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
                                         {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="">{{ __('Class')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Section</label>
+                                    <label for="">{{ __('Section')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>--}}
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Group</label>
+                                    <label for="">{{ __('Group')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>--}}
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
@@ -85,14 +85,14 @@
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-5">
-                                            <label for="">SMS Description</label>
+                                            <label for="">{{ __('SMS Description')}}</label>
                                             <div class="input-group">
                                                 {{ Form::hidden('group','student') }}
                                                 <textarea class="form-control descriptionLen" rows="5"  placeholder="type sms here.." name="message" cols="50" id="textarea"></textarea>
                                             {{ Form::submit('SEND',['class'=>'btn btn-primary']) }}
                                             </div>
                                             <p>
-                                                <code>length : </code><span id="msgcount">0</span>/<span id="charcount">0</span>
+                                                <code>{{ __('length')}} : </code><span id="msgcount">0</span>/<span id="charcount">0</span>
                                                 {{ Form::hidden('sms_count',0,['id'=>'inputsmscount']) }}
                                             </p>
                                             {{--<p style="display: inline-block;padding: 5px;margin: 10px 0 0 0" class="bg-primary;"> Total Word Count :--}}
@@ -109,15 +109,15 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <label for=""> Student List </label>
+                                    <label for=""> {{ __('Student List')}} </label>
                                     <table id="" class="table table-bordered" style=>
                                         <thead class="thead-light">
                                         <tr>
                                             <td colspan="3">
                                                 <div class="form-check">
                                                     <input type="checkbox" class="form-check-input" checked id="select_all_head">
-                                                    <label class="form-check-label" for="exampleCheck1">Select All</label>
-                                                    <span style="color:blue">Selected:<span id="check-box-length"></span></span>
+                                                    <label class="form-check-label" for="exampleCheck1">{{ __('Select All')}}</label>
+                                                    <span style="color:blue">{{ __('Selected')}}:<span id="check-box-length"></span></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -132,9 +132,9 @@
                                                 <img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="75" alt="">
                                             </td>
                                             <td>
-                                                ID : {{ $student->studentId }}<br>
-                                                Name : {{ $student->name }} ({{ $student->mobile }})<br>
-                                                Class : {{ $student->academicClass->academicClasses->name ?? '' }} {{ $student->section->name ?? '' }} {{ $student->group->name ?? ''}}
+                                                {{ __('ID')}} : {{ $student->studentId }}<br>
+                                                {{ __('Name')}} : {{ $student->name }} ({{ $student->mobile }})<br>
+                                                {{ __('Class')}} : {{ $student->academicClass->academicClasses->name ?? '' }} {{ $student->section->name ?? '' }} {{ $student->group->name ?? ''}}
                                             </td>
                                         </tr>
                                         @endforeach
@@ -144,7 +144,7 @@
                                             <td colspan="3">
                                                 <div class="form-check">
                                                     <input type="checkbox" class="form-check-input" checked id="select_all_foot">
-                                                    <label class="form-check-label" for="exampleCheck1">Select All</label>
+                                                    <label class="form-check-label" for="exampleCheck1">{{ __('Select All')}}</label>
                                                 </div>
                                             </td>
                                         </tr>

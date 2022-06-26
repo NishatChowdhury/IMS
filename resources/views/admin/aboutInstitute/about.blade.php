@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>About Institute</h1>
+                    <h1>{{ __('About Institute')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">About Institute</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('About Institute')}}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>About Institute</h5>
+                                <h5>{{ __('About Institute')}}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -46,7 +46,7 @@
                                 @csrf
                                 <input type="hidden" value="{{$aboutInstitute->alias}}" name="alias">
                                 <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">About Institute</label>
+                                    <label for="exampleFormControlTextarea1" class="form-label">{{ __('About Institute')}}</label>
                                     <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$aboutInstitute->body}}</textarea>
                                 </div>
                                 <div class="mb-3">
@@ -62,7 +62,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>About Institute</h5>
+                                <h5>{{ __('About Institute')}}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -76,7 +76,7 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <h4>About Institute</h4>
+                            <h4>{{ __('About Institute')}}</h4>
                             <hr>
                             <div class="row">
 

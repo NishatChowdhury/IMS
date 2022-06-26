@@ -22,12 +22,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Attendance Monthly Report </h1>
+                    <h1>{{ __('Attendance Monthly Report')}} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Attendance Monthly Report</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Attendance Monthly Report')}}</li>
                     </ol>
                 </div>
             </div>
@@ -44,28 +44,28 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="col">
-                                        <label for="">User</label>
+                                        <label for="">{{ __('User')}}</label>
                                         <div class="input-group">
                                             {{ Form::select('user',[1=>'Student',2=>'Employee','Teacher'],null,['class'=>'form-control','id' => 'statusChange','placeholder'=>'Select Session','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label for="">Year</label>
+                                        <label for="">{{ __('Year')}}</label>
                                         <div class="input-group">
                                             {{ Form::selectRange('year',2020,2025,null,['class'=>'form-control','placeholder'=>'Session','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label for="">Month</label>
+                                        <label for="">{{ __('Month')}}</label>
                                         <div class="input-group">
                                             {{ Form::selectMonth('month',null,['class'=>'form-control','placeholder'=>'Select Month','required']) }}
                                         </div>
                                     </div>
                                     <div class="col" id="forStudent">
-                                        <label for="class">Class</label>
+                                        <label for="class">{{ __('Class')}}</label>
                                         <div class="input-group">
                                             <select name="class_id" id="class" class="form-control">
-                                                <option value="">Select Class</option>
+                                                <option value="">{{ __('Select Class')}}</option>
                                                 @foreach($repository->academicClasses() as $class)
                                                     <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                                 @endforeach
@@ -87,11 +87,11 @@
                         <div class="col-md-3">
                             <div>
                                 <ul style="list-style: none">
-                                    <li> <i class="fas fa-circle" style="color: #008000"></i> <span> P - Present </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> D - Late/Delay </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> R - Left without completing the day </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> A - Absent </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #878484"></i> <span> L - Leave </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #008000"></i> <span> {{ __('P - Present')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span>{{ __(' D - Late/Delay ')}}</span></li>
+                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> {{ __('R - Left without completing the day')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> {{ __('A - Absent')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #878484"></i> <span>{{ __(' L - Leave ')}}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Month Name :
+                            <h3 class="card-title">{{ __('Month Name ')}}:
                             </h3>
                         </div>
                         <!-- /.card-header -->
@@ -117,8 +117,8 @@
                                 <table class="table table-bordered table-responsive" id="atn_result_show">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Roll</th>
-                                        <th style="padding-left: 10px">Name</th>
+                                        <th class="text-center">{{ __('Roll')}}</th>
+                                        <th style="padding-left: 10px">{{ __('Name')}}</th>
                                         @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
                                             <th style="padding-left: 10px">{{ $i }}</th>
                                         @endfor
@@ -178,7 +178,7 @@
 
                 </div>
             </div>
-            <div ><h4 id="erro-box" style="text-align: center; color:red; display: none" >Attendance Not Found</h4></div>
+            <div ><h4 id="erro-box" style="text-align: center; color:red; display: none" >{{ __('Attendance Not Found')}}</h4></div>
         </div><!-- /.container-fluid -->
     </section>    <!-- /.content -->
     @endif

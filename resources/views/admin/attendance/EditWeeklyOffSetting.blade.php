@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Weekly Off Setting </h1>
+                    <h1>{{ __('Weekly Off Setting')}} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Weekly Off Setting</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Weekly Off Setting')}}</li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="card" style="margin: 10px;">
                                 <div class="card-header">
-                                    <h3 class="card-title">Select Off Day/Days:</h3>
+                                    <h3 class="card-title">{{ __('Select Off Day/Days')}}:</h3>
                                 </div>
                                 <form role="form" action="{{ route('weeklyOff.store') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                                     {{ csrf_field() }} {{ method_field('POST') }}
@@ -41,7 +41,7 @@
                                                         <input class="form-check-input" value="saturday" type="checkbox" name="show_option[]"
                                                             {{in_array("saturday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
-                                                            Saturday
+                                                            {{ __('Saturday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -50,7 +50,7 @@
                                                         <input class="form-check-input" value="sunday" type="checkbox" name="show_option[]"
                                                             {{in_array("sunday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
-                                                            Sunday
+                                                            {{ __('Sunday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -60,7 +60,7 @@
                                                             {{in_array("monday",$offDay) ? "checked" : ""}}>
 
                                                         <label class="form-check-label" for="">
-                                                            Monday
+                                                            {{ __('Monday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -69,7 +69,7 @@
                                                         <input class="form-check-input" value="tuesday" type="checkbox" name="show_option[]"
                                                             {{in_array("tuesday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
-                                                            Tuesday
+                                                            {{ __('Tuesday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -80,7 +80,7 @@
                                                         <input class="form-check-input" value="wednesday" type="checkbox" name="show_option[]"
                                                             {{in_array("wednesday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
-                                                            Wednesday
+                                                            {{ __('Wednesday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                         <input class="form-check-input" value="thursday" type="checkbox" name="show_option[]"
                                                             {{in_array("thursday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
-                                                            Thursday
+                                                            {{ __('Thursday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@
                                                         <input class="form-check-input" value="friday" type="checkbox" name="show_option[]"
                                                             {{in_array("friday",$offDay) ? "checked" : ""}}>
                                                         <label class="form-check-label" for="">
-                                                            Friday
+                                                            {{ __('Friday')}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary">{{ __('Save')}}</button>
                                     </div>
                                 </form>
                             </div>

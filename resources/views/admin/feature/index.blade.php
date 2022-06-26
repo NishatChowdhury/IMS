@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+{ __{('}}@extends('layouts.fixed')
 
 @section('title','Set Feature Services')
 
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Featured Service</h1>
+                    <h1>{{ __('Featured Service')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Feature</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Feature')}}</li>
                     </ol>
                 </div>
             </div>
@@ -39,7 +39,8 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <a href="{{ action('Backend\FeatureController@create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i> Add New</a>
+                                <a href="{{ action('Backend\FeatureController@create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i>{{ __('
+                                    Add New')}}</a>
                             </div>
                         </div>
 
@@ -47,11 +48,11 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
+                                    <th>{{ __('ID')}}</th>
+                                    <th>{{ __('Name')}}</th>
+                                    <th>{{ __('Status')}}</th>
+                                    <th>{{ __('Image')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -61,16 +62,17 @@
                                         <td>
                                             {{ $feature->name }}
                                             @if($feature->active == 1)
-                                                <span class="badge badge-success">Active</span>
+                                                <span class="badge badge-success">{{ __('Active')}}</span>
                                             @else
-                                                <span class="badge badge-secondary">Inactive</span>
+                                                <span class="badge badge-secondary">{{ __('Inactive')}}</span>
                                             @endif
                                         </td>
                                         <td>
                                             {{ Form::model($feature,['action'=>['Backend\FeatureController@update',$feature->id],'method'=>'patch']) }}
                                             <select name="active" class="active" title="Toggle activeness">
-                                                <option value="0" {{ $feature->active == 0 ? 'selected' : '' }}>Inactive</option>
-                                                <option value="1" {{ $feature->active == 1 ? 'selected' : '' }}>Active</option>
+                                                <option value="0" {{ $feature->active == 0 ? 'selected' : '' }}>
+                                                    {{ __('Inactive')}}</option>
+                                                <option value="1" {{ $feature->active == 1 ? 'selected' : '' }}>{{ __('Active')}}</option>
                                             </select>
                                             {{ Form::close() }}
                                         </td>

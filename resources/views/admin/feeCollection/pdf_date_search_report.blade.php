@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Academic Report</title>
+    <title>{{ __('Academic Report')}}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -58,19 +58,19 @@
                     <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="heading">
-                                <h3>{__('Date Wise Collection Report')}</h3>
+                                <h3>{{ __('Date Wise Collection Report')}}</h3>
 {{--                                <h5 class="mb-4">{{  $r['from'] }}--}}
 {{--                                    {{  $r['to'] ? 'To ' .  $r['to'] : '' }}</h5>--}}
                             </div>
                             <table class="table table-bordered table-sm">
                                 <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>StudentID</th>
-                                    <th>Name</th>
-                                    <th>Class</th>
-                                    <th>mobile</th>
-                                    <th>Paid</th>
+                                    <th>{{ __('Date')}}</th>
+                                    <th>{{ __('StudentID')}}</th>
+                                    <th>{{ __('Name')}}</th>
+                                    <th>{{ __('Class')}}</th>
+                                    <th>{{ __('mobile')}}</th>
+                                    <th>{{ __('Paid')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -88,7 +88,7 @@
                                     </tr>
                                 @empty
                                     <td colspan="6" class="text-center text-danger">
-                                        <h5>No data found !!</h5>
+                                        <h5>{{ __('No data found')}} !!</h5>
                                     </td>
                                 @endforelse
                                 </tbody>

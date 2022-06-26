@@ -12,8 +12,8 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Database Backup</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Database Backup')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -29,7 +29,7 @@
                     <!-- general form elements -->
                     <div class="card card-light">
                         <div class="card-header">
-                            Database Backup
+                            {{ __('Database Backup')}}
                         </div>
                         {{-- @if($errors->any())
                             <div class="alert alert-danger" role="alert">
@@ -44,14 +44,15 @@
                         <!-- form start -->
                     <div class="card-body text-center">
                         <div class="downloadBtn">
-                            <a href="{{ url('admin/download-database') }}" class="btn btn-dark btn-sm">Download Database</a>
+                            <a href="{{ url('admin/download-database') }}" class="btn btn-dark btn-sm">{{ __('Download
+                                Database')}}</a>
                         </div>
                         <table id="example1" class="mt-5 table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>No.</th>
-                                <th>Date</th>
-                                <th>Action</th>
+                                <th>{{ __('No')}}.</th>
+                                <th>{{ __('Date')}}</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,7 +60,7 @@
                                     <td>01</td>
                                     <td>20-02-2022</td>
                                     <td>
-                                        <a href="" class="btn btn-primary btn-sm">Download</a>
+                                        <a href="" class="btn btn-primary btn-sm">{{ __('Download')}}</a>
                                     </td>
                                 </tr>
                             </tbody>

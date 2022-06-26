@@ -5,11 +5,11 @@
             <th scope="col"><b>{{ __('Subject') }}</b></th>
             <th scope="col"><b>{{ __('Full Mark') }}</b></th>
             <th scope="col"><b>{{ __('Objective') }}</b></th>
-            <th scope="col"><b>Written</b></th>
-            <th scope="col"><b>Practical</b></th>
-            <th scope="col"><b>Total Mark</b></th>
-            <th scope="col"><b>GPA</b></th>
-            <th scope="col"><b>Grade</b></th>
+            <th scope="col"><b>{{ __('Written')}}</b></th>
+            <th scope="col"><b>{{ __('Practical')}}</b></th>
+            <th scope="col"><b>{{ __('Total Mark')}}</b></th>
+            <th scope="col"><b>{{ __('GPA')}}</b></th>
+            <th scope="col"><b>{{ __('Grade')}}</b></th>
         </tr>
         </thead>
         <tbody id="resultBody">

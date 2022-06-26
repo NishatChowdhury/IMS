@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Holiday Setting </h1>
+                    <h1>{{ __('Holiday Setting')}} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Holiday Setting</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Holiday Setting')}}</li>
                     </ol>
                 </div>
             </div>
@@ -46,14 +46,14 @@
                                 <div class="card-body">
                                     {{ Form::model($holiday,['action'=>['Backend\HolidayController@update',$holiday->id],'method'=>'patch']) }}
                                     <div class="form-group">
-                                        <label for="email">Name</label>
+                                        <label for="email">{{ __('Name')}}</label>
                                         <input class="form-control @error('name') is-invalid @enderror" placeholder="Holiday Name" name="name" type="text" value="{{ $holiday->name }}">
                                         <div class="invalid-feedback">
                                             @error('name') {{ $message }} @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Start Date</label>
+                                        <label for="">{{ __('Start Date')}}</label>
                                         <div class="input-group">
                                             <input class="form-control datePicker @error('start') is-invalid @enderror" name="start" type="text" value="{{ $holiday->start ?? '' }}">
                                             <div class="input-group-prepend">
@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">End Date</label>
+                                        <label for="">{{ __('End Date')}}</label>
                                         <div class="input-group">
                                             <input class="form-control datePicker @error('end') is-invalid @enderror" name="end" type="text" value="{{ $holiday->end ?? '' }}">
                                             <div class="input-group-prepend">
@@ -81,11 +81,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Is Holiday</label>
+                                        <label for="">{{ __('Is Holiday')}}</label>
                                         <input class="checkboxCustom @error('is_holiday') is-invalid @enderror" name="is_holiday" {{ $holiday->is_holiday == 1 ? 'checked' : '' }}   value="1" type="checkbox">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Is SmS</label>
+                                        <label for="">{{ __('Is SmS')}}</label>
                                         <input class="checkboxCustom @error('is_holiday') is-invalid @enderror" name="is_sms" {{ $holiday->is_sms == 1 ? 'checked' : '' }} value="1" type="checkbox">
                                     </div>
                                     <input class="btn btn-primary btn-block" type="submit" value="Submit">
@@ -100,11 +100,11 @@
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Start</th>
-                                            <th>End</th>
-                                            <th>Action</th>
+                                            <th>{{ __('ID')}}</th>
+                                            <th>{{ __('Name')}}</th>
+                                            <th>{{ __('Start')}}</th>
+                                            <th>{{ __('End')}}</th>
+                                            <th>{{ __('Action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -120,9 +120,9 @@
                                                 </td>
                                                 <td>
                                                     @if($h->is_holiday)
-                                                        <span class="badge badge-primary">Yes</span>
+                                                        <span class="badge badge-primary">{{ __('Yes')}}</span>
                                                     @else
-                                                        <span class="badge badge-danger">No</span>
+                                                        <span class="badge badge-danger">{{ __('No')}}</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -157,7 +157,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Attendance Setting</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Attendance Setting')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -165,7 +165,7 @@
                 {{ Form::open(['action'=>'Backend\ShiftController@store','method'=>'post']) }}
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Name*')}}</label>
                         <div class="col-sm-9">
                             <div class="">
                                 <input type="text" name="name" class="form-control" id=""  aria-describedby="" >
@@ -173,7 +173,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Time*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Start
+                            Time*')}}</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <input type="text" name="start" class="form-control" aria-describedby="" placeholder="hh:mm:ss">
@@ -184,7 +185,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">End Time*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('End
+                            Time*')}}</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <input type="text" name="end" class="form-control" aria-describedby="" placeholder="hh:mm:ss">
@@ -195,7 +197,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Grace Time*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Grace
+                            Time*')}}</label>
                         <div class="col-sm-9">
                             <div class="">
                                 <input type="text" name="grace" class="form-control">
@@ -203,22 +206,24 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Late Present Fee*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Late
+                            Present Fee*')}}</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2">Tk</span>
+                                    <span class="input-group-text" id="inputGroupPrepend2">{{ __('Tk')}}</span>
                                 </div>
                                 <input type="text" name="late_fee" class="form-control" id="" placeholder="0"  aria-describedby="" >
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Absent Fee*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Absent
+                            Fee*')}}</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend2">Tk</span>
+                                    <span class="input-group-text" id="inputGroupPrepend2">{{ __('Tk')}}</span>
                                 </div>
                                 <input type="text" name="absent_fee" class="form-control" id="" placeholder="0"  aria-describedby="" >
                             </div>
@@ -226,7 +231,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Add')}}</button>
                 </div>
                 {{ Form::close() }}
             </div>

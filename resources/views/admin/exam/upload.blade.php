@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Examination</h1>
+                    <h1 class="m-0 text-dark">{{ __('Examination')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Upload Mark</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Upload Mark')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -35,7 +35,7 @@
                             {{ Form::open(['action'=>'Backend\MarkController@up','method'=>'post','files'=>true]) }}
                             {{ Form::hidden('schedule',$schedule->id) }}
                             <input type="file" name="file">
-                            <button type="submit" class="btn btn-primary btn-sm">upload</button>
+                            <button type="submit" class="btn btn-primary btn-sm">{{ __('upload')}}</button>
                             {{ Form::close() }}
                         </div>
                     </div>

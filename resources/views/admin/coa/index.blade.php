@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Chart of Accounts</h1>
+                    <h1>{{ __('Chart of Accounts')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Chart of Accounts</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Chart of Accounts')}}</li>
                     </ol>
                 </div>
             </div>
@@ -33,7 +33,8 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <a href="{{ action('Backend\ChartOfAccountController@create') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
+                                    <a href="{{ action('Backend\ChartOfAccountController@create') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                        {{ __('New')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -42,11 +43,11 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Parent</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Code')}}</th>
+                                    <th>{{ __('Parent')}}</th>
+                                    <th>{{ __('Name')}}</th>
+                                    <th>{{ __('Status')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -95,7 +96,8 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     {{ $chartOfAccounts->links() }}

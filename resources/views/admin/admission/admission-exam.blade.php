@@ -13,8 +13,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Admission</a></li>
-                        <li class="breadcrumb-item active">Examinations</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Admission')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Examinations')}}</li>
                     </ol>
                 </div>
             </div>
@@ -43,7 +43,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: "> <i class="fas fa-plus-circle"></i> New</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: "> <i class="fas fa-plus-circle"></i>
+                                            {{ __('New')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -54,13 +55,13 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Exam Name</th>
-                                    <th>Academic Year</th>
-                                    <th>Registration Date</th>
-                                    <th>Examination Date</th>
-                                    <th>Status</th>
-                                    <th>Notify Exam Result</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Exam Name')}}</th>
+                                    <th>{{ __('Academic Year')}}</th>
+                                    <th>{{ __('Registration Date')}}</th>
+                                    <th>{{ __('Examination Date')}}</th>
+                                    <th>{{ __('Status')}}</th>
+                                    <th>{{ __('Notify Exam Result')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -77,15 +78,16 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>

@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Result Details</h1>
+                    <h1>{{ __('Result Details')}}</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -24,27 +24,27 @@
                         <div class="card-body">
                             <table id="" class="table table-sm">
                                 <tr>
-                                    <th>Student's Name : </th>
+                                    <th>{{ __('Student\'s Name')}} : </th>
                                     <td>{{ $result->student->name ?? '' }}</td>
-                                    <th>Grade : </th>
+                                    <th>{{ __('Grade')}} : </th>
                                     <td>{{ $result->grade }}</td>
                                 </tr>
                                 <tr>
-                                    <th>StudentID : </th>
+                                    <th>{{ __('StudentID')}} : </th>
                                     <td>{{ $result->student->studentId }}</td>
-                                    <th>Grade Point :</th>
+                                    <th>{{ __('Grade Point')}} :</th>
                                     <td>{{ $result->gpa }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Class :</th>
+                                    <th>{{ __('Class')}} :</th>
                                     <td>{{ $result->academicClass->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
-                                    <th>Total Marks :</th>
+                                    <th>{{ __('Total Marks')}} :</th>
                                     <td>{{ number_format($result->total_mark,2) }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Current Rank :</th>
+                                    <th>{{ __('Current Rank')}} :</th>
                                     <td>{{ $result->student->rank }}</td>
-                                    <th>Result Rank :</th>
+                                    <th>{{ __('Result Rank')}} :</th>
                                     <td>{{ $result->rank }}</td>
                                 </tr>
                             </table>
@@ -57,13 +57,13 @@
                             <table id="" class="table table-bordered table-sm" style="margin-top: 60px;">
                                 <thead>
                                 <tr>
-                                    <th>Subject</th>
-                                    <th>Code</th>
-                                    <th>Exam Mark</th>
-                                    <th>Result Mark</th>
+                                    <th>{{ __('Subject')}}</th>
+                                    <th>{{ __('Code')}}</th>
+                                    <th>{{ __('Exam Mark')}}</th>
+                                    <th>{{ __('Result Mark')}}</th>
                                     {{--<th>Description</th>--}}
-                                    <th>Grade</th>
-                                    <th>Grade point</th>
+                                    <th>{{ __('Grade')}}</th>
+                                    <th>{{ __('Grade point')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -76,20 +76,20 @@
                                         <div class="row">
                                             <div class="col">
                                                 @if($mark->objective > 0)
-                                                    Objective: <b>{{ $mark->objective }}</b><br>
+                                                {{ __('Objective')}}: <b>{{ $mark->objective }}</b><br>
                                                 @endif
                                                 @if($mark->written > 0)
-                                                    Written: <b>{{ $mark->written }}</b><br>
+                                                {{ __('Written')}}: <b>{{ $mark->written }}</b><br>
                                                 @endif
                                                 @if($mark->practical > 0)
-                                                    Practical: <b>{{ $mark->practical }}</b><br>
+                                                {{ __('Practical')}}: <b>{{ $mark->practical }}</b><br>
                                                 @endif
                                                 @if($mark->viva > 0)
-                                                    Viva: <b>{{ $mark->viva }}</b>
+                                                {{ __('Viva')}}: <b>{{ $mark->viva }}</b>
                                                 @endif
                                             </div>
                                             <div class="col" style="border-left:solid 1px #333333">
-                                                Total: <b>{{ $mark->objective + $mark->written + $mark->practical + $mark->viva }}</b>
+                                                {{ __('Total')}}: <b>{{ $mark->objective + $mark->written + $mark->practical + $mark->viva }}</b>
                                             </div>
                                         </div>
                                     </td>

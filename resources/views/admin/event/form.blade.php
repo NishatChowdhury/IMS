@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title*</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Title')}}*</label>
     <div class="col-sm-10">
         <div class="input-group">
             {{ Form::text('title',null,['class'=>'form-control','required']) }}
@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Venue*</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Venue')}}*</label>
     <div class="col-sm-10">
         <div class="input-group">
             {{ Form::text('venue',null,['class'=>'form-control','required']) }}
@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Start Date</label>
+            <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">{{ __('Start Date')}}</label>
             <div class="col-sm-8">
                 <div class="input-group">
 {{--                    <input name="date" class="form-control datePicker" aria-describedby="">--}}
@@ -31,7 +31,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Start Time</label>
+            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Start Time')}}</label>
             <div class="col-sm-9">
                 <div class="input-group">
 {{--                    <input name="time" type="text" class="form-control timepicker">--}}
@@ -45,7 +45,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Short Description')}}</label>
     <div class="col-sm-10">
         <div class="input-group">
             {{--<textarea type="text" class="form-control" rows="5" id=""> </textarea>--}}
@@ -54,7 +54,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Thumbnail(360X220)*</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)')}}*</label>
     <div class="col-sm-10">
         <div class="form-group files color">
             <input type="file" name="thumbnail" class="form-control" multiple="">
@@ -62,7 +62,7 @@
     </div>
 </div>
 <div style="float: right">
-    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Save</button>
+    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Save')}}</button>
 </div>
 
 <!-- /Notices page inner Content End*** -->

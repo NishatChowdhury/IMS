@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Library Management</h1>
+                    <h1 class="m-0 text-dark">{{ __('Library Management')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Books</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Books')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,22 +27,23 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                            <h3 class="card-title">Add A New Book</h3>
-                            <a href="{{ route('newBook.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add New Book</a>
+                            <h3 class="card-title">{{ __('Add A New Book')}}</h3>
+                            <a href="{{ route('newBook.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i>
+                                {{ __('Add New Book')}}</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>#SL</th>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>No. Of Issues</th>
-                                <th>Shelve No.</th>
-                                <th>Action</th>
+                                <th>#{{ __('SL')}}</th>
+                                <th>{{ __('Title')}}</th>
+                                <th>{{ __('Author')}}</th>
+                                <th>{{ __('Description')}}</th>
+                                <th>{{ __('Category')}}</th>
+                                <th>{{ __('No. Of Issues')}}</th>
+                                <th>{{ __('Shelve No')}}.</th>
+                                <th>{{ __('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
