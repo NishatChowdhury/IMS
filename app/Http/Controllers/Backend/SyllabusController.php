@@ -17,7 +17,7 @@ class SyllabusController extends Controller
     public function index()
     {
         //$session = Session::query()->where('active',1)->first()->id;
-        $data['academic_class'] = AcademicClass::query()->whereIn('session_id',activeYear())->get();
+        $data['academic_class'] = AcademicClass::active()->get();
         $data['syllabuses'] = Syllabus::query()->orderBy('academic_class_id')->get();
         return view('admin.syllabus.index')->with($data);
     }

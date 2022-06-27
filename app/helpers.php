@@ -10,8 +10,10 @@ use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Session;
 use App\Models\Backend\SiteInformation;
 use App\Models\Backend\Theme;
+use App\Models\Frontend\Language;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
 
@@ -228,4 +230,20 @@ function netProfit($start,$end)
 
     return $balance;
 
+}
+
+function languages()
+{
+    return Language::query()->where('is_active',1)->get();
+}
+
+function lang($key)
+{
+    $lang = json_decode(Cookie::get('language'));
+
+    if(!$lang){
+        $lang = Language::query()->where('default',1)->first();
+    }
+
+    return $lang->$key;
 }

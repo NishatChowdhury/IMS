@@ -176,7 +176,7 @@ class InstitutionController extends Controller
 
 
         AcademicClass::query()->create($req->all());
-        return redirect('admin/institution/academic-class');
+        return redirect('admin/institution/academic-class')->with('success','Academic Class added successfully ');
     }
 
     public function editAcademicClass(Request $request)

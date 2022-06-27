@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Backend\DairyController;
+use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;

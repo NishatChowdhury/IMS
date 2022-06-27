@@ -54,7 +54,7 @@
                                     <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$message->body ?? ''}}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Chairman Image</label>
+                                    <label for="formFile" class="form-label">{{ __('Principal Image') }}</label>
                                     <br>
                                     <input name="image"  class="btn btn-outline-success" type="file" id="formFile">
                                 </div>
@@ -83,7 +83,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>

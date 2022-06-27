@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\AdmissionController;
@@ -48,6 +49,7 @@ Route::get('/album/{name}','Front\FrontController@album');
 
 //Download
 Route::get('/download','Front\FrontController@download');
+Route::get('/contacts','Front\FrontController@contact');
 
 Route::post('api/login','AndroidController@login');
 
@@ -87,6 +89,7 @@ Route::get('playlist/{id}','Front\FrontController@playlist');
 Route::get('notice','Front\FrontController@notice');
 /** Playlist Ends */
 
+Route::post('message-store','Front\MessagesController@store')->name('message.store');
 
 
 Route::post('admission-form-submit',[OnlineApplyController::class,'storeCollege']);
@@ -95,5 +98,7 @@ Route::post('load_applied_student_id','Front\AdmissionController@loadStudentId')
 
 Route::get('/load_online_student_info','Front\FrontController@loadStudentInfo');
 /** Applied Student */
+
+Route::get('lang/{id}',[FrontController::class,'lang'])->name('lang');
 
 Route::get('page/{uri}','Front\FrontController@page');

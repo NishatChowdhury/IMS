@@ -14,10 +14,10 @@ class RemoveSessionIdMarksTable extends Migration
     public function up()
     {
         Schema::table('marks', function (Blueprint $table) {
-            $table->dropColumn('session_id');
-            $table->dropColumn('class_id');
-            $table->dropColumn('section_id');
-            $table->dropColumn('group_id');
+//            $table->dropColumn('session_id');
+//            $table->dropColumn('class_id');
+//            $table->dropColumn('section_id');
+//            $table->dropColumn('group_id');
         });
     }
 

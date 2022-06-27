@@ -21,7 +21,12 @@ class AcademicClass extends Model
         return $this->belongsTo(Classes::class,'class_id');
     }
 
-    public function section()
+    /**
+     * An academic class is belongs to a section
+     *
+     * @return BelongsTo
+     */
+    public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);
     }

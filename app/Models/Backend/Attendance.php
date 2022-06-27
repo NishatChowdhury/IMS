@@ -10,6 +10,7 @@ class Attendance extends Model
     protected $dates = ['date'];
 
     protected $guarded = [];
+
     public function student()
     {
         return $this->belongsTo(Student::class,'registration_id','studentId');

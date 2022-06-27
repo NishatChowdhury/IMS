@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\Gallery;
 use App\Models\Backend\GalleryCorner;
 use App\Repository\GalleryRepositories;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -29,28 +30,40 @@ class GalleryController extends Controller
         return view('admin.gallery.image', compact('images', 'repository'));
     }
 
-    public function store(Request $request)
+    /**
+     * Upload images to gallery folder
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
-        if ($request->hasFile('image')) {
-            foreach ($request->file('image') as $img) {
-                $name = time() . '.' . $img->getClientOriginalExtension();
+        if($request->hasFile('image')){
+            foreach($request->file('image') as $key => $img){
+                $name = time().'-'.$key.'.'.$img->getClientOriginalExtension();
                 $img->move(storage_path('app/public/uploads/gallery/') . $request->album_id . '/', $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 Gallery::query()->create($data);
             }
-        } else {
+        }else{
             Gallery::query()->create($request->all());
         }
-        return back();
+        return redirect('admin/gallery/image')->with('status','Image Successfully Stored.');
     }
 
-    public function destroy($id)
+    /**
+     * Remove images from storage
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
     {
         $image = Gallery::query()->findOrFail($id);
         File::delete(storage_path('app/public/uploads/gallery/') . $image->album_id . '/' . $image->image);
         $image->delete();
-        return back();
+        return back()->with('status','Image has been deleted Successfully.');
     }
 
     public function galleryCornerCreate()
@@ -62,21 +75,24 @@ class GalleryController extends Controller
     public function galleryCornerStore(Request $request)
     {
         if ($request->hasFile('image')) {
+            $i=0;
             foreach ($request->file('image') as $img) {
                 $name = rand(1000,100000).'-'.time() . '.' . $img->getClientOriginalExtension();
                 $img->move(storage_path('app/public/uploads/gallery/'), $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 GalleryCorner::query()->create($data);
+                $i++;
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('status', $i.' Image Added Successfully');
     }
+
     public function GalleryImageDestroy($id)
     {
         $image = GalleryCorner::query()->findOrFail($id);
         File::delete(storage_path('app/public/uploads/gallery/') . $image->image);
         $image->delete();
-        return back();
+        return back()->with('status','Image has been Successfully deleted');
     }
 }

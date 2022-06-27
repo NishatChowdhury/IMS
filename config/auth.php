@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Student\StudentLogin;
+
 return [
 
     /*

@@ -48,7 +48,7 @@ class FeeCollectionController extends Controller
             ->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
             ->groupBy('year', 'month')
             ->get();
-        $fss = FeeSetupStudent::where('student_id', $student->id)->get();
+        $fss = FeeSetupStudent::query()->where('student_id', $student->id)->get();
         $amount = 0;
         $paid = $paidAmount[0]->amount ?? 0;
         foreach ($fss as $fs) {
@@ -154,6 +154,7 @@ class FeeCollectionController extends Controller
 
 
         $receipt =  FeeSetupCategory::query()->where('fee_setup_student_id', $fss->first()->id)->get();
+
         return redirect('admin/fee/fee-collection')
             ->with('receipt', $receipt)
             ->with('spay', $sp)

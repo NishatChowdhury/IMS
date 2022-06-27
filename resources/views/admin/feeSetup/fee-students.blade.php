@@ -44,7 +44,7 @@
                                 <tbody>
                                 @foreach($students as $key => $data)
                                     <tr>
-                                        <td>{{ $data->student->studentId }}</td>
+                                        <td>{{ $data->student->studentId ?? '' }}</td>
                                         <td>{{ $data->student->name ?? '' }}</td>
                                         <td>
                                             <p class="badge badge-primary">{{ __('Total') }} : {{ $data->categories->sum('amount') }}</p>

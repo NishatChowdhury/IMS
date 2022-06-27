@@ -46,7 +46,7 @@ class MenuController extends Controller
     public function store(Request $request): RedirectResponse
     {
          $validated = $request->validate([
-            'menu_id' => 'required',
+            //'menu_id' => 'required',
             'name' => 'required',
             'type' => 'required|integer',
             'order' => 'required|integer',
