@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Backend\AttendanceStatus;
+use App\Models\AttendanceStatus;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AppliedStudent;
 use App\Models\Backend\Attendance;
@@ -15,9 +15,9 @@ use App\Models\Backend\Mark;
 use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentLogin;
 use App\Models\Backend\weeklyOff;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\Student\StudentLogin;
 use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+
+
 
 Route::get('system/migrate',function(){
     Artisan::call('migrate');
@@ -52,6 +54,7 @@ Route::get('system/reboot',function(){
 
 Route::get('system/symlink',function(){
     Artisan::call('storage:link');
+    dd('done');
 });
 
 Route::get('process-attendances',function(){
@@ -65,8 +68,8 @@ Route::get('process-attendances',function(){
 
 Route::get('t', function(){
     $allstudent = \App\Models\LocationStudent::query()
-        ->whereNotIn('direction', [0])
-        ->get();
+                                                ->whereNotIn('direction', [0])
+                                                ->get();
 
     foreach ($allstudent as $key => $stu){
 
@@ -94,50 +97,50 @@ Route::get('t', function(){
         $year = date('Y', strtotime($stu->starting_date));
 
         $checkTransport = \App\Models\Backend\Transport::query()
-            ->where('month',$currentMonthTake)
-            ->where('year',$year)
-            ->where('student_academic_id',$stu->student_academic_id)
-            ->first();
+                                                        ->where('month',$currentMonthTake)
+                                                        ->where('year',$year)
+                                                        ->where('student_academic_id',$stu->student_academic_id)
+                                                        ->first();
 
-        if($stu->direction == 1){
-            $direction = 'Home To Institute';
-            $amount = $stu->location->home_to_institute;
-        }elseif ($stu->direction == 2){
-            $direction = 'Institute To Home';
-            $amount = $stu->location->institute_to_home;
-        }elseif ($stu->direction == 3){
-            $direction = 'Both';
-            $amount = $stu->location->both;
-        }else{
-            $direction = 'Not taking';
-            $amount = 00;
-        }
+         if($stu->direction == 1){
+             $direction = 'Home To Institute';
+             $amount = $stu->location->home_to_institute;
+         }elseif ($stu->direction == 2){
+             $direction = 'Institute To Home';
+             $amount = $stu->location->institute_to_home;
+         }elseif ($stu->direction == 3){
+             $direction = 'Both';
+             $amount = $stu->location->both;
+         }else{
+             $direction = 'Not taking';
+             $amount = 00;
+         }
 
 //         return $stu->location->institute_to_home33;
-        if (is_null($checkTransport)){
-            if ($stu->is_active == 1) {
-                $checkTransport1 = \App\Models\Backend\Transport::create([
-                    'location_id' => $stu->location_id,
-                    'student_academic_id' => $stu->student_academic_id,
-                    'student_id' => $stu->studentAcademic->student->id,
-                    'location_name' => $stu->location->name ?? '',
-                    'starting_date' => $stu->starting_date,
-                    'ending_date' => $stu->ending_date,
-                    'month' => $currentMonthTake,
-                    'year' => $year,
-                    'amount' => $amount,
-                    'direction' => $direction,
-                    'status' => 1,
-                ]);
-            }
-        }
+         if (is_null($checkTransport)){
+             if ($stu->is_active == 1) {
+                 $checkTransport1 = \App\Models\Backend\Transport::create([
+                     'location_id' => $stu->location_id,
+                     'student_academic_id' => $stu->student_academic_id,
+                     'student_id' => $stu->studentAcademic->student->id,
+                     'location_name' => $stu->location->name ?? '',
+                     'starting_date' => $stu->starting_date,
+                     'ending_date' => $stu->ending_date,
+                     'month' => $currentMonthTake,
+                     'year' => $year,
+                     'amount' => $amount,
+                     'direction' => $direction,
+                     'status' => 1,
+                 ]);
+             }
+         }
     }
 
     return dd('done');
 });
 
 Route::get('a-s', function(){
-//    dd('nothing');
+    dd('nothing');
     // the joob is done
 //    return AttendanceStatus::all();
 //   Schema::table('attendance_statuses', function (Blueprint $table) {
@@ -162,101 +165,102 @@ Route::get('a-s', function(){
 Route::get('update-attendance/{d}', function ($d){
 
 
-    $todayCount =  Carbon::parse($d);
-    $today =  Carbon::parse($d)->format('Y-m-d');
+
+        $todayCount = Carbon::parse($d);
+        $today = Carbon::parse($d)->format('Y-m-d');
 ////      $today = \Carbon\Carbon::today()->format('Y-m-d');
 //        $todayCount = \Carbon\Carbon::today();
 //    return $today->format('N');
 
-    $students = Student::query()->get();
+        $students = Student::query()->get();
 
-    foreach ($students as $key => $student){
+        foreach ($students as $key => $student) {
 
-        $rawData = RawAttendance::query()
-            ->where('access_date', $today)
-            ->where('registration_id', $student->studentId)
-            ->get();
+            $rawData = RawAttendance::query()
+                ->where('access_date', $today)
+                ->where('registration_id', $student->studentId)
+                ->get();
 
-        if ($rawData->isEmpty()) {
+            if ($rawData->isEmpty()) {
 
-            $min = null;
-            $max = null;
+                $min = null;
+                $max = null;
 
-            $leave = \App\Models\Backend\StudentLeave::query()
-                ->where('student_id', $student->id)
-                ->where('date', '=', $today)
-                ->exists();
+                $leave = \App\Models\Backend\StudentLeave::query()
+                    ->where('student_id', $student->id)
+                    ->where('date', '=', $today)
+                    ->exists();
 //       return         $weeklyOff = weeklyOff::where('id', 1)->first();
-            $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
+                $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
 //                return $today;
-            $holiday = \App\Models\Backend\Holiday::query()
-                ->where('start', '<=', $today)
-                ->where('end', '>=', $today)
-                ->where('is_holiday', 1)
-                ->exists();
+                $holiday = \App\Models\Backend\Holiday::query()
+                    ->where('start', '<=', $today)
+                    ->where('end', '>=', $today)
+                    ->where('is_holiday', 1)
+                    ->exists();
 
-            if ($holiday) {
-                $attendanceStatus = '5'; // Holiday
-            } elseif ($leave) {
-                $attendanceStatus = '7'; // Leave
-            } elseif ($weeklyOff) {
-                $attendanceStatus = '6'; // Weekly Off
+                if ($holiday) {
+                    $attendanceStatus = '5'; // Holiday
+                } elseif ($leave) {
+                    $attendanceStatus = '7'; // Leave
+                } elseif ($weeklyOff) {
+                    $attendanceStatus = '6'; // Weekly Off
+                } else {
+                    $attendanceStatus = '2'; // Absent
+                }
             } else {
-                $attendanceStatus = '2'; // Absent
+                $min = $rawData->min('access_time');
+                $max = $rawData->max('access_time');
+
+                $shift = \App\Models\Backend\Shift::query()->first();
+                $shiftIn = Carbon::parse($shift->start)->addMinutes($shift->grace);
+                $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
+
+                if ($min >= $shiftIn && $max <= $shiftOut) {
+                    $attendanceStatus = '8'; // Late & Early Leave
+                } elseif ($min <= $shiftIn && $max <= $shiftOut) {
+                    $attendanceStatus = '4'; // Early Leave
+                } elseif ($min <= $shiftIn) {
+                    $attendanceStatus = '1';  // Present
+                } elseif ($min > $shiftIn) {
+                    $attendanceStatus = '3'; // Late
+                }
+
+
             }
-        }else{
-            $min = $rawData->min('access_time');
-            $max = $rawData->max('access_time');
 
-            $shift = \App\Models\Backend\Shift::query()->first();
-            $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
-            $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
-
-            if($min >= $shiftIn && $max <= $shiftOut){
-                $attendanceStatus = '8'; // Late & Early Leave
-            }elseif ($min <= $shiftIn && $max <= $shiftOut) {
-                $attendanceStatus = '4'; // Early Leave
-            } elseif ($min <= $shiftIn) {
-                $attendanceStatus = '1';  // Present
-            } elseif ($min > $shiftIn) {
-                $attendanceStatus = '3'; // Late
-            }
+            $data = [
+                'student_academic_id' => $student->studentAcademic->id ?? 0,
+                'date' => $today,
+                'in_time' => $min,
+                'out_time' => $max,
+                'attendance_status_id' => $attendanceStatus,
+            ];
 
 
-        }
-
-        $data = [
-            'student_academic_id' => $student->studentAcademic->id ?? 0,
-            'date' => $today,
-            'in_time' => $min,
-            'out_time' => $max,
-            'attendance_status_id' => $attendanceStatus,
-        ];
-
-
-        $attendanceExists = Attendance::query()
-            ->where('student_academic_id', $student->studentAcademic->id ?? 0)
-            ->where('date', $today)
-            ->exists();
-
-
-        if ($attendanceExists) {
-            $attendance = Attendance::query()
+            $attendanceExists = Attendance::query()
                 ->where('student_academic_id', $student->studentAcademic->id ?? 0)
                 ->where('date', $today)
-                ->first();
-            $attendance->update($data);
-        } else {
-            Attendance::create($data);
+                ->exists();
+
+
+            if ($attendanceExists) {
+                $attendance = Attendance::query()
+                    ->where('student_academic_id', $student->studentAcademic->id ?? 0)
+                    ->where('date', $today)
+                    ->first();
+                $attendance->update($data);
+            } else {
+                Attendance::create($data);
+            }
+
+
         }
 
+        dd('done');
 
 
-    }
-    dd('done');
-
-
-
+//        dd('done');
 
 
 });
@@ -265,7 +269,7 @@ Route::get('u-a-t/{d}', function ($d){
 
        $todayCount =  Carbon::parse($d);
        $today =  Carbon::parse($d)->format('Y-m-d');
-////      $today = \Carbon\Carbon::today()->format('Y-m-d');
+//        $today = \Carbon\Carbon::today()->format('Y-m-d');
 //        $todayCount = \Carbon\Carbon::today();
 //    return $today->format('N');
 
@@ -310,7 +314,7 @@ Route::get('u-a-t/{d}', function ($d){
                 $min = $rawData->min('access_time');
                 $max = $rawData->max('access_time');
 
-                $shift = \App\Models\Backend\Shift::query()->where('id', $staff->shift_id)->first();
+                $shift = \App\Models\Backend\Shift::find($staff->shift_id);
                 $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
                 $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
 
@@ -364,42 +368,76 @@ Route::get('u-a-t/{d}', function ($d){
 });
 
 
+Route::get('r-l', function(){
+    $route_name = [];
+    foreach (Route::getRoutes()->getRoutes() as $route) {
+           $action = $route->getAction();
+//           $action = $route->getName();
+        if (array_key_exists('as', $action)) {
+                $route_name[] = $action['as'];
+        }
+//                $route_name[] = $action;
+    }
+     return $route_name;
+
+    return $data = json_encode($route_name);
+
+        return in_array('generated', $route_name);
+    $getaName = [];
+    foreach ($route_name as $key => $n){
+//        return $n;
+         if (array_key_exists('journals.index', $route_name)) {
+//             $getaName[] = $route_name;
+             dd('ace');
+         }else{
+             dd('ney');
+         }
+    }
+
+    return $getaName;
+
+
+
+});
+
 Route::get('download-raw-attendances',function(){
 
-    $startDate=today()->subWeek();
-    $startDate=$startDate->format('Y-m-d');
-    $endDate = today();
-    $endDate = $endDate->format('Y-m-d');
-    $accessId = "00000000";
+//   return Attendance::query()->get();
 
-    $data = array(
-        "operation" => "fetch_log",
-        "auth_user" => "bnsck",
-        "auth_code" => "3efd234cefa324567a342deafd32672",
-        "start_date" => "$startDate",
-        "end_date" => "$endDate",
-        "start_time" => "00:00:00",
-        "end_time" => "23:59:59",
-        "access_id" => "$accessId"
-    );
+        $startDate=today()->subWeek();
+        $startDate=$startDate->format('Y-m-d');
+        $endDate = today();
+        $endDate = $endDate->format('Y-m-d');
+        $accessId = "00000000";
 
-    $url_send ="https://rumytechnologies.com/rams/json_api";
-    $str_data = json_encode($data);
+        $data = array(
+            "operation" => "fetch_log",
+            "auth_user" => "bnsck",
+            "auth_code" => "3efd234cefa324567a342deafd32672",
+            "start_date" => "$startDate",
+            "end_date" => "$endDate",
+            "start_time" => "00:00:00",
+            "end_time" => "23:59:59",
+            "access_id" => "$accessId"
+        );
 
-    $ch = curl_init($url_send);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($str_data))
-    );
+            $url_send ="https://rumytechnologies.com/rams/json_api";
+            $str_data = json_encode($data);
 
-    $result = (curl_exec($ch));
-    $replace_syntax = str_replace('{"log":', "", $result);
-    $replace_syntax = substr($replace_syntax, 0, -1);
-    $responseBody = json_decode($replace_syntax);
+            $ch = curl_init($url_send);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $str_data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($str_data))
+            );
+
+            $result = (curl_exec($ch));
+            $replace_syntax = str_replace('{"log":', "", $result);
+            $replace_syntax = substr($replace_syntax, 0, -1);
+            $responseBody = json_decode($replace_syntax);
 
 
 
@@ -411,17 +449,17 @@ Route::get('download-raw-attendances',function(){
 //        $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
 
 //        if(!$isExists){
-        $attendance = new RawAttendance();
-        $attendance->registration_id = $row->registration_id;
-        $attendance->access_id = $row->access_id;
-        $attendance->department = $row->department;
-        $attendance->unit_id = $row->unit_id;
-        $attendance->card = $row->card;
-        $attendance->unit_name = $row->unit_name;
-        $attendance->user_name = $row->user_name;
-        $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
-        $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
-        $attendance->save();
+            $attendance = new RawAttendance();
+            $attendance->registration_id = $row->registration_id;
+            $attendance->access_id = $row->access_id;
+            $attendance->department = $row->department;
+            $attendance->unit_id = $row->unit_id;
+            $attendance->card = $row->card;
+            $attendance->unit_name = $row->unit_name;
+            $attendance->user_name = $row->user_name;
+            $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+            $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+            $attendance->save();
 //        }
     }
 
@@ -429,113 +467,124 @@ Route::get('download-raw-attendances',function(){
 });
 
 
+Route::get('database-backup', function(){
+   $data = Artisan::call('db:backup');
+
+   dd($data);
+});
+
 Route::get('getdata-attendance', function(){
     $students = Student::query()->where('status',1)->get();
 
-    $today = Carbon::today()->format('Y-m-d');
-    foreach($students as $student){
-        $isExist = RawAttendance::query()
-            ->where('registration_id',$student->studentId)
-            ->where('access_date','like','%'.$today.'%')
-            ->get();
-//            return $isExist;
-        if($isExist){
-//                dd('hey');
-            $date = RawAttendance::query()
+        $today = Carbon::today()->format('Y-m-d');
+        foreach($students as $student){
+            $isExist = RawAttendance::query()
                 ->where('registration_id',$student->studentId)
-                ->get()
-                ->groupBy('access_date');
-            foreach($date as $attendances){
-                foreach($attendances as $attendance){
-                    $min = $attendances->min('access_time');
-                    $max = $attendances->max('access_time');
-                    $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date',$attendance->access_date)->first();
-                    $data = [
-                        'registration_id' => $attendance->registration_id,
-                        'access_id' => $attendance->access_id,
-                        'card' => $attendance->card,
-                        'unit_name' => $attendance->unit_name,
-                        'student_id' => $student->id,
-                        'staff_id' => null,
-                        'date' => $attendance->access_date,
-                        'entry' => $min,
-                        'exit' => $max,
-                        'late' => 0,
-                        'early' => 0,
-                        'status' => 'P',
+                ->where('access_date','like','%'.$today.'%')
+                ->get();
+//            return $isExist;
+            if($isExist){
+//                dd('hey');
+                $date = RawAttendance::query()
+                    ->where('registration_id',$student->studentId)
+                    ->get()
+                    ->groupBy('access_date');
+                foreach($date as $attendances){
+                    foreach($attendances as $attendance){
+                        $min = $attendances->min('access_time');
+                        $max = $attendances->max('access_time');
+                        $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date',$attendance->access_date)->first();
+                        $data = [
+                            'registration_id' => $attendance->registration_id,
+                            'access_id' => $attendance->access_id,
+                            'card' => $attendance->card,
+                            'unit_name' => $attendance->unit_name,
+                            'student_id' => $student->id,
+                            'staff_id' => null,
+                            'date' => $attendance->access_date,
+                            'entry' => $min,
+                            'exit' => $max,
+                            'late' => 0,
+                            'early' => 0,
+                            'status' => 'P',
 //                            'sms_sent' => 0,
-                    ];
+                        ];
 
-                    if($hasAttendance == null){
-                        Attendance::query()->create($data);
+                        if($hasAttendance == null){
+                            Attendance::query()->create($data);
 //                            $attendance->update(['processed'=>1]);
-                    }else{
-                        //$hasAttendance->update($data);// TODO: fixed// it after showing demo. compare edit time with existing time.
+                        }else{
+                            //$hasAttendance->update($data);// TODO: fixed// it after showing demo. compare edit time with existing time.
 //                            $attendance->update(['processed'=>1]);
+                        }
+                        //dd(!$hasAttendance);
                     }
-                    //dd(!$hasAttendance);
+                    //dd('$max');
                 }
-                //dd('$max');
-            }
-        }else{
-
-            $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date','like','%'.$today.'%')->first();
-
-            $data = [
-                'registration_id' => $student->studentId,
-                'access_id' => null,
-                'card' => null,
-                'unit_name' => 'demo',
-                'student_id' => $student->id,
-                'staff_id' => null,
-                'date' => $today,
-                'entry' => 0,
-                'exit' => 0,
-                'late' => 0,
-                'early' => 0,
-                'status' => "A",
-//                    'sms_sent' => 0,
-            ];
-
-            if($hasAttendance == null){
-                Attendance::query()->create($data);
-                //$attendance->update(['processed'=>1]);
             }else{
-                $hasAttendance->update($data);
-                //$attendance->update(['processed'=>1]);
-            }
 
-            //Attendance::query()->create($data);
+                $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date','like','%'.$today.'%')->first();
+
+                $data = [
+                    'registration_id' => $student->studentId,
+                    'access_id' => null,
+                    'card' => null,
+                    'unit_name' => 'demo',
+                    'student_id' => $student->id,
+                    'staff_id' => null,
+                    'date' => $today,
+                    'entry' => 0,
+                    'exit' => 0,
+                    'late' => 0,
+                    'early' => 0,
+                    'status' => "A",
+//                    'sms_sent' => 0,
+                ];
+
+                if($hasAttendance == null){
+                    Attendance::query()->create($data);
+                    //$attendance->update(['processed'=>1]);
+                }else{
+                    $hasAttendance->update($data);
+                    //$attendance->update(['processed'=>1]);
+                }
+
+                //Attendance::query()->create($data);
+            }
         }
-    }
-    //dd('one');
-    return 0;
+        //dd('one');
+        return 0;
 });
 
 Route::get('c-p/{id}', function ($id){
 //    return $id;
-    $data = [
-        'title' => 'Welcome to IMS',
-        'date' => date('m/d/Y')
-    ];
+     $data = [
+            'title' => 'Welcome to IMS',
+            'date' => date('m/d/Y')
+        ];
 
 
 
     $result = \App\Models\Backend\ExamResult::query()->with('studentAcademic')->findOrFail($id);
 
-    $marks = \App\Models\Backend\Mark::query()
-        ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
-        ->where('exam_id',$result->exam_id)
+    $subjectCount = ExamSchedule::query()
+                                ->where('exam_id', $result->exam_id)
+                                ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                                ->count('subject_id');
+
+         $marks = \App\Models\Backend\Mark::query()
+            ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
+            ->where('exam_id',$result->exam_id)
 //            ->where('student_academic_id',$result->studentAcademic->id)
-        ->join('subjects','subjects.id','=','marks.subject_id')
-        ->select('marks.*','subjects.level')
-        ->orderBy('level')
-        ->get();
+            ->join('subjects','subjects.id','=','marks.subject_id')
+            ->select('marks.*','subjects.level')
+            ->orderBy('level')
+            ->get();
 //         $logo = siteConfig('logo');
-    $logo = '5.jpg';
-    $pdf = PDF::loadView('resultPdf', compact('result','marks','logo'));
-    return $pdf->download('invoice.pdf');
-    return view('resultPdf',compact('result','marks','logo'));
+         $logo = '5.jpg';
+        $pdf = PDF::loadView('resultPdf', compact('result','marks','logo','subjectCount'));
+        return $pdf->download('invoice.pdf');
+        return view('resultPdf',compact('result','marks','logo','subjectCount'));
 
 
 

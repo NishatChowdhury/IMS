@@ -20,4 +20,6 @@ class Feature extends Model
     {
         return $this->belongsTo(Menu::class,'page_id');
     }
+
+
 }

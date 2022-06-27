@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
-    {{--    select2--}}
-    {{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
+    <style>
+        span.brand-text.font-weight-light {
+    font-size: 13px;
+}
+    </style>
+{{--    select2--}}
+{{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
     <!-- Ionicons -->
-    {{--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
+{{--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
     <!-- w3school switch -->
     <link rel="stylesheet" href="{{ asset('plugins/w3school-switch/w3school-switch.css') }}">
     {{--    sweet alwert css--}}
@@ -33,11 +38,35 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Google Font: Source Sans Pro -->
-    {{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
+{{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    {{--    @livewireStyles--}}
-    {{--    <livewire:styles />--}}
+{{--    @livewireStyles--}}
+{{--    <livewire:styles />--}}
+
+    <style>
+
+#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #e3e4e7;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #dddfe2;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #5b636a;
+}
+
+    </style>
     @yield('style')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -52,7 +81,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         @include('admin.includes.left-sidebar')
-        <!-- /.sidebar -->
+    <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -61,7 +90,7 @@
     </div>
     <!-- /.content-wrapper -->
     {{--<footer class="main-footer">--}}
-    {{--@include('includes.footer')--}}
+        {{--@include('includes.footer')--}}
     {{--</footer>--}}
 
     <!-- Control Sidebar -->

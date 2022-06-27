@@ -43,6 +43,8 @@ class ExamScheduleController extends Controller
         $classes = AcademicClass::all()->pluck('name', 'id');
 
         return view('admin.exam-schedule.index', compact('session_id', 'examId','schedules','sessions','exams','classes', 'class_id', 'exam_type', 'subjects', 'teachers'));
+
+
     }
 
     public function create(Request $request,$examId)

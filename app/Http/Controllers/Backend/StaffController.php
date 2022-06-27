@@ -7,8 +7,11 @@ use App\Models\Backend\BloodGroup;
 use App\Models\Backend\Gender;
 use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
+use App\Models\StaffLogin;
+use App\Models\TeacherLogin;
 use App\Repository\StaffRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -49,6 +52,7 @@ class StaffController extends Controller
             'code' => 'required',
             'title' => 'required',
             'role_id' => 'required',
+            'shift_id' => 'required',
             'job_type_id' => 'required',
             'staff_type_id' => 'required',
         ]);
@@ -58,10 +62,26 @@ class StaffController extends Controller
             $data = $req->except('image');
             $data['image'] = $image;
             //dd($data);
-            Staff::query()->create($data);
+            $staff = Staff::query()->create($data);
             //dd('added');
         }else{
-            Staff::query()->create($req->except('image'));
+            $staff = Staff::query()->create($req->except('image'));
+        }
+
+        if($staff->staff_type_id == 2){
+            TeacherLogin::create([
+                'name' => $staff->name,
+                'card_no' => $staff->card_id,
+                'staff_id' => $staff->id,
+                'password' => Hash::make('password'),
+            ]);
+        }else{
+            StaffLogin::create([
+                'name' => $staff->name,
+                'card_no' => $staff->card_id,
+                'staff_id' => $staff->id,
+                'password' => Hash::make('password'),
+            ]);
         }
 
         return redirect(route('staff.teacher'))->with('success','Staff Saved Successfully');
@@ -86,6 +106,7 @@ class StaffController extends Controller
             'image' => 'sometimes|max:2000',
             //'mail' => 'sometimes|email',
             'code' => 'required',
+            'shift_id' => 'required',
             'title' => 'required',
             'role_id' => 'required',
             'job_type_id' => 'required',

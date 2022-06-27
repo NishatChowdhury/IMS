@@ -40,6 +40,7 @@
                                 <th>Date</th>
                                 <th>Total</th>
                                 <th>Purpose</th>
+                                <th>Teacher</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -55,6 +56,9 @@
                                     <td>{{ $value->count() }}</td>
                                     <td>
                                         {{ $value->first()->purpose->leave_purpose }}
+                                    </td>
+                                    <td>
+                                         {{ $value->first()->teacher->name ?? 'Admin' }}
                                     </td>
                                     <td>
                                         <a href="{{ action('Backend\LeaveManagementController@edit',$value->first()->leaveId) }}" role="button" class="btn btn-dark btn-sm"><i class="fas fa-trash"></i></a>

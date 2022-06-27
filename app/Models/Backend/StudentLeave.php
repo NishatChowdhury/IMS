@@ -12,7 +12,7 @@ class StudentLeave extends Model
 
     protected $dates = ['date'];
 
-    protected $fillable = ['leaveId','student_id','date','leave_purpose_id'];
+    protected $fillable = ['leaveId','student_id','date','leave_purpose_id','teacher_id'];
 
     /**
      * A leave is belongs to a leave purpose
@@ -30,5 +30,10 @@ class StudentLeave extends Model
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Staff::class, 'teacher_id', 'id');
     }
 }

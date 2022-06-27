@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Student;
+use App\Models\Backend\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -41,84 +42,97 @@ class GenerateAttendances extends Command
      */
     public function handle()
     {
-        $students = Student::query()->where('status',1)->get();
-        $today = Carbon::today()->format('Y-m-d');
-        foreach($students as $student){
-            $isExist = RawAttendance::query()
-                ->where('processed',0)
-                ->where('registration_id',$student->studentId)
-                ->where('access_date','like','%'.$today.'%')
+        $today = \Carbon\Carbon::today()->format('Y-m-d');
+        $todayCount = \Carbon\Carbon::today();
+//        $d = '2022-06-20';
+//        $todayCount = Carbon::parse($d);
+//        $today = Carbon::parse($d)->format('Y-m-d');
+
+        $students = Student::query()->get();
+
+        foreach ($students as $key => $student) {
+
+            $rawData = RawAttendance::query()
+                ->where('access_date', $today)
+                ->where('registration_id', $student->studentId)
+                ->get();
+
+            if ($rawData->isEmpty()) {
+
+                $min = null;
+                $max = null;
+
+                $leave = \App\Models\Backend\StudentLeave::query()
+                    ->where('student_id', $student->id)
+                    ->where('date', '=', $today)
+                    ->exists();
+//       return         $weeklyOff = weeklyOff::where('id', 1)->first();
+                $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
+//                return $today;
+                $holiday = \App\Models\Backend\Holiday::query()
+                    ->where('start', '<=', $today)
+                    ->where('end', '>=', $today)
+                    ->where('is_holiday', 1)
+                    ->exists();
+
+                if ($holiday) {
+                    $attendanceStatus = '5'; // Holiday
+                } elseif ($leave) {
+                    $attendanceStatus = '7'; // Leave
+                } elseif ($weeklyOff) {
+                    $attendanceStatus = '6'; // Weekly Off
+                } else {
+                    $attendanceStatus = '2'; // Absent
+                }
+            } else {
+                $min = $rawData->min('access_time');
+                $max = $rawData->max('access_time');
+
+                $shift = \App\Models\Backend\Shift::query()->first();
+                $shiftIn = Carbon::parse($shift->start)->addMinutes($shift->grace);
+                $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
+
+                if ($min >= $shiftIn && $max <= $shiftOut) {
+                    $attendanceStatus = '8'; // Late & Early Leave
+                } elseif ($min <= $shiftIn && $max <= $shiftOut) {
+                    $attendanceStatus = '4'; // Early Leave
+                } elseif ($min <= $shiftIn) {
+                    $attendanceStatus = '1';  // Present
+                } elseif ($min > $shiftIn) {
+                    $attendanceStatus = '3'; // Late
+                }
+
+
+            }
+
+            $data = [
+                'student_academic_id' => $student->studentAcademic->id ?? 0,
+                'date' => $today,
+                'in_time' => $min,
+                'out_time' => $max,
+                'attendance_status_id' => $attendanceStatus,
+            ];
+
+
+            $attendanceExists = Attendance::query()
+                ->where('student_academic_id', $student->studentAcademic->id ?? 0)
+                ->where('date', $today)
                 ->exists();
 
-            if($isExist){
-                $date = RawAttendance::query()
-                    ->where('processed',0)
-                    ->where('registration_id',$student->studentId)
-                    ->get()
-                    ->groupBy('access_date');
-                foreach($date as $attendances){
-                    foreach($attendances as $attendance){
-                        $min = $attendances->min('access_time');
-                        $max = $attendances->max('access_time');
-                        $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date',$attendance->access_date)->first();
-                        $data = [
-                            'registration_id' => $attendance->registration_id,
-                            'access_id' => $attendance->access_id,
-                            'card' => $attendance->card,
-                            'unit_name' => $attendance->unit_name,
-                            'student_id' => $student->id,
-                            'staff_id' => null,
-                            'date' => $attendance->access_date,
-                            'entry' => $min->format('H:i:s'),
-                            'exit' => $max->format('H:i:s'),
-                            'late' => null,
-                            'early' => null,
-                            'status' => 'P',
-                            'sms_sent' => 0,
-                        ];
 
-                        if($hasAttendance == null){
-                            Attendance::query()->create($data);
-                            $attendance->update(['processed'=>1]);
-                        }else{
-                            //$hasAttendance->update($data); TODO: fixed it after showing demo. compare edit time with existing time.
-                            $attendance->update(['processed'=>1]);
-                        }
-                        //dd(!$hasAttendance);
-                    }
-                    //dd('$max');
-                }
-            }else{
-                $hasAttendance = Attendance::query()->where('student_id',$student->id)->where('date','like','%'.$today.'%')->first();
-
-                $data = [
-                    'registration_id' => $student->studentId,
-                    'access_id' => null,
-                    'card' => null,
-                    'unit_name' => null,
-                    'student_id' => $student->id,
-                    'staff_id' => null,
-                    'date' => $today,
-                    'entry' => null,
-                    'exit' => null,
-                    'late' => null,
-                    'early' => null,
-                    'status' => "A",
-                    'sms_sent' => 0,
-                ];
-
-                if($hasAttendance == null){
-                    Attendance::query()->create($data);
-                    //$attendance->update(['processed'=>1]);
-                }else{
-                    $hasAttendance->update($data);
-                    //$attendance->update(['processed'=>1]);
-                }
-
-                //Attendance::query()->create($data);
+            if ($attendanceExists) {
+                $attendance = Attendance::query()
+                    ->where('student_academic_id', $student->studentAcademic->id ?? 0)
+                    ->where('date', $today)
+                    ->first();
+                $attendance->update($data);
+            } else {
+                Attendance::create($data);
             }
+
+
         }
-        //dd('one');
-        return 0;
+
+        $this->info('done');
     }
 }

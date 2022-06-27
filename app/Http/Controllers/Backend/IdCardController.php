@@ -59,6 +59,7 @@ class IdCardController extends Controller
 //        $students = $std->where('status','<>',2)->orderBy('rank')->get();
           $students = $std->orderBy('rank')->with('student')->get();
 
+//        return  $students;
         $card = $request->except('_token');
 
         return view('admin.student.card-new',compact('students','card'));

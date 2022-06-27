@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <th>StudentID : </th>
-                                    <td>{{ $result->studentAcademic->student->studentId }}</td>
+                                    <td>{{ $result->studentAcademic->student->studentId ?? ''}}</td>
                                     <th>Date : </th>
                                     <td>{{ $result->exam->start }} - {{ $result->exam->end }}</td>
                                 </tr>
