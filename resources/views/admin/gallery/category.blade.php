@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Image</h1>
+                    <h1>{{ __('Image')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Image</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Image')}}</li>
                     </ol>
                 </div>
             </div>
@@ -38,11 +38,11 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name </th>
-                                    <th>Album</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
+                                    <th>{{ __('ID')}}</th>
+                                    <th>{{ __('Name')}} </th>
+                                    <th>{{ __('Album')}}</th>
+                                    <th>{{ __('Image')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,11 +50,11 @@
                                 <tr>
                                     <th>{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->albums->count() }} Album(s)</td>
-                                    <td>{{ $category->images->count() }} Image(s)</td>
+                                    <td>{{ $category->albums->count() }} {{ __('Album(s)')}}</td>
+                                    <td>{{ $category->images->count() }} {{ __('Image(s)')}}</td>
                                     <td>
                                         {{ Form::open(['action'=>['Backend\GalleryCategoryController@destroy',$category->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">{{ __('Delete')}}</button>
                                         {{ Form::close() }}
                                     </td>
                                 </tr>
@@ -74,7 +74,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Image')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -82,7 +82,8 @@
                 <div class="modal-body">
                     {{ Form::open(['action'=>'Backend\GalleryCategoryController@store','method'=>'post']) }}
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category Name</label>
+                            <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Category
+                                Name')}}</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}

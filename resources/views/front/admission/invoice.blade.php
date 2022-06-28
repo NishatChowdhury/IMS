@@ -10,15 +10,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Admission Form</h2>
+                    <h2>{{ __('Admission Form')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Result</a>
+                            <a href="#"> {{ __('Result')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ ucfirst('Admission Form') }}
@@ -31,7 +31,7 @@
 
     <section class="padding-y-20 border-bottom" style="page-break-after: always">
         <div class="row">
-            <span class="origin">Bank Copy</span>
+            <span class="origin">{{ __('Bank Copy')}}</span>
             <div class="col-4" id="part-one">
                 <div class="container-fluid inv-header">
                     <div class="row">
@@ -41,29 +41,29 @@
                         <div class="col-md-10" style="padding: 0">
                             <h4>{{ siteConfig('name') }}</h4>
                             <p>{{ siteConfig('address') }}</p>
-                            <p>Email: {{ siteConfig('email') }}</p>
-                            <p>Website: {{ url('/') }}</p>
+                            <p>{{ __('Email')}}: {{ siteConfig('email') }}</p>
+                            <p>{{ __('Website')}}: {{ url('/') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="container-fluid institute-info">
-                    <p>Class Roll: <span></span></p>
-                    <p>Bank Name: <span class="bank-name">{{ $bank->name ? $bank->name : '' }} </span><a href="#" data-toggle="modal" data-target="#bankListModal" title="Change Bank"><i class="fas fa-sync-alt no-print"></i></a></p>
-                    <p>Branch Name: <span class="bank-branch">{{ $bank->branch }}</span></p>
-                    <p>Account Number: <span class="bank-account-number">{{ $bank->account_number }}</span></p>
-                    <p>Student Name: <span>{{ $student['name'] }}</span></p>
+                    <p>{{ __('Class Roll')}}: <span></span></p>
+                    <p>{{ __('Bank Name')}}: <span class="bank-name">{{ $bank->name ? $bank->name : '' }} </span><a href="#" data-toggle="modal" data-target="#bankListModal" title="Change Bank"><i class="fas fa-sync-alt no-print"></i></a></p>
+                    <p>{{ __('Branch Name')}}: <span class="bank-branch">{{ $bank->branch }}</span></p>
+                    <p>{{ __('Account Number')}}: <span class="bank-account-number">{{ $bank->account_number }}</span></p>
+                    <p>{{ __('Student Name')}}: <span>{{ $student['name'] }}</span></p>
                 </div>
                 <div class="container-fluid class-info">
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Class: <span>Eleven</span></p>
-                            <p>Session: <span>{{ \App\Models\Backend\Session::query()->findOrFail($student['session_id'])->year }}</span></p>
-                            <p>Date: <span></span></p>
+                            <p>{{ __('Class')}}: <span>{{ __('Eleven')}}</span></p>
+                            <p>{{ __('Session')}}: <span>{{ \App\Models\Backend\Session::query()->findOrFail($student['session_id'])->year }}</span></p>
+                            <p>{{ __('Date')}}: <span></span></p>
                         </div>
                         <div class="col-md-6">
-                            <p>SID: <span>{{ $student['studentId'] }}</span></p>
-                            <p>Group: <span>{{ \App\Models\Backend\Group::query()->findOrFail($student['group_id'])->name }}</span></p>
-                            <p>Mobile: <span>{{ $student['mobile'] }}</span></p>
+                            <p>{{ __('SID')}}: <span>{{ $student['studentId'] }}</span></p>
+                            <p>{{ __('Group')}}: <span>{{ \App\Models\Backend\Group::query()->findOrFail($student['group_id'])->name }}</span></p>
+                            <p>{{ __('Mobile')}}: <span>{{ $student['mobile'] }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -72,9 +72,9 @@
                         <table class="inv-table">
                             <thead>
                             <tr>
-                                <th>SL</th>
-                                <th>Fee Category</th>
-                                <th class="text-right">Amount</th>
+                                <th>{{ __('SL')}}</th>
+                                <th>{{ __('Fee Category')}}</th>
+                                <th class="text-right">{{ __('Amount')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -95,34 +95,34 @@
                             @endif
 {{--                            {{ dd($student->location_id ? $student->location->amount : 0) }}--}}
                             <tr>
-                                <th colspan="2" class="text-right">Total</th>
+                                <th colspan="2" class="text-right">{{ __('Total')}}</th>
 {{--                                <th class="text-right">{{ number_format(array_sum($categories),2) }}</th>--}}
                                 <th class="text-right">{{ number_format($categories->sum('amount') + ($student->location_id ? $student->location->amount : 0),2) }}</th>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <p style="font-size: 12px">In Word: {{ ucwords(inWord($categories->sum('amount') + ($student->location_id ? $student->location->amount : 0))) }} Taka Only.</p>
+                    <p style="font-size: 12px">{{ __('In Word')}}: {{ ucwords(inWord($categories->sum('amount') + ($student->location_id ? $student->location->amount : 0))) }} Taka Only.</p>
                 </div>
                 <div class="container-fluid signature">
                     <div class="row">
                         <div class="col-md-4">
-                            <p>Payer Signature</p>
+                            <p>{{ __('Payer Signature')}}</p>
                         </div>
                         <div class="col-md-4">
-                            <p>Cashier Signature (Bank)</p>
+                            <p>{{ __('Cashier Signature (Bank)')}}</p>
                         </div>
                         <div class="col-md-4">
-                            <p>Officer Signature (Bank)</p>
+                            <p>{{ __('Officer Signature (Bank)')}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-4" id="part-two" style="border-right:1px dashed #606065;border-left:1px dashed #606065">
-                <span class="origin">College Copy</span>
+                <span class="origin">{{ __('College Copy')}}</span>
             </div>
             <div class="col-4" id="part-three">
-                <span class="origin">Student Copy</span>
+                <span class="origin">{{ __('Student Copy')}}</span>
             </div>
         </div>
 
@@ -133,7 +133,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Select a Bank</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Select a Bank')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -155,7 +155,7 @@
                     @endforeach
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Done')}}</button>
 {{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
                 </div>
             </div>

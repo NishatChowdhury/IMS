@@ -8,18 +8,18 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Maneging Committee</h2>
+                    <h2>{{ __('Maneging Committee')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
+                            <a href="#"> {{ __('Elements')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            Maneging Committee
+                            {{ __('Maneging Committee')}}
                         </li>
                     </ol>
                 </div>
@@ -35,10 +35,10 @@
                         <img class="card-img-top" src="assets/img/262x230/8.jpg" alt="">
                         <div class="card-body">
                             <h4>
-                                John doe
+                                {{ __(' John doe')}}
                             </h4>
                             <p class="mb-0">
-                                PHP Instructor
+                                {{ __(' PHP Instructor')}}
                             </p>
                         </div>
                         <div class="card-footer border-top border-light">
@@ -65,10 +65,10 @@
                         <img class="card-img-top" src="assets/img/262x230/7.jpg" alt="">
                         <div class="card-body">
                             <h4>
-                                William
+                                {{ __(' William')}}
                             </h4>
                             <p class="mb-0">
-                                UI/UX Engineer
+                                {{ __(' UI/UX Engineer')}}
                             </p>
                         </div>
                         <div class="card-footer border-top border-light">

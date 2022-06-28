@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 text-center mb-md-4">
                 <h2 class="mb-4">
-                    Campus News
+                    {{ __(' Campus News')}}
                 </h2>
                 <div class="width-3rem height-4 rounded bg-primary mx-auto"></div>
             </div>

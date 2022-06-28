@@ -8,18 +8,18 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>News</h2>
+                    <h2>{{ __('News')}}<{ __{('')}}/h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
+                            <a href="#"> {{ __('Elements')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            About us
+                            {{ __('About us')}}
                         </li>
                     </ol>
                 </div>
@@ -71,11 +71,11 @@
                                 </li>
                                 <li class="list-inline-item mr-3">
                                     <i class="ti-headphone small mr-2"></i>
-                                    46 lectures
+                                    {{ __(' 46 lectures')}}
                                 </li>
                                 <li class="list-inline-item mr-3">
                                     <i class="ti-time small mr-2"></i>
-                                    27.5 hours
+                                    {{ __(' 27.5 hours')}}
                                 </li>
                             </ul>
                             <a href="{{ action('Front\FrontController@newsDetails',$news->id) }}" class="btn btn-outline-primary">Read More</a>

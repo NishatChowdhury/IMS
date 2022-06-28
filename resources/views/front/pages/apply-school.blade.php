@@ -30,7 +30,8 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="alert alert-primary" role="alert">
-                        A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                        {{ __(' A simple primary alert with')}} <a href="#" class="alert-link">{{ __('an example link')}}</a>. {{ __('Give it a
+                        click if you like.')}}
                     </div>
                     @if ($message = Session::get('status'))
                     <div class="alert alert-success alert-block">
@@ -85,7 +86,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Download Your Application Form</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Download Your Application Form')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -95,10 +96,10 @@
                    @csrf
                    <div class="modal-body row">
                     <div class="form-group col-12">
-                        <label for="">Application ID</label>
+                        <label for="">{{ __('Application ID')}}</label>
                         <input type="text" id="applcationID" name="id" class="form-control" placeholder="Enter Application ID">
                         <hr>
-                        <button type="submit"  class="btn btn-primary btn-sm">Download</button>
+                        <button type="submit"  class="btn btn-primary btn-sm">{{ __('Download')}}</button>
                     </div>
                 </div>
                </form>

@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Album</h1>
+                    <h1>{{ __('Album')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Image</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Image')}}</li>
                     </ol>
                 </div>
             </div>
@@ -40,11 +40,11 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name </th>
-                                    <th>Category</th>
-                                    <th>Images</th>
-                                    <th>Action</th>
+                                    <th>{{ __('ID')}}</th>
+                                    <th>{{ __('Name')}} </th>
+                                    <th>{{ __('Category')}}</th>
+                                    <th>{{ __('Images')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -60,7 +60,7 @@
                                         <td>{{ $album->images->count() }} Image(s)</td>
                                         <td>
                                             {{ Form::open(['action'=>['Backend\AlbumController@destroy',$album->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">{{ __('Delete')}}</button>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>
@@ -80,7 +80,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Image')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -88,7 +88,7 @@
                 <div class="modal-body">
                     {{ Form::open(['action'=>'Backend\AlbumController@store','method'=>'post']) }}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Category</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Category')}}</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
@@ -97,7 +97,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Album Title</label>
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Album
+                            Title')}}</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
