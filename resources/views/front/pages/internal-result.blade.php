@@ -8,18 +8,18 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Internal Examination</h2>
+                    <h2>{{ __('Internal Examination')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Elements</a>
+                            <a href="#"> {{ __('Elements')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            About us
+                            {{ __('About us')}}
                         </li>
                     </ol>
                 </div>
@@ -109,34 +109,34 @@
                             <table class="table table-sm">
                                 <tbody>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>{{ __('Name')}}</th>
                                     <td>:</td>
                                     <td>{{ $result->student->name ?? '' }}</td>
-                                    <td>Grade</td>
+                                    <td>{{ __('Grade')}}</td>
                                     <td>:</td>
                                     <td>{{ $result->grade }}</td>
                                 </tr>
                                 <tr>
-                                    <th>StudentId</th>
+                                    <th>{{ __('StudentId')}}</th>
                                     <td>:</td>
                                     <td>{{ $result->student->studentId ?? '' }}</td>
-                                    <td>Grade Point</td>
+                                    <td>{{ __('Grade Point')}}</td>
                                     <td>:</td>
                                     <td>{{ $result->gpa }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Class</th>
+                                    <th>{{ __('Class')}}</th>
                                     <td>:</td>
                                     <td>{{ $result->classes->name ?? '' }} - {{ $result->student->section->name ?? '' }}{{ $result->student->group->name ?? '' }}</td>
-                                    <td>Current Rank</td>
+                                    <td>{{ __('Current Rank')}}</td>
                                     <td>:</td>
                                     <td>{{ $result->student->rank ?? '' }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Total Mark</th>
+                                    <th>{{ __('Total Mark')}}</th>
                                     <td>:</td>
                                     <td>{{ $result->total_mark }}</td>
-                                    <td>Result Rank</td>
+                                    <td>{{ __('Result Rank')}}</td>
                                     <td>:</td>
                                     <td>{{ $result->rank }}</td>
                                 </tr>
@@ -161,12 +161,12 @@
                             <table class="table table-bordered table-sm">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="font-weight-semiBold">Subject</th>
-                                    <th scope="col">Code</th>
-                                    <th scope="col">Exam Mark</th>
-                                    <th scope="col">Result Mark</th>
-                                    <th scope="col">Grade</th>
-                                    <th scope="col">GPA</th>
+                                    <th scope="col" class="font-weight-semiBold">{{ __('Subject')}}</th>
+                                    <th scope="col">{{ __('Code')}}</th>
+                                    <th scope="col">{{ __('Exam Mark')}}</th>
+                                    <th scope="col">{{ __('Result Mark')}}</th>
+                                    <th scope="col">{{ __('Grade')}}</th>
+                                    <th scope="col">{{ __('GPA')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -202,7 +202,7 @@
                 </div> <!-- END row-->
             </div> <!-- END container-->
             <div class="text-center no-print">
-                <a href="javascript:window.print()">Click here to print this result</a>
+                <a href="javascript:window.print()">{{ __('Click here to print this result')}}</a>
             </div>
         </section> <!-- END section-->
         <!-- Marks end -->

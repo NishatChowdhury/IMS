@@ -9,8 +9,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Create Roles</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Create Roles')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                    <h4>Create Role & Add Permission</h4>
+                    <h4>{{ __('Create Role & Add Permission')}}</h4>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -34,18 +34,18 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="">Role Name</label>
+                                        <label for="">{{ __('Role Name')}}</label>
                                         <input type="text" class="form-control" name="name" placeholder="Enter Role Name">
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <h4><span class="badge badge-dark">Modules Permissions</span></h4>
+                                    <h4><span class="badge badge-dark">{{ __('Modules Permissions')}}</span></h4>
                                 </div>
     <div class="col-12" style="margin-left:40px">
                                     <input type="checkbox"
                                     id="allSelect">
                                     <label for="check01">
-                                        Select All Modules Permissions
+                                        {{ __('Select All Modules Permissions')}}
                                     </label>
                                 </div>
                                 @foreach ($modules->chunk(3) as $chunked)
@@ -58,7 +58,7 @@
                                                     id="checkModule-{{ $key }}"
                                                     onClick="checkModule('all-permission-{{ $key }}', this)">
                                            <label for="check01">
-                                            {{ ucfirst($module->name) }} Modules
+                                            {{ ucfirst($module->name) }} {{ __('Modules')}}
                                            </label>
                                          </h6>
                                             <hr>
@@ -83,7 +83,7 @@
 
                             </div>
 
-                            <button class="btn btn-block btn-primary">Save Role</button>
+                            <button class="btn btn-block btn-primary">{{ __('Save Role')}}</button>
                         </form>
                     </div>
                 </div>

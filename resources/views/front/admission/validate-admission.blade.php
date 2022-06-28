@@ -8,15 +8,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Validate Admission</h2>
+                    <h2>{{ __('Validate Admission')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Admission</a>
+                            <a href="#"> {{ __('Admission')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ ucfirst('Validate') }}
@@ -30,7 +30,7 @@
     <section class="padding-y-20 border-bottom">
 
         <div class="col-12 text-center">
-            <h4>Validate Admission</h4>
+            <h4>{{ __('Validate Admission')}}</h4>
             @if($errors->any())
                 @foreach($errors->all() as $error)
                     <span style="color:indianred">{{ $error }}</span>
@@ -47,7 +47,7 @@
                 <div class="col-12 mx-auto">
 
                     <div class="row form-group">
-                        <label for="example-text-input" class="col-2 col-form-label text-right">SSC Roll Number</label>
+                        <label for="example-text-input" class="col-2 col-form-label text-right">{{ __('SSC Roll Number')}}</label>
                         <div class="col-10">
                             {{ Form::text('ssc_roll',null,['class'=>'form-control','id'=>'Enter SSC Roll']) }}
                         </div>
@@ -56,7 +56,8 @@
                     <div class="row form-group">
                         <div class="col-12 mx-auto">
                             <div class="text-center form-group">
-                                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modal__large">Submit</button>
+                                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modal__large">
+                                    {{ __('Submit')}}</button>
                             </div>
                         </div>
                     </div>

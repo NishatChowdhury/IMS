@@ -3,14 +3,14 @@
 
 # Application ID {{ $details['id'] }}
  
-{{ $details['name'] }} your application successfully done!
+{{ $details['name'] }} {{ __('your application successfully done')}}!
  
 
 @component('mail::button', ['url' => $details['url']])
-Download Application Form
+{{ __('Download Application Form')}}
 @endcomponent
- 
-Thanks,<br>
+
+{{ __('Thanks')}},<br>
 {{ config('app.name') }}
 
 

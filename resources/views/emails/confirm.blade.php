@@ -1,8 +1,8 @@
 @component('mail::message')
 # Introduction
 
-{{ $details['name'] }} your application successfully Approved!
+{{ $details['name'] }} {{ __('your application successfully Approved')}}!
 
-Thanks,<br>
+{{ __('Thanks')}},<br>
 {{ config('app.name') }}
 @endcomponent

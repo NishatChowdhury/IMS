@@ -96,10 +96,10 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __ ('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Result </a>
+                            <a href="#"> {{ __ ('Result')}} </a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ __('online admission') }}
@@ -114,7 +114,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 text-center cus_courl">
-                    <h4>Online Admission Form</h4>
+                    <h4>{{__('Online Admission Form')}}</h4>
                     <h1>Class {{ $onlineAdmission->classes->name }}
                         {{ $onlineAdmission->group_id ? $onlineAdmission->group->name : ''  }}</h1>
                 </div>
@@ -127,7 +127,7 @@
                             <div class="media align-items-center">
                                 <i class="mr-2 ti-check font-size-20"></i>
                                 <div class="media-body">
-                                    <strong> Well done!</strong>  {{ session('status') }}
+                                    <strong>{{__(' Well done')}}!</strong>  {{ session('status') }}
                                 </div>
                             </div>
                             <button type="button" class="close font-size-14 absolute-center-y" data-dismiss="alert" aria-label="Close">
@@ -139,7 +139,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="card card-body  border">
-                                <h4 class="mb-3"><b>Personal Info</b></h4>
+                                <h4 class="mb-3"><b>{{__('Personal Info')}}</b></h4>
                                 <div class="row">
 
                                     <div class="form-group col-6">
@@ -218,7 +218,7 @@
                         </div>
                         <div class="col-6">
                             <div class="card card-body border">
-                                <h4 class="mb-3"><b>Address Info {{ $onlineAdmission->group_id }}</b></h4>
+                                <h4 class="mb-3"><b>{{__('Address Info')}} {{ $onlineAdmission->group_id }}</b></h4>
                                 <div class="row">
                                     <input type="hidden" name="class_id" value="{{ $onlineAdmission->class_id }}">
                                     <input type="hidden" name="group_id" value="{{ $onlineAdmission->group_id }}">
@@ -297,7 +297,7 @@
                     <div class="row mt-5">
                         <div class="col-6">
                             <div class="card card-body border">
-                                <h4 class="mb-4"><b>Father Info</b></h4>
+                                <h4 class="mb-4"><b>{{__('Father Info')}}</b></h4>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         {{ Form::label('f_name','Father Name',['class'=>'control-label']) }}
@@ -368,7 +368,7 @@
                         </div>
                         <div class="col-6">
                             <div class="card card-body border">
-                                <h4 class="mb-4"><b>Mother Info</b></h4>
+                                <h4 class="mb-4"><b>{{__('Mother Info')}}</b></h4>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         {{ Form::label('m_name','Mother Name',['class'=>'control-label']) }}
@@ -440,7 +440,7 @@
                         </div>
                         <div class="col-6 mt-5">
                             <div class="card card-body border">
-                                <h4 class="mb-4"><b>Guardian Info</b></h4>
+                                <h4 class="mb-4"><b>{{__('Guardian Info')}}</b></h4>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         {{ Form::label('g_name','Guardian Name',['class'=>'control-label']) }}
@@ -551,10 +551,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
-                                        <label for="">Student Picture</label>
+                                        <label for="">{{__('Student Picture')}}</label>
                                         <span class="red">*</span>
                                         <div class="drop-zone">
-                                            <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                                            <span class="drop-zone__prompt">{{__('Drop file here or click to upload')}}</span>
                                             {{-- <input type="file" name="myFile" class="drop-zone__input"> --}}
                                             {{ Form::file('pic',['class'=>'drop-zone__input', 'id'=>"file-input"]) }}
                                             <p></p>
@@ -579,79 +579,79 @@
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-4">
-                                                                    <p class="mb-2"><b>Student Info</b></p> <hr>
+                                                                    <p class="mb-2"><b>{{__('Student Info')}}</b></p> <hr>
                                                                     <ul class="parent_info">
                                                                         <li>
-                                                                            <label for="">Name</label>
+                                                                            <label for="">{{__('Name')}}</label>
                                                                             <p id="sname"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Name bangla</label>
+                                                                            <label for="">{{__('Name bangla')}}</label>
                                                                             <p id="sname_bn"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Birth Certificate</label>
+                                                                            <label for="">{{__('Birth Certificate')}}</label>
                                                                             <p id="sbirth_certificate"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Date of Birth</label>
+                                                                            <label for="">{{__('Date of Birth')}}</label>
                                                                             <p id="sdob"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Gender</label>
+                                                                            <label for="">{{__('Gender')}}</label>
                                                                             <p id="sgender_id"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Blood Group</label>
+                                                                            <label for="">{{__('Blood Group')}}</label>
                                                                             <p id="sblood_group_id"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Religion</label>
+                                                                            <label for="">{{__('Religion')}}</label>
                                                                             <p id="sreligion"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Contact Number</label>
+                                                                            <label for="">{{__('Contact Number')}}</label>
                                                                             <p id="smobile"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Email</label>
+                                                                            <label for="">{{__('Email')}}</label>
                                                                             <p id="semail"></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <p class="mb-2"><b>Address Info</b></p> <hr>
+                                                                    <p class="mb-2"><b>{{__('Address Info')}}</b></p> <hr>
                                                                     <ul class="parent_info">
                                                                         <li>
-                                                                            <label for="">Address</label>
+                                                                            <label for="">{{__('Address')}}</label>
                                                                             <p id="saddress"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Area / Town</label>
+                                                                            <label for="">{{__('Area / Town')}}</label>
                                                                             <p id="sarea"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Post / Zip Code</label>
+                                                                            <label for="">{{__('Post / Zip Code')}}</label>
                                                                             <p id="szip"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">City</label>
+                                                                            <label for="">{{__('City')}}</label>
                                                                             <p id="scity_id"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Country</label>
+                                                                            <label for="">{{__('Country')}}</label>
                                                                             <p id="scountry_id"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Nationality</label>
+                                                                            <label for="">{{__('Nationality')}}</label>
                                                                             <p id="snationality"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Freedom Fighter</label>
+                                                                            <label for="">{{__('Freedom Fighter')}}</label>
                                                                             <p id="sf_fighter"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Disability</label>
+                                                                            <label for="">{{__('Disability')}}</label>
                                                                             <p id="sf_dis"></p>
                                                                         </li>
                                                                     </ul>
@@ -662,101 +662,101 @@
 
 
                                                                 <div class="col-4">
-                                                                    <p class="mb-2"><b>Father Info</b></p> <hr>
+                                                                    <p class="mb-2"><b>{{__('Father Info')}}</b></p> <hr>
                                                                     <ul class="parent_info">
                                                                         <li>
-                                                                            <label for="">Name</label>
+                                                                            <label for="">{{__('Name')}}</label>
                                                                             <p id="sf_name"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Email</label>
+                                                                            <label for="">{{__('Email')}}</label>
                                                                             <p id="sf_email"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Number</label>
+                                                                            <label for="">Nu{__{('')}}mber</label>
                                                                             <p id="sf_mobile"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Date of Birth</label>
+                                                                            <label for="">{{__('Date of Birth')}}</label>
                                                                             <p id="sf_dob"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Occupation</label>
+                                                                            <label for="">{{__('Occupation')}}</label>
                                                                             <p id="sf_occupation"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">NID</label>
+                                                                            <label for="">{{__('NID')}}</label>
                                                                             <p id="sf_nid"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Birth Certificate</label>
+                                                                            <label for="">{{__('Birth Certificate')}}</label>
                                                                             <p id="sf_birth_certificate"></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <p class="mb-2"><b>Mother Info</b></p> <hr>
+                                                                    <p class="mb-2"><b>{{__('Mother Info')}}</b></p> <hr>
                                                                     <ul class="parent_info">
                                                                         <li>
-                                                                            <label for="">Name</label>
+                                                                            <label for="">{{__('Name')}}</label>
                                                                             <p id="sm_name"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Email</label>
+                                                                            <label for="">{{__('Email')}}</label>
                                                                             <p id="sm_email"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Number</label>
+                                                                            <label for="">{{__('Number')}}</label>
                                                                             <p id="sm_mobile"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Date of Birth</label>
+                                                                            <label for="">{{__('Date of Birth')}}</label>
                                                                             <p id="sm_dob"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Occupation</label>
+                                                                            <label for="">{{__('Occupation')}}</label>
                                                                             <p id="sm_occupation"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">NID</label>
+                                                                            <label for="">{{__('NID')}}</label>
                                                                             <p id="sm_nid"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Birth Certificate</label>
+                                                                            <label for="">{{__('Birth Certificate')}}</label>
                                                                             <p id="sm_birth_certificate"></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <p class="mb-2"><b>Guardian Info</b></p>
+                                                                    <p class="mb-2"><b>{{__('Guardian Info')}}</b></p>
                                                                     <hr>
                                                                     <ul class="parent_info">
                                                                         <li>
-                                                                            <label for="">Name</label>
+                                                                            <label for="">{{__('Name')}}</label>
                                                                             <p id="sg_name"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Email</label>
+                                                                            <label for="">{{__('Email')}}</label>
                                                                             <p id="sg_email"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Number</label>
+                                                                            <label for="">{{__('Number')}}</label>
                                                                             <p id="sg_mobile"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Date of Birth</label>
+                                                                            <label for="">{{__('Date of Birth')}}</label>
                                                                             <p id="sg_dob"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Occupation</label>
+                                                                            <label for="">{{__('Occupation')}}</label>
                                                                             <p id="sg_occupation"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">NID</label>
+                                                                            <label for="">{{__('NID')}}</label>
                                                                             <p id="sg_nid"></p>
                                                                         </li>
                                                                         <li>
-                                                                            <label for="">Birth Certificate</label>
+                                                                            <label for="">{{__('Birth Certificate')}}</label>
                                                                             <p id="sg_birth_certificate"></p>
                                                                         </li>
                                                                     </ul>

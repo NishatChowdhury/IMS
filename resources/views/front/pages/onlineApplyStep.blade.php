@@ -13,10 +13,10 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Result </a>
+                            <a href="#"> {{ __('Result')}} </a>
                         </li>
                         <li class="breadcrumb-item">
                             
@@ -32,7 +32,8 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="alert alert-primary" role="alert">
-                        A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                        {{ __(' A simple primary alert with')}} <a href="#" class="alert-link">{{ __('an example link')}}</a>. {{ __('Give it a
+                        click if you like.')}}
                       </div>
                       <div class="row">
                          
@@ -41,9 +42,9 @@
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th scope="col" class="font-weight-semiBold">Name</th>
-                                  <th scope="col">Date</th>
-                                  <th scope="col">Action</th>
+                                  <th scope="col" class="font-weight-semiBold">{{ __('Name')}}</th>
+                                  <th scope="col">{{ __('Date')}}</th>
+                                  <th scope="col">{{ __('Action')}}</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -53,9 +54,9 @@
                                   <td>{{ $admission->end }}</td>
                                   <td>
                                     @if($admission->type == 1)
-                                    <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">View</a>
+                                    <a href="{{ url('/online-apply') }}/{{ $admission->id }}" class="btn btn-link">{{ __('View')}}</a>
                                     @else
-                                    <a href="{{ url('/online-apply-college') }}" class="btn btn-link">View</a>
+                                    <a href="{{ url('/online-apply-college') }}" class="btn btn-link">{{ __('View')}}</a>
                                     @endif
                                 </td>
                                 </tr>

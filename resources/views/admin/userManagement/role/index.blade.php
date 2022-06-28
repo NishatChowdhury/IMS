@@ -9,8 +9,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Roles</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Roles')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -28,8 +28,8 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <a href="{{ route('role.create')  }}" class="btn btn-dark btn-sm">Create Role</a>
-                        <a href="{{ route('module.create')  }}" class="btn btn-primary btn-sm">Create Module</a>
+                        <a href="{{ route('role.create')  }}" class="btn btn-dark btn-sm">{{ __('Create Role')}}</a>
+                        <a href="{{ route('module.create')  }}" class="btn btn-primary btn-sm">{{ __('Create Module')}}</a>
 
                     </div>
                     <!-- /.card-header -->
@@ -52,7 +52,7 @@
                                         @if(count($role->permissions) > 0)
                                             <span class="badge badge-danger">{{ count($role->permissions) }}</span>
                                         @else
-                                            <span class="badge badge-danger">No Permission Found :)</span>
+                                            <span class="badge badge-danger">{{ __('No Permission Found')}} :)</span>
                                         @endif
                                     </td>
                                     <td>

@@ -5,7 +5,7 @@
 
             <div class="col-12 text-center text-white mb-md-4">
                 <h2 class="mb-4">
-                    Upcoming Events
+                    {{ __('Upcoming Events')}}
                 </h2>
                 <div class="width-3rem height-4 rounded bg-white mx-auto"></div>
             </div>
@@ -87,7 +87,7 @@
 {{--                </div>--}}
 {{--            </div> <!-- END col-md-4-->--}}
             <div class="col-12 mt-5 text-center">
-                <a href="{{ action('Front\FrontController@events') }}" class="btn btn-outline-white-hover">More Events</a>
+                <a href="{{ action('Front\FrontController@events') }}" class="btn btn-outline-white-hover">{{ __('More Events')}}</a>
             </div>
         </div> <!-- END row-->
     </div> <!-- END container-->

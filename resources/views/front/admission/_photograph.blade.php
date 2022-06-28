@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 mx-auto">
                 <div class="row form-group">
-                    <label for="example-number-input" class="col-2 col-form-label text-right">Upload Image</label>
+                    <label for="example-number-input" class="col-2 col-form-label text-right">{{ __('Upload Image')}}</label>
                     <div class="col-6">
                         <input name="pic" type="file" {{ isset($student) ? '' : 'required' }}>
                     </div>
