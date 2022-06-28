@@ -5,6 +5,7 @@ namespace App\Models\Backend;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Backend\Permission;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+
+    public function getPermissionsAttribute(){
+        $permissions = [];
+        $roles = auth()->user()->roles;
+        foreach($roles as $role){
+            foreach($role->permissions->toArray() as $permission){
+                array_push($permissions, $permission['name']);
+            }
+        }
+
+        return $permissions;
+
+    }
 }

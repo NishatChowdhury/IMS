@@ -118,38 +118,48 @@ class AttendanceController extends Controller
     {
 //        return AttendanceTeacher::all();
 //        return $request->all();
-        if($request->has('staff_type_id') && $request->has('date')){
+        if($request->has('staff_id') && $request->has('year') && $request->has('month')){
+
+            $year =$request->year;
+            $m = $request->month;
+
+            $date = Carbon::createFromFormat('m', $m);
+            $month = $date->format('F');
+
+
             $staffs = Staff::query()
-                ->where('staff_type_id',$request->get('staff_type_id'))
-                ->orderBy('card_id')
-                ->get();
-            $date = $request->get('date');
+                ->where('id',$request->get('staff_id'))
+                ->first();
 
              $attend = [];
-                foreach($staffs as $staff){
+
         //            return strval($today);
 //                    $stuAca = StudentAcademic::where('student_id',$student->id)->first();
+
                     $attn = AttendanceTeacher::query()
-                        ->whereDate('date', $date)
-                        ->where('staff_id',$staff->card_id)
-                        ->first();
+                                    ->whereYear('date', $request->year)
+                                    ->whereMonth('date', $request->month)
+                                    ->where('staff_id',$staffs->card_id)
+                                    ->orderBy('date', 'DESC')
+                                    ->get();
 
 
-                    if($attn != null) {
-                        $attendArr[] = (object)[
-                            'teacher' => $staff->name,
-                            'card' => $staff->card_id,
-                            'date' => $date,
-                            'in_time' => $attn->manual_in_time ?? $attn->in_time,
-                            'out_time' => $attn->manual_out_time ?? $attn->out_time,
-                            'status' => $attn->attendanceStatus->name ?? '',
-                            'is_notified' => 'Is Notified'
-                        ];
-                    }
+//                    if($attn != null) {
+//                        $attendArr[] = (object)[
+//                            'date' => $attn->date,
+//                            'in_time' => $attn->manual_in_time ?? $attn->in_time,
+//                            'out_time' => $attn->manual_out_time ?? $attn->out_time,
+//                            'status' => $attn->attendanceStatus->name ?? '',
+//                            'is_notified' => 'Is Notified'
+//                        ];
+//                    }
         //                array_push($attend, $attendArr);
-                }
+
                 $repository = $this->repository;
-                $attendances = $attendArr ?? [];
+                $attendances = $attn ?? [];
+
+                $t = $staffs->name;
+                $card = $staffs->card_id;
 
 //                return $attendances;
         }else{
@@ -157,9 +167,16 @@ class AttendanceController extends Controller
             $staffs = [];
             $attendances = [];
             $date = '';
+            $t = '';
+            $card = '';
+            $year = '';
+            $month = '';
         }
-
-        return view('admin.attendance.teacher', compact('attend','staffs','date','attendances'));
+        $teachers =  Staff::query()
+                            ->where('staff_type_id',2)
+                            ->orderBy('card_id')
+                            ->get()->pluck('name','id');
+        return view('admin.attendance.teacher', compact('attend','t','card','staffs','year','month','attendances','teachers'));
     }
 
 
@@ -174,8 +191,6 @@ class AttendanceController extends Controller
         }
 
         $today = $request->get('date');
-        //$today = '2019-11-06';
-
         $s = $student->newQuery();
 
         if($request->get('studentId')){

@@ -61,7 +61,7 @@
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
                                                 <h6 class="card-title text-bold nName"> Student Name </h6>
                                                 <div class="row">
-                                                    <div class="right" style="float:left; margin-top: 10px;">
+                                                    <div class="right col-12" style="float:left; margin-top: 10px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                                 <tbody>
@@ -195,9 +195,11 @@
                             <div class="col-md-8">
                                 {{ Form::open(['action'=>'Backend\IdCardController@pdf','method'=>'post']) }}
 
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> Option</h5>
+                                <div class="card mb-3">
+                                    <div class="card-header1">
+                                        <b>Option</b>
+                                    </div>
+                                    <div class="card-body p-3">
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
@@ -344,9 +346,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> Front Side</h5>
+                                <div class="card mb-3">
+                                    <div class="card-header1">
+                                        <b>Front Side</b>
+                                    </div>
+                                    <div class="card-body p-3">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -426,9 +430,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> Back Side</h5>
+                                <div class="card mb-3">
+                                    <div class="card-header1">
+                                        <b> Back Side</b>
+                                    </div>
+                                    <div class="card-body p-3">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -475,9 +481,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> View Cards</h5>
+                                <div class="card mb-3">
+                                    <div class="card-header1">
+                                        <b>View Cards</b>
+                                    </div>
+                                    <div class="card-body p-3">
                                         <div class="row">
                                             {{--                                            <div class="col">--}}
                                             {{--                                                <div class="form-group">--}}
@@ -571,6 +579,11 @@
         .scl-cd-dec p{
             font-size: 8px;
         }
+             .card-header1 {
+    border-bottom: 1px solid #d8d8d8;
+    padding: 9px 0px 9px 20px;
+    background: #f7f7f7;
+}
 
     </style>
 @stop

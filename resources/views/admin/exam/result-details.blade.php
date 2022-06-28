@@ -38,9 +38,9 @@
                                     <td>{{ $result->exam->name ?? '' }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('StudentID')}} : </th>
-                                    <td>{{ $result->studentAcademic->student->studentId }}</td>
-                                    <th>{{ __('Date')}} : </th>
+                                    <th>StudentID : </th>
+                                    <td>{{ $result->studentAcademic->student->studentId ?? ''}}</td>
+                                    <th>Date : </th>
                                     <td>{{ $result->exam->start }} - {{ $result->exam->end }}</td>
                                 </tr>
                                 <tr>

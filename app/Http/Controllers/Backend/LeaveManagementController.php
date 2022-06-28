@@ -24,7 +24,7 @@ class LeaveManagementController extends Controller
     public function index()
     {
 //        StudentLeave::query()->truncate();
-         $allData = StudentLeave::all()->groupBy('leaveId');
+          $allData = StudentLeave::all()->groupBy('leaveId');
         return view('admin.leaveManagement.view-leave',compact('allData'));
     }
 
