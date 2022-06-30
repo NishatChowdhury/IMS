@@ -34,7 +34,7 @@ class CheckPermissionMiddleware
             }
         }
 
-//        return $next($request);
+        return $next($request);
         abort(403,"You Don't Have Permission On This Page");
     }
 }

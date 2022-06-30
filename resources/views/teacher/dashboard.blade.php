@@ -56,7 +56,7 @@
                 <div class="items leave">
                     <a href="{{ route('teacher.leave.student') }}">
                         <div class="menu_icon">
-                        <i class="fas fa-holly-berry"></i>
+                            <i class="fas fa-sign-out-alt"></i>
                         </div>
                     </a>
                 </div>

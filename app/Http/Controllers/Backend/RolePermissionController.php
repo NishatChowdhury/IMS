@@ -18,7 +18,7 @@ class RolePermissionController extends Controller
     }
     function roleCreate(){
         $modules = Module::all();
-          $permissionsCount = Permission::query()
+        $permissionsCount = Permission::query()
 //                                        ->selectRaw(\DB::raw('count(*) as C'))
 //                                        ->orderBy('C')
                                         ->orderBy('group_name', 'ASC')

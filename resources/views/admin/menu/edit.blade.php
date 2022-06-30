@@ -43,6 +43,14 @@
         </div>
     </div>
     <div class="form-group row">
+        <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Active Status*</label>
+        <div class="col-sm-8">
+            <div class="input-group">
+                {{ Form::select('is_active',[1 => 'Active', 0 =>  'Inactive'],null,['class'=>'form-control','required']) }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Order Key*</label>
         <div class="col-sm-8">
             <div class="input-group">
@@ -57,46 +65,46 @@
 </div>
 {{ Form::close() }}
 
-    <script>
-        $(document).ready(function(){
-            var pageType = $("#edit-page-type").val();
-            if(pageType === '1'){
-                $("#edit-page").show();
-                $("#edit-url").hide();
-                $("#edit-system-page").hide();
-            }else if(pageType === '2'){
-                $("#edit-page").hide();
-                $("#edit-url").show();
-                $("#edit-system-page").hide();
-            }else if(pageType === '3'){
-                $("#edit-page").hide();
-                $("#edit-url").hide();
-                $("#edit-system-page").show();
-            }else{
-                $("#edit-page").hide();
-                $("#edit-url").hide();
-                $("#edit-system-page").hide();
-            }
-        })
+<script>
+    $(document).ready(function(){
+        var pageType = $("#edit-page-type").val();
+        if(pageType === '1'){
+            $("#edit-page").show();
+            $("#edit-url").hide();
+            $("#edit-system-page").hide();
+        }else if(pageType === '2'){
+            $("#edit-page").hide();
+            $("#edit-url").show();
+            $("#edit-system-page").hide();
+        }else if(pageType === '3'){
+            $("#edit-page").hide();
+            $("#edit-url").hide();
+            $("#edit-system-page").show();
+        }else{
+            $("#edit-page").hide();
+            $("#edit-url").hide();
+            $("#edit-system-page").hide();
+        }
+    })
 
-        $("#edit-page-type").change(function(){
-            var pageType = $(this).val();
-            if(pageType === '1'){
-                $("#edit-page").show();
-                $("#edit-url").hide();
-                $("#edit-system-page").hide();
-            }else if(pageType === '2'){
-                $("#edit-page").hide();
-                $("#edit-url").show();
-                $("#edit-system-page").hide();
-            }else if(pageType === '3'){
-                $("#edit-page").hide();
-                $("#edit-url").hide();
-                $("#edit-system-page").show();
-            }else{
-                $("#edit-page").hide();
-                $("#edit-url").hide();
-                $("#edit-system-page").hide();
-            }
-        })
-    </script>
+    $("#edit-page-type").change(function(){
+        var pageType = $(this).val();
+        if(pageType === '1'){
+            $("#edit-page").show();
+            $("#edit-url").hide();
+            $("#edit-system-page").hide();
+        }else if(pageType === '2'){
+            $("#edit-page").hide();
+            $("#edit-url").show();
+            $("#edit-system-page").hide();
+        }else if(pageType === '3'){
+            $("#edit-page").hide();
+            $("#edit-url").hide();
+            $("#edit-system-page").show();
+        }else{
+            $("#edit-page").hide();
+            $("#edit-url").hide();
+            $("#edit-system-page").hide();
+        }
+    })
+</script>

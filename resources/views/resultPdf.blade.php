@@ -39,7 +39,7 @@
     <table class="table1" width="100%">
         <tr style="text-align: center">
             <td width="90%" style="text-align: center">
-                    <img src="{{ asset('/assets/img/logos') }}/{{$logo}}" alt="">
+                    <img src="{{ asset('/assets/img/logos/') }}/{{ siteConfig('logo') }}" alt="">
             </td>
             <td width="10%">
                 <table class="table">

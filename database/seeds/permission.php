@@ -11,6 +11,17 @@ $permissionGroup = [
         ],
     ],
     [
+      'group_name' => 'communication',
+      'permissions' =>  [
+            "communication.quick",
+            "communication.student",
+            "communication.staff",
+            "communication.history",
+            "communication.send",
+            "communication.quickSend",
+      ]  ,
+    ],
+    [
         'group_name' => 'Student',
         'permissions' => [
             "student.tod",

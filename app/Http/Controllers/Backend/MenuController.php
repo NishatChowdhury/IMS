@@ -30,7 +30,7 @@ class MenuController extends Controller
             'apply-school' => 'Online Admission (School)',
             'applyCollege' => 'Online Admission (College)'
         ];
-        $menus = Menu::query()
+         $menus = Menu::query()
             ->where('menu_id',null)
             ->orderBy('order')
             ->get();
@@ -45,7 +45,7 @@ class MenuController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-         $validated = $request->validate([
+        $validated = $request->validate([
             //'menu_id' => 'required',
             'name' => 'required',
             'type' => 'required|integer',
@@ -58,8 +58,8 @@ class MenuController extends Controller
 
     public function search(Request $request)
     {
-         $query =  $request->searchQuery;
-      $parents = Menu::all()->pluck('name','id');
+        $query =  $request->searchQuery;
+        $parents = Menu::all()->pluck('name','id');
         $pages = Page::all()->pluck('name','id');
         $systemPages = [
             'contacts' => 'Contacts',
@@ -78,8 +78,8 @@ class MenuController extends Controller
         return view('admin.menu.index',compact('parents','menus','pages','systemPages'));
 
     }
-    
-    
+
+
     public function edit(Request $request)
     {
         $parents = Menu::all()->pluck('name','id');
@@ -103,7 +103,8 @@ class MenuController extends Controller
 
     public function update($id,Request $request)
     {
-        $menu = Menu::query()->findOrFail($id);
+//        return $request->all();
+          $menu = Menu::query()->findOrFail($id);
         $menu->update($request->all());
         Session::flash('success','Page modified successfully!');
         return redirect()->back();
