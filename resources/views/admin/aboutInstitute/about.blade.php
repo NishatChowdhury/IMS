@@ -46,6 +46,8 @@
                                 @csrf
                                 <input type="hidden" value="{{$aboutInstitute->alias}}" name="alias">
                                 <div class="mb-3">
+                                    <label for="exampleFormControlTitle">{{ __('Titel')}}</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Enter About a Title" value="{{$aboutInstitute->title ?? ''}}">
                                     <label for="exampleFormControlTextarea1" class="form-label">{{ __('About Institute')}}</label>
                                     <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$aboutInstitute->body}}</textarea>
                                 </div>
@@ -76,7 +78,7 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <h4>{{ __('About Institute')}}</h4>
+                            <h4> <p>{!! $aboutInstitute->title !!}</p></h4>
                             <hr>
                             <div class="row">
 

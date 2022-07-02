@@ -35,6 +35,7 @@ class MessageController extends Controller
     public function instituteMessageUpdate(Request $request): RedirectResponse
     {
         $this->validate($request,[
+            'title' => 'required',
             'body' => 'required',
         ]);
         $alias = $request->alias;
@@ -56,7 +57,7 @@ class MessageController extends Controller
             InstituteMessage::query()->create($data);
         }
 
-        return redirect()->back()->with('success','Chairman Message Saved Successfully!');
+        return redirect()->back()->with('success','Institute Message Updated Successfully!');
     }
 
 
