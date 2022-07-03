@@ -17,19 +17,24 @@ use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Subject;
 use App\Models\Diary;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
     public $repository;
+
     public function __construct(AttendanceRepository $repository)
     {
          $this->middleware('teacher');
-        $this->repository = $repository;
+         $this->repository = $repository;
+
+
     }
     // Create Diary Start
     public function index(Request $request)
     {
+
          $diaries = Diary::query();
         $academicClass = AcademicClass::active()->get();
         if($request->get('date')){

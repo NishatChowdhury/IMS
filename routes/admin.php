@@ -290,10 +290,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
 
 //Contact page start
-Route::get('message-index','Backend\MessagesController@index')->name('message.index');
-Route::delete('message-delete/{id}','Backend\MessagesController@destroy')->name('message.destroy');
-Route::post('message-view','Backend\MessagesController@view')->name('message.view');
-Route::post('message-store','Backend\MessagesController@store')->name('message.store');
+//Route::get('message-index','Backend\MessagesController@index')->name('message.index');
+//Route::delete('message-delete/{id}','Backend\MessagesController@destroy')->name('message.destroy');
+//Route::post('message-view','Backend\MessagesController@view')->name('message.view');
+//Route::post('message-store','Backend\MessagesController@store')->name('message.store');
 //Contact Page end
 
     //library Management Starts By Nishat

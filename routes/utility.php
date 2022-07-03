@@ -582,8 +582,8 @@ Route::get('c-p/{id}', function ($id){
             ->get();
 //         $logo = siteConfig('logo');
          $logo = '5.jpg';
-        $pdf = PDF::loadView('resultPdf', compact('result','marks','logo','subjectCount'));
-        return $pdf->download('invoice.pdf');
+//        $pdf = PDF::loadView('resultPdf', compact('result','marks','logo','subjectCount'));
+//        return $pdf->download('invoice.pdf');
         return view('resultPdf',compact('result','marks','logo','subjectCount'));
 
 

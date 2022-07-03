@@ -55,6 +55,7 @@ class StaffController extends Controller
             'shift_id' => 'required',
             'job_type_id' => 'required',
             'staff_type_id' => 'required',
+            'card_id' => 'required|unique:staffs',
         ]);
         if ($req->hasFile('image')){
             $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();

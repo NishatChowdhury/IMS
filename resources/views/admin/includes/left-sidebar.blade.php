@@ -613,7 +613,7 @@
                         </ul>
                     </li>
                 @endif
-                @if(in_array("communication.quick", auth()->user()->permissions))
+
                     <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
                         <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
                             <i class="nav-icon fas fa-comments"></i>
@@ -623,28 +623,24 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            @if(in_array("communication.quick", auth()->user()->permissions))
                                 <li class="nav-item">
                                     <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('admin/communication/quick') }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ __('Quick SMS') }}</p>
                                     </a>
                                 </li>
-                            @endif
                             {{--                        <li>--}}
                             {{--                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">--}}
                             {{--                                <i class="far fa-circle nav-icon"></i>--}}
                             {{--                                <p>Student SMS</p>--}}
                             {{--                            </a>--}}
                             {{--                        </li>--}}
-                            @if(in_array("communication.staff", auth()->user()->permissions))
                                 <li class="nav-item">
                                     <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('admin/communication/staff') }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ __('Staff SMS') }}</p>
                                     </a>
                                 </li>
-                            @endif
                             @if(in_array("communication.history", auth()->user()->permissions))
                                 <li class="nav-item">
                                     <a href="{{route('communication.history')}}" class="nav-link {{ isActive('admin/communication/history') }}">
@@ -669,7 +665,7 @@
                             {{--</li>--}}
                         </ul>
                     </li>
-                @endif
+{{--                @endif--}}
                 {{--                <li class="nav-item has-treeview {{ isActive(['admin/extra*']) }}">--}}
                 {{--                    <a href="#" class="nav-link {{ isActive(['admin/extra*']) }}">--}}
                 {{--                        <i class="nav-icon fas fa-scroll"></i>--}}
@@ -875,18 +871,18 @@
                             <li class="nav-item">
                                 <a href="{{route('staff.teacher')}}" class="nav-link {{ isActive('admin/staff/teacher') }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Teacher</p>
+                                    <p>Teacher & Staff</p>
                                 </a>
                             </li>
                         @endif
-                        @if(in_array("staff.addstaff", auth()->user()->permissions))
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('admin/staff/staffadd') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Staff Add</p>
-                                </a>
-                            </li>
-                        @endif
+{{--                        @if(in_array("staff.addstaff", auth()->user()->permissions))--}}
+{{--                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('admin/staff/staffadd') }}">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Staff Add</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
                         @if(in_array("staff.threshold", auth()->user()->permissions))
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{route('staff.threshold')}}" class="nav-link {{ isActive('admin/staff/threshold') }}">

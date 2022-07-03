@@ -105,7 +105,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Notice</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Notice & News</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

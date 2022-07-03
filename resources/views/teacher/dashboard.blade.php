@@ -5,16 +5,16 @@
 @section('content')
     <div class="container">
         <div class="row pt-4">
-            <div class="col-4">
-                <div class="items pay">
-                    <a href="">
-                        <div class="menu_icon">
-                          <i class="fas fa-coins"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-4">
+{{--            <div class="col-4">--}}
+{{--                <div class="items pay">--}}
+{{--                    <a href="">--}}
+{{--                        <div class="menu_icon">--}}
+{{--                          <i class="fas fa-coins"></i>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            <div class="col-6">
                 <div class="items diary">
                     <a href="{{ route('teacher.diary.index') }}">
                         <div class="menu_icon">
@@ -23,7 +23,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <div class="items admission">
                     <a href="{{ route('teacher.attendance.view') }}">
                         <div class="menu_icon">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="items result">
                     <a href="{{ route('teacher.examination.list') }}">
                         <div class="menu_icon">
@@ -43,20 +43,20 @@
                     </a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="items sms">
-                    <a href="">
-                        <div class="menu_icon">
-                           <i class="fas fa-sms"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-4">
+{{--            <div class="col-4">--}}
+{{--                <div class="items sms">--}}
+{{--                    <a href="">--}}
+{{--                        <div class="menu_icon">--}}
+{{--                           <i class="fas fa-sms"></i>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            <div class="col-6">
                 <div class="items leave">
                     <a href="{{ route('teacher.leave.student') }}">
                         <div class="menu_icon">
-                        <i class="fas fa-holly-berry"></i>
+                            <i class="fas fa-sign-out-alt"></i>
                         </div>
                     </a>
                 </div>

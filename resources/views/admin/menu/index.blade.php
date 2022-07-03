@@ -27,16 +27,16 @@
             <div class="row">
                 <div class="col-12">
                     @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card mb-2">
-                         <div class="card-body" style="border-bottom: none !important;">
+                        <div class="card-body" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
                                     <form action="{{ route('menus.search') }}" method="post">
@@ -62,9 +62,9 @@
                     </div>
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
-{{--                            <div class="row">--}}
-{{--                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : 1000</h3>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="row">--}}
+                            {{--                                <h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-book" style="border-radius: 50%; padding: 15px; background: #3d807a; color: #ffffff"></i></span>Total Found : 1000</h3>--}}
+                            {{--                            </div>--}}
                             <div class="row">
                                 <div>
                                     <!-- Button trigger modal -->
@@ -81,6 +81,7 @@
                                     <th>Name</th>
                                     <th>Parent</th>
                                     <th>Order</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -92,6 +93,14 @@
                                         <td>{{ $menu->name }}</td>
                                         <td>{{ $menu->uri }}</td>
                                         <td>{{ $menu->order }}</td>
+                                        <td>
+
+                                            @if($menu->is_active == 0)
+                                                <span class="badge badge-danger">Inactive</span>
+                                            @elseif($menu->is_active == 1)
+                                                <span class="badge badge-primary">Active</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             {{ Form::open(['action'=>['Backend\MenuController@destroy',$menu->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleEditModal" onclick="loadEditForm({{$menu->id}})"><i class="fas fa-edit"></i></button>
@@ -106,6 +115,14 @@
                                             <td>{{ $child->uri }}</td>
                                             <td>{{ $child->order }}</td>
                                             <td>
+
+                                                @if($child->is_active == 0)
+                                                    <span class="badge badge-danger">Inactive</span>
+                                                @elseif($child->is_active == 1)
+                                                    <span class="badge badge-primary">Active</span>
+                                                @endif
+                                            </td>
+                                            <td>
                                                 {{ Form::open(['action'=>['Backend\MenuController@destroy',$child->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleEditModal" onclick="loadEditForm({{$child->id}})"><i class="fas fa-edit"></i></button>
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
@@ -118,6 +135,15 @@
                                                 <td>------> {{ $child->name }}</td>
                                                 <td>{{ $child->uri }}</td>
                                                 <td>{{ $child->order }}</td>
+                                                <td>
+                                                    {{--                                                     @if($child->is_active == null)--}}
+                                                    {{--                                                        <span class="badge badge-dark">Not Set</span>--}}
+                                                    @if($child->is_active == 0)
+                                                        <span class="badge badge-danger">Inactive</span>
+                                                    @elseif($child->is_active == 1)
+                                                        <span class="badge badge-primary">Active</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     {{ Form::open(['action'=>['Backend\MenuController@destroy',$child->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleEditModal" onclick="loadEditForm({{$child->id}})"><i class="fas fa-edit"></i></button>
@@ -135,7 +161,7 @@
                                     <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
-{{--                                    {{ $chartOfAccounts->links() }}--}}
+                                    {{--                                    {{ $chartOfAccounts->links() }}--}}
                                 </div>
                             </div>
                         </div>
@@ -196,6 +222,14 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 {{ Form::text('uri',null,['class'=>'form-control','required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Active Status*</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                {{ Form::select('is_active',[1 => 'Active', 0 =>  'Inactive'],null,['class'=>'form-control','required']) }}
                             </div>
                         </div>
                     </div>
@@ -308,6 +342,7 @@
     </script>
     <script>
         function loadEditForm(id){
+            console.log(id)
             var token = "{{ csrf_token() }}";
             $.ajax({
                 url:"{{ route('menu.edit') }}",
