@@ -7,12 +7,15 @@ Route::get('teacher-login', function(){
     return \App\Models\TeacherLogin::all();
 });
 
-
+Route::get('teacher/login', [LoginController::class, 'showLoginForm'])->name('login.teacher');
 Route::middleware("teacher")->prefix('teacher')->group(function(){
 
-    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.teacher');
+
     Route::post('login', [LoginController::class, 'login']);
     Route::get('dashboard', function(){
+        if (auth()->guard('teacher')->user() == null){
+            abort(401);
+        }
             return view('teacher.dashboard');
     })->name('teacher.dashboard');
 

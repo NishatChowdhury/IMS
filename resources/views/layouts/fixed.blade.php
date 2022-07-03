@@ -117,8 +117,7 @@
 <!-- Form Awesome -->
 {{--<script src="{{ asset('plugins/fontawesome-free-5.6.3-web/js/all.min.js') }}"></script>--}}
 
-<!-- Nano Scroller -->
-<script src="{{ asset('plugins/nanoScroller/jquery.nanoscroller.min.js') }}"></script>
+
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>

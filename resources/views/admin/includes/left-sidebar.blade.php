@@ -871,18 +871,18 @@
                             <li class="nav-item">
                                 <a href="{{route('staff.teacher')}}" class="nav-link {{ isActive('admin/staff/teacher') }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Teacher</p>
+                                    <p>Teacher & Staff</p>
                                 </a>
                             </li>
                         @endif
-                        @if(in_array("staff.addstaff", auth()->user()->permissions))
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('admin/staff/staffadd') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Staff Add</p>
-                                </a>
-                            </li>
-                        @endif
+{{--                        @if(in_array("staff.addstaff", auth()->user()->permissions))--}}
+{{--                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('admin/staff/staffadd') }}">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Staff Add</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
                         @if(in_array("staff.threshold", auth()->user()->permissions))
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{route('staff.threshold')}}" class="nav-link {{ isActive('admin/staff/threshold') }}">

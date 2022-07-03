@@ -17,11 +17,16 @@ class TeacherMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('teacher')) {
+
+
+
+        if (Auth::guard('teacher') == true) {
                 return $next($request);
         }else{
                 return response('Unauthorized.', 401);
-
         }
+
+
+
     }
 }
