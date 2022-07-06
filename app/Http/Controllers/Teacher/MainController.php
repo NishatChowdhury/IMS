@@ -9,6 +9,7 @@ use App\Models\Backend\LeavePurpose;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentLeave;
+use App\Models\TeacherLogin;
 use App\Repository\AttendanceRepository;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -18,6 +19,7 @@ use App\Models\Backend\Staff;
 use App\Models\Backend\Subject;
 use App\Models\Diary;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
@@ -237,5 +239,52 @@ class MainController extends Controller
     {
         StudentLeave::where('leaveId',$id)->delete();
         return back();
+    }
+    
+    
+    // profile and passwoord chamge
+
+    public function teacherProfile()
+    {
+         $user = Auth::guard('teacher')->user();
+         $staff = Staff::where('card_id', $user->card_no)->first();
+        return view('teacher.profile', compact('user','staff'));
+    }
+
+    public function teacherProfileUpdate(Request $request)
+    {
+        $staff = Staff::where('id', $request->id)->first();
+
+        if($request->has('email')){
+            $staff->update([
+                'email' => $request->email,
+                'name' => $request->name,
+            ]);
+        }
+
+        $teacherLogin = TeacherLogin::where('staff_id', $staff->id)->first();
+        $teacherLogin->update([
+            'name' => $request->name,
+        ]);
+        return back()->with('status','Your profile was updated successfully');
+    }
+     public function resetPassword(Request $request)
+    {
+                $this->validate($request,[
+                    'password' => 'required|confirmed'
+                ]);
+                    $staff = Staff::where('id', $request->id)->first();
+                    if($request->password){
+
+                        $teacherLogin = TeacherLogin::query()
+                                            ->where('staff_id', $staff->id)
+                                            ->first();
+                        $teacherLogin->password = Hash::make($request->password);
+                        $teacherLogin->save();
+
+                        return redirect()->back()->with('status', 'Your Password has been Change');
+
+                    }
+                    return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
     }
 }

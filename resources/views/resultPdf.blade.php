@@ -31,7 +31,7 @@
     <table class="table1" width="100%">
         <tr style="text-align: center">
             <td>
-{{--                <h1 style="margin-top: 0px">{{ siteConfig('name') }}</h1>--}}
+                <h1 style="margin-top: 0px">{{ siteConfig('name') }}</h1>
                 <p>{{ siteConfig('address') }}</p>
             </td>
         </tr>

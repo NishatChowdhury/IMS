@@ -57,6 +57,12 @@ Route::middleware("teacher")->prefix('teacher')->group(function(){
     Route::get('examination-mark-download/{id}', [\App\Http\Controllers\Teacher\ExamController::class, 'markDownload'])
         ->name('teacher.examination.mark.download');
 
+    // profile
+
+    Route::get('profile', [\App\Http\Controllers\Teacher\MainController::class, 'teacherProfile'])->name('teacher.profile');
+    Route::post('profile-update', [\App\Http\Controllers\Teacher\MainController::class, 'teacherProfileUpdate'])->name('teacher.profile.update');
+    Route::post('profile-password-reset', [\App\Http\Controllers\Teacher\MainController::class, 'resetPassword'])->name('teacher.resetPassword');
+
 
 });
 
