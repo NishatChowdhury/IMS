@@ -52,7 +52,7 @@ class StaffController extends Controller
             'code' => 'required',
             'title' => 'required',
             'role_id' => 'required',
-            'shift_id' => 'required',
+            //'shift_id' => 'required',
             'job_type_id' => 'required',
             'staff_type_id' => 'required',
             'card_id' => 'required|unique:staffs',
