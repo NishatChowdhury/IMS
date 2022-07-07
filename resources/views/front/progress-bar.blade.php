@@ -7,7 +7,7 @@
                     {{ \App\Models\Backend\Student::all()->count() }}
                 </h2>
                 <p class="lead">
-                    {{ __(' Students')}}
+                    {{ __('Students')}}
                 </p>
             </div>
 
@@ -16,7 +16,7 @@
                     {{ \App\Models\Backend\AcademicClass::all()->count() }}
                 </h2>
                 <p class="lead">
-                    {{ __(' Classes')}}
+                    {{ __('Classes')}}
                 </p>
             </div>
 
@@ -25,7 +25,7 @@
                     {{ __('235K')}}
                 </h2>
                 <p class="lead">
-                    {{ __(' Attendance')}}
+                    {{ __('Attendance')}}
                 </p>
             </div>
 
@@ -34,7 +34,7 @@
                     {{ \App\Models\Backend\Staff::all()->count() }}
                 </h2>
                 <p class="lead">
-                    {{ __('Teachers & Staff')}}
+                    {{ __('Teachers & Staff') }}
                 </p>
             </div>
 

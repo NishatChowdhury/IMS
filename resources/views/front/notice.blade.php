@@ -4,7 +4,7 @@
             <div class="col-lg-8">
                 <div class="row align-items-center">
                     <div class="col-md-12 mt-4">
-                        <h2>{{ $about->title }}</h2>
+                        <h2>{{ $about->title ?? __('Undefined') }}</h2>
                         @if($about)
                             {!! Str::limit($about->body,800) !!}
                             <p data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo" class="btn btn-outline-white-hover">
@@ -18,7 +18,7 @@
                 <div class="card shadow-v2 z-index-5" data-offset-top-xl="-160">
                     <div class="card-header text-white border-bottom-0" style="background-color: #97a1aa">
                         <span class="lead font-semiBold text-uppercase">
-                          {{ __('  Notice Board')}}
+                          {{ __('Notice Board')}}
                          </span>
                     </div>
 
@@ -39,7 +39,7 @@
 
                     <div class="p-4">
                         <a href="{{ action('Front\FrontController@notice') }}" class="btn btn-link pl-0">
-                            {{ __(' View All Notices')}}
+                            {{ __('View All Notices')}}
                         </a>
                     </div>
                 </div>

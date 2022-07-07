@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5 mr-auto my-4 text-white wow slideInUp">
-                <h2>Subscribe to <span class="text-primary">{{ __('Newsletter')}}</span></h2>
+                <h2>{{ __('Subscribe to') }} <span class="text-primary">{{ __('Newsletter')}}</span></h2>
                 <p class="lead">
-                    {{ __(' Get notified about new courses, events, community & more')}}
+                    {{ __('Get notified about new courses, events, community & more')}}
                 </p>
             </div>
             <div class="col-md-6 my-4 wow zoomIn">

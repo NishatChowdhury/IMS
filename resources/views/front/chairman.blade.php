@@ -8,7 +8,7 @@
                 @if($chairman)
                     {!! Str::limit($chairman->body,800) !!}
                 @endif
-                <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">...more</a>
+                <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ __('...more') }}</a>
             </div>
             <div class="col-md-6 mt-3">
                 <img src="{{ asset('uploads/message') }}/{{ $chairman->image ?? 'untitled.png' }}" alt="">

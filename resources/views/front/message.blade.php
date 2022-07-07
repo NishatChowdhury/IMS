@@ -10,7 +10,7 @@
                     {{ $principal->title }}
                 </h2>
                 {!! Str::limit($principal->body,800) !!}
-                <a style="color: blue" data-toggle="modal" data-target="#principalModal" data-whatever="@mdo">...more</a>
+                <a style="color: blue" data-toggle="modal" data-target="#principalModal" data-whatever="@mdo">{{ __('...more') }}</a>
             </div>
         </div>
     </div>
