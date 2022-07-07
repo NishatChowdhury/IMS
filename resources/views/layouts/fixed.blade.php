@@ -140,7 +140,7 @@
 <script>
     @if(session('success'))
     Swal.fire({
-        title: "Web Point Ltd.",
+        title: "Success",
         text: "{{ session('success') }}",
         icon: "success",
     });

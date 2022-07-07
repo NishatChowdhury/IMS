@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DiaryController;
+use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -650,11 +651,11 @@ return view('form-pdf');
     Route::post('module-store',[RolePermissionController::class, 'moduleStore'])->name('module.store');
 
 //CMS route
-    Route::get('chairmanMessage',[\App\Http\Controllers\Backend\MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
-    Route::get('principalMessage',[\App\Http\Controllers\Backend\MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
-    Route::get('aboutInstitute',[\App\Http\Controllers\Backend\MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
+    Route::get('chairmanMessage',[MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
+    Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
+    Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
 //principal , chairman and institute message update route
-    Route::post('chairmanMessageUpdate',[\App\Http\Controllers\Backend\MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+    Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
 

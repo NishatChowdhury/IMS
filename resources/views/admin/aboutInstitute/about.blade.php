@@ -32,31 +32,32 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            @if($errors->any())
+                        @if($errors->any())
+                            <div class="card-body">
                                 <ul class="text-danger">
                                     @foreach($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                         <div class="card-body">
-                            <form method="POST" action="{{route('instituteMessageUpdate')}}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" value="{{$aboutInstitute->alias}}" name="alias">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTitle">{{ __('Titel')}}</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter About a Title" value="{{$aboutInstitute->title ?? ''}}">
+                            {{ Form::model($aboutInstitute,['route'=>'instituteMessageUpdate','method'=>'patch']) }}
+                            {{ Form::hidden('alias','about') }}
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTitle">{{ __('Title')}}</label>
+                                    {{ Form::text('title',null,['class'=>'form-control','placeholder'=>'Enter About Institute']) }}
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleFormControlTextarea1" class="form-label">{{ __('About Institute')}}</label>
-                                    <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$aboutInstitute->body}}</textarea>
+                                    {{ Form::textarea('body',null,['id'=>'formsummernote','class'=>'form-control']) }}
                                 </div>
-                                <div class="mb-3">
-                                    <input type="submit" class="btn btn-info" value=" Save ">
-                                </div>
-                            </form>
-
-
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-info">{{ __('Save') }}</button>
+                            </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -69,28 +70,19 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            @if($errors->any())
-                                <ul class="text-danger">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
-                        <div class="card-body">
-                            <h4> <p>{!! $aboutInstitute->title !!}</p></h4>
+                            <h4>{{ $aboutInstitute->title ?? '' }}</h4>
                             <hr>
                             <div class="row">
 
                                 <div class="col-md-12">
-
-                                    <p>{!! $aboutInstitute->body !!}</p>
+                                    <p>{!! $aboutInstitute->body ?? '' !!}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
 @stop
@@ -109,7 +101,6 @@
 
 @section('script')
     <script>
-
         $('#formsummernote').summernote({
             placeholder: '',
             tabsize: 2,

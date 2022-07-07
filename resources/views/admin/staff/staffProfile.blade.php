@@ -30,7 +30,7 @@
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#account" data-toggle="tab">Account</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#attendance" data-toggle="tab">Attendence</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#attendance" data-toggle="tab">Attendance</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#result" data-toggle="tab">Result</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
                             </ul>

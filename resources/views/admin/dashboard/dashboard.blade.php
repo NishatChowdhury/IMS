@@ -135,11 +135,11 @@
 
 
             <div class="row">
-                {{--Student Attendence Start--}}
+                {{--Student Attendance Start--}}
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">{{ __('Daily Student Attendence')}}</h5>
+                            <h5 class="card-title">{{ __('Daily Student Attendance')}}</h5>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -167,7 +167,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="text-center">
-                                        <strong>{{ __('Class Wise Student Attendence')}}</strong>
+                                        <strong>{{ __('Class Wise Student Attendance')}}</strong>
                                     </p>
 
                                     <div class="progress-group">
@@ -214,13 +214,13 @@
                     </div>
                     <!-- /.card -->
                 </div>
-                {{--Student Attendence End--}}
+                {{--Student Attendance End--}}
 
-                {{--Teacher Attendence Start--}}
+                {{--Teacher Attendance Start--}}
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">{{ __('Daily Teacher Attendence')}}</h5>
+                            <h5 class="card-title">{{ __('Daily Teacher Attendance')}}</h5>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -248,7 +248,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="text-center">
-                                        <strong>{{ __('Teacher Attendence')}}</strong>
+                                        <strong>{{ __('Teacher Attendance')}}</strong>
                                     </p>
 
                                     <div class="progress-group">
@@ -295,7 +295,7 @@
                     </div>
                     <!-- /.card -->
                 </div>
-                {{--Teacher Attendence End--}}
+                {{--Teacher Attendance End--}}
             </div>
             <!-- /.row -->
 
