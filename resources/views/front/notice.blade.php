@@ -7,9 +7,7 @@
                         <h2>{{ $about->title ?? __('Undefined') }}</h2>
                         @if($about)
                             {!! Str::limit($about->body,800) !!}
-                            <p data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo" class="btn btn-outline-white-hover">
-                                {{ __('Read More') }}
-                            </p>
+                            <a style="color: blue" data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo">{{ __('...more') }}</a>
                         @endif
                     </div>
                 </div>
@@ -50,27 +48,20 @@
 
 <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+        <div class="modal-content">
             <div class="modal-header">
+                <h4>{{ __('About Institute') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h2>{{ __('About Institute') }}</h2>
-                                @if($about)
-                                    <span aria-hidden="true">{!! $about->body !!}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-12">
+                    @if($about)
+                        <span aria-hidden="true">{!! $about->body !!}</span>
+                    @endif
                 </div>
             </div>
-            <div class="modal-footer"></div>
         </div>
     </div>
 </div>

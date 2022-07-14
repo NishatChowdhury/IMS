@@ -51,6 +51,7 @@
                             {{ $news->title }}
                         </h4>
                         {{ $news->description }}
+
                         <a href="{{ action('FrontController@news') }}" class="btn btn-primary mt-4">{{('Back To News')}}</a>
                     </div>
                 </div>

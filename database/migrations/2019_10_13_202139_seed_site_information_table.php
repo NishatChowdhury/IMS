@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Backend\SiteInformation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,14 +18,14 @@ class SeedSiteInformationTable extends Migration
             $data['title'] = 'WP';
             $data['name'] = 'Web Point Limited';
             $data['name_size'] = 25;
-            $data['name_font'] = '';
-            $data['name_color'] = '';
-            $data['bn'] = '';
-            $data['bn_size'] = '1';
-            $data['bn_font'] = '';
-            $data['bn_color'] = '';
+            $data['name_font'] = '"Maven Pro", sans-serif';
+            $data['name_color'] = '#FFFFFF';
+            $data['bn'] = 'ওয়েব পয়েন্ট লিমিটেড';
+            $data['bn_size'] = 12;
+            $data['bn_font'] = '"Maven Pro", sans-serif';
+            $data['bn_color'] = '#FFFFFF';
             $data['address'] = 'College Road, Chawk Bazar, Chittagong';
-            $data['institute_code'] = '123456';
+            $data['institute_code'] = '1234';
             $data['eiin'] = '4321';
             $data['phone'] = '+8801875004610';
             $data['email'] = 'info@webpointbd.com';
@@ -32,7 +33,8 @@ class SeedSiteInformationTable extends Migration
             $data['theme_id'] = 1;
             $data['admission_sms'] = 1;
             $data['admission_confirm_sms'] = 1;
-            \App\Models\Backend\SiteInformation::query()->create($data);
+
+            SiteInformation::query()->create($data);
         });
     }
 
