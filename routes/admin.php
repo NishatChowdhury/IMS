@@ -161,6 +161,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::patch('feature/{id}/update','Backend\FeatureController@update')->name('features.update');
     Route::delete('feature/destroy/{id}','Backend\FeatureController@destroy')->name('features.destroy');
 
+    Route::get('languages','Backend\LanguageController@index');
+    Route::post('add-languages','Backend\LanguageController@store')->name('languages.add');
+    Route::post('change-status','Backend\LanguageController@status')->name('change.status');
+    Route::post('default-update','Backend\LanguageController@defaultUpdate')->name('default.update');
+    Route::post('lang-delete/{id}','Backend\LanguageController@delete')->name('lang.delete');
+    Route::get('lang-edit/{id}','Backend\LanguageController@edit')->name('lang.edit');
+    Route::post('lang-update','Backend\LanguageController@update')->name('lang.update');
+
     Route::get('themes','Backend\ThemeController@index');
     Route::get('theme/edit/{id}','Backend\ThemeController@edit');
     Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy');
