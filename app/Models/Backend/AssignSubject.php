@@ -32,4 +32,8 @@ class AssignSubject extends Model
     function academicClass(){
         return $this->belongsTo(AcademicClass::class);
     }
+
+    protected $casts = [
+        'teacher_id' => 'array',
+    ];
 }

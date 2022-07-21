@@ -19,6 +19,7 @@ use App\Models\Backend\Staff;
 use App\Models\Backend\Subject;
 use App\Models\Diary;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -28,8 +29,8 @@ class MainController extends Controller
 
     public function __construct(AttendanceRepository $repository)
     {
-         $this->middleware('teacher');
-         $this->repository = $repository;
+        $this->middleware('teacher');
+        $this->repository = $repository;
 
 
     }
@@ -37,68 +38,88 @@ class MainController extends Controller
     public function index(Request $request)
     {
 
-         $diaries = Diary::query();
+        $diaries = Diary::query();
         $academicClass = AcademicClass::active()->get();
+
         if($request->get('date')){
             $diaries->where('date', $request->get('date'));
         }
+
         if($request->get('academic_class_id')){
             $diaries->where('academic_class_id', $request->get('academic_class_id'));
         }
+
         $diaries->where('teacher_id', auth()->guard('teacher')->user()->staff_id);
-          $diaries = $diaries->orderBy('id', 'DESC')->get();
+        $diaries = $diaries->orderBy('id', 'DESC')->get();
+
         return view('teacher.diary.index', compact('academicClass','diaries'));
     }
     public function create()
     {
         $teacher_id = auth()->guard('teacher')->user()->staff_id;
         $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
+
+//        $dd = ["9"];
          $subjects = AssignSubject::query()
-                                    ->where('teacher_id', $teacher_id)
-                                    ->get();
+            ->whereJsonContains('teacher_id', $teacher_id)
+            ->get();
+
+
+
+//        foreach ($subjects as $v){$subjects
+//            if (in_array($teacher_id, $v)){
+//                dd('a');
+//            }else{
+//                dd('b');
+//            }
+//        }
+
+
+
+
         $teachers = Staff::where('staff_type_id', 2)->get();
-        return view('teacher.diary.create', compact('academicClass','subjects','teachers'));
+        return view('teacher.diary.create', compact('academicClass','subjects','teachers','teacher_id'));
     }
 
     public function store(Request $request)
     {
-            $validated = $request->validate([
-                'date' => 'required',
-                'teacher_id' => 'required',
-                'subject_id' => 'required',
-                'description' => 'required',
-            ]);
+        $validated = $request->validate([
+            'date' => 'required',
+            'teacher_id' => 'required',
+            'subject_id' => 'required',
+            'description' => 'required',
+        ]);
 
-            $assignSubject = AssignSubject::find($request->subject_id);
-            Diary::create([
-                'academic_class_id' => $assignSubject->academic_class_id,
-                'date' => $request->date,
-                'teacher_id' => $request->teacher_id,
-                'subject_id' => $assignSubject->subject_id,
-                'description' => $request->description,
-            ]);
-            return back()->with('status', 'Your Diary Create Successfully');
+        $assignSubject = AssignSubject::find($request->subject_id);
+        Diary::create([
+            'academic_class_id' => $assignSubject->academic_class_id,
+            'date' => $request->date,
+            'teacher_id' => $request->teacher_id,
+            'subject_id' => $assignSubject->subject_id,
+            'description' => $request->description,
+        ]);
+        return back()->with('status', 'Your Diary Create Successfully');
     }
     public function update(Request $request, $id)
     {
-            $validated = $request->validate([
-                'date' => 'required',
-                'teacher_id' => 'required',
-                'subject_id' => 'required',
-                'description' => 'required',
-            ]);
+        $validated = $request->validate([
+            'date' => 'required',
+            'teacher_id' => 'required',
+            'subject_id' => 'required',
+            'description' => 'required',
+        ]);
 
-            $assignSubject = AssignSubject::find($request->subject_id);
-            $diary = Diary::find($id);
-            $diary->update([
-                'academic_class_id' => $assignSubject->academic_class_id,
-                'date' => $request->date,
-                'teacher_id' => $request->teacher_id,
-                'subject_id' => $assignSubject->subject_id,
-                'description' => $request->description,
-            ]);
+        $assignSubject = AssignSubject::find($request->subject_id);
+        $diary = Diary::find($id);
+        $diary->update([
+            'academic_class_id' => $assignSubject->academic_class_id,
+            'date' => $request->date,
+            'teacher_id' => $request->teacher_id,
+            'subject_id' => $assignSubject->subject_id,
+            'description' => $request->description,
+        ]);
 
-            return redirect()->route('teacher.diary.index')->with('status', 'Your Diary Create Successfully');
+        return redirect()->route('teacher.diary.index')->with('status', 'Your Diary Create Successfully');
     }
 
     public function edit($id)
@@ -116,45 +137,45 @@ class MainController extends Controller
         if($request->user == 1){
 
             $today = $request->get('date');
-        $s = Student::query();
+            $s = Student::query();
 
-        if($request->get('studentId')){
-            $studentId = $request->get('studentId');
-            $s->where('studentId',$studentId);
-        }
-
-        $students = $s->get();
-
-
-
-        $attend = [];
-        foreach($students as $student){
-//            return strval($today);
-            $stuAca = StudentAcademic::where('student_id',$student->id)->first();
-            $attn = Attendance::query()
-                ->whereDate('date', $today)
-                ->where('student_academic_id',$stuAca->id)
-                ->first();
-
-
-            if($attn != null) {
-                $attendArr[] = (object)[
-                    'student' => $student->name,
-                    'card' => $student->studentId,
-                    'rank' => $stuAca->rank,
-                    'date' => $today,
-                    'class' => $stuAca->classes->name,
-                    'in_time' => $attn->manual_in_time ?? $attn->in_time,
-                    'out_time' => $attn->manual_out_time ?? $attn->out_time,
-                    'status' => $attn->attendanceStatus->name ?? '',
-                    'is_notified' => 'Is Notified'
-                ];
+            if($request->get('studentId')){
+                $studentId = $request->get('studentId');
+                $s->where('studentId',$studentId);
             }
-        }
 
-        $attendances = $attendArr ?? [];
+            $students = $s->get();
 
-        return view('teacher.attendance.day-wise', compact('attendances','repository','today'));
+
+
+            $attend = [];
+            foreach($students as $student){
+//            return strval($today);
+                $stuAca = StudentAcademic::where('student_id',$student->id)->first();
+                $attn = Attendance::query()
+                    ->whereDate('date', $today)
+                    ->where('student_academic_id',$stuAca->id)
+                    ->first();
+
+
+                if($attn != null) {
+                    $attendArr[] = (object)[
+                        'student' => $student->name,
+                        'card' => $student->studentId,
+                        'rank' => $stuAca->rank,
+                        'date' => $today,
+                        'class' => $stuAca->classes->name,
+                        'in_time' => $attn->manual_in_time ?? $attn->in_time,
+                        'out_time' => $attn->manual_out_time ?? $attn->out_time,
+                        'status' => $attn->attendanceStatus->name ?? '',
+                        'is_notified' => 'Is Notified'
+                    ];
+                }
+            }
+
+            $attendances = $attendArr ?? [];
+
+            return view('teacher.attendance.day-wise', compact('attendances','repository','today'));
 
         }elseif ($request->user == 2){
             $data = [];
@@ -190,19 +211,19 @@ class MainController extends Controller
     /// leave Start
     public function leaveStudent()
     {
-                $allData = StudentLeave::all()->groupBy('leaveId');
-                return view('teacher.leave.index',compact('allData'));
+        $allData = StudentLeave::all()->groupBy('leaveId');
+        return view('teacher.leave.index',compact('allData'));
     }
 
-     public function leaveAdd()
-        {
-            $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
-            return view('teacher.leave.create',compact('leave_purpose'));
-        }
+    public function leaveAdd()
+    {
+        $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
+        return view('teacher.leave.create',compact('leave_purpose'));
+    }
     public function leaveStore(Request $request)
     {
 
-         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
+        $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
 
         if(!$student){
             return redirect()->back();
@@ -215,7 +236,7 @@ class MainController extends Controller
             $end = $start;
         }
 
-         $period = CarbonPeriod::create($start,$end);
+        $period = CarbonPeriod::create($start,$end);
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
@@ -240,14 +261,14 @@ class MainController extends Controller
         StudentLeave::where('leaveId',$id)->delete();
         return back();
     }
-    
-    
+
+
     // profile and passwoord chamge
 
     public function teacherProfile()
     {
-         $user = Auth::guard('teacher')->user();
-         $staff = Staff::where('card_id', $user->card_no)->first();
+        $user = Auth::guard('teacher')->user();
+        $staff = Staff::where('card_id', $user->card_no)->first();
         return view('teacher.profile', compact('user','staff'));
     }
 
@@ -268,23 +289,23 @@ class MainController extends Controller
         ]);
         return back()->with('status','Your profile was updated successfully');
     }
-     public function resetPassword(Request $request)
+    public function resetPassword(Request $request)
     {
-                $this->validate($request,[
-                    'password' => 'required|confirmed'
-                ]);
-                    $staff = Staff::where('id', $request->id)->first();
-                    if($request->password){
+        $this->validate($request,[
+            'password' => 'required|confirmed'
+        ]);
+        $staff = Staff::where('id', $request->id)->first();
+        if($request->password){
 
-                        $teacherLogin = TeacherLogin::query()
-                                            ->where('staff_id', $staff->id)
-                                            ->first();
-                        $teacherLogin->password = Hash::make($request->password);
-                        $teacherLogin->save();
+            $teacherLogin = TeacherLogin::query()
+                ->where('staff_id', $staff->id)
+                ->first();
+            $teacherLogin->password = Hash::make($request->password);
+            $teacherLogin->save();
 
-                        return redirect()->back()->with('status', 'Your Password has been Change');
+            return redirect()->back()->with('status', 'Your Password has been Change');
 
-                    }
-                    return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
+        }
+        return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
     }
 }

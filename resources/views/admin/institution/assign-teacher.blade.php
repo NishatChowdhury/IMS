@@ -1,14 +1,16 @@
 @extends('layouts.fixed')
 
 @section('title','Institution Mgnt | Subjects')
-
+@section('style')
+  <link rel="stylesheet" href="{{asset('/plugins/select2/select2.css')}}">
+@endsection
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Subjects</h1>
+                    <h1>Assign Teacher On Subject</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,15 +25,13 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-{{--                <div class="col-3"></div>--}}
-                <div class="col-6 text-center offset-md-3">
+                {{--                <div class="col-3"></div>--}}
+                <div class="col-12 text-center">
                     <div class="card">
                         <div class="card-body">
                             <div class="header">
                                 <h6>Class: {{$academic->classes->name ?? ''}}, Group: {{$academic->group->name ?? 'N/A'}}</h6>
                                 <h6>Section: {{$academic->section->name ?? 'N/A'}}, Session: {{$academic->session->year ?? 'N/A'}}</h6>
-                                <br>
-                                <h3><b><i>Assign Teacher On Subject</i></b></h3>
                             </div>
                         </div>
                     </div>
@@ -39,10 +39,11 @@
             </div>
         </div>
     </section>
+    <br>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6 text-center offset-md-3">
+                <div class="col-12 text-center">
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
@@ -53,6 +54,7 @@
                                         <th>Action</th>
                                     </tr>
                                     @foreach($subjects as $subs)
+
                                         <form action="{{ route('institution.assignTeacher.store') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="assign_subject_id" value="{{ $subs->id }}">
@@ -60,14 +62,19 @@
                                                 <td>{{$subs->subject->name ?? ''}}</td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <select name="staff_id" class="form-control" id="">
+                                                        <select name="staff_id[]" multiple="multiple" class=" select2 " style="width: 100%;">
                                                             @foreach($teachers as $t)
-                                                            <option
-                                                                    @isset($subs)
-                                                                        {{ $subs->teacher_id == $t->id ? 'selected' : '' }}
-                                                                    @endisset
-                                                                    value="{{$t->id}}"
-                                                              >{{$t->name}}</option>
+                                                                <option
+                                                                        @isset($subs)
+                                                                            @if(is_array($subs->teacher_id) || is_object($subs->teacher_id))
+                                                                                @foreach($subs->teacher_id as $d)
+                                                                                     {{ $d == $t->id ? 'selected' : '' }}
+                                                                                @endforeach
+                                                                            @endif
+
+                                                                        @endisset
+                                                                        value="{{$t->id}}"
+                                                                >{{$t->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -104,4 +111,17 @@
             }
         })
     </script>
+    <script src="{{asset('/plugins/select2/select2.js')}}"></script>
+    <script>
+          $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+              theme: 'bootstrap4'
+            })
+        })
+    </script>
+
 @stop
