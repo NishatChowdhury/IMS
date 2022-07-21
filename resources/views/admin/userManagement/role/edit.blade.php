@@ -9,8 +9,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Create Roles</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Create Roles')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -41,35 +41,33 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="">Role Name</label>
+                                        <label for="">{{ __('Role Name')}}</label>
                                         <input type="text" class="form-control" name="name" value="{{ $role->name }}">
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <h4><span class="badge badge-dark">Modules Permissions</span></h4>
+                                    <h4><span class="badge badge-dark">{{ __('Modules Permissions')}}</span></h4>
                                 </div>
 
-                              <div class="col-12" style="margin-left:40px">
+                                <div class="col-12" style="margin-left:40px">
                                     <input type="checkbox"
                                            id="allSelect">
                                     <label for="check01">
-                                        Select All Modules Permissions
+                                        {{ __(' Select All Modules Permissions')}}
                                     </label>
                                 </div>
                                 @foreach ($permissionsCount->chunk(3) as  $chunked)
-
-
                                     @foreach($chunked as $key => $permissions)
-                                     @php
-                                    $permissionKey = str_replace(' ', '-', $key);
-                                    @endphp
+                                        @php
+                                            $permissionKey = str_replace(' ', '-', $key);
+                                        @endphp
                                         <div class="{{ count($permissions) > 8 ? 'col-12' : 'col-4'}}">
                                             <div class="bg-white p-5 rounded">
                                                 <h6 class="mb-3 font-weight-bold">
-                                                  <input type="checkbox"
-                                                         value="{{ $permissionKey}}"
-                                                         id="checkModule-{{ $permissionKey }}"
-                                                         onClick="checkModule('all-permission-{{ $permissionKey }}', this)">
+                                                    <input type="checkbox"
+                                                           value="{{ $permissionKey}}"
+                                                           id="checkModule-{{ $permissionKey }}"
+                                                           onClick="checkModule('all-permission-{{ $permissionKey }}', this)">
                                                     <label for="check01">
                                                         {{ ucfirst($permissionKey) }} Modules
                                                     </label>
@@ -78,42 +76,42 @@
                                                 <div class="all-permission-{{ $permissionKey }} row">
                                                     @foreach($permissions->chunk(8) as $key => $permission)
                                                         @foreach($permission as $key => $per)
-                                                        <div class="{{ count($permissions) > 8 ? 'col-4' : 'mr-5'}}">
+                                                            <div class="{{ count($permissions) > 8 ? 'col-4' : 'mr-5'}}">
 
-                                                            <input   type="checkbox"
-                                                                     value="{{ $per->id }}"
-                                                                     id="check01"
-                                                                     name="permission[]"
-                                                                    @if(isset($role))
-                                                                        @foreach($role->permissions as $rolePermission)
-                                                                            {{ $per->id ==  $rolePermission->id ? 'checked' : ''}}
-                                                                        @endforeach
-                                                                    @endif
-                                                                     onClick="checkPermission('all-permission-{{ $key }}','checkModule-{{ $key }}',{{ count($permissions) }})">
-{{--                                                            $module count  {{ count($module->permissions) }}--}}
-                                                            <label for="check-{{ $key }}">
-                                                                {{ ucfirst(str_replace(['.', '-'], ' ', $per->name))  }}
-                                                            </label>
-                                                        </div>
+                                                                <input   type="checkbox"
+                                                                         value="{{ $per->id }}"
+                                                                         id="check01"
+                                                                         name="permission[]"
+                                                                         @if(isset($role))
+                                                                             @foreach($role->permissions as $rolePermission)
+                                                                                 {{ $per->id ==  $rolePermission->id ? 'checked' : ''}}
+                                                                             @endforeach
+                                                                         @endif
+                                                                         onClick="checkPermission('all-permission-{{ $key }}','checkModule-{{ $key }}',{{ count($permissions) }})">
+                                                                {{--                                                            $module count  {{ count($module->permissions) }}--}}
+                                                                <label for="check-{{ $key }}">
+                                                                    {{ ucfirst(str_replace(['.', '-'], ' ', $per->name))  }}
+                                                                </label>
+                                                            </div>
                                                         @endforeach
 
-{{--                                                    @if(isset($role))--}}
-{{--                                                        @foreach($role->permissions as $rolePermission)--}}
-{{--                                                            {{ $permission->id ==  $rolePermission->id ? 'checked' : ''}}--}}
-{{--                                                        @endforeach--}}
-{{--                                                    @endif--}}
+                                                        {{--                                                    @if(isset($role))--}}
+                                                        {{--                                                        @foreach($role->permissions as $rolePermission)--}}
+                                                        {{--                                                            {{ $permission->id ==  $rolePermission->id ? 'checked' : ''}}--}}
+                                                        {{--                                                        @endforeach--}}
+                                                        {{--                                                    @endif--}}
 
-{{--                                                        <div>--}}
-{{--                                                            <input   type="checkbox"--}}
-{{--                                                                     value="{{ $permission->id }}"--}}
-{{--                                                                     id="check01"--}}
-{{--                                                                     name="permission[]">--}}
-{{--                                                                     onClick="checkPermission('all-permission-{{ $key }}','checkModule-{{ $key }}',{{ count($module->permissions) }})">--}}
-{{--                                                            $module count  {{ count($module->permissions) }}--}}
-{{--                                                            <label for="check-{{ $key }}">--}}
-{{--                                                                {{ $permission->name }}--}}
-{{--                                                            </label>--}}
-{{--                                                        </div>--}}
+                                                        {{--                                                        <div>--}}
+                                                        {{--                                                            <input   type="checkbox"--}}
+                                                        {{--                                                                     value="{{ $permission->id }}"--}}
+                                                        {{--                                                                     id="check01"--}}
+                                                        {{--                                                                     name="permission[]">--}}
+                                                        {{--                                                                     onClick="checkPermission('all-permission-{{ $key }}','checkModule-{{ $key }}',{{ count($module->permissions) }})">--}}
+                                                        {{--                                                            $module count  {{ count($module->permissions) }}--}}
+                                                        {{--                                                            <label for="check-{{ $key }}">--}}
+                                                        {{--                                                                {{ $permission->name }}--}}
+                                                        {{--                                                            </label>--}}
+                                                        {{--                                                        </div>--}}
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -121,7 +119,8 @@
                                     @endforeach
                                 @endforeach
 
-                            <button class="btn btn-block btn-primary">Save Role</button>
+                                <button class="btn btn-block btn-primary">{{ __('Save Role') }}</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -137,7 +136,7 @@
 @section('script')
 
 
-      <script>
+    <script>
         // check all checkbox
         $('#allSelect').click(function(){
 
@@ -201,58 +200,58 @@
 
 
 
-{{--    <script>--}}
-{{--        // check all checkbox--}}
-{{--        $('#allSelect').click(function(){--}}
-{{--            if ($(this).is(':checked')) {--}}
-{{--            $('input[type=checkbox]').prop('checked', true);--}}
-{{--            }else{--}}
-{{--                $('input[type=checkbox]').prop('checked', false);--}}
-{{--            }--}}
-{{--        })--}}
+    {{--    <script>--}}
+    {{--        // check all checkbox--}}
+    {{--        $('#allSelect').click(function(){--}}
+    {{--            if ($(this).is(':checked')) {--}}
+    {{--            $('input[type=checkbox]').prop('checked', true);--}}
+    {{--            }else{--}}
+    {{--                $('input[type=checkbox]').prop('checked', false);--}}
+    {{--            }--}}
+    {{--        })--}}
 
-{{--        // check all module checkbox--}}
-{{--        function checkModule(className, checkThis){--}}
-{{--              let groupIdName = $('#'+checkThis.id);--}}
-{{--              let groupClassCheck = $('.'+className+' input');--}}
+    {{--        // check all module checkbox--}}
+    {{--        function checkModule(className, checkThis){--}}
+    {{--              let groupIdName = $('#'+checkThis.id);--}}
+    {{--              let groupClassCheck = $('.'+className+' input');--}}
 
-{{--              if(groupIdName.is(':checked')){--}}
-{{--                groupClassCheck.prop('checked', true);--}}
-{{--              }else{--}}
-{{--                groupClassCheck.prop('checked', false);--}}
-{{--              }--}}
+    {{--              if(groupIdName.is(':checked')){--}}
+    {{--                groupClassCheck.prop('checked', true);--}}
+    {{--              }else{--}}
+    {{--                groupClassCheck.prop('checked', false);--}}
+    {{--              }--}}
 
-{{--              if(groupClassCheck.is('not:checked')){--}}
-{{--                alert();--}}
-{{--              }--}}
-{{--              checkAllSelection();--}}
-{{--            }--}}
+    {{--              if(groupClassCheck.is('not:checked')){--}}
+    {{--                alert();--}}
+    {{--              }--}}
+    {{--              checkAllSelection();--}}
+    {{--            }--}}
 
-{{--            // check permission--}}
+    {{--            // check permission--}}
 
-{{--        function checkPermission(groupName, groupParent, permissionCount){--}}
-{{--              let classCheckCount = $('.'+groupName + ' input:checked').length;--}}
+    {{--        function checkPermission(groupName, groupParent, permissionCount){--}}
+    {{--              let classCheckCount = $('.'+groupName + ' input:checked').length;--}}
 
-{{--            if(classCheckCount == permissionCount){--}}
-{{--              $('#'+groupParent).prop('checked', true);--}}
-{{--            }else{--}}
-{{--              $('#'+groupParent).prop('checked', false);--}}
-{{--              // groupParent.prop('checked', false);--}}
-{{--            }--}}
-{{--            checkAllSelection();--}}
-{{--            }--}}
+    {{--            if(classCheckCount == permissionCount){--}}
+    {{--              $('#'+groupParent).prop('checked', true);--}}
+    {{--            }else{--}}
+    {{--              $('#'+groupParent).prop('checked', false);--}}
+    {{--              // groupParent.prop('checked', false);--}}
+    {{--            }--}}
+    {{--            checkAllSelection();--}}
+    {{--            }--}}
 
-{{--            function checkAllSelection(){--}}
-{{--              let countPermission = {{ $permissionsCount  }};--}}
-{{--              let countPermissionGroup = {{ count($modules)  }};--}}
-{{--              let permissionCount = countPermissionGroup + countPermission;--}}
+    {{--            function checkAllSelection(){--}}
+    {{--              let countPermission = {{ $permissionsCount  }};--}}
+    {{--              let countPermissionGroup = {{ count($modules)  }};--}}
+    {{--              let permissionCount = countPermissionGroup + countPermission;--}}
 
-{{--              if($('input[type="checkbox"]:checked').length == permissionCount){--}}
-{{--                $('#allSelect').prop('checked', true);--}}
-{{--              }else{--}}
-{{--                $('#allSelect').prop('checked', false);--}}
-{{--              }--}}
+    {{--              if($('input[type="checkbox"]:checked').length == permissionCount){--}}
+    {{--                $('#allSelect').prop('checked', true);--}}
+    {{--              }else{--}}
+    {{--                $('#allSelect').prop('checked', false);--}}
+    {{--              }--}}
 
-{{--            }--}}
-{{--    </script>--}}
+    {{--            }--}}
+    {{--    </script>--}}
 @endsection

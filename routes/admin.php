@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DiaryController;
+use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -159,6 +160,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('feature/edit/{id}','Backend\FeatureController@edit')->name('features.edit');
     Route::patch('feature/{id}/update','Backend\FeatureController@update')->name('features.update');
     Route::delete('feature/destroy/{id}','Backend\FeatureController@destroy')->name('features.destroy');
+
+    Route::get('languages','Backend\LanguageController@index');
+    Route::post('add-languages','Backend\LanguageController@store')->name('languages.add');
+    Route::post('change-status','Backend\LanguageController@status')->name('change.status');
+    Route::post('default-update','Backend\LanguageController@defaultUpdate')->name('default.update');
+    Route::post('lang-delete/{id}','Backend\LanguageController@delete')->name('lang.delete');
+    Route::get('lang-edit/{id}','Backend\LanguageController@edit')->name('lang.edit');
+    Route::post('lang-update','Backend\LanguageController@update')->name('lang.update');
+    Route::get('lang/translation/{id}','Backend\LanguageController@translation')->name('lang.translation');
+    Route::post('lang/translate/{id}','Backend\LanguageController@translate')->name('lang.translate');
 
     Route::get('themes','Backend\ThemeController@index');
     Route::get('theme/edit/{id}','Backend\ThemeController@edit');
@@ -666,11 +677,11 @@ return view('form-pdf');
     Route::post('module-store',[RolePermissionController::class, 'moduleStore'])->name('module.store');
 
 //CMS route
-    Route::get('chairmanMessage',[\App\Http\Controllers\Backend\MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
-    Route::get('principalMessage',[\App\Http\Controllers\Backend\MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
-    Route::get('aboutInstitute',[\App\Http\Controllers\Backend\MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
+    Route::get('chairmanMessage',[MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
+    Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
+    Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
 //principal , chairman and institute message update route
-    Route::post('chairmanMessageUpdate',[\App\Http\Controllers\Backend\MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+    Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
 

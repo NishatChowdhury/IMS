@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Admit Card</h1>
+                    <h1>{{ __('Admit Card')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam Mgmt</a></li>
-                        <li class="breadcrumb-item active">Admit Card</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam Mgmt')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Admit Card')}}</li>
                     </ol>
                 </div>
             </div>
@@ -36,28 +36,28 @@
 
                                         <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
                                         {{--<input class="form-control" placeholder="Student ID" name="studentId" type="text">--}}
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="">{{ __('Class')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Section</label>
+                                    <label for="">{{ __('Section')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>--}}
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Group</label>
+                                    <label for="">{{ __('Group')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>--}}
                                         {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select a group']) }}
@@ -101,7 +101,7 @@
                                             <p>{{ siteConfig('address') }}</p>
                                         </div>
                                         <div class="admit-dec" style="text-align: center; color: #00cc66;">
-                                            <h3> <span style="text-transform: uppercase;"> Admit Card </span> <br>
+                                            <h3> <span style="text-transform: uppercase;">{{ __(' Admit Card')}} </span> <br>
                                                 {{ $exam->name }}
                                             </h3>
                                         </div>
@@ -131,7 +131,7 @@
                                 </div>
                                 <table id="example2" class="table table-bordered">
                                     <tr>
-                                        <th>Student's Name : </th>
+                                        <th>{{ __('Student's Name')}} : </th>
                                         <td>{{ $studentAcademic->student->name ?? '' }}</td>
                                         <th>StudentID : </th>
                                         <td>{{ $studentAcademic->student->studentId ?? ''}}</td>
@@ -145,15 +145,15 @@
                                         <td> {{ $studentAcademic->rank }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Father's Name :</th>
+                                        <th>{{ __('Father's Name')}} :</th>
                                         <td>{{ $studentAcademic->student->father->f_name ?? '' }}</td>
-                                        <th>Mother's Name : </th>
+                                        <th>{{ __('Mother's Name')}} : </th>
                                         <td>{{ $studentAcademic->student->mother->m_name ?? '' }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Room No :</th>
+                                        <th>{{ __('Room No')}} :</th>
                                         <td></td>
-                                        <th>Seat No :</th>
+                                        <th>{{ __('Seat No')}} :</th>
                                         <td></td>
                                     </tr>
                                 </table>
@@ -161,11 +161,11 @@
                                 <table id="example2" class="table table-bordered table-hover" style="margin-top: 20px;">
                                     <thead>
                                     <tr>
-                                        <th>Subjects</th>
-                                        <th>Date</th>
-                                        <th>Start Time</th>
-                                        <th>End Time</th>
-                                        <th>Exam Mark</th>
+                                        <th>{{ __('Subjects')}}</th>
+                                        <th>{{ __('Date')}}</th>
+                                        <th>{{ __('Start Time')}}</th>
+                                        <th>{{ __('End Time')}}</th>
+                                        <th>{{ __('Exam Mark')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -184,10 +184,11 @@
                                     {{--<h4>Notes & Information</h4>--}}
                                     <div class="row">
                                         <div class="col">
-                                            <p>বিঃদ্রঃ অনিবার্য কারণ বশতঃ পরীক্ষার সময়সূচী পরিবর্তন সাধনের ব্যাপারে কর্তৃপক্ষের সিদ্ধান্ত চুড়ান্ত। </p>
+                                            <p>{{ __('বিঃদ্রঃ অনিবার্য কারণ বশতঃ পরীক্ষার সময়সূচী পরিবর্তন সাধনের ব্যাপারে
+                                                কর্তৃপক্ষের সিদ্ধান্ত চুড়ান্ত।')}} </p>
                                         </div>
                                         <div class="col-md-3" style="margin-top: 50px;border-top: 1px solid #333;text-align: center;font-weight: bold;">
-                                            Principal Signature
+                                            {{ __(' Principal Signature')}}
                                         </div>
                                     </div>
                                 </div>

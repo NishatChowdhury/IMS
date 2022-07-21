@@ -10,7 +10,6 @@ use App\Models\Backend\City;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Menu;
 use App\Models\Backend\Page;
-use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Backend\Album;
@@ -35,7 +34,6 @@ use App\Repository\FrontRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AdmissionFee;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Gate;
 use App\Models\Backend\ImportantLink;
 use App\Models\Backend\UpcomingEvent;
 use App\Models\Backend\AppliedStudent;
@@ -43,7 +41,6 @@ use App\Models\Backend\NoticeCategory;
 use App\Models\Backend\GalleryCategory;
 use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\GalleryCorner;
-use Illuminate\Support\Facades\Route;
 
 class FrontController extends Controller
 {
@@ -394,10 +391,11 @@ class FrontController extends Controller
             }
 
             if($content->system_page === 'gallery'){
-                $this->gallery();
+                $categories = GalleryCategory::all();
+                $albums = Album::all();
+                return view('front.pages.gallery',compact('categories','albums'));
             }
 
-            dd($content);
             if($content->system_page === 'contacts' ){
                 $this->contact();
             }

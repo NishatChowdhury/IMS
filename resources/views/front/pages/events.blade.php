@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Events</h2>
+                    <h2>{{ __('Events')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
@@ -56,19 +56,19 @@
                     <ul class="list-inline mt-4" data-countdown="{{ $event->date }}">
                         <li class="list-inline-item iconbox iconbox-xxxl border border-light mb-2">
                             <h2 class="countdown-days mb-0 text-primary"></h2>
-                            <span>Days</span>
+                            <span>{{ __('Days')}}</span>
                         </li>
                         <li class="list-inline-item iconbox iconbox-xxxl border border-light mb-2">
                             <h2 class="countdown-hours mb-0 text-primary"></h2>
-                            <span>Hours</span>
+                            <span>{{ __('Hours')}}</span>
                         </li>
                         <li class="list-inline-item iconbox iconbox-xxxl border border-light mb-2">
                             <h2 class="countdown-minutes mb-0 text-primary"></h2>
-                            <span>Minutes</span>
+                            <span>{{ __('Minutes')}}</span>
                         </li>
                         <li class="list-inline-item iconbox iconbox-xxxl border border-light mb-2">
                             <h2 class="countdown-seconds mb-0 text-primary"></h2>
-                            <span>Second</span>
+                            <span>{{ __('Second')}}</span>
                         </li>
                     </ul>
                 </div>
@@ -88,7 +88,8 @@
                                 <li><i class="ti-time text-primary mr-2"></i>{{ $event->date->format('F d, Y') }}</li>
                                 <li><i class="ti-location-pin text-primary mr-2"></i>{{ $event->venue }}</li>
                             </ul>
-                            <a href="{{ action('Front\FrontController@event',$event->id) }}" class="btn btn-link pl-0">View Details</a>
+                            <a href="{{ action('Front\FrontController@event',$event->id) }}" class="btn btn-link pl-0">{{ __('View
+                                Detail')}}s</a>
                         </div>
                     </div>
                 </div>

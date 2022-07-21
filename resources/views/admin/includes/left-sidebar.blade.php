@@ -775,14 +775,14 @@
                                         </a>
                                     </li>
                                 @endif
-                                @if(in_array("galleryCorner.index", auth()->user()->permissions))
+{{--                                @if(in_array("galleryCorner.index", auth()->user()->permissions))--}}
                                     <li class="nav-item">
                                         <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
                                             <i class="far nav-icon"></i>
                                             <p>Gallery Corner</p>
                                         </a>
                                     </li>
-                                @endif
+{{--                                @endif--}}
                                 @if(in_array("features.index", auth()->user()->permissions))
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                         <a href="{{ action('Backend\FeatureController@index') }}" class="nav-link {{ isActive('admin/pages') }}">
@@ -854,6 +854,14 @@
                                 </a>
                             </li>
                         @endif
+                            @if(in_array("academic-calender.index", auth()->user()->permissions))
+                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ action('Backend\LanguageController@index') }}" class="nav-link {{ isActive('admin/themes') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Language</p>
+                                    </a>
+                                </li>
+                            @endif
                     </ul>
                 </li>
             @endif

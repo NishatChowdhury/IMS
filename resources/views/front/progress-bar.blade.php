@@ -7,7 +7,7 @@
                     {{ \App\Models\Backend\Student::all()->count() }}
                 </h2>
                 <p class="lead">
-                    Students
+                    {{ __('Students')}}
                 </p>
             </div>
 
@@ -16,16 +16,16 @@
                     {{ \App\Models\Backend\AcademicClass::all()->count() }}
                 </h2>
                 <p class="lead">
-                    Classes
+                    {{ __('Classes')}}
                 </p>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".3">
                 <h2 class="h1 text-primary">
-                    235K
+                    {{ __('235K')}}
                 </h2>
                 <p class="lead">
-                   Attendance
+                    {{ __('Attendance')}}
                 </p>
             </div>
 
@@ -34,7 +34,7 @@
                     {{ \App\Models\Backend\Staff::all()->count() }}
                 </h2>
                 <p class="lead">
-                    Teachers & Staff
+                    {{ __('Teachers & Staff') }}
                 </p>
             </div>
 

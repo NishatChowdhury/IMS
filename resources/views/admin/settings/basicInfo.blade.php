@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Site Basic Information</h1>
+                    <h1>{{ __('Site Basic Information') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Site Basic Info</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Site Basic Info') }}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>Site Information</h5>
+                                <h5>{{ __('Site Information') }}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -45,7 +45,7 @@
                             {{ Form::model($info,['action'=>'Backend\SiteInformationController@update','method'=>'patch']) }}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="title">Title</label>
+                                    <label for="title">{{ __('Title') }}</label>
                                     {{ Form::text('title',null,['class'=>'form-control']) }}
                                 </div>
                                 {{--                                <div class="form-group col-md-6">--}}
@@ -55,21 +55,22 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="name">Name</label>
+                                    <label for="name">{{ __('Name') }}</label>
                                     {{ Form::text('name',null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="name">Name Font</label>
-                                    {{ Form::text('name_font',null,['class'=>'form-control']) }}
+                                    <label for="name">{{ __('Name Font') }}</label>
+{{--                                    {{ Form::text('name_font',null,['class'=>'form-control']) }}--}}
+                                    {{ Form::select('name_font',['"Maven Pro", sans-serif'=>'"Maven Pro", sans-serif'],null,['class'=>'form-control']) }}
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="title">Name Size</label>
-                                    {{ Form::text('name_size',null,['class'=>'form-control']) }}
+                                    <label for="title">{{ __('Name Size') }}</label>
+                                    {{ Form::number('name_size',null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="name">Name Color</label>
+                                    <label for="name">{{ __('Name Color') }}</label>
                                     <div class="input-group my-colorpicker2">
                                         {{ Form::text('name_color',null,['class'=>'form-control']) }}
                                         <div class="input-group-append input-group-addon">
@@ -87,13 +88,14 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputAddress">বাংলা নাম  ফন্ট</label>
-                                    {{ Form::text('bn_font',null,['class'=>'form-control']) }}
+{{--                                    {{ Form::text('bn_font',null,['class'=>'form-control']) }}--}}
+                                    {{ Form::select('bn_font',['"Maven Pro", sans-serif'=>'"Maven Pro", sans-serif'],null,['class'=>'form-control']) }}
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputAddress">বাংলা নাম  সাইজ</label>
-                                    {{ Form::text('bn_size',null,['class'=>'form-control']) }}
+                                    {{ Form::number('bn_size',null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputAddress">বাংলা নাম  রঙ</label>
@@ -109,26 +111,26 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputAddress">Address</label>
+                                <label for="inputAddress">{{ __('Address') }}</label>
                                 {{ Form::text('address',null,['class'=>'form-control']) }}
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Institution Code</label>
+                                    <label for="">{{ __('Institution Code') }}</label>
                                     {{ Form::text('institute_code',null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="eiinNo">EIIN No</label>
+                                    <label for="eiinNo">{{ __('EIIN No') }}</label>
                                     {{ Form::text('eiin',null,['class'=>'form-control']) }}
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="title">Phone</label>
+                                    <label for="title">{{ __('Phone') }}</label>
                                     {{ Form::text('phone',null,['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('Email') }}</label>
                                     {{ Form::text('email',null,['class'=>'form-control']) }}
                                 </div>
                             </div>
@@ -144,24 +146,24 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>Site Logo</h5>
+                                <h5>{{ __('Site Logo') }}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             {{ Form::model($info,['action'=>'Backend\SiteInformationController@logo','method'=>'patch','files'=>true]) }}
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="title">Logo Height</label>
-                                    {{ Form::text('logo_height',null,['class'=>'form-control','placeholder'=>'Logo Height']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Logo Text Bottom</label>
-                                    <input type="text" class="form-control" id="" placeholder="type..">
-                                </div>
-                            </div>
+{{--                            <div class="form-row">--}}
+{{--                                <div class="form-group col-md-6">--}}
+{{--                                    <label for="title">Logo Height</label>--}}
+{{--                                    {{ Form::text('logo_height',null,['class'=>'form-control','placeholder'=>'Logo Height']) }}--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group col-md-6">--}}
+{{--                                    <label for="name">Logo Text Bottom</label>--}}
+{{--                                    <input type="text" class="form-control" id="" placeholder="type..">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group files color">
-                                <input type="file" class="form-control" multiple="" name="logo">
+                                <input type="file" class="form-control" name="logo">
                             </div>
                             <div class="form-row">
                                 {{ Form::submit('SAVE',['class'=>'btn btn-success']) }}
@@ -172,11 +174,11 @@
                     <div class="card mt-2">
                         {{ Form::model($info,['action'=>'Backend\SiteInformationController@update_google_map','method'=>'patch']) }}
                         <div class="card-header">
-                            <h5>Google Map</h5>
+                            <h5>{{ __('Google Map') }}</h5>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">Google Map Embed Code: </label>
+                                <label for="title">{{ __('Google Map Embed Code') }}: </label>
                                 {{ Form::textarea('map',null,['class'=>'form-control','placeholder'=>'Paste Google Map Embed Code Here:','rows'=>'4', 'cols'=>'100']) }}
                             </div>
                             <div class="form-row">

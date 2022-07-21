@@ -56,12 +56,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Welcome</h1>
+                    <h1 class="m-0 text-dark">{{ __('Welcome')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Dashboard')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -80,7 +80,7 @@
                         <span class="info-box-icon bg-info elevation-1"><i class="fa fa-graduation-cap"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">STUDENTS</span>
+                            <span class="info-box-text">{{ __('STUDENTS')}}</span>
                             <span class="info-box-number">{{ $students }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -93,7 +93,7 @@
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">TEACHERS</span>
+                            <span class="info-box-text">{{ __('TEACHERS')}}</span>
                             <span class="info-box-number">{{ $teachers }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -110,7 +110,7 @@
                         <span class="info-box-icon bg-success elevation-1"><i class="fa fa-university"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">CLASS</span>
+                            <span class="info-box-text">{{ __('CLASS')}}</span>
                             <span class="info-box-number">{{ $classes }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -123,8 +123,8 @@
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">OTHERS</span>
-                            <span class="info-box-number">2,000</span>
+                            <span class="info-box-text">{{ __('OTHERS')}}</span>
+                            <span class="info-box-number">{{ __('2,000')}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -135,11 +135,11 @@
 
 
             <div class="row">
-                {{--Student Attendence Start--}}
+                {{--Student Attendance Start--}}
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daily Student Attendence</h5>
+                            <h5 class="card-title">{{ __('Daily Student Attendance')}}</h5>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -150,11 +150,11 @@
                                         <i class="fas fa-wrench"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <a href="#" class="dropdown-item">Action</a>
-                                        <a href="#" class="dropdown-item">Another action</a>
-                                        <a href="#" class="dropdown-item">Something else here</a>
+                                        <a href="#" class="dropdown-item">{{ __('Action')}}</a>
+                                        <a href="#" class="dropdown-item">{{ __('Another action')}}</a>
+                                        <a href="#" class="dropdown-item">{{ __('Something else here')}}</a>
                                         <a class="dropdown-divider"></a>
-                                        <a href="#" class="dropdown-item">Separated link</a>
+                                        <a href="#" class="dropdown-item">{{ __('Separated link')}}</a>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-tool" data-widget="remove">
@@ -167,12 +167,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="text-center">
-                                        <strong>Class Wise Student Attendence</strong>
+                                        <strong>{{ __('Class Wise Student Attendance')}}</strong>
                                     </p>
 
                                     <div class="progress-group">
-                                        Add Products to Cart
-                                        <span class="float-right"><b>160</b>/200</span>
+                                        {{ __(' Add Products to Cart')}}
+                                        <span class="float-right"><b>{{ __('160')}}</b>/{{ __('200')}}</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-primary" style="width: 80%"></div>
                                         </div>
@@ -180,8 +180,8 @@
                                     <!-- /.progress-group -->
 
                                     <div class="progress-group">
-                                        Complete Purchase
-                                        <span class="float-right"><b>310</b>/400</span>
+                                        {{ __(' Complete Purchase')}}
+                                        <span class="float-right"><b>{{ __('310')}}</b>/{{ __('400')}}</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-danger" style="width: 75%"></div>
                                         </div>
@@ -189,7 +189,7 @@
 
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">Visit Premium Page</span>
+                                        <span class="progress-text">{{ __('Visit Premium Page')}}</span>
                                         <span class="float-right"><b>480</b>/800</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-success" style="width: 60%"></div>
@@ -214,13 +214,13 @@
                     </div>
                     <!-- /.card -->
                 </div>
-                {{--Student Attendence End--}}
+                {{--Student Attendance End--}}
 
-                {{--Teacher Attendence Start--}}
+                {{--Teacher Attendance Start--}}
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daily Teacher Attendence</h5>
+                            <h5 class="card-title">{{ __('Daily Teacher Attendance')}}</h5>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -231,11 +231,11 @@
                                         <i class="fas fa-wrench"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <a href="#" class="dropdown-item">Action</a>
-                                        <a href="#" class="dropdown-item">Another action</a>
-                                        <a href="#" class="dropdown-item">Something else here</a>
+                                        <a href="#" class="dropdown-item">{{ __('Action')}}</a>
+                                        <a href="#" class="dropdown-item">{{ __('Another action')}}</a>
+                                        <a href="#" class="dropdown-item">{{ __('Something else here')}}</a>
                                         <a class="dropdown-divider"></a>
-                                        <a href="#" class="dropdown-item">Separated link</a>
+                                        <a href="#" class="dropdown-item">{{ __('Separated link')}}</a>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-tool" data-widget="remove">
@@ -248,11 +248,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="text-center">
-                                        <strong>Teacher Attendence</strong>
+                                        <strong>{{ __('Teacher Attendance')}}</strong>
                                     </p>
 
                                     <div class="progress-group">
-                                        Add Products to Cart
+                                        {{ __('Add Products to Cart')}}
                                         <span class="float-right"><b>160</b>/200</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-primary" style="width: 80%"></div>
@@ -261,7 +261,7 @@
                                     <!-- /.progress-group -->
 
                                     <div class="progress-group">
-                                        Complete Purchase
+                                        {{ __(' Complete Purchase')}}
                                         <span class="float-right"><b>310</b>/400</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-danger" style="width: 75%"></div>
@@ -270,7 +270,7 @@
 
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">Visit Premium Page</span>
+                                        <span class="progress-text">{{ __('Visit Premium Page')}}</span>
                                         <span class="float-right"><b>480</b>/800</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-success" style="width: 60%"></div>
@@ -279,7 +279,7 @@
 
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        Send Inquiries
+                                        {{ __(' Send Inquiries')}}
                                         <span class="float-right"><b>250</b>/500</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar bg-warning" style="width: 50%"></div>
@@ -295,7 +295,7 @@
                     </div>
                     <!-- /.card -->
                 </div>
-                {{--Teacher Attendence End--}}
+                {{--Teacher Attendance End--}}
             </div>
             <!-- /.row -->
 
@@ -307,7 +307,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="ion ion-clipboard mr-1"></i>
-                                   Class Routin
+                                    {{ __(' Class Routin')}}
                                 </h3>
                             </div>
                             <!-- /.card-header -->
@@ -322,9 +322,9 @@
                                         <!-- checkbox -->
                                         <input type="checkbox" value="" name="">
                                         <!-- todo text -->
-                                        <span class="text">Design a nice theme</span>
+                                        <span class="text">{{ __('Design a nice theme')}}</span>
                                         <!-- Emphasis label -->
-                                        <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                                        <small class="badge badge-danger"><i class="far fa-clock"></i>{{ __(' 2 mins')}}</small>
                                         <!-- General tools such as edit or delete-->
                                         <div class="tools">
                                             <i class="fas fa-edit"></i>
@@ -337,8 +337,8 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                                         <input type="checkbox" value="" name="">
-                                        <span class="text">Make the theme responsive</span>
-                                        <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                                        <span class="text">{{ __('Make the theme responsive')}}</span>
+                                        <small class="badge badge-info"><i class="far fa-clock"></i> {{ __('4 hours')}}</small>
                                         <div class="tools">
                                             <i class="fas fa-edit"></i>
                                             <i class="far fa-trash-alt"></i>
@@ -350,8 +350,8 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                                         <input type="checkbox" value="" name="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
+                                        <span class="text">{{ __('Let theme shine like a star')}}</span>
+                                        <small class="badge badge-warning"><i class="far fa-clock"></i> {{ __('1 day')}}</small>
                                         <div class="tools">
                                             <i class="fas fa-edit"></i>
                                             <i class="far fa-trash-alt"></i>
@@ -363,8 +363,8 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                                         <input type="checkbox" value="" name="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                                        <span class="text">{{ __('Let theme shine like a star')}}</span>
+                                        <small class="badge badge-success"><i class="far fa-clock"></i>{{ __(' 3 days')}}</small>
                                         <div class="tools">
                                             <i class="fas fa-edit"></i>
                                             <i class="far fa-trash-alt"></i>
@@ -376,8 +376,8 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                                         <input type="checkbox" value="" name="">
-                                        <span class="text">Check your messages and notifications</span>
-                                        <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
+                                        <span class="text">{{ __('Check your messages and notifications')}}</span>
+                                        <small class="badge badge-primary"><i class="far fa-clock"></i> {{ __('1 week')}}</small>
                                         <div class="tools">
                                             <i class="fas fa-edit"></i>
                                             <i class="far fa-trash-alt"></i>
@@ -389,7 +389,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                                         <input type="checkbox" value="" name="">
-                                        <span class="text">Let theme shine like a star</span>
+                                        <span class="text">{{ __('Let theme shine like a star')}}</span>
                                         <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
                                         <div class="tools">
                                             <i class="fas fa-edit"></i>
@@ -408,7 +408,7 @@
                         <span class="info-box-icon"><i class="fa fa-male"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Male Student</span>
+                            <span class="info-box-text">{{ __('Total Male Student')}}</span>
                             <span class="info-box-number">{{ $studentMale }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -418,7 +418,7 @@
                         <span class="info-box-icon"><i class="fa fa-female"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Female Student</span>
+                            <span class="info-box-text">{{ __('Total Female Student')}}</span>
                             <span class="info-box-number">{{ $studentFemale }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -428,7 +428,7 @@
                         <span class="info-box-icon"><i class="fa fa-mars"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Male Teacher</span>
+                            <span class="info-box-text">{{ __('Total Male Teacher')}}</span>
                             <span class="info-box-number">{{ $teacherMale }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -438,7 +438,7 @@
                         <span class="info-box-icon"><i class="fa fa-venus"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Female Teacher</span>
+                            <span class="info-box-text">{{ __('Total Female Teacher')}}</span>
                             <span class="info-box-number">{{ $teacherFemale }}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -456,7 +456,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="ion ion-clipboard mr-1"></i>
-                                Academic Calender
+                                {{ __(' Academic Calender')}}
                             </h3>
 
                             <div class="card-tools">
@@ -471,10 +471,10 @@
                                     <table class="table table-condensed">
                                         <thead class="thead-dark text-center">
                                             <tr>
-                                                <th>Title</th>
-                                                <th>Star</th>
-                                                <th>End</th>
-                                                <th>Day</th>
+                                                <th>{{ __('Title')}}</th>
+                                                <th>{{ __('Star')}}</th>
+                                                <th>{{ __('End')}}</th>
+                                                <th>{{ __('Day')}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -510,7 +510,7 @@
                                     </table>
 
                                 @else
-                                    <h2>Data Not Found</h2>
+                                    <h2>{{ __('Data Not Found')}}</h2>
                                 @endif
                         </div>
                     </div>
@@ -523,7 +523,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="ion ion-clipboard mr-1"></i>
-                                Notice Board
+                                {{ __(' Notice Board')}}
                             </h3>
                         </div>
                         <!-- /.card-header -->
@@ -553,7 +553,7 @@
                                               <i class="fas fa-ellipsis-v"></i>
                                               <i class="fas fa-ellipsis-v"></i>
                                          </span>
-                                        <span class="text"> Notice Data Not Found</span>
+                                        <span class="text"> {{ __('Notice Data Not Found')}}</span>
                                     </li>
                                 @endif
 

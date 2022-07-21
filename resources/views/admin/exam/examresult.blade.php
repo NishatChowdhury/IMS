@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Examination Results</h1>
+                    <h1>{{ __('Examination Results')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam Mgmt</a></li>
-                        <li class="breadcrumb-item active">Examination Results</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam Mgmt')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Examination Results')}}</li>
                     </ol>
                 </div>
             </div>
@@ -38,19 +38,19 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
                                 <div class="col">
-                                    <label for="">Exam Name</label>
+                                    <label for="">{{ __('Exam Name')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('exam_id',$repository->exams(),null,['class'=>'form-control','placeholder'=>'Exam Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="class">Class</label>
+                                    <label for="class">{{ __('Class')}}</label>
                                     <div class="input-group">
 {{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
                                         <select name="academic_class_id" id="class" class="form-control">
@@ -88,10 +88,14 @@
                                 <div class="col-md-12">
 
                                     <div style="float: right;">
-                                        <a role="button" href="{{ action('Backend\ResultController@allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> All Details </a>
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Notify</button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Summery Pdf</button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> CSV</button>
+                                        <a role="button" href="{{ action('Backend\ResultController@allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('All Details')}} </a>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Notify')}}</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Summery Pdf')}}</button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('CSV')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -102,17 +106,17 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Student Name</th>
-                                    <th>Student ID</th>
-                                    <th>Class Name</th>
-                                    <th>Current Rank</th>
-                                    <th>Exam Name</th>
-                                    <th>Date</th>
-                                    <th>Grade</th>
-                                    <th>Grade Point</th>
-                                    <th>Result Rank</th>
-                                    <th>Total Marks</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Student Name')}}</th>
+                                    <th>{{ __('Student ID')}}</th>
+                                    <th>{{ __('Class Name')}}</th>
+                                    <th>{{ __('Current Rank')}}</th>
+                                    <th>{{ __('Exam Name')}}</th>
+                                    <th>{{ __('Date')}}</th>
+                                    <th>{{ __('Grade')}}</th>
+                                    <th>{{ __('Grade Point')}}</th>
+                                    <th>{{ __('Result Rank')}}</th>
+                                    <th>{{ __('Total Marks')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -141,15 +145,16 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>

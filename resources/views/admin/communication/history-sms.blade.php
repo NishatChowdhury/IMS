@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+{ __{('')}}@extends('layouts.fixed')
 
 @section('title','Communication | SMS History')
 
@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>SMS History</h1>
+                    <h1>{{ __('SMS History')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Communication</a></li>
-                        <li class="breadcrumb-item active">SMS History</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Communication')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('SMS History')}}</li>
                     </ol>
                 </div>
             </div>
@@ -45,8 +45,8 @@
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">SMS Subtotal</h5>
-                                            <p>0</p>
+                                            <h5 style="margin-bottom: 0px;">{{ __('SMS Subtotal')}}</h5>
+                                            <p>{{ __('0')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -63,12 +63,12 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Data</th>
-                                    <th>Type</th>
-                                    <th>Send By</th>
-                                    <th>Destination Count</th>
-                                    <th>SMS Count Per Destination</th>
-                                    <th>Total SMS</th>
+                                    <th>{{ __('Data')}}</th>
+                                    <th>{{ __('Type')}}</th>
+                                    <th>{{ __('Send By')}}</th>
+                                    <th>{{ __('Destination Count')}}</th>
+                                    <th>{{ __('SMS Count Per Destination')}}</th>
+                                    <th>{{ __('Total SMS')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -86,7 +86,8 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">

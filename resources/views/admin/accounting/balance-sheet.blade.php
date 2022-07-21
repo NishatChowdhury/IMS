@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Balance Sheet</h1>
+                    <h1>{{ __('Balance Sheet')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Accounts</a></li>
-                        <li class="breadcrumb-item active">Balance Sheet</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Accounts')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Balance Sheet')}}</li>
                     </ol>
                 </div>
             </div>
@@ -25,16 +25,16 @@
             {{ Form::open(['action'=>'Backend\AccountingController@balanceSheet','method'=>'get']) }}
             <div class="d-flex justify-content-center">
                 <div class="form-group col-md-3">
-                    <label for="" class="col-form-label">Start Date</label>
+                    <label for="" class="col-form-label">{{ __('Start Date')}}</label>
                     {{ Form::date('start_date',null,['class'=>'form-control']) }}
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="" class="col-form-label">End Date</label>
+                    <label for="" class="col-form-label">{{ __('End Date')}}</label>
                     {{ Form::date('end_date',null,['class'=>'form-control']) }}
                 </div>
                 <div class="form-group col-md-2">
                     <label for="" class="col-form-label">&nbsp;</label><br>
-                    <button type="submit" class="btn btn-info">Search</button>
+                    <button type="submit" class="btn btn-info">{{ __('Search')}}</button>
                 </div>
             </div>
             {{ Form::close() }}
@@ -48,7 +48,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h3>Profit & Loss </h3>
+                            <h3>{{ __('Profit & Loss')}} </h3>
                         </div>
 
                         <div class="card-body">
@@ -56,12 +56,12 @@
                                 <thead>
                                 <tr>
                                     <th>
-                                        <span class="pull-left m-0">Assets</span>
-                                        <span class="pull-right m-0">Amount</span>
+                                        <span class="pull-left m-0">{{ __('Assets')}}</span>
+                                        <span class="pull-right m-0">{{ __('Amount')}}</span>
                                     </th>
                                     <th>
-                                        <span class="pull-left m-0">Liabilities & Equities</span>
-                                        <span class="pull-right m-0">Amount</span>
+                                        <span class="pull-left m-0">{{ __('Liabilities & Equities')}}</span>
+                                        <span class="pull-right m-0">{{ __('Amount')}}</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -69,7 +69,7 @@
                                 @php $ass = []; $lib = []; $equ = [] @endphp
                                 <tr>
                                     <td>
-                                        @foreach($assets->childs as $parents)zz
+                                        @foreach($assets->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
                                                 <div class="d-flex justify-content-between">
@@ -116,7 +116,8 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     {{--                                    {{ $chartOfAccounts->links() }}--}}

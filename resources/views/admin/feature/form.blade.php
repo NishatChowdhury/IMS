@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Name')}}*</label>
     <div class="col-sm-10">
         <div class="input-group">
             {{ Form::text('name',null,['class'=>'form-control','required']) }}
@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Page*</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Page')}}*</label>
     <div class="col-sm-10">
         <div class="input-group">
 {{--            {{ Form::select('page_id',$pages,null,['class'=>'form-control','required']) }}--}}
@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Thumbnail(70X70)*</label>
+    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(70X70)')}}*</label>
     <div class="col-sm-5">
         <div class="form-group files color">
             <input type="file" name="image" class="form-control" multiple="">
@@ -37,7 +37,7 @@
     </div>
 </div>
 <div style="float: right">
-    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Save</button>
+    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Save')}}</button>
 </div>
 
 <!-- /Notices page inner Content End*** -->

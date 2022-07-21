@@ -8,9 +8,9 @@
             <div class="col-md-6 mt-3">
                 <h2>
                     <small class="text-primary d-block">
-                        Principal
+                        {{ __('Principal Message')}}
                     </small>
-                    Message
+
                 </h2>
                 @foreach($message as $msg)
                     @if($msg->alias=='principal')

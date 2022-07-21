@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Finance</h1>
+                    <h1 class="m-0 text-dark">{{ __('Finance')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Location Assign</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Location Assign')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -23,7 +23,7 @@
 
 
     <!-- /.Search-panel -->
-    <section class="content">
+    <section class="content">{ __{('')}}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -33,25 +33,25 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Name</label>
+                                    <label for="">{{ __('Name')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Name']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Class</label>
+                                    <label for="">{{ __('Class')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Section</label>
+                                    <label for="">{{ __('Section')}}</label>
                                     <div class="input-group">
                                         {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
@@ -89,8 +89,9 @@
                     <div class="card-header">
 {{--                        <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ count($students) }}</h3>--}}
                         <div class="card-tools">
-                            <a href="" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
-                            <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
+                            <a href="" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i>
+                                {{ __('New')}}</a>
+                            <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> {{ __('CSV')}}</a>
                         </div>
                     </div>
                 {{ Form::open(['action'=>'Backend\TransportController@transport_assign','method'=>'post']) }}
@@ -99,10 +100,10 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr class="text-center">
-                                <th>Rank</th>
-                                <th>Student</th>
-                                <th>Id</th>
-                                <th>Class</th>
+                                <th>{{ __('Rank')}}</th>
+                                <th>{{ __('Student')}}</th>
+                                <th>{{ __('Id')}}</th>
+                                <th>{{ __('Class')}}</th>
                                 <th>
                                     {{--@if($students != [])--}}
                                     {{--{{ Form::select('sub',$repository->optionals($students->first()->class_id),null,['class'=>'form-control','id'=>'sub']) }}--}}

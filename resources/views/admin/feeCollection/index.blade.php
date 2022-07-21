@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Fee Collection</h1>
+                    <h1>{{ __('Fee Collection')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -41,7 +41,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 1px;">
                         <h5 class="text-center" style="background-color: rgb(45 136 151);padding:10px;color:white">
-                            <b>Search by Student ID for Collect Fees</b>
+                            <b>{{ __('Search by Student ID for Collect Fees')}}</b>
                         </h5>
                             <div class="mx-auto pull-right">
                                 <form action="{{ url('admin/fee/fee-collection/view') }}" method="GET" role="search">
@@ -60,7 +60,7 @@
                                             </span>
                                             <span class="input-group-btn mr-2 ">
                                                 <a href="{{ url()->previous() }}" class="btn btn-success "><i
-                                                        class="fa fa-arrow-left"></i>&nbsp;Back</a>
+                                                        class="fa fa-arrow-left"></i>&nbsp;{{ __('Back')}}</a>
                                             </span>
                                         @endif
                                         <a href="{{ request()->fullUrl() }}" class=" ">

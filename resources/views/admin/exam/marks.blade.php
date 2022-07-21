@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Enter Marks</h1>
+                    <h1 class="m-0 text-dark">{{ __('Enter Marks')}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Students</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Students')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -45,7 +45,7 @@
                         <div class="card-tools">
 
                             {{--                            <a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>--}}
-                            <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
+                            <a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> {{ __('CSV')}}</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -61,15 +61,15 @@
                         <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
-                                <th>SL</th>
-                                <th>Id</th>
-                                <th>Roll</th>
-                                <th>Student</th>
-                                <th>Full Marks</th>
-                                <th>Objective</th>
-                                <th>Written</th>
-                                <th>Practical</th>
-                                <th>Viva</th>
+                                <th>{{ __('SL')}}</th>
+                                <th>{{ __('Id')}}</th>
+                                <th>{{ __('Roll')}}</th>
+                                <th>{{ __('Student')}}</th>
+                                <th>{{ __('Full Marks')}}</th>
+                                <th>{{ __('Objective')}}</th>
+                                <th>{{ __('Written')}}</th>
+                                <th>{{ __('Practical')}}</th>
+                                <th>{{ __('Viva')}}</th>
                             </tr>
                             </thead>
                             <tbody>

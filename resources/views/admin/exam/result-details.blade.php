@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Result Details</h1>
+                    <h1>{{ __('Result Details')}}</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -32,9 +32,9 @@
                             <table id="" class="table">
                                 <tr>
 
-                                    <th>Student's Name : </th>
+                                    <th>{{ __('Student\'s Name')}} : </th>
                                     <td>{{ $result->studentAcademic->student->name ?? '' }}</td>
-                                    <th>Exam Name : </th>
+                                    <th>{{ __('Exam Name')}} : </th>
                                     <td>{{ $result->exam->name ?? '' }}</td>
                                 </tr>
                                 <tr>
@@ -44,21 +44,21 @@
                                     <td>{{ $result->exam->start }} - {{ $result->exam->end }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Class :</th>
+                                    <th>{{ __('Class')}} :</th>
                                     <td>{{ $result->studentAcademic->classes->name ? $result->studentAcademic->classes->name : ''  }}</td>
-                                    <th>Grade : </th>
+                                    <th>{{ __('Grade')}} : </th>
                                     <td>{{ $result->grade }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Current Rank :</th>
+                                    <th>{{ __('Current Rank')}} :</th>
                                     <td>{{ $result->studentAcademic->rank }}</td>
-                                    <th>Grade Point :</th>
+                                    <th>{{ __('Grade Point')}} :</th>
                                     <td>{{ $result->gpa }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Result Rank :</th>
+                                    <th>{{ __('Result Rank')}} :</th>
                                     <td>{{ $result->rank }}</td>
-                                    <th>Total Marks :</th>
+                                    <th>{{ __('Total Marks')}} :</th>
                                     <td>{{ $result->total_mark }}</td>
                                 </tr>
                             </table>
@@ -71,12 +71,12 @@
                             <table id="" class="table table-bordered" style="margin-top: 60px;">
                                 <thead>
                                 <tr>
-                                    <th>Subject</th>
-                                    <th>Code</th>
-                                    <th>Exam Mark</th>
-                                    <th>Result Mark</th>
-                                    <th>Grade</th>
-                                    <th>Grade point</th>
+                                    <th>{{ __('Subject')}}</th>
+                                    <th>{{ __('Code')}}</th>
+                                    <th>{{ __('Exam Mark')}}</th>
+                                    <th>{{ __('Result Mark')}}</th>
+                                    <th>{{ __('Grade')}}</th>
+                                    <th>{{ __('Grade point')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

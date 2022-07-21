@@ -1,6 +1,9 @@
 <section class="pt-5 mb-5">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center d-flex flex-sm-row-reverse">
+            <div class="col-md-6 mt-3">
+                <img src="{{ asset('uploads/message') }}/{{ $chairman->image ?? 'untitled.png' }}" alt="">
+            </div>
             <div class="col-md-6">
                 <h2>
                     {{ $chairman->title ?? 'Chairman Message' }}
@@ -8,10 +11,7 @@
                 @if($chairman)
                     {!! Str::limit($chairman->body,800) !!}
                 @endif
-                <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">...more</a>
-            </div>
-            <div class="col-md-6 mt-3">
-                <img src="{{ asset('uploads/message') }}/{{ $chairman->image ?? 'untitled.png' }}" alt="">
+                <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ __('...more') }}</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
 {{--read more--}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

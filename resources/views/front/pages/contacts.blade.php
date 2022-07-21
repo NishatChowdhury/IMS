@@ -8,12 +8,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Contact Us</h2>
+                    <h2>{{ __('Contact Us')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Contact</a>
+                            <a href="#">{{ __('Contact')}}</a>
                         </li>
                         {{--                        <li class="breadcrumb-item">--}}
                         {{--                            <a href="#"> Elements</a>--}}
@@ -40,7 +40,7 @@
                         <span class="iconbox iconbox-md bg-primary text-white"><i class="fas fa-phone-square-alt"></i></span>
                         <div class="media-body ml-3">
                             <h5 class="mb-0">{{ siteConfig('phone') }}</h5>
-                            <p>Call Us (9AM-2PM)</p>
+                            <p>{{ __('Call Us (9AM-2PM)')}}</p>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="media">
                         <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-location-pin"></i></span>
                         <div class="media-body ml-3">
-                            <h5 class="mb-0">Chittagong, Bangladesh</h5>
+                            <h5 class="mb-0">{{ __('Chittagong, Bangladesh')}}</h5>
                             <p>{{ siteConfig('address') }}</p>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-12 text-center mb-5">
                     <h2>
-                        Send Message
+                        {{ __('Send Message')}}
                     </h2>
                     <div class="width-4rem height-4 bg-primary my-2 mx-auto rounded"></div>
                 </div>
@@ -117,7 +117,7 @@
                                 @if($errors->has('message'))
                                     <p class="help is-danger" style="font-size: 12px; color: red">{{ $errors->first('message') }}</p>
                                 @endif
-                                <button type="submit" class="btn btn-primary mt-4">Send Message</button>
+                                <button type="submit" class="btn btn-primary mt-4">{{ __('Send Message')}}</button>
                             </div>
                         </div>
                     </form>

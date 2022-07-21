@@ -8,15 +8,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Gallery</h2>
+                    <h2>{{ __('Gallery')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="{{ url('/') }}">Home</a>
+                            <a href="{{ url('/') }}">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Gallery</a>
+                            <a href="#"> {{ __('Gallery')}}</a>
                         </li>
                     </ol>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="col-12 text-center">
                     <ul class="nav tab-line tab-line--2x border-bottom mb-4 nav-isotop-filter">
                         <a class="nav-item nav-link active" href="#" data-filter="*">
-                            All
+                            {{ __('All')}}
                         </a>
                         @foreach($categories as $category)
                             <a class="nav-item nav-link" href="#" data-filter=".{{ $category->name }}">

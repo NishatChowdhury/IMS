@@ -19,7 +19,7 @@
                 <span>{{ __('EIIN') }}: {{ siteConfig('eiin') }}</span>
             </li>
             <li class="list-inline-item mr-0 p-3 border-right border-white-0_1">
-                <span>{{ __('Institute Code') }}: {{ siteConfig('code') }}</span>
+                <span>{{ __('Institute Code') }}: {{ siteConfig('institute_code') }}</span>
             </li>
         </ul>
         <ul class="list-inline mb-0">

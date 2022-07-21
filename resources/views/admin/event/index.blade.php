@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Event</a></li>
-                        <li class="breadcrumb-item active">Events</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Event')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Events')}}</li>
                     </ol>
                 </div>
             </div>
@@ -37,11 +37,11 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Time & Venue</th>
-                                    <th>Short Description</th>
-                                    <th>Thumbnail</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Title')}}</th>
+                                    <th>{{ __('Time & Venue')}}</th>
+                                    <th>{{ __('Short Description')}}</th>
+                                    <th>{{ __('Thumbnail')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

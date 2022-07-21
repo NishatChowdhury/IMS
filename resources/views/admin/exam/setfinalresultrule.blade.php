@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Examination Results</h1>
+                    <h1>{{ __('Examination Results')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Examination</a></li>
-                        <li class="breadcrumb-item active">Set Final Result Rule</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Examination')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Set Final Result Rule')}}</li>
                     </ol>
                 </div>
             </div>
@@ -32,13 +32,13 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Exam Name</th>
-                                    <th>Academic Year</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
-                                    <th>Is Selected</th>
-                                    <th>Percent</th>
+                                    <th>{{ __('Exam Name')}}</th>
+                                    <th>{{ __('Academic Yea')}}r</th>
+                                    <th>{{ __('Start Date')}}</th>
+                                    <th>{{ __('End Dat')}}e</th>
+                                    <th>{{ __('Status')}}</th>
+                                    <th>{{ __('Is Selecte')}}d</th>
+                                    <th>{{ __('Percent')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -60,7 +60,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: right; margin-top: 20px;">
-                                        <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-plus-circle"></i> Save </button>
+                                        <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-plus-circle"></i>
+                                            {{ __('Save')}} </button>
                                     </div>
                                 </div>
                             </div>

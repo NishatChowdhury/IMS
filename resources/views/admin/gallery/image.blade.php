@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Image</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Image')}}</li>
                     </ol>
                 </div>
             </div>
@@ -40,13 +40,13 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name </th>
-                                    <th>Album</th>
-                                    <th>Category</th>
-                                    <th>Tag</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
+                                    <th>{{ __('ID')}}</th>
+                                    <th>{{ __('Name')}} </th>
+                                    <th>{{ __('Album')}}</th>
+                                    <th>{{ __('Category')}}</th>
+                                    <th>{{ __('Tag')}}</th>
+                                    <th>{{ __('Image')}}</th>
+                                    <th>{{ __('Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -94,7 +94,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content"  style="width: 700px">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Image')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -104,38 +104,40 @@
                     {{ Form::open(['action'=>'Backend\GalleryController@store','method'=>'post','files'=>true]) }}
                     <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Title</label>
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Title')}}</label>
                             <div class="input-group">
                                 <input type="text" name="title" class="form-control" id=""  aria-describedby="" placeholder="Title">
                             </div>
                     </div>
                         <div class="form-group col-md-6">
-                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Album</label>
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Album')}}</label>
                             <div class="input-group">
                                 {{ Form::select('album_id',$repository->albums(),null,['class'=>'form-control','id'=>'inputState']) }}
                             </div>
                     </div>
                      <div class="form-group col-md-12">
-                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Tags</label>
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Tags')}}</label>
                             <div class="input-group">
                                 <input type="text" name="tags" class="form-control" id=""  aria-describedby="" placeholder="Enter Tags Here ..">
                             </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Short
+                            Description')}}</label>
                             <div class="input-group">
                                 <textarea type="text" name="description" class="form-control" rows="5" id="" placeholder="Enter Some Description About Images . . ."> </textarea>
                             </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Image*</label>
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Image')}}*</label>
                             <div class="form-group files color">
                                 <input type="file" name="image[]" class="form-control" multiple="" style="padding: 48px 0px 85px 24%!important">
                             </div>
                     </div>
                         <div class="col-12">
 
-                        <button type="submit" class="btn btn-success  btn-sm btn-block" > <i class="fas fa-plus-circle"></i> Add</button>
+                        <button type="submit" class="btn btn-success  btn-sm btn-block" > <i class="fas fa-plus-circle"></i>
+                            {{ __('Add')}}</button>
                         </div>
                     {{ Form::close() }}
                     {{--</form>--}}

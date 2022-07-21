@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+{ __{('}}@extends('layouts.fixed')
 
 @section('title','Attendance | Student Attendance')
 
@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Student Attendances </h1>
+                    <h1>{{ __('Student Attendances ')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Attendance</a></li>
-                        <li class="breadcrumb-item active">Student Attendances</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Attendance')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Student Attendances')}}</li>
                     </ol>
                 </div>
             </div>
@@ -32,13 +32,13 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="">Student ID</label>
+                                    <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Date*</label>
+                                    <label for="">{{ __('Date*')}}</label>
                                     <div class="input-group">
                                         {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}
                                     </div>
@@ -47,7 +47,7 @@
                                     <label for="">Class*</label>
                                     <div class="input-group">
                                         <select name="class_id" id="class" class="form-control">
-                                            <option value="">Select Class</option>
+                                            <option value="">{{ __('Select Class')}}</option>
                                             @foreach($repository->academicClasses() as $class)
                                                 <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                             @endforeach
@@ -164,12 +164,12 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Rank</th>
-                                    <th>Student</th>
-                                    <th>Card</th>
-                                    <th class="text-center">Entry</th>
-                                    <th class="text-center">Exit</th>
-                                    <th class="text-center">Status</th>
+                                    <th>{{ __('Rank')}}</th>
+                                    <th>{{ __('Student')}}</th>
+                                    <th>{{ __('Card')}}</th>
+                                    <th class="text-center">{{ __('Entry')}}</th>
+                                    <th class="text-center">{{ __('Exit')}}</th>
+                                    <th class="text-center">{{ __('Status')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

@@ -11,7 +11,7 @@
                     <div class="card shadow-v2">
                         <div class="card-header border-bottom">
                             <h4 class="mt-4">
-                                Log In to Your Student Account!
+                                {{ __(' Log In to Your Student Account!')}}
                             </h4>
                         </div>
                         <div class="card-body">

@@ -119,6 +119,7 @@ function maxTime($studentId,$date){
 function menus(){
     $menus = Menu::query()
         ->where('menu_id',null)
+        ->where('is_active',1)
         ->orderBy('order')
         ->get();
     return $menus;

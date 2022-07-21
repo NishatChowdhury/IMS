@@ -68,17 +68,17 @@
 
                                 @foreach ($onlineAdmissions as $onlineAdmission)
                                     <tr>
-                                        <td>{{ $onlineAdmission->type == 1 ? 'School' : 'College' }}</td>
-                                        <td>{{ $onlineAdmission->session_id ? $onlineAdmission->sessions->year : 'N/A' }}</td>
-                                        <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : 'N/A' }}</td>
-                                        <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : 'N/A' }}</td>
+                                        <td>{{ $onlineAdmission->type == 1 ? __('School') : __('College') }}</td>
+                                        <td>{{ $onlineAdmission->session_id ? $onlineAdmission->sessions->year : __('N/A') }}</td>
+                                        <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : __('N/A') }}</td>
+                                        <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : __('N/A') }}</td>
                                         <td>{{ $onlineAdmission->start->format('d F Y') }}</td>
                                         <td>{{ $onlineAdmission->end->format('d F Y') }}</td>
                                         <td>
                                             @if ($onlineAdmission->status == 1)
-                                                <span class="badge badge-primary">Active</span>
+                                                <span class="badge badge-primary">{{ __('Active')}}</span>
                                             @else
-                                                <span class="badge badge-danger">Inactive</span>
+                                                <span class="badge badge-danger">{{ __('Inactive')}}</span>
                                             @endif
                                         </td>
                                         <td>
@@ -91,15 +91,16 @@
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        {{ __('Showing 0 to 0 of 0 entries')}}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">First</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -115,7 +116,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Online Application Set</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Online Application Set')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -127,15 +128,15 @@
                         <div class="form-group col-12">
                             <label for="">{{ __('Admission Type') }}</label>
                             <select name="type" class="form-control">
-                                <option>--Select Class--</option>
-                                <option value="1">School</option>
-                                <option value="2">College</option>
+                                <option>{{ __('--Select Class--')}}</option>
+                                <option value="1">{{ __('School')}}</option>
+                                <option value="2">{{ __('College')}}</option>
                             </select>
                         </div>
                         <div class="form-group col-12">
-                            <label for="">Session Name</label>
+                            <label for="">{{ __('Session Name')}}</label>
                             <select name="session_id" id="session_id" class="form-control">
-                                <option value="">--Select Session--</option>
+                                <option value="">{{ __('--Select Session--')}}</option>
                                 @foreach ($sessions as $session)
                                     <option value="{{ $session->id }}">{{ $session->year }}</option>
                                 @endforeach
@@ -143,9 +144,9 @@
                             </select>
                         </div>
                         <div class="form-group col-6">
-                            <label for="">Class Name</label>
+                            <label for="">{{ __('Class Name')}}</label>
                             <select name="class_id" id="class_id" class="form-control">
-                                <option value="">--Select Class--</option>
+                                <option value="">{{ __('--Select Class--')}}</option>
                                 @foreach ($classes as $class)
                                     <option value="{{ $class->id }}">{{ $class->name }}</option>
                                 @endforeach
@@ -153,34 +154,34 @@
                             </select>
                         </div>
                         <div class="form-group col-6">
-                            <label for="">Group Name</label>
+                            <label for="">{{ __('Group Name')}}</label>
                             <select name="group_id" id="group_id" class="form-control">
-                                <option value="">--Select Class--</option>
+                                <option value="">{{ __('--Select Class--')}}</option>
                                 @foreach ($groups as $group)
                                     <option value="{{ $group->id }}">{{ $group->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-6">
-                            <label for="">Starting Date</label>
+                            <label for="">{{ __('Starting Date')}}</label>
                             <input type="date" name="start" id="start" class="form-control">
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="">Ending Date</label>
+                            <label for="">{{ __('Ending Date')}}</label>
                             <input type="date" name="end" id="end" class="form-control">
                         </div>
                         <div class="form-group col-6" id="statusCheck">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" value="1" name="status" class="custom-control-input" id="customSwitch1">
-                                <label class="custom-control-label" for="customSwitch1">Status</label>
+                                <label class="custom-control-label" for="customSwitch1">{{ __('Status')}}</label>
                             </div>
                         </div>
                         <input type="hidden" name="id" id="onlineId" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <div class="form-group col-12">
-                            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                            <button type="submit" class="btn btn-primary btn-sm">{{ __('Save')}}</button>
                         </div>
                     </div>
                 </form>

@@ -76,17 +76,17 @@ input[type=number]::-webkit-outer-spin-button {
                             <table id="example2" class="table table-bordered table-striped table-hover table-sm">
                                 <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Subject</th>
-                                    <th width="122px">Date</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Obj Full</th>
-                                    <th>Obj Pass</th>
-                                    <th>Wri Full</th>
-                                    <th>Wri Pass</th>
-                                    <th>Pra Full</th>
-                                    <th>Pra Pass</th>
+                                    <th>{{ __('Code')}}</th>
+                                    <th>{{ __('Subject')}}</th>
+                                    <th width="122px">{{ __('Date')}}</th>
+                                    <th>{{ __('Start Time')}}</th>
+                                    <th>{{ __('End Time')}}</th>
+                                    <th>{{ __('Obj Full')}}</th>
+                                    <th>{{ __('Obj Pass')}}</th>
+                                    <th>{{ __('Wri Full')}}</th>
+                                    <th>{{ __('Wri Pass')}}</th>
+                                    <th>{{ __('Pra Full')}}</th>
+                                    <th>{{ __('Pra Pass')}}</th>
                                     {{--<th>Type</th>--}}
                                     {{--<th>Status</th>--}}
                                     {{--<th>Action</th>--}}

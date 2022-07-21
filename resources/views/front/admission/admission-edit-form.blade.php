@@ -8,15 +8,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-white">
-                    <h2>Admission Form</h2>
+                    <h2>{{ __('Admission Form')}}</h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="#">{{ __('Home')}}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#"> Result</a>
+                            <a href="#"> {{ __('Result')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             {{ ucfirst('Admission Form') }}
@@ -30,14 +30,15 @@
     <section class="padding-y-20 border-bottom">
 
         <div class="col-12 text-center">
-            <h4>Online Admission Form</h4>
-            <p>Download <code><a href="{{ action('Front\FrontController@studentForm',['ssc_roll'=>$student->ssc_roll]) }}">Admission Form</a></code> Download <code><a href="{{ action('Front\FrontController@invoice',['ssc_roll'=>$student->ssc_roll]) }}">Invoice</a></code><!-- Download <code><a href="{{ action('Front\FrontController@bankSlip',['ssc_roll'=>$student->ssc_roll]) }}">Bank Slip</a></code> --></p>
+            <h4>{{ __('Online Admission Form')}}</h4>
+            <p>{{ __('Download')}} <code><a href="{{ action('Front\FrontController@studentForm',['ssc_roll'=>$student->ssc_roll]) }}">Admission Form</a></code> Download <code><a href="{{ action('Front\FrontController@invoice',['ssc_roll'=>$student->ssc_roll]) }}">Invoice</a></code><!-- Download <code><a href="{{ action('Front\FrontController@bankSlip',['ssc_roll'=>$student->ssc_roll]) }}">Bank Slip</a></code> --></p>
         </div>
 
         <div class="container">
             <ul class="nav tab-line tab-line tab-line--2x border-bottom justify-content-center mb-4" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#student-information" role="tab" aria-selected="true">Student Information</a>
+                    <a class="nav-link active" data-toggle="tab" href="#student-information" role="tab" aria-selected="true">{{ __('Student
+                        Information')}}</a>
                 </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" data-toggle="tab" href="#guardian-information" role="tab" aria-selected="true">--}}
@@ -46,17 +47,17 @@
 {{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#ssc-information" role="tab" aria-selected="true">
-                        SSC Information
+                        {{ __(' SSC Information')}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#subjects" role="tab" aria-selected="true">
-                        Choose Subjects
+                        {{ __(' Choose Subjects')}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#photograph" role="tab" aria-selected="true">
-                        Student Photo
+                        {{ __(' Student Photo')}}
                     </a>
                 </li>
 {{--                <li class="nav-item">--}}

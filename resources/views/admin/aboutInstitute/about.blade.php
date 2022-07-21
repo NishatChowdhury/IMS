@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>About Institute</h1>
+                    <h1>{{ __('About Institute')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">About Institute</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('About Institute')}}</li>
                     </ol>
                 </div>
             </div>
@@ -28,33 +28,36 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>About Institute</h5>
+                                <h5>{{ __('About Institute')}}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            @if($errors->any())
+                        @if($errors->any())
+                            <div class="card-body">
                                 <ul class="text-danger">
                                     @foreach($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                         <div class="card-body">
-                            <form method="POST" action="{{route('instituteMessageUpdate')}}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" value="{{$aboutInstitute->alias}}" name="alias">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">About Institute</label>
-                                    <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{$aboutInstitute->body}}</textarea>
+                            {{ Form::model($aboutInstitute,['route'=>'instituteMessageUpdate','method'=>'patch']) }}
+                            {{ Form::hidden('alias','about') }}
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTitle">{{ __('Title')}}</label>
+                                    {{ Form::text('title',null,['class'=>'form-control','placeholder'=>'Enter About Institute']) }}
                                 </div>
-                                <div class="mb-3">
-                                    <input type="submit" class="btn btn-info" value=" Save ">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1" class="form-label">{{ __('About Institute')}}</label>
+                                    {{ Form::textarea('body',null,['id'=>'formsummernote','class'=>'form-control']) }}
                                 </div>
-                            </form>
-
-
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-info">{{ __('Save') }}</button>
+                            </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -62,33 +65,24 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>About Institute</h5>
+                                <h5>{{ __('About Institute')}}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            @if($errors->any())
-                                <ul class="text-danger">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
-                        <div class="card-body">
-                            <h4>About Institute</h4>
+                            <h4>{{ $aboutInstitute->title ?? '' }}</h4>
                             <hr>
                             <div class="row">
 
                                 <div class="col-md-12">
-
-                                    <p>{!! $aboutInstitute->body !!}</p>
+                                    <p>{!! $aboutInstitute->body ?? '' !!}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
 @stop
@@ -107,7 +101,6 @@
 
 @section('script')
     <script>
-
         $('#formsummernote').summernote({
             placeholder: '',
             tabsize: 2,

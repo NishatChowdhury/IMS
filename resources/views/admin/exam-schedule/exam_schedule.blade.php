@@ -35,13 +35,13 @@
                                 <th colspan="7" class="text-center"></th>
                             </tr>
                             <tr>
-                                <th>SL</th>
-                                <th class="text-center">Subject Name</th>
-                                <th class="text-center">Full Marks</th>
-                                <th class="text-center">Exam date</th>
-                                <th class="text-center">Exam Start</th>
-                                <th class="text-center">Exam End</th>
-                                <th class="text-center">Teacher</th>
+                                <th>{{ __('SL')}}</th>
+                                <th class="text-center">{{ __('Subject Name')}}</th>
+                                <th class="text-center">{{ __('Full Marks')}}</th>
+                                <th class="text-center">{{ __('Exam date')}}</th>
+                                <th class="text-center">{{ __('Exam Start')}}</th>
+                                <th class="text-center">{{ __('Exam End')}}</th>
+                                <th class="text-center">{{ __('Teacher')}}</th>
                             </tr>
                         </thead>
                         @php($i=1)

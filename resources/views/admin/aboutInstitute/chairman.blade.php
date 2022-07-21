@@ -46,15 +46,15 @@
                                 @csrf
                                 <input type="hidden" value="{{$message->alias ?? 'chairman'}}" name="alias">
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                    <label for="exampleFormControlInput1" class="form-label">{{ __('Title')}}</label>
                                     <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Title" value="{{$message->title ?? ''}}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Chairman Message</label>
+                                    <label for="exampleFormControlTextarea1" class="form-label">{{ __('Chairman Message')}}</label>
                                     <textarea name="body" id="formsummernote" cols='30px' rows='10px' class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $message->body ?? '' }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Chairman Image</label>
+                                    <label for="formFile" class="form-label">{{ __('Chairman Image')}}</label>
                                     <br>
                                     <input name="image"  class="btn btn-outline-success" type="file" id="formFile">
                                 </div>
@@ -90,9 +90,9 @@
                                 <div class="col-md-8">
                                     <h2>
                                         <small class="text-primary d-block">
-                                            Chairman
+                                            {{ __(' Chairman')}}
                                         </small>
-                                        Message
+                                        {{ __('Message')}}
                                     </h2>
 
                                     {!! $message->body !!}

@@ -9,8 +9,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Roles</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home')}}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Roles')}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -51,7 +51,7 @@
                                         @if(count($role->permissions) > 0)
                                             <span class="badge badge-danger">{{ count($role->permissions) }}</span>
                                         @else
-                                            <span class="badge badge-danger">No Permission Found :)</span>
+                                            <span class="badge badge-danger">{{ __('No Permission Found')}} :)</span>
                                         @endif
                                     </td>
                                     <td>
