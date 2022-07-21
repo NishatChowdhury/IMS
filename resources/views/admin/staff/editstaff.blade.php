@@ -30,11 +30,16 @@
             border: none;
         }
 
-.form-group.files.color {
-    border-radius: 3px;
-    height: 136px;
-    border: 1px solid#ced4da;
-}
+        .form-group.files.color {
+            border-radius: 3px;
+            height: 136px;
+            border: 1px solid#ced4da;
+        }
+        .cardBtn{
+            display: inline-block;
+            right: 10px;
+            position: absolute;
+        }
     </style>
 @endsection
 @section('content')
@@ -43,12 +48,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Staff</h1>
+                    <h1>{{ __('Edit Teacher & Staff') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Staffs</a></li>
-                        <li class="breadcrumb-item active">Add Staffs</li>
+                        <li class="breadcrumb-item"><a href="#">{{__('Staffs')}}</a></li>
+                        <li class="breadcrumb-item active">{{__('Add Staffs')}}</li>
                     </ol>
                 </div>
             </div>
@@ -80,14 +85,17 @@
                 <div class="col-12">
                     <div class="card">
                         <ul class="nav nav-tabs customNextForm">
-                            <li class="active"><a href="#tab1" data-toggle="tab">General Information</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Personal Information</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Address & Images</a></li>
+                            <li class="active"><a href="#tab1" data-toggle="tab">{{ __('General Information') }}</a></li>
+                            <li><a href="#tab2" data-toggle="tab">{{ __('Personal Information') }}</a></li>
+                            <li><a href="#tab3" data-toggle="tab">{{ __('Address & Images') }}</a></li>
+                            <li><a href="#tab4" data-toggle="tab">{{ __('Other Inoformation') }}</a></li>
                         </ul>
-                          {!! Form::model($info,['action'=>['Backend\StaffController@update_staff',$info->id], 'method' => 'PATCH', 'files'=>true]) !!}
+
+
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
                                 <div class="row">
+                                    {{ Form::model($info,['action'=>['Backend\StaffController@update_staff',$info->id], 'method' => 'PATCH', 'files'=>true]) }}
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-body row">
@@ -216,7 +224,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                               <div class="form-group">
+                                                <div class="form-group">
                                                     <label for="inputEmail4">Add File</label>
                                                     <div class="form-group files color">
                                                         <input type="file" name="image" class="form-control customImage">
@@ -229,15 +237,482 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="role_id" value="2">
+                                {{ Form::close() }}
+                            </div>
+
+                            <div class="tab-pane" id="tab4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        Academic Information
+
+                                                        <div class="text-right cardBtn">
+                                                            <button onclick="addModel('academicModel','{{route('staff.store_academic')}}')"  class="btn btn-sm btn-primary">Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table table-sm table-striped table-bordered">
+                                                            @foreach($academic as $ac)
+                                                                <tr>
+                                                                    <td>
+                                                                        {{$ac->ac_label_education ?? ''}}
+                                                                    </td>
+                                                                    <td class="text-right">
+
+                                                                        <button class="btn btn-sm btn-primary" onclick="openModel('academicModel', {{$ac->id}},'{{route('staff.update_academic')}}')">
+                                                                            <i class="fa fa-eye"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                {{--    academic info--}}
+ @endforeach
+                                                                <div class="modal fade" id="academicModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog model-lg" role="document" >
+                                                                        <div class="modal-content" style="width: 700px">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Academic Info Edit</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+
+
+                                                                            <form method="post" class="trainingForm">
+                                                                            @csrf
+                                                                            <input type="hidden" class="id" name="id">
+                                                                            <input type="hidden"  value="{{ $info->id }}" name="staff_id">
+                                                                            <div class="row takeAcademic" style="margin-top: 10px">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body row">
+                                                                                            <div class="form-group col-md-12">
+                                                                                                <label for="inputEmail4">Level of Education *</label>
+                                                                                                <input type="hidden" name="role_id" value="2">
+                                                                                                {{ Form::text('ac_label_education',null,['id'=>'ac_label_education','class'=>'form-control','placeholder' => 'Level of Education']) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Exam/Degree Title</label>
+                                                                                                {{--                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="" value="{{$info->father_husband ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_degree',null,['id'=>'ac_degree','class'=>'form-control','placeholder' => "Exam/Degree Title"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Concentration/ Major/Group</label>
+                                                                                                <div class="input-group">
+
+                                                                                                    {{--                                                                            <input id="mobile" name="mobile" class="form-control" aria-describedby="" required value="{{$info->mobile ?? ''}}">--}}
+                                                                                                    {{ Form::text('ac_major',null,['id'=>'ac_major','class'=>'form-control','placeholder' => "Concentration/ Major/Group"]) }}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Institute</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_institute',null,['id'=>'ac_institute','class'=>'form-control','placeholder' => "institute"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Board</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_board',null,['id'=>'ac_board','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Result</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_result',null,['id'=>'ac_result','class'=>'form-control','placeholder' => "Result"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Year</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_year',null,['id'=>'ac_year','class'=>'form-control','placeholder' => "Year"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Duration</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_duration',null,['id'=>'ac_duration','class'=>'form-control','placeholder' => "Duration"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Achievement</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('ac_achievement',null,['id'=>'ac_achievement','class'=>'form-control','placeholder' => "Achievement"]) }}
+                                                                                            </div>
+                                                                                            <div class="col-12 mt-3">
+                                                                                                <button type="submit" class="btn btn-primary btn-block btn-sm">Save</button>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            </form>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Experience Information</b>
+                                                        <div class="text-right cardBtn">
+                                                             <button onclick="addModel('experienceModel','{{route('staff.store_experience')}}')"  class="btn btn-sm btn-dark">Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table table-sm table-striped table-bordered">
+                                                            @foreach($experience as $ex)
+                                                                <tr>
+                                                                    <td>
+                                                                        {{$ex->er_designation ?? ''}}
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                         <button class="btn btn-sm btn-dark" onclick="openModel('experienceModel', {{$ex->id}},'{{route('staff.update_experience')}}')">
+                                                                            <i class="fa fa-eye"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <div class="modal fade" id="experienceModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog model-lg" role="document" >
+                                                                        <div class="modal-content" style="width: 700px">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Experience Info Edit</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+
+                                                                          <form method="post" class="trainingForm">
+                                                                            @csrf
+                                                                            <input type="hidden" class="id" name="id">
+                                                                            <input type="hidden"  value="{{ $info->id }}" name="staff_id">
+
+                                                                            <input type="hidden" name="id" value="{{$ex->id}}">
+                                                                            <div class="row takeExperience" style="margin-top: 10px">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body row">
+                                                                                            <div class="form-group col-md-12">
+                                                                                                <label for="inputEmail4">Company *</label>
+                                                                                                <input type="hidden" name="role_id" value="2">
+                                                                                                {{ Form::text('er_company',null,['id'=>'er_company','class'=>'form-control','placeholder' => 'Company']) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Institute</label>
+                                                                                                {{--                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="" value="{{$info->father_husband ?? ''}}">--}}
+                                                                                                {{ Form::text('er_institute',null,['id'=>'er_institute','class'=>'form-control','placeholder' => "Institute"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Designation</label>
+                                                                                                <div class="input-group">
+                                                                                                    {{--<input id="mobile" name="mobile" class="form-control" aria-describedby="" required value="{{$info->mobile ?? ''}}">--}}
+                                                                                                    {{ Form::text('er_designation',null,['id'=>'er_designation','class'=>'form-control','placeholder' => "Designation"]) }}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Area Of Experience</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('er_experience',null,['id'=>'er_experience','class'=>'form-control','placeholder' => "Area Of Experience"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Starting Date</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::date('er_start',null,['id'=>'er_start','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Ending Date</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::date('er_end',null,['id'=>'er_end','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Location</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('er_location',null,['id'=>'er_location','class'=>'form-control','placeholder' => "Location"]) }}
+                                                                                            </div>
+                                                                                            <div class="col-12 mt-3">
+                                                                                                <button type="submit" class="btn btn-primary btn-block btn-sm">Save</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                              </form>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        Training Information
+                                                        <div class="text-right cardBtn">
+                                                            <button onclick="addModel('trainingModel','{{route('staff.store_training')}}')"  class="btn btn-sm btn-danger">Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table table-sm table-striped table-bordered">
+                                                            @foreach($training as $tr)
+                                                                <tr>
+                                                                    <td >
+                                                                        {{$tr->tr_title ?? ''}}
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <button class="btn btn-sm btn-danger" onclick="openModel('trainingModel', {{$tr->id}},'{{route('staff.update_training')}}')">
+                                                                            <i class="fa fa-eye"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            <div class="modal fade" id="trainingModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog model-lg" role="document" >
+                                                                    <div class="modal-content" style="width: 700px">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Training Info Edit</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+
+                                                                        <form method="post" class="trainingForm">
+                                                                            @csrf
+                                                                            <input type="hidden" id="tr_id" name="id">
+                                                                            <input type="hidden"  id="tr_staff" name="staff_id">
+                                                                            <div class="row takeTraining" style="margin-top: 10px">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body row">
+                                                                                            <div class="form-group col-md-12">
+                                                                                                <label for="inputEmail4">Title *</label>
+                                                                                                <input type="hidden" name="role_id" value="2">
+                                                                                                {{ Form::text('tr_title',null,['id' => 'tr_title','class'=>'form-control','placeholder' => 'Title']) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Topic Cover</label>
+                                                                                                {{--                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="" value="{{$info->father_husband ?? ''}}">--}}
+                                                                                                {{ Form::text('tr_topic_cover',null,['id' => 'tr_topic_cover','class'=>'form-control','placeholder' => "Topic Cover"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Institute</label>
+                                                                                                <div class="input-group">
+                                                                                                    {{--<input id="mobile" name="mobile" class="form-control" aria-describedby="" required value="{{$info->mobile ?? ''}}">--}}
+                                                                                                    {{ Form::text('tr_institute',null,['id' => 'tr_institute','class'=>'form-control','placeholder' => "Institute"]) }}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Location</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('tr_location',null,['id' => 'tr_location','class'=>'form-control','placeholder' => "Location"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Passing Year</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::selectRange('tr_year',2020, 2024, null, ['id' => 'tr_year','class'=>'form-control','placeholder' => "Select Year"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Starting Date</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::date('tr_start',null,['id' => 'tr_start','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Ending Date</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::date('tr_end',null,['id' => 'tr_end','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Duration</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('tr_duration',null,['id' => 'tr_duration','class'=>'form-control','placeholder' => "DUration"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Country</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('tr_country',null,['id' => 'tr_country','class'=>'form-control','placeholder' => "Country"]) }}
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <button type="submit" class="btn btn-primary">save</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Course Information</b>
+                                                        <div class="text-right cardBtn">
+                                                             <button onclick="addModel('courseModel','{{route('staff.store_course')}}')"  class="btn btn-sm btn-info">Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table table-sm table-striped table-bordered">
+                                                            @foreach($course as $co)
+                                                                <tr>
+                                                                    <td>
+                                                                        {{$co->co_title ?? ''}}
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <button class="btn btn-sm btn-info"
+                                                                                onclick="openModel('courseModel', {{$co->id}},'{{route('staff.update_course')}}')"
+                                                                        >
+                                                                            <i class="fa fa-eye"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                @endforeach
+                                                                <div class="modal fade" id="courseModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog model-lg" role="document" >
+                                                                        <div class="modal-content" style="width: 700px">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Course Info Edit</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+
+                                                                          <form method="post" class="trainingForm">
+                                                                            @csrf
+                                                                            <input type="hidden" class="id" name="id">
+                                                                            <input type="hidden" name="staff_id" value="{{ $info->id }}">
+                                                                            <div class="row takeCourse" style="margin-top: 10px">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body row">
+                                                                                            <div class="form-group col-md-12">
+                                                                                                <label for="inputEmail4">Title *</label>
+                                                                                                <input type="hidden" name="role_id" value="2">
+                                                                                                {{ Form::text('co_title',null,['id'=>'co_title','class'=>'form-control','placeholder' => 'Title']) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Topic Cover</label>
+                                                                                                {{--                                                                    <input type="text" name="father_husband" class="form-control" id="" placeholder="" value="{{$info->father_husband ?? ''}}">--}}
+                                                                                                {{ Form::text('co_topic_cover',null,['id'=>'co_topic_cover','class'=>'form-control','placeholder' => "Topic Cover"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Institute</label>
+                                                                                                <div class="input-group">
+                                                                                                    {{--<input id="mobile" name="mobile" class="form-control" aria-describedby="" required value="{{$info->mobile ?? ''}}">--}}
+                                                                                                    {{ Form::text('co_institute',null,['id'=>'co_institute','class'=>'form-control','placeholder' => "Institute"]) }}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Location</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('co_location',null,['id'=>'co_location','class'=>'form-control','placeholder' => "Location"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Passing Year</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::selectRange('co_year',2020, 2024, null, ['id'=>'co_year','class'=>'form-control','placeholder' => "Select Year"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Starting Date</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::date('co_start',null,['id'=>'co_start','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Ending Date</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::date('co_end',null,['id'=>'co_end','class'=>'form-control','placeholder' => "Board"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Result</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('co_result',null,['id'=>'co_result','class'=>'form-control','placeholder' => "Result"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Certificate</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('co_c_no',null,['id'=>'co_c_no','class'=>'form-control','placeholder' => "Certificate"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Duration</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('co_duration',null,['id'=>'co_duration','class'=>'form-control','placeholder' => "DUration"]) }}
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                <label for="">Country</label>
+                                                                                                {{--                                                                    <input type="text" name="nid" class="form-control" id="" placeholder="" value="{{$info->nid ?? ''}}">--}}
+                                                                                                {{ Form::text('co_country',null,['id'=>'co_country','class'=>'form-control','placeholder' => "Country"]) }}
+                                                                                            </div>
+                                                                                            <div class="col-12 mt-3">
+                                                                                                <button type="submit" class="btn btn-primary btn-block btn-sm">Save</button>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                          </form>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <input type="hidden" name="role_id" value="2">
-                        {!! Form::close() !!}
+
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @stop
 <!-- *** External CSS File-->
 @section('style')
@@ -254,6 +729,137 @@
 @stop
 
 @section('script')
+    <script>
+        function openModel(modelName,id,action){
+            $('.trainingForm').attr('action', action);
+
+            if(modelName == 'trainingModel'){
+                $.get("/admin/staff/staff_training/"+id, function (data) {
+                    $('#tr_id').val(data.id);
+                    $('#tr_staff').val(data.staff_id);
+                    $('#tr_title').val(data.tr_title);
+                    $('#tr_topic_cover').val(data.tr_topic_cover);
+                    $('#tr_institute').val(data.tr_institute);
+                    $('#tr_location').val(data.tr_location);
+                    $('#tr_year').val(data.tr_year);
+                    $('#tr_start').val(data.tr_start);
+                    $('#tr_end').val(data.tr_end);
+                    $('#tr_duration').val(data.tr_duration);
+                    $('#tr_country').val(data.tr_country);
+                });
+            }else if(modelName == 'courseModel'){
+                $.get("/admin/staff/staff_course/"+id, function (data) {
+                    $('.id').val(data.id);
+                    $('#co_title').val(data.co_title);
+                    $('#co_topic_cover').val(data.co_topic_cover);
+                    $('#co_institute').val(data.co_institute);
+                    $('#co_location').val(data.co_location);
+                    $('#co_year').val(data.co_year);
+                    $('#co_start').val(data.co_start);
+                    $('#co_end').val(data.co_end);
+                    $('#co_result').val(data.co_result);
+                    $('#co_c_no').val(data.co_c_no);
+                    $('#co_duration').val(data.co_duration);
+                    $('#co_country').val(data.co_country);
+
+                });
+            }else if(modelName == 'experienceModel'){
+
+                $.get("/admin/staff/staff_experience/"+id, function (data) {
+                    $('.id').val(data.id);
+                    $('#er_company').val(data.er_company);
+                    $('#er_institute').val(data.er_institute);
+                    $('#er_designation').val(data.er_designation);
+                    $('#er_experience').val(data.er_experience);
+                    $('#er_start').val(data.er_start);
+                    $('#er_end').val(data.er_end);
+                    $('#er_location').val(data.er_location);
+
+                });
+            }else if(modelName == 'academicModel'){
+                 $.get("/admin/staff/staff_academic/"+id, function (data) {
+                 $('.id').val(data.id);
+                $('#ac_label_education').val(data.ac_label_education);
+                $('#ac_degree').val(data.ac_degree);
+                $('#ac_major').val(data.ac_major);
+                $('#ac_year').val(data.ac_year);
+                $('#ac_institute').val(data.ac_institute);
+                $('#ac_board').val(data.ac_board);
+                $('#ac_result').val(data.ac_result);
+                $('#ac_duration').val(data.ac_duration);
+                $('#ac_achievement').val(data.ac_achievement);
+                });
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $('#'+modelName).modal('show');
+
+        }
+        function addModel(id,action){
+            let staff = "{{ $info->id }}"
+            $('#tr_staff').val(staff);
+
+            if(id == 'trainingModel'){
+                $('#tr_title').val('');
+                $('#tr_topic_cover').val('');
+                $('#tr_institute').val('');
+                $('#tr_location').val('');
+                $('#tr_year').val('');
+                $('#tr_start').val('');
+                $('#tr_end').val('');
+                $('#tr_duration').val('');
+                $('#tr_country').val('');
+            }else if(id == 'courseModel'){
+                    $('#co_title').val('');
+                    $('#co_topic_cover').val('');
+                    $('#co_institute').val('');
+                    $('#co_location').val('');
+                    $('#co_year').val('');
+                    $('#co_start').val('');
+                    $('#co_end').val('');
+                    $('#co_result').val('');
+                    $('#co_c_no').val('');
+                    $('#co_duration').val('');
+                    $('#co_country').val('');
+            }else if(id == 'experienceModel'){
+
+                    $('#er_company').val('');
+                    $('#er_institute').val('');
+                    $('#er_designation').val('');
+                    $('#er_experience').val('');
+                    $('#er_start').val('');
+                    $('#er_end').val('');
+                    $('#er_location').val('');
+            }else if(id == 'academicModel'){
+                 $('#ac_label_education').val('');
+                $('#ac_degree').val('');
+                $('#ac_major').val('');
+                $('#ac_year').val('');
+                $('#ac_institute').val('');
+                $('#ac_board').val('');
+                $('#ac_result').val('');
+                $('#ac_duration').val('');
+                $('#ac_achievement').val('');
+            }
+
+            $('.trainingForm').attr('action', action);
+            $('#'+id).modal('show');
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $('.datePicker')

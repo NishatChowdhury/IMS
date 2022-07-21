@@ -386,8 +386,13 @@ class InstitutionController extends Controller
 
     public function assignTeacherStore(Request $request)
     {
+       $teacherID =  $request->staff_id;
+       $integerIDs = array_map('intval', $teacherID);
+
      $assignSubject = AssignSubject::find($request->assign_subject_id);
-     $assignSubject->update(['teacher_id' => $request->staff_id]);
+     $assignSubject->update(['teacher_id' => $integerIDs]);
+
+
      return back();
     }
 }

@@ -31,18 +31,18 @@
     <table class="table1" width="100%">
         <tr style="text-align: center">
             <td>
-{{--                <h1 style="margin-top: 0px">{{ siteConfig('name') }}</h1>--}}
+                <h1 style="margin-top: 0px">{{ siteConfig('name') }}</h1>
                 <p>{{ siteConfig('address') }}</p>
             </td>
         </tr>
     </table>
     <table class="table1" width="100%" style="margin-bottom: 5px">
         <tr style="text-align: center">
-            <td width="40%" style="text-align: center">
+            <td width="30%" style="text-align: left">
 
                     <img src="{{ asset('storage/uploads/students') }}/{{ $result->studentAcademic->student->image }}" width="120px" height="120px" alt="">
             </td>
-            <td width="50%" style="text-align: left">
+            <td width="60%" style="text-align: left">
                     <img src="{{ asset('/assets/img/logos/') }}/{{ siteConfig('logo') }}" alt="">
             </td>
             <td width="10%">
@@ -244,14 +244,31 @@
         <td>
              <table class="table" id="customTable">
                 <tr>
-                    <td colspan="2"><b>Comment</b></td>
+                    <td><b>Comment</b></td>
                 </tr>
-                 <tr >
+                 <tr>
                      <td height="64px">
                          Very Good
                      </td>
                  </tr>
             </table>
+        </td>
+    </tr>
+</table>
+
+<table  width="100%" style="margin-top: 50px; text-align: center">
+    <tr >
+        <td width="33%">
+            <p>..............................................</p>
+            <span>Guardian</span>
+        </td>
+        <td width="33%">
+            <p>..............................................</p>
+            <span>Class Teacher</span>
+        </td>
+        <td width="34%">
+           <p>..............................................</p>
+            <span>Head Master</span>
         </td>
     </tr>
 </table>

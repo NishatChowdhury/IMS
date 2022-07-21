@@ -494,6 +494,22 @@ Route::get('staff/threshold','Backend\StaffController@threshold')->name('staff.t
 Route::get('staff/kpi','Backend\StaffController@kpi')->name('staff.kpi');
 Route::get('staff/payslip','Backend\StaffController@payslip')->name('staff.payslip');
 
+Route::get('staff/staff_training/{id}','Backend\StaffController@staff_training')->name('staff.staff_training');
+Route::get('staff/staff_course/{id}','Backend\StaffController@staff_course')->name('staff.staff_course');
+Route::get('staff/staff_experience/{id}','Backend\StaffController@staff_experience')->name('staff.staff_experience');
+Route::get('staff/staff_academic/{id}','Backend\StaffController@staff_academic')->name('staff.staff_academic');
+
+Route::post('staff/store-academic','Backend\StaffController@store_academic')->name('staff.store_academic');
+Route::post('staff/update-academic','Backend\StaffController@update_academic')->name('staff.update_academic');
+Route::post('staff/store-experience','Backend\StaffController@store_experience')->name('staff.store_experience');
+Route::post('staff/update-experience','Backend\StaffController@update_experience')->name('staff.update_experience');
+Route::post('staff/store-training','Backend\StaffController@store_training')->name('staff.store_training');
+Route::post('staff/update-training','Backend\StaffController@update_training')->name('staff.update_training');
+Route::post('staff/store-course','Backend\StaffController@store_course')->name('staff.store_course');
+Route::post('staff/update-course','Backend\StaffController@update_course')->name('staff.update_course');
+
+
+
     //End Staff Route
 
 //Institution Mgnt Route by Rimon
