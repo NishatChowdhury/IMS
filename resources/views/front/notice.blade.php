@@ -42,8 +42,8 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- END row-->
-    </div> <!-- END container-->
+        </div> <!-- End Row -->
+    </div> <!-- End Container -->
 </section>
 
 <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">

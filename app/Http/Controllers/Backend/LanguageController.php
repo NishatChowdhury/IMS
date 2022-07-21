@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Backend\Language;
+use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
 
@@ -36,6 +39,13 @@ class LanguageController extends Controller
         $lang->direction = $req->direction;
         $lang->is_active = $req->status;
         $lang->save();
+
+        $exists = File::exists(base_path().'/resources/lang/'.$req->alias.'.json');
+
+        if(!$exists){
+            File::copy(base_path().'/resources/lang/wp.json',base_path().'/resources/lang/'.$req->alias.'.json');
+        }
+
         return redirect('admin/languages');
     }
     public function status(Request $req){
@@ -71,5 +81,43 @@ class LanguageController extends Controller
         $lang->is_active = $req->status;
         $lang->Update();
         return redirect('admin/languages');
+    }
+
+    /**
+     * @param $id
+     * @return View|RedirectResponse
+     */
+    public function translation($id)
+    {
+        $language = Language::query()->findOrFail($id);
+        $exists = file_exists(base_path('resources/lang/'.$language->alias.'.json'));
+
+        if(!$exists){
+            return redirect()->back()->withErrors(['msg'=>__('Language file not exists. If you are trying to change English it is not necessary.')]);
+        }
+
+        $lines = json_decode(file_get_contents(base_path('resources/lang/'.$language->alias.'.json')));
+        //dd(file_get_contents(base_path('resources/lang/'.$language->alias.'.json')));
+        return view('admin.language.translation',compact('language','lines'));
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function translate($id, Request $request): RedirectResponse
+    {
+        $language = Language::query()->findOrFail($id);
+        $file = json_decode(file_get_contents(base_path().'/resources/lang/'.$language->alias.'.json'),true);
+        foreach ($request->trans as $key => $line){
+            $file[$key] = $line;
+        }
+
+        $newJsonString = json_encode($file, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+
+        file_put_contents(base_path('resources/lang/'.$language->alias.'.json'), stripslashes($newJsonString));
+
+        return redirect()->back();
     }
 }

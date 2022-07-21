@@ -168,6 +168,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('lang-delete/{id}','Backend\LanguageController@delete')->name('lang.delete');
     Route::get('lang-edit/{id}','Backend\LanguageController@edit')->name('lang.edit');
     Route::post('lang-update','Backend\LanguageController@update')->name('lang.update');
+    Route::get('lang/translation/{id}','Backend\LanguageController@translation')->name('lang.translation');
+    Route::post('lang/translate/{id}','Backend\LanguageController@translate')->name('lang.translate');
 
     Route::get('themes','Backend\ThemeController@index');
     Route::get('theme/edit/{id}','Backend\ThemeController@edit');

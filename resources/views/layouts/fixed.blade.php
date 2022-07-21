@@ -125,7 +125,8 @@
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 {{--sweet alert js--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
+<script src="{{ asset('plugins/select2/select2.min.css') }}"></script>
 
 @yield('plugin')
 
