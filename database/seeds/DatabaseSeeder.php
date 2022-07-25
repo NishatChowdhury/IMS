@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // role create
+        $this->call(RawAttendanceSeeder::class);
          $role = Role::create([
                 'name' => 'writer',
                 'description' => 'writer description',

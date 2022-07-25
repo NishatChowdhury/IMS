@@ -174,7 +174,7 @@ class AttendanceController extends Controller
         }
         $teachers =  Staff::query()
                             ->where('staff_type_id',2)
-                            ->orderBy('card_id')
+                            ->orderBy('card_igd')
                             ->get()->pluck('name','id');
         return view('admin.attendance.teacher', compact('attend','t','card','staffs','year','month','attendances','teachers'));
     }
