@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -13,9 +14,7 @@ Route::get('dashboard','Backend\DashboardController@index');
 
 
 Auth::routes(['register' => false]);
-Route::get('/home', 'Backend\DashboardController@index')->name('home');
-    
-
+Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
 /*
 ==== Route for Front-End Menu Bar Start ==== @MKH
@@ -40,7 +39,7 @@ Route::get('download-school-pdf/{id}', [AdmissionController::class,'downloadScho
 
 //News & Notice
 
-Route::get('/notice-details/{id}','Front\FrontController@noticeDetails');
+Route::get('/notice-details/{id}','Front\FrontController@noticeDetails')->name('front.notice.details');
 Route::get('/news-details/{id}','Front\FrontController@newsDetails');
 
 //Gallery

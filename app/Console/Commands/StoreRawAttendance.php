@@ -61,19 +61,30 @@ class StoreRawAttendance extends Command
             'S2043',
             '1802712'
         ];
+
         foreach ($card_number as $row){
-            $attendance = new RawAttendance();
-            $attendance->registration_id = $row;
-            $attendance->access_id = rand(0, 99999);;
-            $attendance->department = 'deparment';
-            $attendance->unit_id = Str::random(15);
-            $attendance->card = Str::random(15);
-            $attendance->unit_name = Str::random(15);
-            $attendance->user_name = 'shakil';
-            $attendance->access_date = date('Y-m-d');
-            $attendance->access_time = Carbon::now()->format('H:i:s');
-            $attendance->save();
+            for($i=0;$i<=1;$i++){
+                $ifExists = RawAttendance::query()->where('registration_id',$row)->where('access_data',now()->format('Y-m-d'));
+
+                $h = $ifExists ? array_rand([3, 4, 5]) : array_rand([9, 10]);
+                $i = rand(0,59);
+                $s = rand(0,59);
+
+                $data = [
+                    'registration_id' => $row,
+                    'access_id' => rand(0,99999),
+                    'department' => 'department',
+                    'unit_id' => Str::random(15),
+                    'card' => dechex(rand(1048576,16777215)),
+                    'unit_name' => Str::random(15),
+                    'access_date' => now()->format('Y-m-d'),
+                    'access_time' => Carbon::createFromTime($h,$i,$s)->format('H:i:s'),
+                ];
+
+                RawAttendance::query()->create($data);
+            }
         }
+
         $this->info('data saved successfully');
     }
 }
