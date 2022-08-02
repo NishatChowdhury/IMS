@@ -56,12 +56,12 @@ class MainController extends Controller
     }
     public function create()
     {
-        $teacher_id = auth()->guard('teacher')->user()->staff_id;
-        $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
+         $teacher_id = auth()->guard('teacher')->user()->staff_id;
+         $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
 
 //        $dd = ["9"];
-         $subjects = AssignSubject::query()
-            ->whereJsonContains('teacher_id', $teacher_id)
+           $subjects = AssignSubject::query()->whereRaw("JSON_CONTAINS(teacher_id, '[$teacher_id]' )")
+//            ->whereJsonContains('teacher_id', $teacher_id)  // this will somepoint
             ->get();
 
 

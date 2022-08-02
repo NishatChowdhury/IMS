@@ -3,6 +3,11 @@
 @section('title','Institution Mgnt | Subjects')
 @section('style')
   <link rel="stylesheet" href="{{asset('/plugins/select2/select2.css')}}">
+  <style>
+      .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #195d76!important;
+}
+  </style>
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->

@@ -95,7 +95,7 @@
                                         {{ __('Message')}}
                                     </h2>
 
-                                    {!! $message->body !!}
+                                    {!! $message->body ?? ''!!}
                                 </div>
                             </div>
                         </div>

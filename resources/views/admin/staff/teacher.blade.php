@@ -89,16 +89,15 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
+                          <div class="table-responsive">
+                                <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>SL</th>
                                     <th>Image</th>
-                                    <th>Code</th>
+                                    <th>Card Number</th>
                                     <th>Name</th>
                                     <th>Job Title </th>
-                                    <th>Staff Type</th>
-                                    <th>Email</th>
                                     <th>Mobile</th>
                                     <th>Action</th>
                                 </tr>
@@ -111,14 +110,12 @@
                                     <td>
                                         <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="{{asset('assets/img/staffs/'.$staff->image)}}" alt="Staff Image">
                                     </td>
-                                    <td>{{$staff->code}}</td>
+                                    <td>{{$staff->card_id}}</td>
                                     <td>{{$staff->name}}</td>
                                     <td>{{$staff->title}}</td>
-                                    <td>{{$staff->staff_type_id}}</td>
-                                    <td>{{$staff->email}}</td>
                                     <td>{{$staff->mobile}}</td>
                                     <td>
-                                        <a href="{{ url('admin/staff-profile',$staff->id) }}" class="btn btn-success btn-sm" ><i class="fas fa-eye"></i> </a>
+{{--                                        <a href="{{ url('admin/staff-profile',$staff->id) }}" class="btn btn-success btn-sm" ><i class="fas fa-eye"></i> </a>--}}
                                         <a  class="btn btn-warning btn-sm edit" href="{{action('Backend\StaffController@edit_staff', $staff->id)}}" ><i class="fas fa-edit"></i> </a>
                                         <a  href="{{url('admin/staff/delete-staff', $staff->id)}}" class="btn btn-danger btn-sm delete"> <i class="fas fa-trash"></i> </a>
                                     </td>
@@ -126,6 +123,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                          </div>
                         </div>
                     </div>
                 </div>
