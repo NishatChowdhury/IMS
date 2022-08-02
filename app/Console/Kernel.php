@@ -7,6 +7,7 @@ use App\Console\Commands\DatabaseBackup;
 use App\Console\Commands\TeacherAttendace;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\DownloadAttendances;
+use App\Console\Commands\StoreRawAttendance;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -21,6 +22,7 @@ class Kernel extends ConsoleKernel
         AttendanceSMS::class,
         DatabaseBackup::class,
         TeacherAttendace::class,
+        StoreRawAttendance::class,
     ];
 
     /**
@@ -32,6 +34,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('CronJob:DownloadAttendances')->everyFiveMinutes();
+        $schedule->command('CronJob:StoreRawAttendances')->everyMinute();
         $schedule->command('CronJob:AttendanceSMS')->everyMinute();
         $schedule->command('CronJob:GenerateAttendances')->everyMinute();
         $schedule->command('CronJob:AbsentSMS')->everyMinute();

@@ -4,7 +4,7 @@ use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+//use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -12,12 +12,13 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
-use App\Http\Controllers\Front\PrincipalController;
+//use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
-    Route::get('backup', [HomeController::class, 'backup'])->name('admin.backup');
+
+    //Route::get('backup', [HomeController::class, 'backup'])->name('admin.backup');
 
     Route::get('transactions', 'Backend\TransactionController@index')->name('transactions.index');
     Route::get('transaction/create', 'Backend\TransactionController@create')->name('transaction.create');
@@ -421,9 +422,9 @@ Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@
 
 // Gallery Routes ends
 
-    Route::get('database-backup', [HomeController::class, 'database']);
-    Route::get('download-database', [HomeController::class, 'downloadDatabase']);
-    Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
+    //Route::get('database-backup', [HomeController::class, 'database']);
+    //Route::get('download-database', [HomeController::class, 'downloadDatabase']);
+    //Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
 
     Route::get('admission/applicant', 'Backend\OnlineApplyController@index')->name('online-admission.index');
     Route::get('online-application-view/{id}', 'Backend\OnlineApplyController@applyStudentProfile')->name('online-admission.applyStudentProfile');
