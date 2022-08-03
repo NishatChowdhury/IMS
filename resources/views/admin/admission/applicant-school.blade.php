@@ -55,7 +55,7 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $student->name }}</td>
-                                    <td>{{ $student->classes->name }}</td>
+                                    <td>{{ $student->classes->name ?? 'N/A'}}</td>
                                     <td>{{  $student->group->name ?? 'N/A' }}</td>
                                     <td> {{ $student->mobile }}</td>
                                     <td>    {{ $student->f_name}} ||<br>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use App\Http\Controllers\Backend\DairyController;
 //use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
@@ -473,11 +474,11 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
     // Dairy Management Here
 
-    Route::get('diary-list', [DairyController::class, 'index'])->name('diary.index');
-    Route::get('diary-create', [DairyController::class, 'create'])->name('diary.create');
-    Route::post('diary-store', [DairyController::class, 'store'])->name('diary.store');
-    Route::get('diary-edit/{diary}', [DairyController::class, 'edit'])->name('diary.edit');
-    Route::post('diary-update/{diary}', [DairyController::class, 'update'])->name('diary.update');
+    Route::get('diary-list', [DiaryController::class, 'index'])->name('diary.index');
+    Route::get('diary-create', [DiaryController::class, 'create'])->name('diary.create');
+    Route::post('diary-store', [DiaryController::class, 'store'])->name('diary.store');
+    Route::get('diary-edit/{diary}', [DiaryController::class, 'edit'])->name('diary.edit');
+    Route::post('diary-update/{diary}', [DiaryController::class, 'update'])->name('diary.update');
 
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
@@ -604,8 +605,7 @@ Route::post('communication/quick/send','Backend\CommunicationController@quickSen
 
 //Attendance Route by Rimon
 Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
-Route::get('attendance/dashboard','Backend\AttendanceController@
-')->name('attendance.dashboard');
+Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
 Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');

@@ -15,6 +15,10 @@ class OnlineApply extends Model
     {
         return $this->belongsTo(Classes::class,'class_id');
     }
+    public function sections()
+    {
+        return $this->belongsTo(Section::class);
+    }
 
     public function group()
     {

@@ -69,9 +69,9 @@
                                 @foreach ($onlineAdmissions as $onlineAdmission)
                                     <tr>
                                         <td>{{ $onlineAdmission->type == 1 ? __('School') : __('College') }}</td>
-                                        <td>{{ $onlineAdmission->session_id ? $onlineAdmission->sessions->year : __('N/A') }}</td>
+                                        <td>{{ $onlineAdmission->sections ? $onlineAdmission->sessions->year : __('N/A') }}</td>
                                         <td>{{ $onlineAdmission->class_id ? $onlineAdmission->classes->name : __('N/A') }}</td>
-                                        <td>{{ $onlineAdmission->group_id ? $onlineAdmission->group->name : __('N/A') }}</td>
+                                        <td>{{ $onlineAdmission->group ? $onlineAdmission->group->name : __('N/A') }}</td>
                                         <td>{{ $onlineAdmission->start->format('d F Y') }}</td>
                                         <td>{{ $onlineAdmission->end->format('d F Y') }}</td>
                                         <td>

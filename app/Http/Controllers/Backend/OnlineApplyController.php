@@ -35,7 +35,7 @@ class OnlineApplyController extends Controller
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
         $sessions = Session::query()->get();
         $sections = Section::query()->get();
-        $students = onlineApply::query()->orderBy('id')->paginate(100);
+         $students = onlineApply::query()->orderBy('id')->with('classes','group','sessions','sections')->paginate(100);
         return view('admin.admission.applicant-school', compact('students','academicClass','sessions','sections'));
     }
 
@@ -341,7 +341,7 @@ class OnlineApplyController extends Controller
     {
         $classes = Classes::query()->get();
         $sessions = Session::query()->get();
-        $onlineAdmissions = OnlineAdmission::query()->get();
+        $onlineAdmissions = OnlineAdmission::query()->with('group','sections')->get();
         $groups = Group::query()->get();
         return view('admin.admission.onlineAdminssion', compact('sessions','classes','groups','onlineAdmissions'));
     }

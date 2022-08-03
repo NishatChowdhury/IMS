@@ -26,4 +26,8 @@ class OnlineAdmission extends Model
     {
         return $this->belongsTo(Group::class);
     }
+    public function sections()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }
