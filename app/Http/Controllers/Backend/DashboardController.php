@@ -46,15 +46,15 @@ class DashboardController extends Controller
 
         $data['teachers'] = Staff::query()->where('staff_type_id',2)->count('id');
 
-        $data['teacherMale']    = Staff::query()->where('staff_type_id',2)->where('gender_id',1)->count('id');
+        $data['teacherMale'] = Staff::query()->where('staff_type_id',2)->where('gender_id',1)->count('id');
 
-        $data['teacherFemale']    = Staff::query()->where('staff_type_id',2)->where('gender_id',2)->count('id');
+        $data['teacherFemale'] = Staff::query()->where('staff_type_id',2)->where('gender_id',2)->count('id');
 
-        $data['classes']     = AcademicClass::query()->count('id');
+        $data['classes'] = AcademicClass::query()->count('id');
 
-        $data['calenders']   = AcademicCalender::query()->where('status',1)->orderBy('start')->paginate(5);
+        $data['calenders'] = AcademicCalender::query()->where('status',1)->orderBy('start')->paginate(5);
 
-        $data['notices']     = Notice::query()->where('notice_type_id',2)->orderBy('start','desc')->limit(5)->get();
+        $data['notices'] = Notice::query()->where('notice_type_id',2)->orderBy('start','desc')->limit(5)->get();
 
 
         //dd($data['calenders']);

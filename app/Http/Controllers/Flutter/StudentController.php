@@ -1,50 +1,47 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Flutter;
 
-use App\Models\Backend\Holiday;
-use App\Models\Backend\Mark;
-use App\Models\Backend\ExamResult;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\EventsCollection;
-use App\Http\Resources\EventsResource;
-use App\Http\Resources\RoutineResource;
+use App\Http\Resources\NewsCollection;
+use App\Http\Resources\NoticeCollection;
 use App\Http\Resources\TeacherCollection;
-use App\Http\Resources\TeacherResource;
+use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\ClassSchedule;
-use App\Http\Resources\NewsCollection;
-use App\Http\Resources\NewsResource;
-use App\Http\Resources\NoticeResource;
-use App\Http\Resources\NoticeCollection;
-use App\Models\Backend\Notice;
-use App\Models\Backend\InstituteMessage;
-use App\Models\Backend\Page;
-use App\SiteInformation;
-use App\Models\Backend\Staff;
-use App\Models\Backend\Student;
-use App\Models\Backend\Slider;
+use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
-use App\Models\Backend\StudentPayment;
+use App\Models\Backend\Father;
 use App\Models\Backend\FeeSetupStudent;
-use App\Models\Backend\Syllabus;
-use App\Models\Diary;
-use App\Models\Backend\UpcomingEvent;
+use App\Models\Backend\Guardian;
+use App\Models\Backend\InstituteMessage;
+use App\Models\Backend\Mark;
+use App\Models\Backend\Mother;
+use App\Models\Backend\Notice;
 use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\SiteInformation;
+use App\Models\Backend\Slider;
+use App\Models\Backend\Staff;
+use App\Models\Backend\StudentPayment;
+use App\Models\Backend\Syllabus;
+use App\Models\Backend\UpcomingEvent;
+use App\Models\Diary;
+use App\Student;
+use App\Models\Backend\StudentAcademic;
 use Carbon\Carbon;
-use http\Env\Response;
 use Illuminate\Http\Request;
-use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-class AndroidController extends Controller
+class StudentController extends Controller
 {
+
     public function login(Request $request)
     {
         $mobile = $request->get('mobile');
         $studentId = $request->get('studentId');
         $otp = rand(1000,9999);
-        $student = Student::query()
+        $student = \App\Models\Backend\Student::query()
             ->where('studentId',$studentId)
             ->where('mobile',$mobile)
             ->exists();
@@ -52,7 +49,7 @@ class AndroidController extends Controller
         if($student){
             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
         }else{
-             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
+            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
         }
 
         $this->sms($mobile,$message);
@@ -342,10 +339,10 @@ class AndroidController extends Controller
     {
         $url = "https://sms.solutionsclan.com/api/sms/send";
         $data = [
-                "apiKey"=> 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
-                "contactNumbers"=> $number,
-                "senderId"=> 'BULKSMS',
-                "textBody"=> $message
+            "apiKey"=> 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+            "contactNumbers"=> $number,
+            "senderId"=> 'BULKSMS',
+            "textBody"=> $message
         ];
 
         $ch = curl_init();
@@ -529,7 +526,7 @@ class AndroidController extends Controller
     }
     public function marksheet()
     {
-       $examResult = ExamResult::query()
+        $examResult = ExamResult::query()
             ->where('student_academic_id',42)
             ->with('exam','studentAcademic')
             ->get();
@@ -637,10 +634,10 @@ class AndroidController extends Controller
                 foreach ($calendar as $cal)
                 {
                     $data[] = [
-                            'date'=>Carbon::parse($cal->start)->format('d') ?? '',
-                            'day'=> Carbon::parse($cal->start)->format('D') ?? '',
-                            'title'=>$cal->name ?? '',
-                        ];
+                        'date'=>Carbon::parse($cal->start)->format('d') ?? '',
+                        'day'=> Carbon::parse($cal->start)->format('D') ?? '',
+                        'title'=>$cal->name ?? '',
+                    ];
                 }
                 $r[] = [
                     'id' => intval($cal->id),
@@ -689,8 +686,8 @@ class AndroidController extends Controller
     {
         $yr = $request->year??Carbon::parse()->format('Y');
         $monthlyPayment = StudentPayment::whereYear('date',$yr)
-          ->where('student_academic_id',14)
-          ->get()
+            ->where('student_academic_id',14)
+            ->get()
             ->groupBy(function($val) {
                 return Carbon::parse($val->date)->format('F');
             });
@@ -722,18 +719,18 @@ class AndroidController extends Controller
 
             $due = $totalAmount - $totalCollection;
 
-                $data = [];
-                foreach ($monthlyPayment as $month => $payment){
-                    foreach ($payment as $pay)
-                    {
-                        $data[] = [
-                            'month'=>$month,
-                            'due'=>strval($totalAmount)  ?? '',
-                            'paid'=>$pay->amount ?? '0',
-                        ];
-                    }
+            $data = [];
+            foreach ($monthlyPayment as $month => $payment){
+                foreach ($payment as $pay)
+                {
+                    $data[] = [
+                        'month'=>$month,
+                        'due'=>strval($totalAmount)  ?? '',
+                        'paid'=>$pay->amount ?? '0',
+                    ];
                 }
-                return response()->json(['years'=>$t,'payments'=>$data,'due'=>strval($due)]);
+            }
+            return response()->json(['years'=>$t,'payments'=>$data,'due'=>strval($due)]);
         }
         else{
             return response(null,204);

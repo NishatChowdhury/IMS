@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\apiControllers;
+namespace App\Http\Controllers\Flutter;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
@@ -76,8 +76,8 @@ class LoginController extends Controller
         {
             $mobile = $request->get('mobile');
 //            $studentId = $request->get('studentId');
-            $otp = 1234;
-//            $otp = rand(1000,9999);
+//            $otp = 1234;
+            $otp = rand(1000,9999);
             $student = Student::query()
 //                ->where('studentId',$studentId)
                 ->where('mobile',$mobile)
