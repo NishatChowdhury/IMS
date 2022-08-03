@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Models\Backend;
+namespace App;
 
 use App\Models\Backend\FeeSetupStudent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Laravel\Sanctum\HasApiTokens;
 
-class Student1 extends Model
+class Student1 extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
 
     protected $dates = ['dob'];
 

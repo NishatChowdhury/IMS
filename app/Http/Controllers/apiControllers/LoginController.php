@@ -6,13 +6,25 @@ use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\isNull;
 
 class LoginController extends Controller
 {
     public function studentLogin(Request $request)
     {
+        $loginInfo = StudentLogin::query()->where('studentId',$request->studentId)->exists();
+        if (!$loginInfo){
+            return response()
+                ->json(['status' => false,'message' => 'Invalid Username or Password !'],422);
+        }
+
+        if(is_null($request->password)){
+            return response()
+                ->json(['status' => false,'message' => 'Invalid Username or Password !'],422);
+        }
 
         $validated = $request->validate([
             'studentId' => 'required|exists:student_logins|min:2|max:191',
@@ -24,31 +36,14 @@ class LoginController extends Controller
             return response()
                 ->json(['status' => true,'message' => 'Login was Successful'],200);
         }
+
         else
         {
             return response()
-                ->json(['status' => false,'message' => 'Invalid Username or Password !'],500);
+                ->json(['status' => false,'message' => 'Invalid Username or Password !'],422);
         }
     }
-//    public function studentLogin(Request $request)
-//    {
-//        $studentId = $request->get('studentId');
-//        $password = $request->get('password');
-//        $otp = rand(1000,9999);
-//        $student = Student::query()
-//            ->where('studentId',$studentId)
-//            ->where('password',$password)
-//            ->exists();
-//        if($student)
-//        {
-//            return response()
-//                ->json(['status' => true,'message' => 'Login was Successful'],200);
-//        }
-//        else{
-//            return response()
-//                ->json(['status' => false,'message' => 'Invalid Username or Password !'],500);
-//        }
-//    }
+
 
     private function validator(Request $request)
     {
@@ -141,6 +136,7 @@ class LoginController extends Controller
 
     public function matchOtp(Request $request)
     {
+
         if(Auth::guard('student')) {
             $otpRequest = $request->get('otp');
             $otp = Otp::query()->where('otp',$otpRequest)->first();
@@ -152,11 +148,12 @@ class LoginController extends Controller
                                 ->first();
                 $student = Student::query()
                         ->where('id',$studentId)
-                        ->get();
+                        ->first();
 
-                foreach ($student as $t){
-                    $token = $t->createToken($t->name);
-                }
+                $token = $student->createToken($student->name);
+//                foreach ($student as $t){
+//                    $token = $t->createToken($t->name);
+//                }
 
                 $sliders = Slider::query()->get();
                 if ($sliders->isNotEmpty()){
@@ -171,8 +168,6 @@ class LoginController extends Controller
                 return response()
                     ->json(
                         [
-                            'status'        =>  true,
-                            'message'       => 'Request was successful!',
                             'auth_token'    =>  $token->plainTextToken,
                             'user'          =>  $studentInfo,
                             'sliders'       =>  $data
@@ -180,7 +175,7 @@ class LoginController extends Controller
             }
             else{
                 return response()
-                        ->json(['status' => false,'message' => 'OTP is not matched!'],500);
+                        ->json(['status' => false,'message' => 'OTP is not matched!'],422);
             }
 
         }
