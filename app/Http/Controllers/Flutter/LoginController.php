@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Flutter;
+namespace App\Http\Controllers\apiControllers;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentLogin;
+use App\Student as AppStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function PHPUnit\Framework\isNull;
@@ -31,55 +32,22 @@ class LoginController extends Controller
             'password' => 'required|string|min:4|max:255',
         ]);
 
-        if(Auth::guard('student')->attempt($request->only('studentId','password')))
-        {
+        if(Auth::guard('student')->attempt($request->only('studentId','password'))){
+            $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
+            $this->otp($student->mobile);
             return response()
                 ->json(['status' => true,'message' => 'Login was Successful'],200);
-        }
-
-        else
-        {
+        }else{
             return response()
                 ->json(['status' => false,'message' => 'Invalid Username or Password !'],422);
         }
     }
 
 
-    private function validator(Request $request)
+    public function otp($mobile)
     {
-        //validation rules.
-        $rules = [
-            'studentId'    => 'required|exists:student_logins|min:2|max:191',
-            'password' => 'required|string|min:4|max:255',
-        ];
-
-        //custom validation error messages.
-        $messages = [
-            'studentId.exists' => 'These credentials do not match our records.',
-        ];
-
-        //validate the request.
-        $request->validate($rules,$messages);
-    }
-
-    private function loginFailed(): \Illuminate\Http\RedirectResponse
-    {
-        return redirect()
-            ->back()
-            ->withInput()
-            ->with('error','Login failed, please try again!');
-    }
-
-    public function otp(Request $request)
-    {
-        if(Auth::guard('student'))
-        {
-            $mobile = $request->get('mobile');
-//            $studentId = $request->get('studentId');
-//            $otp = 1234;
             $otp = rand(1000,9999);
             $student = Student::query()
-//                ->where('studentId',$studentId)
                 ->where('mobile',$mobile)
                 ->first();
             if($student)
@@ -110,7 +78,6 @@ class LoginController extends Controller
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
                 $response = curl_exec($ch);
-//            echo "$response";
                 curl_close($ch);
                 return response()
                     ->json(['status' => true,'message' => 'OTP was sent successfully!'],200);
@@ -120,8 +87,6 @@ class LoginController extends Controller
                 return response()
                     ->json(['status' => false,'message' => 'OTP was not sent!'],500);
             }
-        }
-
     }
 
     public function token(Student $student,Request $request)
@@ -136,10 +101,8 @@ class LoginController extends Controller
 
     public function matchOtp(Request $request)
     {
-
-        if(Auth::guard('student')) {
             $otpRequest = $request->get('otp');
-            $otp = Otp::query()->where('otp',$otpRequest)->first();
+            $otp = Otp::query()->where('otp',$otpRequest)->latest()->first();
             if($otp){
                 $studentId = $otp->student_id;
                 $studentInfo = Student::query()
@@ -149,12 +112,7 @@ class LoginController extends Controller
                 $student = Student::query()
                         ->where('id',$studentId)
                         ->first();
-
                 $token = $student->createToken($student->name);
-//                foreach ($student as $t){
-//                    $token = $t->createToken($t->name);
-//                }
-
                 $sliders = Slider::query()->get();
                 if ($sliders->isNotEmpty()){
                     $data = [];
@@ -177,8 +135,6 @@ class LoginController extends Controller
                 return response()
                         ->json(['status' => false,'message' => 'OTP is not matched!'],422);
             }
-
-        }
     }
 
 }
