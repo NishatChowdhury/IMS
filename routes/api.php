@@ -20,31 +20,31 @@ use Illuminate\Validation\ValidationException;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('about',[StudentController::class,'about']);
-    Route::get('chairman-message','AndroidController@chairmanMessage');
-    Route::get('principal-message','AndroidController@principalMessage');
-    Route::get('student-profile','AndroidController@profile');
-    Route::get('syllabus','AndroidController@syllabus');
-    Route::get('class-routines','AndroidController@classRoutine');
-    Route::get('teachers','AndroidController@teachers');
-    Route::get('teacher-details','AndroidController@teacherDetails');
-    Route::get('notices','AndroidController@noticeList');
-    Route::get('notice-details','AndroidController@noticeDetails');
-    Route::get('news','AndroidController@newsList');
-    Route::get('news-details','AndroidController@newsDetails');
-    Route::get('events','AndroidController@events');
-    Route::get('event-details','AndroidController@eventDetails');
-    Route::get('diary','AndroidController@diary');
-    Route::get('result','AndroidController@result');
-    Route::get('home','AndroidController@home');
-    Route::get('marksheet','AndroidController@marksheet');
-    Route::get('attendance','AndroidController@attendance');
-    Route::get('calendar','AndroidController@calendar');
-    Route::get('payment-history','AndroidController@paymentHistory');
-    Route::get('monthly-payment','AndroidController@monthlyPayment');
+    Route::get('chairman-message',[StudentController::class,'chairmanMessage']);
+    Route::get('principal-message',[StudentController::class,'principalMessage']);
+    Route::get('student-profile',[StudentController::class,'profile']);
+    Route::get('syllabus',[StudentController::class,'syllabus']);
+    Route::get('class-routines',[StudentController::class,'classRoutine']);
+    Route::get('teachers',[StudentController::class,'teachers']);
+    Route::get('teacher-details',[StudentController::class,'teacherDetails']);
+    Route::get('notices',[StudentController::class,'noticeList']);
+    Route::get('notice-details',[StudentController::class,'teacherDetails']);
+    Route::get('news',[StudentController::class,'newsList']);
+    Route::get('news-details',[StudentController::class,'newsDetails']);
+    Route::get('events',[StudentController::class,'events']);
+    Route::get('event-details',[StudentController::class,'eventDetails']);
+    Route::get('diary',[StudentController::class,'diary']);
+    Route::get('result',[StudentController::class,'result']);
+    Route::get('home',[StudentController::class,'home']);
+    Route::get('marksheet',[StudentController::class,'marksheet']);
+    Route::get('attendance',[StudentController::class,'attendance']);
+    Route::get('calendar',[StudentController::class,'calendar']);
+    Route::get('payment-history',[StudentController::class,'paymentHistory']);
+    Route::get('monthly-payment',[StudentController::class,'monthlyPayment']);
+
 });
 
 Route::post('token/create', [LoginController::class, 'token']);
-
 Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
 Route::post('otp-match', [LoginController::class, 'matchOtp']);

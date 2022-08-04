@@ -36,27 +36,6 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
 
-    public function login(Request $request)
-    {
-        $mobile = $request->get('mobile');
-        $studentId = $request->get('studentId');
-        $otp = rand(1000,9999);
-        $student = \App\Models\Backend\Student::query()
-            ->where('studentId',$studentId)
-            ->where('mobile',$mobile)
-            ->exists();
-
-        if($student){
-            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
-        }else{
-            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
-        }
-
-        $this->sms($mobile,$message);
-
-        return ['otp_pin'=>$otp];
-    }
-
     public function systemInfo()
     {
         return SiteInformation::query()->findOrFail(1);
