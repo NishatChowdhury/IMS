@@ -1,58 +1,40 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Flutter;
 
-use App\Models\Backend\ExamResult;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\EventsCollection;
-use App\Http\Resources\EventsResource;
-use App\Http\Resources\RoutineResource;
+use App\Http\Resources\NewsCollection;
+use App\Http\Resources\NoticeCollection;
 use App\Http\Resources\TeacherCollection;
-use App\Http\Resources\TeacherResource;
+use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\ClassSchedule;
-use App\Http\Resources\NewsCollection;
-use App\Http\Resources\NewsResource;
-use App\Http\Resources\NoticeResource;
-use App\Http\Resources\NoticeCollection;
-use App\Models\Backend\Notice;
+use App\Models\Backend\ExamResult;
+use App\Models\Backend\ExamSchedule;
+use App\Models\Backend\Father;
+use App\Models\Backend\FeeSetupStudent;
+use App\Models\Backend\Guardian;
 use App\Models\Backend\InstituteMessage;
-use App\Models\Backend\Page;
-use App\SiteInformation;
+use App\Models\Backend\Mark;
+use App\Models\Backend\Mother;
+use App\Models\Backend\Notice;
+use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\SiteInformation;
+use App\Models\Backend\Slider;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
-use App\Models\Backend\Slider;
-use App\Models\Backend\ExamSchedule;
-use App\Syllabus;
-use App\Models\Diary;
+use App\Models\Backend\StudentPayment;
+use App\Models\Backend\Syllabus;
 use App\Models\Backend\UpcomingEvent;
-use App\Models\Backend\NoticeCategory;
+use App\Models\Diary;
+use App\Models\Backend\StudentAcademic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Exception;
 use Illuminate\Support\Facades\DB;
 
-class AndroidController extends Controller
+class StudentController extends Controller
 {
-    public function login(Request $request)
-    {
-        $mobile = $request->get('mobile');
-        $studentId = $request->get('studentId');
-        $otp = rand(1000,9999);
-        $student = Student::query()
-            ->where('studentId',$studentId)
-            ->where('mobile',$mobile)
-            ->exists();
-
-        if($student){
-            $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
-        }else{
-             $message = "<#> আপনার ওয়েব পয়েন্ট ভেরিফিকেশন কোড ".$otp."\nদয়া করে কোডটি গোপন রাখুন dFPFWKrPd0B";
-        }
-
-        $this->sms($mobile,$message);
-
-        return ['otp_pin'=>$otp];
-    }
 
     public function systemInfo()
     {
@@ -161,7 +143,8 @@ class AndroidController extends Controller
 
     public function profile(Request $request)
     {
-        $profile = Student::where('studentId', 'N0110')->first();
+        //todo:: এখানে স্টুডেন্ট আইডি স্ট্যাটিক কেন দেখ।
+        $profile = Student::query()->where('studentId', 'N0110')->first();
         if ($profile){
             return response()->json([
                 'status'=>true,
@@ -206,11 +189,22 @@ class AndroidController extends Controller
 
     }
 
-    public function syllabus(Request $request)
+    public function syllabus()
     {
-        $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
-        $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
-        return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
+        $syllabus = Syllabus::query()->first();
+        if ($syllabus){
+            return response()->json([
+                'status'=>true,
+                'file'=>asset('assets/syllabus').'/'.$syllabus->file ?? ''
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+
+//        $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
+//        $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
+//        return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
     }
 
     public function noticeList()
@@ -325,10 +319,10 @@ class AndroidController extends Controller
     {
         $url = "https://sms.solutionsclan.com/api/sms/send";
         $data = [
-                "apiKey"=> 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
-                "contactNumbers"=> $number,
-                "senderId"=> 'BULKSMS',
-                "textBody"=> $message
+            "apiKey"=> 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+            "contactNumbers"=> $number,
+            "senderId"=> 'BULKSMS',
+            "textBody"=> $message
         ];
 
         $ch = curl_init();
@@ -442,9 +436,9 @@ class AndroidController extends Controller
         if ($examResult){
             $data = [];
             foreach ($examResult as $result) {
-                $AttendanceCount = Attendance::query()
-                    ->where('student_id',$result->studentAcademic->student_id)
-                    ->get();
+//                $AttendanceCount = Attendance::query()
+//                    ->where('student_id',$result->studentAcademic->student_id)
+//                    ->get();
                 $TotalNumbers = DB::table('exam_schedules')
                     ->where('exam_id', $result->exam_id)
                     ->where('academic_class_id', $result->studentAcademic->academic_class_id)
@@ -461,7 +455,7 @@ class AndroidController extends Controller
                 $data[] = [
                     'id' => $result->id,
                     'title' => $result->exam->name,
-                    'isPassed' => $result->grade == 'F' ? 'false' : 'true',
+                    'isPassed' => $result->grade == 'F' ? false : true,
                     'result'=>[
                         [
                             'label'=> 'GPA',
@@ -485,6 +479,9 @@ class AndroidController extends Controller
                 'results'=>$data
             ]);
         }
+        else{
+            return response(null,204);
+        }
     }
 
     public function home()
@@ -502,6 +499,218 @@ class AndroidController extends Controller
                 'status' => true,
                 'sliders'=> $data
             ]);
+        }
+        else{
+            return response(null,204);
+        }
+    }
+    public function marksheet()
+    {
+        $examResult = ExamResult::query()
+            ->where('student_academic_id',42)
+            ->with('exam','studentAcademic')
+            ->get();
+        if ($examResult){
+            $data = [];
+            foreach ($examResult as $result) {
+
+                $TotalNumbers = ExamSchedule::query()
+                    ->get();
+
+                foreach ($TotalNumbers as $totalNumber)
+                {
+                    $obj_full = $totalNumber->objective_full;
+                    $obj_pass = $totalNumber->objective_pass;
+                    $wri_full = $totalNumber->written_full;
+                    $wri_pass = $totalNumber->written_pass;
+                    $pra_full = $totalNumber->practical_full;
+                    $pra_pass = $totalNumber->practical_pass;
+                    $viva_full = $totalNumber->viva_full;
+                    $viva_pass = $totalNumber->viva_pass;
+                }
+
+                $detailsNumbers = Mark::query()
+                    ->where('exam_id', $result->exam_id)
+                    ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                    ->with('exam')
+                    ->get();
+
+                $mcqHighest = DB::table('marks')->max('objective');
+                $wriHighest = DB::table('marks')->max('written');
+                $praHighest = DB::table('marks')->max('practical');
+                $vivaHighest = DB::table('marks')->max('viva');
+
+                foreach ($detailsNumbers as $number)
+                {
+                    $mcq = $number->objective ?? 0;
+                    $written = $number->written ?? 0;
+                    $practical = $number->practical ?? 0;
+                    $viva = $number->viva ?? 0;
+                    $totalObtain = $mcq+$written+$practical+$viva;
+
+                    $data[] = [
+                        'title' => $number->subject->name,
+                        'isPassed' => $number->grade == 'F' ? false : true,
+                        'total'=> strval($totalObtain),
+                        'marks' => [
+                            [
+                                'label' => 'MCQ',
+                                'obtained' => $number->objective ?? '',
+                                'total' => $obj_full ?? '',
+                                'pass' => $obj_pass ?? '',
+                                'highest' => $mcqHighest,
+                            ],
+                            [
+                                'label' => 'WRITTEN',
+                                'obtained' => $number->written ?? '',
+                                'total' => $wri_full ?? '',
+                                'pass' => $wri_pass ?? '',
+                                'highest' => $wriHighest ?? '',
+                            ],
+                            [
+                                'label' => 'PRACTICAL',
+                                'obtained' => $number->practical ?? '',
+                                'total' => $pra_full ?? '',
+                                'pass' => $pra_pass ?? '',
+                                'highest' => $praHighest ?? '',
+                            ],
+                            [
+                                'label' => 'VIVA',
+                                'obtained' => $number->viva ?? '',
+                                'total' => $viva_full ?? '',
+                                'pass' => $viva_pass ?? '',
+                                'highest' => $vivaHighest ?? '',
+                            ]
+
+                        ]
+                    ];
+                }
+                return response()->json([
+                    'status' => true,
+                    'examName'=>$result->exam->name,
+                    'marksheet'=>$data
+                ]);
+            }
+
+        }
+        else{
+            return response(null,204);
+        }
+    }
+
+    public function calendar()
+    {
+        $calendars = DB::table('holidays')
+            ->selectRaw('(id) as id,(start) as start, (end) as end, 
+                                (name) as name')
+            ->selectRaw("MONTHNAME(start) as monthname")
+            ->get()
+            ->groupBy('monthname');
+
+        if ($calendars->isNotEmpty()){
+            $r = [];
+            foreach ($calendars as $day => $calendar){
+                $data = [];
+                foreach ($calendar as $cal)
+                {
+                    $data[] = [
+                        'date'=>Carbon::parse($cal->start)->format('d') ?? '',
+                        'day'=> Carbon::parse($cal->start)->format('D') ?? '',
+                        'title'=>$cal->name ?? '',
+                    ];
+                }
+                $r[] = [
+                    'id' => intval($cal->id),
+                    'month' =>  $day,
+                    'events' => $data
+                ];
+
+            }
+            return response()->json(['status'=>true,'calendar'=>$r]);
+        }
+        else{
+            return response(null,204);
+        }
+
+    }
+
+    public function paymentHistory(Request $request)
+    {
+        $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
+        $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
+        $payment = StudentPayment::query()
+            ->whereBetween('date',[$dateFrom,$dateTo])
+            ->with('payment_methods')
+            ->get();
+        $amount = DB::table('student_payments')->whereBetween('date',[$dateFrom,$dateTo])->sum('amount');
+        if ($payment->isNotEmpty()){
+            $data = [];
+            foreach ($payment as $pay){
+                $data[] = [
+                    'date'=> date('Y-m-d', strtotime($pay->date)) ?? '',
+                    'method'=> $pay->payment_methods->name ?? '',
+                    'amount'=> $pay->amount ?? '',
+                ];
+            }
+            return response()->json([
+                'history'=> $data,
+                'total'=> $amount,
+            ]);
+        }
+        else{
+            return response(null,204);
+        }
+    }
+
+    public function monthlyPayment(Request $request)
+    {
+        $yr = $request->year??Carbon::parse()->format('Y');
+        $monthlyPayment = StudentPayment::whereYear('date',$yr)
+            ->where('student_academic_id',14)
+            ->get()
+            ->groupBy(function($val) {
+                return Carbon::parse($val->date)->format('F');
+            });
+
+        if($monthlyPayment->isNotEmpty())
+        {
+            $years = StudentPayment::query()
+                ->where('student_academic_id',14)
+                ->get('date')
+                ->unique();
+
+            $t = [];
+            foreach ($years as $year){
+                $t[] = [
+                    'label' => Carbon::parse($year->date)->format('Y') ?? '',
+                    'value' => Carbon::parse($year->date)->format('Y') ?? ''
+                ];
+            }
+
+            $totalAmount = FeeSetupStudent::query()
+                ->where('student_id',19)
+                ->get()
+                ->sum('amount');
+
+            $totalCollection = StudentPayment::query()
+                ->where('student_academic_id',14)
+                ->get()
+                ->sum('amount');
+
+            $due = $totalAmount - $totalCollection;
+
+            $data = [];
+            foreach ($monthlyPayment as $month => $payment){
+                foreach ($payment as $pay)
+                {
+                    $data[] = [
+                        'month' => $month,
+                        'due' => strval($totalAmount)  ?? '',
+                        'paid' => $pay->amount ?? '0',
+                    ];
+                }
+            }
+            return response()->json(['years'=>$t,'payments'=>$data,'due'=>strval($due)]);
         }
         else{
             return response(null,204);
