@@ -23,6 +23,7 @@ use App\Models\Backend\NoticeCategory;
 use App\Models\Backend\SiteInformation;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\Syllabus;
 use App\Models\Backend\UpcomingEvent;
@@ -142,7 +143,8 @@ class StudentController extends Controller
 
     public function profile(Request $request)
     {
-        $profile = Student::where('studentId', 'N0110')->first();
+        //todo:: এখানে স্টুডেন্ট আইডি স্ট্যাটিক কেন দেখ।
+        $profile = Student::query()->where('studentId', 'N0110')->first();
         if ($profile){
             return response()->json([
                 'status'=>true,
@@ -702,9 +704,9 @@ class StudentController extends Controller
                 foreach ($payment as $pay)
                 {
                     $data[] = [
-                        'month'=>$month,
-                        'due'=>strval($totalAmount)  ?? '',
-                        'paid'=>$pay->amount ?? '0',
+                        'month' => $month,
+                        'due' => strval($totalAmount)  ?? '',
+                        'paid' => $pay->amount ?? '0',
                     ];
                 }
             }
