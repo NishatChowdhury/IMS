@@ -28,8 +28,6 @@ use App\Models\Backend\StudentPayment;
 use App\Models\Backend\Syllabus;
 use App\Models\Backend\UpcomingEvent;
 use App\Models\Diary;
-use App\Models\Backend\Student;
-use App\Models\Backend\StudentAcademic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

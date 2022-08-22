@@ -6,7 +6,7 @@ use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Student;
-use App\Models\Backend\StudentLogin;
+use App\Models\Student\StudentLogin;
 use App\Student as AppStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
