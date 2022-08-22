@@ -27,7 +27,7 @@ use App\Models\Backend\StudentPayment;
 use App\Models\Backend\Syllabus;
 use App\Models\Backend\UpcomingEvent;
 use App\Models\Diary;
-use App\Student;
+use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -45,17 +45,16 @@ class StudentController extends Controller
     {
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
-//        $registrationId = $request->get('registrationId');
-        $attendances = Attendance::query()
-            ->where('registration_id',1662622)
-            ->whereBetween('date',[$dateFrom,$dateTo])
-            ->get();
+      return
+        $attendances = Attendance::query()->get();
+            // ->where('registration_id',1662622)
+            // ->whereBetween('date',[$dateFrom,$dateTo])
+            // ->get();
 
         $attendanceToday = Attendance::query()
             ->where('registration_id',1662622)
             ->whereDate('date',now()->format('Y-m-d'))
             ->first();
-
         if($attendances) {
             $data = [];
             foreach ($attendances as $attendance){
@@ -453,7 +452,7 @@ class StudentController extends Controller
 
                 $data[] = [
                     'id' => $result->id,
-                    'title' => $result->exam->name,
+                    'title' => $result->exam->name ?? '',
                     'isPassed' => $result->grade == 'F' ? false : true,
                     'result'=>[
                         [

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\apiControllers;
+namespace App\Http\Controllers\Flutter;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
@@ -102,9 +102,9 @@ class LoginController extends Controller
     public function matchOtp(Request $request)
     {
             $otpRequest = $request->get('otp');
-            $otp = Otp::query()->where('otp',$otpRequest)->latest()->first();
+            $otp = Otp::query()->where('otp',$otpRequest)->latest('otp')->first();
             if($otp){
-                $studentId = $otp->student_id;
+                $studentId = $otp->student_id; 
                 $studentInfo = Student::query()
                                 ->where('id',$studentId)
                                 ->select('name','mobile','image','email')
@@ -135,6 +135,12 @@ class LoginController extends Controller
                 return response()
                         ->json(['status' => false,'message' => 'OTP is not matched!'],422);
             }
+    }
+    
+    public function logout(){
+        auth()->user()->tokens()->delete();
+        return response()
+                    ->json(['status'=>true,'message' => 'Logged out successfully'],200);
     }
 
 }

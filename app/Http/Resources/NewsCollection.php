@@ -27,7 +27,7 @@ class NewsCollection extends ResourceCollection
                     'id' => $notice->id,
                     'title' => $notice->title,
                     'date' => date('d-m-Y', strtotime($notice->created_at)),
-                    'category' => $noticeCategory->name,
+                    'category' => $noticeCategory->name ?? '',
                     'type' => $notice->notice_type_id == 1 ? 'News' : 'Notice',
                 ];
             }
