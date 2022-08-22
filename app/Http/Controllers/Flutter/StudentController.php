@@ -141,8 +141,8 @@ class StudentController extends Controller
 
     public function profile(Request $request)
     {
-        //todo:: এখানে স্টুডেন্ট আইডি স্ট্যাটিক কেন দেখ।
-        $profile = Student::query()->where('studentId', 'N0110')->first();
+        $student = $request->user();
+        $profile = Student::query()->where('studentId', $student->studentId)->first();
         if ($profile){
             return response()->json([
                 'status'=>true,
@@ -151,8 +151,8 @@ class StudentController extends Controller
                         'name'=> $profile->name ?? '',
                         'student_id'=> $profile->studentId ?? '',
                         'picture'=>$profile->image ? asset('storage/uploads/students').'/'.$profile->image : null,
-                        'class'=> $profile->class->name ?? '',
-                        'rank'=> $profile->rank ?? '',
+                        'class'=> $profile->studentAcademic->class->name ?? '',
+                        'rank'=> $profile->studentAcademic->rank ?? '',
                         'status'=> $profile->status == 1 ? 'Active' : 'Inactive',
                         'dob'=> date('d-m-Y', strtotime($profile->dob)) ?? '',
                         'blood'=> $profile->bloodGroup->name ?? '',
