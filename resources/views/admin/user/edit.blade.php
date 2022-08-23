@@ -52,7 +52,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <form id="ChnageUrl" action="{{ route('user.assign.role.update') }}" method="post">
+                                <form action="{{ url('/admin/user/assign-role-update') }}" method="post">
                                     @csrf
                                     <div class="modal-body row">
                                         <div class="form-group col-12">

@@ -108,7 +108,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('Month Name')}} :
+                            <h3 class="card-title">{{ __('Month Name')}} : {{  Carbon\Carbon::createFromFormat('m', $month)->format('F')  ?? 'N/A' }} {{ $year ?? '' }}
                             </h3>
                         </div>
                         <!-- /.card-header -->

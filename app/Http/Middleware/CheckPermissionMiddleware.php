@@ -19,20 +19,26 @@ class CheckPermissionMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         $routeName = $request->route()->getName();
 
-        if($routeName == 'admin'){ // for dashboard
-            return $next($request);
+        $checkR = auth()->user()->roles;
+        foreach ($checkR as $r){
+
+            if($r['name'] = 'admin'){ // for dashboard
+                return $next($request);
+            }
         }
+
 
         $p = Permission::query()
             ->where('name',$routeName)
             ->with('roles')
             ->first();
 
-        if(!$p){
-            abort(404);
-        }
+//        if(!$p){
+//            abort(404);
+//        }
 
         $roles = $p->roles;
         foreach ($roles as $role){
@@ -42,7 +48,7 @@ class CheckPermissionMiddleware
             }
         }
 
-        //return $next($request);
+        return $next($request);
         abort(403,"You Don't Have Permission On This Page");
     }
 }

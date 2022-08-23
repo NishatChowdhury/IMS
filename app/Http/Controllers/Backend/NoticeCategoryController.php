@@ -24,4 +24,11 @@ class NoticeCategoryController extends Controller
         NoticeCategory::query()->create($request->all());
         return redirect('admin/notice/category');
     }
+
+    public function edit($id)
+    {
+         NoticeCategory::query()->find($id)->delete();
+
+         return back()->with('status', 'Notice Category Has Been Deleted Successfully');
+    }
 }

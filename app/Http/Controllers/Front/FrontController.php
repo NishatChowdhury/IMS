@@ -391,9 +391,11 @@ class FrontController extends Controller
             }
 
             if($content->system_page === 'gallery'){
+
                 $categories = GalleryCategory::all();
                 $albums = Album::all();
                 return view('front.pages.gallery',compact('categories','albums'));
+
             }
 
             if($content->system_page === 'contacts' ){

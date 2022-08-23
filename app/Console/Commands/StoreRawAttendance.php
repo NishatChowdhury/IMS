@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use App\Models\Backend\RawAttendance;
 
@@ -63,7 +64,7 @@ class StoreRawAttendance extends Command
         ];
 
         foreach ($card_number as $row){
-            for($i=0;$i<=1;$i++){
+//            for($i=0;$i<=1;$i++){
                 $ifExists = RawAttendance::query()->where('registration_id',$row)->where('access_data',now()->format('Y-m-d'));
 
                 $h = $ifExists ? array_rand([3, 4, 5]) : array_rand([9, 10]);
@@ -82,9 +83,9 @@ class StoreRawAttendance extends Command
                 ];
 
                 RawAttendance::query()->create($data);
-            }
+//            }
         }
-
+        Artisan::call('generate:diary');
         $this->info('data saved successfully');
     }
 }

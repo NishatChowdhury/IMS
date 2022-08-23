@@ -1,19 +1,19 @@
 @extends('layouts.fixed')
 
 @section('style')
-<style>
-    ul.parent_info {
-    margin: 0px;
-    padding: 0px;
-}
+    <style>
+        ul.parent_info {
+            margin: 0px;
+            padding: 0px;
+        }
 
-ul.parent_info li {
-    list-style: none;
-    padding: 0px;
-    margin-left: 2px;
-    line-height: 12px;
-}
-</style>
+        ul.parent_info li {
+            list-style: none;
+            padding: 0px;
+            margin-left: 2px;
+            line-height: 12px;
+        }
+    </style>
 @endsection
 @section('title','Student Profile')
 
@@ -42,19 +42,19 @@ ul.parent_info li {
             <div class="row">
                 <div class="col-12">
                     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="col-md-3">
                     <!-- Profile Image -->
@@ -62,7 +62,7 @@ ul.parent_info li {
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
-                                     src="{{ asset('assets/img/students/') }}/{{ $student->image }}"
+                                     src="{{ asset('storage/uploads/students') }}/{{ $student->image }}"
                                      alt="">
                             </div>
 
@@ -89,11 +89,11 @@ ul.parent_info li {
                                     <b>Roll</b> <a class="float-right">{{ $studentAcademic ? $studentAcademic->rank : 'N/A' }}</a>
                                 </li>
                             </ul>
-                                @if($student->status ==1)
-                                    <a href="#" class="btn btn-primary btn-block"><b>Active</b></a>
-                                @else
-                                    <a href="#" class="btn btn-danger btn-block"><b>Drop Out</b></a>
-                                @endif
+                            @if($student->status ==1)
+                                <a href="#" class="btn btn-primary btn-block"><b>Active</b></a>
+                            @else
+                                <a href="#" class="btn btn-danger btn-block"><b>Drop Out</b></a>
+                            @endif
 
                         </div>
                         <!-- /.card-body -->
@@ -190,12 +190,12 @@ ul.parent_info li {
 
                             <strong><i class="fa fa-transgender"></i> Gender</strong>
                             <hr>
-                               {{ $student->gender_id ? $student->gender->name : 'N/A'}}
+                            {{ $student->gender_id ? $student->gender->name : 'N/A'}}
                             <hr>
 
                             <strong><i class="fa fa-heart"></i> Religion</strong>
                             <hr>
-                                {{ $student->religion_id ? $student->religion->name : 'N/A'  }}
+                            {{ $student->religion_id ? $student->religion->name : 'N/A'  }}
 
                         </div>
                         <!-- /.card-body -->
@@ -225,30 +225,81 @@ ul.parent_info li {
                                             <th class="text-right">Paid Amount</th>
                                         </tr>
                                         </thead>
+                                        @php
+                                            $total = 0;
+                                        @endphp
 
                                         <tbody>
-                                            
-                                            @forelse ($payments as $payment)
+
+                                        @forelse ($payments as $payment)
                                             <tr>
                                                 <td style="text-align: center">{{\Carbon\Carbon::parse($payment->created_at)->format('m F Y')}}</td>
                                                 <td style="text-align: right">{{ number_format($payment->discount,2) }}</td>
                                                 <td style="text-align: right">{{ number_format($payment->amount,2) }}</td>
                                             </tr>
-                                            @empty
+
+                                            @php
+                                                $total +=  number_format($payment->amount,2)
+                                            @endphp
+                                        @empty
                                             <tr>
                                                 <td style="text-align: center" colspan="8">
                                                     Data Not found :)
                                                 </td>
-                                                
-                                            </tr>
-                                            @endforelse
 
+                                            </tr>
+                                        @endforelse
+                                        <tr>
+                                            <td colspan="2" class="text-right">
+                                                <b>Total</b>
+                                            </td>
+                                            <td colspan="2" class="text-right">
+                                                <b>{{$total}} .00</b>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
 
                                 <div class="tab-pane" id="attendance">
-                                    <div class="card-title text-center"><h4>Attendance Report</h4></div>
+                                    {{--                                    <div class="card-title text-center"><h4></h4></div>--}}
+                                    <div class="card-header">
+                                        <b>Last 30 Days Attendance Report</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-sm text-center">
+                                                <tr>
+                                                    <th>SL.</th>
+                                                    <th>Date</th>
+                                                    <th>In Time</th>
+                                                    <th>Out Time</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                                @foreach($attendaces as $key => $attn)
+                                                    <tr @if($attn->attendanceStatus->name == 'Weekly Off') style="background: #9b9b9b" @endif>
+                                                        <td>{{ $key+1 }}</td>
+                                                        <td>
+                                                            {{ \Carbon\Carbon::parse($attn->date)->format('Y-m-d') ?? 'N/A' }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            @if(!is_null($attn))
+                                                                {{ $attn->manual_in_time ?? $attn->in_time }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{ $attn->manual_out_time ?? $attn->out_time}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{$attn->attendanceStatus->name ?? '',}}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="tab-pane" id="result">
@@ -264,11 +315,11 @@ ul.parent_info li {
                                                 <div class="form-group">
                                                     <label>New password</label>
                                                     <input class="form-control" name="password" type="password" placeholder="Enter New Password">
-                                                  </div>
-                                                  <div class="form-group">
+                                                </div>
+                                                <div class="form-group">
                                                     <label>Confirm new password</label>
                                                     <input class="form-control" name="password_confirmation"  type="password" placeholder="Enter Confirm New Password">
-                                                  </div>
+                                                </div>
                                                 <button class="btn btn-primary btn-sm">Reset Password</button>
                                             </form>
                                         </div>

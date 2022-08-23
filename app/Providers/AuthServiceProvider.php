@@ -42,7 +42,6 @@ class AuthServiceProvider extends ServiceProvider
                 ->first();
 
             $roles = $p->roles;
-
             foreach ($roles as $role){
                 $userRole = $user->roles->first();
                 if($userRole->id == $role->id){
