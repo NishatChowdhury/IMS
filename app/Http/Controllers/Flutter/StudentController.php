@@ -28,7 +28,6 @@ use App\Models\Backend\StudentPayment;
 use App\Models\Backend\Syllabus;
 use App\Models\Backend\UpcomingEvent;
 use App\Models\Diary;
-use App\Models\Backend\StudentAcademic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,17 +44,16 @@ class StudentController extends Controller
     {
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
-//        $registrationId = $request->get('registrationId');
-        $attendances = Attendance::query()
-            ->where('registration_id',1662622)
-            ->whereBetween('date',[$dateFrom,$dateTo])
-            ->get();
+      return
+        $attendances = Attendance::query()->get();
+            // ->where('registration_id',1662622)
+            // ->whereBetween('date',[$dateFrom,$dateTo])
+            // ->get();
 
         $attendanceToday = Attendance::query()
             ->where('registration_id',1662622)
             ->whereDate('date',now()->format('Y-m-d'))
             ->first();
-
         if($attendances) {
             $data = [];
             foreach ($attendances as $attendance){
@@ -143,8 +141,8 @@ class StudentController extends Controller
 
     public function profile(Request $request)
     {
-        //todo:: এখানে স্টুডেন্ট আইডি স্ট্যাটিক কেন দেখ।
-        $profile = Student::query()->where('studentId', 'N0110')->first();
+        $student = $request->user();
+        $profile = Student::query()->where('studentId', $student->studentId)->first();
         if ($profile){
             return response()->json([
                 'status'=>true,
@@ -153,8 +151,8 @@ class StudentController extends Controller
                         'name'=> $profile->name ?? '',
                         'student_id'=> $profile->studentId ?? '',
                         'picture'=>$profile->image ? asset('storage/uploads/students').'/'.$profile->image : null,
-                        'class'=> $profile->class->name ?? '',
-                        'rank'=> $profile->rank ?? '',
+                        'class'=> $profile->studentAcademic->class->name ?? '',
+                        'rank'=> $profile->studentAcademic->rank ?? '',
                         'status'=> $profile->status == 1 ? 'Active' : 'Inactive',
                         'dob'=> date('d-m-Y', strtotime($profile->dob)) ?? '',
                         'blood'=> $profile->bloodGroup->name ?? '',
@@ -454,7 +452,7 @@ class StudentController extends Controller
 
                 $data[] = [
                     'id' => $result->id,
-                    'title' => $result->exam->name,
+                    'title' => $result->exam->name ?? '',
                     'isPassed' => $result->grade == 'F' ? false : true,
                     'result'=>[
                         [

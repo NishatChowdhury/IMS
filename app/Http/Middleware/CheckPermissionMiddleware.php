@@ -19,32 +19,18 @@ class CheckPermissionMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
         $routeName = $request->route()->getName();
-
-        $checkR = auth()->user()->roles;
-        foreach ($checkR as $r){
-
-            if($r['name'] = 'admin'){ // for dashboard
-                return $next($request);
-            }
+//        dd($routeName);
+        if($routeName == 'admin'){ // for dashboard
+            return $next($request);
         }
 
-
-        $p = Permission::query()
-            ->where('name',$routeName)
-            ->with('roles')
-            ->first();
-
-//        if(!$p){
-//            abort(404);
-//        }
-
-        $roles = $p->roles;
-        foreach ($roles as $role){
-            $userRole = auth()->user()->roles->first();
-            if($userRole->id == $role->id){
-                return $next($request);
+        $roles = auth()->user()->roles;
+        foreach($roles as $role){
+            foreach($role->permissions as $permission){
+                if($permission->name == $routeName){
+                    return $next($request);
+                }
             }
         }
 

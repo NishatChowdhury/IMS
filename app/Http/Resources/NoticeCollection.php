@@ -29,6 +29,7 @@ class NoticeCollection extends ResourceCollection
                     'date' => date('d-m-Y', strtotime($notice->created_at)),
                     'category' => $noticeCategory->name,
                     'type' => $notice->notice_type_id == 1 ? 'News' : 'Notice',
+                    'attachment'=> $notice->file == null ? '0' : '1'
                 ];
             }
             return ['status' => true, 'notices' => $data];

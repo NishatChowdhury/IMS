@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('teachers',[StudentController::class,'teachers']);
     Route::get('teacher-details',[StudentController::class,'teacherDetails']);
     Route::get('notices',[StudentController::class,'noticeList']);
-    Route::get('notice-details',[StudentController::class,'teacherDetails']);
+    Route::get('notice-details',[StudentController::class,'noticeDetails']);
     Route::get('news',[StudentController::class,'newsList']);
     Route::get('news-details',[StudentController::class,'newsDetails']);
     Route::get('events',[StudentController::class,'events']);
@@ -41,6 +41,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('calendar',[StudentController::class,'calendar']);
     Route::get('payment-history',[StudentController::class,'paymentHistory']);
     Route::get('monthly-payment',[StudentController::class,'monthlyPayment']);
+    Route::post('logout', [LoginController::class, 'logout']);
+
 
 });
 
