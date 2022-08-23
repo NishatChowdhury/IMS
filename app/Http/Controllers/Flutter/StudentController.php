@@ -151,7 +151,7 @@ class StudentController extends Controller
                         'name'=> $profile->name ?? '',
                         'student_id'=> $profile->studentId ?? '',
                         'picture'=>$profile->image ? asset('storage/uploads/students').'/'.$profile->image : null,
-                        'class'=> $profile->studentAcademic->class->name ?? '',
+                        'class'=> $profile->studentAcademic->classes->name ?? '',
                         'rank'=> $profile->studentAcademic->rank ?? '',
                         'status'=> $profile->status == 1 ? 'Active' : 'Inactive',
                         'dob'=> date('d-m-Y', strtotime($profile->dob)) ?? '',

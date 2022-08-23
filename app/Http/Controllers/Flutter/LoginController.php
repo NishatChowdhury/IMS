@@ -125,6 +125,7 @@ class LoginController extends Controller
             $student = Student::query()
                 ->where('id',$studentId)
                 ->first();
+            //dd($student->createToken($student->name));
             $token = $student->createToken($student->name);
             $sliders = Slider::query()->get();
             if ($sliders->isNotEmpty()){
