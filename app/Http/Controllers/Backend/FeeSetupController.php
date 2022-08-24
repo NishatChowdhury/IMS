@@ -54,7 +54,7 @@ class FeeSetupController extends Controller
         $request->validate([
             'academic_class_id' => [
                 'required',
-                Rule::unique('fee_setups')->where('month_id',$request->get('month_id'))
+                Rule::unique('fee_setups')->where('year',$request->get('year'))->where('month_id',$request->get('month_id'))
             ],
             'month_id' => 'required',
             'year' => 'required',

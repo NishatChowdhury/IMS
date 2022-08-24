@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AssignSubject;
+use App\Models\Backend\Attendance;
 use App\Models\Backend\BloodGroup;
 use App\Models\Backend\City;
 use App\Models\Backend\Classes;
@@ -826,7 +827,13 @@ class StudentController extends Controller
 //        }
 //            return $payments;
 
-        return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic'));
+         $attendaces = Attendance::query()
+                                ->where('student_academic_id', $studentAcademic->id)
+                                ->latest()
+                                ->take(30)
+                                ->get();
+
+        return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic','attendaces'));
 
 // ->whereHas('academics', function($query){
 //                          $query->whereHas('sessions', function($query){
@@ -988,9 +995,6 @@ class StudentController extends Controller
         ]);
 
         return back();
-
-
-
 
     }
 

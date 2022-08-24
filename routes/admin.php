@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use App\Http\Controllers\Backend\DairyController;
 //use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
@@ -473,11 +474,11 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
 
     // Dairy Management Here
 
-    Route::get('diary-list', [DairyController::class, 'index'])->name('diary.index');
-    Route::get('diary-create', [DairyController::class, 'create'])->name('diary.create');
-    Route::post('diary-store', [DairyController::class, 'store'])->name('diary.store');
-    Route::get('diary-edit/{diary}', [DairyController::class, 'edit'])->name('diary.edit');
-    Route::post('diary-update/{diary}', [DairyController::class, 'update'])->name('diary.update');
+    Route::get('diary-list', [DiaryController::class, 'index'])->name('diary.index');
+    Route::get('diary-create', [DiaryController::class, 'create'])->name('diary.create');
+    Route::post('diary-store', [DiaryController::class, 'store'])->name('diary.store');
+    Route::get('diary-edit/{diary}', [DiaryController::class, 'edit'])->name('diary.edit');
+    Route::post('diary-update/{diary}', [DiaryController::class, 'update'])->name('diary.update');
 
 //Student profile start
 Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
@@ -494,6 +495,22 @@ Route::get('staff/delete-staff/{id}','Backend\StaffController@delete_staff')->na
 Route::get('staff/threshold','Backend\StaffController@threshold')->name('staff.threshold');
 Route::get('staff/kpi','Backend\StaffController@kpi')->name('staff.kpi');
 Route::get('staff/payslip','Backend\StaffController@payslip')->name('staff.payslip');
+
+Route::get('staff/staff_training/{id}','Backend\StaffController@staff_training')->name('staff.staff_training');
+Route::get('staff/staff_course/{id}','Backend\StaffController@staff_course')->name('staff.staff_course');
+Route::get('staff/staff_experience/{id}','Backend\StaffController@staff_experience')->name('staff.staff_experience');
+Route::get('staff/staff_academic/{id}','Backend\StaffController@staff_academic')->name('staff.staff_academic');
+
+Route::post('staff/store-academic','Backend\StaffController@store_academic')->name('staff.store_academic');
+Route::post('staff/update-academic','Backend\StaffController@update_academic')->name('staff.update_academic');
+Route::post('staff/store-experience','Backend\StaffController@store_experience')->name('staff.store_experience');
+Route::post('staff/update-experience','Backend\StaffController@update_experience')->name('staff.update_experience');
+Route::post('staff/store-training','Backend\StaffController@store_training')->name('staff.store_training');
+Route::post('staff/update-training','Backend\StaffController@update_training')->name('staff.update_training');
+Route::post('staff/store-course','Backend\StaffController@store_course')->name('staff.store_course');
+Route::post('staff/update-course','Backend\StaffController@update_course')->name('staff.update_course');
+
+
 
     //End Staff Route
 
@@ -588,8 +605,7 @@ Route::post('communication/quick/send','Backend\CommunicationController@quickSen
 
 //Attendance Route by Rimon
 Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
-Route::get('attendance/dashboard','Backend\AttendanceController@
-')->name('attendance.dashboard');
+Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
 Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
 Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
 Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');
@@ -666,7 +682,7 @@ return view('form-pdf');
     Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
     Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
 //principal , chairman and institute message update route
-    Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+    Route::post('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
 

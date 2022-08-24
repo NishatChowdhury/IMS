@@ -38,7 +38,7 @@
                                     {{ $chairman->title ?? 'Chairman Message'}}
                                 </h2>
                                 @if($chairman)
-                                    <span aria-hidden="true">{!! $chairman->body !!}</span>
+                                    <span aria-hidden="true">{!! $chairman->body ?? '' !!}</span>
                                 @endif
                             </div>
                         </div>
