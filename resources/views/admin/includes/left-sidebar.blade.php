@@ -54,18 +54,22 @@
                             {{--                                <p>Examinations</p>--}}
                             {{--                            </a>--}}
                             {{--                        </li>--}}
-                            <li class="nav-item">
-                                <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>{{ __('Create Admission') }}</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('admin/admission/applicant') }}" class="nav-link {{ isActive('admin/admission/applicant') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>{{ __('Applicants (School)') }}</p>
-                                </a>
-                            </li>
+                            @can('middleware-passed','online.onlineApplyIndex')
+                                <li class="nav-item">
+                                    <a href="{{ url('admin/admission/create') }}" class="nav-link {{ isActive('*/admission/create') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Create Admission') }}</p>
+                                    </a>
+                                </li>
+                            @endif
+                        @can('middleware-passed','online-admission.index')
+                                <li class="nav-item">
+                                    <a href="{{ url('admin/admission/applicant') }}" class="nav-link {{ isActive('admin/admission/applicant') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Applicants (School)') }}</p>
+                                    </a>
+                                </li>
+                            @endcan
                             <li class="nav-item">
                                 <a href="{{action('Backend\AdmissionController@browseMeritList')}}" class="nav-link {{ isActive('admin/admission/browse-merit-list') }}">
                                     <i class="far fa-circle nav-icon"></i>
@@ -99,22 +103,22 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(in_array("leaveManagement.index", auth()->user()->permissions))
-                                <li class="nav-item">
-                                    <a href="{{ action('Backend\LeaveManagementController@index') }}" class="nav-link {{ isActive('admin/attendance/leaveManagement') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Leave Management</p>
-                                    </a>
-                                </li>
-                            @endif
-                            @if(in_array("leavePurpose.index", auth()->user()->permissions))
-                                <li class="nav-item">
-                                    <a href="{{ action('Backend\LeavePurposeController@index') }}" class="nav-link {{ isActive('admin/attendance/leavePurpose') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Leave Purpose</p>
-                                    </a>
-                                </li>
-                            @endif
+                                @can('middleware-passed','leaveManagement.index')
+                                    <li class="nav-item">
+                                        <a href="{{ action('Backend\LeaveManagementController@index') }}" class="nav-link {{ isActive('admin/attendance/leaveManagement') }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ __('Leave Management') }}</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('middleware-passed','leavePurpose.index')
+                                    <li class="nav-item">
+                                        <a href="{{ action('Backend\LeavePurposeController@index') }}" class="nav-link {{ isActive('admin/attendance/leavePurpose') }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Leave Purpose</p>
+                                        </a>
+                                    </li>
+                                @endcan
                             @if(in_array("attendance.holiday", auth()->user()->permissions))
                                 <li class="nav-item">
                                     <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/holidays') }}">

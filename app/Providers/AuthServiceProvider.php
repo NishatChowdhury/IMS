@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Backend\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -27,27 +28,27 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('ims',function($user){
             return $user->module == 1;
-            //dd($user->roles);
-//            foreach ($user->roles as $role){
-//                foreach($role->permissions as $permission){
-//                    if($permission->name == 'HRM'){
-//                        return $permission->name == 'HRM';
-//                    }
-//                }
-//            }
-
         });
 
         Gate::define('cms',function($user){
             return $user->module == 0;
-            //dd($user->roles);
-//            foreach ($user->roles as $role){
-//                foreach($role->permissions as $permission){
-//                    if($permission->name == 'Payroll'){
-//                        return $permission->name == 'Payroll';
-//                    }
-//                }
-//            }
         });
+
+        Gate::define('middleware-passed',function($user,$route){
+            $p = Permission::query()
+                ->where('name',$route)
+                ->with('roles')
+                ->first();
+
+            $roles = $p->roles;
+
+            foreach ($roles as $role){
+                $userRole = $user->roles->first();
+                if($userRole->id == $role->id){
+                    return true;
+                }
+            }
+        });
+
     }
 }
