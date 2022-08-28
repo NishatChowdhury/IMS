@@ -42,8 +42,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('payment-history',[StudentController::class,'paymentHistory']);
     Route::get('monthly-payment',[StudentController::class,'monthlyPayment']);
     Route::post('logout', [LoginController::class, 'logout']);
-
-
 });
 
 Route::post('token/create', [LoginController::class, 'token']);

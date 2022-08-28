@@ -52,7 +52,7 @@
                                 <tbody>
                                 @foreach ($admissionStep as $admission)
                                     <tr>
-                                        <td>{{ $admission->classes->name }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
+                                        <td>{{ $admission->classes->name ?? '' }} </td>
                                         <td class="text-center">
                                             {{ __('From') }} <b>{{ $admission->start->format('d F Y') }}</b> {{ __('To') }}
                                             <b>{{ $admission->end->format('d F Y') }}</b>

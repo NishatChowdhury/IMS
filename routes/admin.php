@@ -141,9 +141,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     //Settings Route by Rimon
     Route::get('settings/basicInfo','Backend\SettingsController@basicInfo')->name('settings.basicInfo');
 
-
-
-
     Route::get('students','Backend\StudentController@index')->name('student.list');
     Route::get('student/create','Backend\StudentController@create')->name('student.add');
     Route::get('student/edit/{id}','Backend\StudentController@edit')->name('student.edit');
@@ -163,10 +160,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::patch('feature/{id}/update','Backend\FeatureController@update')->name('features.update');
     Route::delete('feature/destroy/{id}','Backend\FeatureController@destroy')->name('features.destroy');
 
-    Route::get('languages','Backend\LanguageController@index');
+    Route::get('languages','Backend\LanguageController@index')->name('language.index');
     Route::post('add-languages','Backend\LanguageController@store')->name('languages.add');
     Route::post('change-status','Backend\LanguageController@status')->name('change.status');
-    Route::post('default-update','Backend\LanguageController@defaultUpdate')->name('default.update');
+    Route::patch('default-update','Backend\LanguageController@defaultUpdate')->name('default.update');
     Route::post('lang-delete/{id}','Backend\LanguageController@delete')->name('lang.delete');
     Route::get('lang-edit/{id}','Backend\LanguageController@edit')->name('lang.edit');
     Route::post('lang-update','Backend\LanguageController@update')->name('lang.update');
@@ -201,7 +198,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('attendance/weeklyOff/store','Backend\WeeklyOffController@store')->name('weeklyOff.store');
     Route::get('attendance/weeklyOff/edit/{id}','Backend\WeeklyOffController@edit')->name('weeklyOff.edit');
     Route::get('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy')->name('weeklyOff.destroy');
-//Weekly Off Setting ends by Nishat
+    //Weekly Off Setting ends by Nishat
 
     /** User Routes */
     Route::get('users','Backend\UserController@index')->name('user.index');
@@ -214,7 +211,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('user/profile','Backend\UserController@profile')->name('user.profile');
     Route::patch('user/update','Backend\UserController@update')->name('user.update');
     Route::patch('user/password','Backend\UserController@password')->name('user.password');
-/** User Routes end */
     /** User Routes End */
 
     //Syllabus Section Start A R Babu

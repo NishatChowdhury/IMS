@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('CronJob:AttendanceSMS')->everyMinute();
         $schedule->command('CronJob:GenerateAttendances')->everyMinute();
         $schedule->command('CronJob:AbsentSMS')->everyMinute();
-        $schedule->command('th:attendace')->everyMinute();
+        $schedule->command('th:attendance')->everyMinute();
         $schedule->command('db:backup')->daily();
 
     }

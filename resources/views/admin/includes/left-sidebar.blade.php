@@ -62,7 +62,7 @@
                                     </a>
                                 </li>
                             @endif
-                        @can('middleware-passed','online-admission.index')
+                            @can('middleware-passed','online-admission.index')
                                 <li class="nav-item">
                                     <a href="{{ url('admin/admission/applicant') }}" class="nav-link {{ isActive('admin/admission/applicant') }}">
                                         <i class="far fa-circle nav-icon"></i>
@@ -103,22 +103,22 @@
                                     </a>
                                 </li>
                             @endif
-                                @can('middleware-passed','leaveManagement.index')
-                                    <li class="nav-item">
-                                        <a href="{{ action('Backend\LeaveManagementController@index') }}" class="nav-link {{ isActive('admin/attendance/leaveManagement') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ __('Leave Management') }}</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('middleware-passed','leavePurpose.index')
-                                    <li class="nav-item">
-                                        <a href="{{ action('Backend\LeavePurposeController@index') }}" class="nav-link {{ isActive('admin/attendance/leavePurpose') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Leave Purpose</p>
-                                        </a>
-                                    </li>
-                                @endcan
+                            @can('middleware-passed','leaveManagement.index')
+                                <li class="nav-item">
+                                    <a href="{{ action('Backend\LeaveManagementController@index') }}" class="nav-link {{ isActive('admin/attendance/leaveManagement') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Leave Management') }}</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('middleware-passed','leavePurpose.index')
+                                <li class="nav-item">
+                                    <a href="{{ action('Backend\LeavePurposeController@index') }}" class="nav-link {{ isActive('admin/attendance/leavePurpose') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Leave Purpose</p>
+                                    </a>
+                                </li>
+                            @endcan
                             @if(in_array("attendance.holiday", auth()->user()->permissions))
                                 <li class="nav-item">
                                     <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/holidays') }}">
@@ -618,58 +618,58 @@
                     </li>
                 @endif
 
-                    <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
-                        <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
-                            <i class="nav-icon fas fa-comments"></i>
-                            <p>
-                                Communication
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('admin/communication/quick') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ __('Quick SMS') }}</p>
-                                    </a>
-                                </li>
-                            {{--                        <li>--}}
-                            {{--                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">--}}
-                            {{--                                <i class="far fa-circle nav-icon"></i>--}}
-                            {{--                                <p>Student SMS</p>--}}
-                            {{--                            </a>--}}
-                            {{--                        </li>--}}
-                                <li class="nav-item">
-                                    <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('admin/communication/staff') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ __('Staff SMS') }}</p>
-                                    </a>
-                                </li>
-                            @if(in_array("communication.history", auth()->user()->permissions))
-                                <li class="nav-item">
-                                    <a href="{{route('communication.history')}}" class="nav-link {{ isActive('admin/communication/history') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>SMS History</p>
-                                    </a>
-                                </li>
-                            @endif
-                            @if(in_array("communication.apiSetting", auth()->user()->permissions))
-                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{route('communication.apiSetting')}}" class="nav-link {{ isActive('admin/communication/apiSetting') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> API Settings</p>
-                                    </a>
-                                </li>
-                            @endif
-                            {{--<li class="nav-item">--}}
-                            {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
-                            {{--<i class="far fa-circle nav-icon"></i>--}}
-                            {{--<p>Starter Page</p>--}}
-                            {{--</a>--}}
-                            {{--</li>--}}
-                        </ul>
-                    </li>
-{{--                @endif--}}
+                <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Communication
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('admin/communication/quick') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Quick SMS') }}</p>
+                            </a>
+                        </li>
+                        {{--                        <li>--}}
+                        {{--                            <a href="{{route('communication.student')}}" class="nav-link {{ isActive('communication/student') }}">--}}
+                        {{--                                <i class="far fa-circle nav-icon"></i>--}}
+                        {{--                                <p>Student SMS</p>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        <li class="nav-item">
+                            <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('admin/communication/staff') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Staff SMS') }}</p>
+                            </a>
+                        </li>
+                        @if(in_array("communication.history", auth()->user()->permissions))
+                            <li class="nav-item">
+                                <a href="{{route('communication.history')}}" class="nav-link {{ isActive('admin/communication/history') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>SMS History</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if(in_array("communication.apiSetting", auth()->user()->permissions))
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('communication.apiSetting')}}" class="nav-link {{ isActive('admin/communication/apiSetting') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> API Settings</p>
+                                </a>
+                            </li>
+                        @endif
+                        {{--<li class="nav-item">--}}
+                        {{--<a href="{{ action('ExtraController@starter') }}" class="nav-link {{ isActive('extra/starter') }}">--}}
+                        {{--<i class="far fa-circle nav-icon"></i>--}}
+                        {{--<p>Starter Page</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                    </ul>
+                </li>
+                {{--                @endif--}}
                 {{--                <li class="nav-item has-treeview {{ isActive(['admin/extra*']) }}">--}}
                 {{--                    <a href="#" class="nav-link {{ isActive(['admin/extra*']) }}">--}}
                 {{--                        <i class="nav-icon fas fa-scroll"></i>--}}
@@ -779,14 +779,14 @@
                                         </a>
                                     </li>
                                 @endif
-{{--                                @if(in_array("galleryCorner.index", auth()->user()->permissions))--}}
-                                    <li class="nav-item">
-                                        <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
-                                            <i class="far nav-icon"></i>
-                                            <p>Gallery Corner</p>
-                                        </a>
-                                    </li>
-{{--                                @endif--}}
+                                {{--                                @if(in_array("galleryCorner.index", auth()->user()->permissions))--}}
+                                <li class="nav-item">
+                                    <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Gallery Corner</p>
+                                    </a>
+                                </li>
+                                {{--                                @endif--}}
                                 @if(in_array("features.index", auth()->user()->permissions))
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                         <a href="{{ action('Backend\FeatureController@index') }}" class="nav-link {{ isActive('admin/pages') }}">
@@ -824,51 +824,49 @@
                     </ul>
                 </li>
             @endif
-            @if(in_array("academic-calender.index", auth()->user()->permissions))
-                <li class="nav-item has-treeview {{ isActive(['admin/settings*','admin/page*','admin/site*','admin/slider*','admin/social*','admin/calender*','admin/theme','admin/attendance']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/settings*','admin/page*','admin/site*','admin/slider*','admin/social*','admin/theme']) }}">
-                        <i class="fas fa-shapes"></i>
-                        <p>
-                            Settings
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                        @if(in_array("academic-calender.index", auth()->user()->permissions))
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('setting.email') }}" class="nav-link {{ isActive('admin/setting/email') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>E-mail Settings</p>
-                                </a>
-                            </li>
-                        @endif
-                        @if(in_array("academic-calender.index", auth()->user()->permissions))
-                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('admin/academic-calender/index') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Academic Calender</p>
-                                </a>
-                            </li>
-                        @endif
-                        @if(in_array("academic-calender.index", auth()->user()->permissions))
-                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('Backend\ThemeController@index') }}" class="nav-link {{ isActive('admin/themes') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Theme</p>
-                                </a>
-                            </li>
-                        @endif
-                            @if(in_array("academic-calender.index", auth()->user()->permissions))
-                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ action('Backend\LanguageController@index') }}" class="nav-link {{ isActive('admin/themes') }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Language</p>
-                                    </a>
-                                </li>
-                            @endif
-                    </ul>
-                </li>
-            @endif
+            <li class="nav-item has-treeview {{ isActive(['admin/settings*','admin/page*','admin/site*','admin/slider*','admin/social*','admin/calender*','admin/theme','admin/attendance']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/settings*','admin/page*','admin/site*','admin/slider*','admin/social*','admin/theme']) }}">
+                    <i class="fas fa-shapes"></i>
+                    <p>
+                        Settings
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    @can('middleware-passed','language.index')
+                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ route('setting.email') }}" class="nav-link {{ isActive('admin/setting/email') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>E-mail Settings</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('middleware-passed','language.index')
+                        <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('admin/academic-calender/index') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Academic Calender</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('middleware-passed','language.index')
+                        <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                            <a href="{{ action('Backend\ThemeController@index') }}" class="nav-link {{ isActive('admin/themes') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Theme</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('middleware-passed','language.index')
+                        <li class="nav-item">
+                            <a href="{{ action('Backend\LanguageController@index') }}" class="nav-link {{ isActive('admin/themes') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Language') }}</p>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
             @if(in_array("staff.teacher", auth()->user()->permissions))
                 <li class="nav-item has-treeview {{ isActive(['admin/staff*']) }}">
                     <a href="#" class="nav-link {{ isActive(['admin/staff*']) }}">
@@ -887,14 +885,14 @@
                                 </a>
                             </li>
                         @endif
-{{--                        @if(in_array("staff.addstaff", auth()->user()->permissions))--}}
-{{--                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                                <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('admin/staff/staffadd') }}">--}}
-{{--                                    <i class="far fa-circle nav-icon"></i>--}}
-{{--                                    <p>Staff Add</p>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                        @endif--}}
+                        {{--                        @if(in_array("staff.addstaff", auth()->user()->permissions))--}}
+                        {{--                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                        {{--                                <a href="{{route('staff.addstaff')}}" class="nav-link {{ isActive('admin/staff/staffadd') }}">--}}
+                        {{--                                    <i class="far fa-circle nav-icon"></i>--}}
+                        {{--                                    <p>Staff Add</p>--}}
+                        {{--                                </a>--}}
+                        {{--                            </li>--}}
+                        {{--                        @endif--}}
                         @if(in_array("staff.threshold", auth()->user()->permissions))
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{route('staff.threshold')}}" class="nav-link {{ isActive('admin/staff/threshold') }}">

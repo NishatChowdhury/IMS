@@ -60,7 +60,9 @@ class StoreRawAttendance extends Command
             'S1806422',
             '816438',
             'S2043',
-            '1802712'
+            '1802712',
+            'S38',
+            'S39'
         ];
 
         foreach ($card_number as $row){
@@ -78,6 +80,7 @@ class StoreRawAttendance extends Command
                     'unit_id' => Str::random(15),
                     'card' => dechex(rand(1048576,16777215)),
                     'unit_name' => Str::random(15),
+                    'user_name' => '',
                     'access_date' => now()->format('Y-m-d'),
                     'access_time' => Carbon::createFromTime($h,$i,$s)->format('H:i:s'),
                 ];

@@ -44,16 +44,21 @@ class StudentController extends Controller
     {
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
-      return
-        $attendances = Attendance::query()->get();
-            // ->where('registration_id',1662622)
-            // ->whereBetween('date',[$dateFrom,$dateTo])
-            // ->get();
+      //return
+
+        $user = auth()->user();
+
+        $attendances = Attendance::query()
+         ->where('student_academic_id',$user->studentAcademic->id)
+         ->whereBetween('date',[$dateFrom,$dateTo])
+         ->get();
+        //dd($student);
 
         $attendanceToday = Attendance::query()
-            ->where('registration_id',1662622)
+            ->where('student_academic_id',$user->studentAcademic->id)
             ->whereDate('date',now()->format('Y-m-d'))
             ->first();
+
         if($attendances) {
             $data = [];
             foreach ($attendances as $attendance){

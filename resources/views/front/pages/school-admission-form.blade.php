@@ -114,9 +114,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 text-center cus_courl">
-                    <h4>{{__('Online Admission Form')}}</h4>
-                    <h1>Class {{ $onlineAdmission->classes->name }}
-                        {{ $onlineAdmission->group_id ? $onlineAdmission->group->name : ''  }}</h1>
+                    <h4>{{ __('Online Admission Form') }}</h4>
+                    <h1>Class {{ $onlineAdmission->classes->name ?? '' }}</h1>
                 </div>
 
 
@@ -127,7 +126,7 @@
                             <div class="media align-items-center">
                                 <i class="mr-2 ti-check font-size-20"></i>
                                 <div class="media-body">
-                                    <strong>{{__(' Well done')}}!</strong>  {{ session('status') }}
+                                    <strong>{{ __(' Well done') }}!</strong>  {{ session('status') }}
                                 </div>
                             </div>
                             <button type="button" class="close font-size-14 absolute-center-y" data-dismiss="alert" aria-label="Close">

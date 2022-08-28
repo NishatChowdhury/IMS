@@ -63,7 +63,7 @@ class LanguageController extends Controller
         return redirect('admin/languages');
     }
     public function delete($id){
-        $del = Language::findOrFail($id);
+        $del = Language::query()->findOrFail($id);
         $del->delete();
         return redirect('admin/languages');
     }
@@ -74,7 +74,7 @@ class LanguageController extends Controller
         $this->validate($req, [
             'name'=>['required',Rule::unique('languages')->ignore($req->id)],
         ]);
-        $lang = Language::findOrFail($req->id);
+        $lang = Language::query()->findOrFail($req->id);
         $lang->name = $req->name;
         $lang->alias = $req->alias;
         $lang->direction = $req->direction;
