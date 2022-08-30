@@ -292,8 +292,9 @@ class StudentController extends Controller
 
     public function classRoutine()
     {
+        $user = auth()->user(); //get the logged in users data
         $routines = ClassSchedule::query()
-            ->where('academic_class_id',1)
+            ->where('academic_class_id',$user->studentAcademic->academic_class_id)
             ->get()
             ->groupBy('day');
         $r = [];
@@ -430,18 +431,14 @@ class StudentController extends Controller
 
     public function result()
     {
-        $studentAcademic = \App\Models\Backend\StudentAcademic::where('student_id', 47)->first();
-//        return $studentAcademic->student;
+        $user = auth()->user();
         $examResult = ExamResult::query()
-            ->where('student_academic_id',42)
+            ->where('student_academic_id',$user->studentAcademic->id)
             ->with('exam','studentAcademic')
             ->get();
         if ($examResult){
             $data = [];
             foreach ($examResult as $result) {
-//                $AttendanceCount = Attendance::query()
-//                    ->where('student_id',$result->studentAcademic->student_id)
-//                    ->get();
                 $TotalNumbers = DB::table('exam_schedules')
                     ->where('exam_id', $result->exam_id)
                     ->where('academic_class_id', $result->studentAcademic->academic_class_id)
@@ -509,8 +506,9 @@ class StudentController extends Controller
     }
     public function marksheet()
     {
+        $user = auth()->user();
         $examResult = ExamResult::query()
-            ->where('student_academic_id',42)
+            ->where('student_academic_id',$user->studentAcademic->id)
             ->with('exam','studentAcademic')
             ->get();
         if ($examResult){
@@ -639,12 +637,16 @@ class StudentController extends Controller
 
     public function paymentHistory(Request $request)
     {
+        $user = auth()->user();
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
+
         $payment = StudentPayment::query()
+            ->where('student_academic_id',$user->studentAcademic->id)
             ->whereBetween('date',[$dateFrom,$dateTo])
             ->with('payment_methods')
             ->get();
+
         $amount = DB::table('student_payments')->whereBetween('date',[$dateFrom,$dateTo])->sum('amount');
         if ($payment->isNotEmpty()){
             $data = [];
@@ -667,9 +669,10 @@ class StudentController extends Controller
 
     public function monthlyPayment(Request $request)
     {
+        $user = auth()->user();
         $yr = $request->year??Carbon::parse()->format('Y');
         $monthlyPayment = StudentPayment::whereYear('date',$yr)
-            ->where('student_academic_id',14)
+            ->where('student_academic_id',$user->studentAcademic->id)
             ->get()
             ->groupBy(function($val) {
                 return Carbon::parse($val->date)->format('F');
@@ -678,7 +681,7 @@ class StudentController extends Controller
         if($monthlyPayment->isNotEmpty())
         {
             $years = StudentPayment::query()
-                ->where('student_academic_id',14)
+                ->where('student_academic_id',$user->studentAcademic->id)
                 ->get('date')
                 ->unique();
 
@@ -691,12 +694,12 @@ class StudentController extends Controller
             }
 
             $totalAmount = FeeSetupStudent::query()
-                ->where('student_id',19)
+                ->where('student_id',$user->studentAcademic->student_id)
                 ->get()
                 ->sum('amount');
 
             $totalCollection = StudentPayment::query()
-                ->where('student_academic_id',14)
+                ->where('student_academic_id',$user->studentAcademic->id)
                 ->get()
                 ->sum('amount');
 
