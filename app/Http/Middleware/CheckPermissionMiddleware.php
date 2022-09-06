@@ -30,9 +30,9 @@ class CheckPermissionMiddleware
             ->with('roles')
             ->first();
 
-        if(!$p){
-            abort(404);
-        }
+//        if(!$p){
+//            abort(404,'Route Name Not listed yet, add route name in database');
+//        }
 
         $roles = $p->roles;
         foreach ($roles as $role){

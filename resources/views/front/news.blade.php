@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-md-8 p-4">
                         <p class="text-primary">{{ $news->start->format('F d, Y') }}</p>
-                        <a href="{{ action('Front\FrontController@newsDetails',$news->id) }}" class="h5">
+                        <a href="{{ url('/news-details') }}/{{$news->id}}" class="h5">
                             {{ $news->title }}
                         </a>
                     </div>

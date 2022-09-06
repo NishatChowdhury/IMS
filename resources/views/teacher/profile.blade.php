@@ -44,8 +44,8 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
-                                    {{--<input type="text" name="name" class="form-control" id="name" aria-describedby="name">--}}
-                                    {{ Form::text('name',null,['class'=>'form-control','id'=>'name']) }}
+{{--                                    <input type="text" name="name" class="form-control" id="name" readonly aria-describedby="name">--}}
+                                    {{ Form::text('name',null,['class'=>'form-control','id'=>'name', 'readonly']) }}
                                     @if($errors->first('name'))
                                         <small class="text-danger">{{ $errors->first('name') }}</small>
                                     @endif

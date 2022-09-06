@@ -6,7 +6,7 @@ use App\Models\Backend\EmailSetting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class emailSettingController extends Controller
+class EmailSettingController extends Controller
 {
 
     public function index()

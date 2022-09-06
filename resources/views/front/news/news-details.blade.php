@@ -52,7 +52,7 @@
                         </h4>
                         {{ $news->description }}
 
-                        <a href="{{ action('FrontController@news') }}" class="btn btn-primary mt-4">{{('Back To News')}}</a>
+{{--                        <a href="{{ action('Front/FrontController@news') }}" class="btn btn-primary mt-4">{{('Back To News')}}</a>--}}
                     </div>
                 </div>
                 <div class="col-lg-3 mt-5">

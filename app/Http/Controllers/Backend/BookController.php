@@ -97,7 +97,7 @@ class BookController extends Controller
     public function returnBook()
     {
         $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  Book::all()->pluck('title','id');
+         $bookCode =  Book::all()->pluck('book_title','id');
         $issuedData = IssueBook::all()->where('is_return','0');
         return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
     }

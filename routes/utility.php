@@ -264,6 +264,7 @@ Route::get('update-attendance/{d}', function ($d){
 
 
 });
+
 Route::get('u-a-t/{d}', function ($d){
 
 
