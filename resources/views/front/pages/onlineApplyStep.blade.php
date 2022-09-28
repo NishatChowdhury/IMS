@@ -32,7 +32,7 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="alert alert-primary" role="alert">
-                        {{ __(' A simple primary alert with')}} <a href="#" class="alert-link">{{ __('an example link')}}</a>. {{ __('Give it a
+                        {{ __(' A simple primary  alert with')}} <a href="#" class="alert-link">{{ __('an example link')}}</a>. {{ __('Give it a
                         click if you like.')}}
                       </div>
                       <div class="row">
@@ -43,6 +43,7 @@
                               <thead>
                                 <tr>
                                   <th scope="col" class="font-weight-semiBold">{{ __('Name')}}</th>
+                                  <th scope="col">{{ __('Admission Fee')}}</th>
                                   <th scope="col">{{ __('Date')}}</th>
                                   <th scope="col">{{ __('Action')}}</th>
                                 </tr>
@@ -51,6 +52,7 @@
                                 @foreach ($admissionStep as $admission)
                                 <tr>
                                   <td>{{ $admission->class_id ? $admission->classes->name : '' }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
+                                  <td>{{ $admission->fee }}</td>
                                   <td>{{ $admission->end }}</td>
                                   <td>
                                     @if($admission->type == 1)

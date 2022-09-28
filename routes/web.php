@@ -35,6 +35,9 @@ Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 
 
 Route::get('download-school-pdf/{id}', [AdmissionController::class,'downloadSchoolPdf'])->name('download.school.form');
+Route::get('payment_page/{id}', [AdmissionController::class,'payment_page'])->name('payment_page');
+Route::post('payment_store', [AdmissionController::class,'payment_store'])->name('payment_store');
+Route::get('payment-success/{id}', [AdmissionController::class,'payment_success'])->name('payment_success');
 
 
 //News & Notice

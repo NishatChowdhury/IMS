@@ -240,5 +240,8 @@ class Student extends Authenticatable
     public function studentSubject(){
         return $this->belongsTo(StudentSubject::class);
     }
+    public function assignSubjects(){
+        return $this->hasMany(StudentSubject::class);
+    }
 
 }

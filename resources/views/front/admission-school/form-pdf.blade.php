@@ -117,7 +117,7 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <img src="{{ asset('storage/uploads/students/') }}/{{ $getData->image }}" class="img-thumbnail" width="180" height="220" alt="">
+                            <img src="{{ asset('storage/uploads/students') }}/{{ $getData->image }}" class="img-thumbnail" width="180" height="220" alt="">
                         </div>
                         <div class="col-12">
                             <table class="table table-bordered table-personal">

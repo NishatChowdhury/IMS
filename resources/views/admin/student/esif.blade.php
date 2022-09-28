@@ -78,14 +78,10 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+     <div class="container-fluid">
+            <div class="row">
             <div class="col-12">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">Total Found : {{ count($students) }}</h3>
-                        <div class="card-tools">
-                        </div>
-                    </div>
+                <div class="card m-2">
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped table-sm">
@@ -108,13 +104,13 @@
                                 <tr>
                                     <td>{{ $x++ }}</td>
                                     <td>
-                                        {{ $student->name }}<br>
-                                        {{ $student->father }}<br>
-                                        {{ $student->mother }}
+                                        {{ $student->student->name  ?? ''}}<br>
+                                        <b>F: </b>{{ $student->student->father->f_name ?? '' }}<br>
+                                         <b>M: </b>{{ $student->student->mother->m_name ?? '' }}
                                     </td>
                                     <td>
-                                        {{ $student->gender->name ?? '' }}<br>
-                                        {{ $student->dob }}
+                                        {{ $student->student->gender->name ?? '' }}<br>
+                                        {{ $student->student->dob ?? '' }}
                                     </td>
                                     <td>
                                         {{ $student->section->name ?? '' }}<br>
@@ -122,25 +118,27 @@
                                         {{ $student->rank }}
                                     </td>
                                     <td>
-                                        @foreach(json_decode($student->admission->subjects) as $subjects)
+                                        @if(isset($student->student->admission->subjects))
+                                        @foreach(json_decode($student->student->admission->subjects) as $subjects)
                                             @foreach($subjects as $subject)
                                                 <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
                                             @endforeach
                                         @endforeach
+                                        @endif
                                     </td>
                                     <td>
-                                        @foreach(json_decode($student->admission->subjects)->optional as $subjects)
-                                            <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
-                                        @endforeach
+{{--                                        @foreach(json_decode($student->admission->subjects)->optional as $subjects)--}}
+{{--                                            <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>--}}
+{{--                                        @endforeach--}}
                                     </td>
                                     <td>
-                                        {{ $student->admission->ssc_year }}<br>
-                                        {{ $student->admission->ssc_roll }}<br>
-                                        {{ $student->admission->ssc_board }}<br>
-                                        {{ $student->admission->ssc_registration }}
+                                        {{ $student->student->admission->ssc_year ?? '' }}<br>
+                                        {{ $student->student->admission->ssc_roll ?? '' }}<br>
+                                        {{ $student->student->admission->ssc_board ?? '' }}<br>
+                                        {{ $student->student->admission->ssc_registration ?? '' }}
                                     </td>
                                     <td>
-                                        <img src="{{ asset('assets/img/students') }}/{{ $student->image }}" alt="" height="75">
+                                        <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image ?? '' }}" alt="" height="75">
                                     </td>
                                     <td class="only-print"></td>
                                 </tr>
@@ -154,6 +152,7 @@
             </div>
             <!-- /.col -->
         </div>
+     </div>
         <!-- /.row -->
     </section>
     <!-- /.content -->

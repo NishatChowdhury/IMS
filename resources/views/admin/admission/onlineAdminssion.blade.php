@@ -55,6 +55,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{ __('Admission Type') }}</th>
+                                    <th>{{ __('Admission Fee') }}</th>
                                     <th>{{ __('Session') }}</th>
                                     <th>{{ __('Class') }}</th>
                                     <th>{{ __('Group') }}</th>
@@ -69,6 +70,7 @@
                                 @foreach ($onlineAdmissions as $onlineAdmission)
                                     <tr>
                                         <td>{{ $onlineAdmission->type == 1 ? __('School') : __('College') }}</td>
+                                        <td>{{ $onlineAdmission->fee ?? 'Null' }}</td>
                                         <td>{{  $onlineAdmission->sessions->year ?? __('N/A') }}</td>
                                         <td>{{ $onlineAdmission->classes->name ?? __('N/A') }}</td>
                                         <td>{{ $onlineAdmission->group->name ?? __('N/A') }}</td>
@@ -170,6 +172,10 @@
                         <div class="form-group col-6">
                             <label for="">{{ __('Ending Date')}}</label>
                             <input type="date" name="end" id="end" class="form-control">
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="">{{ __('Admission Fee')}}</label>
+                            <input type="number" name="fee" id="fee" class="form-control" placeholder="Enter Admission Fee (Optional)">
                         </div>
                         <div class="form-group col-6" id="statusCheck">
                             <div class="custom-control custom-switch">

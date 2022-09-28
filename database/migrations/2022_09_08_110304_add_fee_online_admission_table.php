@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStudentAcademicRemoveAcademicIdExamResultsTable extends Migration
+class AddFeeOnlineAdmissionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddStudentAcademicRemoveAcademicIdExamResultsTable extends Migration
      */
     public function up()
     {
-         Schema::table('exam_results', function (Blueprint $table) {
-//            $table->dropColumn('academic_class_id');
-            $table->dropColumn('student_id');
-//            $table->unsignedBigInteger('student_academic_id');
+       Schema::table('online_admissions', function (Blueprint $table) {
+            $table->string('fee')->nullable()->after('status');
         });
     }
 
@@ -27,6 +25,8 @@ class AddStudentAcademicRemoveAcademicIdExamResultsTable extends Migration
      */
     public function down()
     {
-        //
+          Schema::table('online_admissions', function (Blueprint $table) {
+            $table->dropColumn('fee');
+        });
     }
 }

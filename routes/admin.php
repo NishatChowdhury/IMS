@@ -151,7 +151,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('student/drop/{id}','Backend\StudentController@dropOut')->name('student.dropOut');
     Route::get('student/subjects/{id}','Backend\StudentController@subjects')->name('student.subjects');
     Route::patch('student/{id}/assign','Backend\StudentController@assignSubject')->name('student.assignSubject');
-    Route::get('/load_student_id','Backend\StudentController@loadStudentId');
+    Route::get('/load_student_id/{id}','Backend\StudentController@loadStudentId')->name('student.load_student_id');
 
     Route::get('student/promotion','Backend\StudentController@promotion')->name('student.promotion');
     Route::post('student/promote','Backend\StudentController@promote')->name('student.promote');
@@ -323,6 +323,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     //issue/return books
     Route::get('library/issue_books','Backend\BookController@issueBook')->name('issueBook.index');
     Route::post('library/issue-books/store','Backend\BookController@issueBookStore')->name('issueBook.store');
+    Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
+    Route::get('library/return_books-search','Backend\BookController@returnBookSearch')->name('returnBook.search');
     Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
     Route::post('library/return-books/store','Backend\BookController@returnBookStore')->name('returnBook.store');
 

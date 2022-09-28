@@ -14,6 +14,7 @@ use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
 use App\Repository\StudentRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,6 +33,7 @@ class InstitutionController extends Controller
 
     public function academicyear()
     {
+
         $sessions = Session::all();
         return view ('admin.institution.academicyear', compact('sessions'));
     }
@@ -42,12 +44,11 @@ class InstitutionController extends Controller
 
     public function store_session(Request $request){
         //dd($request->all());
-        $validator = Validator::make($request->all(),[
+        $this->validate($request, [
             'session' => 'required',
             'start' => 'required',
             'end' => 'required'
         ]);
-
         $request['active'] = 0;
         Session::query()->create($request->all());
         return redirect('admin/institution/academicyear')->with('success', 'Academic year added successfully');
@@ -155,7 +156,7 @@ class InstitutionController extends Controller
 
     public function academicClasses()
     {
-        $classes = AcademicClass::withCount('studentAcademic')->get()->whereIn('session_id',activeYear());
+         $classes = AcademicClass::withCount('studentAcademic')->get()->whereIn('session_id',activeYear());
         // dd($classes);
         // return $sutdent = AcademicClass::->get();
         $repository = $this->repository;
@@ -390,7 +391,10 @@ class InstitutionController extends Controller
        $integerIDs = array_map('intval', $teacherID);
 
      $assignSubject = AssignSubject::find($request->assign_subject_id);
-     $assignSubject->update(['teacher_id' => $integerIDs]);
+     $assignSubject->update([
+         'teacher_id' => $integerIDs,
+         'updated_at' => Carbon::now(),
+     ]);
 
 
      return back();

@@ -402,6 +402,8 @@ class OnlineApplyController extends Controller
         $dataStore->group_id = $req->group_id;
         $dataStore->start = $req->start;
         $dataStore->end = $req->end;
+        $dataStore->fee = $req->fee;
+        $dataStore->type = $req->type;
         if($req->status == null){
              $dataStore->status = 0;
         }else{

@@ -45,6 +45,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" class="font-weight-semiBold">{{ __('Name') }}</th>
+                                    <th class="text-center">{{ __('Admission Fee') }}</th>
                                     <th class="text-center">{{ __('Expire Date') }}</th>
                                     <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
@@ -52,7 +53,8 @@
                                 <tbody>
                                 @foreach ($admissionStep as $admission)
                                     <tr>
-                                        <td>{{ $admission->classes->name }} {{ $admission->group_id ? $admission->group->name : '' }}</td>
+                                        <td>{{ $admission->classes->name ?? ''}} {{ $admission->group->name ?? ''}} </td>
+                                        <td class="text-center"> {{ $admission->fee > 0 ? $admission->fee . ' TK'  : 'Not Applicable' }}</td>
                                         <td class="text-center">
                                             {{ __('From') }} <b>{{ $admission->start->format('d F Y') }}</b> {{ __('To') }}
                                             <b>{{ $admission->end->format('d F Y') }}</b>

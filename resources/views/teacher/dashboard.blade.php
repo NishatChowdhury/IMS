@@ -94,11 +94,11 @@
 font-family: system-ui;
     color: #f2f2f2;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 12px;
     position: absolute;
     bottom: 0;
     font-weight: 800;
-    background: #8493bf;
+    background: #3f3f3f;
     padding: 2px 8px;
     border-radius: 2px;
 }

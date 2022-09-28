@@ -270,7 +270,7 @@ class FrontController extends Controller
          $events = UpcomingEvent::query()
                                 ->latest('date')
                                 ->whereNotIn('id', [$event->id])
-                                ->paginate(2);
+                                ->paginate(12);
         return view('front.pages.events',compact('event','events'));
     }
 
