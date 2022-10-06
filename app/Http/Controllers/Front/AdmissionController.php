@@ -58,7 +58,7 @@ class AdmissionController extends Controller
     {
 //        return $id;
 
-        $getData =  OnlineApply::where('password', $id)->first();
+        $getData =  OnlineApply::query()->where('password', $id)->first();
        if(empty($getData)){
             return back()->with('status', 'Your Application ID Not Match :)');
        }
@@ -75,6 +75,7 @@ class AdmissionController extends Controller
 
         return view('front.admission.admission-success',compact('student'));
     }
+
     public function admissionSuccessSchool()
     {
         return view('front.admission.admission-success-school');

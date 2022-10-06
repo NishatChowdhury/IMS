@@ -12,7 +12,6 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
-use App\Http\Controllers\Backend\DairyController;
 //use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
@@ -678,7 +677,7 @@ return view('form-pdf');
     Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
     Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
 //principal , chairman and institute message update route
-    Route::post('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+    Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
 

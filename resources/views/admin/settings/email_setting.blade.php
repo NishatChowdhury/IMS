@@ -37,7 +37,7 @@
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">
-                            {{ Form::open(['action'=>'Backend\emailSettingController@store','method'=>'post','files'=>true]) }}
+                            {{ Form::open(['action'=>'Backend\EmailSettingController@store','method'=>'post','files'=>true]) }}
                             <div class="form-group row">
                                 <div class="col-md-4">
                                     {{ Form::label('mail_driver', 'Mail Driver:') }}

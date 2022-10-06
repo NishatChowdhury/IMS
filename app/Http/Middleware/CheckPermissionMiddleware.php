@@ -31,10 +31,10 @@ class CheckPermissionMiddleware
             ->first();
 
         if(!$p){
-            abort(404);
+            abort(404,'Route name not found!');
         }
 
-        $roles = $p->roles;
+        $roles = $p->roles; // retrieve roles for the current route
         foreach ($roles as $role){
             $userRole = auth()->user()->roles->first();
             if($userRole->id == $role->id){

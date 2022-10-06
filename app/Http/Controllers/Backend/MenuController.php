@@ -28,7 +28,8 @@ class MenuController extends Controller
             'internal-result' => 'Internal Result',
             'teacher' => 'Teacher',
             'apply-school' => 'Online Admission (School)',
-            'applyCollege' => 'Online Admission (College)'
+            'applyCollege' => 'Online Admission (College)',
+            'alumni' => 'Alumni Registration'
         ];
          $menus = Menu::query()
             ->where('menu_id',null)

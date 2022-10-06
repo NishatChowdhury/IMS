@@ -115,7 +115,7 @@
             <div class="row align-items-center">
                 <div class="col-12 text-center cus_courl">
                     <h4>{{ __('Online Admission Form') }}</h4>
-                    <h1>Class {{ $onlineAdmission->classes->name ?? '' }}</h1>
+                    <h1>Class {{ $onlineAdmission->classes->name ?? '' }} {{ $onlineAdmission->group->name ?? '' }}</h1>
                 </div>
 
 
