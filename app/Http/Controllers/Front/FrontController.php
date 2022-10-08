@@ -486,4 +486,8 @@ class FrontController extends Controller
         return redirect()->back();
     }
 
+    public function form(){
+        return view('front.pages.member-add-form');
+    }
+
 }

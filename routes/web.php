@@ -101,3 +101,6 @@ Route::get('/load_online_student_info','Front\FrontController@loadStudentInfo');
 Route::get('lang/{id}',[FrontController::class,'lang'])->name('lang');
 
 Route::get('page/{uri}','Front\FrontController@page');
+
+Route::get('form','Front\FrontController@form');
+
