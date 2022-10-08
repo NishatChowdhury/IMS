@@ -34,7 +34,7 @@ class AlumniController extends Controller
             'institute' => 'required',
             'designation' => 'required',
             'address' => 'required',
-            'mobile' => 'required|number',
+            'mobile' => 'required|numeric',
             'dakhil_from' => 'required|integer',
             'image' => 'required|mimetypes:image/png,image/jpeg'
         ]);
@@ -47,16 +47,33 @@ class AlumniController extends Controller
         Alumni::query()->create($data);
         Session::flash('success','Form has been submitted!');
         $info = [
-            'contactNumbers' => 0,
-            'textBody' => 0
+            'contactNumbers' => $data['mobile'],
+            'textBody' => 'Your unique application id is '.$data['login']
         ];
-        //$this->sms($info);
+        $this->sms($info);
         return redirect('alumni/success')->with($data);
     }
 
     public function show(Request $request)
     {
-        return view('front.pages.alumni-show');
+        $this->validate($request,[
+            'applicationId' => 'required|exists:alumni,login',
+            'mobile' => 'required|exists:alumni'
+        ]);
+
+        $alumni = Alumni::query()
+            ->where('login',$request->applicationId)
+            ->where('mobile',$request->mobile)
+            ->first();
+
+        if(!$alumni){
+            return redirect()
+                ->back()
+                ->withInput(['applicationId'=>$request->applicationId,'mobile'=>$request->mobile])
+                ->withErrors(['applicationId'=>'We can\'t find you in our database']);
+        }
+
+        return view('front.pages.alumni-show',compact('alumni'));
     }
 
     public function success()
@@ -69,9 +86,9 @@ class AlumniController extends Controller
         $url = "https://sms.solutionsclan.com/api/sms/send";
         $data = [
             "apiKey" => smsConfig('api_key'),
-            "contactNumbers" => $data['mobile'],
+            "contactNumbers" => $data['contactNumbers'],
             "senderId" => smsConfig('sender_id'),
-            "textBody" => $data['textbody']
+            "textBody" => $data['textBody']
         ];
 
         $ch = curl_init();

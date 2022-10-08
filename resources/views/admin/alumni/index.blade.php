@@ -49,7 +49,7 @@
                                     <td>{{ $d->name }}</td>
                                     <td>{{ $d->mobile }}</td>
                                     <td>{{ $d->email }}</td>
-                                    <td><img src="{{ asset('storage') }}/{{ $d->image }}" alt=""></td>
+                                    <td><img src="{{ asset('storage') }}/{{ $d->image }}" width="100" alt=""></td>
                                     <td>
 
                                     </td>

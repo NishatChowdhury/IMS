@@ -586,48 +586,46 @@
                         </ul>
                     </li>
                 @endcan
-
-                <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
-                        <i class="nav-icon fas fa-comments"></i>
-                        <p>
-                            Communication
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('communication.quick') }}" class="nav-link {{ isActive('admin/communication/quick') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Quick SMS') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('communication.staff') }}" class="nav-link {{ isActive('admin/communication/staff') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Staff SMS') }}</p>
-                            </a>
-                        </li>
-{{--                        @can('middleware-passed','communication.history')--}}
-                            <li class="nav-item">
-                                <a href="{{ route('communication.history') }}" class="nav-link {{ isActive('admin/communication/history') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>SMS History</p>
-                                </a>
-                            </li>
-{{--                        @endcan--}}
-{{--                        @can('middleware-passed','communication.apiSetting')--}}
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{route('communication.apiSetting')}}" class="nav-link {{ isActive('admin/communication/apiSetting') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p> API Settings</p>
-                                </a>
-                            </li>
-{{--                        @endcan--}}
-                    </ul>
-                </li>
-
             @endcannot
+            <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
+                    <i class="nav-icon fas fa-comments"></i>
+                    <p>
+                        Communication
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('communication.quick') }}" class="nav-link {{ isActive('admin/communication/quick') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Quick SMS') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('communication.staff') }}" class="nav-link {{ isActive('admin/communication/staff') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Staff SMS') }}</p>
+                        </a>
+                    </li>
+                    {{--                        @can('middleware-passed','communication.history')--}}
+                    <li class="nav-item">
+                        <a href="{{ route('communication.history') }}" class="nav-link {{ isActive('admin/communication/history') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>SMS History</p>
+                        </a>
+                    </li>
+                    {{--                        @endcan--}}
+                    {{--                        @can('middleware-passed','communication.apiSetting')--}}
+                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                        <a href="{{route('communication.apiSetting')}}" class="nav-link {{ isActive('admin/communication/apiSetting') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> API Settings</p>
+                        </a>
+                    </li>
+                    {{--                        @endcan--}}
+                </ul>
+            </li>
             @can('middleware-passed','menu.index')
                 <li class="nav-item has-treeview {{ isActive(['admin/menus*','admin/pages*']) }}">
                     <a href="#" class="nav-link {{ isActive(['admin/cms*']) }}">

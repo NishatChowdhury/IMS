@@ -29,19 +29,17 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-white ti-id-badge"></span>
                                     </div>
-                                    <input type="text" name="applicationID" class="form-control border-left-0 pl-0" placeholder="Application ID">
+                                    {{ Form::text('applicationId',null,['class'=>'form-control border-left-0 pl-0','placeholder'=>'Application Id']) }}
                                 </div>
                                 <div class="input-group input-group--focus mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-white ti-mobile"></span>
                                     </div>
-                                    <input type="text" name="mobile" class="form-control border-left-0 pl-0" placeholder="Application ID">
+                                    {{ Form::text('mobile',null,['class'=>'form-control border-left-0 pl-0','placeholder'=>'Mobile Number']) }}
                                 </div>
 
                                 <button class="btn btn-block btn-primary">{{ __('Log In') }}</button>
-                                <p class="my-5 text-center">
-                                    {{--                                    Don’t have an account? <a href="page-signup.html" class="text-primary">Register</a>--}}
-                                </p>
+                                <p class="my-5 text-center"> </p>
                             </form>
                         </div>
                     </div>
