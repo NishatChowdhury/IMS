@@ -43,6 +43,7 @@
                         </div>
                         <div class="card-body">
                             <form action="{{route('instituteMessageUpdate')}}" method="POST" enctype="multipart/form-data">
+                                @method('patch')
                                 @csrf
                                 <input type="hidden" value="{{$message->alias ?? 'principal'}}" name="alias">
                                 <div class="mb-3">

@@ -597,20 +597,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('communication.quick')}}" class="nav-link {{ isActive('admin/communication/quick') }}">
+                            <a href="{{ route('communication.quick') }}" class="nav-link {{ isActive('admin/communication/quick') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Quick SMS') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('communication.staff')}}" class="nav-link {{ isActive('admin/communication/staff') }}">
+                            <a href="{{ route('communication.staff') }}" class="nav-link {{ isActive('admin/communication/staff') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Staff SMS') }}</p>
                             </a>
                         </li>
 {{--                        @can('middleware-passed','communication.history')--}}
                             <li class="nav-item">
-                                <a href="{{route('communication.history')}}" class="nav-link {{ isActive('admin/communication/history') }}">
+                                <a href="{{ route('communication.history') }}" class="nav-link {{ isActive('admin/communication/history') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>SMS History</p>
                                 </a>
@@ -1003,6 +1003,14 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">
+                <a href="{{ action('Backend\AlumniController@index') }}" class="nav-link {{ isActive(['alumni*']) }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Alumni
+                    </p>
+                </a>
             </li>
         </ul>
     </nav>

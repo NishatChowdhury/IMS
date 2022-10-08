@@ -7,6 +7,8 @@ use App\Models\Frontend\Alumni;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AlumniController extends Controller
 {
@@ -23,14 +25,38 @@ class AlumniController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        Alumni::query()->create($request->all());
+        $this->validate($request,[
+            'name' => 'required',
+            'father' => 'required',
+            'mother' => 'required',
+            'dob' => 'required|date',
+            'nid' => 'required',
+            'institute' => 'required',
+            'designation' => 'required',
+            'address' => 'required',
+            'mobile' => 'required|number',
+            'dakhil_from' => 'required|integer',
+            'image' => 'required|mimetypes:image/png,image/jpeg'
+        ]);
+        $data = $request->except('image');
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('alumni');
+            $data['image'] = $image;
+        }
+        $data['login'] = $this->generateRandomNumber();
+        Alumni::query()->create($data);
         Session::flash('success','Form has been submitted!');
-        return redirect('alumni/success')->with(['user'=>$request->all()]);
+        $info = [
+            'contactNumbers' => 0,
+            'textBody' => 0
+        ];
+        //$this->sms($info);
+        return redirect('alumni/success')->with($data);
     }
 
     public function show(Request $request)
     {
-        dd($request->all());
+        return view('front.pages.alumni-show');
     }
 
     public function success()
@@ -59,6 +85,13 @@ class AlumniController extends Controller
         echo "$response";
         curl_close($ch);
 
+    }
+
+    private static function generateRandomNumber()
+    {
+        $number = Str::random(9);
+        if (Alumni::query()->where('login', $number)->count() > 0) self::generateRandomNumber();
+        return $number;
     }
 
 }

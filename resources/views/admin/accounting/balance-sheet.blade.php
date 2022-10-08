@@ -48,7 +48,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h3>{{ __('Profit & Loss')}} </h3>
+                            <h3>{{ __('Balance Sheet')}} </h3>
                         </div>
 
                         <div class="card-body">
@@ -72,10 +72,12 @@
                                         @foreach($assets->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
-                                                <div class="d-flex justify-content-between">
-                                                    <span>&emsp;{{ $coa->name }}</span>
-                                                    <span>{{ number_format($ass[] = balance($coa->id,$start,$end,'dr'),2) }}</span>
-                                                </div>
+                                                @if(balance($coa->id,$start,$end,'dr') != 0)
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>&emsp;{{ $coa->name }}</span>
+                                                        <span>{{ number_format($ass[] = balance($coa->id,$start,$end,'dr'),2) }}</span>
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                     </td>
@@ -87,19 +89,29 @@
                                         @foreach($liabilities->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
-                                                <div class="d-flex justify-content-between">
-                                                    <span>&emsp;{{ $coa->name }}</span>
-                                                    <span>{{ number_format($lib[] = balance($coa->id,$start,$end,'cr'),2) }}</span>
-                                                </div>
+                                                @if(balance($coa->id,$start,$end,'cr') != 0)
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>&emsp;{{ $coa->name }}</span>
+                                                        <span>{{ number_format($lib[] = balance($coa->id,$start,$end,'cr'),2) }}</span>
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                         @foreach($equities->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
-                                                <div class="d-flex justify-content-between">
-                                                    <span>&emsp;{{ $coa->name }}</span>
-                                                    <span>{{ number_format($equ[] = balance($coa->id,$start,$end,'cr'),2) }}</span>
-                                                </div>
+                                                @if(balance($coa->id,$start,$end,'cr') != 0)
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>&emsp;{{ $coa->name }}</span>
+                                                        <span>{{ number_format($equ[] = balance($coa->id,$start,$end,'cr'),2) }}</span>
+                                                    </div>
+                                                @endif
+                                                @if(balance($coa->id,$start,$end,'dr') != 0)
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>&emsp;{{ $coa->name }}</span>
+                                                        <span>(-) {{ number_format($equN[] = balance($coa->id,$start,$end,'dr'),2) }}</span>
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                     </td>
@@ -109,7 +121,7 @@
                                         {{ number_format(array_sum($ass),2) }}
                                     </th>
                                     <th class="text-right">
-                                        {{ number_format(array_sum($lib) + array_sum($equ) + $np,2) }}
+                                        {{ number_format(array_sum($lib) + (array_sum($equ) - array_sum($equN)) + $np,2) }}
                                     </th>
                                 </tr>
                                 </tbody>

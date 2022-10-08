@@ -3,7 +3,6 @@
 @section('title','Alumni Registration')
 
 @section('content')
-
     <div class="py-5 bg-dark">
         <div class="container">
             <div class="row align-items-center">
@@ -30,8 +29,7 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="alert alert-primary" role="alert">
-                        {{ __(' A simple primary alert with') }} <a href="#" class="alert-link">{{ __('an example link')}}</a>. {{ __('Give it a
-                        click if you like.')}}
+                        {{ __('Print existing submitted form ') }} <a href="{{ route('alumni.login') }}" class="alert-link">{{ __('here')}}</a>.
                     </div>
 
                 </div>
@@ -285,7 +283,13 @@
                                     <label for="example-text-input" class="col-2 col-form-label text-right">ছবি</label>
                                     <div class="col-10">
                                         <input type="file" name="image">
+                                        @error('image')
+                                        <small class="form-text text-muted">
+                                            {{ $message }}
+                                        </small>
+                                        @enderror
                                     </div>
+
                                 </div>
 
                             </div>

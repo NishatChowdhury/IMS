@@ -9,9 +9,9 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="text-success">
-                        {{ __('Your application request has been submitted successfully.') }}<br>
-                        <a href="{{ route('alumni.login') }}" class="btn btn-primary">Download Application Form</a>
+                        {{ Session::get('name') }} {{ __('your application request has been submitted successfully.') }} {{ __('Your application id is ') }}{{ Session::get('login') }}
                     </h3>
+                    <a href="{{ route('alumni.login') }}" class="btn btn-primary">Download Application Form</a>
                 </div>
             </div>
         </div>

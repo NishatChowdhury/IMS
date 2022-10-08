@@ -103,7 +103,7 @@
                                 <ul style="list-style: none">
                                     <li> <i class="fas fa-circle" style="color: #008000"></i> <span> P - Present </span></li>
                                     <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> D - Late/Delay </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> R - Left without completing the day </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> E - Early Leave </span></li>
                                     <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> A - Absent </span></li>
                                     <li> <i class="fas fa-circle" style="color: #878484"></i> <span> L - Leave </span></li>
                                 </ul>
