@@ -18,6 +18,7 @@ class CreatePermissionsTable extends Migration
             $table->string('name');
             $table->string('guard_name')->nullable();
             $table->string('group_name');
+            $table->unsignedBigInteger('module_id');
             $table->timestamps();
         });
     }
