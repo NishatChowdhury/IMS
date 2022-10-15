@@ -104,3 +104,7 @@ Route::get('page/{uri}','Front\FrontController@page');
 
 Route::get('form','Front\FrontController@form');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
