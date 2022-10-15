@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Front\AlumniController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -100,9 +101,13 @@ Route::get('/load_online_student_info','Front\FrontController@loadStudentInfo');
 
 Route::get('lang/{id}',[FrontController::class,'lang'])->name('lang');
 
+Route::post('alumni/store',[AlumniController::class,'store'])->name('alumni.store');
+Route::get('alumni/success',[AlumniController::class,'success'])->name('alumni.success');
+Route::get('alumni/login',[AlumniController::class,'index'])->name('alumni.login');
+Route::post('alumni/show/',[AlumniController::class,'show'])->name('alumni.show');
+
 Route::get('page/{uri}','Front\FrontController@page');
 
-Route::get('form','Front\FrontController@form');
 
 
 Auth::routes();

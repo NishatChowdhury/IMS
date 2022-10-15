@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Backend\InstituteMessage;
+use App\Models\Frontend\Alumni;
 use App\Models\Frontend\Language;
 use Carbon\Carbon;
 use App\Models\Backend\Bank;
@@ -56,13 +57,13 @@ class FrontController extends Controller
 
         $sliders = Slider::query()
             //->where('start','<',Carbon::StudentControllertoday())
-//            ->where(function($query){
-//                $query->where('start','<',Carbon::today())->orWhere('start',null);
-//            })
-//            //->where('end','>',Carbon::today())
-//            ->where(function($query){
-//                $query->where('end','>',Carbon::today())->orWhere('end',null);
-//            })
+            ->where(function($query){
+                $query->where('start','<',Carbon::today())->orWhere('start',null);
+            })
+            //->where('end','>',Carbon::today())
+            ->where(function($query){
+                $query->where('end','>',Carbon::today())->orWhere('end',null);
+            })
             ->where('active',1)
             ->get();
         $content = Page::all();
@@ -486,8 +487,5 @@ class FrontController extends Controller
         return redirect()->back();
     }
 
-    public function form(){
-        return view('front.pages.member-add-form');
-    }
 
 }

@@ -8,12 +8,11 @@
 
     <!-- SEO Meta-->
     <meta name="description" content="IMS software for educational institute">
-    <meta name="keywords" content="web point ltd,school,college,ims,software">
+    <meta name="keywords" content="web point ltd, school, college, ims, software">
     <meta name="author" content="web point ltd">
 
     <!-- viewport scale-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 
     <!-- Favicon and Apple Icons-->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}">

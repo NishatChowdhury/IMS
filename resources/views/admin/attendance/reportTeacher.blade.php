@@ -89,7 +89,7 @@
                                 <ul style="list-style: none">
                                     <li> <i class="fas fa-circle" style="color: #008000"></i> <span> {{ __('P - Present')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span>{{ __(' D - Late/Delay ')}}</span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> {{ __('R - Left without completing the day')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> {{ __('E - Early Leave')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> {{ __('A - Absent')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #878484"></i> <span>{{ __(' L - Leave ')}}</span></li>
                                 </ul>

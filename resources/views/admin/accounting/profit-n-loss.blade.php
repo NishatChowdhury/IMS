@@ -22,23 +22,23 @@
 
     <div class="container">
         <div class="card mb-2">
-                {{ Form::open(['action'=>'Backend\AccountingController@profitNLoss','method'=>'get']) }}
-                <div class="d-flex justify-content-center">
-                    <div class="form-group col-md-3">
-                        <label for="" class="col-form-label">{{ __('Start Date')}}</label>
-                        {{ Form::date('start_date',null,['class'=>'form-control']) }}
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="" class="col-form-label">{{ __('End Date')}}</label>
-                        {{ Form::date('end_date',null,['class'=>'form-control']) }}
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="" class="col-form-label">&nbsp;</label><br>
-                        <button type="submit" class="btn btn-info">{{ __('Search')}}</button>
-                    </div>
+            {{ Form::open(['action'=>'Backend\AccountingController@profitNLoss','method'=>'get']) }}
+            <div class="d-flex justify-content-center">
+                <div class="form-group col-md-3">
+                    <label for="" class="col-form-label">{{ __('Start Date')}}</label>
+                    {{ Form::date('start_date',null,['class'=>'form-control']) }}
                 </div>
-                {{ Form::close() }}
+                <div class="form-group col-md-3">
+                    <label for="" class="col-form-label">{{ __('End Date')}}</label>
+                    {{ Form::date('end_date',null,['class'=>'form-control']) }}
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="" class="col-form-label">&nbsp;</label><br>
+                    <button type="submit" class="btn btn-info">{{ __('Search')}}</button>
+                </div>
             </div>
+            {{ Form::close() }}
+        </div>
     </div>
 
     <!-- ***/Chart of Accounts page inner Content Start-->
@@ -48,7 +48,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h3>{{ __('Profit & Loss ')}}</h3>
+                            <h3>{{ __('Profit & Loss')}}</h3>
                         </div>
 
                         <div class="card-body">
@@ -72,10 +72,12 @@
                                         @foreach($expenses->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
-                                                <div class="d-flex justify-content-between">
-                                                    <span>{{ $coa->name }}</span>
-                                                    <span>{{ number_format($ex[] = balance($coa->id,$start,$end,'dr'),2) }}</span>
-                                                </div>
+                                                @if(balance($coa->id,$start,$end,'dr') != 0)
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>{{ $coa->name }}</span>
+                                                        <span>{{ number_format($ex[] = balance($coa->id,$start,$end,'dr'),2) }}</span>
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                     </td>
@@ -83,10 +85,12 @@
                                         @foreach($incomes->childs as $parents)
                                             <b>{{ $parents->name }}</b>
                                             @foreach($parents->children as $coa)
-                                                <div class="d-flex justify-content-between">
-                                                    <span>{{ $coa->name }}</span>
-                                                    <span>{{ number_format($in[] = balance($coa->id,$start,$end,'cr'),2) }}</span>
-                                                </div>
+                                                @if(balance($coa->id,$start,$end,'cr') != 0)
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>{{ $coa->name }}</span>
+                                                        <span>{{ number_format($in[] = balance($coa->id,$start,$end,'cr'),2) }}</span>
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                     </td>
@@ -98,7 +102,7 @@
                                                 <span>{{ __('To Gross Profit')}}</span>
                                                 <span>
                                                     {{ number_format($ex[] = netProfit($start,$end),2) }}
-{{--                                                    {{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}--}}
+                                                    {{--                                                    {{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}--}}
                                                 </span>
                                             </div>
                                         @endif
@@ -109,7 +113,7 @@
                                                 <span>By Gross Loss</span>
                                                 <span>
                                                     {{ number_format($in[] = netProfit($start,$end),2) }}
-{{--                                                    {{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}--}}
+                                                    {{--                                                    {{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}--}}
                                                 </span>
                                             </div>
                                         @endif

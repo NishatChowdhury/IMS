@@ -75,7 +75,7 @@
                     <div class="row">
                         <table class="table table-bordered table-personal">
                             <tr>
-                                <td>{{ __('Student's ID')}}</td>
+                                <td>{{ __('Student\'s ID')}}</td>
                                 <td>{{ $student['studentId'] }}</td>
                             </tr>
                             <tr>
@@ -87,11 +87,11 @@
                                 <td>{{ $student['name'] }}</td>
                             </tr>
                             <tr>
-                                <td>{{ __('Father's Name')}}</td>
+                                <td>{{ __('Father\'s Name')}}</td>
                                 <td>{{ $student['father'] }}</td>
                             </tr>
                             <tr>
-                                <td>{{ __('Mother's Name')}}</td>
+                                <td>{{ __('Mother\'s Name')}}</td>
                                 <td>{{ $student['mother'] }}</td>
                             </tr>
                             <tr>
@@ -137,21 +137,21 @@
                             <td>{{ __('Bangla')}}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('Guardian's Name')}}</td>
+                            <td>{{ __('Guardian\'s Name')}}</td>
                             <td>{{ $student['guardian_name'] }}</td>
-                            <td>{{ __('Guardian's Profession')}}</td>
+                            <td>{{ __('Guardian\'s Profession')}}</td>
                             <td>{{ $student['father_occupation'] }}</td>
                         </tr>
                         <tr>
                             <td>{{ __('Relation with Guardian')}}</td>
                             <td>{{ $student['relation_with_guardian'] }}</td>
-                            <td>{{ __('Guardian's Annual Income')}}</td>
+                            <td>{{ __('Guardian\'s Annual Income')}}</td>
                             <td>{{ $student['yearly_income'] }}</td>
                         </tr>
                         <tr>
                             <td>{{ __('Total Family Members')}}</td>
                             <td>{{ $student['total_member'] }}</td>
-                            <td>{{ __('Guardian's NID no.')}}</td>
+                            <td>{{ __('Guardian\'s NID no.')}}</td>
                             <td>{{ $student['guardian_nid'] }}</td>
                         </tr>
                         <tr>
@@ -167,9 +167,9 @@
                             <td>{{ \App\Models\Backend\Session::query()->findOrNew($student['session_id'])->year }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('Student's Mobile')}}</td>
+                            <td>{{ __('Student\'s Mobile')}}</td>
                             <td>{{ $student['mobile'] }}</td>
-                            <td>{{ __('Guardian's Mobile')}}</td>
+                            <td>{{ __('Guardian\'s Mobile')}}</td>
                             <td>{{ $student['guardian_mobile'] }}</td>
                         </tr>
                     </table>
@@ -224,8 +224,8 @@
             <div class="row">
                 <table class="table table-bordered table-address">
                     <tr>
-                        <td colspan="2">{{ __('Student's Present Address')}}</td>
-                        <td colspan="2">{{ __('Student's Permanent Address')}}</td>
+                        <td colspan="2">{{ __('Student\'s Present Address')}}</td>
+                        <td colspan="2">{{ __('Student\'s Permanent Address')}}</td>
                     </tr>
                     <tr>
                         <td>House Number</td>
@@ -315,10 +315,10 @@
             </div>
             <div class="row marginTop-100" style="font-weight: bold">
                 <div class="col-md-6 text-center">
-                    <span style="border-top:1px solid #333">{{ __('Student's Signature & Date')}}</span>
+                    <span style="border-top:1px solid #333">{{ __('Student\'s Signature & Date')}}</span>
                 </div>
                 <div class="col-md-6 text-center">
-                    <span style="border-top:1px solid #333">{{ __('Guardian's Signature & Date')}}</span>
+                    <span style="border-top:1px solid #333">{{ __('Guardian\'s Signature & Date')}}</span>
                 </div>
             </div>
             <div class="row marginTop-65 mb-5" style="font-weight: bold">

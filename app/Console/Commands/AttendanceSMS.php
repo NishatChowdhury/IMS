@@ -74,7 +74,7 @@ class AttendanceSMS extends Command
         $contacts = $student->mobile;
         $senderid = smsConfig('sender_id');
         $sms = $msg;
-        $URL = "http://masking.mdlsms.com/smsapi?api_key=".urlencode($api_key)."&type=text&contacts=".$contacts."&senderid=".urlencode($senderid)."&msg=".urlencode($sms);
+        $URL = "https://sms.solutionsclan.com/smsapi?apiKey=".urlencode($api_key)."&contactNumbers=".$contacts."&senderId=".urlencode($senderid)."&textBody=".urlencode($sms);
 
         $ch = curl_init();
         curl_setopt ($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/html; charset=UTF-8']);

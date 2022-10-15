@@ -44,14 +44,14 @@ class StudentController extends Controller
     {
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
-      //return
+        //return
 
         $user = auth()->user();
 
         $attendances = Attendance::query()
-         ->where('student_academic_id',$user->studentAcademic->id)
-         ->whereBetween('date',[$dateFrom,$dateTo])
-         ->get();
+            ->where('student_academic_id',$user->studentAcademic->id)
+            ->whereBetween('date',[$dateFrom,$dateTo])
+            ->get();
         //dd($student);
 
         $attendanceToday = Attendance::query()
@@ -65,18 +65,19 @@ class StudentController extends Controller
                 $data[] = [
                     'id' => $attendance->id,
                     'date' => date('d-m-Y', strtotime($attendance->date)),
-                    'inTime' => $attendance->entry,
-                    'outTime' => $attendance->exit,
-                    'status' => $attendance->status,
+                    'inTime' => $attendance->manual_in_time ?: $attendance->in_time,
+                    'outTime' => $attendance->manual_out_time ?: $attendance->out_time,
+                    'status' => $attendance->attendanceStatus->code ?? '',
                 ];
             }
+
             return response()->json([
                 'status' => true,
-                'today' =>[
+                'today' => [
                     'date' => date('d-m-Y', strtotime(now())),
-                    'inTime' => $attendanceToday->entry ?? '',
-                    'outTime' => $attendanceToday->exit ?? '',
-                    'status' => $attendanceToday->status ?? '',
+                    'inTime' => $attendanceToday->manual_in_time ?: $attendanceToday->in_time,
+                    'outTime' => $attendanceToday->manual_out_time ?: $attendanceToday->out_time,
+                    'status' => $attendanceToday->attendanceStatus->code ?? '',
                 ],
                 'dateFrom' => date('d-m-Y', strtotime($dateFrom)),
                 'dateTo' => date('d-m-Y', strtotime($dateTo)),
