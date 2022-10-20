@@ -1010,6 +1010,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">
+                <a href="{{ route('backup.db') }}" class="nav-link {{ isActive(['alumni*']) }}">
+                    <i class="nav-icon fas fa-database"></i>
+                    <p>
+                        Db-Backup
+                    </p>
+                </a>
+            </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

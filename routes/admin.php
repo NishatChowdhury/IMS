@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AlumniController;
+use App\Http\Controllers\Backend\DbBackupContoller;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
@@ -681,6 +682,12 @@ return view('form-pdf');
     Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
-Route::get('alumni',[AlumniController::class,'index'])->name('alumni');
+    Route::get('alumni',[AlumniController::class,'index'])->name('alumni');
+
+    //Database backup
+    Route::get('db-backup',[DbBackupContoller::class,'index'])->name('backup.db');
+    Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
+    Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
 
 });
+

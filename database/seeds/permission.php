@@ -560,7 +560,8 @@ $permissionGroup = [
               "exam.getfinalresultrule",
               "exam.finalResultNew",
         ],
-    ],[
+    ],
+    [
         'group_name' => 'Role',
         'permissions' => [
              "role.index",
@@ -569,7 +570,15 @@ $permissionGroup = [
               "role.edit",
               "role.update",
         ],
-    ]
+    ],
+    [
+        'group_name' => 'db-backup',
+        'permissions' => [
+            "backup.db",
+            "backup.download",
+            "backup.create",
+        ],
+    ],
 
    ];
 

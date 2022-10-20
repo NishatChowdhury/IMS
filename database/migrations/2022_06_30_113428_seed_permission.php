@@ -581,7 +581,15 @@ class SeedPermission extends Migration
                     "role.edit",
                     "role.update",
                 ],
-            ]
+            ],
+            [
+            'group_name' => 'db-backup',
+            'permissions' => [
+                "backup.db",
+                "backup.download",
+                "backup.create",
+            ],
+        ],
 
         ];
 
