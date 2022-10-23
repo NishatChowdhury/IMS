@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\BloodGroup;
-use App\Models\Backend\Gender;
 use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
+use App\Models\Frontend\BloodGroup;
+use App\Models\Frontend\Gender;
 use App\Models\StaffLogin;
 use App\Models\TeacherAcademic;
 use App\Models\TeacherCourse;

@@ -31,7 +31,12 @@ class AcademicClass extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function group()
+    /**
+     * An academic class is belongs to a group
+     *
+     * @return BelongsTo
+     */
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
     }

@@ -51,53 +51,54 @@
 
 {{--<div id="app">--}}
 
-    <header class="site-header bg-dark text-white-0_5 no-print">
-            @include('front.inc.info-bar')
-{{--        <info-bar></info-bar>--}}
-    </header><!-- END site header-->
+<header class="site-header bg-dark text-white-0_5 no-print">
+    @include('front.inc.info-bar')
+    {{--        <info-bar></info-bar>--}}
+</header><!-- END site header-->
 
 
 
-    <nav class="ec-nav sticky-top bg-white no-print">
-{{--        @include('front.inc.menu')--}}
-        @include('front.inc.dynamic-menu')
-    </nav> <!-- END ec-nav -->
+<nav class="ec-nav sticky-top bg-white no-print">
+    {{--        @include('front.inc.menu')--}}
+    @include('front.inc.dynamic-menu')
+</nav> <!-- END ec-nav -->
 
-    <div class="site-search no-print">
-        <div class="site-search__close bg-black-0_8"></div>
-        <form class="form-site-search" action="#" method="POST">
-            <div class="input-group">
-                <input type="text" placeholder="Search" class="form-control py-3 border-white" required="">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>
-                </div>
+<div class="site-search no-print">
+    <div class="site-search__close bg-black-0_8"></div>
+    <form class="form-site-search" action="#" method="POST">
+        <div class="input-group">
+            <input type="text" placeholder="Search" class="form-control py-3 border-white" required="">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"><i class="ti-search"></i></button>
             </div>
-        </form>
-    </div> <!-- END site-search-->
+        </div>
+    </form>
+</div> <!-- END site-search-->
 
 
 
 
-    @yield('content')
+@yield('content')
 
 
 
 
-    <footer class="site-footer no-print">
-        @include('front.inc.footer-top')
-        @include('front.inc.footer-bottom')
-    </footer> <!-- END site-footer -->
+<footer class="site-footer no-print">
+    @include('front.inc.footer-top')
+    @include('front.inc.footer-bottom')
+</footer> <!-- END site-footer -->
 
 
-    <div class="scroll-top no-print">
-        <i class="ti-angle-up"></i>
-    </div>
+<div class="scroll-top no-print">
+    <i class="ti-angle-up"></i>
+</div>
 
 {{--    <script src="{{ asset('js/app.js') }}"></script>--}}
-    <script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+<script src="{{ asset('assets/vendor/owl.carousel/dist/owl.carousel.js') }}"></script>
+<script src="{{ asset('assets/js/vendors.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js"></script>
 
 <!-- Pull to refresh -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pulltorefreshjs/0.1.21/index.umd.min.js" integrity="sha512-oEw4xuIi6LVmWze9XMkOUKVrN3l4gIMDrnuci0T3NlcM5tbK9R21ZgP6mqOcit7m41sahXSIG88WOPKgFSWalA==" crossorigin="anonymous"></script>
@@ -111,7 +112,7 @@
     });
 </script>
 
-    @yield('script')
+@yield('script')
 
 {{--</div>--}}
 </body>

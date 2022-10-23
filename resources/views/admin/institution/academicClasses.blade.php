@@ -181,7 +181,7 @@
     <!-- ***/ Pop Up Model for Edit Session Class -->
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Academic Class</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -192,7 +192,7 @@
                     {!! Form::open(['action'=>'Backend\InstitutionController@updateAcademicClass', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Session</label>
+                        <label for="" class="col-sm-3 col-form-label">Session</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::select('session_id',$repository->sessions(), null, ['class'=>'form-control session_id', 'placeholder'=>'Select Session','required']) !!}
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class</label>
+                        <label for="" class="col-sm-3 col-form-label">Class</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::select('class_id',$repository->classes(), null, ['class'=>'form-control class_id', 'placeholder'=>'Select Class','required']) !!}
@@ -208,7 +208,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Section</label>
+                        <label for="" class="col-sm-3 col-form-label">Section</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::select('section_id',$repository->sections(), null, ['class'=>'form-control section_id', 'placeholder'=>'Select Section']) !!}
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Group</label>
+                        <label for="" class="col-sm-3 col-form-label">Group</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::select('group_id',$repository->groups(), null, ['class'=>'form-control group_id', 'placeholder'=>'Select Group']) !!}
@@ -233,7 +233,6 @@
                     {!! Form::close() !!}
 
                 </div>
-                <div class="modal-footer"></div>
             </div>
         </div>
     </div>

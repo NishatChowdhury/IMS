@@ -34,15 +34,11 @@
                             </div>
                         @endif
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
+                        <div class="card-header">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div style="float: left;">
+                                    <div>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
-                                    </div>
-                                    <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> </button>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +93,7 @@
     <!-- ***/ Pop Up Model for button -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -133,7 +129,6 @@
                     {!! Form::close() !!}
 
                 </div>
-                <div class="modal-footer"></div>
             </div>
         </div>
     </div>
@@ -142,9 +137,9 @@
     <!-- ***/ Pop Up Model for Edit Session Class -->
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -180,7 +175,6 @@
                     {!! Form::close() !!}
 
                 </div>
-                <div class="modal-footer"></div>
             </div>
         </div>
     </div>

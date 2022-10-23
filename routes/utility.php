@@ -1,15 +1,12 @@
 <?php
 
-use App\Models\AttendanceStatus;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AppliedStudent;
 use App\Models\Backend\Attendance;
-use App\Models\Backend\BloodGroup;
 use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\FinalMark;
 use App\Models\Backend\FinalResult;
-use App\Models\Backend\Gender;
 use App\Models\Backend\Grade;
 use App\Models\Backend\Mark;
 use App\Models\Backend\RawAttendance;
@@ -17,17 +14,15 @@ use App\Models\Backend\Religion;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentLogin;
 use App\Models\Backend\weeklyOff;
+use App\Models\Frontend\BloodGroup;
+use App\Models\Frontend\Gender;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
 
 
 Route::get('system/migrate',function(){

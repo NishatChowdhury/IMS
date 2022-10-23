@@ -11,19 +11,19 @@ namespace App\Repository;
 
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AssignSubject;
-use App\Models\Backend\BloodGroup;
 use App\Models\Backend\BookCategory;
 use App\Models\Backend\City;
 use App\Models\Backend\Classes;
 use App\Models\Backend\Country;
 use App\Models\Backend\Division;
-use App\Models\Backend\Gender;
 use App\Models\Backend\Group;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Section;
 use App\Models\Backend\Session;
 use App\Models\Backend\Student;
 use App\Models\Backend\Subject;
+use App\Models\Frontend\BloodGroup;
+use App\Models\Frontend\Gender;
 
 class StudentRepository
 {

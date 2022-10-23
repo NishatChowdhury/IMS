@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AssignSubject;
 use App\Models\Backend\Attendance;
-use App\Models\Backend\BloodGroup;
 use App\Models\Backend\City;
 use App\Models\Backend\Classes;
 use App\Models\Backend\Country;
 use App\Models\Backend\Father;
-use App\Models\Backend\Gender;
 use App\Models\Backend\Group;
 use App\Models\Backend\Guardian;
 use App\Models\Backend\Location;
@@ -25,15 +23,16 @@ use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
-use App\Models\Backend\Transport;
+use App\Models\Frontend\BloodGroup;
+use App\Models\Frontend\Gender;
 use App\Models\LocationStudent;
 use App\Models\Student\StudentLogin;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\Rule;
 
 //use App\State;
 
@@ -340,7 +339,7 @@ class StudentController extends Controller
             'birth_certificate' => 'required|integer',
             'nationality' => 'required',
             'disability' => 'required',
-            'studentId' => 'required|unique:students,studentId,'.$student->id,
+            'studentId' => ['required',Rule::unique('students')->ignore($id)],
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',

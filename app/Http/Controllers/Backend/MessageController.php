@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\InstituteMessage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -11,15 +12,40 @@ use Illuminate\Validation\ValidationException;
 
 class MessageController extends Controller
 {
-    public function editChairmanMessage(){
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display chairman message update page
+     *
+     * @return View
+     */
+    public function editChairmanMessage(): View
+    {
          $message = InstituteMessage::query()->where('alias','chairman')->first();
         return view('admin.aboutInstitute.chairman',compact('message'));
     }
-    public function editAboutInstitute(){
+
+    /**
+     * Display about institute update page
+     *
+     * @return View
+     */
+    public function editAboutInstitute(): View
+    {
         $aboutInstitute = InstituteMessage::query()->where('alias','about')->first();
         return view('admin.aboutInstitute.about',compact('aboutInstitute'));
     }
-    public function editPrincipalMessage(){
+
+    /**
+     * Display principal update page
+     *
+     * @return View
+     */
+    public function editPrincipalMessage(): View
+    {
         $message = InstituteMessage::query()->where('alias','principal')->first();
         return view('admin.aboutInstitute.principal',compact('message'));
     }

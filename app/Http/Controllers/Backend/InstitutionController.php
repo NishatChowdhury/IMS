@@ -37,7 +37,7 @@ class InstitutionController extends Controller
     }
 
     public function academicyearstore(Request $request){
-       return $request->all();
+        return $request->all();
     }
 
     public function store_session(Request $request){
@@ -65,19 +65,19 @@ class InstitutionController extends Controller
     }
 
     public function delete_session($id){
-         $session = Session::query()->findOrFail($id);
-         $session->delete();
-         return redirect('admin/institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
+        $session = Session::query()->findOrFail($id);
+        $session->delete();
+        return redirect('admin/institution/academicyear')->with('success', 'Academic Year Deleted Successfully');
     }
 
     public function sessionStatus($id){
-         $session = Session::query()->findOrFail($id);
-         if($session->active == 0){
-             $session->update(['active'=>1]);
-         }else{
-             $session->update(['active'=>0]);
-         }
-         return redirect('admin/institution/academicyear')->with('success', 'Status change successfully!');
+        $session = Session::query()->findOrFail($id);
+        if($session->active == 0){
+            $session->update(['active'=>1]);
+        }else{
+            $session->update(['active'=>0]);
+        }
+        return redirect('admin/institution/academicyear')->with('success', 'Status change successfully!');
     }
 
     public function section_group()
@@ -121,7 +121,7 @@ class InstitutionController extends Controller
     }
 
     public function create_group(Request $req){
-         $req->validate([
+        $req->validate([
             'name' => 'required|unique:groups',
         ]);
         Group::query()->create($req->all());
@@ -165,11 +165,11 @@ class InstitutionController extends Controller
     public function storeAcademicClass(Request $req){
 
         $checkexits = AcademicClass::query()
-                                    ->where('session_id', $req->session_id)
-                                    ->where('class_id', $req->class_id)
-                                    ->where('section_id', $req->section_id)
-                                    ->where('group_id', $req->group_id)
-                                    ->exists();
+            ->where('session_id', $req->session_id)
+            ->where('class_id', $req->class_id)
+            ->where('section_id', $req->section_id)
+            ->where('group_id', $req->group_id)
+            ->exists();
         if($checkexits){
             return back()->with('status','Academic Class Already Exist :) ');
         }
@@ -181,8 +181,8 @@ class InstitutionController extends Controller
 
     public function editAcademicClass(Request $request)
     {
-       $data = AcademicClass::query()->findOrFail($request->id);
-       return $data;
+        $data = AcademicClass::query()->findOrFail($request->id);
+        return $data;
     }
 
     public function updateAcademicClass(Request $request)
@@ -195,7 +195,7 @@ class InstitutionController extends Controller
 
     public function classes()
     {
-        $classes = Classes::withCount('studentAcademic')->get();
+        $classes = Classes::query()->withCount('studentAcademic')->get();
 
         return view ('admin.institution.classes', compact('classes'));
     }
@@ -238,7 +238,7 @@ class InstitutionController extends Controller
     /*Subjects Start*/
     public function subjects()
     {
-         $subjects = Subject::all();
+        $subjects = Subject::query()->orderBy('level')->get();
         return view ('admin.institution.subjects', compact('subjects'));
     }
 
@@ -279,8 +279,8 @@ class InstitutionController extends Controller
     {
         $class = AcademicClass::query()->findOrFail($classId);
         //$classes = AcademicClass::all()->pluck('name', 'id');
-         $subject = Subject::all();
-         $subjects = $subject->groupBy('type');
+        $subject = Subject::all();
+        $subjects = $subject->groupBy('type');
         //$staffs = Staff::all()->pluck('name','id');
         $assignedSubjects = AssignSubject::query()->where('academic_class_id',$classId)->get();
         return view('admin.institution.classsubjects', compact( 'subjects','assignedSubjects','class'));
@@ -289,10 +289,10 @@ class InstitutionController extends Controller
     public function assign_subject(Request $request){
 //        return $request->all();
         // delete unassigned subjects starts
-         $studentAcademic = StudentAcademic::where('academic_class_id', $request->academic_class_id)->get();
+        $studentAcademic = StudentAcademic::where('academic_class_id', $request->academic_class_id)->get();
 //        dd($studentAcademic);
-         $academic = AcademicClass::find($request->academic_class_id);
-         $deletable = AssignSubject::query()
+        $academic = AcademicClass::find($request->academic_class_id);
+        $deletable = AssignSubject::query()
             ->where('academic_class_id',$request->academic_class_id)
             ->whereNotIn('subject_id',$request->subjects)
             ->get();
@@ -318,26 +318,26 @@ class InstitutionController extends Controller
                 AssignSubject::query()->create($data);
             }
         }
-                foreach ($studentAcademic as $stuAcademic) {
-                    foreach ($request->subjects as $sb){
+        foreach ($studentAcademic as $stuAcademic) {
+            foreach ($request->subjects as $sb){
 
-                        $check = StudentSubject::query()
-                                                ->where('student_academic_id', $stuAcademic->id)
-                                                ->where('student_id', $stuAcademic->student_id)
-                                                ->where('subject_id', $sb)
-                                                ->exists();
+                $check = StudentSubject::query()
+                    ->where('student_academic_id', $stuAcademic->id)
+                    ->where('student_id', $stuAcademic->student_id)
+                    ->where('subject_id', $sb)
+                    ->exists();
 
-                        if (!$check){
+                if (!$check){
 
-                            $storeSubject = new StudentSubject();
-                            $storeSubject->student_academic_id = $stuAcademic->id;
-                            $storeSubject->student_id = $stuAcademic->student_id;
-                            $storeSubject->subject_id = $sb;
-                            $storeSubject->save();
-                        }
-
-                    }
+                    $storeSubject = new StudentSubject();
+                    $storeSubject->student_academic_id = $stuAcademic->id;
+                    $storeSubject->student_id = $stuAcademic->student_id;
+                    $storeSubject->subject_id = $sb;
+                    $storeSubject->save();
                 }
+
+            }
+        }
 
         //AssignSubject::query()->create($request->all());
 
@@ -376,23 +376,23 @@ class InstitutionController extends Controller
 
     public function assignTeacher($id)
     {
-         $subjects = AssignSubject::query()
-                ->where('academic_class_id',$id)
-                ->get();
-         $academic = AcademicClass::find($id);
+        $subjects = AssignSubject::query()
+            ->where('academic_class_id',$id)
+            ->get();
+        $academic = AcademicClass::find($id);
         $teachers = Staff::query()->where('staff_type_id', 2)->get();
         return view('admin.institution.assign-teacher', compact('subjects', 'teachers','academic'));
     }
 
     public function assignTeacherStore(Request $request)
     {
-       $teacherID =  $request->staff_id;
-       $integerIDs = array_map('intval', $teacherID);
+        $teacherID =  $request->staff_id;
+        $integerIDs = array_map('intval', $teacherID);
 
-     $assignSubject = AssignSubject::find($request->assign_subject_id);
-     $assignSubject->update(['teacher_id' => $integerIDs]);
+        $assignSubject = AssignSubject::find($request->assign_subject_id);
+        $assignSubject->update(['teacher_id' => $integerIDs]);
 
 
-     return back();
+        return back();
     }
 }

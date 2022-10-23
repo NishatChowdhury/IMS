@@ -808,7 +808,7 @@
                             <li class="nav-item">
                                 <a href="{{route('staff.teacher')}}" class="nav-link {{ isActive('admin/staff/teacher') }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Teacher & Staff</p>
+                                    <p>Teacher & Employee</p>
                                 </a>
                             </li>
                         @endcan

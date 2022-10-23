@@ -2,6 +2,7 @@
 
 namespace App\Models\Backend;
 
+use App\Models\Frontend\Gender;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
