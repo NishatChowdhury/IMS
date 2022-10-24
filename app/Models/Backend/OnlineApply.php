@@ -5,6 +5,7 @@ namespace App\Models\Backend;
 use App\Models\Frontend\Gender;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Backend\OnlineAdmission;
 
 class OnlineApply extends Model
 {
@@ -53,5 +54,15 @@ class OnlineApply extends Model
     public function sessions()
     {
         return $this->belongsTo(Session::class,'session_id');
+    }
+
+    public function onlineAdmission()
+    {
+        return $this->belongsTo(onlineAdmission::class);
+    }
+
+     public function onlinePayment()
+    {
+        return $this->morphOne(OnlinePayment::class, 'online_paymentable');
     }
 }

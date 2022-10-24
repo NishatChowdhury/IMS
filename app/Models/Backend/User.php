@@ -46,12 +46,12 @@ class User extends Authenticatable
 
     public function getPermissionsAttribute(){
         $permissions = [];
-        $roles = auth()->user()->roles;
-        foreach($roles as $role){
-            foreach($role->permissions->toArray() as $permission){
-                array_push($permissions, $permission['name']);
-            }
-        }
+//        $roles = auth()->user()->roles;
+//        foreach($roles as $role){
+//            foreach($role->permissions->toArray() as $permission){
+//                array_push($permissions, $permission['name']);
+//            }
+//        }
 
         return $permissions;
 

@@ -44,8 +44,8 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
-                                    {{--<input type="text" name="name" class="form-control" id="name" aria-describedby="name">--}}
-                                    {{ Form::text('name',null,['class'=>'form-control','id'=>'name']) }}
+                                    {{--                                    <input type="text" name="name" class="form-control" id="name" readonly aria-describedby="name">--}}
+                                    {{ Form::text('name',null,['class'=>'form-control','id'=>'name', 'readonly']) }}
                                     @if($errors->first('name'))
                                         <small class="text-danger">{{ $errors->first('name') }}</small>
                                     @endif
@@ -68,19 +68,27 @@
                     </div>
 
                     <div class="col">
-                        <form action="{{ route('teacher.resetPassword') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label>New password</label>
-                                <input class="form-control" name="password" type="password" placeholder="Enter New Password">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="{{ route('teacher.resetPassword') }}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Old password</label>
+                                        <input class="form-control" name="old_password" type="password" placeholder="Enter New Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>New password</label>
+                                        <input class="form-control" name="password" type="password" placeholder="Enter New Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirm new password</label>
+                                        <input class="form-control" name="password_confirmation"  type="password" placeholder="Enter Confirm New Password">
+                                    </div>
+                                    <input type="hidden" name="id" value="{{ $staff->id }}">
+                                    <button class="btn btn-primary btn-sm">Reset Password</button>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label>Confirm new password</label>
-                                <input class="form-control" name="password_confirmation"  type="password" placeholder="Enter Confirm New Password">
-                            </div>
-                            <input type="hidden" name="id" value="{{ $staff->id }}">
-                            <button class="btn btn-primary btn-sm">Reset Password</button>
-                        </form>
+                        </div>
                     </div>
 
                 </div>

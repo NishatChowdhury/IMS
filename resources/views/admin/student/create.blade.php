@@ -58,7 +58,7 @@
     <script>
         $(document).on('change', '.session', function () {
             var id= $(this).val();
-
+            console.log(id);
             $.ajax({
                 url: '{{url("get-ClassSectionBySession/")}}'+id,
                 type: 'GET',

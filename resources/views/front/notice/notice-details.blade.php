@@ -60,7 +60,7 @@
                         @if($notice->file)
                         <embed src="{{ asset('storage/uploads/notice') }}/{{ $notice->file }}" class="img-fluid" type="application/pdf" style="width: 100%;height: 500px">
                         @endif
-                        <a href="{{ action('Front\FrontController@page','notice') }}" class="btn btn-primary mt-4">{{ __('Back To Notices') }}</a>
+                        <a href="{{ url('/page/notice') }}" class="btn btn-primary mt-4">{{ __('Back To Notices') }}</a>
                         @if($notice->file)
                             <a href="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary mt-4" target="_blank"><i class="fas fa-download"></i></a>
                         @endif

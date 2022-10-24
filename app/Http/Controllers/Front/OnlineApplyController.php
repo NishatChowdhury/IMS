@@ -125,9 +125,9 @@ class OnlineApplyController extends Controller
         if($req->email){
             $details = [
                 'title' => config('app'),
-                'id' => $studentStore->id,
+                'id' => $studentStore->password,
                 'name' => $studentStore->name,
-                'url' => route('download.school.form', $studentStore->id),
+                'url' => route('download.school.form', $studentStore->password),
             ];
             Mail::to($req->email)->send(new AdmissionMail($details));
            

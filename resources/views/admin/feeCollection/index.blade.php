@@ -31,11 +31,13 @@
 
     <!-- /.Search-panel -->
     <section class="content">
-        @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>
-        @endif
+       <div class="col-12">
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                    </div>
         <div class="container-fluid">
             <div class="row no_print">
                 <div class="col-md-12">

@@ -102,7 +102,7 @@
 
 <!-- Pull to refresh -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pulltorefreshjs/0.1.21/index.umd.min.js" integrity="sha512-oEw4xuIi6LVmWze9XMkOUKVrN3l4gIMDrnuci0T3NlcM5tbK9R21ZgP6mqOcit7m41sahXSIG88WOPKgFSWalA==" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script> // Initialize Pull To Refresh
     const ptr = PullToRefresh.init({
         mainElement: 'body',

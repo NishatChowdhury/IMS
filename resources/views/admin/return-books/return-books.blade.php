@@ -26,31 +26,37 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="card card-light">
-                            {!!  Form::open(['action'=>'Backend\BookController@returnBookStore', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
-                            <div class="card-body">
-                                <h3 style="background-color: #117a8b;color: white;margin-bottom: 10px;padding-left: 20px;padding-bottom: 10px;padding-top: 10px;">Return A Book</h3>
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <div class="form-group">
-                                            {{ Form::label('student_id', 'Student ID',['class'=>'control-label' ]) }}
-                                            {{ Form::select('student_id',$studentID, null, ['placeholder' => 'Select Student ID','class'=>'form-control select2']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <div class="form-group">
-                                            {{ Form::label('book_id', 'Book ID',['class'=>'control-label' ]) }}
-                                            {{ Form::select('book_id',$bookCode, null, ['placeholder' => 'Select Book ID','class'=>'form-control']) }}
-                                        </div>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <div class="card">
+                        {!!  Form::open(['action'=>'Backend\BookController@returnBookStore', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        {{ Form::label('student_id', 'Student ID',['class'=>'control-label' ]) }}
+                                        {{ Form::text('student_id',null, ['placeholder' => 'Example - S38','class'=>'form-control','id' => 'getStudentID']) }}
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {!! Form::submit('Submit', ['class' => 'form-control, btn btn-success ']) !!}
+                                <div class="col">
+                                    <div class="form-group">
+                                        {{ Form::label('book_id', 'Book ID',['class'=>'control-label' ]) }}
+                                        {{ Form::select('book_id',[], null, ['placeholder' => 'Return Books List','class'=>'form-control', 'id' => 'listOfBooks']) }}
+                                    </div>
+                                </div>
+                                <div class="col-2" style="margin-top: 30px">
+                                    <div class="form-group mt-30">
+                                        {!! Form::submit('Return Books', ['class' => 'form-control btn btn-dark ']) !!}
+                                    </div>
                                 </div>
                             </div>
-                            {!! Form::close() !!}
+                        </div>
+                        {!! Form::close() !!}
 
-                    <!-- /.card -->
+                        <!-- /.card -->
                     </div>
                 </div>
                 <!--/.col (left) -->
@@ -63,34 +69,38 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-info">
+                    <div class="card ">
                         <div class="card-body">
-                            <h3 style="background-color: #117a8b;color: white;margin-bottom: 10px;padding-left: 20px;padding-bottom: 10px;padding-top: 10px;">List Of All Issued Books:</h3>
-                            <table id="example1" class="table table-bordered table-striped table-sm">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>#SL</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <th>Book ID</th>
-                                    <th>Issue Quantity</th>
-                                    <th>Issue Date</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                @foreach($issuedData as $key => $data)
-                                    <tr class="{{$data->id}}">
-                                        <td>{{  $key+1 }}</td>
-                                        <td>{{  $data->studentID->studentId }}</td>
-                                        <td>{{  $data->student_name->name }}</td>
-                                        <td>{{  $data->bookCode->book_code }}</td>
-                                        <td>{{1}}</td>
-                                        <td>{{  $data->created_at }}</td>
+                            <p><b>List of all return books</b></p>
+                            <div class="table-responsive">
+                                <table id="example1" class="table table-bordered table-striped table-sm">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th>#SL</th>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Book ID</th>
+                                        <th>Issue Quantity</th>
+                                        <th>Issue Date</th>
+                                        <th>Return Date</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+
+                                    <tbody>
+                                    @foreach($issuedData as $key => $data)
+                                        <tr class="{{$data->id}}">
+                                            <td>{{  $key+1 }}</td>
+                                            <td>{{  $data->student_name->studentId  ?? ''}}</td>
+                                            <td>{{  $data->student_name->name  ?? ''}}</td>
+                                            <td>{{  $data->bookCode->book_code  ?? ''}}</td>
+                                            <td>{{1}}</td>
+                                            <td>{{  $data->created_at }}</td>
+                                            <td>{{  $data->created_at == $data->updated_at ? 'Not Yet Return' : $data->updated_at  }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,8 +112,28 @@
     <!-- /.content -->
     @section('script')
         <script>
-            $(document).ready(function() {
-            $('.select2').select2();
+            $('#getStudentID').keyup(function(){
+                let searchStudennt = $("#getStudentID").val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/admin/library/return_books-search",
+                    type: "get",
+                    data: {
+                        ajaxid: searchStudennt,
+                    },
+                    success: function(response) {
+                        $('#listOfBooks').html(response);
+
+                    },
+                    error: function(error) {
+                        console.log('error-',error.responseJSON);
+                        console.log('error-',error.responseText);
+                    }
+                });
             });
         </script>
     @stop

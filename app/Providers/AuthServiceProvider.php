@@ -39,7 +39,6 @@ class AuthServiceProvider extends ServiceProvider
                 ->where('name',$route)
                 ->with('roles')
                 ->first();
-
             $roles = $p->roles;
 
             foreach ($roles as $role){

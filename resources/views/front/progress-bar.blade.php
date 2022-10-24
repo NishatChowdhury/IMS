@@ -13,7 +13,7 @@
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".2">
                 <h2 class="h1 text-primary">
-                    {{ \App\Models\Backend\AcademicClass::all()->count() }}
+                    {{ \App\Models\Backend\AcademicClass::latest()->count('id') }}
                 </h2>
                 <p class="lead">
                     {{ __('Classes')}}
@@ -22,7 +22,8 @@
 
             <div class="col-lg-3 col-md-6 mt-5 wow zoomIn" data-wow-delay=".3">
                 <h2 class="h1 text-primary">
-                    {{ __('235K')}}
+{{--                    {{ __('235K')}}--}}
+                    {{ \App\Models\Backend\Attendance::all()->count() }}
                 </h2>
                 <p class="lead">
                     {{ __('Attendance')}}
