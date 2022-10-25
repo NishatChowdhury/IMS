@@ -81,21 +81,21 @@ class DownloadAttendances extends Command
 
             ini_set('max_execution_time',30);
 
-//        $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
+            $isExists = RawAttendance::query()->where('access_id',$row->access_id)->exists();
 
-//        if(!$isExists){
-            $attendance = new RawAttendance();
-            $attendance->registration_id = $row->registration_id;
-            $attendance->access_id = $row->access_id;
-            $attendance->department = $row->department;
-            $attendance->unit_id = $row->unit_id;
-            $attendance->card = $row->card;
-            $attendance->unit_name = $row->unit_name;
-            $attendance->user_name = $row->user_name;
-            $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
-            $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
-            $attendance->save();
-//        }
+            if(!$isExists){
+                $attendance = new RawAttendance();
+                $attendance->registration_id = $row->registration_id;
+                $attendance->access_id = $row->access_id;
+                $attendance->department = $row->department;
+                $attendance->unit_id = $row->unit_id;
+                $attendance->card = $row->card;
+                $attendance->unit_name = $row->unit_name;
+                $attendance->user_name = $row->user_name;
+                $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+                $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
+                $attendance->save();
+            }
         }
 
         $this->info('data saved successfully');

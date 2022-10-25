@@ -267,10 +267,10 @@ class FrontController extends Controller
     public function events()
     {
         $event = UpcomingEvent::query()->latest('date')->first();
-         $events = UpcomingEvent::query()
-                                ->latest('date')
-                                ->whereNotIn('id', [$event->id])
-                                ->paginate(12);
+        $events = UpcomingEvent::query()
+            ->latest('date')
+            ->whereNotIn('id', [$event->id])
+            ->paginate(12);
         return view('front.pages.events',compact('event','events'));
     }
 
@@ -302,8 +302,7 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-
-         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
 
         if($content->type == 3){
 

@@ -4,7 +4,7 @@
             <div class="col-lg-8">
                 <div class="row align-items-center">
                     <div class="col-md-12 mt-4">
-                        <h2>{{ $about->title ?? __('Undefined') }}</h2>
+                        <h2>{{ $about->title ?? __('About Institute') }}</h2>
                         @if($about)
                             {!! Str::limit($about->body,800) !!}
                             <a style="color: blue" data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo">{{ __('...more') }}</a>

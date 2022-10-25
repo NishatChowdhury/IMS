@@ -51,7 +51,8 @@ class ProfileController extends Controller
             ->get();
 
         $due   = $this->due($id);
-        $exam  = $this->exam($stuAcademic->id);
+        //$exam  = $this->exam($stuAcademic->id);
+        $exams  = Exam::query()->where('session_id',activeYear())->get();
         $result  = $this->result($id);
 //        return $result;
 
@@ -70,7 +71,7 @@ class ProfileController extends Controller
             'period',
             'payments',
             'due',
-            'exam',
+            'exams',
             'result'));
     }
 
@@ -96,13 +97,13 @@ class ProfileController extends Controller
 //        return $amount - $paid;
     }
 
-    public function exam($id)
-    {
-        return ExamResult::query()
-            ->where('student_academic_id', $id)
-            ->latest()
-            ->get();
-    }
+//    public function exam($id)
+//    {
+//        return ExamResult::query()
+//            ->where('student_academic_id', $id)
+//            ->latest()
+//            ->get();
+//    }
 
     /**
      * Display diary for a certain date of the current logged in student

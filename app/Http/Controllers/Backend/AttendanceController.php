@@ -104,7 +104,7 @@ class AttendanceController extends Controller
 
         $attn_teacher =[];
         foreach ($teachers as $teacher){
-            $attn_teacher[] = Attendance::query()->where('registration_id', $teacher->role_id)->where('access_date','like',$date.'%')->get();
+            $attn_teacher[] = Attendance::query()->where('registration_id', $teacher->role_id)->where('access_date','like',$date.'%')->orderBy('code')->get();
         }
         if ($request->user == 2){
             return view('admin.attendance.month_row_teacher',compact('teachers','month','year'));
@@ -131,17 +131,17 @@ class AttendanceController extends Controller
                 ->where('id',$request->get('staff_id'))
                 ->first();
 
-             $attend = [];
+            $attend = [];
 
-        //            return strval($today);
+            //            return strval($today);
 //                    $stuAca = StudentAcademic::where('student_id',$student->id)->first();
 
-                    $attn = AttendanceTeacher::query()
-                                    ->whereYear('date', $request->year)
-                                    ->whereMonth('date', $request->month)
-                                    ->where('staff_id',$staffs->card_id)
-                                    ->orderBy('date', 'DESC')
-                                    ->get();
+            $attn = AttendanceTeacher::query()
+                ->whereYear('date', $request->year)
+                ->whereMonth('date', $request->month)
+                ->where('staff_id',$staffs->card_id)
+                ->orderBy('date')
+                ->get();
 
 
 //                    if($attn != null) {
@@ -153,13 +153,13 @@ class AttendanceController extends Controller
 //                            'is_notified' => 'Is Notified'
 //                        ];
 //                    }
-        //                array_push($attend, $attendArr);
+            //                array_push($attend, $attendArr);
 
-                $repository = $this->repository;
-                $attendances = $attn ?? [];
+            $repository = $this->repository;
+            $attendances = $attn ?? [];
 
-                $t = $staffs->name;
-                $card = $staffs->card_id;
+            $t = $staffs->name;
+            $card = $staffs->card_id;
 
 //                return $attendances;
         }else{
@@ -173,15 +173,17 @@ class AttendanceController extends Controller
             $month = '';
         }
         $teachers =  Staff::query()
-                            ->where('staff_type_id',2)
-                            ->orderBy('card_id')
-                            ->get()->pluck('name','id');
+            ->where('staff_type_id',2)
+            ->orderBy('card_id')
+            ->get()
+            ->pluck('name','id');
+
         return view('admin.attendance.teacher', compact('attend','t','card','staffs','year','month','attendances','teachers'));
     }
 
 
 
-   public function student(Student $student, Request $request)
+    public function student(Student $student, Request $request)
     {
 
         if($request->all() == []){
@@ -205,7 +207,7 @@ class AttendanceController extends Controller
             $class = $request->get('class_id');
 //            $s->where('academic_class_id',$class);
             $s->whereHas('studentAcademic', function($query) use ($class){
-                    return $query->where('academic_class_id', $class);
+                return $query->where('academic_class_id', $class);
             });
             $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
         }else{
@@ -252,7 +254,10 @@ class AttendanceController extends Controller
         $allClasses = Classes::query()->get(['id','name']);
 
         if($request->get('user') == 3){
-            $students = Staff::query()->where('staff_type_id', 2)->get();
+            $students = Staff::query()
+                ->where('staff_type_id', 2)
+                ->orderBy('code')
+                ->get();
             $month = $request->month;
             $year = $request->year;
             $date = Carbon::createFromDate($year,$month)->format('Y-m');
@@ -261,7 +266,7 @@ class AttendanceController extends Controller
 
         }elseif($request->get('user') == 1){
             if($request->has('class_id') && $request->has('year') && $request->has('month')){
-                $request->class_id;
+                //$request->class_id;
                 $students = StudentAcademic::query()
                     ->where('academic_class_id', $request->class_id)
                     ->orderBy('rank')
@@ -284,8 +289,6 @@ class AttendanceController extends Controller
             $personStatus = 'Roll';
         }
 
-
-//return $students;
         $repository = $this->repository;
 
         return view('admin.attendance.report',compact('allClasses','repository','year','month','students','personStatus'));

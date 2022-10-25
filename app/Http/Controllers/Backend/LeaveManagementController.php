@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\LeavePurpose;
+use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentLeave;
 use App\Repository\StudentRepository;
@@ -23,8 +24,7 @@ class LeaveManagementController extends Controller
 
     public function index()
     {
-//        StudentLeave::query()->truncate();
-          $allData = StudentLeave::all()->groupBy('leaveId');
+        $allData = StudentLeave::all()->groupBy('leaveId');
         return view('admin.leaveManagement.view-leave',compact('allData'));
     }
 
@@ -38,10 +38,23 @@ class LeaveManagementController extends Controller
 
     public function store(Request $request)
     {
+        if($request->get('user') == 0){
+            $student = Student::query()
+                ->where('studentId',$request->id)
+                ->latest()
+                ->first();
+            $teacher = NULL;
+            $leaveId = date('ymd').$student->id;
+        }else{
+            $teacher = Staff::query()
+                ->where('card_id',$request->id)
+                ->first();
+            $leaveId = date('ymd').$teacher->id;
+            $student = NULL;
+        }
 
-         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
 
-        if(!$student){
+        if(!$student && !$teacher){
             return redirect()->back();
         }
 
@@ -52,13 +65,14 @@ class LeaveManagementController extends Controller
             $end = $start;
         }
 
-         $period = CarbonPeriod::create($start,$end);
+        $period = CarbonPeriod::create($start,$end);
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
             $data = [
-                'leaveId' => date('ymd').$student->id,
-                'student_id' => $student->id,
+                'leaveId' => $leaveId,
+                'student_id' => $student->id ?? NULL,
+                'teacher_id' => $teacher->id ?? NULL,
                 'date' => $d,
                 'leave_purpose_id' => $request->get('leave_purpose_id'),
             ];
