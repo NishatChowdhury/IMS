@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DbBackupContoller;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\FeeCartController;
@@ -14,6 +15,8 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use Illuminate\Support\Str;
+
 //use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
@@ -688,6 +691,34 @@ return view('form-pdf');
     Route::get('db-backup',[DbBackupContoller::class,'index'])->name('backup.db');
     Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
     Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
-
 });
+
+//notice generate
+Route::get('notice-gen',function (){
+
+    $lipsum = new joshtronic\LoremIpsum();
+
+//    DB::table('notices')->truncate();
+//    return 'Data truncated';
+
+    \Illuminate\Support\Facades\Artisan::call('config:clear');
+
+    $noticeData = [];
+    for ($i = 1; $i <= 100; $i++) {
+
+        $noticeData[] = [
+            'notice_type_id' => rand(1, 20),
+            'notice_category_id' => rand(1, 10),
+            'title' => Str::ucfirst( $lipsum->words(10)),
+            'description' =>  Str::ucfirst($lipsum->words(20)),
+            'start' => date("y-m-d"),
+            'end' =>  date("Y-m-d", strtotime("+5 day")),
+        ];
+
+    }
+
+    \App\Models\Backend\Notice::insert($noticeData);
+
+    return 'Data Generated Successfully';
+})->name('notice.gen');
 
