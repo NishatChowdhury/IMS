@@ -65,88 +65,92 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">Total Found : {{ count($students) }}</h3>
-                        <div class="card-tools">
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped table-sm text-sm">
-                            <thead class="thead-light">
-                            <tr>
-                                <th>SL No.</th>
-                                <th>STUDENT’S NAME, FATHER’S & MOTHER’S NAME</th>
-                                <th>S.S.C EQUIVALENT EXAM ROLL NO. REG NO. & SESSION</th>
-                                <th>S.S.C EQUIVALENT EXAM PASSING YEAR & BOARD’S NAME</th>
-                                <th>DATE OF ADMISSION, CLASS, GROUP & CLASS ROLL</th>
-                                <th>SUBJECTS NAME WITH CODE WHICH ARE APPROVED BY THE BOARD. (EXAMPLE: BENGALI-101,102)</th>
-                                <th>REMARK</th>
-                            </tr>
-                            <tr class="text-center">
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                                <th>6</th>
-                                <th>7</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @php $x = 1 @endphp
-                            @foreach($students as $student)
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-2">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped table-sm text-sm">
+                                <thead class="thead-light">
                                 <tr>
-                                    <td>{{ $x++ }}</td>
-                                    <td>
-                                        {{ $student->name }}<br>
-                                        {{ $student->father }}<br>
-                                        {{ $student->mother }}
-                                    </td>
-                                    <td>
-                                        ROLL: {{ $student->ssc_roll }}<br>
-                                        REG : {{ $student->ssc_registration ?? '' }}<br>
-                                        SESS: {{ $student->ssc_session ?? '' }}
-                                    </td>
-                                    <td>
-                                        {{ $student->ssc_year ?? '' }}<br>
-                                        {{ $student->ssc_board ??'' }}
-                                    </td>
-                                    <td>
-                                        {{ $student->created_at->format('d/m/Y') }}<br>
-                                        {{ $student->classes->name ?? '' }}<br>
-                                        {{ $student->group->name ?? '' }}, {{ $student->rank ?? 0 }}
-                                    </td>
-                                    <td>
-{{--                                        @if($student->admission)--}}
-{{--                                            @foreach(json_decode($student->admission->subjects) as $subjects)--}}
-{{--                                                @foreach($subjects as $subject)--}}
-{{--                                                    <span class="subjects">{{ \App\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>--}}
-{{--                                                @endforeach--}}
-{{--                                            @endforeach--}}
-{{--                                        @endif--}}
-                                        @if(is_object(json_decode($student->subjects)))
-                                            @foreach(json_decode($student->subjects) as $subjects)
-                                                @foreach($subjects as $subject)
-                                                    <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;<span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>
-                                                @endforeach
-                                            @endforeach
-                                        @endif
-                                    </td>
-                                    <td></td>
+                                    <th>SL No.</th>
+                                    <th>STUDENT’S NAME, FATHER’S & MOTHER’S NAME</th>
+                                    <th>S.S.C EQUIVALENT EXAM ROLL NO. REG NO. & SESSION</th>
+                                    <th>S.S.C EQUIVALENT EXAM PASSING YEAR & BOARD’S NAME</th>
+                                    <th>DATE OF ADMISSION, CLASS, GROUP & CLASS ROLL</th>
+                                    <th>SUBJECTS NAME WITH CODE WHICH ARE APPROVED BY THE BOARD. (EXAMPLE: BENGALI-101,102)</th>
+                                    <th>REMARK</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                <tr class="text-center">
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @php $x = 1 @endphp
+                                @foreach($students as $student)
+
+                                    <tr>
+                                        <td>{{ $x++ }}</td>
+                                        <td>
+                                            {{ $student->student->name ?? '' }}<br>
+                                            {{ $student->student->father->f_name ?? '' }}<br>
+                                            {{ $student->student->mother->m_name ?? '' }}
+                                        </td>
+                                        <td>
+                                            ROLL: {{ $student->ssc_roll }}<br>
+                                            REG : {{ $student->ssc_registration ?? '' }}<br>
+                                            SESS: {{ $student->ssc_session ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $student->ssc_year ?? '' }}<br>
+                                            {{ $student->ssc_board ??'' }}
+
+                                        </td>
+                                        <td>
+                                            {{ $student->created_at->format('d/m/Y') }}<br>
+                                            {{ $student->classes->name ?? '' }}<br>
+                                            {{ $student->group->name ?? '' }}, {{ $student->rank ?? 0 }}
+                                        </td>
+                                        <td>
+                                            @if(isset($student->student->assignSubjects))
+                                                @foreach($student->student->assignSubjects as $s)
+                                                    <span class="subjects"> {{$s->subject->code}}</span>
+                                                    <span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">
+                                                    {{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}
+
+                                                </span>
+                                                @endforeach
+                                            @endif
+                                            {{--
+                                            {{--                                        @if(is_object(json_decode($student->subjects)))--}}
+                                            {{--                                            @foreach(json_decode($student->subjects) as $subjects)--}}
+                                            {{--                                                @foreach($subjects as $subject)--}}
+                                            {{--                                                    <span class="subjects">{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code }}</span>&nbsp;--}}
+                                            {{--                                                    <span class="{{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 != '' ? 'subjects' : '' }}">--}}
+                                            {{--                                                        {{ \App\Models\Backend\OnlineSubject::query()->findOrNew($subject)->code2 }}</span>--}}
+                                            {{--                                                @endforeach--}}
+                                            {{--                                            @endforeach--}}
+                                            {{--                                        @endif--}}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
         </div>
         <!-- /.row -->
     </section>

@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Mail\AdmissionMail;
 use App\Models\Backend\AppliedStudent;
-use App\Models\Backend\BloodGroup;
 use App\Models\Backend\City;
 use App\Models\Backend\Classes;
 use App\Models\Backend\Country;
 use App\Models\Backend\Division;
-use App\Models\Backend\Gender;
 use App\Models\Backend\Group;
 use App\Models\Backend\MeritList;
 use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\OnlineApply;
 use App\Models\Backend\Religion;
+use App\Models\Frontend\BloodGroup;
+use App\Models\Frontend\Gender;
 use App\Repository\FrontRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class OnlineApplyController extends Controller
 {
@@ -126,9 +125,9 @@ class OnlineApplyController extends Controller
         if($req->email){
             $details = [
                 'title' => config('app'),
-                'id' => $studentStore->id,
+                'id' => $studentStore->password,
                 'name' => $studentStore->name,
-                'url' => route('download.school.form', $studentStore->id),
+                'url' => route('download.school.form', $studentStore->password),
             ];
             Mail::to($req->email)->send(new AdmissionMail($details));
            

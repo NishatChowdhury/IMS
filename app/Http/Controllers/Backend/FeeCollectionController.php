@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Journal;
 use App\Models\Backend\JournalItem;
+use App\Models\Backend\PaymentMethod;
 use App\Models\Backend\Student;
 use App\Models\Backend\FeeSetup;
 use App\Models\Backend\FeeSetupCategory;
@@ -34,33 +35,35 @@ class FeeCollectionController extends Controller
     public function view(Request $request)
     {
 
-//         StudentPayment::truncate();
-//         FeeSetupStudent::truncate();
-//         FeeSetupCategory::truncate();
-//         FeeSetup::truncate();
-//         return "done";
         Session::forget(['receipt','spay']);
         $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
         $student = Student::query()->where('studentId', $term)->with('academics')->first();
-        // dd($student);
+
+        if(!$student){
+            return back()->with('status', 'No Data Found');
+        }
+
         $paidAmount = StudentPayment::query()->where('student_academic_id', $student->academics[0]->id)
             ->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
             ->groupBy('year', 'month')
             ->get();
-        $fss = FeeSetupStudent::query()->where('student_id', $student->id)->get();
-        $amount = 0;
-        $paid = $paidAmount[0]->amount ?? 0;
-        foreach ($fss as $fs) {
-            $amount += $fs->amount;
+
+        $p = $paidAmount->sum('amount');
+
+        $fss = FeeSetupStudent::query()->where('student_id', $student->id)->sum('amount');
+
+         if($fss > 0){
+           $totalDue =  $fss - $p;
         }
-        $totalDue = $amount - $paid;
+
 
         $previousPayment = StudentPayment::query()->where('student_academic_id', $student->academics[0]->id)->latest()->get();
 
         if (!empty($student->studentId) && $student->studentId == $term) {
+
             $studentAcademic =  StudentAcademic::where('student_id', $student->id)->first();
-            $transportAmount =  Transport::where('student_academic_id',$studentAcademic->id)->sum('amount');
+            $transportAmount =  Transport::where('student_academic_id',$studentAcademic->id)->sum('amount') ?? 0;
             $paymentTransportAmount =  TransportPayment::where('student_academic_id',$studentAcademic->id)->sum('amount');
             // $feeSetup = $student->feeSetup;
             $totalTransportDue = 00;

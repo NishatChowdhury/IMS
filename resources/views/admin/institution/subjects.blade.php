@@ -50,9 +50,10 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Name</th>
                                     <th>Code</th>
+                                    <th>Name</th>
                                     <th>Short Name </th>
+                                    <th>Sort </th>
                                     <th>Type </th>
                                     <th>Action</th>
                                 </tr>
@@ -62,12 +63,11 @@
                                 @foreach($subjects ?? '' as $subject)
                                     <tr>
                                         <td>{{ $subject->id }}</td>
-                                        <td>{{$subject->name}}</td>
                                         <td>{{$subject->code}}</td>
+                                        <td>{{$subject->name}}</td>
                                         <td>{{$subject->short_name}}</td>
+                                        <td>{{$subject->level}}</td>
                                         <td>
-
-
                                             @if($subject->type == 1)
                                                 <span class="badge badge-danger"> {{ $subject->type == 1 ? 'Compulsory' : ''  }} </span>
                                             @elseif($subject->type == 2)
@@ -103,7 +103,7 @@
     <!-- ***/ Pop Up Model for subjects -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Subject</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -141,7 +141,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Level</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="level" class="form-control" id="level"  aria-describedby="" placeholder="Eg. Primary/Common...">
+                                <input type="number" name="level" class="form-control" id="level"  aria-describedby="" placeholder="Eg. Primary/Common...">
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
     <!-- ***/ Pop Up Model for EDIT subjects -->
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Subject</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -219,7 +219,7 @@
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Level</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" name="level" class="form-control" id="sub_level"  aria-describedby="" placeholder="Eg. Primary/Common...">
+                                <input type="number" name="level" class="form-control" id="sub_level"  aria-describedby="" placeholder="Eg. Primary/Common...">
                             </div>
                         </div>
                     </div>

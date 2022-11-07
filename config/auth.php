@@ -90,7 +90,7 @@ return [
 
         'students' => [
             'driver' => 'eloquent',
-            'model' => \App\Models\Backend\StudentLogin::class,
+            'model' => StudentLogin::class,
         ],
         'teachers' => [
             'driver' => 'eloquent',

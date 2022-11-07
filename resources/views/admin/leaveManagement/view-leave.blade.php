@@ -36,7 +36,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Leave ID</th>
-                                <th>Student Name</th>
+                                <th>Name</th>
                                 <th>Date</th>
                                 <th>Total</th>
                                 <th>Purpose</th>
@@ -49,8 +49,9 @@
                                 <tr>
                                     <td>{{ $value->first()->leaveId }}</td>
                                     <td>
-                                        {{ $value->first()->student->name }}<br>
-                                    <i class="text-secondary">ID: {{ $value->first()->student->studentId }}</i>
+                                        {{ $value->first()->student->name ?? '' }}
+                                        {{ $value->first()->teacher->name ?? '' }}<br>
+                                    <i class="text-secondary">ID: {{ $value->first()->student->studentId ?? '' }}{{ $value->first()->teacher->card_id ?? '' }}</i>
                                     </td>
                                     <td>{{ $value->first()->date->format('Y-m-d') }} - {{ $value->last()->date->format('Y-m-d') }}</td>
                                     <td>{{ $value->count() }}</td>

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Teacher & Staffs</h1>
+                    <h1>Teacher & Employee</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,37 +27,33 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 0px;">
                         <!-- form start -->
-                        <form action="">
+                        <form action="{{ route('staff.teacher') }}" method="get">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="col">
-                                        <label for="">Staff ID</label>
+                                        <label for="">Card Number</label>
                                         <div class="input-group">
-                                            <input class="form-control" placeholder="Staff ID" name="code" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">Name</label>
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="Name" name="name" type="text">
+                                            <input class="form-control" placeholder="Card Number" name="card_id" type="text">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="">Staff Type</label>
                                         <div class="input-group">
-                                            {{ Form::select('staff_type_id',[1=>'teacher',2=>'staff'],null,['class'=>'form-control','placeholder'=>'Staff Type']) }}
+                                            {{ Form::select('staff_type_id',[2=>'teacher',1=>'staff'],null,['class'=>'form-control','placeholder'=>'Staff Type']) }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="">Job Type</label>
                                         <div class="input-group">
-                                            {{ Form::select('job_type_id',[1=>'Permanent',2=>'Temporary'],null,['class'=>'form-control']) }}
+                                            {{ Form::select('job_type_id',[1=>'Permanent',2=>'Temporary'],null,['class'=>'form-control','placeholder'=>'Jobs Type']) }}
                                         </div>
                                     </div>
 
-                                    <div class="col-1" style="padding-top: 32px;">
-                                        <div class="input-group">
-                                            <button style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    <div class="col-2" style="padding-top: 32px;">
+                                        <div class="form-group">
+                                             <button style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            <a href="{{ route('staff.teacher') }}" class="btn btn-dark">Reset</a>
                                         </div>
                                     </div>
 

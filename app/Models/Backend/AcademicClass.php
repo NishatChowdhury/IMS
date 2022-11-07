@@ -2,8 +2,10 @@
 
 namespace App\Models\Backend;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AcademicClass extends Model
 {
@@ -31,7 +33,12 @@ class AcademicClass extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function group()
+    /**
+     * An academic class is belongs to a group
+     *
+     * @return BelongsTo
+     */
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
     }
@@ -42,7 +49,12 @@ class AcademicClass extends Model
         return $this->hasMany(StudentAcademic::class,'academic_class_id');
     }
 
-    public function subjects()
+    /**
+     * A class has many subjects
+     *
+     * @return HasMany
+     */
+    public function subjects(): HasMany
     {
         return $this->hasMany(AssignSubject::class,'academic_class_id');
     }
@@ -66,7 +78,7 @@ class AcademicClass extends Model
      /**
      * Scope a query to only include active users.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  Builder  $query
      * @return void
      */
     public function scopeActive($query)

@@ -289,7 +289,7 @@ class SeedMenuTable extends Migration
                 ],
                 [
                     'menu_id' => 26,
-                    'name' => 'Teacher & Staff Welfare Trust',
+                    'name' => 'Teacher & Employee Welfare Trust',
                     'uri' => 'tswt',
                     'type' => 1,
                     'order' => 5,
@@ -435,7 +435,7 @@ class SeedMenuTable extends Migration
                 ],
                 [
                     'menu_id' => 44,
-                    'name' => 'Teacher & Staff',
+                    'name' => 'Teacher & Employee',
                     'uri' => 'teacher-attendance',
                     'type' => 1,
                     'order' => 3,

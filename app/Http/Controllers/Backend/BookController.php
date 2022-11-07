@@ -8,6 +8,7 @@ use App\Models\Backend\BookCategory;
 use App\Models\Backend\IssueBook;
 use App\Models\Backend\Student;
 use App\Repository\StudentRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -79,16 +80,17 @@ class BookController extends Controller
     public function issueBook(Request $request)
     {
         $students = Student::all()->pluck('studentId','id');
-        //$bookCode =  Book::all()->pluck('book_code','id');
         $book = Book::query()->findOrFail($request->get('id'));
         return view('admin.book._issue-book',compact('students','book'));
     }
 
     public function issueBookStore(Request $request)
     {
+
         $issueBook = new IssueBook;
         $issueBook->student_id = $request->student_id;
         $issueBook->book_id = $request->book_id;
+        $issueBook->book_code = $request->book_code;
         $issueBook->is_return = 0;
         $issueBook->save();
         return redirect('admin/library/allBooks');
@@ -96,37 +98,58 @@ class BookController extends Controller
 
     public function returnBook()
     {
-        $studentID = Student::all()->pluck('studentId','id');
-        $bookCode =  Book::all()->pluck('title','id');
+        $studentID = Student::query();
+        $studentID->latest()->get();
+
+        $bookCode =  Book::all()->pluck('book_title','id');
         $issuedData = IssueBook::all()->where('is_return','0');
         return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
     }
 
+    public function returnBookSearch(Request $request)
+    {
+
+        $student = Student::query()->where('studentId',$request->ajaxid)->first();
+
+        if(!$student){
+            return response()->json([
+                'status' => 404,
+                'message' => 'Data Not Found'
+            ]);
+        }
+
+        $issuedDatas = IssueBook::query()
+            ->where('student_id', $student->id)
+            ->where('is_return',0)
+            ->get(['id','book_id']);
+
+        $stringTosend = ' <option value="">Select Option</option>';
+        foreach ($issuedDatas as $issuedData) {
+            $stringTosend = $stringTosend.'<option value="'.$issuedData->id.'">'.$issuedData->bookCode->book_code.'</option>';
+        }
+        echo $stringTosend;
+
+
+    }
+
     public function returnBookStore(Request $request)
     {
-        $issuedStudentId =IssueBook::all()->pluck('student_id','id');
-        $issuedBookCode = IssueBook::all()->pluck('book_id','id');
 
-        foreach ($issuedStudentId as $studentId){
-            $studentId;
+        try {
+            $studentInfo = Student::query()->where('studentId', $request->student_id)->first('id');
+            $issueBooks = IssueBook::query()
+                ->where('student_id', $studentInfo->id)
+                ->where('book_id', $request->book_id)
+                ->update([
+                    'is_return' => 1
+                ]);
+
+        }catch (\Exception $exception){
+            dd($exception);
         }
 
-        foreach ($issuedBookCode as $bookCode){
-            $bookCode;
-        }
 
-        if ($request->student_id == $studentId && $request->book_id == $bookCode) {
-
-            $returnBook = new IssueBook;
-            $returnBook->student_id = $request->student_id;
-            $returnBook->book_id = $request->book_id;
-            $returnBook->is_return = 1;
-            $returnBook->save();
-        }
-        else
-            echo "Issue The Book First!";
-
-        return redirect('admin/library/allBooks');
+        return back()->with('status', 'Books Return Successfully');
     }
 
     public function store(Request $request)
@@ -141,7 +164,7 @@ class BookController extends Controller
             'shelve' => 'required',
         ]);
         Book::query()->create($request->all());
-        return redirect('admin/library/books');
+        return redirect('admin/library/allBooks');
     }
 
     public function edit($id)
@@ -155,7 +178,7 @@ class BookController extends Controller
     {
         $data=Book::query()->find($id);
         $data->update($request->all());
-        return redirect('admin/library/books')->with('success','Updated successfully');
+        return redirect('admin/library/allBooks')->with('success','Updated successfully');
 
     }
 

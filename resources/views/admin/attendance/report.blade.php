@@ -22,12 +22,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{('Attendance Monthly Report')}} </h1>
+                    <h1>{{ __('Attendance Monthly Report') }} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{('Home')}}</a></li>
-                        <li class="breadcrumb-item active">{{('Attendance Monthly Report')}}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Attendance Monthly Report') }}</li>
                     </ol>
                 </div>
             </div>
@@ -87,11 +87,14 @@
                         <div class="col-md-3">
                             <div>
                                 <ul style="list-style: none">
-                                    <li> <i class="fas fa-circle" style="color: #008000"></i> <span> {{('P - Present')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> {{('D - Late/Delay')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> {{('E - Early Leave')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> {{('A - Absent')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: green"></i> <span> {{('P - Present')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: red"></i> <span> {{('A - Absent')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #281919"></i> <span> {{('D - Late/Delay')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: orange"></i> <span> {{('E - Early Leave')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: darkviolet"></i> <span> {{('H - Holiday')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #5e684f"></i> <span> {{('W - Weekly Off')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #878484"></i> <span> {{('L - Leave')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #878484"></i> <span> {{('LE - Late & Early Leave')}} </span></li>
                                 </ul>
                             </div>
                         </div>
@@ -141,7 +144,6 @@
                                                                     ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
                                                                     ->first();
                                                     }else{
-//                                                        dd($student);
                                                         $attn = \App\Models\Backend\AttendanceTeacher::query()
                                                                     ->where('staff_id',$student->card_id)
                                                                     ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
@@ -158,7 +160,7 @@
                                                             @elseif($attn->attendance_status_id == 2)
                                                                 <span style="color:white; background: red" class="badge">A</span>
                                                             @elseif($attn->attendance_status_id == 3)
-                                                                <span style="color:white; background: #281919" class="badge">L</span>
+                                                                <span style="color:white; background: #281919" class="badge">D</span>
                                                             @elseif($attn->attendance_status_id == 4)
                                                                 <span style="color:white; background: Orange" class="badge">E</span>
                                                             @elseif($attn->attendance_status_id == 5)
@@ -166,7 +168,7 @@
                                                             @elseif($attn->attendance_status_id == 6)
                                                                 <span style="color:white; background: #5e684f" class="badge">W</span>
                                                             @elseif($attn->attendance_status_id == 7)
-                                                                <span style="color:white; background: #878484" class="badge">LA</span>
+                                                                <span style="color:white; background: #878484" class="badge">L</span>
                                                             @elseif($attn->attendance_status_id == 8)
                                                                 <span style="color:white; background: #878484" class="badge">LE</span>
                                                             @endif

@@ -53,9 +53,9 @@ class ExamController extends Controller
 
     public function examination()
     {
-          $exams = Exam::whereHas('session', function($q){
-             return $q->where('active', 1);
-         })->get();
+        $exams = Exam::whereHas('session', function($q){
+            return $q->where('active', 1);
+        })->get();
         $repository = $this->repository;
         return view ('admin.exam.examination', compact('exams','repository'));
     }
@@ -118,12 +118,12 @@ class ExamController extends Controller
      * Created by smartrahat
      * @return Factory|View
      */
-    public function admitCard(StudentAcademic $student, Request $request, Exam $exam_id)
+    public function admitCard(StudentAcademic $student, Request $request, $exam_id)
     {
 
         if($request->all() == []){
             $students = [];
-            $exam = null;
+            $exam = [];
             $schedules = [];
             $academicClass = [];
         }else{
@@ -153,13 +153,13 @@ class ExamController extends Controller
 
 
             $students = $s->with('student')->get();
-             $exam = Exam::query()->findOrFail($request->get('exam_id'));
-             $academicClass = AcademicClass::query()
+            $exam = Exam::query()->findOrFail($exam_id);
+            $academicClass = AcademicClass::query()
                 ->where('class_id',$request->get('class_id'))
                 ->where('section_id',$request->get('section_id'))
                 ->where('group_id',$request->get('group_id'))
                 ->first();
-              $schedules = ExamSchedule::query()
+            $schedules = ExamSchedule::query()
                 ->where('exam_id',$request->get('exam_id'))
 //                ->where('class_id',$academicClass->id) // class_id means Academic Class Id By mistake some do that's why it can't be change
                 ->orderBy('date')

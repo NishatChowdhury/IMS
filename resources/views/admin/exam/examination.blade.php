@@ -62,7 +62,7 @@
                                     <td>
                                         {{ Form::open(['action'=>['Backend\ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
                                         <a href="{{ action('Backend\ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>
-                                        <a href="{{ url('/admin/exam/admit-card') }}/{{$exam->id}}" class="btn btn-primary btn-sm" title="Admit Card"><i class="fa fa-id-badge" aria-hidden="true"></i></a>
+                                        <a href="{{ route('exam.admitCard',$exam->id) }}" class="btn btn-primary btn-sm" title="Admit Card"><i class="fa fa-id-badge" aria-hidden="true"></i></a>
                                         <a href="{{ action('Backend\ExamScheduleController@index',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
                                         <a href="{{ action('Backend\ResultController@tabulation',$exam->id) }}" class="btn btn-dark btn-sm" title="Tabulation Sheet"><i class="fas fa-list-ol"></i></a>
 {{--                                        <a type="button" href="{{ action('Backend\ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a>--}}
@@ -99,7 +99,7 @@
     <!-- ***/ Pop Up Model for  New Grade System Item button -->
     <div class="modal fade" id="addexam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Exam')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -107,7 +107,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\ExamController@store_exam', 'method'=>'post']) !!}
+                    {{ Form::open(['action'=>'Backend\ExamController@store_exam', 'method'=>'post']) }}
 
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Name')}}*</label>
@@ -157,9 +157,8 @@
                         <div style="float: right; margin-right: 75px;">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                         </div>
-                    {!! Form::close() !!}
+                    {{ Form::close() }}
                 </div>
-                <div class="modal-footer"></div>
             </div>
         </div>
     </div>
@@ -171,6 +170,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
 @stop
+
 <!-- *** External JS File-->
 @section('plugin')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>

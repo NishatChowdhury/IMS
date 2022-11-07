@@ -7,7 +7,8 @@
 <section class="padding-y-20 border-bottom" style="color:black">
     <div class="row">
         <div class="col-9 text-center">
-            <img src="{{ asset('assets/img/logos/'.siteConfig('logo')) }}" height="100" alt="{{ siteConfig('name') }}" class="">
+            <img src="{{ asset('assets/img/logos/'.siteConfig('logo')) }}" height="100" alt="{{ siteConfig('name') }}"
+                 class="">
             <h2>{{ siteConfig('name') }}</h2>
             <address>
                 {{ siteConfig('address') }}<br>
@@ -75,11 +76,11 @@
                         </tr>
                         <tr>
                             <td>{{ __('Gender')}}</td>
-                            <td>{{ \App\Models\Backend\Gender::query()->findOrNew($student['gender_id'])->name }}</td>
+                            <td>{{ \App\Models\Frontend\Gender::query()->findOrNew($student['gender_id'])->name }}</td>
                         </tr>
                         <tr>
                             <td>{{ __('Blood Group')}}</td>
-                            <td>{{ \App\Models\Backend\BloodGroup::query()->findOrNew($student['blood_group_id'])->name }}</td>
+                            <td>{{ \App\Models\Frontend\BloodGroup::query()->findOrNew($student['blood_group_id'])->name }}</td>
                         </tr>
                     </table>
                 </div>
@@ -87,7 +88,8 @@
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}" class="img-thumbnail" width="180" height="220" alt="">
+                        <img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}" class="img-thumbnail"
+                             width="180" height="220" alt="">
                     </div>
                 </div>
             </div>
@@ -265,7 +267,8 @@
                                         @foreach($subject as $sub)
                                             <li>
                                                 {{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->name }}
-                                                ({{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->code }})
+                                                ({{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->code }}
+                                                )
                                             </li>
                                         @endforeach
                                     </ol>

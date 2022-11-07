@@ -92,7 +92,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($attendances as $attn)
-                                    <tr @if($attn->attendanceStatus->name == 'Weekly Off') style="background: #9b9b9b" @endif>
+                                    <tr>
                                         <td>
                                         {{ \Carbon\Carbon::parse($attn->date)->format('Y-m-d') ?? 'N/A' }}
                                         </td>
@@ -107,7 +107,7 @@
                                             {{ $attn->manual_out_time ?? $attn->out_time}}
                                         </td>
                                         <td class="text-center">
-                                            {{$attn->attendanceStatus->name ?? '',}}
+                                            {{ $attn->attendanceStatus->name ?? '',}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -119,7 +119,6 @@
                 </div>
             </div>
 
-        </div>
         </div>
     </section>
 @stop
