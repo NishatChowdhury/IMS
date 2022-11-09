@@ -8,13 +8,13 @@
 
 namespace App\Repository;
 
+use App\Models\Backend\BloodGroup;
 use App\Models\Backend\Exam;
+use App\Models\Backend\Gender;
 use App\Models\Backend\Group;
 use App\Models\Backend\Location;
 use App\Models\Backend\Religion;
 use App\Models\Backend\Session;
-use App\Models\Frontend\BloodGroup;
-use App\Models\Frontend\Gender;
 
 class FrontRepository
 {

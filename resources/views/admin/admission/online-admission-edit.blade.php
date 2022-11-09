@@ -108,10 +108,6 @@
                                      <label for="">{{ __('Ending Date')}}</label>
                                      <input type="date" name="end" id="end" class="form-control" value="{{ $onlineAdmission->end->format('Y-m-d') }}">
                                  </div>
-                                    <div class="form-group col-6">
-                                     <label for="">{{ __('Admission Fee')}}</label>
-                                     <input type="number" name="fee" id="fee" class="form-control" value="{{ $onlineAdmission->fee }}">
-                                 </div>
                                  <div class="form-group col-6" id="statusCheck">
                                          <div class="custom-control custom-switch">
                                            <input type="checkbox"  value="1" {{  $onlineAdmission->status == 1 ? 'checked' : '' }} name="status" class="custom-control-input" id="customSwitch1">

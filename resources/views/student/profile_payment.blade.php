@@ -13,30 +13,18 @@
             <td class="text-center">{{ $payment->date->format('Y-m-d') }}</td>
             <td class="text-right">{{ number_format($payment->amount,2) }}</td>
             <td class="text-right">{{ number_format($payment->discount,2) }}</td>
-            <td class="text-center">{{ $payment->method->name ?? '' }}</td>
+            <td class="text-center">{{ $payment->method->name }}</td>
         </tr>
     @endforeach
     </tbody>
-    <tfoot>
+</table>
+
+<table class="table table-bordered">
     <tr>
-        <td colspan="2">
-            <b>Total Due</b>
-        </td>
-        <td colspan="2" class="text-right">
-            {{$due}} TK
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <b>Payable Amount</b>
-        </td>
-        <td colspan="2" class="text-right">
-            <input type="number" class="form-control payableAmount" placeholder="Enter Payable Amount" value="{{ $due }}">
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4" class="text-right">
-           @if($due > 10)
+        <td>{{ __('Total Due') }}</td>
+        <td>{{ number_format($due,2) }}</td>
+        <td>
+            @if($due > 10)
             <button class="your-button-class" id="sslczPayBtn"
                     token="if you have any token validation"
                     postdata="your javascript arrays or objects which requires in backend"
@@ -48,25 +36,12 @@
             @endif
         </td>
     </tr>
-    </tfoot>
 </table>
 
 @push('js')
     <script>
-        let amountGet;
         var obj = {};
-         $('#sslczPayBtn').on('click', function (event){
-             amountGet = $('.payableAmount').val();
-             obj.info = parseFloat("{{ auth()->user()->student_id }}");
-             obj.payMethods = 'studentFee';
-              obj.amount = amountGet;
-
-        });
-        console.log('behind-', amountGet);
-
-        // obj.amount = 23;
-        {{--obj.amount = parseFloat("{{ $due }}");--}}
-
+        obj.amount = parseFloat("{{ $due }}");
 
         $('#sslczPayBtn').prop('postdata', obj);
         (function (window, document) {

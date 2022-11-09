@@ -32,7 +32,7 @@
 
             <div class="list-card align-items-center shadow-v2 px-3">
                 <div class="col-lg-4 py-4">
-                    <img class="w-100" src="{{ asset('assets/img/events') }}/{{ $event->image ?? ''}}" alt="">
+                    <img class="w-100" src="{{ asset('assets/img/events/') }}/{{ $event->image }}" alt="">
                 </div>
                 <div class="col-lg-8 py-4">
                     <a href="#" class="h4">
@@ -79,7 +79,7 @@
                 @foreach($events as $event)
                 <div class="col-lg-4 col-md-6 marginTop-30">
                     <div class="card height-100p shadow-v1">
-                        <img class="card-img-top" src="{{ asset('assets/img/events') }}/{{ $event->image ?? ''}}" alt="">
+                        <img class="card-img-top" src="{{ asset('assets/img/events/') }}/{{ $event->image }}" alt="">
                         <div class="card-body">
                             <a href="#" class="h4">
                                 {{ $event->title }}
@@ -97,34 +97,33 @@
 
 
 
-                <div class="col-12 marginTop-80 text-center">
-                    {{ $events->links() }}
-{{--                    <ul class="pagination pagination-primary justify-content-center">--}}
-{{--                        <li class="page-item mx-1">--}}
-{{--                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">--}}
-{{--                                <i class="ti-angle-left small"></i>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item mx-1">--}}
-{{--                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">1</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item active disabled mx-1">--}}
-{{--                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">2</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item disabled mx-1">--}}
-{{--                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">--}}
-{{--                                <i class="ti-more-alt"></i>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item mx-1">--}}
-{{--                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">16</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="page-item mx-1">--}}
-{{--                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">--}}
-{{--                                <i class="ti-angle-right small"></i>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
+                <div class="col-12 marginTop-80">
+                    <ul class="pagination pagination-primary justify-content-center">
+                        <li class="page-item mx-1">
+                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">
+                                <i class="ti-angle-left small"></i>
+                            </a>
+                        </li>
+                        <li class="page-item mx-1">
+                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">1</a>
+                        </li>
+                        <li class="page-item active disabled mx-1">
+                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">2</a>
+                        </li>
+                        <li class="page-item disabled mx-1">
+                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">
+                                <i class="ti-more-alt"></i>
+                            </a>
+                        </li>
+                        <li class="page-item mx-1">
+                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">16</a>
+                        </li>
+                        <li class="page-item mx-1">
+                            <a class="page-link iconbox iconbox-sm rounded-0" href="#">
+                                <i class="ti-angle-right small"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div> <!-- END row-->
         </div> <!-- END container-->

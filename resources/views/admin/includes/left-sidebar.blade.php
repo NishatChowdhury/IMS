@@ -123,6 +123,7 @@
                                 </li>
                             @endcan
                             @can('middleware-passed','attendance.holiday')
+                                {{--                                @if(in_array("attendance.holiday", auth()->user()->permissions))--}}
                                 <li class="nav-item">
                                     <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/holidays') }}">
                                         <i class="far fa-circle nav-icon"></i>
@@ -130,8 +131,8 @@
                                     </a>
                                 </li>
                             @endcan
-                            <li class="nav-item has-treeview {{ isActive(['admin/attendance/setting','admin/attendance/weeklyOff']) }}">
-                                <a href="#" class="nav-link {{ isActive(['admin/attendance/setting','admin/attendance/weeklyOff']) }}">
+                            <li class="nav-item has-treeview {{ isActive('admin/attendance*') }}">
+                                <a href="#" class="nav-link {{ isActive('admin/attendance*') }}">
                                     <i class="nav-icon far fa-circle"></i>
                                     <p>
                                         Setting
@@ -141,6 +142,7 @@
                                 <ul class="nav nav-treeview">
 
                                     @can('middleware-passed','shift.index')
+                                        {{--                                    @if(in_array("shift.index", auth()->user()->permissions))--}}
                                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                             <a href="{{ action('Backend\ShiftController@index') }}" class="nav-link {{ isActive('admin/attendance/setting') }}">
                                                 <i class="far nav-icon"></i>
@@ -149,6 +151,7 @@
                                         </li>
                                     @endcan
                                     @can('middleware-passed','weeklyOff.index')
+                                        {{--                                        @if(in_array("weeklyOff.index", auth()->user()->permissions))--}}
                                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                             <a href="{{ action('Backend\WeeklyOffController@index') }}" class="nav-link {{ isActive('admin/attendance/weeklyOff') }}">
                                                 <i class="far nav-icon"></i>
@@ -158,7 +161,14 @@
                                     @endcan
                                 </ul>
                             </li>
+                            {{--                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+                            {{--                            <a href="{{ action('ShiftController@index') }}" class="nav-link {{ isActive('admin/attendance/setting') }}">--}}
+                            {{--                                <i class="far fa-circle nav-icon"></i>--}}
+                            {{--                                <p>Setting</p>--}}
+                            {{--                            </a>--}}
+                            {{--                        </li>--}}
                             @can('middleware-passed','attendance.student')
+                                {{--                                @if(in_array("attendance.student", auth()->user()->permissions))--}}
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ route('attendance.student')}}" class="nav-link {{ isActive('admin/attendance/student') }}">
                                         <i class="far fa-circle nav-icon"></i>
@@ -167,6 +177,7 @@
                                 </li>
                             @endcan
                             @can('middleware-passed','attendance.teacher')
+                                {{--                                @if(in_array("attendance.teacher", auth()->user()->permissions))--}}
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ route('attendance.teacher')}}" class="nav-link {{ isActive('admin/attendance/teacher') }}">
                                         <i class="far fa-circle nav-icon"></i>
@@ -175,6 +186,7 @@
                                 </li>
                             @endcan
                             @can('middleware-passed','attendance.report')
+                                {{--                                @if(in_array("attendance.report", auth()->user()->permissions))--}}
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                     <a href="{{ route('attendance.report') }}" class="nav-link {{ isActive('admin/attendance/report') }}">
                                         <i class="far fa-circle nav-icon"></i>
@@ -585,6 +597,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="{{ route('subscriber.list') }}" class="nav-link {{ isActive('admin/subscriber/list') }}">
+                            <i class="fa fa-user-circle nav-icon"></i>
+                            <p>{{ __('Subscribers') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('communication.quick') }}" class="nav-link {{ isActive('admin/communication/quick') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Quick SMS') }}</p>
@@ -682,13 +700,13 @@
                                     </li>
                                 @endcan
                                 @can('middleware-passed','leaveManagement.index')
-                                    <li class="nav-item">
-                                        <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
-                                            <i class="far nav-icon"></i>
-                                            <p>Suborno Joyontee</p>
-                                        </a>
-                                    </li>
-                                @endcan
+                                <li class="nav-item">
+                                    <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
+                                        <i class="far nav-icon"></i>
+                                        <p>Suborno Joyontee</p>
+                                    </a>
+                                </li>
+                                 @endcan
                                 @can('middleware-passed','features.index')
                                     {{-- @if(in_array("features.index", auth()->user()->permissions)) --}}
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -786,7 +804,7 @@
                     <a href="#" class="nav-link {{ isActive(['admin/staff*']) }}">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
-                            Teacher & Staff
+                            Staff Mgmt
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -796,7 +814,7 @@
                             <li class="nav-item">
                                 <a href="{{route('staff.teacher')}}" class="nav-link {{ isActive('admin/staff/teacher') }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Teacher & Employee</p>
+                                    <p>Teacher & Staff</p>
                                 </a>
                             </li>
                         @endcan
@@ -990,14 +1008,43 @@
                     </li>
                 </ul>
             </li>
-            {{--            <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">--}}
-            {{--                <a href="{{ action('Backend\AlumniController@index') }}" class="nav-link {{ isActive(['alumni*']) }}">--}}
-            {{--                    <i class="nav-icon fas fa-tachometer-alt"></i>--}}
-            {{--                    <p>--}}
-            {{--                        Alumni--}}
-            {{--                    </p>--}}
-            {{--                </a>--}}
-            {{--            </li>--}}
+            <li class="nav-item has-treeview {{ isActive(['admin/user*']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/user*']) }}">
+                    <i class="fas fa-users-cog"></i>
+                    <p>
+                        Admission  register
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
+                        <a href="{{ route('regligion-wise.report') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Religion-wise Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="{{ route('group-wise.report') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Group-wise Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="{{ route('create-dynamic.table') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Create Dynamic Table</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">
+                <a href="{{ action('Backend\AlumniController@index') }}" class="nav-link {{ isActive(['alumni*']) }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Alumni
+                    </p>
+                </a>
+            </li>
             <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">
                 <a href="{{ route('backup.db') }}" class="nav-link {{ isActive(['alumni*']) }}">
                     <i class="nav-icon fas fa-database"></i>

@@ -114,7 +114,8 @@
                             <li><a class="nav-link__list" href="{{action('FrontController@staff')}}">{{ __('Staffs')}}</a></li>
                             <li><a class="nav-link__list" href="{{ action('FrontController@wapc') }}">{{ __('Women Abuse
                                 Prevention Committee(WAPC)')}}</a></li>
-                            <li><a class="nav-link__list" href="{{ action('FrontController@tswt') }}">{{ __('Teacher & Employee Welfare Trust')}}</a></li>
+                            <li><a class="nav-link__list" href="{{ action('FrontController@tswt') }}">{{ __('Teacher & Staff
+                                Welfare Trust')}}</a></li>
                             <li><a class="nav-link__list" href="{{ action('FrontController@tci') }}">{{ __('Teachers Council
                                 Information')}}</a></li>
 
@@ -127,7 +128,7 @@
                     <div class="dropdown-menu left-auto p-2 p-md-4">
                         <ul class="list-unstyled">
                             <li><a class="nav-link__list px-0" href="{{action('FrontController@internal_exam')}}">{{ __('Internal
-                                Result<')}}</a></li>
+                                Result<')}}/a></li>
                             <li><a class="nav-link__list px-0" href="{{action('FrontController@public_exam')}}">{{ __('Public
                                 Examination')}}</a></li>
                             <li><a class="nav-link__list px-0" href="{{action('FrontController@admission')}}">{{ __('Online

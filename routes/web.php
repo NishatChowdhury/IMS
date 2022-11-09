@@ -21,6 +21,7 @@ Route::get('/home', [DashboardController::class, 'index'])->name('home');
 ==== Route for Front-End Menu Bar Start ==== @MKH
  */
 Route::get('/', 'Front\FrontController@index');
+Route::post('/store/subscriber', 'Front\FrontController@StoreSubscriber')->name('store.subscriber');
 //Route::get('/', 'IdCardController@custom_staffPdf');
 Route::get('/online-apply-step','Front\FrontController@onlineApplyStep');
 Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
@@ -36,15 +37,13 @@ Route::post('/online-apply-save',[OnlineApplyController::class,'store']);
 
 
 Route::get('download-school-pdf/{id}', [AdmissionController::class,'downloadSchoolPdf'])->name('download.school.form');
-Route::get('payment_page/{id}', [AdmissionController::class,'payment_page'])->name('payment_page');
-Route::post('payment_store', [AdmissionController::class,'payment_store'])->name('payment_store');
-Route::get('payment-success/{id}', [AdmissionController::class,'payment_success'])->name('payment_success');
 
 
 //News & Notice
 
 Route::get('/notice-details/{id}','Front\FrontController@noticeDetails')->name('front.notice.details');
 Route::get('/news-details/{id}','Front\FrontController@newsDetails');
+//Route::get('/news-details/{id}','Front\FrontController@news');
 
 //Gallery
 Route::get('/gallery','Front\FrontController@gallery');
@@ -54,17 +53,17 @@ Route::get('/album/{name}','Front\FrontController@album');
 Route::get('/download','Front\FrontController@download');
 Route::get('/contacts','Front\FrontController@contact');
 
-//Route::post('api/login','AndroidController@login');
-//
-//Route::post('api/system-info','AndroidController@systemInfo');
-//Route::post('api/attendance','AndroidController@attendance');
-//Route::post('api/about','AndroidController@about');
-//Route::post('api/president','AndroidController@president');
-//Route::post('api/profile','AndroidController@profile');
-//Route::post('api/teachers','AndroidController@teachers');
-//Route::post('api/syllabus','AndroidController@syllabus');
-//Route::post('api/notices','AndroidController@notices');
-//Route::post('api/class-routines','AndroidController@classRoutine');
+Route::post('api/login','AndroidController@login');
+
+Route::post('api/system-info','AndroidController@systemInfo');
+Route::post('api/attendance','AndroidController@attendance');
+Route::post('api/about','AndroidController@about');
+Route::post('api/president','AndroidController@president');
+Route::post('api/profile','AndroidController@profile');
+Route::post('api/teachers','AndroidController@teachers');
+Route::post('api/syllabus','AndroidController@syllabus');
+Route::post('api/notices','AndroidController@notices');
+Route::post('api/class-routines','AndroidController@classRoutine');
 /** Route for Apps end */
 
 /** Online Admission Starts */
@@ -80,24 +79,6 @@ Route::get('admission-success','Front\AdmissionController@admissionSuccess');
 Route::get('admission-success-school', 'Front\AdmissionController@admissionSuccessSchool');
 // Route::get('admission-success-school', [Front\Front\FrontController::class, 'admissionSuccessSchool']);
 /** Online Admission Ends */
-
-
-Route::get('add-p', function(){
-   return view('permission-add');
-});
-Route::post('/store/pre', function(\Illuminate\Http\Request $request){
-    $validated = $request->validate([
-        'name' => 'required|unique:permissions',
-    ]);
-   \App\Models\Backend\Permission::create([
-       'name' => $request->name,
-       'group_name' => $request->group_name,
-   ]);
-
-   return back()->with('status', 'Data Store Successfully');
-});
-
-
 
 /** Event Start */
 Route::get('events','Front\FrontController@events');
@@ -131,5 +112,6 @@ Route::get('page/{uri}','Front\FrontController@page');
 
 
 
+Auth::routes();
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

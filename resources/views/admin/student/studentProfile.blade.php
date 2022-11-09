@@ -234,12 +234,12 @@
                                         @forelse ($payments as $payment)
                                             <tr>
                                                 <td style="text-align: center">{{\Carbon\Carbon::parse($payment->created_at)->format('m F Y')}}</td>
-                                                <td style="text-align: right">{{ intVal($payment->discount) }}</td>
-                                                <td style="text-align: right">{{ intVal($payment->amount) }}</td>
+                                                <td style="text-align: right">{{ number_format($payment->discount,2) }}</td>
+                                                <td style="text-align: right">{{ number_format($payment->amount,2) }}</td>
                                             </tr>
 
                                             @php
-                                                $total +=  intVal($payment->amount)
+                                                $total +=  number_format($payment->amount,2)
                                             @endphp
                                         @empty
                                             <tr>

@@ -56,11 +56,11 @@ class MainController extends Controller
     }
     public function create()
     {
-        $teacher_id = auth()->guard('teacher')->user()->staff_id;
-        $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
+         $teacher_id = auth()->guard('teacher')->user()->staff_id;
+         $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
 
 //        $dd = ["9"];
-        $subjects = AssignSubject::query()->whereRaw("JSON_CONTAINS(teacher_id, '[$teacher_id]' )")
+           $subjects = AssignSubject::query()->whereRaw("JSON_CONTAINS(teacher_id, '[$teacher_id]' )")
 //            ->whereJsonContains('teacher_id', $teacher_id)  // this will somepoint
             ->get();
 
@@ -291,28 +291,21 @@ class MainController extends Controller
     }
     public function resetPassword(Request $request)
     {
-
-
         $this->validate($request,[
-            'old_password' => 'required',
             'password' => 'required|confirmed'
         ]);
+        $staff = Staff::where('id', $request->id)->first();
+        if($request->password){
 
+            $teacherLogin = TeacherLogin::query()
+                ->where('staff_id', $staff->id)
+                ->first();
+            $teacherLogin->password = Hash::make($request->password);
+            $teacherLogin->save();
 
-        $hashedPassword =  Auth::guard('teacher')->user()->password;
+            return redirect()->back()->with('status', 'Your Password has been Change');
 
-        if (Hash::check($request->old_password, $hashedPassword)) {
-            if (!Hash::check($request->password, $hashedPassword)) {
-                Auth::guard('teacher')->user()->update([
-                    'password' => Hash::make($request->password)
-                ]);
-                return back()->with('status','Password Successfully Changed');
-            } else {
-                return back()->with('status','New password cannot be the same as old password.');
-            }
-        } else {
-            return back()->with('status','Current password not match.');
         }
-        return redirect()->back();
+        return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
     }
 }

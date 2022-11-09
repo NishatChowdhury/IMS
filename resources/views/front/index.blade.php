@@ -35,7 +35,7 @@
 
     @unless(URL::current() == 'https://bnsck.edu.bd')
         <!-- will be open after finishing teacher -->
-        @include('front.pages.teacher')
+        @include('front.teacher')
     @endunless
 
 @stop

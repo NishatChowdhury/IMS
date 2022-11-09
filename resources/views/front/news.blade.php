@@ -13,11 +13,11 @@
                 @foreach($newses as $news)
                 <div class="list-card align-items-center marginTop-30">
                     <div class="col-md-4 px-md-0">
-                        <img class="w-100" src="{{ asset('assets/files/notice') }}/{{ $news->file }}" alt="">
+                        <img class="w-100" src="{{ asset('storage/uploads/notice/') }}/{{ $news->file }}" alt="">
                     </div>
                     <div class="col-md-8 p-4">
                         <p class="text-primary">{{ $news->start->format('F d, Y') }}</p>
-                        <a href="{{ url('/news-details') }}/{{$news->id}}" class="h5">
+                        <a href="{{ action('Front\FrontController@newsDetails',$news->id) }}" class="h5">
                             {{ $news->title }}
                         </a>
                     </div>

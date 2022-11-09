@@ -9,13 +9,15 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($exams as $exam)
-        <tr data-toggle="modal" data-id="{{$exam->id ?? 0}}" data-target="#exampleModal" data-name="{{ $exam->name }}" class="result-details example">
-            <td>{{$exam->name}}</td>
-            <td>{{$exam->start}} </td>
-            <td>{{$exam->end}} </td>
-            <td>{{$exam->total_mark}}</td>
-            <td>{{$exam->gpa}}</td>
+
+    @foreach($exam as $data)
+        <tr data-toggle="modal" data-id="{{$data->exam->id ?? 0}}"
+            data-target="#exampleModal" data-name="{{ $data->exam->name }}" class="result-details example">
+            <td>{{$data->exam->name}}</td>
+            <td>{{$data->exam->start}} </td>
+            <td>{{$data->exam->end}} </td>
+            <td>{{$data->total_mark}}</td>
+            <td>{{$data->gpa}}</td>
         </tr>
     @endforeach
 

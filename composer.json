@@ -8,6 +8,7 @@
     ],
     "license": "MIT",
     "require": {
+        "joshtronic/php-loremipsum": "dev-master",
         "php": "^7.4|^8.0",
         "ext-curl": "*",
         "ext-json": "*",

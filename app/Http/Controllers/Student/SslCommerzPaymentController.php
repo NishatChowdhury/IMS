@@ -6,12 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\FeeSetup;
 use App\Models\Backend\FeeSetupCategory;
 use App\Models\Backend\FeeSetupStudent;
-use App\Models\Backend\Journal;
-use App\Models\Backend\OnlineApply;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
-use App\Service\AccountService;
-use App\Service\OnlinePayment;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
@@ -20,12 +16,6 @@ use Illuminate\Support\Facades\Session;
 
 class SslCommerzPaymentController extends Controller
 {
-    public $accountService;
-
-    public function __construct(AccountService $accountService)
-    {
-        $this->accountService = $accountService;
-    }
 
 //    public function exampleEasyCheckout()
 //    {
@@ -119,7 +109,6 @@ class SslCommerzPaymentController extends Controller
         $post_data['total_amount'] = $data->amount; # You can't pay less than 10
 //        $post_data['total_amount'] = "10"; # You can't pay less than 10
         $post_data['currency'] = "BDT";
-        $post_data['payment_gateway'] = "online_admission";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
@@ -150,11 +139,25 @@ class SslCommerzPaymentController extends Controller
         $post_data['product_profile'] = "physical-goods";
 
         # OPTIONAL PARAMETERS
-        $post_data['value_a'] = $data->payMethods;
-        $post_data['value_b'] =  $data->info;
-        $post_data['value_c'] = "data";
+        $post_data['value_a'] = "ref001";
+        $post_data['value_b'] = "ref002";
+        $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
 
+
+        #Before  going to initiate the payment order status need to update as Pending.
+//        $update_product = DB::table('orders')
+//            ->where('transaction_id', $post_data['tran_id'])
+//            ->updateOrInsert([
+//                'name' => $post_data['cus_name'],
+//                'email' => $post_data['cus_email'],
+//                'phone' => $post_data['cus_phone'],
+//                'amount' => $post_data['total_amount'],
+//                'status' => 'Pending',
+//                'address' => $post_data['cus_add1'],
+//                'transaction_id' => $post_data['tran_id'],
+//                'currency' => $post_data['currency']
+//            ]);
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -165,64 +168,82 @@ class SslCommerzPaymentController extends Controller
             $payment_options = array();
         }
 
-//        return $payment_options;
-
     }
 
     public function success(Request $request)
     {
+        $id = auth()->guard('student')->user()->student_id;
 
-//        return $request->all();
-        if($request->value_a == "Online_admission"){
-            $onlineAdmission =  OnlineApply::find($request->value_b);
+        $student =  StudentAcademic::query()
+            ->where('student_id', $id)
+            ->latest()
+            ->first();
 
-            $onlineAdmission->onlinePayment()->create($request->all());
+        $feeSetup = FeeSetup::query()
+            ->where('academic_class_id', $student->academic_class_id)
+            ->first();
 
-            $this->accountService->makeJournal($onlineAdmission->id, $onlineAdmission->onlineAdmission->fee);
+        $fss = FeeSetupStudent::query()
+            ->where('student_id', $id)
+            ->get(['id', 'student_id']);
 
+        $paying = $request['amount'];
 
-            $onlineAdmission->update([
-                'is_payment' => 1
-            ]);
-            return redirect()->route('payment_success', ['id' => $onlineAdmission->id]);
+        foreach ($fss as $fs) {
+            $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fs->id)->get();
 
-//            \App\Models\Backend\OnlinePayment::query()
-        }else{
-
-            $id = auth()->guard('student')->user()->student_id;
-            $student =  StudentAcademic::query()
-                ->where('student_id', $id)
-                ->latest()
-                ->first();
-            $student->onlinePayment()->create($request->all());
-
-            $this->studentPayment($student, $id, $request['amount']);
+            foreach ($categories as $category) {
+                $amount = $category->amount;
+                $paid = $category->paid;
+                if ($amount > $paid) {
+                    $due = $amount - $paid;
+                    if ($paying > $due) {
+                        $category->update(['paid' => $amount]);
+                        $paying = $paying - $due;
+                    } else {
+                        $adjust = $paid + $paying;
+                        $category->update(['paid' => $adjust]);
+                        $paying = 0;
+                    }
+                }
+            }
         }
 
+        StudentPayment::query()->create([
+            'user_id' => $id,
+            'student_academic_id' => $student->id,
+            'fee_setup_id' => $feeSetup->id,
+            'date' => now(),
+            'amount' => $request['amount'],
+            'discount' => 0,
+            'remarks' => 'Pay via SslCommerz',
+            'payment_method' => 5
+        ]);
 
+        Session::flash('success',__('Successfully received by SslCommerz ').$request['amount']);
+
+        return redirect('student/profile');
 
     }
 
     public function fail(Request $request)
     {
+        $tran_id = $request->input('tran_id');
 
-        return view('front.pages.payment_fail');
-//        $tran_id = $request->input('tran_id');
-//
-//        $order_detials = DB::table('orders')
-//            ->where('transaction_id', $tran_id)
-//            ->select('transaction_id', 'status', 'currency', 'amount')->first();
-//
-//        if ($order_detials->status == 'Pending') {
-//            $update_product = DB::table('orders')
-//                ->where('transaction_id', $tran_id)
-//                ->update(['status' => 'Failed']);
-//            echo "Transaction is Falied";
-//        } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
-//            echo "Transaction is already Successful";
-//        } else {
-//            echo "Transaction is Invalid";
-//        }
+        $order_detials = DB::table('orders')
+            ->where('transaction_id', $tran_id)
+            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+
+        if ($order_detials->status == 'Pending') {
+            $update_product = DB::table('orders')
+                ->where('transaction_id', $tran_id)
+                ->update(['status' => 'Failed']);
+            echo "Transaction is Falied";
+        } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
+            echo "Transaction is already Successful";
+        } else {
+            echo "Transaction is Invalid";
+        }
 
     }
 
@@ -300,56 +321,6 @@ class SslCommerzPaymentController extends Controller
         } else {
             echo "Invalid Data";
         }
-    }
-
-
-    public function studentPayment($student,$id, $am)
-    {
-
-        $feeSetup = FeeSetup::query()
-            ->where('academic_class_id', $student->academic_class_id)
-            ->first();
-
-        $fss = FeeSetupStudent::query()
-            ->where('student_id', $id)
-            ->get(['id', 'student_id']);
-
-        $paying = $am;
-
-        foreach ($fss as $fs) {
-            $categories = FeeSetupCategory::query()->where('fee_setup_student_id', $fs->id)->get();
-
-            foreach ($categories as $category) {
-                $amount = $category->amount;
-                $paid = $category->paid;
-                if ($amount > $paid) {
-                    $due = $amount - $paid;
-                    if ($paying > $due) {
-                        $category->update(['paid' => $amount]);
-                        $paying = $paying - $due;
-                    } else {
-                        $adjust = $paid + $paying;
-                        $category->update(['paid' => $adjust]);
-                        $paying = 0;
-                    }
-                }
-            }
-        }
-
-        StudentPayment::query()->create([
-            'user_id' => $id,
-            'student_academic_id' => $student->id,
-            'fee_setup_id' => $feeSetup->id,
-            'date' => now(),
-            'amount' => $am,
-            'discount' => 0,
-            'remarks' => 'Pay via SslCommerz',
-            'payment_method' => 5
-        ]);
-
-        Session::flash('success',__('Successfully received by SslCommerz ').$am);
-        $this->accountService->makeJournal($id, $am);
-        return redirect('student/profile');
     }
 
 }

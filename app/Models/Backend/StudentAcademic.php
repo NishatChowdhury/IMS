@@ -75,9 +75,4 @@ class StudentAcademic extends Model
         return $this->hasMany(TransportPayment::class);
     }
 
-    public function onlinePayment()
-    {
-        return $this->morphOne(OnlinePayment::class, 'online_paymentable');
-    }
-
 }

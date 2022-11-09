@@ -2,45 +2,47 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Models\Backend\AdmissionFee;
-use App\Models\Backend\Album;
-use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\InstituteMessage;
+use App\Models\Backend\Subscriber;
+use App\Models\Frontend\Alumni;
+use App\Models\Frontend\Language;
+use Carbon\Carbon;
 use App\Models\Backend\Bank;
 use App\Models\Backend\City;
-use App\Models\Backend\Classes;
-use App\Models\Backend\Country;
-use App\Models\Backend\Division;
-use App\Models\Backend\ExamResult;
-use App\Models\Backend\Feature;
-use App\Models\Backend\Gallery;
-use App\Models\Backend\GalleryCategory;
-use App\Models\Backend\GalleryCorner;
-use App\Models\Backend\Group;
-use App\Models\Backend\ImportantLink;
-use App\Models\Backend\InstituteMessage;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Menu;
-use App\Models\Backend\MeritList;
-use App\Models\Backend\Notice;
-use App\Models\Backend\NoticeCategory;
-use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\Page;
-use App\Models\Backend\Playlist;
-use App\Models\Backend\Religion;
-use App\Models\Backend\Session;
-use App\Models\Backend\Slider;
-use App\Models\Backend\Student;
-use App\Models\Backend\UpcomingEvent;
-use App\Models\Frontend\BloodGroup;
-use App\Models\Frontend\Gender;
-use App\Models\Frontend\Language;
-use App\Models\Frontend\Staff;
-use App\Repository\FrontRepository;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Backend\Album;
+use App\Models\Backend\Group;
+use App\Models\Backend\Staff;
+use App\Models\Backend\Gender;
+use App\Models\Backend\Notice;
+use App\Models\Backend\Slider;
+use App\Models\Backend\Classes;
+use App\Models\Backend\Country;
+use App\Models\Backend\Feature;
+use App\Models\Backend\Gallery;
+use App\Models\Backend\Session;
+use App\Models\Backend\Student;
+use App\Models\Backend\Division;
+use App\Models\Backend\Playlist;
+use App\Models\Backend\Religion;
+use App\Models\Backend\MeritList;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\ExamResult;
+use App\Repository\FrontRepository;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\AdmissionFee;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\Backend\ImportantLink;
+use App\Models\Backend\UpcomingEvent;
+use App\Models\Backend\AppliedStudent;
+use App\Models\Backend\NoticeCategory;
+use App\Models\Backend\GalleryCategory;
+use App\Models\Backend\OnlineAdmission;
+use App\Models\Backend\GalleryCorner;
 
 class FrontController extends Controller
 {
@@ -53,7 +55,6 @@ class FrontController extends Controller
 
     public function index()
     {
-
         $sliders = Slider::query()
             //->where('start','<',Carbon::StudentControllertoday())
             ->where(function($query){
@@ -85,6 +86,15 @@ class FrontController extends Controller
 
         //return view('front.index-navy');
         return view('front.index',compact('galleryCorner','about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+    }
+
+    public function StoreSubscriber(Request $request){
+
+        $request->validate([
+            'email' => 'required|email|unique:subscribers',
+        ]);
+        Subscriber::create(['email'=>  $request->email, 'unsubscribed'=>0]);
+        return back();
     }
 
 
@@ -267,10 +277,7 @@ class FrontController extends Controller
     public function events()
     {
         $event = UpcomingEvent::query()->latest('date')->first();
-        $events = UpcomingEvent::query()
-            ->latest('date')
-            ->whereNotIn('id', [$event->id])
-            ->paginate(12);
+        $events = UpcomingEvent::query()->latest('date')->get()->skip(1);
         return view('front.pages.events',compact('event','events'));
     }
 
@@ -302,8 +309,9 @@ class FrontController extends Controller
 
     public function page($uri,Request $request)
     {
-        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
 
+         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+//         dd($content);
         if($content->type == 3){
 
             $notices = null;
@@ -359,11 +367,6 @@ class FrontController extends Controller
             if($content->system_page === 'playlists'){
                 $playlists = Playlist::query()->get();
                 return view('front.pages.'.$content->system_page,compact('playlists'));
-            }
-
-            if($content->system_page === 'teacher'){
-                $teachers = Staff::query()->orderBy('code')->get();
-                return view('front.pages.teacher',compact('teachers'));
             }
 
             if($content->system_page === 'apply-school'){

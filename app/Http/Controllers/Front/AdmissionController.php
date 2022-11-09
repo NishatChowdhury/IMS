@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AppliedStudent;
-use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\OnlineApply;
 use App\Models\Backend\Session;
 use App\Repository\FrontRepository;
@@ -59,31 +58,14 @@ class AdmissionController extends Controller
     {
 //        return $id;
 
-        $getData =  OnlineApply::where('password', $id)->with('onlineAdmission')->first();
-        $amount =  $getData->onlineAdmission->fee ?? null;
-        if($getData->is_payment == 0 && $amount != null){
-            return redirect('payment_page/'.$getData->id);
-        }
-
-        if(empty($getData)){
+        $getData =  OnlineApply::query()->where('password', $id)->first();
+       if(empty($getData)){
             return back()->with('status', 'Your Application ID Not Match :)');
-        }
+       }
         return view('front.admission-school.form-pdf', compact('getData'));
     }
 
-    public function payment_page($id)
-    {
-        $getData =  OnlineApply::query()
-            ->where('id', $id)
-            ->with('onlineAdmission')
-            ->first();
-        return view('front.admission.payment_page', compact( 'getData'));
-    }
 
-    public function payment_store(Request $request)
-    {
-        return $request->all();
-    }
 
 
     public function admissionSuccess(Request $request)
@@ -97,11 +79,5 @@ class AdmissionController extends Controller
     public function admissionSuccessSchool()
     {
         return view('front.admission.admission-success-school');
-    }
-
-    public function payment_success($id)
-    {
-         $onlineAdmission =  OnlineApply::find($id);
-        return view('front.pages.payment-success',compact('onlineAdmission'));
     }
 }

@@ -25,15 +25,15 @@
     <section class="content">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-info">
                     <div class="card-header">
+                            <h3 class="card-title">{{ __('Add A New Book')}}</h3>
                             <a href="{{ route('newBook.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i>
                                 {{ __('Add New Book')}}</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                       <div class="table-responsive">
-                            <table id="example1" class="table table-bordered table-striped table-sm">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead class="thead-dark">
                             <tr>
                                 <th>#{{ __('SL')}}</th>
@@ -68,7 +68,6 @@
                             @endforeach
                             </tbody>
                         </table>
-                       </div>
                     </div>
                 </div>
                 <!-- /.card -->

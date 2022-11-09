@@ -21,10 +21,6 @@ class LinkController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required',
-            'link' => 'required',
-        ]);
         ImportantLink::query()->create($request->all());
         return redirect('admin/settings/links');
     }

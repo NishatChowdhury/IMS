@@ -32,8 +32,7 @@
     <section class="padding-y-20 border-bottom" style="page-break-after: always;color:black">
         <div class="row">
             <div class="col-9 text-center">
-                <img src="{{ asset('assets/img/logos/'.siteConfig('logo')) }}" height="100"
-                     alt="{{ siteConfig('name') }}" class="">
+                <img src="{{ asset('assets/img/logos/'.siteConfig('logo')) }}" height="100" alt="{{ siteConfig('name') }}" class="">
                 <h2>{{ siteConfig('name') }}</h2>
                 <address>
                     {{ siteConfig('address') }}<br>
@@ -43,31 +42,31 @@
                 <h3>{{ __('HSC Admission Form (Session 2021-2022)')}}</h3>
             </div>
             <div class="col-2">
-                <table class="table-bordered" style="font-size: 14px;position: absolute;bottom: 50px;margin-left:25px">
-                    <tr>
-                        <td colspan="2">{{ __('Only for office use')}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ __('Class Roll')}}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>{{ __('Group')}}</td>
-                        <td>{{ \App\Models\Backend\Group::query()->findOrNew($student['group_id'])->name }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ __('Session')}}</td>
-                        <td>{{ \App\Models\Backend\Session::query()->findOrNew($student['session_id'])->year }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ __('SSC GPA')}}</td>
-                        <td>{{ $student['ssc_gpa'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ __('SSC Roll')}}</td>
-                        <td>{{ $student['ssc_roll'] }}</td>
-                    </tr>
-                </table>
+                    <table class="table-bordered" style="font-size: 14px;position: absolute;bottom: 50px;margin-left:25px">
+                        <tr>
+                            <td colspan="2">{{ __('Only for office use')}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Class Roll')}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Group')}}</td>
+                            <td>{{ \App\Models\Backend\Group::query()->findOrNew($student['group_id'])->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Session')}}</td>
+                            <td>{{ \App\Models\Backend\Session::query()->findOrNew($student['session_id'])->year }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('SSC GPA')}}</td>
+                            <td>{{ $student['ssc_gpa'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('SSC Roll')}}</td>
+                            <td>{{ $student['ssc_roll'] }}</td>
+                        </tr>
+                    </table>
             </div>
         </div>
         <div class="container" style="text-transform: uppercase">
@@ -101,11 +100,11 @@
                             </tr>
                             <tr>
                                 <td>{{ __('Gender')}}</td>
-                                <td>{{ \App\Models\Frontend\Gender::query()->findOrNew($student['gender_id'])->name }}</td>
+                                <td>{{ \App\Models\Backend\Gender::query()->findOrNew($student['gender_id'])->name }}</td>
                             </tr>
                             <tr>
                                 <td>{{ __('Blood Group')}}</td>
-                                <td>{{ \App\Models\Frontend\BloodGroup::query()->findOrNew($student['blood_group_id'])->name }}</td>
+                                <td>{{ \App\Models\Backend\BloodGroup::query()->findOrNew($student['blood_group_id'])->name }}</td>
                             </tr>
                         </table>
                     </div>
@@ -113,8 +112,7 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}"
-                                 class="img-thumbnail" width="180" height="220" alt="">
+                            <img src="{{ asset('storage/uploads/students') }}/{{ $student->image }}" class="img-thumbnail" width="180" height="220" alt="">
                         </div>
                     </div>
                 </div>
@@ -179,7 +177,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h5>{{ __('SSC Information')}}</h5>
+                        <h5>{{ __('SSC Information')}}</h5>
                 </div>
             </div>
             <div class="row" style="page-break-after: always">
@@ -296,11 +294,10 @@
                                     <td>
                                         <ol style="margin-bottom: 0">
                                             @foreach($subject as $sub)
-                                                <li>
-                                                    {{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->name }}
-                                                    ({{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->code }}
-                                                    )
-                                                </li>
+                                            <li>
+                                                {{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->name }}
+                                                ({{ \App\Models\Backend\OnlineSubject::query()->findOrNew($sub)->code }})
+                                            </li>
                                             @endforeach
                                         </ol>
                                     </td>
@@ -313,9 +310,7 @@
             <div class="row">
                 <div class="col-md-12 text-justify">
                     <p><b>I, {{ $student->name }},{{ __(' do hereby declare that the above mentioned information and photo are
-                        correct. if any information provided by me is found false,')}} {{ siteConfig('name') }} reserve
-                            the right to cancel my admission. i shall be obliged to obey the rules and regulations
-                            of {{ siteConfig('name') }} and to pay all the required fees.</b></p>
+                        correct. if any information provided by me is found false,')}} {{ siteConfig('name') }} reserve the right to cancel my admission. i shall be obliged to obey the rules and regulations of {{ siteConfig('name') }} and to pay all the required fees.</b></p>
                 </div>
             </div>
             <div class="row marginTop-100" style="font-weight: bold">
@@ -361,31 +356,25 @@
 
 @section('style')
     <style>
-        .table-ssc td {
+        .table-ssc td{
             /*padding: .50rem;*/
         }
-
-        .table-personal td {
+        .table-personal td{
             /*padding: .50rem;*/
         }
-
-        .table-guardian td {
+        .table-guardian td{
             /*padding: .50rem;*/
         }
-
-        .table-subject td {
+        .table-subject td{
             /*padding: .50rem;*/
         }
-
-        .table-address td {
+        .table-address td{
             /*padding: .50rem;*/
         }
-
-        .table td {
+        .table td{
             font-weight: bold;
         }
-
-        @page {
+        @page{
             margin: 15mm 5mm;
         }
     </style>

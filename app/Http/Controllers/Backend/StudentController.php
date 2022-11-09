@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\AssignSubject;
 use App\Models\Backend\Attendance;
+use App\Models\Backend\BloodGroup;
 use App\Models\Backend\City;
 use App\Models\Backend\Classes;
 use App\Models\Backend\Country;
 use App\Models\Backend\Father;
+use App\Models\Backend\Gender;
 use App\Models\Backend\Group;
 use App\Models\Backend\Guardian;
 use App\Models\Backend\Location;
@@ -23,16 +25,15 @@ use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
-use App\Models\Frontend\BloodGroup;
-use App\Models\Frontend\Gender;
+use App\Models\Backend\Transport;
 use App\Models\LocationStudent;
 use App\Models\Student\StudentLogin;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Validation\Rule;
 
 //use App\State;
 
@@ -69,27 +70,19 @@ class StudentController extends Controller
         }
         if($request->get('session_id')){
             $session = $request->get('session_id');
-            $s->whereHas('academics', function($query) use($session){
-                $query->where('session_id', $session);
-            });
+            $s->where('session_id',$session);
         }
         if($request->get('class_id')){
             $class = $request->get('class_id');
-            $s->whereHas('academics', function($query) use($class){
-                $query->where('class_id', $class);
-            });
+            $s->where('class_id',$class);
         }
         if($request->get('section_id')){
             $section = $request->get('section_id');
-            $s->whereHas('academics', function($query) use($section){
-                $query->where('section_id', $section);
-            });
+            $s->where('section_id',$section);
         }
         if($request->get('group_id')){
             $group = $request->get('group_id');
-            $s->whereHas('academics', function($query) use($group){
-                $query->where('group_id', $group);
-            });
+            $s->where('group_id',$group);
         }
 
         if($request->has('csv')){
@@ -262,12 +255,12 @@ class StudentController extends Controller
                 dd($e);
             }
         }
-        StudentLogin::create([
-            'name' =>  $studentStore->name,
-            'student_id' => $studentStore->id,
-            'studentId' => $studentStore->studentId,
-            'password' => Hash::make('student123'),
-        ]);
+                StudentLogin::create([
+                    'name' =>  $studentStore->name,
+                    'student_id' => $studentStore->id,
+                    'studentId' => $studentStore->studentId,
+                    'password' => Hash::make('student123'),
+                ]);
         $getAcademicClass = AcademicClass::find($req->academic_class_id);
 
         StudentAcademic::create([
@@ -328,7 +321,7 @@ class StudentController extends Controller
         $father = Father::query()->where('student_id', $id)->first();
         $mother = Mother::query()->where('student_id', $id)->first();
         $guardian = Guardian::query()->where('student_id', $id)->first();
-        $studentAcademic = StudentAcademic::query()->where('student_id', $id)->latest()->first();
+        $studentAcademic = StudentAcademic::query()->where('student_id', $id)->first();
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
 
         $repository = $this->repository;
@@ -347,7 +340,7 @@ class StudentController extends Controller
             'birth_certificate' => 'required|integer',
             'nationality' => 'required',
             'disability' => 'required',
-            'studentId' => ['required',Rule::unique('students')->ignore($id)],
+            'studentId' => 'required|unique:students,studentId,'.$student->id,
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
@@ -457,14 +450,14 @@ class StudentController extends Controller
     public function optional(Request $request, StudentAcademic $academic)
     {
 
-        $academicclasses = AcademicClass::whereHas('sessions', function($query){
-            return $query->where('active', '=', 1);
-        })->get();
+         $academicclasses = AcademicClass::whereHas('sessions', function($query){
+                    return $query->where('active', '=', 1);
+                })->get();
         $subjects = Subject::all();
         if($request->has('academic_class_id')){
             $className = AcademicClass::find($request->academic_class_id);
-            $notAssignsubjects = $className->subjects;
-            $academicsubjects = AssignSubject::where('academic_class_id', $request->academic_class_id)->get();
+             $notAssignsubjects = $className->subjects;
+             $academicsubjects = AssignSubject::where('academic_class_id', $request->academic_class_id)->get();
             $s = $academic->newQuery();
             $s->where('academic_class_id',$request->get('academic_class_id'));
 //            $s->whereHas('studentSubject', function($query){
@@ -473,7 +466,7 @@ class StudentController extends Controller
 //               });
 //            });
             $s->with('studentSubject');
-            $students = $s->get();
+             $students = $s->get();
         }else{
             $students = NULL;
             $className = NULL;
@@ -489,7 +482,7 @@ class StudentController extends Controller
         $academic_class_id = $request->academic_class_id;
         $subjectType = $request->subject_type;
         $data = [];
-        $data['studentAcademic'] = StudentAcademic::where('academic_class_id', $academic_class_id)->get();
+         $data['studentAcademic'] = StudentAcademic::where('academic_class_id', $academic_class_id)->get();
         $data['subjects'] = Subject::where('type', $subjectType)->get();
         $data['allSubjects'] = Subject::count();
 
@@ -500,7 +493,7 @@ class StudentController extends Controller
     function subjectStudent(Request $req){
 
         $studentAcademic = StudentAcademic::where('student_id', $req->id)->first();
-        StudentSubject::where('student_id', $req->id)->delete();
+         StudentSubject::where('student_id', $req->id)->delete();
         foreach ($req->subjects as $sb){
             StudentSubject::create([
                 'student_academic_id' => $studentAcademic->id,
@@ -509,28 +502,23 @@ class StudentController extends Controller
             ]);
         }
 
-        return back();
+         return back();
     }
 
 
-    public function promotion(Request $request, StudentAcademic $studentAcademic)
+    public function promotion(Request $request, Student $student)
     {
-
         if($request->has('class_id')){
-
-            $s = $studentAcademic->newQuery();
-
+            $s = $student->newQuery();
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
                 $s->where('studentId',$studentId);
             }
-
             if($request->get('session_id')){
                 $session = $request->get('session_id');
                 $s->where('session_id',$session);
             }
             if($request->get('class_id')){
-
                 $class = $request->get('class_id');
                 $s->where('class_id',$class);
             }
@@ -543,7 +531,7 @@ class StudentController extends Controller
                 $s->where('group_id',$group);
             }
 
-            $students = $s->orderBy('rank', 'ASC')->get();
+            $students = $s->where('status',1)->get();
         }else{
             $students = collect();
         }
@@ -554,12 +542,10 @@ class StudentController extends Controller
 
     public function promote(Request $request)
     {
-
-
         $ids = $request->get('ids');
 
         foreach($ids as $key => $id){
-
+            $student = Student::query()->findOrFail($id);
 
 //                $academicClassId = AcademicClass::query()
 //                    ->where('session_id',$request->session_id)
@@ -569,6 +555,7 @@ class StudentController extends Controller
 //                    ->first();
 
             $academicClassId = AcademicClass::query();
+
             if($request->has('session_id')){
                 $academicClassId->where('session_id',$request->session_id);
             }
@@ -584,26 +571,53 @@ class StudentController extends Controller
 
             $academicClassId = $academicClassId->first();
 
-            if(!$academicClassId){
-                return back()->with('status', 'Academic Class Not Created Yet');
-            }
-
-            $old = StudentAcademic::find($id);
-
-            StudentAcademic::create([
-                'academic_class_id' => $academicClassId->id,
-                'student_id' => $old->student_id,
-                'session_id' => $request->session_id,
-                'class_id' => $request->class_id,
-                'section_id' => $request->section_id,
-                'group_id' => $request->group_id,
-                'shift_id' => 0,
-                'rank' => $request->get('rank')[$id],
-            ]);
-
+            $data['name'] = $student->name;
+            $data['studentId'] = $student->studentId;
+            $data['academic_class_id'] = $academicClassId->id ?? null;
+            $data['session_id'] = $request->session_id;
+            $data['class_id'] = $request->class_id;
+            $data['section_id'] = $request->section_id;
+            $data['group_id'] = $request->group_id;
+            $data['rank'] = $request->get('rank')[$id];
+            $data['father'] = $student->father;
+            $data['mother'] = $student->mother;
+            $data['gender_id'] = $student->gender_id;
+            $data['mobile'] = $student->mobile;
+            $data['dob'] = $student->dob;
+            $data['blood_group_id'] = $student->blood_group_id;
+            $data['religion_id'] = $student->religion_id;
+            $data['image'] = $student->image;
+            $data['address'] = $student->address;
+            $data['area'] = $student->area;
+            $data['zip'] = $student->zip;
+            $data['state_id'] = $student->state_id;
+            $data['country_id'] = $student->country_id;
+            $data['email'] = $student->email;
+            $data['father_mobile'] = $student->father_mobile;
+            $data['mother_mobile'] = $student->mother_mobile;
+            $data['notification_type_id'] = $student->notification_type_id;
+            $data['status'] = $student->status;
+            $data['bcn'] = $student->bcn;
+            $data['father_occupation'] = $student->father_occupation;
+            $data['mother_occupation'] = $student->mother->occupation;
+            $data['other_guardian'] = $student->other_guardian;
+            $data['guardian_national_id'] = $student->guardian_national_id;
+            $data['yearly_income'] = $student->yearly_income;
+            $data['guardian_address'] = $student->guardian_address;
+            $data['bank_slip'] = $student->bank_slip;
+            $data['ssc_roll'] = $student->ssc_roll;
+            $data['location_id'] = $student->location_id;
+            $data['shift_id'] = $student->shift_id;
+            $data['subjects'] = $student->subjects;
+            $data['ssc_roll'] = $student->ssc_roll;
+            $data['ssc_registration'] = $student->ssc_registration;
+            $data['ssc_session'] = $student->ssc_session;
+            $data['ssc_year'] = $student->ssc_year;
+            $data['ssc_board'] = $student->ssc_board;
+            Student::query()->create($data);
         }
 
-        return redirect()->back()->with('status', 'Promoted Was Done');
+        return redirect()->back();
     }
 
     public function dropOut($id)
@@ -794,15 +808,15 @@ class StudentController extends Controller
         $data['father'] = Father::query()->where('student_id', $studentId)->first();
         $data['mother'] = Mother::query()->where('student_id', $studentId)->first();
         $data['guardian'] = Guardian::query()->where('student_id', $studentId)->first();
-        $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
+         $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
             ->with('classes','section','group')
             ->first();
         // return $studentAcademic;
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
-        $payments = StudentPayment::query()
-            ->where('student_academic_id',$studentAcademic->id)
-            ->get();
+          $payments = StudentPayment::query()
+                                    ->where('student_academic_id',$studentAcademic->id)
+                                    ->get();
 //        if($payments){
 //            $payments = StudentPayment::query()
 //                                    ->whereHas('academics', function($q) use($studentId){
@@ -813,11 +827,11 @@ class StudentController extends Controller
 //        }
 //            return $payments;
 
-        $attendaces = Attendance::query()
-            ->where('student_academic_id', $studentAcademic->id)
-            ->latest()
-            ->take(30)
-            ->get();
+         $attendaces = Attendance::query()
+                                ->where('student_academic_id', $studentAcademic->id)
+                                ->latest()
+                                ->take(30)
+                                ->get();
 
         return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic','attendaces'));
 
@@ -831,13 +845,11 @@ class StudentController extends Controller
 
     public function tod(Request $request)
     {
-
         if($request->has('session_id') && $request->has('class_id')){
-            $students = StudentAcademic::query()
+            $students = Student::query()
                 ->where('session_id',$request->get('session_id'))
                 ->where('class_id',$request->get('class_id'))
                 ->orderBy('rank')
-                ->with('student')
                 ->get();
         }else{
             $students = [];
@@ -849,16 +861,13 @@ class StudentController extends Controller
 
     public function esif(Request $request)
     {
-
-        if($request->has('session_id') && $request->has('class_id')){
-
-//        return $request->all();
+        if($request->has('session_id') && $request->has('class_id') && $request->has('group_id')){
             $group = Group::query()->findOrFail($request->get('group_id'));
             $class = Classes::query()->findOrFail($request->get('class_id'));
-            $students = StudentAcademic::query()
+            $students = Student::query()
                 ->where('session_id',$request->get('session_id'))
                 ->where('class_id',$request->get('class_id'))
-                ->orWhere('group_id',$request->get('group_id'))
+                ->where('group_id',$request->get('group_id'))
                 ->orderBy('rank')
                 ->get();
         }else{
@@ -874,10 +883,10 @@ class StudentController extends Controller
     public function images(Request $request)
     {
         if($request->has('session_id') && $request->has('class_id') && $request->has('group_id')){
-            $students = StudentAcademic::query()
+            $students = Student::query()
                 ->where('session_id',$request->get('session_id'))
                 ->where('class_id',$request->get('class_id'))
-                ->orWhere('group_id',$request->get('group_id'))
+                ->where('group_id',$request->get('group_id'))
                 ->get();
         }else{
             $students = [];
@@ -892,8 +901,8 @@ class StudentController extends Controller
     {
         $student = Student::query()->findOrFail($id);
         $studentSubject = StudentSubject::query()
-            ->where('student_id',$id)
-            ->get();
+                                        ->where('student_id',$id)
+                                        ->get();
 
         $compulsory = OnlineSubject::query()
             //->where('group_id',$student->group_id)
@@ -927,51 +936,51 @@ class StudentController extends Controller
     public function assignTransport(Request $request)
     {
 
-        $academicClass = AcademicClass::query()
-            ->whereHas('sessions', function($q){
-                return $q->where('active', 1);
-            })->get();
-        if($request->get('academic_class_id')){
-            $students = StudentAcademic::query()
-                ->where('academic_class_id', $request->academic_class_id)
-                ->with('student')
-                ->with('locationStudent')
-                ->get();
-            $locations = Location::all();
-            $locationStudents = LocationStudent::all();
-        }else{
-            $students = [];
-            $locations = [];
-            $locationStudents = [];
-        }
+         $academicClass = AcademicClass::query()
+                                        ->whereHas('sessions', function($q){
+                                            return $q->where('active', 1);
+                                        })->get();
+         if($request->get('academic_class_id')){
+                 $students = StudentAcademic::query()
+                                                    ->where('academic_class_id', $request->academic_class_id)
+                                                    ->with('student')
+                                                    ->with('locationStudent')
+                                                    ->get();
+             $locations = Location::all();
+             $locationStudents = LocationStudent::all();
+         }else{
+             $students = [];
+             $locations = [];
+             $locationStudents = [];
+         }
         return view('admin.student.assignTransport', compact('academicClass','students','locations','locationStudents'));
     }
 
     public function storeAssignTransport(Request $request)
     {
 
-        $student = $request->student_academic_id;
-        foreach ($student as $key => $stu){
+            $student = $request->student_academic_id;
+         foreach ($student as $key => $stu){
 //             return $request->location_id[$key] .'-'.$request->direction[$key];
-            $dataExists = LocationStudent::where('student_academic_id', $stu)->first();
-            if($dataExists){
+             $dataExists = LocationStudent::where('student_academic_id', $stu)->first();
+             if($dataExists){
                 $dataExists->update([
                     'student_academic_id' => $stu,
-                    'location_id' => $request->location_id[$key] ?? 0,
-                    'direction' => $request->direction[$key] ?? 0,
-                    'starting_date' => $request->starting_date[$key] ?? 0,
+                     'location_id' => $request->location_id[$key] ?? 0,
+                     'direction' => $request->direction[$key] ?? 0,
+                     'starting_date' => $request->starting_date[$key] ?? 0,
 //                     'student_id' => 0,
                 ]);
-            }else{
-                LocationStudent::create([
-                    'student_academic_id' => $stu,
-                    'location_id' => $request->location_id[$key] ?? 0,
-                    'direction' => $request->direction[$key] ?? 0,
-                    'starting_date' => $request->starting_date[$key] ?? 0,
-                ]);
-            }
+             }else{
+                 LocationStudent::create([
+                     'student_academic_id' => $stu,
+                     'location_id' => $request->location_id[$key] ?? 0,
+                     'direction' => $request->direction[$key] ?? 0,
+                     'starting_date' => $request->starting_date[$key] ?? 0,
+                 ]);
+             }
 
-        }
+         }
 
         return back();
 
@@ -992,22 +1001,22 @@ class StudentController extends Controller
 
     public function studentPasswordReset(Request $request)
     {
-        $this->validate($request,[
-            'password' => 'required|confirmed'
-        ]);
+                $this->validate($request,[
+                    'password' => 'required|confirmed'
+                ]);
 
-        if($request->password){
+                    if($request->password){
 
-            $student = StudentLogin::query()
-                ->where('student_id',$request->id)
-                ->first();
-            $student->password = Hash::make($request->password);
-            $student->save();
+                        $student = StudentLogin::query()
+                                            ->where('student_id',$request->id)
+                                            ->first();
+                        $student->password = Hash::make($request->password);
+                        $student->save();
 
-            return redirect()->back()->with('status', 'Your Password has been Change');
+                        return redirect()->back()->with('status', 'Your Password has been Change');
 
-        }
-        return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
+                    }
+                    return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
     }
 
 }

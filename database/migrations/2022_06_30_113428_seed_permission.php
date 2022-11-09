@@ -15,6 +15,12 @@ class SeedPermission extends Migration
     {
         $permissionGroup = [
             [
+                'group_name' => 'subscriber',
+                'permissions' => [
+                    "subscriber.list",
+                ],
+            ],
+            [
                 'group_name' => 'transactions',
                 'permissions' => [
                     "transactions.index",

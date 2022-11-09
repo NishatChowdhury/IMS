@@ -3,7 +3,7 @@
         <div class="row">
 
             <div class="col-lg-4 col-md-6 mt-5">
-                <img src="{{ asset('assets/img/logo-white.png') }}" alt="Logo" width="100">
+                <img src="assets/img/logo-white.png" alt="Logo" width="100">
                 <div class="margin-y-40 text-justify">
                     <p>
                         {{ __('WP-IMS is a latest technology of educational institute’s digitization. This is the fastest and most intelligent application ever made in Bangladesh.') }}
@@ -19,6 +19,12 @@
                     @foreach(importantLinks() as $link)
                         <li class="mb-2"><a href="{{ $link->link }}">{{ $link->title }}</a></li>
                     @endforeach
+                    {{--<li class="mb-2"><a href="page-about.html">About Us</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-contact.html">Contact Us</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-sp-student-profile.html">Students</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-sp-admission-apply.html">Admission</a></li>--}}
+                    {{--<li class="mb-2"><a href="page-events.html">Events</a></li>--}}
+                    {{--<li class="mb-2"><a href="blog-card.html">Latest News</a></li>--}}
                 </ul>
 
                 <ul class="list-inline">

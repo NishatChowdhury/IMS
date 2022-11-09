@@ -2,8 +2,6 @@
 
 namespace App\Models\Backend;
 
-use App\Models\Frontend\BloodGroup;
-use App\Models\Frontend\Gender;
 use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model

@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
                                    @if ($errors->any())
@@ -50,8 +50,8 @@
             <div class="row">
                 <div class="col-6">
                     <div class="card-header">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#section" data-whatever="@mdo"> <i class="fas fa-plus-circle"></i> New</button>
-                        <h3>Sections</h3>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#section" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                        <h3 style="display: inline-block; float: right">Sections</h3>
                     </div>
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
@@ -69,11 +69,13 @@
                                     <td>{{++$i}}</td>
                                     <td>{{$section->name}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-info btn-sm edit_sec" value='{{$section->id}}'> <i class="fas fa-edit"></i>Edit
+                                        <a type="button" class="btn btn-info btn-sm edit_sec" value='{{$section->id}}'
+                                           style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
 
                                         <a type="button" href="{{action('Backend\InstitutionController@delete_section',$section->id)}}"
-                                           class="btn btn-danger btn-sm"> <i class="fas fa-trash "></i>Delete
+                                           class="btn btn-danger btn-sm"
+                                           style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
                                     </td>
                                 </tr>
@@ -85,8 +87,8 @@
 
                 <div class="col-6">
                     <div class="card-header">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#GroupModal" data-whatever="@mdo"> <i class="fas fa-plus-circle"></i> New</button>
-                        <h3>Groups</h3>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#GroupModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                        <h3 style="display: inline-block; float: right">Groups</h3>
                     </div>
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
@@ -103,9 +105,12 @@
                                     <td>{{ $group->id }}</td>
                                     <td>{{ $group->name }}</td>
                                     <td>
-                                        <a type="button" class="btn btn-info btn-sm edit_group" value='{{$group->id}}'> <i class="fas fa-edit"></i>Edit
+                                        <a type="button" class="btn btn-info btn-sm edit_group" value='{{$group->id}}'
+                                           style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
-                                        <a type="button" href="{{action('Backend\InstitutionController@delete_grp',$group->id)}}" class="btn btn-danger btn-sm delete_grp"> <i class="fas fa-trash "></i>Delete
+                                        <a type="button" href="{{action('Backend\InstitutionController@delete_grp',$group->id)}}"
+                                           class="btn btn-danger btn-sm delete_grp"
+                                           style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
                                     </td>
                                 </tr>
@@ -121,7 +126,7 @@
     <!-- ***/ Pop Up Model for Group Creation -->
     <div class="modal fade" id="section" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="left:-30%; width: 700px !important; padding: 0px 50px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Section</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -131,7 +136,7 @@
                 <div class="modal-body">
                     {!! Form::open(['action'=>'Backend\InstitutionController@create_section', 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-3 col-form-label">Section Name*</label>
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Section Name*</label>
                         <div class="col-9">
                             <div class="input-group">
                                 <input type="text" name="name" class="form-control" id="" required="required" aria-describedby="" placeholder="ex-2017-2019">
@@ -154,7 +159,7 @@
     <!-- ***/ Pop Up Model for Group Creation -->
     <div class="modal fade" id="GroupModal" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="left:40%; width: 700px !important; padding: 0px 50px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Group</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -164,7 +169,7 @@
                 <div class="modal-body">
                     {!! Form::open(['url'=>'admin/institution/create-group', 'method'=>'post']) !!}
                     <div class="form-group row">
-                        <label for="" class="col-3 col-form-label">Group Name*</label>
+                        <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Group Name*</label>
                         <div class="col-9">
                             <div class="input-group">
                                 <input type="text" name="name" class="form-control" id="" required="required" aria-describedby="" placeholder="ex-2017-2019">

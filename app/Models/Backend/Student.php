@@ -2,14 +2,15 @@
 
 namespace App\Models\Backend;
 
-use App\Models\Frontend\BloodGroup;
-use App\Models\Frontend\Gender;
+use App\Models\Backend\FeeSetupStudent;
+use App\Models\LocationStudent;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -238,9 +239,6 @@ class Student extends Authenticatable
 
     public function studentSubject(){
         return $this->belongsTo(StudentSubject::class);
-    }
-    public function assignSubjects(){
-        return $this->hasMany(StudentSubject::class);
     }
 
 }

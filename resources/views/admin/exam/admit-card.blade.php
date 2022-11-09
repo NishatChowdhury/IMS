@@ -33,7 +33,8 @@
                         {{ Form::open(['action'=>['Backend\ExamController@admitCard', basename(request()->path())],'method'=>'get','role'=>'form']) }}
                         <div class="card-body">
                             <div class="form-row">
-                                <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">
+
+                                        <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">
                                 <div class="col">
                                     <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
@@ -41,41 +42,31 @@
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
                                     </div>
                                 </div>
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">{{ __('Class')}}</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        --}}{{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
-                                {{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                {{--                                <div class="col">--}}
-                                {{--                                    <label for="">{{ __('Section')}}</label>--}}
-                                {{--                                    <div class="input-group">--}}
-                                {{--                                        --}}{{--<select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>--}}
-                                {{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
+                                <div class="col">
+                                    <label for="">{{ __('Class')}}</label>
+                                    <div class="input-group">
+                                        {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
+                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">{{ __('Section')}}</label>
+                                    <div class="input-group">
+                                        {{--<select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>--}}
+                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+                                    </div>
+                                </div>
                                 <div class="col">
                                     <label for="">{{ __('Group')}}</label>
                                     <div class="input-group">
                                         {{--<select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>--}}
-                                        {{--                                        {{ Form::select('group_id',$repository->academicClasses(),null,['class'=>'form-control','placeholder'=>'Select a group']) }}--}}
-                                        <select name="academic-class" class="form-control">
-                                            @foreach($repository->academicClasses() as $class)
-                                                <option value="{{ $class->id }}">
-                                                    {{ $class->academicClasses->name }}&nbsp;
-                                                    {{ $class->section->name ?? '' }}&nbsp;
-                                                    {{ $class->group->name ?? '' }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select a group']) }}
                                     </div>
                                 </div>
 
-                                <div class="col-1">
-                                    <label for=""></label>
+                                <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
 
@@ -124,10 +115,10 @@
 
                                 <div class="row">
                                     {{--<div class="col-md-8">--}}
-                                    {{--<div class="scl-dev">--}}
-                                    {{--<h4 style="color: #879BE8;">{{ siteConfig('name') }}</h4>--}}
-                                    {{--<p>{{ siteConfig('address') }}</p>--}}
-                                    {{--</div>--}}
+                                        {{--<div class="scl-dev">--}}
+                                            {{--<h4 style="color: #879BE8;">{{ siteConfig('name') }}</h4>--}}
+                                            {{--<p>{{ siteConfig('address') }}</p>--}}
+                                        {{--</div>--}}
                                     {{--</div>--}}
                                     <div class="col-md-4">
                                         <div class="stu-dec">
@@ -140,7 +131,7 @@
                                 </div>
                                 <table id="example2" class="table table-bordered">
                                     <tr>
-                                        <th>{{ __('Student\'s Name')}} : </th>
+                                        <th>{{ __('Student's Name')}} : </th>
                                         <td>{{ $studentAcademic->student->name ?? '' }}</td>
                                         <th>StudentID : </th>
                                         <td>{{ $studentAcademic->student->studentId ?? ''}}</td>
@@ -154,9 +145,9 @@
                                         <td> {{ $studentAcademic->rank }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Father\'s Name')}} :</th>
+                                        <th>{{ __('Father's Name')}} :</th>
                                         <td>{{ $studentAcademic->student->father->f_name ?? '' }}</td>
-                                        <th>{{ __('Mother\'s Name')}} : </th>
+                                        <th>{{ __('Mother's Name')}} : </th>
                                         <td>{{ $studentAcademic->student->mother->m_name ?? '' }}</td>
                                     </tr>
                                     <tr>

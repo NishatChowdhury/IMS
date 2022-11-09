@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class IssueBook extends Model
 {
     use HasFactory;
-
     protected $fillable = ['student_id','book_id','is_return'];
 
     public function student_name(): BelongsTo

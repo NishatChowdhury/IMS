@@ -48,23 +48,23 @@
                                 </thead>
                                 @php $i=1; @endphp
                                 <tbody>
-                                @foreach($syllabuses as $syllabus)
-                                    <tr>
-                                        <td>{{ $i++ }}</td>
-                                        <td>{{ $syllabus->academicClass->academicClasses->name ?? '' }}&nbsp;{{ $syllabus->academicClass->section->name ?? '' }}{{ $syllabus->academicClass->group->name ?? '' }}</td>
-                                        <td>{{ $syllabus->academicClass->sessions->year ?? '' }}</td>
-                                        <td>{{ $syllabus->title}}</td>
-                                        <td>
-                                            <a href="{{ asset('assets/syllabus') }}/{{ $syllabus->file }}" class="btn btn-success btn-sm" target="_blank">{{ __('View Syllabus') }} <i class="fas fa-eye"></i></a>
-                                        </td>
-                                        <td>
-                                            {{ Form::open(['action'=>['Backend\SyllabusController@destroy',$syllabus->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            {{--                                                <a href="{{ route('syllabus.delete',$syllabus->id) }}" class="btn btn-danger btn-sm" onclick="confirm('Do you want to delete this Syllabus ?')"><i class="fas fa-trash"></i> </a>--}}
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            {{ Form::close() }}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach($syllabuses as $syllabus)
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $syllabus->academicClass->academicClasses->name ?? '' }}&nbsp;{{ $syllabus->academicClass->section->name ?? '' }}{{ $syllabus->academicClass->group->name ?? '' }}</td>
+                                            <td>{{ $syllabus->academicClass->sessions->year ?? '' }}</td>
+                                            <td>{{ $syllabus->title}}</td>
+                                            <td>
+                                                <a href="{{ asset('assets/syllabus') }}/{{ $syllabus->file }}" class="btn btn-success btn-sm" target="_blank">{{ __('View Syllabus') }} <i class="fas fa-eye"></i></a>
+                                            </td>
+                                            <td>
+                                                {{ Form::open(['action'=>['Backend\SyllabusController@destroy',$syllabus->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+{{--                                                <a href="{{ route('syllabus.delete',$syllabus->id) }}" class="btn btn-danger btn-sm" onclick="confirm('Do you want to delete this Syllabus ?')"><i class="fas fa-trash"></i> </a>--}}
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                {{ Form::close() }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -78,7 +78,7 @@
     <!-- ***/ Pop Up Model for button -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Syllabus</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -86,31 +86,44 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    {{--<form>--}}
                     {{ Form::open(['action'=>'Backend\SyllabusController@store','method'=>'post','files'=>true]) }}
 
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Academic Class</label>
-                        <select name="academic_class_id" id="inputState" class="form-control" >
-                            <option value=""> -- Select Academic Class -- </option>
-                            @foreach($academic_class as $value)
-                                <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }} {{$value->section->name ?? ''}}{{ $value->group->name ?? '' }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Academic Class</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <select name="academic_class_id" id="inputState" class="form-control" >
+                                    <option value=""> -- Select Academic Class -- </option>
+                                    @foreach($academic_class as $value)
+                                        <option value="{{ $value->id }}"> {{ $value->academicClasses->name ?? '' }} {{$value->section->name ?? ''}}{{ $value->group->name ?? '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Title</label>
-                        <input type="text" name="title" class="form-control" id=""  aria-describedby="">
+{{--                    <input type="hidden" name="session_id" class="form-control" value="{{$value->session_id}}">--}}
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Title</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" name="title" class="form-control" id=""  aria-describedby="">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Syllabus (pdf)*</label>
-                        <div class="form-group files color">
-                            <input type="file" name="file" class="form-control" multiple="">
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Syllabus (pdf)*</label>
+                        <div class="col-sm-10">
+                            <div class="form-group files color">
+                                <input type="file" name="file" class="form-control" multiple="">
+                            </div>
                         </div>
                     </div>
                     <div style="float: right">
                         <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
                     {{ Form::close() }}
+                    {{--</form>--}}
 
                 </div>
                 <div class="modal-footer"></div>
@@ -124,7 +137,15 @@
 <!-- *** External CSS File-->
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/imageupload.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">--}}
 @stop
+
+<!-- *** External JS File-->
+@section('plugin')
+{{--    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>--}}
+@stop
+
 
 @section('script')
     <script>

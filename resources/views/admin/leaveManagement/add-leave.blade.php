@@ -45,14 +45,8 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-12">
                                     <div class="form-group">
-                                        {{ Form::label('id', 'User',['class'=>'control-label' ]) }}
-                                        {{ Form::select('user',['Student','Teacher'],null, ['placeholder' => 'Select User','class'=>'form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-12">
-                                    <div class="form-group">
-                                        {{ Form::label('id', 'ID',['class'=>'control-label' ]) }}
-                                        {{ Form::text('id', null, ['placeholder' => 'Enter Student/Teacher ID...','class'=>'form-control']) }}
+                                        {{ Form::label('student_id', 'Student Id',['class'=>'control-label' ]) }}
+                                        {{ Form::text('student_id', null, ['placeholder' => 'Enter Student ID...','class'=>'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-sm-12">

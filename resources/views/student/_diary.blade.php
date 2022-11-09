@@ -26,9 +26,9 @@
         <tbody id="diaryBody">
         @foreach($diaries as $diary)
             <tr>
-                <td>{{ $diary->subject->name ?? 'Subject' }}</td>
-                <td>{{ $diary->teacher->name ?? 'NA' }}</td>
-                <td>{!! $diary->description !!}</td>
+                <td>{{ $diary->subject->name }}</td>
+                <td>{{ $diary->teacher->name }}</td>
+                <td>{!!  $diary->description  !!}</td>
             </tr>
         @endforeach
         </tbody>

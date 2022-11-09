@@ -3,10 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Backend\AcademicClass;
+use App\Models\Backend\AssignSubject;
+use App\Models\Backend\Subject;
 use App\Models\Diary;
-use Exception;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
 class DiaryGenerate extends Command
 {
@@ -42,32 +43,20 @@ class DiaryGenerate extends Command
     public function handle()
     {
         try {
-            $classes = AcademicClass::query()->with('subjects')->get();
-            $today = today();
-            foreach ($classes as $class){
-                $subjects = $class->subjects;
-                foreach ($subjects as $subject){
-                    $data = [
-                        'academic_class_id' => $class->id,
-                        'date' => $today,
-                        'teacher_id' => rand(1,20),
-                        'subject_id' => $subject->subject_id,
-                        'description' => Str::random(100),
-                    ];
-                    $diary = Diary::query()
-                        ->where('subject_id',$subject->subject_id)
-                        ->where('date',$today)
-                        ->first();
+            for ($i = 1; $i < 10; $i++){
+                $subjects = AssignSubject::query()->where('academic_class_id', 1)->inRandomOrder()->first();
+                Diary::create([
+                    'academic_class_id' => 1,
+                    'date' => carbon::now()->format('Y-m-d'),
+                    'teacher_id' => $subjects->teacher_id[0] ?? 0,
+                    'subject_id' => $subjects->subject_id,
+                    'description' => 'Description From Random Generate',
 
-                    if($diary){
-                        $diary->update($data);
-                    }else{
-                        Diary::query()->create($data);
-                    }
-                }
+                ]);
             }
             $this->info('Random Generate Successfully');
         } catch(Exception $e) {
+
             $this->info('Message: ' .$e->getMessage());
         }
 

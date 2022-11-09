@@ -66,11 +66,7 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>
-                                        @foreach($user->roles as $role)
-                                        <span class="badge badge-primary">{{$role->name ?? 'N/A'}}</span>
-                                        @endforeach
-                                    </td>
+                                    <td>{{$user->email}}</td>
                                     <td>
                                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     </td>

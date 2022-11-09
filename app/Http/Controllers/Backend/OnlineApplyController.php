@@ -341,7 +341,7 @@ class OnlineApplyController extends Controller
     {
         $classes = Classes::query()->get();
         $sessions = Session::query()->get();
-         $onlineAdmissions = OnlineAdmission::query()->with('group','sections')->get();
+        $onlineAdmissions = OnlineAdmission::query()->with('group','sections')->get();
         $groups = Group::query()->get();
         return view('admin.admission.onlineAdminssion', compact('sessions','classes','groups','onlineAdmissions'));
     }
@@ -353,13 +353,12 @@ class OnlineApplyController extends Controller
                                 ->where('session_id', $req->session_id)
                                 ->where('group_id', $req->group_id)
                                 ->exists();
-        if ($queryValidation){
+        if ( $queryValidation){
             return back()->with('status', 'Data Already Taken :)');
         }
-        $checkAcademic = AcademicClass::query()
-                                        ->orWhere('session_id', $req->session_id)
+        $checkAcademic = AcademicClass::where('session_id', $req->session_id)
                                         ->where('class_id', $req->class_id)
-                                        ->orWhere('group_id', $req->group_id)
+                                        ->where('group_id', $req->group_id)
                                         ->exists();
 
         if(!$checkAcademic){
@@ -402,8 +401,6 @@ class OnlineApplyController extends Controller
         $dataStore->group_id = $req->group_id;
         $dataStore->start = $req->start;
         $dataStore->end = $req->end;
-        $dataStore->fee = $req->fee;
-        $dataStore->type = $req->type;
         if($req->status == null){
              $dataStore->status = 0;
         }else{

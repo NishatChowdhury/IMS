@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\BloodGroup;
+use App\Models\Backend\Gender;
 use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
-use App\Models\Frontend\BloodGroup;
-use App\Models\Frontend\Gender;
 use App\Models\StaffLogin;
 use App\Models\TeacherAcademic;
 use App\Models\TeacherCourse;
@@ -30,20 +30,9 @@ class StaffController extends Controller
         $this->middleware('auth');
         $this->repository = $repository;
     }
-    public function teacher(Request $request)
+    public function teacher()
     {
-        $s = Staff::query();
-        if($request->card_id != null){
-            $s->where('card_id', $request->card_id);
-        }
-        if($request->staff_type_id != null){
-            $s->where('staff_type_id', $request->staff_type_id);
-        }
-        if($request->job_type_id != null){
-            $s->where('job_type_id', $request->job_type_id);
-        }
-
-        $staffs = $s->latest()->get();
+        $staffs = Staff::all()->sortBy('code');
         return view ('admin.staff.teacher', compact('staffs'));
     }
 
