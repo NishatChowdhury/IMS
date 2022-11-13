@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class SubscriberController extends Controller
 {
     public function index(){
-        return 'ddddd';
         $subscribers =  Subscriber::query()->latest()->get();
         return view('admin.subscriber.list',compact('subscribers'));
     }

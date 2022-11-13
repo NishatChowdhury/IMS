@@ -56,7 +56,7 @@
 
                                         @foreach ($classes as $cls)
                                             <option value="{{ $cls->id }}">
-                                                {{ $cls->id }}
+                                                {{ $cls->classes->name }} {{ $cls->section->name }} {{ $cls->group->name }}
                                             </option>
                                         @endforeach
                                     </select>
