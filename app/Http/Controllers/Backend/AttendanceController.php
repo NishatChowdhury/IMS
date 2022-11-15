@@ -9,6 +9,7 @@ use App\Models\Backend\AttendanceTeacher;
 use App\Models\Backend\Classes;
 use App\Models\Backend\HolidayDuration;
 use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Session;
 use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
@@ -250,6 +251,7 @@ class AttendanceController extends Controller
     public function report(Request $request){
 
         $allClasses = Classes::query()->get(['id','name']);
+        $sessions = Session::query()->where('active',1)->get(['id','year']);
 
         if($request->get('user') == 3){
             $students = Staff::query()->where('staff_type_id', 2)->get();
@@ -285,10 +287,9 @@ class AttendanceController extends Controller
         }
 
 
-//return $students;
         $repository = $this->repository;
 
-        return view('admin.attendance.report',compact('allClasses','repository','year','month','students','personStatus'));
+        return view('admin.attendance.report',compact('allClasses','repository','year','sessions','month','students','personStatus'));
     }
 
 
