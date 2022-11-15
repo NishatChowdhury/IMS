@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DbBackupContoller;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Backend\StudentReportController;
 use App\Http\Controllers\Backend\SubscriberController;
 use Illuminate\Support\Facades\DB;
@@ -27,9 +28,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
     //Route::get('backup', [HomeController::class, 'backup'])->name('admin.backup');
 
-    Route::get('transactions', 'Backend\TransactionController@index')->name('transactions.index');
-    Route::get('transaction/create', 'Backend\TransactionController@create')->name('transaction.create');
-    Route::post('transaction/store', 'Backend\TransactionController@store')->name('transaction.store');
+//    Route::get('transactions', 'Backend\TransactionController@index')->name('transactions.index');
+//    Route::get('transaction/create', 'Backend\TransactionController@create')->name('transaction.create');
+//    Route::post('transaction/store', 'Backend\TransactionController@store')->name('transaction.store');
 
     //Student Routes
     Route::get('student/tod','Backend\StudentController@tod')->name('student.tod');
@@ -154,7 +155,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('student/drop/{id}','Backend\StudentController@dropOut')->name('student.dropOut');
     Route::get('student/subjects/{id}','Backend\StudentController@subjects')->name('student.subjects');
     Route::patch('student/{id}/assign','Backend\StudentController@assignSubject')->name('student.assignSubject');
-    Route::get('/load_student_id','Backend\StudentController@loadStudentId');
+    Route::get('/load_student_id/{id}','Backend\StudentController@loadStudentId')->name('student.load_student_id');
 
     Route::get('student/promotion','Backend\StudentController@promotion')->name('student.promotion');
     Route::post('student/promote','Backend\StudentController@promote')->name('student.promote');
@@ -222,7 +223,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     //Syllabus Section Start A R Babu
     Route::get('syllabuses','Backend\SyllabusController@index')->name('syllabus.index');
     Route::post('syllabus/store','Backend\SyllabusController@store')->name('syllabus.store');
-    Route::get('syllabus/delete/{id}','Backend\SyllabusController@destroy')->name('syllabus.delete');
+    Route::delete('syllabus/delete/{id}','Backend\SyllabusController@destroy')->name('syllabus.delete');
 //Syllabus Section End
 
     //leave purpose starts by Nishat
@@ -326,6 +327,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('library/issue_books','Backend\BookController@issueBook')->name('issueBook.index');
     Route::post('library/issue-books/store','Backend\BookController@issueBookStore')->name('issueBook.store');
     Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
+    Route::get('library/return_books-search','Backend\BookController@returnBookSearch')->name('returnBook.search');
+    Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
     Route::post('library/return-books/store','Backend\BookController@returnBookStore')->name('returnBook.store');
 
 
@@ -369,7 +372,7 @@ Route::post('institution/class/schedule/store','Backend\ScheduleController@store
 Route::post('institution/class/schedule/update','Backend\ScheduleController@update')->name('class.schedule.update');
 Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
 
-    Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
+    //Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
 //Route for fee setup starts here
     Route::get('fee/fee-setup',[FeeSetupController::class,'create'])->name('fee-setup.create');
@@ -566,6 +569,8 @@ Route::post('institution/edit-assigned-subject','Backend\InstitutionController@e
 Route::get('institution/{id}/delete-assigned-subject','Backend\InstitutionController@delete_assigned')->name('institution.delete_assigned');
 Route::get('institution/profile','Backend\InstitutionController@profile')->name('institution.profile')->name('institution.profile');
 
+
+
 Route::get('institution/signature','Backend\InstitutionController@signature')->name('institution.signature');
 Route::post('institution/sig','Backend\InstitutionController@sig')->name('institution.sig');
 
@@ -573,15 +578,17 @@ Route::post('institution/sig','Backend\InstitutionController@sig')->name('instit
 
     Route::get('institution/assign-teacher/{id}', 'Backend\InstitutionController@assignTeacher')
             ->name('institution.assignTeacher');
+
+
     Route::post('institution/assign-teacher-store', 'Backend\InstitutionController@assignTeacherStore')
             ->name('institution.assignTeacher.store');
 
 
 
 // Student Fee Collection start
-Route::get('student/fee','Backend\FinanceController@index')->name('student.fee');
-Route::post('student/fee-store','Backend\FinanceController@store_payment')->name('student.fee-store');
-Route::get('student/fee-invoice/{id}','Backend\FinanceController@fee_invoice')->name('student.fee-invoice');
+//Route::get('student/fee','Backend\FinanceController@index')->name('student.fee');
+//Route::post('student/fee-store','Backend\FinanceController@store_payment')->name('student.fee-store');
+//Route::get('student/fee-invoice/{id}','Backend\FinanceController@fee_invoice')->name('student.fee-invoice');
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
