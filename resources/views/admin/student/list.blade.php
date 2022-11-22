@@ -54,17 +54,15 @@
                                     </div>
                                 </div>
                                 <div class="col">
+                                    <label for="">Session</label>
+                                    <div class="input-group">
+                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <label for="">Class</label>
                                     <div class="input-group">
-                                        <select name="academic_class_id" class="form-control">
-                                            @foreach($repository->academicClasses() as $class)
-                                                <option value="{{ $class->id }}">
-                                                    {{ $class->academicClasses->name ?? '' }}
-                                                    {{ $class->section->name ?? '' }}
-                                                    {{ $class->group->name ?? '' }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        {{ Form::select('class_id',$repository->classes(), request()->class_id == $repository->classes() ? 'selected="selected"' : '' ,['class'=>'form-control','placeholder'=>'Select Class']) }}
                                     </div>
                                 </div>
 {{--                                <div class="col">--}}

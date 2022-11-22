@@ -24,4 +24,5 @@ class Attendance extends Model
     {
         return $this->belongsTo(StudentAcademic::class,'student_academic_id','id');
     }
+
 }

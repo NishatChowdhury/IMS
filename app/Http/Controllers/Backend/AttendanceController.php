@@ -33,9 +33,33 @@ class AttendanceController extends Controller
         $this->repository = $repository;
     }
 
+    public function StuManuelAttendence(Request  $request){
+        $academic_class = StudentAcademic::query()->groupBy('academic_class_id')->get(['id','class_id','section_id','group_id']);
+        $current_date = date('Y-m-d');
+
+//        $stuAttendence = Attendance::query()->with(['studentAcademic.student:id,name','studentAcademic']);
+        $stuAttendence = Attendance::query()->with(['studentAcademic' => function ($query) {
+            $query->select('id', 'student_id');
+        },
+            'studentAcademic.student' => function ($query) {
+                $query->select('id', 'name');
+            }]);
+
+        if ($request->student_academic && $request->date)
+        {
+            $attendences =  $stuAttendence->where('student_academic_id',$request->student_academic)
+              ->whereDate('date', '>=',  $request->date)
+              ->get();
+        }else{
+//             $attendences =  $stuAttendence->get(['id','student_academic_id','date','attendance_status_id']) ;
+             $attendences =  $stuAttendence->whereDate('date', 2022-10-10)->count();
+        }
+      return  $attendences;
+        return view('admin.attendance.manuel-attendence',compact('academic_class','attendences'));
+    }
+
     public function index()
     {
-
         return view('admin.attendance.attendance');
     }
 

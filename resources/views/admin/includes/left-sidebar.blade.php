@@ -194,6 +194,12 @@
                                     </a>
                                 </li>
                             @endcan
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ route('student.manuel-attendence') }}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Manuel Attendence</p>
+                                    </a>
+                                </li>
                         </ul>
                     </li>
                 @endcan
