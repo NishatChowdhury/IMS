@@ -3,8 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Backend\Attendance;
+use App\Models\Backend\Holiday;
 use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Shift;
 use App\Models\Backend\Student;
+use App\Models\Backend\StudentLeave;
 use App\Models\Backend\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -42,8 +45,8 @@ class GenerateAttendances extends Command
      */
     public function handle()
     {
-        $today = \Carbon\Carbon::today()->format('Y-m-d');
-        $todayCount = \Carbon\Carbon::today();
+        $today = Carbon::today()->format('Y-m-d');
+        $todayCount = Carbon::today();
 //        $d = '2022-06-20';
 //        $todayCount = Carbon::parse($d);
 //        $today = Carbon::parse($d)->format('Y-m-d');
@@ -62,14 +65,14 @@ class GenerateAttendances extends Command
                 $min = null;
                 $max = null;
 
-                $leave = \App\Models\Backend\StudentLeave::query()
+                $leave = StudentLeave::query()
                     ->where('student_id', $student->id)
                     ->where('date', '=', $today)
                     ->exists();
 //       return         $weeklyOff = weeklyOff::where('id', 1)->first();
                 $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
 //                return $today;
-                $holiday = \App\Models\Backend\Holiday::query()
+                $holiday = Holiday::query()
                     ->where('start', '<=', $today)
                     ->where('end', '>=', $today)
                     ->where('is_holiday', 1)
@@ -88,7 +91,7 @@ class GenerateAttendances extends Command
                 $min = $rawData->min('access_time');
                 $max = $rawData->max('access_time');
 
-                $shift = \App\Models\Backend\Shift::query()->first();
+                $shift = Shift::query()->first();
                 $shiftIn = Carbon::parse($shift->start)->addMinutes($shift->grace);
                 $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
 
@@ -101,8 +104,6 @@ class GenerateAttendances extends Command
                 } elseif ($min > $shiftIn) {
                     $attendanceStatus = '3'; // Late
                 }
-
-
             }
 
             $data = [
@@ -113,12 +114,10 @@ class GenerateAttendances extends Command
                 'attendance_status_id' => $attendanceStatus,
             ];
 
-
             $attendanceExists = Attendance::query()
                 ->where('student_academic_id', $student->studentAcademic->id ?? 0)
                 ->where('date', $today)
                 ->exists();
-
 
             if ($attendanceExists) {
                 $attendance = Attendance::query()
@@ -127,9 +126,8 @@ class GenerateAttendances extends Command
                     ->first();
                 $attendance->update($data);
             } else {
-                Attendance::create($data);
+                Attendance::query()->create($data);
             }
-
 
         }
 

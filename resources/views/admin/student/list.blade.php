@@ -54,29 +54,43 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Session</label>
-                                    <div class="input-group">
-                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
                                     <label for="">Class</label>
                                     <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+                                        <select name="academic_class_id" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">
+                                                    {{ $class->academicClasses->name ?? '' }}
+                                                    {{ $class->section->name ?? '' }}
+                                                    {{ $class->group->name ?? '' }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
-                                    </div>
-                                </div>
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Session</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Class</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Section</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Group</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">

@@ -1,16 +1,13 @@
 <?php
 
 use App\Http\Controllers\Backend\AlumniController;
-use App\Http\Controllers\Backend\DbBackupContoller;
+use App\Http\Controllers\Backend\DbBackupController;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Backend\StudentReportController;
 use App\Http\Controllers\Backend\SubscriberController;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -177,13 +174,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('lang/translation/{id}','Backend\LanguageController@translation')->name('lang.translation');
     Route::post('lang/translate/{id}','Backend\LanguageController@translate')->name('lang.translate');
 
-    Route::get('themes','Backend\ThemeController@index');
-    Route::get('theme/edit/{id}','Backend\ThemeController@edit');
-    Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy');
+    Route::get('themes','Backend\ThemeController@index')->name('theme.index');
+    Route::get('theme/edit/{id}','Backend\ThemeController@edit')->name('theme.edit');
+    Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy')->name('theme.destroy');
 
     // smartrahat start
-
-
     Route::get('notices','Backend\NoticeController@index')->name('notice.index');
     Route::post('notice/store','Backend\NoticeController@store')->name('notice.store');
     Route::get('notice/edit/{id}','Backend\NoticeController@edit')->name('notice.edit');
@@ -214,7 +209,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('user/edit/{id}','Backend\UserController@edit')->name('user.edit');
     Route::post('user/assign-role-update','Backend\UserController@assignRoleUpdate')->name('user.assign.role.update');
     Route::delete('user/destroy/{id}','Backend\UserController@destroy')->name('user.destroy');
-        /** User Routes start */
+    /** User Routes start */
     Route::get('user/profile','Backend\UserController@profile')->name('user.profile');
     Route::patch('user/update','Backend\UserController@update')->name('user.update');
     Route::patch('user/password','Backend\UserController@password')->name('user.password');
@@ -367,10 +362,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
 
 //Class Schedule
-Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index')->name('class.schedule.index');
-Route::post('institution/class/schedule/store','Backend\ScheduleController@store')->name('class.schedule.store');
-Route::post('institution/class/schedule/update','Backend\ScheduleController@update')->name('class.schedule.update');
-Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
+    Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index')->name('class.schedule.index');
+    Route::post('institution/class/schedule/store','Backend\ScheduleController@store')->name('class.schedule.store');
+    Route::post('institution/class/schedule/update','Backend\ScheduleController@update')->name('class.schedule.update');
+    Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
 
     //Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
@@ -394,7 +389,7 @@ Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@
     Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush'])->name('fee-cart.flush');
 
     Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy'])->name('fee.EditFeeCartDestroy');
-   //Route for fee setup ends here
+    //Route for fee setup ends here
 
     //Route for fee collection starts here
     Route::get('fee/fee-collection', [FeeCollectionController::class, 'index'])->name('fee-collection.index');
@@ -461,20 +456,20 @@ Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@
     Route::post('transport/assign','Backend\TransportController@transport_assign')->name('transport.assign');
 // Student Transport management End
 //  Fee Category Start
-Route::get('/fee-category/index','Backend\FeeCategoryController@index')->name('fee-category.index');
-Route::post('/fee-category/search','Backend\FeeCategoryController@search')->name('fee_categories.search');
-Route::post('fee-category/store','Backend\FeeCategoryController@store_fee_category')->name('fee-category.store');
-Route::post('fee-category/edit','Backend\FeeCategoryController@edit_fee_category')->name('fee-category.edit');
-Route::post('fee-category/update','Backend\FeeCategoryController@update_fee_category')->name('fee-category.update');
-Route::get('fee-category/{id}/delete','Backend\FeeCategoryController@delete_fee_category')->name('fee-category.delete');
-Route::put('fee-category/status/{id}','Backend\FeeCategoryController@status')->name('fee-category.status');
+    Route::get('/fee-category/index','Backend\FeeCategoryController@index')->name('fee-category.index');
+    Route::post('/fee-category/search','Backend\FeeCategoryController@search')->name('fee_categories.search');
+    Route::post('fee-category/store','Backend\FeeCategoryController@store_fee_category')->name('fee-category.store');
+    Route::post('fee-category/edit','Backend\FeeCategoryController@edit_fee_category')->name('fee-category.edit');
+    Route::post('fee-category/update','Backend\FeeCategoryController@update_fee_category')->name('fee-category.update');
+    Route::get('fee-category/{id}/delete','Backend\FeeCategoryController@delete_fee_category')->name('fee-category.delete');
+    Route::put('fee-category/status/{id}','Backend\FeeCategoryController@status')->name('fee-category.status');
 //    Fee Category End
 //  Fee Setup Start
-Route::get('fee-category/fee_setup/{classId}','Backend\FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
+    Route::get('fee-category/fee_setup/{classId}','Backend\FeeCategoryController@fee_setup')->name('fee-setup.fee_setup');
 // Route::post('fee_setup/store/{classId}','Backend\FeeCategoryController@store_fee_setup')->name('fee-setup.store');
-Route::get('fee_setup/list/{classId}','Backend\FeeCategoryController@list_fee_setup')->name('fee-setup.list');
-Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup')->name('fee-setup.show');
-Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');
+    Route::get('fee_setup/list/{classId}','Backend\FeeCategoryController@list_fee_setup')->name('fee-setup.list');
+    Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup')->name('fee-setup.show');
+    Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');
 //  Fee Setup End
 
     // Dairy Management Here
@@ -486,34 +481,34 @@ Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_s
     Route::post('diary-update/{diary}', [DiaryController::class, 'update'])->name('diary.update');
 
 //Student profile start
-Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
-Route::post('student-password-reset','Backend\StudentController@studentPasswordReset')->name('student.resetPassword');
-Route::get('csv','Backend\StudentController@csvDownload')->name('csv');
+    Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
+    Route::post('student-password-reset','Backend\StudentController@studentPasswordReset')->name('student.resetPassword');
+    Route::get('csv','Backend\StudentController@csvDownload')->name('csv');
 //Staff Route
-Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');
-Route::get('staff/teacher','Backend\StaffController@teacher')->name('staff.teacher');
-Route::get('staff/staffadd','Backend\StaffController@addstaff')->name('staff.addstaff');
-Route::post('staff/store-staff','Backend\StaffController@store_staff')->name('staff.store_staff');
-Route::get('staff/edit-staff/{id}','Backend\StaffController@edit_staff')->name('staff.edit_staff');
-Route::patch('staff/{id}/update-staff','Backend\StaffController@update_staff')->name('staff.update_staff');
-Route::get('staff/delete-staff/{id}','Backend\StaffController@delete_staff')->name('staff.delete_staff');
-Route::get('staff/threshold','Backend\StaffController@threshold')->name('staff.threshold');
-Route::get('staff/kpi','Backend\StaffController@kpi')->name('staff.kpi');
-Route::get('staff/payslip','Backend\StaffController@payslip')->name('staff.payslip');
+    Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');
+    Route::get('staff/teacher','Backend\StaffController@teacher')->name('staff.teacher');
+    Route::get('staff/staffadd','Backend\StaffController@addstaff')->name('staff.addstaff');
+    Route::post('staff/store-staff','Backend\StaffController@store_staff')->name('staff.store_staff');
+    Route::get('staff/edit-staff/{id}','Backend\StaffController@edit_staff')->name('staff.edit_staff');
+    Route::patch('staff/{id}/update-staff','Backend\StaffController@update_staff')->name('staff.update_staff');
+    Route::get('staff/delete-staff/{id}','Backend\StaffController@delete_staff')->name('staff.delete_staff');
+    Route::get('staff/threshold','Backend\StaffController@threshold')->name('staff.threshold');
+    Route::get('staff/kpi','Backend\StaffController@kpi')->name('staff.kpi');
+    Route::get('staff/payslip','Backend\StaffController@payslip')->name('staff.payslip');
 
-Route::get('staff/staff_training/{id}','Backend\StaffController@staff_training')->name('staff.staff_training');
-Route::get('staff/staff_course/{id}','Backend\StaffController@staff_course')->name('staff.staff_course');
-Route::get('staff/staff_experience/{id}','Backend\StaffController@staff_experience')->name('staff.staff_experience');
-Route::get('staff/staff_academic/{id}','Backend\StaffController@staff_academic')->name('staff.staff_academic');
+    Route::get('staff/staff_training/{id}','Backend\StaffController@staff_training')->name('staff.staff_training');
+    Route::get('staff/staff_course/{id}','Backend\StaffController@staff_course')->name('staff.staff_course');
+    Route::get('staff/staff_experience/{id}','Backend\StaffController@staff_experience')->name('staff.staff_experience');
+    Route::get('staff/staff_academic/{id}','Backend\StaffController@staff_academic')->name('staff.staff_academic');
 
-Route::post('staff/store-academic','Backend\StaffController@store_academic')->name('staff.store_academic');
-Route::post('staff/update-academic','Backend\StaffController@update_academic')->name('staff.update_academic');
-Route::post('staff/store-experience','Backend\StaffController@store_experience')->name('staff.store_experience');
-Route::post('staff/update-experience','Backend\StaffController@update_experience')->name('staff.update_experience');
-Route::post('staff/store-training','Backend\StaffController@store_training')->name('staff.store_training');
-Route::post('staff/update-training','Backend\StaffController@update_training')->name('staff.update_training');
-Route::post('staff/store-course','Backend\StaffController@store_course')->name('staff.store_course');
-Route::post('staff/update-course','Backend\StaffController@update_course')->name('staff.update_course');
+    Route::post('staff/store-academic','Backend\StaffController@store_academic')->name('staff.store_academic');
+    Route::post('staff/update-academic','Backend\StaffController@update_academic')->name('staff.update_academic');
+    Route::post('staff/store-experience','Backend\StaffController@store_experience')->name('staff.store_experience');
+    Route::post('staff/update-experience','Backend\StaffController@update_experience')->name('staff.update_experience');
+    Route::post('staff/store-training','Backend\StaffController@store_training')->name('staff.store_training');
+    Route::post('staff/update-training','Backend\StaffController@update_training')->name('staff.update_training');
+    Route::post('staff/store-course','Backend\StaffController@store_course')->name('staff.store_course');
+    Route::post('staff/update-course','Backend\StaffController@update_course')->name('staff.update_course');
 
 
 
@@ -521,67 +516,67 @@ Route::post('staff/update-course','Backend\StaffController@update_course')->name
 
 //Institution Mgnt Route by Rimon
 //Session @MKH
-Route::get('institution/academicyear','Backend\InstitutionController@academicyear')->name('institution.academicyear');
-Route::post('institution/store-session', 'Backend\InstitutionController@store_session')->name('institution.store_session');
-Route::post('institution/edit-session', 'Backend\InstitutionController@edit_session')->name('institution.edit_session');
-Route::post('institution/update-session', 'Backend\InstitutionController@update_session')->name('institution.update_session');
-Route::get('institution/delete-session/{id}', 'Backend\InstitutionController@delete_session')->name('institution.delete_session');
-Route::patch('institution/status/{id}','Backend\InstitutionController@sessionStatus')->name('institution.sessionStatus');
-Route::get('institution/{id}/delete-session', 'Backend\InstitutionController@unAssignSubject')->name('institution.unAssignSubject');
+    Route::get('institution/academicyear','Backend\InstitutionController@academicyear')->name('institution.academicyear');
+    Route::post('institution/store-session', 'Backend\InstitutionController@store_session')->name('institution.store_session');
+    Route::post('institution/edit-session', 'Backend\InstitutionController@edit_session')->name('institution.edit_session');
+    Route::post('institution/update-session', 'Backend\InstitutionController@update_session')->name('institution.update_session');
+    Route::get('institution/delete-session/{id}', 'Backend\InstitutionController@delete_session')->name('institution.delete_session');
+    Route::patch('institution/status/{id}','Backend\InstitutionController@sessionStatus')->name('institution.sessionStatus');
+    Route::get('institution/{id}/delete-session', 'Backend\InstitutionController@unAssignSubject')->name('institution.unAssignSubject');
 
 //Academic Classes $ Groups
-Route::get('institution/section-groups','Backend\InstitutionController@section_group')->name('section.group');
-Route::post('institution/create-section', 'Backend\InstitutionController@create_section')->name('institution.create_section');
-Route::post('institution/edit-section', 'Backend\InstitutionController@edit_section')->name('institution.edit_section');
-Route::post('institution/update-section', 'Backend\InstitutionController@update_section')->name('institution.update_section');
-Route::get('institution/{id}/delete-section', 'Backend\InstitutionController@delete_section')->name('institution.delete_section');
+    Route::get('institution/section-groups','Backend\InstitutionController@section_group')->name('section.group');
+    Route::post('institution/create-section', 'Backend\InstitutionController@create_section')->name('institution.create_section');
+    Route::post('institution/edit-section', 'Backend\InstitutionController@edit_section')->name('institution.edit_section');
+    Route::post('institution/update-section', 'Backend\InstitutionController@update_section')->name('institution.update_section');
+    Route::get('institution/{id}/delete-section', 'Backend\InstitutionController@delete_section')->name('institution.delete_section');
 
-Route::post('institution/create-group', 'Backend\InstitutionController@create_group')->name('institution.create_group');
-Route::post('institution/edit-group', 'Backend\InstitutionController@edit_group')->name('institution.edit_group');
-Route::post('institution/update-group', 'Backend\InstitutionController@update_group')->name('institution.update_group');
-Route::get('institution/{id}/delete-group', 'Backend\InstitutionController@delete_grp')->name('institution.delete_grp');
+    Route::post('institution/create-group', 'Backend\InstitutionController@create_group')->name('institution.create_group');
+    Route::post('institution/edit-group', 'Backend\InstitutionController@edit_group')->name('institution.edit_group');
+    Route::post('institution/update-group', 'Backend\InstitutionController@update_group')->name('institution.update_group');
+    Route::get('institution/{id}/delete-group', 'Backend\InstitutionController@delete_grp')->name('institution.delete_grp');
 
 //Session-Class
-Route::get('institution/class','Backend\InstitutionController@classes')->name('institution.classes');
-Route::post('institution/store-class','Backend\InstitutionController@store_class')->name('institution.store_class');
-Route::get('institution/academic-class','Backend\InstitutionController@academicClasses')->name('institution.academicClasses');
-Route::post('institution/store-academic-class','Backend\InstitutionController@storeAcademicClass')->name('institution.storeAcademicClass');
-Route::post('institution/edit-AcademicClass','Backend\InstitutionController@editAcademicClass')->name('institution.editAcademicClass');
-Route::post('institution/update-AcademicClass','Backend\InstitutionController@updateAcademicClass')->name('institution.updateAcademicClass');
-Route::post('institution/edit-SessionClass','Backend\InstitutionController@edit_SessionClass')->name('institution.edit_SessionClass');
-Route::post('institution/update-SessionClass','Backend\InstitutionController@update_SessionClass')->name('institution.update_SessionClass');
-Route::get('institution/{id}/delete-SessionClass','Backend\InstitutionController@delete_SessionClass')->name('institution.delete_SessionClass');
+    Route::get('institution/class','Backend\InstitutionController@classes')->name('institution.classes');
+    Route::post('institution/store-class','Backend\InstitutionController@store_class')->name('institution.store_class');
+    Route::get('institution/academic-class','Backend\InstitutionController@academicClasses')->name('institution.academicClasses');
+    Route::post('institution/store-academic-class','Backend\InstitutionController@storeAcademicClass')->name('institution.storeAcademicClass');
+    Route::post('institution/edit-AcademicClass','Backend\InstitutionController@editAcademicClass')->name('institution.editAcademicClass');
+    Route::post('institution/update-AcademicClass','Backend\InstitutionController@updateAcademicClass')->name('institution.updateAcademicClass');
+    Route::post('institution/edit-SessionClass','Backend\InstitutionController@edit_SessionClass')->name('institution.edit_SessionClass');
+    Route::post('institution/update-SessionClass','Backend\InstitutionController@update_SessionClass')->name('institution.update_SessionClass');
+    Route::get('institution/{id}/delete-SessionClass','Backend\InstitutionController@delete_SessionClass')->name('institution.delete_SessionClass');
 
-Route::get('institution/class/subject/{class}','Backend\InstitutionController@classSubjects')->name('institution.classSubjects');
+    Route::get('institution/class/subject/{class}','Backend\InstitutionController@classSubjects')->name('institution.classSubjects');
 //Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@load_online_adminsion_id');
-Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@unAssignSubject')->name('institution.class.subject.unAssignSubject');
+    Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@unAssignSubject')->name('institution.class.subject.unAssignSubject');
 //Subjects
-Route::get('institution/subjects','Backend\InstitutionController@subjects')->name('institution.subjects');
-Route::post('institution/create-subject','Backend\InstitutionController@create_subject')->name('institution.create_subject');
-Route::post('institution/edit-subject','Backend\InstitutionController@edit_subject')->name('institution.edit_subject');
-Route::post('institution/update-subject','Backend\InstitutionController@update_subject')->name('institution.update_subject');
-Route::get('institution/{id}/delete-subject','Backend\InstitutionController@delete_subject')->name('institution.delete_subject');
+    Route::get('institution/subjects','Backend\InstitutionController@subjects')->name('institution.subjects');
+    Route::post('institution/create-subject','Backend\InstitutionController@create_subject')->name('institution.create_subject');
+    Route::post('institution/edit-subject','Backend\InstitutionController@edit_subject')->name('institution.edit_subject');
+    Route::post('institution/update-subject','Backend\InstitutionController@update_subject')->name('institution.update_subject');
+    Route::get('institution/{id}/delete-subject','Backend\InstitutionController@delete_subject')->name('institution.delete_subject');
 
 //Route::get('institution/classsubjects','Backend\InstitutionController@classsubjects')->name('institution.classsubjects');
-Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
+    Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
 //Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
-Route::post('institution/edit-assigned-subject','Backend\InstitutionController@edit_assigned')->name('edit.assign');
-Route::get('institution/{id}/delete-assigned-subject','Backend\InstitutionController@delete_assigned')->name('institution.delete_assigned');
-Route::get('institution/profile','Backend\InstitutionController@profile')->name('institution.profile')->name('institution.profile');
+    Route::post('institution/edit-assigned-subject','Backend\InstitutionController@edit_assigned')->name('edit.assign');
+    Route::get('institution/{id}/delete-assigned-subject','Backend\InstitutionController@delete_assigned')->name('institution.delete_assigned');
+    Route::get('institution/profile','Backend\InstitutionController@profile')->name('institution.profile')->name('institution.profile');
 
 
 
-Route::get('institution/signature','Backend\InstitutionController@signature')->name('institution.signature');
-Route::post('institution/sig','Backend\InstitutionController@sig')->name('institution.sig');
+    Route::get('institution/signature','Backend\InstitutionController@signature')->name('institution.signature');
+    Route::post('institution/sig','Backend\InstitutionController@sig')->name('institution.sig');
 
 // Teacher assign
 
     Route::get('institution/assign-teacher/{id}', 'Backend\InstitutionController@assignTeacher')
-            ->name('institution.assignTeacher');
+        ->name('institution.assignTeacher');
 
 
     Route::post('institution/assign-teacher-store', 'Backend\InstitutionController@assignTeacherStore')
-            ->name('institution.assignTeacher.store');
+        ->name('institution.assignTeacher.store');
 
 
 
@@ -592,61 +587,61 @@ Route::post('institution/sig','Backend\InstitutionController@sig')->name('instit
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
-Route::get('report/student-fee-report','Backend\ReportController@student_fee_report')->name('report.student-fee');
-Route::get('report/student-monthly-fee-report','Backend\ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
+    Route::get('report/student-fee-report','Backend\ReportController@student_fee_report')->name('report.student-fee');
+    Route::get('report/student-monthly-fee-report','Backend\ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
 // Student Fee Collection Report End
 
 
 
 
 //Communication Route by Rimon
-Route::get('communication/quick','Backend\CommunicationController@quick')->name('communication.quick');
-Route::get('communication/student','Backend\CommunicationController@student')->name('communication.student');
-Route::get('communication/staff','Backend\CommunicationController@staff')->name('communication.staff');
-Route::get('communication/history','Backend\CommunicationController@history')->name('communication.history');
+    Route::get('communication/quick','Backend\CommunicationController@quick')->name('communication.quick');
+    Route::get('communication/student','Backend\CommunicationController@student')->name('communication.student');
+    Route::get('communication/staff','Backend\CommunicationController@staff')->name('communication.staff');
+    Route::get('communication/history','Backend\CommunicationController@history')->name('communication.history');
 
-Route::post('communication/send','Backend\CommunicationController@send')->name('communication.send');
-Route::post('communication/quick/send','Backend\CommunicationController@quickSend')->name('communication.quickSend');
+    Route::post('communication/send','Backend\CommunicationController@send')->name('communication.send');
+    Route::post('communication/quick/send','Backend\CommunicationController@quickSend')->name('communication.quickSend');
 //End Communication Route
 
 
 
 
 //Attendance Route by Rimon
-Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
-Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
-Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
-Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
-Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');
-Route::post('/get_attendance_monthly', 'Backend\AttendanceController@getAttendanceMonthly')->name('attendance.getAttendanceMonthly');
-Route::post('/indStudentAttendance','Backend\AttendanceController@individulAttendance')->name('student.indAttendance');
-Route::post('/classStudentAttendance','Backend\AttendanceController@classAttendance')->name('student.classAttendance');
-Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeacherAttendance')->name('teacher.indAttendance');
+    Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
+    Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
+    Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
+    Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
+    Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');
+    Route::post('/get_attendance_monthly', 'Backend\AttendanceController@getAttendanceMonthly')->name('attendance.getAttendanceMonthly');
+    Route::post('/indStudentAttendance','Backend\AttendanceController@individulAttendance')->name('student.indAttendance');
+    Route::post('/classStudentAttendance','Backend\AttendanceController@classAttendance')->name('student.classAttendance');
+    Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeacherAttendance')->name('teacher.indAttendance');
 //End Attendance Route
 
 
 //Exam Route Start  by Rimon
-Route::get('exam/gradesystem',[ExamController::class,'gradesystem'])->name('exam.gradesystem');
+    Route::get('exam/gradesystem',[ExamController::class,'gradesystem'])->name('exam.gradesystem');
 //Grading System @MKH
-Route::post('exam/store-grade', [ExamController::class,'store_grade'])->name('exam.store_grade');
-Route::get('exam/delete-grade/{id}', [ExamController::class,'delete_grade'])->name('exam.delete_grade');
-Route::get('exam/examination',[ExamController::class,'examination'])->name('exam.examination');
-Route::post('exam/sotre-exam', [ExamController::class,'store_exam'])->name('store.exam');
-Route::delete('exam/destroy/{id}', [ExamController::class,'destroy'])->name('exam.destroy');
-Route::get('exam/examitems',[ExamController::class,'examitems'])->name('exam.examitems');
-Route::get('exam/schedule/create/{exam}',[ExamScheduleController::class,'create'])->name('exam.schedule.create');
-Route::post('exam/schedule/store',[ExamScheduleController::class,'store'])->name('exam.schedule.store');
-Route::get('exam/schedule/{examId}', [ExamScheduleController::class,'index'])->name('exam.schedule.index');
-Route::post('exam/store-schedule', [ExamController::class,'store_schedule'])->name('exam.store_schedule');
-Route::get('exam/admit-card/{exam_id}',[ExamController::class,'admitCard'])->name('exam.admitCard');
-Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate'])->name('exam.seatAllocate');
+    Route::post('exam/store-grade', [ExamController::class,'store_grade'])->name('exam.store_grade');
+    Route::get('exam/delete-grade/{id}', [ExamController::class,'delete_grade'])->name('exam.delete_grade');
+    Route::get('exam/examination',[ExamController::class,'examination'])->name('exam.examination');
+    Route::post('exam/sotre-exam', [ExamController::class,'store_exam'])->name('store.exam');
+    Route::delete('exam/destroy/{id}', [ExamController::class,'destroy'])->name('exam.destroy');
+    Route::get('exam/examitems',[ExamController::class,'examitems'])->name('exam.examitems');
+    Route::get('exam/schedule/create/{exam}',[ExamScheduleController::class,'create'])->name('exam.schedule.create');
+    Route::post('exam/schedule/store',[ExamScheduleController::class,'store'])->name('exam.schedule.store');
+    Route::get('exam/schedule/{examId}', [ExamScheduleController::class,'index'])->name('exam.schedule.index');
+    Route::post('exam/store-schedule', [ExamController::class,'store_schedule'])->name('exam.store_schedule');
+    Route::get('exam/admit-card/{exam_id}',[ExamController::class,'admitCard'])->name('exam.admitCard');
+    Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate'])->name('exam.seatAllocate');
 
 // Exam Seat Plan Start
-Route::get('exam/seat-plan/{examId}','Backend\ExamSeatPlanController@seatPlan')->name('exam-seat-plan.seatPlan');
-Route::post('exam/check-roll','Backend\ExamSeatPlanController@CheckRoll')->name('exam-seat-plan.CheckRoll');
-Route::post('exam/store-seat-plan','Backend\ExamSeatPlanController@storeSeatPlan')->name('exam-seat-plan.storeSeatPlan');
-Route::get('exam/pdf-seat-plan/{id}','Backend\ExamSeatPlanController@pdfSeatPlan')->name('exam-seat-plan.pdfSeatPlan');
-Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@destroy')->name('exam-seat-plan.destroy');
+    Route::get('exam/seat-plan/{examId}','Backend\ExamSeatPlanController@seatPlan')->name('exam-seat-plan.seatPlan');
+    Route::post('exam/check-roll','Backend\ExamSeatPlanController@CheckRoll')->name('exam-seat-plan.CheckRoll');
+    Route::post('exam/store-seat-plan','Backend\ExamSeatPlanController@storeSeatPlan')->name('exam-seat-plan.storeSeatPlan');
+    Route::get('exam/pdf-seat-plan/{id}','Backend\ExamSeatPlanController@pdfSeatPlan')->name('exam-seat-plan.pdfSeatPlan');
+    Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@destroy')->name('exam-seat-plan.destroy');
 
 // Exam Seat Plan End
 
@@ -660,20 +655,20 @@ Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@dest
     Route::post('admission/slip-view','Backend\AdmissionController@slipView')->name('admission.slipView');
 //End Admission Route
 
-Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails')->name('exam.resultDetails');
-Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails')->name('exam.finalResultDetails');
-Route::get('exam/result-details-all','Backend\ResultController@allDetails')->name('exam.allDetails');
-Route::get('exam/examresult','Backend\ResultController@index')->name('exam.examresult');
-Route::get('exam/tabulation/{examID}','Backend\ResultController@tabulation')->name('exam.tabulation');
-Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@generateResult')->name('exam.generateResult');
+    Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails')->name('exam.resultDetails');
+    Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails')->name('exam.finalResultDetails');
+    Route::get('exam/result-details-all','Backend\ResultController@allDetails')->name('exam.allDetails');
+    Route::get('exam/examresult','Backend\ResultController@index')->name('exam.examresult');
+    Route::get('exam/tabulation/{examID}','Backend\ResultController@tabulation')->name('exam.tabulation');
+    Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@generateResult')->name('exam.generateResult');
 
-Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
-Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
-Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
+    Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
+    Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
+    Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
 
-Route::get('pdf', function(){
-return view('form-pdf');
-});
+    Route::get('pdf', function(){
+        return view('form-pdf');
+    });
 
 
 
@@ -691,15 +686,15 @@ return view('form-pdf');
     Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
     Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
 //principal , chairman and institute message update route
-    Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+    Route::post('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
 
     Route::get('alumni',[AlumniController::class,'index'])->name('alumni');
 
     //Database backup
-    Route::get('db-backup',[DbBackupContoller::class,'index'])->name('backup.db');
-    Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
-    Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
+    Route::get('db-backup',[DbBackupController::class,'index'])->name('backup.db');
+    Route::get('backup-download/{file_name}',[DbBackupController::class,'download'])->name('backup.download');
+    Route::get('add-backup',[DbBackupController::class,'createDatabaseBackup'])->name('backup.create');
 
 //subscriber
     Route::get('subscriber/list',[SubscriberController::class,'index'])->name('subscriber.list');

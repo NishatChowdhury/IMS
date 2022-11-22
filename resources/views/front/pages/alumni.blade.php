@@ -28,270 +28,284 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12">
+                    <h2 class="text-center">{{ siteConfig('name') }}</h2>
+                    <h4 class="text-center">{{ siteConfig('address') }}</h4>
+                    <h5 class="text-center">{{ __('Alumni Registration Form') }}</h5>
                     <div class="alert alert-primary" role="alert">
                         {{ __('Print existing submitted form ') }} <a href="{{ route('alumni.login') }}" class="alert-link">{{ __('here')}}</a>.
                     </div>
-
                 </div>
                 <form action="{{ route('alumni.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-6 my-2 alert border border-secondary">
+                            <div class="col-md-12 my-2 alert border border-secondary">
                                 <h4 class="mb-4">
                                     {{ __('শিক্ষা সনদ ও জাতীয় পরিচয়পত্র অনুযায়ী') }}
                                 </h4>
-                                <div class="form-group">
-                                    <label>{{ __('নাম') }}</label>
-                                    <input type="text" name="name" class="form-control">
-                                    @error('name')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-bold">{{ __('পিতা/স্বামী') }}</label>
-                                    <input type="text" name="father" class="form-control">
-                                    @error('father')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('মাতা') }}</label>
-                                    <input type="text" name="mother" class="form-control">
-                                    @error('mother')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('জন্ম তারিখ') }}</label>
-                                    <input name="dob" type="text" class="form-control">
-                                    @error('dob')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('জাতীয় পরিচয়পত্র') }}</label>
-                                    <input name="nid" type="text" class="form-control">
-                                    @error('nid')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('নাম') }}</label>
+                                            <input type="text" name="name" class="form-control">
+                                            @error('name')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-bold">{{ __('পিতা/স্বামী') }}</label>
+                                            <input type="text" name="father" class="form-control">
+                                            @error('father')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('মাতা') }}</label>
+                                            <input type="text" name="mother" class="form-control">
+                                            @error('mother')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>{{ __('জন্ম তারিখ') }}</label>
+                                            <input name="dob" type="text" class="form-control">
+                                            @error('dob')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('জাতীয় পরিচয়পত্র') }}</label>
+                                            <input name="nid" type="text" class="form-control">
+                                            @error('nid')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('মাদ্রাসায় সর্বশেষ অধ্যানকালিন বিবরণ') }}</label>
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <label>{{ __('শ্রেণি') }}</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input name="class" type="text" class="form-control">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>{{ __('পাসের সন') }}</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input name="passing_year" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            @error('class')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                            @error('passing_year')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-3">
+                                        <div class="row form-group">
+                                            <label for="image" class="text-center"><img src="{{ asset('assets/img/230x230-avatar.jpg') }}" alt=""><br>{{ __('ছবি আপলোড করুন') }}</label>
+                                            <div class="col-10">
+                                                <input type="file" name="image" id="image" class="d-none">
+                                                @error('image')
+                                                <small class="form-text text-danger">
+                                                    {{ $message }}
+                                                </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6 my-2 alert border border-secondary">
+                            <div class="col-md-12 my-2 alert border border-secondary">
                                 <h4 class="mb-4">
                                     {{ __('বর্তমান যোগাযোগ ঠিকানা') }}
                                 </h4>
-                                <div class="form-group">
-                                    <label>{{ __('প্রতিষ্ঠানের নাম') }}</label>
-                                    <input name="institute" type="text" class="form-control">
-                                    @error('institute')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('পদবী') }}</label>
-                                    <input name="designation" type="text" class="form-control">
-                                    @error('designation')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('ঠিকানা') }}</label>
-                                    <input name="address" type="text" class="form-control">
-                                    @error('address')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('মোবাইল') }}</label>
-                                    <input name="mobile" type="text" class="form-control">
-                                    @error('mobile')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('ইমেইল') }}</label>
-                                    <input name="email" type="text" class="form-control">
-                                    @error('email')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('ইমু/হুয়াটসএপ/মেসেঞ্জার') }}</label>
-                                    <input name="social" type="text" class="form-control">
-                                    @error('social')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('প্রতিষ্ঠানের নাম') }}</label>
+                                            <input name="institute" type="text" class="form-control">
+                                            @error('institute')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('মোবাইল') }}</label>
+                                            <input name="mobile" type="text" class="form-control">
+                                            @error('mobile')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('পদবী') }}</label>
+                                            <input name="designation" type="text" class="form-control">
+                                            @error('designation')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('ইমেইল') }}</label>
+                                            <input name="email" type="text" class="form-control">
+                                            @error('email')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('ঠিকানা') }}</label>
+                                            <input name="address" type="text" class="form-control">
+                                            @error('address')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('ইমু/হুয়াটসএপ/মেসেঞ্জার') }}</label>
+                                            <input name="social" type="text" class="form-control">
+                                            @error('social')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 my-2 alert border border-secondary">
+                            <div class="col-md-12 my-2 alert border border-secondary">
                                 <h4 class="mb-4">{{ __('স্থায়ী ঠিকানা') }}</h4>
-                                <div class="form-group">
-                                    <label>পাড়া</label>
-                                    <input name="pada" type="text" class="form-control">
-                                    @error('pada')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('বাড়ির নাম') }}</label>
-                                    <input name="badi" type="text" class="form-control">
-                                    @error('badi')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('গ্রাম') }}</label>
-                                    <input name="village" type="text" class="form-control">
-                                    @error('village')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('ডাকঘর') }}</label>
-                                    <input name="po" type="text" class="form-control">
-                                    @error('po')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('থানা') }}</label>
-                                    <input name="ps" type="text" class="form-control">
-                                    @error('ps')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('জেলা') }}</label>
-                                    <input name="district" type="text" class="form-control">
-                                    @error('district')
-                                    <small class="form-text text-muted">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>পাড়া</label>
+                                            <input name="pada" type="text" class="form-control">
+                                            @error('pada')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('ডাকঘর') }}</label>
+                                            <input name="po" type="text" class="form-control">
+                                            @error('po')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('বাড়ির নাম') }}</label>
+                                            <input name="badi" type="text" class="form-control">
+                                            @error('badi')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('থানা') }}</label>
+                                            <input name="ps" type="text" class="form-control">
+                                            @error('ps')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('গ্রাম') }}</label>
+                                            <input name="village" type="text" class="form-control">
+                                            @error('village')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ __('জেলা') }}</label>
+                                            <input name="district" type="text" class="form-control">
+                                            @error('district')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 my-2 alert border border-secondary">
-                                <h4 class="mb-4">{{ __('অত্র মাদ্রাসায় অধ্যয়নকালীন বিবরণ') }}</h4>
-                                <div class="row form-group">
-                                    <label for="example-text-input" class="col-2 col-form-label text-right">দাখিল</label>
-                                    <div class="col-10">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="dakhil_from" type="text" placeholder="হতে">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="dakhil_to" type="text" placeholder="পর্যন্ত">
-                                            </div>
+                            <div class="col-md-12 my-2 alert border border-secondary">
+                                <h4 class="mb-4">
+                                    {{ __('রেজিস্ট্রেশন ফি') }}
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul>
+                                            <li>{{ __('রেজিস্ট্রেশন ফি ১,০০০/- টাকা মাত্র। ') }}</li>
+                                            <li>{{ __('01711 XXXXXX নাম্বারে ১,০২০/- টাকা বিকাশ করুন অথবা ইসলামি ব্যাঙ্কের ০০০০০ এই অ্যাকাউন্টে ১,০০০/- টাকা জমা দিন। ') }}</li>
+                                            <li>{{ __('বিকাশের ক্ষেত্রে বিকাশ মোবাইল নাম্বার ও টিআরএক্স আইডি উক্ত ফর্মে প্রদান করুন।') }}</li>
+                                            <li>{{ __('ব্যাংক ট্রান্সফার এর ক্ষেত্রে ... ') }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ __('বিকাশ নাম্বার') }}</label>
+                                            <input name="bkash" type="text" class="form-control">
+                                            @error('dob')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
                                         </div>
-                                        @error('dakhil_from')
-                                        <small class="form-text text-muted">
-                                            {{ $message }}
-                                        </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <label for="example-text-input" class="col-2 col-form-label text-right">আলিম</label>
-                                    <div class="col-10">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="alim_from" type="text" placeholder="হতে">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="alim_to" type="text" placeholder="পর্যন্ত">
-                                            </div>
+                                        <div class="form-group">
+                                            <label>{{ __('টিআরএক্স আইডি') }}</label>
+                                            <input name="trxid" type="text" class="form-control">
+                                            @error('dob')
+                                            <small class="form-text text-danger">
+                                                {{ $message }}
+                                            </small>
+                                            @enderror
                                         </div>
-                                        @error('alim_from')
-                                        <small class="form-text text-muted">
-                                            {{ $message }}
-                                        </small>
-                                        @enderror
                                     </div>
-                                </div>
-                                <div class="row form-group">
-                                    <label for="example-text-input" class="col-2 col-form-label text-right">ফাজিল</label>
-                                    <div class="col-10">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="fazil_from" type="text" placeholder="হতে">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="fazil_to" type="text" placeholder="পর্যন্ত">
-                                            </div>
-                                        </div>
-                                        @error('fazil_from')
-                                        <small class="form-text text-muted">
-                                            {{ $message }}
-                                        </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <label for="example-text-input" class="col-2 col-form-label text-right">কামিল</label>
-                                    <div class="col-10">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="kamil_from" type="text" placeholder="হতে">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" name="kamil_to" type="text" placeholder="পর্যন্ত">
-                                            </div>
-                                        </div>
-                                        @error('kamil_from')
-                                        <small class="form-text text-muted">
-                                            {{ $message }}
-                                        </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <label for="example-text-input" class="col-2 col-form-label text-right">ছবি</label>
-                                    <div class="col-10">
-                                        <input type="file" name="image">
-                                        @error('image')
-                                        <small class="form-text text-muted">
-                                            {{ $message }}
-                                        </small>
-                                        @enderror
-                                    </div>
+                                    <div class="col-md-4">
 
+                                    </div>
                                 </div>
-
                             </div>
                         </div> <!-- END row-->
                     </div>

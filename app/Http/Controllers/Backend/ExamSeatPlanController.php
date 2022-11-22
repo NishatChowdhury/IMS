@@ -37,7 +37,7 @@ class ExamSeatPlanController extends Controller
                 'count' => 'required',
             ]);
 
-        ExamSeatPlan::create($request->all());
+        ExamSeatPlan::query()->create($request->all());
 
         return redirect()->back();
 
@@ -46,11 +46,11 @@ class ExamSeatPlanController extends Controller
     public function pdfSeatPlan($id)
     {
         $seatData = ExamSeatPlan::query()->findOrFail($id);
-         $students = StudentAcademic::query()
-                        ->where('academic_class_id',$seatData->academic_class_id)
-                        ->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])
-                        ->with('student')
-                        ->get();
+        $students = StudentAcademic::query()
+            ->where('academic_class_id',$seatData->academic_class_id)
+            ->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])
+            ->with('student')
+            ->get();
 //        $students = Student::query()
 //                            ->where('academic_class_id',$seatData->academic_class_id)
 //                            ->where('status',1)
@@ -65,16 +65,18 @@ class ExamSeatPlanController extends Controller
 
     public function checkRoll(Request $request)
     {
-        //dd($request->all());
-        $classId    =   $request->classId;
-        $rankFrom   =   $request->rollFrom;
-        $rankTo     =   $request->rollTo;
+        $id = $request->classId;
+        $from = $request->rollFrom;
+        $to = $request->rollTo;
 
-         $academicData = AcademicClass::query()
-                                    ->where('id', $request->classId)
-                                    ->withCount('studentAcademic')->first();
+        $academicData = AcademicClass::query()
+            ->where('id', $id)
+            ->with('studentAcademic',function($q)use($from,$to){
+                $q->whereBetween('rank',[$from,$to]);
+            })
+            ->first();
 
-        return $academicData->student_academic_count;
+        return $academicData->studentAcademic->count();
 
     }
 

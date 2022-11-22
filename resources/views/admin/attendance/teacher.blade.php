@@ -75,7 +75,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="text-center">{{__('Monthly Wise Employee Attendance Report') }}</h4>
-                            <h5 class="text-center"><b>Name: </b>{{ $staffs->name ?? '' }} & <b>Card Numner :</b> {{ $staffs->card_id ?? ''}}</h5>
+                            <h5 class="text-center"><b>Name: </b>{{ $staffs->name ?? '' }} & <b>Card Number :</b> {{ $staffs->card_id ?? ''}}</h5>
                             <h6 class="text-center"><b>Year :</b> {{ $year ?? '' }} & <b>Month :</b> {{ $month }}</h6>
                         </div>
                         <div class="card-body" style="padding: 1.00rem;">

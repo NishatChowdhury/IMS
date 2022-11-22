@@ -31,7 +31,7 @@
                         <!-- form start -->
                         {{ Form::open(['action'=>'Backend\ExamSeatPlanController@storeSeatPlan','role'=>'form','method'=>'post']) }}
                         <div class="card-body">
-                                {{ Form::hidden('exam_id',$id) }}
+                            {{ Form::hidden('exam_id',$id) }}
                             <div class="form-row">
                                 <div class="col">
                                     <label for="">{{ __('Room')}}</label>
@@ -55,13 +55,13 @@
                                 <div class="col">
                                     <label for="">{{ __('Roll From')}}</label>
                                     <div class="input-group">
-                                        {{ Form::text('roll_form',null,['class'=>'form-control rollFrom','placeholder'=>'Roll Form']) }}
+                                        {{ Form::text('roll_form',null,['class'=>'form-control','id'=>'rollFrom','placeholder'=>'Roll Form']) }}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">{{ __('Roll To')}}</label>
                                     <div class="input-group">
-                                        {{ Form::text('roll_to',null,['class'=>'form-control rollTo','placeholder'=>'Roll To']) }}
+                                        {{ Form::text('roll_to',null,['class'=>'form-control','id'=>'rollTo','placeholder'=>'Roll To']) }}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -106,33 +106,33 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-sm">
                                 <thead class="thead-dark text-center">
-                                    <tr>
-                                        <th>{{ __('Room No')}}</th>
-                                        <th>{{ __('Class')}}</th>
-                                        <th>{{ __('Section')}}</th>
-                                        <th>{{ __('Roll Form')}}</th>
-                                        <th>{{ __('Roll To')}}</th>
-                                        <th>{{ __('Count')}}</th>
-                                        <th>{{ __('Action')}}</th>
-                                    </tr>
+                                <tr>
+                                    <th>{{ __('Room No')}}</th>
+                                    <th>{{ __('Class')}}</th>
+                                    <th>{{ __('Section')}}</th>
+                                    <th>{{ __('Roll Form')}}</th>
+                                    <th>{{ __('Roll To')}}</th>
+                                    <th>{{ __('Count')}}</th>
+                                    <th>{{ __('Action')}}</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($data as $seat)
-                                        <tr class="text-center">
-                                            <td>{{ $seat->room }}</td>
-                                            <td>{{ $seat->academicClasses->academicClasses->name }}</td>
-                                            <td>{{ $seat->academicClasses->section->name ?? '' }}</td>
-                                            <td>{{ $seat->roll_form }}</td>
-                                            <td>{{ $seat->roll_to }}</td>
-                                            <td>{{ $seat->count }}</td>
-                                            <td>
-                                                {!! Form::open(['action'=>['Backend\ExamSeatPlanController@destroy',$seat->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
-                                                <a href="{{url('admin/exam/pdf-seat-plan',$seat->id)}}" class="btn btn-success btn-sm" title="print Set Plan"><i class="fa fa-address-card"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Set Plan"><i class="fa fa-trash"></i></button>
-                                                {!! Form::close() !!}
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach($data as $seat)
+                                    <tr class="text-center">
+                                        <td>{{ $seat->room }}</td>
+                                        <td>{{ $seat->academicClasses->academicClasses->name }}</td>
+                                        <td>{{ $seat->academicClasses->section->name ?? '' }}</td>
+                                        <td>{{ $seat->roll_form }}</td>
+                                        <td>{{ $seat->roll_to }}</td>
+                                        <td>{{ $seat->count }}</td>
+                                        <td>
+                                            {!! Form::open(['action'=>['Backend\ExamSeatPlanController@destroy',$seat->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) !!}
+                                            <a href="{{url('admin/exam/pdf-seat-plan',$seat->id)}}" class="btn btn-success btn-sm" title="print Set Plan"><i class="fa fa-address-card"></i></a>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Set Plan"><i class="fa fa-trash"></i></button>
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -155,15 +155,14 @@
             $('.save').hide();
             $('form').on('change',function () {
                 var classId     = $('#classId').val();
-                var rollFrom    = $('.rollFrom').val();
-                var rollTo      = $('.rollTo').val();
-
+                var rollFrom    = $('#rollFrom').val();
+                var rollTo      = $('#rollTo').val();
+                var csrf    = '{{ csrf_token() }}';
 
                 $.ajax({
-                    url     :'{{ url('admin/exam/check-roll') }}',
+                    url     :'{{ route('exam-seat-plan.CheckRoll') }}',
                     type    :'POST',
-                    csrf    :'{{csrf_token()}}',
-                    data    : {classId:classId,rollFrom:rollFrom,rollTo:rollTo,"_token":"{{ csrf_token() }}"},
+                    data    : {classId:classId,rollFrom:rollFrom,rollTo:rollTo,_token:csrf},
                     success:function (data) {
                         console.log(data);
                         $('.count').val(data);
@@ -172,14 +171,9 @@
                         }
                     }
                 });
-
-
             });
-
-
-
-
         });
+
         function confirmDelete(){
             var x = confirm('Are you sure you want delete this Seat Plan?');
             return !!x;

@@ -166,8 +166,8 @@ class FeeCollectionController extends Controller
         $journal_id = [35,34];
         $len = count($journal_id);
 
-        $debit =[$total,null];
-        $credit = [null, $total];
+        $debit = [null, $total];
+        $credit = [$total,null];
 
         $journalNo = $this->journalNumber();
         $date = Carbon::now()->format('Y-m-d');

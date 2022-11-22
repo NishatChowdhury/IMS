@@ -39,10 +39,10 @@
                                             <option value="">{{ __('--Select Academics Class--')}}</option>
                                             @foreach ($onlineApplyStep as $item)
                                             <option value="{{ $item->id }}" class="customOption">
-                                              {{ $item->classes->name ?? '' }}-{{ $item->group->name ?? '' }}-{{ $item->session_id ? $item->sessions->year : '' }}
+                                              {{ $item->classes->name ?? '' }}-{{ $item->group->name ?? '' }}-
+                                                {{ $item->session_id ? $item->sessions->year : '' }}
                                               </option>
                                             @endforeach
-        
                                         </select>
                                     </div>
                                 </div>

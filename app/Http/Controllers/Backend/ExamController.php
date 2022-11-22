@@ -53,9 +53,9 @@ class ExamController extends Controller
 
     public function examination()
     {
-          $exams = Exam::whereHas('session', function($q){
-             return $q->where('active', 1);
-         })->get();
+        $exams = Exam::whereHas('session', function($q){
+            return $q->where('active', 1);
+        })->get();
         $repository = $this->repository;
         return view ('admin.exam.examination', compact('exams','repository'));
     }
@@ -113,55 +113,50 @@ class ExamController extends Controller
     }
 
     /**
-     * @param Student $student
+     * @param StudentAcademic $student
      * @param Request $request
      * Created by smartrahat
+     * @param $exam_id
      * @return Factory|View
      */
-    public function admitCard(StudentAcademic $student, Request $request, Exam $exam_id)
+    public function admitCard(StudentAcademic $student, Request $request, $exam_id)
     {
-
         if($request->all() == []){
             $students = [];
-            $exam = null;
+            $exam = [];
             $schedules = [];
             $academicClass = [];
         }else{
-//            return $request->all();
             $s = $student->newQuery();
-//            $s->whereIn('session_id',activeYear())->where('status',1);
             if($request->get('studentId')){
                 $studentId = $request->get('studentId');
                 $s->whereHas('student', function($query) use($studentId){
                     $query->where('studentId', $studentId);
                 });
-//                return $s->get();
             }
 
-            if($request->get('class_id')){
-                $class = $request->get('class_id');
-                $s->where('class_id',$class);
+            if($request->get('academic_class')){
+                $class = $request->get('academic_class');
+                $s->where('academic_class_id',$class);
             }
-            if($request->get('section_id')){
-                $section = $request->get('section_id');
-                $s->where('section_id',$section);
-            }
-            if($request->get('group_id')){
-                $group = $request->get('group_id');
-                $s->where('group_id',$group);
-            }
-
+//            if($request->get('section_id')){
+//                $section = $request->get('section_id');
+//                $s->where('section_id',$section);
+//            }
+//            if($request->get('group_id')){
+//                $group = $request->get('group_id');
+//                $s->where('group_id',$group);
+//            }
 
             $students = $s->with('student')->get();
-             $exam = Exam::query()->findOrFail($request->get('exam_id'));
-             $academicClass = AcademicClass::query()
-                ->where('class_id',$request->get('class_id'))
-                ->where('section_id',$request->get('section_id'))
-                ->where('group_id',$request->get('group_id'))
-                ->first();
-              $schedules = ExamSchedule::query()
+
+            $exam = Exam::query()->findOrFail($exam_id);
+
+            $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class'));
+
+            $schedules = ExamSchedule::query()
                 ->where('exam_id',$request->get('exam_id'))
-//                ->where('class_id',$academicClass->id) // class_id means Academic Class Id By mistake some do that's why it can't be change
+                ->where('academic_class_id',$request->get('academic_class'))
                 ->orderBy('date')
                 ->get();
         }

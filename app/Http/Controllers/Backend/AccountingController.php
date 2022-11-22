@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class AccountingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function balance_sheet(){
         $coaGrandParent = CoaGrandParent::all();
         $revenue_coas = CoaParent::whereName('Revenue')->first()->children;

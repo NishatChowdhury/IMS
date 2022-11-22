@@ -28,7 +28,7 @@
             @if($latestNews)
             <div class="col-lg-6 marginTop-30">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset('assets/files/notice') }}/{{ $latestNews->file }}" alt="">
+                    <img class="card-img-top" src="{{ asset('storage/uploads/notice') }}/{{ $latestNews->file }}" alt="">
                     <div class="card-body">
                         <p class="text-primary">
                             {{ $latestNews->start->format('F d, Y') }}

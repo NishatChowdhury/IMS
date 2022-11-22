@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 class MessageController extends Controller
 {
     public function editChairmanMessage(){
-         $message = InstituteMessage::query()->where('alias','chairman')->first();
+        $message = InstituteMessage::query()->where('alias','chairman')->first();
         return view('admin.aboutInstitute.chairman',compact('message'));
     }
     public function editAboutInstitute(){

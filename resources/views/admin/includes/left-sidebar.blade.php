@@ -286,6 +286,18 @@
                                     <p>Testimonial</p>
                                 </a>
                             </li>
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>TC</p>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Concern Letter</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('middleware-passed','student.transport')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -768,15 +780,15 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('middleware-passed','academic-calender.index')
-                            {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
-                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('admin/academic-calender/index') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Academic Calender</p>
-                                </a>
-                            </li>
-                        @endcan
+{{--                        @can('middleware-passed','academic-calender.index')--}}
+{{--                            --}}{{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
+{{--                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">--}}
+{{--                                <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('admin/academic-calender/index') }}">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Academic Calender</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endcan--}}
                         @can('middleware-passed','academic-calender.index')
                             {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
                             <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
@@ -1045,8 +1057,8 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">
-                <a href="{{ route('backup.db') }}" class="nav-link {{ isActive(['alumni*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/db-backup*']) }}">
+                <a href="{{ route('backup.db') }}" class="nav-link {{ isActive(['admin/db-backup*']) }}">
                     <i class="nav-icon fas fa-database"></i>
                     <p>
                         Db-Backup

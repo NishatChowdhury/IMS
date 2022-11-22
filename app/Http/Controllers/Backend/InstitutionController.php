@@ -43,7 +43,7 @@ class InstitutionController extends Controller
     public function store_session(Request $request){
         //dd($request->all());
         $validator = Validator::make($request->all(),[
-            'session' => 'required',
+            'year' => 'required',
             'start' => 'required',
             'end' => 'required'
         ]);

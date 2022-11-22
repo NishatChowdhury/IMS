@@ -36,6 +36,10 @@
                     <label for="" class="col-form-label">&nbsp;</label><br>
                     <button type="submit" class="btn btn-info"> {{__('Search')}}</button>
                 </div>
+                <div class="form-group col-md-2">
+                    <label for="" class="col-form-label">&nbsp;</label><br>
+                    <button type="button" onClick="window.print()" class="btn btn-info"> {{__('Print')}}</button>
+                </div>
             </div>
             {{ Form::close() }}
         </div>

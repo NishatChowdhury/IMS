@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
-class DbBackupContoller extends Controller
+class DbBackupController extends Controller
 {
     public function index()
     {
