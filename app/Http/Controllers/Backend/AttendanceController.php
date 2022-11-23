@@ -34,28 +34,44 @@ class AttendanceController extends Controller
     }
 
     public function StuManuelAttendence(Request  $request){
-        $academic_class = StudentAcademic::query()->groupBy('academic_class_id')->get(['id','class_id','section_id','group_id']);
-        $current_date = date('Y-m-d');
+        $academic_class = AcademicClass::query()->with(['classes:id,name', 'section:id,name', 'group:id,name'])->get();
+        $date = $request->date ?? date('Y-m-d');
+        $class = $request->academic_class;
 
 //        $stuAttendence = Attendance::query()->with(['studentAcademic.student:id,name','studentAcademic']);
-        $stuAttendence = Attendance::query()->with(['studentAcademic' => function ($query) {
-            $query->select('id', 'student_id');
-        },
+        $stuAttendence = Attendance::query()->with([
+            'studentAcademic' => function ($query) {
+                $query->select('id', 'student_id', 'class_id', 'section_id', 'group_id');
+            },
             'studentAcademic.student' => function ($query) {
-                $query->select('id', 'name');
-            }]);
+                $query->select('id', 'name', 'studentid');
+            }
+        ]);
 
-        if ($request->student_academic && $request->date)
-        {
-            $attendences =  $stuAttendence->where('student_academic_id',$request->student_academic)
-              ->whereDate('date', '>=',  $request->date)
-              ->get();
-        }else{
-//             $attendences =  $stuAttendence->get(['id','student_academic_id','date','attendance_status_id']) ;
-             $attendences =  $stuAttendence->whereDate('date', 2022-10-10)->count();
+        if ($class && $date) {
+
+            $attendences = $stuAttendence->whereHas('studentAcademic', function ($q) use ($class) {
+                $q->where('academic_class_id', $class);
+            })->get();
+
+        } else {
+            $attendences = $stuAttendence->whereDate('date', $date)->get(['id','student_academic_id','date','attendance_status_id']);
         }
-      return  $attendences;
-        return view('admin.attendance.manuel-attendence',compact('academic_class','attendences'));
+//        return  $attendences;
+        return view('admin.attendance.manuel-attendence', compact('academic_class', 'attendences'));
+    }
+
+    public function StuManuelAttendenceStatus($id)
+    {
+       $attnStatus =  Attendance::query()->findOrFail($id);
+       if ($attnStatus->attendance_status_id !== 1 ){
+           $attnStatus->attendance_status_id = 1;
+           $attnStatus->in_time = date('H:i:s');
+       }else{
+           $attnStatus->attendance_status_id = 2;
+       }
+        $attnStatus->save();
+       return back();
     }
 
     public function index()
@@ -287,7 +303,7 @@ class AttendanceController extends Controller
 
         }elseif($request->get('user') == 1){
             if($request->has('class_id') && $request->has('year') && $request->has('month')){
-                $request->class_id;
+
                 $students = StudentAcademic::query()
                     ->where('academic_class_id', $request->class_id)
                     ->orderBy('rank')

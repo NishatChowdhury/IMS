@@ -1,16 +1,12 @@
 <?php
 
 use App\Http\Controllers\Backend\AlumniController;
-use App\Http\Controllers\Backend\DbBackupController;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Backend\StudentReportController;
 use App\Http\Controllers\Backend\SubscriberController;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -714,6 +710,7 @@ return view('form-pdf');
 
 // manuel attendence
     Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
+    Route::get('student/manuel-attendence/{id}','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
 //end manuel attendence
 
 

@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-1">
+                                <div class="col-1" style="margin-top: 27px;">
                                     <label for=""> </label>
                                     <div class="input-group">
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
