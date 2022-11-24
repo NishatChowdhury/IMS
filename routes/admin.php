@@ -715,35 +715,3 @@ return view('form-pdf');
 
 
 
-
-
-
-//notice generate
-Route::get('notice-gen',function (){
-
-    $lipsum = new joshtronic\LoremIpsum();
-
-//    DB::table('notices')->truncate();
-//    return 'Data truncated';
-
-    \Illuminate\Support\Facades\Artisan::call('config:clear');
-
-    $noticeData = [];
-    for ($i = 1; $i <= 100; $i++) {
-
-        $noticeData[] = [
-            'notice_type_id' => rand(1, 20),
-            'notice_category_id' => rand(1, 10),
-            'title' => Str::ucfirst( $lipsum->words(10)),
-            'description' =>  Str::ucfirst($lipsum->words(20)),
-            'start' => date("y-m-d"),
-            'end' =>  date("Y-m-d", strtotime("+5 day")),
-        ];
-
-    }
-
-    \App\Models\Backend\Notice::insert($noticeData);
-
-    return 'Data Generated Successfully';
-})->name('notice.gen');
-

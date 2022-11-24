@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title', 'Fee Collection')
+@section('title', 'Group-wise Report')
 @section('style')
     <style>
         @media print {
@@ -31,8 +31,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Fee Collection') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Collect Fees') }}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Addmisson Registration') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Group-wise') }}</li>
                     </ol>
                 </div>
             </div>
@@ -49,13 +49,13 @@
                         <form method="get" action="{{ route('group-wise.report') }}">
                             <div class="form-row"  style="margin-left: 33%;">
 
-                                <label class="mr-1"> Group </label>
+                                <label class="mr-1 mt-1"> Group </label>
                                 <div class="form-group col-md-3">
                                     <select name="group_id" id="" class=" form-control  " required>
                                         <option value="">Select Group</option>
 
                                         @foreach ($groups as $grp)
-                                            <option value="{{ $grp->id }}">
+                                            <option value="{{ $grp->id }}" {{ request()->group_id == $grp->id ? 'selected':'' }}>
                                                 {{ $grp->name }}
                                             </option>
                                         @endforeach

@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title', 'Fee Collection')
+@section('title', 'Religion-wise Report')
 @section('style')
     <style>
         @media print {
@@ -31,8 +31,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Fee Collection') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Collect Fees') }}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Addmisson Registration') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Religion-wise') }}</li>
                     </ol>
                 </div>
             </div>
@@ -49,13 +49,13 @@
                         <form method="get" action="{{ route('regligion-wise.report') }}">
                             <div class="form-row" style="margin-left: 33%;" >
 
-                                <label class="mr-1"> Religion </label>
+                                <label class="mr-1 mt-1"> Religion </label>
                                 <div class="form-group col-md-3">
                                     <select name="religion_id" id="" class=" form-control select2"  required>
                                         <option value="">Select religion</option>
 
                                         @foreach ($religions as $rlg)
-                                            <option value="{{ $rlg->id }}">
+                                            <option value="{{ $rlg->id }}" {{ request()->religion_id == $rlg->id ? 'selected':'' }}>
                                                 {{ $rlg->name }}
                                             </option>
                                         @endforeach

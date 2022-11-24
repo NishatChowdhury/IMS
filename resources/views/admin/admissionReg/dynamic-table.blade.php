@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title', 'Fee Collection')
+@section('title', 'Dynamic Table')
 @section('style')
     <style>
         @media print {
@@ -31,8 +31,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Fee Collection') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Collect Fees') }}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Addmisson Registration') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Dynamic-table') }}</li>
                     </ol>
                 </div>
             </div>
@@ -48,33 +48,30 @@
                     <div class="card-body" style="padding-bottom:0">
                         <form method="get" action="{{ route('create-dynamic.table') }}">
                             <div class="form-row">
-
-                                <label class="mr-1"> Academic Class </label>
+                                <label class="mr-1 mt-1"> Academic Class </label>
                                 <div class="form-group col-md-2">
-                                    <select name="group_id" id="" class=" form-control " required>
+                                    <select name="ac_class_id" id="" class=" form-control " required>
                                         <option value="">Select Class</option>
 
                                         @foreach ($classes as $cls)
                                             <option value="{{ $cls->id }}">
-                                                {{ $cls->classes->name }} {{ $cls->section->name }} {{ $cls->group->name }}
+                                                {{ $cls->classes->name ?? '' }} {{ $cls->section->name ?? '' }} {{ $cls->group->name ?? '' }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="column">
+                                    <input type="text" class="form-control" placeholder=" Ex: mobile , address , email " name="column">
                                 </div>
 
-                                <div class="form-group col-md-1 ">
-                                    <button type="submit" class="btn btn-info btn-md btn-block"><i
-                                                class="fa fa-search"></i>&nbsp
-                                    </button>
-                                </div>
-                                <div class="form-group col-md-1">
-                                    <button class="btn btn-warning btn-md btn-block"
+                                <div class="form-group row col-md-2 ml-1">
+                                    <button type="submit" class="btn btn-info btn-md "><i
+                                                class="fa fa-table"></i>
+                                    </button>&nbsp;
+                                    <button class="btn btn-warning btn-md "
                                             onclick="window.print(); return false;"><i
-                                                class="fa fa-print"></i>&nbsp
+                                                class="fa fa-print"></i>
                                     </button>
                                 </div>
 
@@ -89,7 +86,7 @@
         </div>{{-- end --}}
     </section>
 
-    @if (isset($arrayCol))
+    @if (isset($students))
 
         <section class="content mt-4">
             <div class="container-fluid">
@@ -97,7 +94,11 @@
                     <div class="card" style="margin: 0px;">
                         <div class="card-body">
                             <div class="text-center">
-                                <h3>Ten A Commerce</h3> <br>
+                                <h3>Class:
+                                    {{ $students[0]->classes->name ?? '' }}
+                                    {{ $students[0]->section->name ?? '' }}
+                                    {{ $students[0]->group->name ?? '' }}
+                                </h3> <br>
                             </div>
                             <table class="table table-bordered  table-sm">
                                 <thead>
@@ -114,44 +115,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Asif</td>
+                                @foreach($students as $key=> $stu)
 
-                                    @if( count($arrayCol) > 0)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $stu->student->name }}</td>
 
-                                        @foreach( $arrayCol as $col)
-                                            <td></td>
-                                        @endforeach
-                                    @endif
+                                        @if( count($arrayCol) > 0)
 
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Sadman</td>
+                                            @foreach( $arrayCol as $col)
+                                                <td></td>
+                                            @endforeach
+                                        @endif
 
-                                    @if( count($arrayCol) > 0)
-
-                                        @foreach( $arrayCol as $col)
-                                            <td></td>
-                                        @endforeach
-                                    @endif
-
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Arif</td>
-
-                                    @if( count($arrayCol) > 0)
-
-                                        @foreach( $arrayCol as $col)
-                                            <td></td>
-                                        @endforeach
-                                    @endif
-
-                                </tr>
-
-
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

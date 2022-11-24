@@ -49,10 +49,11 @@ class AttendanceController extends Controller
         ]);
 
         if ($class && $date) {
-
-            $attendences = $stuAttendence->whereHas('studentAcademic', function ($q) use ($class) {
+            $attendences = $stuAttendence->whereDate('date', $date)->whereHas('studentAcademic', function ($q) use ($class) {
                 $q->where('academic_class_id', $class);
-            })->get();
+            })
+                ->groupBy('student_academic_id')
+                ->get();
 
         } else {
             $attendences = $stuAttendence->whereDate('date', $date)->get(['id','student_academic_id','date','attendance_status_id']);

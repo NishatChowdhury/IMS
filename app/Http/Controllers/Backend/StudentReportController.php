@@ -53,12 +53,20 @@ class StudentReportController extends Controller
     {
         $classes = AcademicClass::query()->get();
 
-//      StudentAcademic::query()->with('student')->where('academic_class_id', $classes)->get();
-
         $columns = $request->column;
         $arrayCol = explode(',', $columns);
 
-        return view('admin.admissionReg.dynamic-table', compact('classes','arrayCol'));
+        if ($request->ac_class_id) {
+
+            $students = StudentAcademic::query()
+                ->with('student:id,name')->where('academic_class_id', $request->ac_class_id)
+                ->get();
+
+
+        } else {
+            $students = null;
+        }
+        return view('admin.admissionReg.dynamic-table', compact('students','classes', 'arrayCol' ));
 
     }
 }

@@ -36,14 +36,14 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body" style="padding-bottom:0">
                         <form method="get" action="{{ route('student.manuel-attendence') }}">
-                            <div class="form-row">
+                            <div class="form-row" >
                                 <div class="form-group col-md-3">
                                     <label>Academic Class </label>
                                     <select name="academic_class" id="" class=" form-control" >
                                         <option value="">Select class</option>
                                             @foreach ($academic_class as $class)
-                                                <option value="{{ $class->id }}">{{ $class->classes->name }}
-                                                    {{ $class->section->name ?? '' }} {{ $class->group->name ?? '' }}
+                                                <option value="{{ $class->id }}" {{ ( request()->academic_class ==  $class->id ? 'selected' : '') }}>
+                                                    {{ $class->classes->name }} {{ $class->section->name ?? '' }} {{ $class->group->name ?? '' }}
                                                 </option>
                                             @endforeach
                                     </select>
@@ -92,13 +92,14 @@
                                 </h5>
 
                             </div>
-                            <table class="table table-bordered  table-sm">
-                                <thead>
+                            <table class="table table-bordered  table-sm ">
+                                <thead class="text-center">
                                 <tr>
                                     <th>Student ID</th>
                                     <th>Name</th>
                                     <th>Class</th>
-                                    <th>Attendance_status</th>
+                                    <th>Date</th>
+                                    <th>Attendance</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -108,15 +109,15 @@
                                     <td>{{$attn->studentAcademic->student->studentid ?? ''}}</td>
                                     <td>{{$attn->studentAcademic->student->name ?? ''}}</td>
                                     <td>{{$attn->studentAcademic->classes->name ?? ''}} {{$attn->studentAcademic->section->name ?? ''}} {{$attn->studentAcademic->group->name ?? ''}}  </td>
-
-                                    <td>
+                                    <td>{{$attn->date->format('d/m/Y') ?? ''}}</td>
+                                    <td class="text-center">
 
                                         @if($attn->attendance_status_id == 1)
-                                            <a class="badge badge-success"href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-check"></i> </a>
+                                            <a title="present" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-check-circle text-success"></i> </a>
 
 
                                         @else
-                                            <a class="badge badge-danger" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-times "></i> </a>
+                                            <a  title="Absent" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-times text-danger "></i> </a>
 
                                         @endif
 
