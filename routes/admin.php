@@ -710,7 +710,7 @@ return view('form-pdf');
 
 // manuel attendence
     Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
-    Route::get('student/manuel-attendence/{id}','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
+    Route::get('/student/manuel-attendence-change','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
 //end manuel attendence
 
 

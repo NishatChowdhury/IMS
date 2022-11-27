@@ -62,17 +62,13 @@ class AttendanceController extends Controller
         return view('admin.attendance.manuel-attendence', compact('academic_class', 'attendences'));
     }
 
-    public function StuManuelAttendenceStatus($id)
+    public function StuManuelAttendenceStatus(Request $request)
     {
-       $attnStatus =  Attendance::query()->findOrFail($id);
-       if ($attnStatus->attendance_status_id !== 1 ){
-           $attnStatus->attendance_status_id = 1;
-           $attnStatus->in_time = date('H:i:s');
-       }else{
-           $attnStatus->attendance_status_id = 2;
-       }
+        $attnStatus = Attendance::find($request->user_id);
+        $attnStatus->attendance_status_id = $request->status;
         $attnStatus->save();
-       return back();
+
+        return response()->json(['success'=>'Status change successfully.']);
     }
 
     public function index()
