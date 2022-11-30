@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Flutter\LoginController;
 use App\Http\Controllers\Flutter\StudentController;
+use App\Http\Controllers\Flutter\NotificationController;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,3 +49,8 @@ Route::post('token/create', [LoginController::class, 'token']);
 Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
 Route::post('otp-match', [LoginController::class, 'matchOtp']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('attendance',[NotificationController::class,'attendance']);
+});

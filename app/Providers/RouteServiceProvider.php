@@ -153,6 +153,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api/notification')
         ->middleware('api')
         ->namespace($this->namespace)
-        ->group(base_path('routes/notification.php'));
+        ->group(base_path('routes/api.php'));
     }
 }
