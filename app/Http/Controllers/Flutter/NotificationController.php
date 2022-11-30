@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    public function attendance(Request $request)
+    public function attendance()
     {
+        $user = auth()->user();
         $attendanceToday = Attendance::query()
-            ->where('student_academic_id', $request->student_academic_id)
+            ->where('student_academic_id',$user->studentAcademic->id)
             ->whereDate('date', now()->format('Y-m-d'))
             ->first();
 
