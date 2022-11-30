@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Backend\InstituteMessage;
+use App\Models\Backend\Subscriber;
 use App\Models\Frontend\Alumni;
 use App\Models\Frontend\Language;
 use Carbon\Carbon;
@@ -54,7 +55,6 @@ class FrontController extends Controller
 
     public function index()
     {
-
         $sliders = Slider::query()
             //->where('start','<',Carbon::StudentControllertoday())
             ->where(function($query){
@@ -86,6 +86,15 @@ class FrontController extends Controller
 
         //return view('front.index-navy');
         return view('front.index',compact('galleryCorner','about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+    }
+
+    public function StoreSubscriber(Request $request){
+
+        $request->validate([
+            'email' => 'required|email|unique:subscribers',
+        ]);
+        Subscriber::create(['email'=>  $request->email, 'unsubscribed'=>0]);
+        return back();
     }
 
 

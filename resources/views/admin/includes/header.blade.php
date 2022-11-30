@@ -20,7 +20,7 @@
                 <img class="user-hd-img"  src="{{ asset('dist/img/user.png') }}" class="img-cir" alt="User Image" style="text-align: center; max-height: 80px; margin:12px 31px 8px 37px;">
                 <p class="user-hd-text">
                     {{ strtoupper(Auth::user()->name) }} <br>
-{{--                    {{ Auth::user()->role_id }} <br>--}}
+                    {{ Auth::user()->role_id }} <br>
                     <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                 </p>
             </li>

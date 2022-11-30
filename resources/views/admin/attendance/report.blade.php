@@ -5,10 +5,11 @@
 @section('style')
     <style>
         @media (min-width: 992px) {
-            #atn_result_show{
+            #atn_result_show {
                 font-size: 13px;
             }
-            .table td, th{
+
+            .table td, th {
                 padding: .5rem;
             }
         }
@@ -22,12 +23,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{('Attendance Monthly Report')}} </h1>
+                    <h1>{{ __('Attendance Monthly Report') }} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{('Home')}}</a></li>
-                        <li class="breadcrumb-item active">{{('Attendance Monthly Report')}}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Attendance Monthly Report') }}</li>
                     </ol>
                 </div>
             </div>
@@ -46,13 +47,21 @@
                                     <div class="col">
                                         <label for="">{{ __('User') }}</label>
                                         <div class="input-group">
-                                            {{ Form::select('user',[1=>'Student',2=>'Employee','Teacher'],null,['class'=>'form-control','id' => 'statusChange','placeholder'=>'Select Session','required']) }}
+                                            {{ Form::select('user',[1=>'Student',2=>'Employee','Teacher'],null,['class'=>'form-control','id' => 'statusChange','placeholder'=>'Select type','required']) }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="">{{ __('Year') }}</label>
                                         <div class="input-group">
-                                            {{ Form::selectRange('year',2020,2025,null,['class'=>'form-control','placeholder'=>'Session','required']) }}
+                                            <select name="year" id="" class="form-control">
+                                                <option value="">Select Session</option>
+                                                @foreach($sessions as $session)
+                                                    <option value="{{ $session->year }}" {{ request()->year == $session->year ? 'selected="selected"' : '' }}>
+                                                        {{ $session->year }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            {{--                                            {{ Form::select('year', $sessions,null,['class'=>'form-control','placeholder'=>'Session','required']) }}--}}
                                         </div>
                                     </div>
                                     <div class="col">
@@ -67,7 +76,8 @@
                                             <select name="class_id" id="class" class="form-control">
                                                 <option value="">{{ __('Select Class') }}</option>
                                                 @foreach($repository->academicClasses() as $class)
-                                                    <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
+                                                    <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}
+                                                        &nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -75,7 +85,8 @@
 
                                     <div class="col-1" style="padding-top: 32px;">
                                         <div class="input-group">
-                                            <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            <button style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i
+                                                        class="fas fa-search"></i></button>
                                         </div>
                                     </div>
 
@@ -87,11 +98,14 @@
                         <div class="col-md-3">
                             <div>
                                 <ul style="list-style: none">
-                                    <li> <i class="fas fa-circle" style="color: #008000"></i> <span> {{('P - Present')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #00bfff"></i> <span> {{('D - Late/Delay')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ffa500"></i> <span> {{('E - Early Leave')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #ff0000"></i> <span> {{('A - Absent')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: green"></i> <span> {{('P - Present')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: red"></i> <span> {{('A - Absent')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #281919"></i> <span> {{('D - Late/Delay')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: orange"></i> <span> {{('E - Early Leave')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: darkviolet"></i> <span> {{('H - Holiday')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #5e684f"></i> <span> {{('W - Weekly Off')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #878484"></i> <span> {{('L - Leave')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #878484"></i> <span> {{('LE - Late & Early Leave')}} </span></li>
                                 </ul>
                             </div>
                         </div>
@@ -102,46 +116,46 @@
     </section>
 
     @if(count($students) > 0)
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">{{ __('Month Name')}} : {{  Carbon\Carbon::createFromFormat('m', $month)->format('F')  ?? 'N/A' }} {{ $year ?? '' }}
-                            </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="att-table">
-                                <table class="table table-bordered table-responsive" id="atn_result_show">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">{{$personStatus ?? ''}}</th>
-                                        <th style="padding-left: 10px">{{ __('Name')}}</th>
-                                        @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
-                                            <th style="padding-left: 10px">{{ $i }}</th>
-                                        @endfor
-                                    </tr>
-                                    </thead>
-                                    <tbody id="atn_result_show">
-                                    @foreach($students as $student)
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">{{ __('Month Name')}}
+                                    : {{  Carbon\Carbon::createFromFormat('m', $month)->format('F')  ?? 'N/A' }} {{ $year ?? '' }}
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="att-table">
+                                    <table class="table table-bordered table-responsive" id="atn_result_show">
+                                        <thead>
                                         <tr>
-                                            <th>{{ $student->rank ?? '' }}{{ $student->code ?? ''}}</th>
-                                            <th>{{ $student->student->name ?? ''}} {{ $student->name ?? ''}}</th>
+                                            <th class="text-center">{{$personStatus ?? ''}}</th>
+                                            <th style="padding-left: 10px">{{ __('Name')}}</th>
                                             @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
-                                                @if($i < 10)
-                                                    @php $i = '0'.$i @endphp
-                                                @endif
-                                                <td>
-                                                    <?php
-                                                    if(isset($student->student)){
-                                                        $attn = \App\Models\Backend\Attendance::query()
-                                                                    ->where('student_academic_id',$student->id)
-                                                                    ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
+                                                <th style="padding-left: 10px">{{ $i }}</th>
+                                            @endfor
+                                        </tr>
+                                        </thead>
+                                        <tbody id="atn_result_show">
+                                        @foreach($students as $student)
+                                            <tr>
+                                                <th>{{ $student->rank ?? '' }}{{ $student->code ?? ''}}</th>
+                                                <th>{{ $student->student->name ?? ''}} {{ $student->name ?? ''}}</th>
+                                                @for($i = 1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++)
+                                                    @if($i < 10)
+                                                        @php $i = '0'.$i @endphp
+                                                    @endif
+                                                    <td>
+                                                            <?php
+                                                            if (isset($student->student)) {
+                                                                $attn = \App\Models\Backend\Attendance::query()
+                                                                    ->where('student_academic_id', $student->id)
+                                                                    ->where('date', 'like', Carbon\Carbon::createFromDate($year, $month)->format('Y-m') . '-' . $i . '%')
                                                                     ->first();
                                                     }else{
-//                                                        dd($student);
                                                         $attn = \App\Models\Backend\AttendanceTeacher::query()
                                                                     ->where('staff_id',$student->card_id)
                                                                     ->where('date','like',Carbon\Carbon::createFromDate($year,$month)->format('Y-m').'-'.$i.'%')
@@ -158,7 +172,7 @@
                                                             @elseif($attn->attendance_status_id == 2)
                                                                 <span style="color:white; background: red" class="badge">A</span>
                                                             @elseif($attn->attendance_status_id == 3)
-                                                                <span style="color:white; background: #281919" class="badge">L</span>
+                                                                <span style="color:white; background: #281919" class="badge">D</span>
                                                             @elseif($attn->attendance_status_id == 4)
                                                                 <span style="color:white; background: Orange" class="badge">E</span>
                                                             @elseif($attn->attendance_status_id == 5)
@@ -166,7 +180,7 @@
                                                             @elseif($attn->attendance_status_id == 6)
                                                                 <span style="color:white; background: #5e684f" class="badge">W</span>
                                                             @elseif($attn->attendance_status_id == 7)
-                                                                <span style="color:white; background: #878484" class="badge">LA</span>
+                                                                <span style="color:white; background: #878484" class="badge">L</span>
                                                             @elseif($attn->attendance_status_id == 8)
                                                                 <span style="color:white; background: #878484" class="badge">LE</span>
                                                             @endif
@@ -237,18 +251,6 @@
                 $('#forStudent').show();
             }
         })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </script>

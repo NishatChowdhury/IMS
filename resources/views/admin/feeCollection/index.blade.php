@@ -181,7 +181,7 @@
                                                 ?>
                                                 @foreach ($receipt as $key => $rcpt)
                                                     <tr>
-                                                        <td>{{ $rcpt->category->name }}</td>
+                                                        <td>{{ $rcpt->category->name ?? '' }}</td>
                                                         <td class="text-right">{{ number_format($rcpt->paid, 2) }} /-</td>
                                                     </tr>
 

@@ -30,20 +30,16 @@ class ResultController extends Controller
         $this->repository = $repository;
     }
 
-    public function index(Request $request,ExamResult $examResult)
+    public function index(Request $request, ExamResult $examResult)
     {
         if($request->all()){
-//            return $request->all();
             $r = $examResult->newQuery();
 
             if($request->get('studentId')){
-//                return $request->get('studentId');
-                //                $getStudent = StudentAcademic::find($request->get('studentId'))->first();
                 $r->whereHas('studentAcademic',function($query) use ($request){
                     $query->whereHas('student', function($q) use ($request){
                         $q->where('studentId', $request->studentId);
                     });
-//                    $query->where('studentId', $request->studentId);
                 });
             }
 
@@ -52,13 +48,8 @@ class ResultController extends Controller
             }
 
             if($request->has('academic_class_id')){
-//                    return $request->academic_class_id;
-                  $r->whereHas('studentAcademic',function($query) use ($request){
-                        $query->where('academic_class_id',$request->get('academic_class_id'));
-//                    $query->whereHas('student', function($q) use ($request){
-//                        $q->where('studentId', $request->studentId);
-//                    });
-//                    $query->where('studentId', $request->studentId);
+                $r->whereHas('studentAcademic',function($query) use ($request){
+                    $query->where('academic_class_id',$request->get('academic_class_id'));
                 });
             }
 
@@ -66,8 +57,6 @@ class ResultController extends Controller
         }else{
             $results = [];
         }
-
-//        return $results;
 
         $repository = $this->repository;
         return view ('admin.exam.examresult',compact('repository','results'));
@@ -86,28 +75,28 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
-              $classes = AcademicClass::with('classes')->get();
+            $classes = AcademicClass::with('classes')->get();
             foreach($classes as $class){
                 $subjectCount = ExamSchedule::query()
                     ->where('academic_class_id',$class->id)   //class id means acadimic class id
                     ->where('exam_id',$examId)
                     ->count();
 
-                  $marks = Mark::query()
-                                    ->where('academic_class_id',$class->id)
-                                    ->where('exam_id',$examId)
-                                    ->with('subject')
-                                    ->get()
-                                    ->groupBy('student_id');
+                $marks = Mark::query()
+                    ->where('academic_class_id',$class->id)
+                    ->where('exam_id',$examId)
+                    ->with('subject')
+                    ->get()
+                    ->groupBy('student_id');
 
                 foreach($marks as $student => $mark){
                     $countOptionalSubject = 0;
                     foreach ($mark as $m){
                         if($m->subject->type == 3){
-                             $countOptionalSubject++;
+                            $countOptionalSubject++;
                         }
                     }
-                     //$countOptionalSubject;
+                    //$countOptionalSubject;
 
 
 
@@ -139,7 +128,7 @@ class ResultController extends Controller
 
 
 //                    return $data;
-                     $grade = Grade::query()
+                    $grade = Grade::query()
                         ->where('system',1)
                         ->where('point_from','<=',$data['gpa'])
                         ->where('point_to','>=', $data['gpa'])
@@ -150,7 +139,7 @@ class ResultController extends Controller
 
                         $data['total_mark'] = $mark->sum('total_mark') - 40;
 
-                         $grade = Grade::query()
+                        $grade = Grade::query()
                             ->where('system',1)
                             ->where('point_from','<=',$data['gpa'])
                             ->where('point_to','>=',$data['gpa'])
@@ -205,9 +194,9 @@ class ResultController extends Controller
 
     public function resultDetails($id)
     {
-         $result = ExamResult::query()->with('studentAcademic')->findOrFail($id);
+        $result = ExamResult::query()->with('studentAcademic')->findOrFail($id);
 
-         $marks = Mark::query()
+        $marks = Mark::query()
             ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
             ->where('exam_id',$result->exam_id)
 //            ->where('student_academic_id',$result->studentAcademic->id)
@@ -736,14 +725,18 @@ class ResultController extends Controller
     {
         if($request->has('class_id')){
 
+            $classId=$request->class_id;
             $results = ExamResult::query()
-                                    ->where('exam_id',$examID)
-                                    ->where('academic_class_id',$request->get('class_id'))
-                                    ->orderBy('rank')
-                                    ->get();
+                ->whereHas('studentAcademic', function($q) use($classId){
+                    $q->where('academic_class_id', $classId);
+                })
+                ->where('exam_id',$request->exam_id)
+                ->orderBy('total_mark','DESC')
+                ->get();
 
-            //$subjects = $this->tabulationSubjects($request->get('class_id'),$request->get('group_id'));
-             $subjects = ExamSchedule::query()
+
+
+            $subjects = ExamSchedule::query()
                 ->where('academic_class_id',$request->get('class_id'))
                 ->where('exam_id',$examID)
                 ->get();

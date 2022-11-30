@@ -29,51 +29,41 @@
                 <div class="col-md-12">
                     <div class="card">
                         <!-- form start -->
-                        {{--<form method="GET" action="http://localhost/wpschool/public/students" accept-charset="UTF-8" role="form">--}}
                         {{ Form::open(['action'=>['Backend\ExamController@admitCard', basename(request()->path())],'method'=>'get','role'=>'form']) }}
                         <div class="card-body">
                             <div class="form-row">
-
-                                        <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">
+                                <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">
                                 <div class="col">
                                     <label for="">{{ __('Student ID')}}</label>
                                     <div class="input-group">
-                                        {{--<input class="form-control" placeholder="Student ID" name="studentId" type="text">--}}
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">{{ __('Class')}}</label>
-                                    <div class="input-group">
-                                        {{--<select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option></select>--}}
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">{{ __('Section')}}</label>
-                                    <div class="input-group">
-                                        {{--<select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>--}}
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">{{ __('Group')}}</label>
                                     <div class="input-group">
-                                        {{--<select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option></select>--}}
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select a group']) }}
+                                        <select name="academic_class" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">
+                                                    {{ $class->academicClasses->name }}&nbsp;
+                                                    {{ $class->section->name ?? '' }}&nbsp;
+                                                    {{ $class->group->name ?? '' }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
-                                <div class="col-1" style="padding-top: 32px;">
+                                <div class="col-1">
+                                    <label for=""></label>
                                     <div class="input-group">
-                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                         {{ Form::close() }}
-                        {{--</form>--}}
                     </div>
                     <!-- /.card -->
                 </div>
@@ -114,40 +104,32 @@
                                 </div>
 
                                 <div class="row">
-                                    {{--<div class="col-md-8">--}}
-                                        {{--<div class="scl-dev">--}}
-                                            {{--<h4 style="color: #879BE8;">{{ siteConfig('name') }}</h4>--}}
-                                            {{--<p>{{ siteConfig('address') }}</p>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
                                     <div class="col-md-4">
                                         <div class="stu-dec">
-                                            {{--<h4 style="color: #879BE8;">Muhaimin Sarwar rahi</h4>--}}
-                                            {{--<p>Thana Road,Chiring,Chakaria <br>--}}
-                                            {{--Cox's Bazar,Chittagong,Bangladesh.--}}
-                                            {{--</p>--}}
+
                                         </div>
                                     </div>
                                 </div>
                                 <table id="example2" class="table table-bordered">
                                     <tr>
-                                        <th>{{ __('Student's Name')}} : </th>
+                                        <th>{{ __('Student\'s Name')}} : </th>
                                         <td>{{ $studentAcademic->student->name ?? '' }}</td>
                                         <th>StudentID : </th>
                                         <td>{{ $studentAcademic->student->studentId ?? ''}}</td>
                                     </tr>
                                     <tr>
                                         <th>Class :</th>
-                                        <td>{{ $academicClass->classes->name ??  '' }}
-                                            {{ $academicClass->section->name ?? '' }}
-                                            {{ $academicClass->group->name ?? '' }}</td>
+                                        <td>
+                                            {{ $studentAcademic->classes->name ??  '' }}
+                                            {{ $studentAcademic->section->name ?? '' }}
+                                            {{ $studentAcademic->group->name ?? '' }}</td>
                                         <th>Rank :</th>
                                         <td> {{ $studentAcademic->rank }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Father's Name')}} :</th>
+                                        <th>{{ __('Father\'s Name')}} :</th>
                                         <td>{{ $studentAcademic->student->father->f_name ?? '' }}</td>
-                                        <th>{{ __('Mother's Name')}} : </th>
+                                        <th>{{ __('Mother\'s Name')}} : </th>
                                         <td>{{ $studentAcademic->student->mother->m_name ?? '' }}</td>
                                     </tr>
                                     <tr>
@@ -158,7 +140,7 @@
                                     </tr>
                                 </table>
 
-                                <table id="example2" class="table table-bordered table-hover" style="margin-top: 20px;">
+                                <table id="example2" class="table table-bordered table-hover table-sm" style="margin-top: 20px;">
                                     <thead>
                                     <tr>
                                         <th>{{ __('Subjects')}}</th>
@@ -180,6 +162,13 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+{{--                                <div class="col-md-12">--}}
+{{--                                    <div class="text-justify">--}}
+{{--                                        @foreach($schedules as $schedule)--}}
+{{--                                            <span class="badge badge-primary">{{ $schedule->subject->name }}:{{ $schedule->date }}</span>--}}
+{{--                                        @endforeach--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="card-footer" style="margin-bottom: 10px;">
                                     {{--<h4>Notes & Information</h4>--}}
                                     <div class="row">

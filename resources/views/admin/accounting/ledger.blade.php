@@ -33,13 +33,17 @@
                         <label for="" class="col-form-label">{{__('End Date') }}</label>
                         {{ Form::date('end_date',null,['class'=>'form-control','required']) }}
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="" class="col-form-label">{{__('Account') }}</label>
                         {{ Form::select('account',$coa,null,['class'=>'form-control select2','placeholder'=>'ALL Ledger']) }}
                     </div>
                     <div class="form-group col-md-2">
                         <label for="" class="col-form-label">&nbsp;</label><br>
                         <button type="submit" class="btn btn-dark">{{__('Search') }}</button>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="" class="col-form-label">&nbsp;</label><br>
+                        <button onClick="window.print()" class="btn btn-info"> {{__('Print')}}</button>
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -53,7 +57,7 @@
             <div class="row">
                 <div class="col-12">
                     @foreach($acc as $accounts)
-                        <h3 class="text-center mt-5"><u><strong>{{ $accounts->first()->coa->name }}</strong></u></h3>
+                        <h3 class="text-center mt-5"><u><strong>{{ $accounts->first()->coa->name }} ({{ $accounts->first()->coa->id }})</strong></u></h3>
                         <div class="card">
                             {{--                        <div class="card-header" style="border-bottom: none !important;">--}}
                             {{--                            <h3>{{ $account ?? 'Account Details' }}</h3>--}}

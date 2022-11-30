@@ -97,23 +97,23 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        @if($ex > $in)
+                                        @if(array_sum($ex) < array_sum($in))
                                             <div class="d-flex justify-content-between text-bold text-primary">
                                                 <span>{{ __('To Gross Profit')}}</span>
                                                 <span>
-                                                    {{ number_format($ex[] = netProfit($start,$end),2) }}
-                                                    {{--                                                    {{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}--}}
+{{--                                                    {{ number_format($ex[] = netProfit($start,$end),2) }}--}}
+                                                    {{ number_format($ex[] = array_sum($in) - array_sum($ex),2) }}
                                                 </span>
                                             </div>
                                         @endif
                                     </td>
                                     <td>
-                                        @if($in > $ex)
+                                        @if(array_sum($in) < array_sum($ex))
                                             <div class="d-flex justify-content-between text-bold text-primary">
-                                                <span>By Gross Loss</span>
+                                                <span>{{ __('By Gross Loss') }}</span>
                                                 <span>
-                                                    {{ number_format($in[] = netProfit($start,$end),2) }}
-                                                    {{--                                                    {{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}--}}
+{{--                                                    {{ number_format($in[] = netProfit($start,$end),2) }}--}}
+                                                    {{ number_format($in[] = array_sum($ex) - array_sum($in),2) }}
                                                 </span>
                                             </div>
                                         @endif

@@ -27,7 +27,7 @@
     <section class="padding-y-100 border-bottom border-light">
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-8">
                     <p class="mb-2"><b>{{__('ব্যক্তিগত তথ্য')}}</b></p> <hr>
                     <ul>
                         <li>
@@ -64,7 +64,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-4">
+                <div class="col-8">
                     <p class="mb-2"><b>{{__('বর্তমান ঠিকানা')}}</b></p> <hr>
                     <ul>
                         <li>
@@ -94,7 +94,7 @@
                     </ul>
                 </div>
 
-                <div class="col-4">
+                <div class="col-8">
                     <p class="mb-2"><b>{{__('স্থায়ী ঠিকানা')}}</b></p> <hr>
                     <ul>
                         <li>
@@ -123,7 +123,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-4">
+                <div class="col-8">
                     <p class="mb-2"><b>{{__('অফিস কতৃক পূরণীয়')}}</b></p> <hr>
                     <ul>
                         <li>
@@ -163,6 +163,5 @@
             </div>
         </div>
     </section>
-
 
 @stop

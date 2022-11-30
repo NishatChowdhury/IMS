@@ -43,9 +43,9 @@ class LoginController extends Controller
         }
     }
 
-
     public function otp($mobile)
     {
+        //$mobile = $request->get('mobile');
         $otp = rand(1000,9999);
         $student = Student::query()
             ->where('mobile',$mobile)

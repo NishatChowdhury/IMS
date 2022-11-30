@@ -121,7 +121,7 @@
                                         {{ number_format(array_sum($ass),2) }}
                                     </th>
                                     <th class="text-right">
-                                        {{ number_format(array_sum($lib) + (array_sum($equ) - array_sum($equN)) + $np,2) }}
+                                        {{ number_format(array_sum($lib) + (array_sum($equ) - array_sum($equN??[])) + $np,2) }}
                                     </th>
                                 </tr>
                                 </tbody>

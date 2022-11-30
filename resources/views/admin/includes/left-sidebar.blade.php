@@ -286,6 +286,18 @@
                                     <p>Testimonial</p>
                                 </a>
                             </li>
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>TC</p>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{route('student.testimonial')}}" class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Concern Letter</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('middleware-passed','student.transport')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -597,6 +609,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="{{ route('subscriber.list') }}" class="nav-link {{ isActive('admin/subscriber/list') }}">
+                            <i class="fa fa-user-circle nav-icon"></i>
+                            <p>{{ __('Subscribers') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('communication.quick') }}" class="nav-link {{ isActive('admin/communication/quick') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Quick SMS') }}</p>
@@ -762,15 +780,15 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('middleware-passed','academic-calender.index')
-                            {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
-                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('admin/academic-calender/index') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Academic Calender</p>
-                                </a>
-                            </li>
-                        @endcan
+{{--                        @can('middleware-passed','academic-calender.index')--}}
+{{--                            --}}{{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
+{{--                            <li class="nav-item"  style="background-color: rgb(40, 40, 45);">--}}
+{{--                                <a href="{{ action('Backend\AcademicCalenderController@index') }}" class="nav-link {{ isActive('admin/academic-calender/index') }}">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Academic Calender</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        @endcan--}}
                         @can('middleware-passed','academic-calender.index')
                             {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
                             <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
@@ -1002,11 +1020,48 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item has-treeview {{ isActive(['admin/user*']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/user*']) }}">
+                    <i class="fas fa-users-cog"></i>
+                    <p>
+                        Admission  register
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item" >
+                        <a href="{{ route('regligion-wise.report') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Religion-wise Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="{{ route('group-wise.report') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Group-wise Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="{{ route('create-dynamic.table') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Create Dynamic Table</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item has-treeview {{ isActive(['alumni*']) }}">
                 <a href="{{ action('Backend\AlumniController@index') }}" class="nav-link {{ isActive(['alumni*']) }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Alumni
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item has-treeview {{ isActive(['admin/db-backup*']) }}">
+                <a href="{{ route('backup.db') }}" class="nav-link {{ isActive(['admin/db-backup*']) }}">
+                    <i class="nav-icon fas fa-database"></i>
+                    <p>
+                        Db-Backup
                     </p>
                 </a>
             </li>

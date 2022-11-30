@@ -21,6 +21,7 @@ Route::get('/home', [DashboardController::class, 'index'])->name('home');
 ==== Route for Front-End Menu Bar Start ==== @MKH
  */
 Route::get('/', 'Front\FrontController@index');
+Route::post('/store/subscriber', 'Front\FrontController@StoreSubscriber')->name('store.subscriber');
 //Route::get('/', 'IdCardController@custom_staffPdf');
 Route::get('/online-apply-step','Front\FrontController@onlineApplyStep');
 Route::get('/online-apply/{id}',[OnlineApplyController::class,'onlineApply']);
@@ -42,6 +43,7 @@ Route::get('download-school-pdf/{id}', [AdmissionController::class,'downloadScho
 
 Route::get('/notice-details/{id}','Front\FrontController@noticeDetails')->name('front.notice.details');
 Route::get('/news-details/{id}','Front\FrontController@newsDetails');
+//Route::get('/news-details/{id}','Front\FrontController@news');
 
 //Gallery
 Route::get('/gallery','Front\FrontController@gallery');

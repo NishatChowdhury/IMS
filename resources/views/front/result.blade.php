@@ -8,15 +8,18 @@
                 </p>
             </div>
             <div class="col-md-6 my-4 wow zoomIn">
+                <form method="post" action="{{route('store.subscriber')}}">
+                    @csrf
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text ti-email bg-white"></div>
                     </div>
-                    <input type="text" placeholder="Enter your email" class="form-control py-3 pl-0 border-white" required>
+                    <input type="text" name="email" placeholder="Enter your email" class="form-control py-3 pl-0 border-white" required>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">{{ __('Subscribe')}}</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div> <!-- END row-->
     </div>

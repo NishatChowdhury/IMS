@@ -46,14 +46,22 @@ class DatabaseBackup extends Command
     public function handle()
     {
 
+     //backup code by hamid
+        $filename = "database_backup".".sql";
+//        $filename = "backup_" . date('y-m-d-H') .".sql";
+        $command = "mysqldump --user=" . env('DB_USERNAME')." --password=" . env('DB_PASSWORD'). " --host=" . env('DB_HOST')  . " " . env('DB_DATABASE') . ">" . storage_path("app/public/backup/"). $filename;
 
-       $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
+        exec($command);
+        //end backup code
 
-        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . "/app/public/backup/" . $filename;
 
-        $returnVar = NULL;
-        $output  = NULL;
-
-        exec($command, $output, $returnVar);
+//       $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
+//
+//        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . "/app/public/backup/" . $filename;
+//
+//        $returnVar = NULL;
+//        $output  = NULL;
+//
+//        exec($command, $output, $returnVar);
     }
 }

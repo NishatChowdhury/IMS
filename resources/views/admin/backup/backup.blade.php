@@ -42,20 +42,20 @@
                         @endif --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                    <div class="card-body text-center">
-                        <div class="downloadBtn">
-                            <a href="{{ url('admin/download-database') }}" class="btn btn-dark btn-sm">{{ __('Download
+                        <div class="card-body text-center">
+                            <div class="downloadBtn">
+                                <a href="{{ url('admin/download-database') }}" class="btn btn-dark btn-sm">{{ __('Download
                                 Database')}}</a>
-                        </div>
-                        <table id="example1" class="mt-5 table table-bordered table-striped table-sm">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>{{ __('No')}}.</th>
-                                <th>{{ __('Date')}}</th>
-                                <th>{{ __('Action')}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                            </div>
+                            <table id="example1" class="mt-5 table table-bordered table-striped table-sm">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>{{ __('No')}}.</th>
+                                    <th>{{ __('Date')}}</th>
+                                    <th>{{ __('Action')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 <tr>
                                     <td>01</td>
                                     <td>20-02-2022</td>
@@ -63,9 +63,9 @@
                                         <a href="" class="btn btn-primary btn-sm">{{ __('Download')}}</a>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card -->
 
@@ -81,3 +81,4 @@
 @section('script')
 
 @stop
+

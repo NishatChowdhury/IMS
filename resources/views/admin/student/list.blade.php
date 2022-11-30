@@ -54,29 +54,43 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="">Session</label>
-                                    <div class="input-group">
-                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
                                     <label for="">Class</label>
                                     <div class="input-group">
-                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}
+                                        <select name="academic_class_id" class="form-control">
+                                            @foreach($repository->academicClasses() as $class)
+                                                <option value="{{ $class->id }}">
+                                                    {{ $class->academicClasses->name ?? '' }}
+                                                    {{ $class->section->name ?? '' }}
+                                                    {{ $class->group->name ?? '' }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <label for="">Section</label>
-                                    <div class="input-group">
-                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="">Group</label>
-                                    <div class="input-group">
-                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}
-                                    </div>
-                                </div>
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Session</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Class</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Section</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('section_id',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for="">Group</label>--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        {{ Form::select('group_id',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Group']) }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
@@ -101,9 +115,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-info">
-                    <div class="card-header">
+                    <div class="card-header " >
 {{--                        <h3 class="card-title">Total Found : {{ $students->total() }}</h3>--}}
-                        <div class="card-tools">
+                        @if(request()->academic_class_id)
+                            <strong>Class : {{ request()->academic_class_id ?? '' }}</strong>  &nbsp; &nbsp; &nbsp;
+                            <span> student found : {{  $students->total() ?? '' }}</span>
+                        @endif
+
+                        <div class=" float-right">
                             <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
                             <a href="{{ route('csv') }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
@@ -134,7 +153,7 @@
                                     <td>    {{ $student->father ? $student->father->f_name : ''}} ||<br>
                                             {{ $student->mother ? $student->mother->m_name : ''}}
 
-                                           
+
                                     </td>
                                     <td><img src="{{ asset('storage/uploads/students/') }}/{{ $student->image }}" height="100" alt=""></td>
                                     <td>

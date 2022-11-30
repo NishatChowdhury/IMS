@@ -15,6 +15,12 @@ class SeedPermission extends Migration
     {
         $permissionGroup = [
             [
+                'group_name' => 'subscriber',
+                'permissions' => [
+                    "subscriber.list",
+                ],
+            ],
+            [
                 'group_name' => 'transactions',
                 'permissions' => [
                     "transactions.index",
@@ -31,6 +37,7 @@ class SeedPermission extends Migration
                     "communication.history",
                     "communication.send",
                     "communication.quickSend",
+                    "communication.apiSetting",
                 ]  ,
             ],
             [
@@ -213,7 +220,6 @@ class SeedPermission extends Migration
                     "setting.store",
                     "setting.destroy",
                     "settings.basicInfo",
-                    "communication.apiSetting",
                     "apiSetting.update",
                     "setting.email",
                     "email.store",
@@ -581,17 +587,33 @@ class SeedPermission extends Migration
                     "role.edit",
                     "role.update",
                 ],
-            ]
+            ],
+            [
+                'group_name' => 'theme',
+                'permissions' => [
+                    "theme.index",
+                    "theme.edit",
+                    "theme.destroy",
+                ],
+            ],
+            [
+                'group_name' => 'db-backup',
+                'permissions' => [
+                    "backup.db",
+                    "backup.download",
+                    "backup.create",
+                ],
+            ],
 
         ];
 
         foreach ($permissionGroup as $p){
             $gpName = $p['group_name'];
             foreach ($p['permissions'] as $permission){
-                    \App\Models\Backend\Permission::create([
-                        'group_name' => $gpName,
-                        'name' => $permission,
-                    ]);
+                \App\Models\Backend\Permission::create([
+                    'group_name' => $gpName,
+                    'name' => $permission,
+                ]);
             }
         }
     }
