@@ -303,10 +303,10 @@ class StudentController extends Controller
             $hours = [];
             foreach($routine as $rou){
                 $hours[] = [
-                    'name' => $rou->name,
-                    'start' => $rou->start,
-                    'end' => $rou->end,
-                    'subject' => $rou->subject->name,
+                    'name' => $rou->name ?? '',
+                    'start' => $rou->start ?? '',
+                    'end' => $rou->end ?? '',
+                    'subject' => $rou->subject->name ?? '',
                     'isBreak'=>false
                 ];
             }

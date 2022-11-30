@@ -46,6 +46,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapUtilityRoutes();
 
         $this->mapTeacherRoutes();
+
+        $this->mapNotificationRoutes();
     }
 
     /**
@@ -135,5 +137,21 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/teacher.php'));
+    }
+
+    /**
+     * Define the "Notification" routes for the application.
+     *
+     * These routes help developers for creating Notifications
+     * This is another web route, created to avoid messy codes.
+     *
+     * @return void
+     */
+    protected function mapNotificationRoutes()
+    {
+        Route::prefix('api/notification')
+        ->middleware('api')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/notification.php'));
     }
 }
