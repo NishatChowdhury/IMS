@@ -16,16 +16,19 @@ class NotificationController extends Controller
             ->first();
 
         $student = $attendanceToday->studentAcademic->student ?? '';
-        $studentName =  $student->name;
-        $inTime = $attendanceToday->in_time;
+        $studentName =  $student->name ?? '';
+        $inTime = $attendanceToday->in_time ?? '';
 
-        if ($attendanceToday->count() > 0) {
+        if ($attendanceToday) {
             return [
                 'status' => true,
                 'msg' => "Your wand - " . $studentName . ",is arrived at - " . $inTime
             ];
-        } else {
-            return response(null, 204);
+        } 
+        elseif(!$attendanceToday) {
+            return [
+                'status' => false,
+            ];
         }
     }
 }
