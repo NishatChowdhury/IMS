@@ -40,7 +40,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     {{--    @if(theme() == 1)--}}
-    {{--        <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">--}}
+    <!-- {{--        <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">--}} -->
+      {{--        <link rel="stylesheet" href="{{ asset('dist/css/sky.css?ver:1.0') }}">--}}
+   
     {{--    @endif--}}
 
 </head>

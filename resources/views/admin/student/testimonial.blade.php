@@ -1,6 +1,19 @@
 @extends('layouts.fixed')
+@section('style')
+<link rel="stylesheet" href="{{ asset('assets/css/testimonial.css') }}">
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Montserrat&family=Satisfy&display=swap" rel="stylesheet"> 
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Montserrat&family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+@stop
 
 @section('content')
+
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -17,96 +30,89 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card" style="margin: 10px;">
-                                <!-- form start -->
-                                <form method="GET" action="">
-                                    <div class="card-body">
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="">Student ID</label>
-                                                <div class="input-group">
-                                                    <input class="form-control" placeholder="Student ID" name="studentId" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Name</label>
-                                                <div class="input-group">
-                                                    <input class="form-control" placeholder="Name" name="name" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Class</label>
-                                                <div class="input-group">
-                                                    <select class="form-control" name="class_id"><option selected="selected" value="">Select Class</option><option value="1">Eleven</option><option value="2">Tweleve</option></select>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Section</label>
-                                                <div class="input-group">
-                                                    <select class="form-control" name="section_id"><option selected="selected" value="">Select Section</option></select>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Group</label>
-                                                <div class="input-group">
-                                                    <select class="form-control" name="group_id"><option selected="selected" value="">Select Group</option><option value="1">Science</option><option value="2">Business Study</option><option value="3">Humanities</option></select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-1" style="padding-top: 32px;">
-                                                <div class="input-group">
-                                                    <button style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+   
+    <!-- navbar  -->
+    <div class="container-fluid ">
+        <div class="back m-0 p-0 ">
+            <div class="navbaar  mt-5">
+                <div class="navv-logo col-3 ">
+                    <img style="height: 80px; width: 80px;" class=" img d-block m-auto border img-fluid" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
+                </div>
+                <div class="navv-heading col-9 mt-2">
+                    <h1 class="mt-4 mb-0">Oxford Modern School & College</h1>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                           <div class="row">
-                               <div class="col-md-3">
-                                   <img src="{{asset('assets/img/262x230/10.jpg')}}" alt="">
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="scl-dec">
-                                       <h1>Example school chittagong</h1>
-                                       <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                                       <p>Lorem ipsum dolor</p>
-                                       <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                                       <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                                       <h3>Testimonial</h3>
-                                   </div>
-                               </div>
-                               <div class="col-md-3">
-                               </div>
-                           </div>
-                            <div class="row">
-                                <div class="dec">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad earum error eum magnam nobis numquam quas quos. Ab, adipisci odio. Dolor iusto necessitatibus omnis porro quam quas sapiente. At dolorem est, expedita ipsam labore mollitia necessitatibus odio recusandae temporibus ut? Architecto cupiditate deleniti deserunt doloribus eveniet, hic id illo impedit, iste iusto mollitia nisi quidem quo quos repudiandae sapiente sunt! Amet consectetur doloribus ex fugiat ipsam, libero magnam magni minima odit officiis quidem rem reprehenderit saepe, sed sunt tempore ullam.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aut cupiditate dignissimos ducimus ea earum eligendi eos in libero, minima nemo, numquam officiis, quas quidem unde. Eos facilis maxime nostrum nulla! Aspernatur blanditiis ea est ipsa minus sed ullam voluptas.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, veniam.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="m-0 p-0">
+                <div class=" d-flex justify-content-center mt-1 ">
+                    <h4 class="sectionn m-0">EIIN: 138418</h4>
+
+                </div>
+                <div  style="margin-bottom: 0px;" class="cam d-flex justify-content-center m-0">
+                    <p class="m-0">Campus: 1 # Motierpool, Pathantuli Road, Doublemooring,Chittagong.</p>
+                </div>
+                <div style="margin-top: 0px;" class="mac d-flex justify-content-center m-0">
+                    <p>Phone: 031-2518963 www.oxfordctg.com</p>
+
                 </div>
             </div>
+
+            <div class="SL d-flex justify-content-center mt-0">
+                <div class="col-4 "> 
+                <input type="text" id="name" class="form-control-inline " placeholder=" SL.  1310" />
+                </div>
+                <div class=" col-4 mt-1">
+                    <b class="tes"> Testimonial</b>
+                   </div>
+                <div class="col-4 mt-2">
+                     <label for="inputPassword4" class="form-label">Time:</label>
+                     <label type="text" id="name" class="form-control-inline ">1:30 Pm </label>
+                     </div>
+            </div>
+
+           
+        
+<!-- paragraph -->
+            <div class=" para">
+               
+            <p  class="col-12  ">This is to certify that   :  <b class="p-2">Musharat Sultana Awfi </b>  Father :  <b class="p-2">Father Name </b>
+             Mother:<b class="p-2"> Mother Name</b>  <br>
+             of Vill: <b class="p-2"> Chittagong </b> P.O: <b class="p-2"> Chittagong </b> P.S: <b class="p-2"> Chittagong </b>
+           
+            District :<b class="p-2"> Chittagong </b>  <br>  Passed the JSC Examination in the Year :<b class="p-2"> 2022 </b>
+            <br> 
+            from this school under the Secondary & Higher Secondary Education Board , Chittagong , bearing
+            <br> 
+            Roll:<b class="p-2"> 1311</b>  Registration No:<b class="p-2"> 123456789 </b>Session :<b class="p-2"> 2021-2022 </b>
+            <br> 
+            and secured Grade : <b class="p-2"> A+ </b> and Grade Point Average(GPA) :<b class="p-2"> 5.00 </b>
+            <br>
+            His/Her date of birth is  :<b class="p-2"> 03/00/1997 </b>
+            <br>
+            While in School,he/she did not take in any activity subursive of the state or of discipline.
+            <br>
+            He/She bears a good moral character. I wish him/her every success in life.
+     
+            <div class="d-flex ">
+            <div class="col-4">
+            <p>Written By <br> <b> Mr. Abdur Rahim</b></p>
+            </div> 
+            <div class="col-4"></div>
+            <div class="col-4">
+            <p>Written By <br><b> Mr. Abdur Rahim</b></p>
+            </div>   
+             </div>
+            </p>
+            </div>
+
+
+
         </div>
+
+
+    </div>
+    <!-- navbar -->
+        
     </section>
 @stop
 
