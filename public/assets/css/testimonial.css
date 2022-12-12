@@ -1,0 +1,159 @@
+        /* * {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #d5d6d5;
+    ;
+}
+
+
+
+
+ */
+        /* .body {
+    background-image: url("image/p.jpeg");
+} */
+        /* * {
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+} */
+        
+        @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+        .back {
+            background-color: white;
+            margin: 20px;
+            box-sizing: border-box;
+            font-family: 'Fira Sans', sans-serif;
+            border: 1px solid rgb(218, 214, 214);
+        }
+        
+        .navbaar {
+            display: flex;
+            align-content: center;
+            text-align: center;
+            margin: 0;
+            padding: 0px;
+            padding-bottom: 0%;
+            padding-top: 0%;
+            /* border: 1px solid black; */
+        }
+        
+        .navbaar h1 {
+            color: rgb(105, 86, 86);
+            /* color: rgb(96, 157, 158); */
+            margin: 2;
+            padding-top: 2px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .navv-logo {
+            padding: 7px 10px;
+            text-align: center;
+        }
+        
+        .navv-heading h1 {
+            text-align: left;
+            margin-left: 0px;
+        }
+        
+        .sectionn {
+            color: rgb(89, 59, 59);
+            margin-top: 0px;
+        }
+        
+        .cam {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .cam::after {
+            color: "";
+            display: table;
+            clear: both;
+        }
+        
+        .mac {
+            margin-top: 0px;
+            padding: 0px;
+        }
+        
+        .SL {
+            display: flex;
+            align-content: center;
+            text-align: center;
+        }
+        
+        .tes {
+            font-family: "satisfy", cursive;
+            font-size: 1.2rem;
+            color: rgb(165, 157, 115);
+            padding: 2px;
+            /* margin-left: 30px;
+    margin-right: 30px; */
+            margin-bottom: 0px;
+            border: 5px solid rgb(165, 157, 115);
+            box-sizing: border-box;
+            /* outline: thick ridge rgb(165, 157, 115); */
+        }
+        
+        .tes::after {
+            color: "";
+            display: table;
+            clear: both;
+        }
+        /* .Vill {
+    display: flex;
+    align-content: left;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+}
+
+.Vill::after {
+    color: "";
+    display: table;
+    clear: both;
+} */
+        
+        .dis {
+            display: flex;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .tex {
+            align-content: left;
+            text-align: left;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .las {
+            align-content: center;
+            text-align: center;
+            margin: 2px;
+            padding: 2px;
+        }
+        
+        .la {
+            align-content: center;
+            text-align: center;
+            margin: 2px;
+            padding: 2px;
+        }
+        
+        .para {
+            text-align: center;
+            margin: 30px;
+        }
+        
+        .notprint {
+            /*display:block;*/
+        }
+        
+        @media print {
+            .notprint {
+                display: none;
+            }
+        }
