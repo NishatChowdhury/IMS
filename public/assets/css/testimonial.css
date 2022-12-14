@@ -1,4 +1,4 @@
-        /* * {
+            /* * {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -10,99 +10,118 @@
 
 
  */
-        /* .body {
+            /* .body {
     background-image: url("image/p.jpeg");
 } */
-        /* * {
+            /* * {
     box-sizing: border-box;
     font-family: 'Fira Sans', sans-serif;
 } */
-        
-        @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
-        .back {
-            background-color: white;
-            margin: 20px;
-            box-sizing: border-box;
-            font-family: 'Fira Sans', sans-serif;
-            border: 1px solid rgb(218, 214, 214);
-        }
-        
-        .navbaar {
-            display: flex;
-            align-content: center;
-            text-align: center;
-            margin: 0;
-            padding: 0px;
-            padding-bottom: 0%;
-            padding-top: 0%;
-            /* border: 1px solid black; */
-        }
-        
-        .navbaar h1 {
-            color: rgb(105, 86, 86);
-            /* color: rgb(96, 157, 158); */
-            margin: 2;
-            padding-top: 2px;
-            margin-top: 20px;
-            text-align: left;
-        }
-        
-        .navv-logo {
-            padding: 7px 10px;
-            text-align: center;
-        }
-        
-        .navv-heading h1 {
-            text-align: left;
-            margin-left: 0px;
-        }
-        
-        .sectionn {
-            color: rgb(89, 59, 59);
-            margin-top: 0px;
-        }
-        
-        .cam {
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        .cam::after {
-            color: "";
-            display: table;
-            clear: both;
-        }
-        
-        .mac {
-            margin-top: 0px;
-            padding: 0px;
-        }
-        
-        .SL {
-            display: flex;
-            align-content: center;
-            text-align: center;
-        }
-        
-        .tes {
-            font-family: "satisfy", cursive;
-            font-size: 1.2rem;
-            color: rgb(165, 157, 115);
-            padding: 2px;
-            /* margin-left: 30px;
+            
+            @media only screen and (min-width: 480px) and (max-width: 768px) {
+                .ccontainer-fluid {
+                    width: 100%;
+                }
+            }
+            
+            @media only screen and (max-width: 768px) {
+                /* For mobile phones: */
+                [class*="col-"] {
+                    width: 100%;
+                }
+            }
+            
+            @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+            .back {
+                background-color: white;
+                margin: 20px;
+                box-sizing: border-box;
+                font-family: 'Fira Sans', sans-serif;
+                border: 1px solid rgb(218, 214, 214);
+                flex-wrap: wrap;
+            }
+            
+            .navbaar {
+                display: flex;
+                align-content: center;
+                text-align: center;
+                margin: 0;
+                padding: 0px;
+                padding-bottom: 0%;
+                padding-top: 0%;
+                /* border: 1px solid black; */
+            }
+            
+            .navbaar h1 {
+                color: rgb(105, 86, 86);
+                /* color: rgb(96, 157, 158); */
+                margin: 2;
+                padding-top: 2px;
+                margin-top: 20px;
+                text-align: left;
+            }
+            
+            .navv-logo {
+                padding: 7px 10px;
+                text-align: center;
+            }
+            
+            .navv-heading h1 {
+                text-align: left;
+                margin-left: 0px;
+            }
+            
+            .sectionn {
+                color: rgb(89, 59, 59);
+                margin-top: 0px;
+            }
+            
+            .cam {
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            .cam::after {
+                color: "";
+                display: table;
+                clear: both;
+            }
+            
+            .mac {
+                margin-top: 0px;
+                padding: 0px;
+            }
+            
+            .SL {
+                padding: 0px;
+                margin: 5px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-basis: 200px;
+                align-content: center;
+                text-align: center;
+            }
+            
+            .tes {
+                flex-wrap: wrap;
+                font-family: "satisfy", cursive;
+                font-size: 1.3rem;
+                color: rgb(165, 157, 115);
+                padding: 1px;
+                /* margin-left: 30px;
     margin-right: 30px; */
-            margin-bottom: 0px;
-            border: 5px solid rgb(165, 157, 115);
-            box-sizing: border-box;
-            /* outline: thick ridge rgb(165, 157, 115); */
-        }
-        
-        .tes::after {
-            color: "";
-            display: table;
-            clear: both;
-        }
-        /* .Vill {
+                margin-bottom: 0px;
+                border: 5px solid rgb(165, 157, 115);
+                box-sizing: border-box;
+                /* outline: thick ridge rgb(165, 157, 115); */
+            }
+            
+            .tes::after {
+                color: "";
+                display: table;
+                clear: both;
+            }
+            /* .Vill {
     display: flex;
     align-content: left;
     text-align: left;
@@ -115,45 +134,139 @@
     display: table;
     clear: both;
 } */
-        
-        .dis {
-            display: flex;
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        .tex {
-            align-content: left;
-            text-align: left;
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        .las {
-            align-content: center;
-            text-align: center;
-            margin: 2px;
-            padding: 2px;
-        }
-        
-        .la {
-            align-content: center;
-            text-align: center;
-            margin: 2px;
-            padding: 2px;
-        }
-        
-        .para {
-            text-align: center;
-            margin: 30px;
-        }
-        
-        .notprint {
-            /*display:block;*/
-        }
-        
-        @media print {
-            .notprint {
-                display: none;
+            
+            .dis {
+                display: flex;
+                margin: 0px;
+                padding: 0px;
             }
-        }
+            
+            .tex {
+                align-content: left;
+                text-align: left;
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            .las {
+                align-content: center;
+                text-align: center;
+                margin: 2px;
+                padding: 2px;
+            }
+            
+            .la {
+                align-content: center;
+                text-align: center;
+                margin: 100px;
+                padding: 2px;
+            }
+            
+            .paraa {
+                text-align: justify;
+                margin-left: 120px;
+                margin-top: 20px;
+            }
+            
+            .para {
+                justify-content: center;
+                align-content: center;
+                text-align: justify;
+                margin-left: 150px;
+                margin-top: 20px;
+                margin-right: 10px;
+            }
+            
+            .lass {
+                align-content: right;
+                text-align: center;
+                display: flex;
+                flex-wrap: wrap;
+                flex-shrink: 2;
+                justify-content: space-between;
+                margin-left: 40px;
+                margin-right: 60px;
+                margin-top: 20px;
+            }
+            
+            .foot {
+                text-align: center;
+                margin-left: 2px;
+            }
+            
+            .notprint {
+                /*display:block;*/
+            }
+            
+            @media print {
+                .notprint {
+                    display: none;
+                }
+            }
+            
+            @media print {
+                #fo {
+                    display: none;
+                }
+            }
+            
+            @media print {
+                .para {
+                    align-content: center;
+                }
+            }
+            
+            @media print {
+                @page {
+                    /* To give the user the possibility to choise between landscape and portrait printing format */
+                    size: auto;
+                    /* setting custom margin, so the date and the url can be displayed */
+                    margin: 40px 10px 35px;
+                }
+                /* Here you can give a custom styling which will be applied only while printing  */
+                a,
+                button#printBtn {
+                    display: none;
+                }
+            }
+            /* money Receipt */
+            
+            .nave-heading h1 {
+                text-align: left;
+                /* border: 1px solid black; */
+            }
+            
+            .status {
+                align-items: flex-end;
+                text-align: end;
+                position: absolute;
+                /* background: #009FE3; */
+                right: 0;
+                left: 2;
+                bottom: 0;
+                top: 0;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .status .inner-point {
+                align-items: flex-end;
+                text-align: end;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                /* background: rgb(217, 177, 177); */
+                width: 100px;
+                height: 100px;
+                padding: 10px;
+            }
+            
+            .status .inner {
+                font-style: italic;
+                font-weight: bold;
+                font-size: 11px;
+                line-height: 80px;
+                letter-spacing: 0.2px;
+                color: rgb(217, 177, 177);
+                transform: rotate(-90deg);
+            }
