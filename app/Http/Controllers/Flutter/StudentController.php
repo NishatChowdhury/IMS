@@ -205,10 +205,6 @@ class StudentController extends Controller
         else{
             return response(null,204);
         }
-
-//        $student = Student::query()->where('studentId',$request->studentId)->latest()->first();
-//        $syllabus = Syllabus::query()->where('academic_class_id',$student->academic_class_id)->first();
-//        return ['file'=>asset('assets/syllabus').'/'.$syllabus->file];
     }
 
     public function noticeList()
@@ -721,6 +717,26 @@ class StudentController extends Controller
         }
         else{
             return response(null,204);
+        }
+    }
+
+    public function storeEvent(Request $request){
+        $request->validate([
+            'date' => 'required|date',
+            'time' => 'required',
+         ]);
+        $filename='File.jpeg';
+        $request['title'] = $request->title;
+        $request['date'] = $request->date;
+        $request['time'] = $request->time;
+        $request['venue'] = $request->venue;
+        $request['details'] = $request->details;
+        $request['image'] = $filename;
+        $result = UpcomingEvent::query()->create($request->all());
+        if($result){
+            return response()->json(['success'=>true,'Event'=>$result]);
+        }else{
+            return response()->json(['success'=>false]);
         }
     }
 }
