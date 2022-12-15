@@ -7,6 +7,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.6.3-web/css/all.min.css') }}">
     <!-- Nano Scroller -->
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
@@ -99,10 +101,11 @@
         @include('admin.includes.right-aside')
     </aside>
     <!-- /.control-sidebar -->
-
+    <div class="notprint">
     <footer class="main-footer no_print">
         @include('admin.includes.footer')
-    </footer>
+    </footer></div>
+    
 </div>
 <!-- ./wrapper -->
 

@@ -30,8 +30,8 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-<!-- ---- -->
- <!-- /.content-header -->
+
+   <!-- /.content-header -->
  <section class="content">
         <div class="container-fluid" id="fo">
             <div class="row " >
@@ -88,98 +88,161 @@
                 </div>
             </div>
         </div>
-   
     <!-- navbar  -->
+    
     <div class="container-fluid ">
+ 
         <div class="back m-0 p-0 ">
-            <div class="navbaar  mt-5">
+            <div>
+      <!-- -----navv -->
+      <div class="d-flex bg-dark  mt-5 ">
+  <!-- <div class="p-2">Flex item</div> -->
+        <div class="p-2 ml-4">EIIN: 138418</div>
+        <div class="ml-auto p-2 mr-4">
+        <i>Office Copy</i></div>
+         </div>
+        <!-- --- -->
+            </div>
+             
+            <div class="navbaar  mt-3">
                 <div class="navv-logo col-3 ">
-                    <img style="height: 80px; width: 80px;" class=" img d-block m-auto border img-fluid" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
+                    <img style="height: 75px; width: 75px;" class=" img d-block m-auto border img-fluid rounded" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
                 </div>
-                <div class="navv-heading col-8 mt-2">
-                    <h1 class="mt-4 mb-0">Oxford Modern School & College</h1>
+                <div class="nave-heading col-8 mt-1">
+                    <h1 class="mt-3 mb-0">Oxford Modern School & College</h1>
                 </div>
-                <div><button onclick="window.print()" id="printBtn" class="btn btn-success btn-sm shadow">
+                <div><button onclick="window.print()" id="printBtn" class="btn btn-success btn-sm shadow mx-auto col-auto">
                     print
                 </button></div>
-                
             </div>
             <div class="m-0 p-0">
                 <div class=" d-flex justify-content-center mt-1 ">
-                    <h4 class="sectionn m-0">EIIN: 138418</h4>
-
+                <p class="m-0">Campus: 1 # Motierpool, Pathantuli Road, Doublemooring,Chittagong.</p>
                 </div>
                 <div  style="margin-bottom: 0px;" class="cam d-flex justify-content-center m-0">
-                    <p class="m-0">Campus: 1 # Motierpool, Pathantuli Road, Doublemooring,Chittagong.</p>
+                    <p class="m-0">Phone: 031-2518963</p>
+                </div>
+                <div  style="margin-bottom: 0px;" class="cam d-flex justify-content-center m-0">
+                <p class="m-0">Campus: 2 # Boropool, Halishahar, Chittagong. Phone: 031-713491</p>
                 </div>
                 <div style="margin-top: 0px;" class="mac d-flex justify-content-center m-0">
-                    <p>Phone: 031-2518963 www.oxfordctg.com</p>
+                    <p>www.oxfordctg.com</p>
 
                 </div>
-
             </div>
 
             <div class="SL d-flex justify-content-center mt-0">
-                <div class="col-4 mt-2"> 
+                <div class="col-4 "> 
                 <label for="inputPassword4" class="form-label">SL. No :  1310</label>
                 <!-- <input type="text" id="name" class="form-control-inline " placeholder=" SL.  1310" /> -->
                 </div>
                 <div class=" col-4 mt-1">
-                    <b class="tes"> Testimonial</b>
+                    <!-- <b class="tes"> Transfer Certificate</b> -->
                    </div>
                 <div class="col-4 mt-2">
                      <label for="inputPassword4" class="form-label">Time:</label>
                      <label type="text" id="name" class="form-control-inline ">1:30 Pm </label>
                      </div>
             </div>
-
-           
-        
-<!-- paragraph -->
-            <div class="para">
-               
-            <p  class="col-12  ">This is to certify that   :  <b class="p-2">Musharat Sultana Awfi </b>  Father :  <b class="p-2">Father Name </b>
-             Mother:<b class="p-2"> Mother Name</b>  <br>
-             of Vill: <b class="p-2"> Chittagong </b> P.O: <b class="p-2"> Chittagong </b> P.S: <b class="p-2"> Chittagong </b>
-           
-            District :<b class="p-2"> Chittagong </b>  <br>  Passed the JSC Examination in the Year :<b class="p-2"> 2022 </b>
-            <br> 
-            from this school under the Secondary & Higher Secondary Education Board , Chittagong , bearing
-            <br> 
-            Roll:<b class="p-2"> 1311</b>  Registration No:<b class="p-2"> 123456789 </b>Session :<b class="p-2"> 2021-2022 </b>
-            <br> 
-            and secured Grade : <b class="p-2"> A+ </b> and Grade Point Average(GPA) :<b class="p-2"> 5.00 </b>
-            <br>
-            His/Her date of birth is  :<b class="p-2"> 03/00/1997 </b>
-            <br>
-            While in School,he/she did not take in any activity subursive of the state or of discipline.
-            <br>
-            He/She bears a good moral character. I wish him/her every success in life.
-            </p>
-
-            <div class="lass">
-            <div >
-            <p class="m-1" > Name <br> <b><hr class="bg-dark m-0">  Written By</b></p>
-            </div> 
           
-            <div class="foot">
-               
-            <p class="m-1" >Name<br> <b> <hr class="bg-dark m-0 "> Headmaster</b></p>
-           
-            </div>   
-             </div>
-             
+
+
+            <div style="position:relative;display:block; height:200px; ">
+    <div class="status d-flex">
+        <div class="inner-point">
+            <div class="inner nowrap">
+                <span>Money Receipt</span>
             </div>
-
-
-
         </div>
-
-
     </div>
+</div>
+    
+        </div> 
+       
+    </div>
+    
+
     <!-- navbar -->
-        
+    <div class="container-fluid ">
+ 
+ <div class="back m-0 p-0 ">
+     <div>
+<!-- -----navv -->
+<div class="d-flex bg-dark  mt-5 ">
+<!-- <div class="p-2">Flex item</div> -->
+ <div class="p-2 ml-4">EIIN: 138418</div>
+ <div class="ml-auto p-2 mr-4">
+ <i>Student Copy</i></div>
+  </div>
+ <!-- --- -->
+     </div>
+      
+     <div class="navbaar  mt-3">
+         <div class="navv-logo col-3 ">
+             <img style="height: 75px; width: 75px;" class=" img d-block m-auto border img-fluid rounded" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
+         </div>
+         <div class="navv-heading col-8 mt-2">
+                    <h1 class="mt-4 mb-0">Oxford Modern School & College</h1>
+                </div>
+         <div><button onclick="window.print()" id="printBtn" class="btn btn-success btn-sm shadow mx-auto col-auto">
+             print
+         </button></div>
+     </div>
+     <div class="m-0 p-0">
+         <div class=" d-flex justify-content-center mt-1 ">
+         <p class="m-0">Campus: 1 # Motierpool, Pathantuli Road, Doublemooring,Chittagong.</p>
+         </div>
+         <div  style="margin-bottom: 0px;" class="cam d-flex justify-content-center m-0">
+             <p class="m-0">Phone: 031-2518963</p>
+         </div>
+         <div  style="margin-bottom: 0px;" class="cam d-flex justify-content-center m-0">
+         <p class="m-0">Campus: 2 # Boropool, Halishahar, Chittagong. Phone: 031-713491</p>
+         </div>
+         <div style="margin-top: 0px;" class="mac d-flex justify-content-center m-0">
+             <p>www.oxfordctg.com</p>
+
+         </div>
+     </div>
+
+     <div class="SL d-flex justify-content-center mt-0">
+         <div class="col-4 "> 
+         <label for="inputPassword4" class="form-label">SL. No :  1310</label>
+         <!-- <input type="text" id="name" class="form-control-inline " placeholder=" SL.  1310" /> -->
+         </div>
+         <div class=" col-4 mt-1">
+             <!-- <b class="tes"> Transfer Certificate</b> -->
+            </div>
+         <div class="col-4 mt-2">
+              <label for="inputPassword4" class="form-label">Time:</label>
+              <label type="text" id="name" class="form-control-inline ">1:30 Pm </label>
+              </div>
+     </div>
+   
+
+
+     <div style="position:relative;display:block; height:200px;  ">
+<div class="status d-flex">
+ <div class="inner-point">
+     <div class="inner nowrap">
+         <span>Money Receipt</span>
+     </div>
+ </div>
+</div>
+</div>
+
+ </div> 
+
+</div>    
     </section>
+
+
+</body>
+
+</html>
+
+
+
+
 @stop
 
 
@@ -208,5 +271,6 @@
             text-align: justify;
             margin-bottom: 0px;
         }
+       
     </style>
 @endsection

@@ -1,0 +1,59 @@
+.bg-dark {
+    background-color: rgb(147, 170, 194) !important;
+    color: rgba(147, 143, 143, 0.5) !important;
+}
+
+.bg-navy-1 {
+    background-color: #090a30 !important;
+    color: #ffffff !important;
+}
+
+.bg-inner {
+    background-color: rgba(88, 203, 83, 0.7) !important;
+    color: rgb(96, 96, 101) !important;
+}
+
+.bg-white {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(96, 96, 101);
+}
+
+
+/** #4660ee **/
+
+.text-blue,
+.text-blue h2 {
+    color: #22246c !important;
+}
+
+a:hover {
+    color: #4bd1db !important;
+}
+
+.ec-nav .nav-link {
+    color: rgb(96, 96, 101) !important;
+}
+
+.nav-item__has-dropdown .dropdown-menu {
+    border-top: 3px solid #729882 !important;
+}
+
+.hover\:primary:hover {
+    background: #b1dfc4 !important;
+    color: #fff !important;
+}
+
+
+/*@media screen and (max-width:992px){*/
+
+
+/*    .when-collapsed {*/
+
+
+/*        background: #49688e !important*/
+
+
+/*    }*/
+
+
+/*}*/

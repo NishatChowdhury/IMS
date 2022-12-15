@@ -633,6 +633,19 @@ class StudentController extends Controller
         return view('admin.student.testimonial');
     }
 
+    public function transferCertificate()
+    {
+        // return 'ddd';
+        return view('admin.student.tc');
+    }
+
+    
+    public function moneyReceipt()
+    {
+        // return 'ddd';
+        return view('admin.student.money');
+    }
+
     public function csvDownload()
     {
 //        $table = Student::all()->where('session_id',2);
