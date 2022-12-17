@@ -43,6 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('payment-history',[StudentController::class,'paymentHistory']);
     Route::get('monthly-payment',[StudentController::class,'monthlyPayment']);
     Route::post('logout', [LoginController::class, 'logout']);
+    Route::post('storeEvent', [StudentController::class, 'storeEvent']);
 });
 
 Route::post('token/create', [LoginController::class, 'token']);
@@ -50,7 +51,13 @@ Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
 Route::post('otp-match', [LoginController::class, 'matchOtp']);
 
-
+// Route for notifications 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('attendance',[NotificationController::class,'attendance']);
+    Route::get('attendance-notification',[NotificationController::class,'attendanceNotification']);
+    Route::get('upcoming-events-notification',[NotificationController::class,'upcomingEventsNotification']);
+    Route::get('notice-notification',[NotificationController::class,'noticeNotification']);
+    Route::get('news-notification',[NotificationController::class,'newsNotification']);
+    Route::get('diary-notification',[NotificationController::class,'diaryNotification']);
+    Route::get('holiday-notification',[NotificationController::class,'holidayNotification']);
+    Route::get('payment-notification',[NotificationController::class,'paymentNotification']);
 });
