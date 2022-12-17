@@ -92,18 +92,21 @@
     <!-- navbar  -->
     <div class="container-fluid ">
         <div class="back m-0 p-0 ">
+            <div class="stud">
             <div class="navbaar  mt-5">
-                <div class="navv-logo col-3 ">
-                    <img style="height: 80px; width: 80px;" class=" img d-block m-auto border img-fluid" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
+                <div class="navv-logo col-2 ml-3">
+                    <img style="height: 70px; width: 70px; margin: left 3px;" class=" img d-block m-auto border img-fluid rounded" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
                 </div>
                 <div class="navv-heading col-8 mt-2">
-                    <h1 class="mt-4 mb-0">Oxford Modern School & College</h1>
+                    <h1 class="mt-2 mb-0">Oxford Modern School & College</h1>
                 </div>
                 <div><button onclick="window.print()" id="printBtn" class="btn btn-success btn-sm shadow">
                     print
                 </button></div>
                 
             </div>
+            </div>
+          
             <div class="m-0 p-0">
                 <div class=" d-flex justify-content-center mt-1 ">
                     <h4 class="sectionn m-0">EIIN: 138418</h4>
@@ -127,9 +130,9 @@
                 <div class=" col-4 mt-1">
                     <b class="tes"> Testimonial</b>
                    </div>
-                <div class="col-4 mt-2">
-                     <label for="inputPassword4" class="form-label">Time:</label>
-                     <label type="text" id="name" class="form-control-inline ">1:30 Pm </label>
+                   <div class="col-4 mt-2">
+                <p class="ml-0 mt-1 text-left"><b>Date :1/12/2022</b> </p>
+                    
                      </div>
             </div>
 

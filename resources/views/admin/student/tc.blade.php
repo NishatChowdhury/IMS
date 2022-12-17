@@ -91,17 +91,20 @@
     <!-- navbar  -->
     <div class="container-fluid ">
         <div class="back m-0 p-0 ">
-            <div class="navbaar  mt-5">
-                <div class="navv-logo col-3 ">
-                    <img style="height: 80px; width: 80px;" class=" img d-block m-auto border img-fluid" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
+            <div class="stud">
+            <div class="navbaar  mt-5 ml-1">
+                <div class="navv-logo col-2 ">
+                    <img style="height: 70px; width: 70px;" class=" m-1 img d-block m-auto border img-fluid" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
                 </div>
                 <div class="navv-heading col-8 mt-2">
-                    <h1 class="mt-4 mb-0">Oxford Modern School & College</h1>
+                    <h1 class="mt-3 mb-0">Oxford Modern School & College</h1>
                 </div>
                 <div><button onclick="window.print()" id="printBtn" class="btn btn-success btn-sm shadow">
                     print
                 </button></div>
             </div>
+            </div>
+         
             <div class="m-0 p-0">
                 <div class=" d-flex justify-content-center mt-1 ">
                     <h4 class="sectionn m-0">EIIN: 138418</h4>
@@ -115,27 +118,28 @@
 
                 </div>
             </div>
-
-            <div class="SL d-flex justify-content-center mt-0">
-                <div class="col-4 "> 
-                <label for="inputPassword4" class="form-label">SL. No :  1310</label>
+ 
+<div class="SL d-flex  mt-0 ">
+                <div class="col-4 pl-1 container-fluid"> 
+                    <p class="ml-2 mt-2 text-center stud"><b>SL. No :  1310</b> </p>
+                <!-- <label for="inputPassword4" class="form-label text-left"></label> -->
                 <!-- <input type="text" id="name" class="form-control-inline " placeholder=" SL.  1310" /> -->
                 </div>
                 <div class=" col-4 mt-1">
                     <b class="tes"> Transfer Certificate</b>
                    </div>
                 <div class="col-4 mt-2">
-                     <label for="inputPassword4" class="form-label">Time:</label>
-                     <label type="text" id="name" class="form-control-inline ">1:30 Pm </label>
+                <p class="ml-0 mt-1 text-left"><b>Date :1/12/2022</b> </p>
+                    
                      </div>
             </div>
 
            
         
 <!-- paragraph -->
-            <div class=" para">
+            <div class="para ">
                
-            <p  class="col-12  ">This is to certify that   :  <b class="p-2">Mr. Abu Kasam </b>  Son/Daughter of  <b class="p-2">Father Name </b>
+            <p class="col-12 ">This is to certify that   :  <b class="p-1">Mr. Abu Kasam </b>  Son/Daughter of  <b class="p-2">Father Name </b>
              and<b class="p-2"> Mother Name</b>  <br>
              was a <b class="p-2"> class-7</b> Science/B. Studies / Humanities student of this college bearing 
              <br>
@@ -167,11 +171,8 @@
             </p>
             </div>
 
-
-
-        </div> 
-
-
+     </div>
+           
     </div>
     <!-- navbar -->
         
