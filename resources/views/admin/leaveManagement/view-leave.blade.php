@@ -55,7 +55,7 @@
                                     <td>{{ $value->first()->date->format('Y-m-d') }} - {{ $value->last()->date->format('Y-m-d') }}</td>
                                     <td>{{ $value->count() }}</td>
                                     <td>
-                                        {{ $value->first()->purpose->leave_purpose }}
+                                        {{ $value->first()->purpose->leave_purpose ?? '' }}
                                     </td>
                                     <td>
                                          {{ $value->first()->teacher->name ?? 'Admin' }}
