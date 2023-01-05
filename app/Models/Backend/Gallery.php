@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model
 {
-    protected $fillable = ['album_id','title','description','tags','image'];
+    protected $fillable = ['album_id','gallery_category_id','title','description','tags','image'];
 
     public function album()
     {

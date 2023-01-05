@@ -48,6 +48,10 @@ Route::get('/news-details/{id}','Front\FrontController@newsDetails');
 //Gallery
 Route::get('/gallery','Front\FrontController@gallery');
 Route::get('/album/{name}','Front\FrontController@album');
+Route::get('/galleryCategory/{id}','Front\FrontController@galleryCategory');
+Route::get('/categories/{id}',function (){
+    return "dddd";
+});
 
 //Download
 Route::get('/download','Front\FrontController@download');

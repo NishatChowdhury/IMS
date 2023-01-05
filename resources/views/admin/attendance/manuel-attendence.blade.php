@@ -122,9 +122,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                    <td colspan="6" class="text-center text-danger">
-                                        <h5>No data found !!</h5>
-                                    </td>
+                                    <td colspan="8" class="text-center text-bold text-danger">No data found! 😒 </td>
                                 @endforelse
                                 </tbody>
                             </table>

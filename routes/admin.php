@@ -704,7 +704,7 @@ return view('form-pdf');
 
     Route::get('regligion-wise/report',[StudentReportController::class,'regligionWiseReport'])->name('regligion-wise.report');
     Route::get('group-wise/report',[StudentReportController::class,'groupWiseReport'])->name('group-wise.report');
-    Route::get('dynamic/table',[StudentReportController::class,'dynamicTable'])->name('create-dynamic.table');
+    Route::get('custom/table',[StudentReportController::class,'customTable'])->name('create-custom.table');
 
 //end temp register addmission
 

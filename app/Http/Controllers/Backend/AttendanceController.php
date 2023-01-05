@@ -55,7 +55,14 @@ class AttendanceController extends Controller
                 ->groupBy('student_academic_id')
                 ->get();
 
-        } else {
+        }elseif ($class){
+            $attendences = $stuAttendence->whereHas('studentAcademic', function ($q) use ($class) {
+                $q->where('academic_class_id', $class);
+            })
+                ->groupBy('student_academic_id')
+                ->get();
+        }
+        else {
             $attendences = $stuAttendence->whereDate('date', $date)->get(['id','student_academic_id','date','attendance_status_id']);
         }
 //        return  $attendences;

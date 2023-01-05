@@ -49,7 +49,7 @@ class StudentReportController extends Controller
 
     }
 
-    public function dynamicTable(Request $request)
+    public function customTable(Request $request)
     {
         $classes = AcademicClass::query()->get();
 

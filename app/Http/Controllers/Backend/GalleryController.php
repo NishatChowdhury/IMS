@@ -38,6 +38,7 @@ class GalleryController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+//        dd($request->except('image'));
         if($request->hasFile('image')){
             foreach($request->file('image') as $key => $img){
                 $name = time().'-'.$key.'.'.$img->getClientOriginalExtension();

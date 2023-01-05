@@ -109,13 +109,19 @@
                                 <input type="text" name="title" class="form-control" id=""  aria-describedby="" placeholder="Title">
                             </div>
                     </div>
-                        <div class="form-group col-md-6">
+                    <div class="form-group col-md-6">
                         <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Album')}}</label>
                             <div class="input-group">
                                 {{ Form::select('album_id',$repository->albums(),null,['class'=>'form-control','id'=>'inputState']) }}
                             </div>
                     </div>
-                     <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Category')}}</label>
+                        <div class="input-group">
+                            {{ Form::select('gallery_category_id',$repository->categories(),null,['class'=>'form-control','id'=>'inputState']) }}
+                        </div>
+                    </div>
+                     <div class="form-group col-md-6">
                         <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Tags')}}</label>
                             <div class="input-group">
                                 <input type="text" name="tags" class="form-control" id=""  aria-describedby="" placeholder="Enter Tags Here ..">
