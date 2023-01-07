@@ -14,9 +14,7 @@ class AddFieldsToGalleriesTable extends Migration
     public function up()
     {
         Schema::table('galleries', function (Blueprint $table) {
-            $table->foreign('gallery_category_id')
-                ->references('id')->on('gallery_categories')
-                ->onDelete('cascade');
+            $table->integer('gallery_category_id')->nullable()->after('album_id');
         });
     }
 

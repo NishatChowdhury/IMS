@@ -194,7 +194,13 @@ class FrontController extends Controller
 
     public function galleryCategory($id)
     {
-           $catImages = Gallery::query()->where('gallery_category_id',$id)->get();
+        $data = Gallery::query()->where('gallery_category_id',$id)->get();
+//        $data ?  $catImages = $data : $catImages = null;
+        if (!$data){
+            $catImages = null;
+        }else{
+            $catImages = $data;
+        }
         return view('front.gallery.category-image',compact('catImages'));
     }
 
