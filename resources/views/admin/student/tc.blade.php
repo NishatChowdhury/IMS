@@ -30,8 +30,8 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-<!-- ---- -->
- <!-- /.content-header -->
+
+   <!-- /.content-header -->
  <section class="content">
         <div class="container-fluid" id="fo">
             <div class="row " >
@@ -88,25 +88,23 @@
                 </div>
             </div>
         </div>
-   
     <!-- navbar  -->
     <div class="container-fluid ">
         <div class="back m-0 p-0 ">
             <div class="stud">
-            <div class="navbaar  mt-5">
-                <div class="navv-logo col-2 ml-3">
-                    <img style="height: 70px; width: 70px; margin: left 3px;" class=" img d-block m-auto border img-fluid rounded" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
+            <div class="navbaar  mt-5 ml-1">
+                <div class="navv-logo col-2 ">
+                    <img style="height: 70px; width: 70px;" class=" m-1 img d-block m-auto border img-fluid" src="{{ asset('assets/img/testimonial/p.jpeg') }}" alt="logo">
                 </div>
                 <div class="navv-heading col-8 mt-2">
-                    <h1 class="mt-2 mb-0">Oxford Modern School & College</h1>
+                    <h1 class="mt-3 mb-0">Oxford Modern School & College</h1>
                 </div>
                 <div><button onclick="window.print()" id="printBtn" class="btn btn-success btn-sm shadow">
                     print
                 </button></div>
-                
             </div>
             </div>
-          
+         
             <div class="m-0 p-0">
                 <div class=" d-flex justify-content-center mt-1 ">
                     <h4 class="sectionn m-0">EIIN: 138418</h4>
@@ -119,18 +117,18 @@
                     <p>Phone: 031-2518963 www.oxfordctg.com</p>
 
                 </div>
-
             </div>
-
-            <div class="SL d-flex justify-content-center mt-0">
-                <div class="col-4 mt-2"> 
-                <label for="inputPassword4" class="form-label">SL. No :  1310</label>
+ 
+<div class="SL d-flex  mt-0 ">
+                <div class="col-4 pl-1 container-fluid"> 
+                    <p class="ml-2 mt-2 text-center stud"><b>SL. No :  1310</b> </p>
+                <!-- <label for="inputPassword4" class="form-label text-left"></label> -->
                 <!-- <input type="text" id="name" class="form-control-inline " placeholder=" SL.  1310" /> -->
                 </div>
                 <div class=" col-4 mt-1">
-                    <b class="tes"> Testimonial</b>
+                    <b class="tes"> Transfer Certificate</b>
                    </div>
-                   <div class="col-4 mt-2">
+                <div class="col-4 mt-2">
                 <p class="ml-0 mt-1 text-left"><b>Date :1/12/2022</b> </p>
                     
                      </div>
@@ -139,50 +137,55 @@
            
         
 <!-- paragraph -->
-            <div class="para">
+            <div class="para ">
                
-            <p  class="col-12  ">This is to certify that   :  <b class="p-2">Musharat Sultana Awfi </b>  Father :  <b class="p-2">Father Name </b>
-             Mother:<b class="p-2"> Mother Name</b>  <br>
-             of Vill: <b class="p-2"> Chittagong </b> P.O: <b class="p-2"> Chittagong </b> P.S: <b class="p-2"> Chittagong </b>
-           
-            District :<b class="p-2"> Chittagong </b>  <br>  Passed the JSC Examination in the Year :<b class="p-2"> 2022 </b>
+            <p class="col-12 ">This is to certify that   :  <b class="p-1">Mr. Abu Kasam </b>  Son/Daughter of  <b class="p-2">Father Name </b>
+             and<b class="p-2"> Mother Name</b>  <br>
+             was a <b class="p-2"> class-7</b> Science/B. Studies / Humanities student of this college bearing 
+             <br>
+            class Roll No : <b class="p-2"> 1111</b>  in the session of <b class="p-2"> 2022 - 2022 </b> completed his
             <br> 
             from this school under the Secondary & Higher Secondary Education Board , Chittagong , bearing
             <br> 
             Roll:<b class="p-2"> 1311</b>  Registration No:<b class="p-2"> 123456789 </b>Session :<b class="p-2"> 2021-2022 </b>
-            <br> 
-            and secured Grade : <b class="p-2"> A+ </b> and Grade Point Average(GPA) :<b class="p-2"> 5.00 </b>
+            this year courses .
             <br>
-            His/Her date of birth is  :<b class="p-2"> 03/00/1997 </b>
             <br>
-            While in School,he/she did not take in any activity subursive of the state or of discipline.
+            He clean up all his school dues up to the month of <b class="p-2">February -2018</b>
             <br>
-            He/She bears a good moral character. I wish him/her every success in life.
-            </p>
-
-            <div class="lass">
-            <div >
-            <p class="m-1" > Name <br> <b><hr class="bg-dark m-0">  Written By</b></p>
+            So far my knowledge goes he / she did not participate in any activities subversive of the state or <br>
+            of school discipline
+            <br>
+            
+             I wish him/her every success in life.
+     
+            <!-- <div class="d-flex ">
+            <div class="col-4">
+            <p>Written By <br> <b> Mr. Abdur Rahim</b></p>
             </div> 
-          
-            <div class="foot">
-               
-            <p class="m-1" >Name<br> <b> <hr class="bg-dark m-0 "> Headmaster</b></p>
-           
+            <div class="col-4"></div>
+            <div class="col-4">
+            <p>Written By <br><b> Mr. Abdur Rahim</b></p>
             </div>   
-             </div>
-             
+             </div> -->
+            </p>
             </div>
 
-
-
-        </div>
-
-
+     </div>
+           
     </div>
     <!-- navbar -->
         
     </section>
+
+
+</body>
+
+</html>
+
+
+
+
 @stop
 
 

@@ -275,6 +275,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     //Students Route by Rimon
     Route::get('student/designStudentCard','Backend\IdCardController@index')->name('student.designStudentCard');
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
+    // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
     Route::get('student/assign-transport','Backend\StudentController@assignTransport')->name('student.transport');
     Route::post('student/assign-transport-ending','Backend\StudentController@assignTransportEnd')->name('assign.transport.end');
     Route::post('student/storeAssignTransport','Backend\StudentController@storeAssignTransport')->name('storeAssignTransport');
@@ -708,10 +709,14 @@ return view('form-pdf');
 
 //end temp register addmission
 
+
+//Tc
+Route::get('student/tc','Backend\StudentController@transferCertificate')->name('student.tc');
+
+// Money Receipt
 // manuel attendence
     Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
     Route::get('student/manuel-attendence/{id}','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
 //end manuel attendence
 
-
-
+Route::get('student/money','Backend\StudentController@moneyReceipt')->name('student.money');

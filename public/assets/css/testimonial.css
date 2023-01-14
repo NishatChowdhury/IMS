@@ -1,4 +1,4 @@
-        /* * {
+    /* * {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -10,99 +10,127 @@
 
 
  */
-        /* .body {
+    /* .body {
     background-image: url("image/p.jpeg");
 } */
-        /* * {
+    /* * {
     box-sizing: border-box;
     font-family: 'Fira Sans', sans-serif;
 } */
-        
-        @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
-        .back {
-            background-color: white;
-            margin: 20px;
-            box-sizing: border-box;
-            font-family: 'Fira Sans', sans-serif;
-            border: 1px solid rgb(218, 214, 214);
+    
+    @media only screen and (min-width: 480px) and (max-width: 768px) {
+        .ccontainer-fluid {
+            width: 100%;
         }
-        
-        .navbaar {
-            display: flex;
-            align-content: center;
-            text-align: center;
-            margin: 0;
-            padding: 0px;
-            padding-bottom: 0%;
-            padding-top: 0%;
-            /* border: 1px solid black; */
+    }
+    
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        [class*="col-"] {
+            width: 100%;
         }
-        
-        .navbaar h1 {
-            color: rgb(105, 86, 86);
-            /* color: rgb(96, 157, 158); */
-            margin: 2;
-            padding-top: 2px;
-            margin-top: 20px;
-            text-align: left;
-        }
-        
-        .navv-logo {
-            padding: 7px 10px;
-            text-align: center;
-        }
-        
-        .navv-heading h1 {
-            text-align: left;
-            margin-left: 0px;
-        }
-        
-        .sectionn {
-            color: rgb(89, 59, 59);
-            margin-top: 0px;
-        }
-        
-        .cam {
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        .cam::after {
-            color: "";
-            display: table;
-            clear: both;
-        }
-        
-        .mac {
-            margin-top: 0px;
-            padding: 0px;
-        }
-        
-        .SL {
-            display: flex;
-            align-content: center;
-            text-align: center;
-        }
-        
-        .tes {
-            font-family: "satisfy", cursive;
-            font-size: 1.2rem;
-            color: rgb(165, 157, 115);
-            padding: 2px;
-            /* margin-left: 30px;
+    }
+    
+    @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+    .back {
+        background-color: white;
+        margin: 20px;
+        box-sizing: border-box;
+        font-family: 'Fira Sans', sans-serif;
+        border: 1px solid rgb(218, 214, 214);
+        flex-wrap: wrap;
+    }
+    
+    .navbaar {
+        display: flex;
+        align-content: center;
+        text-align: center;
+        margin: 0;
+        padding: 0px;
+        padding-bottom: 0%;
+        padding-top: 0%;
+        /* border: 1px solid black; */
+    }
+    
+    .navbaar h1 {
+        color: rgb(105, 86, 86);
+        /* color: rgb(96, 157, 158); */
+        margin: 2;
+        padding-top: 2px;
+        margin-top: 20px;
+        text-align: left;
+    }
+    
+    .navbaar h3 {
+        color: rgb(105, 86, 86);
+        /* color: rgb(96, 157, 158); */
+        margin: 2;
+        padding-top: 2px;
+        margin-top: 20px;
+        text-align: left;
+    }
+    
+    .navv-logo {
+        padding: 10px 10px;
+        text-align: right;
+    }
+    
+    .navv-heading h1 {
+        text-align: left;
+        margin-left: 0px;
+    }
+    
+    .sectionn {
+        color: rgb(89, 59, 59);
+        margin-top: 0px;
+    }
+    
+    .cam {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .cam::after {
+        color: "";
+        display: table;
+        clear: both;
+    }
+    
+    .mac {
+        margin-top: 0px;
+        padding: 0px;
+    }
+    
+    .SL {
+        padding: 0px;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-basis: 200px;
+        align-content: center;
+        text-align: center;
+    }
+    
+    .tes {
+        flex-wrap: wrap;
+        font-family: "satisfy", cursive;
+        font-size: 1.3rem;
+        color: rgb(165, 157, 115);
+        padding: 1px;
+        /* margin-left: 30px;
     margin-right: 30px; */
-            margin-bottom: 0px;
-            border: 5px solid rgb(165, 157, 115);
-            box-sizing: border-box;
-            /* outline: thick ridge rgb(165, 157, 115); */
-        }
-        
-        .tes::after {
-            color: "";
-            display: table;
-            clear: both;
-        }
-        /* .Vill {
+        margin-bottom: 0px;
+        border: 5px solid rgb(165, 157, 115);
+        box-sizing: border-box;
+        /* outline: thick ridge rgb(165, 157, 115); */
+    }
+    
+    .tes::after {
+        color: "";
+        display: table;
+        clear: both;
+    }
+    /* .Vill {
     display: flex;
     align-content: left;
     text-align: left;
@@ -115,45 +143,301 @@
     display: table;
     clear: both;
 } */
-        
-        .dis {
-            display: flex;
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        .tex {
-            align-content: left;
-            text-align: left;
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        .las {
-            align-content: center;
-            text-align: center;
-            margin: 2px;
-            padding: 2px;
-        }
-        
-        .la {
-            align-content: center;
-            text-align: center;
-            margin: 2px;
-            padding: 2px;
-        }
-        
-        .para {
-            text-align: center;
-            margin: 30px;
-        }
-        
+    
+    .dis {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .tex {
+        align-content: left;
+        text-align: left;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .las {
+        align-content: center;
+        text-align: center;
+        margin: 2px;
+        padding: 2px;
+    }
+    
+    .la {
+        align-content: center;
+        text-align: center;
+        margin: 100px;
+        padding: 2px;
+    }
+    
+    .paraa {
+        text-align: justify;
+        margin-left: 120px;
+        margin-top: 20px;
+    }
+    
+    .para {
+        justify-content: center;
+        align-content: center;
+        text-align: justify;
+        margin-left: 105px;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    
+    .lass {
+        align-content: right;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        flex-shrink: 2;
+        justify-content: space-between;
+        margin-left: 40px;
+        margin-right: 60px;
+        margin-top: 20px;
+    }
+    
+    .foot {
+        text-align: center;
+        margin-left: 2px;
+    }
+    
+    .notprint {
+        /*display:block;*/
+    }
+    
+    @media print {
         .notprint {
-            /*display:block;*/
+            display: none;
         }
-        
-        @media print {
-            .notprint {
-                display: none;
-            }
+    }
+    
+    @media print {
+        #fo {
+            display: none;
         }
+    }
+    
+    @media print {
+        @page {
+            margin: 2cm;
+        }
+        .para {
+            margin-left: 3.8cm;
+            /* margin: 5cm; */
+            display: block;
+        }
+    }
+    
+    @media print {
+        @page {
+            /* To give the user the possibility to choise between landscape and portrait printing format */
+            size: auto;
+            /* setting custom margin, so the date and the url can be displayed */
+            margin: 40px 10px 35px;
+        }
+        /* Here you can give a custom styling which will be applied only while printing  */
+        a,
+        button#printBtn {
+            display: none;
+        }
+    }
+    /* money Receipt */
+    
+    @media print {
+        .nomoneny {
+            display: none;
+        }
+    }
+    
+    @media print {
+        .tabb {
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1500;
+            visibility: visible;
+        }
+        @page {
+            display: block;
+            size: landscape;
+            margin: 1cm;
+        }
+        .ui-dialog,
+        .ui-dialog .ui-dialog-content {
+            position: absolute;
+            visibility: visible;
+            display: block;
+        }
+    }
+    
+    @media print {
+        @page {
+            margin: 2cm;
+        }
+        .stud {
+            margin-left: 2.8cm;
+            /* margin: 5cm; */
+            display: block;
+        }
+    }
+    
+    nomoneny .nave-heading h1 {
+        text-align: left;
+        /* border: 1px solid black; */
+    }
+    
+    .status {
+        align-items: flex-end;
+        text-align: end;
+        position: absolute;
+        /* background: #009FE3; */
+        right: 0;
+        left: 2;
+        bottom: 0;
+        top: 0;
+        width: 100px;
+        /* height: 100px; */
+    }
+    
+    .status .inner-point {
+        align-items: flex-end;
+        text-align: end;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        /* background: rgb(217, 177, 177);  */
+        width: 100px;
+        height: 100px;
+    }
+    
+    .status .inner {
+        font-style: italic;
+        font-weight: bold;
+        font-size: 10px;
+        line-height: 80px;
+        letter-spacing: 0.1px;
+        color: rgb(217, 177, 177);
+        transform: rotate(-90deg);
+    }
+    /* inside */
+    
+    .invoice-container {
+        padding: 1rem;
+    }
+    
+    .invoice-container .invoice-body {
+        padding: 1rem 0 0 0;
+        /* color: #007ae1; */
+    }
+    
+    .invoice-container .invoice-footer {
+        text-align: center;
+        font-size: 0.7rem;
+        margin: 5px 0 0 0;
+    }
+    
+    .invoice-status {
+        text-align: center;
+        padding: 1rem;
+        background: #ffffff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+    
+    .invoice-status h2.status {
+        margin: 0 0 0.8rem 0;
+    }
+    
+    .invoice-status h5.status-title {
+        margin: 0 0 0.8rem 0;
+        color: #9fa8b9;
+    }
+    
+    .invoice-status p.status-type {
+        margin: 0.5rem 0 0 0;
+        padding: 0;
+        line-height: 150%;
+    }
+    
+    .invoice-status i {
+        font-size: 1.5rem;
+        margin: 0 0 1rem 0;
+        display: inline-block;
+        padding: 1rem;
+        background: #f5f6fa;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+    }
+    
+    .invoice-status .badge {
+        text-transform: uppercase;
+    }
+    
+    @media (max-width: 767px) {
+        .invoice-container {
+            padding: 1rem;
+        }
+    }
+    
+    .custom-table {
+        border: 1px solid #e0e3ec;
+    }
+    
+    .custom-table thead {
+        background: white;
+        color: black;
+    }
+    
+    .custom-table thead th {
+        border: 0;
+        color: #0e0d0d;
+    }
+    
+    .custom-table>tbody tr:hover {
+        background: #fafafa;
+    }
+    
+    .custom-table>tbody tr:nth-of-type(even) {
+        background-color: #ffffff;
+    }
+    
+    .custom-table>tbody td {
+        border: 1px solid #e6e9f0;
+    }
+    
+    .card {
+        background: #ffffff;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .text-success {
+        color: #00bb42 !important;
+    }
+    
+    .text-muted {
+        color: #9fa8b9 !important;
+    }
+    
+    .custom-actions-btns {
+        margin: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .custom-actions-btns .btn {
+        margin: .3rem 0 .3rem .3rem;
+    }

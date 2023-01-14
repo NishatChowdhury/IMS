@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Backend\Staff;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,9 +31,15 @@ protected $fillable = [
         'password', 'remember_token',
     ];
 
+    protected $redirectTo = 'teacher.login';
+
     /**
      * A User is belongs to a student
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function teacher()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 
 }
