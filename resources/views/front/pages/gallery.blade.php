@@ -33,7 +33,7 @@
                             {{ __('All') }}
                         </a>
                         @foreach($categories as $category)
-                            <a class="nav-item nav-link" href="#" data-filter=".{{ $category->name }}">
+                            <a class="nav-item nav-link" href="{{ action('Front\FrontController@galleryCategory',$category->id) }}" data-filter=".{{ $category->name }}">
                                 {{ $category != null ? $category->name :''}}
                             </a>
                         @endforeach

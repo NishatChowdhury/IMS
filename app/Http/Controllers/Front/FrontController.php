@@ -191,6 +191,19 @@ class FrontController extends Controller
     }
     //Gallery -> END
 
+
+    public function galleryCategory($id)
+    {
+        $data = Gallery::query()->where('gallery_category_id',$id)->get();
+//        $data ?  $catImages = $data : $catImages = null;
+        if (!$data){
+            $catImages = null;
+        }else{
+            $catImages = $data;
+        }
+        return view('front.gallery.category-image',compact('catImages'));
+    }
+
     // Download Start
     public function download()
     {

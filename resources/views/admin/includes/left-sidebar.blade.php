@@ -1048,9 +1048,9 @@
                         </a>
                     </li>
                     <li class="nav-item" >
-                        <a href="{{ route('create-dynamic.table') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                        <a href="{{ route('create-custom.table') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Create Dynamic Table</p>
+                            <p> Create Custome Table</p>
                         </a>
                     </li>
                 </ul>

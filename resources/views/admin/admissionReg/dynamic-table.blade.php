@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title', 'Dynamic Table')
+@section('title', 'Custom Table')
 @section('style')
     <style>
         @media print {
@@ -18,6 +18,24 @@
         /*    cursor: pointer;*/
         /*}*/
 
+        {{--  below code  resize column--}}
+        .table th {
+            position: relative;
+        }
+        .resizer {
+            /* Displayed at the right side of column */
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            cursor: col-resize;
+            user-select: none;
+        }
+        .resizer:hover,
+        .resizing {
+            border-right: 2px solid blue;
+        }
+
     </style>
 @stop
 
@@ -27,12 +45,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Dynamic Table') }}</h1>
+                    <h1>{{ __('Custom Table') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">{{ __('Addmisson Registration') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Dynamic-table') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Custom-table') }}</li>
                     </ol>
                 </div>
             </div>
@@ -46,7 +64,7 @@
             <div class="col-lg-12 col-sm-8 col-md-8 col-xs-12  ">
                 <div class="card card-primary card-outline">
                     <div class="card-body" style="padding-bottom:0">
-                        <form method="get" action="{{ route('create-dynamic.table') }}">
+                        <form method="get" action="{{ route('create-custom.table') }}">
                             <div class="form-row">
                                 <label class="mr-1 mt-1"> Academic Class </label>
                                 <div class="form-group col-md-2">
@@ -100,7 +118,7 @@
                                     {{ $students[0]->group->name ?? '' }}
                                 </h3> <br>
                             </div>
-                            <table class="table table-bordered  table-sm">
+                            <table id="resizeMe" class="table table-bordered  table-sm">
                                 <thead>
                                 <tr>
                                     <th>Sl.</th>
@@ -143,11 +161,59 @@
 @stop
 
 @section('plugin')
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'></script>
 @stop
 @section('script')
-    <!-- page script -->
+    {{--  below code  resize column--}}
     <script type="text/javascript">
-        $('.select2').select2();
+        document.addEventListener('DOMContentLoaded', function () {
+            const createResizableTable = function (table) {
+                const cols = table.querySelectorAll('th');
+                [].forEach.call(cols, function (col) {
+                    // Add a resizer element to the column
+                    const resizer = document.createElement('div');
+                    resizer.classList.add('resizer');
+
+                    // Set the height
+                    resizer.style.height = `${table.offsetHeight}px`;
+
+                    col.appendChild(resizer);
+
+                    createResizableColumn(col, resizer);
+                });
+            };
+
+            const createResizableColumn = function (col, resizer) {
+                let x = 0;
+                let w = 0;
+
+                const mouseDownHandler = function (e) {
+                    x = e.clientX;
+
+                    const styles = window.getComputedStyle(col);
+                    w = parseInt(styles.width, 10);
+
+                    document.addEventListener('mousemove', mouseMoveHandler);
+                    document.addEventListener('mouseup', mouseUpHandler);
+
+                    resizer.classList.add('resizing');
+                };
+
+                const mouseMoveHandler = function (e) {
+                    const dx = e.clientX - x;
+                    col.style.width = `${w + dx}px`;
+                };
+
+                const mouseUpHandler = function () {
+                    resizer.classList.remove('resizing');
+                    document.removeEventListener('mousemove', mouseMoveHandler);
+                    document.removeEventListener('mouseup', mouseUpHandler);
+                };
+
+                resizer.addEventListener('mousedown', mouseDownHandler);
+            };
+
+            createResizableTable(document.getElementById('resizeMe'));
+
+        });
     </script>
 @stop

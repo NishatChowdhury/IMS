@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/themify-icons/css/themify-icons.css') }}">
 
-
     <!-- stylesheet-->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

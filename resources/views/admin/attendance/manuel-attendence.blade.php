@@ -79,7 +79,7 @@
         <section class="content mt-4">
             <div class="container-fluid">
                 <div class="col-md-12">
-                    <div class="card" style="margin: 0px;">
+                    <div class="card">
                         <div class="card-body">
                             <div class="text-center">
                                 <h3>Student Manuel Attendence</h3>
@@ -112,21 +112,17 @@
                                     <td>{{$attn->date->format('d/m/Y') ?? ''}}</td>
                                     <td class="text-center">
 
-                                        @if($attn->attendance_status_id == 1)
-                                            <a title="present" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-check-circle text-success"></i> </a>
-
-
-                                        @else
-                                            <a  title="Absent" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-times text-danger "></i> </a>
-
-                                        @endif
+{{--                                        @if($attn->attendance_status_id == 1)--}}
+{{--                                            <a title="present" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-check-circle text-success"></i> </a>--}}
+{{--                                        @else--}}
+{{--                                            <a  title="Absent" href="{{route('student.manuel-attendence-status',$attn->id)}}"> <i class="fa fa-times text-danger "></i> </a>--}}
+{{--                                        @endif--}}
+                                        <input data-id="{{$attn->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $attn->attendance_status_id == 1 ? 'checked' : '' }}>
 
                                     </td>
                                 </tr>
                                 @empty
-                                    <td colspan="6" class="text-center text-danger">
-                                        <h5>No data found !!</h5>
-                                    </td>
+                                    <td colspan="8" class="text-center text-bold text-danger">No data found! 😒 </td>
                                 @endforelse
                                 </tbody>
                             </table>
@@ -144,12 +140,23 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'></script>
 @stop
 @section('script')
-    <!-- page script -->
-    <script type="text/javascript">
-        $('.select2').select2();
 
-        $('#datetimepicker').datetimepicker({
-            format: 'yyyy-mm-dd'
-        });
+    <script>
+        $(function() {
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true ? 1 : 2;
+                var user_id = $(this).data('id');
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/student/manuel-attendence-change',
+                    data: {'status': status, 'user_id': user_id},
+                    success: function(data){
+                        console.log(data.success)
+                    }
+                });
+            })
+        })
     </script>
 @stop

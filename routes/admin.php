@@ -705,7 +705,7 @@ return view('form-pdf');
 
     Route::get('regligion-wise/report',[StudentReportController::class,'regligionWiseReport'])->name('regligion-wise.report');
     Route::get('group-wise/report',[StudentReportController::class,'groupWiseReport'])->name('group-wise.report');
-    Route::get('dynamic/table',[StudentReportController::class,'dynamicTable'])->name('create-dynamic.table');
+    Route::get('custom/table',[StudentReportController::class,'customTable'])->name('create-custom.table');
 
 //end temp register addmission
 
@@ -716,7 +716,7 @@ Route::get('student/tc','Backend\StudentController@transferCertificate')->name('
 // Money Receipt
 // manuel attendence
     Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
-    Route::get('student/manuel-attendence/{id}','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
+    Route::get('/student/manuel-attendence-change','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
 //end manuel attendence
 
 Route::get('student/money','Backend\StudentController@moneyReceipt')->name('student.money');
