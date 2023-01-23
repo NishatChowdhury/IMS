@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\Classes;
+use App\Models\Backend\Exam;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\Group;
 use App\Models\Backend\Section;
@@ -19,6 +20,7 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
+    // To retrieve all diaries
     public function diaries(Request $request)
     {
         $date = $request->date ?? Carbon::parse()->format('Y-m-d');
@@ -54,6 +56,7 @@ class TeacherController extends Controller
         }
     }
 
+    // To retrieve a single diary
     public function diary(Request $request)
     {
         $diary = Diary::query()->where('id', $request->id)->first();
@@ -74,7 +77,7 @@ class TeacherController extends Controller
             return response(null, 204);
         }
     }
-
+    // To add a new diary
     public function addDiary(Request $request)
     {
         $request->validate([
@@ -97,6 +100,7 @@ class TeacherController extends Controller
         }
     }
 
+    // To add a new leave
     public function addLeave(Request $request)
     {
         $start = $request->start_date;
@@ -126,6 +130,7 @@ class TeacherController extends Controller
         }
     }
 
+    // To retrieve student wise attendance
     public function studentWiseAttendance(Request $request)
     {
         $student = Student::query()
@@ -147,7 +152,7 @@ class TeacherController extends Controller
                     'date' => date('d-m-Y', strtotime($attendance->date)),
                     'inTime' => $attendance->manual_in_time ?: $attendance->in_time,
                     'outTime' => $attendance->manual_out_time ?: $attendance->out_time,
-                    'status' => $attendance->attendanceStatus->code ?? '',
+                    'attnStatus' => $attendance->attendanceStatus->code ?? '',
                 ];
             }
 
@@ -163,6 +168,7 @@ class TeacherController extends Controller
         }
     }
 
+    // To retrieve Daily Attendance
     public function dailyAttendance(Student $student, Request $request)
     {
         $today = $request->get('date');
@@ -204,6 +210,7 @@ class TeacherController extends Controller
         ]);
     }
 
+    // To retrieve Exam Routine
     public function examRoutine(Request $request)
     {
         $routines = ExamSchedule::query()
@@ -241,8 +248,10 @@ class TeacherController extends Controller
         ]);
     }
 
+    // To retrieve mobile attendance by student
     public function mobileAttendance(Student $student, Request $request)
     {
+        $today = Carbon::now();
         $s = $student->newQuery();
         if ($request->get('class_id')) {
             $class = $request->get('class_id');
@@ -259,7 +268,9 @@ class TeacherController extends Controller
             $stuAca = StudentAcademic::where('student_id', $student->id)->first();
             $attn = Attendance::query()
                 ->where('student_academic_id', $stuAca->id)
+                ->whereDate('date', $today)
                 ->first();
+                // return $attn->attendanceStatus->code;
             if ($attn != null) {
                 $attendArr[] = (object)[
                     'studentId' => $student->studentId,
@@ -273,5 +284,111 @@ class TeacherController extends Controller
             'status' => true,
             'attendances' => $attendances
         ]);
+    }
+
+    // To retrieve all classes
+    public function classes(){
+        $classes = Classes::query()->get();
+        if ($classes->isNotEmpty()) {
+            $data = [];
+            foreach ($classes as $class) {
+                $data[] = [
+                    'id' => $class->id,
+                    'name' => $class->name,
+                    'numericClass' => $class->numeric_class,
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'classes' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
+    }
+
+    // To retrieve all sections
+    public function sections(){
+        $sections = Section::query()->get();
+        if ($sections->isNotEmpty()) {
+            $data = [];
+            foreach ($sections as $section) {
+                $data[] = [
+                    'id' => $section->id,
+                    'name' => $section->name
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'sections' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
+    }
+
+    // To retrieve all groups
+    public function groups(){
+        $groups = Group::query()->get();
+        if ($groups->isNotEmpty()) {
+            $data = [];
+            foreach ($groups as $group) {
+                $data[] = [
+                    'id' => $group->id,
+                    'name' => $group->name
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'groups' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
+    }
+
+    // To retrieve all examinations
+    public function examinations(){
+        $exams = Exam::whereHas('session', function($q){
+            return $q->where('active', 1);
+        })->get();
+
+        if ($exams->isNotEmpty()) {
+            $data = [];
+            foreach ($exams as $exam) {
+                $data[] = [
+                    'id' => $exam->id,
+                    'name' => $exam->name,
+                    'session' => $exam->session->year ?? '',
+                    'start' => $exam->start ?? '',
+                    'end' => $exam->end ?? ''
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'exams' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
+    }
+
+    public function mobileAttendanceStore(Request $request){
+        $request->validate([
+            'date' => 'required',
+            'student_academic_id' => 'required',
+            'shift_id' => 'required',
+            'attendance_status_id' => 'required'
+        ]);
+        $request['date'] = $request->date;
+        $request['student_academic_id'] = $request->student_academic_id;
+        $request['shift_id'] = 1;
+        $request['attendance_status_id'] = $request->attendance_status_id;
+        $result = Attendance::query()->create($request->all());
+        if ($result) {
+            return response()->json(['status' => true, 'attendances' => $result]);
+        } else {
+            return response()->json(['status' => false]);
+        }
     }
 }
