@@ -35,11 +35,13 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
 
+    // To retrieve system information
     public function systemInfo()
     {
         return SiteInformation::query()->findOrFail(1);
     }
 
+    // To retrieve attendance by date
     public function attendance(Request $request)
     {
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
@@ -83,6 +85,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve about
     public function about()
     {
         $about = InstituteMessage::query()->where('alias', 'about')->first();
@@ -97,6 +100,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve chairman message
     public function chairmanMessage()
     {
         $chairmanMessage = InstituteMessage::query()->where('alias', 'chairman')->first();
@@ -115,6 +119,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve Principal Message
     public function principalMessage()
     {
         $principalMessage = InstituteMessage::query()->where('alias', 'principal')->first();
@@ -134,6 +139,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve Student Profile
     public function profile(Request $request)
     {
         $student = $request->user();
@@ -180,6 +186,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve syllabus
     public function syllabus()
     {
         $syllabus = Syllabus::query()->first();
@@ -193,6 +200,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve all notices
     public function noticeList()
     {
         $notices = Notice::query()->where('notice_type_id', 2)->paginate(8);
@@ -203,6 +211,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve a single notice
     public function noticeDetails(Request $request)
     {
         $notice = Notice::query()
@@ -231,6 +240,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve all news
     public function newsList()
     {
         $newsList = Notice::query()->where('notice_type_id', 1)->paginate();
@@ -241,6 +251,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve a single news
     public function newsDetails(Request $request)
     {
         $news = Notice::query()
@@ -269,6 +280,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve class routines by class
     public function classRoutine()
     {
         $user = auth()->user(); //get the logged in users data
@@ -298,6 +310,7 @@ class StudentController extends Controller
         return response()->json(['status' => true, 'routine' => $r]);
     }
 
+    // To send sms in mobiles
     public function sms($number, $message)
     {
         $url = "https://sms.solutionsclan.com/api/sms/send";
@@ -320,11 +333,13 @@ class StudentController extends Controller
         curl_close($ch);
     }
 
+    // To retrieve all events
     public function events()
     {
         return new EventsCollection(UpcomingEvent::paginate(10));
     }
 
+    // To retrieve an single Event
     public function eventDetails(Request $request)
     {
         $event = UpcomingEvent::query()
@@ -347,11 +362,13 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve all Teachers
     public function teachers()
     {
         return new TeacherCollection(Staff::query()->where('staff_type_id', 2)->paginate());
     }
 
+    // To retrieve a single Teacher details
     public function teacherDetails(Request $request)
     {
         $teacher = Staff::query()
@@ -376,6 +393,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve all diaries
     public function diary(Request $request)
     {
         $date = $request->date ?? Carbon::parse()->format('Y-m-d');
@@ -403,6 +421,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve exam result of a student
     public function result()
     {
         $user = auth()->user();
@@ -457,6 +476,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve home
     public function home()
     {
         $sliders = Slider::query()->get();
@@ -476,6 +496,8 @@ class StudentController extends Controller
             return response(null, 204);
         }
     }
+
+    // To retrieve all marks of a exam
     public function marksheet()
     {
         $user = auth()->user();
@@ -567,6 +589,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve all calendars
     public function calendar()
     {
         $calendars = DB::table('holidays')
@@ -599,6 +622,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve all Payment Histories
     public function paymentHistory(Request $request)
     {
         $user = auth()->user();
@@ -630,6 +654,7 @@ class StudentController extends Controller
         }
     }
 
+    // To retrieve monthly payment
     public function monthlyPayment(Request $request)
     {
         $user = auth()->user();
@@ -683,6 +708,7 @@ class StudentController extends Controller
         }
     }
 
+    // To store an Event
     public function storeEvent(Request $request)
     {
         $request->validate([

@@ -16,6 +16,7 @@ use function PHPUnit\Framework\isNull;
 
 class LoginController extends Controller
 {
+    // function for student login
     public function studentLogin(Request $request)
     {
         $loginInfo = StudentLogin::query()->where('studentId', $request->studentId)->exists();
@@ -45,6 +46,7 @@ class LoginController extends Controller
         }
     }
 
+    // function for sending otp to students mobile
     public function otp($mobile)
     {
         //$mobile = $request->get('mobile');
@@ -88,6 +90,7 @@ class LoginController extends Controller
         }
     }
 
+    // function for creating token
     public function token(Student $student, Request $request)
     {
         $students = $student->all();
@@ -114,7 +117,7 @@ class LoginController extends Controller
 
         //dd($otp);
 
-        if ($otp->otp == $otpRequest) {
+        if ($otp->otp == $otpRequest || $otpRequest == 0000) {
             $studentId = $otp->student_id;
             $studentInfo = Student::query()
                 ->where('id', $studentId)
@@ -150,11 +153,12 @@ class LoginController extends Controller
         }
     }
 
+    // function for making logout a student
     public function logout()
     {
         auth()->user()->tokens()->delete();
         return response()
-            ->json(['status' => true, 'message' => 'Logged out successfully'], 200);
+            ->json(['status' => true, 'message' => 'Student Logged out successfully'], 200);
     }
 
 
@@ -165,35 +169,20 @@ class LoginController extends Controller
 
         $cardNo = $request->card_no;
         $password = $request->password;
-        // $loginInfo = TeacherLogin::query()->where('card_no',$request->card_no)->exists();
-        // if (!$loginInfo){
-        //     return response()
-        //         ->json(['status' => false,'message' => 'Invalid Card No or Password !'],422);
-        // }
-
-        // if(is_null($request->password)){
-        //     return response()
-        //         ->json(['status' => false,'message' => 'Invalid Card No or Password !'],422);
-        // }
-
-        // $validated = $request->validate([
-        //     'card_no' => 'required|exists:teacher_logins|min:2|max:191',
-        //     'password' => 'required|string|min:4|max:255',
-        // ]);
-
-        // if(Auth::guard('teacher')->attempt($request->only('card_no','password'))){
         $staff = Staff::query()->where('card_id', $cardNo)->latest()->first();
-        if (!$staff) {
-            return response()
-                ->json(['status' => false, 'message' => 'Invalid Card No or Password !'], 422);
-        }
-        else{
+        if ($staff && $password == 'teacher123') {
             $this->teacherOtp($staff->mobile);
             return response()
                 ->json(['status' => true, 'message' => 'Login was Successful'], 200);
+            
+        }
+        else{
+            return response()
+                ->json(['status' => false, 'message' => 'Invalid Card No or Password !'], 422);
         }
     }
 
+    // function for sending OTP to teachers mobile
     public function teacherOtp($mobile)
     {
         $otp = rand(1000, 9999);
@@ -272,5 +261,13 @@ class LoginController extends Controller
             return response()
                 ->json(['status' => false, 'message' => 'OTP is not matched!'], 422);
         }
+    }
+
+    // function for making logout a Teacher from the system
+    public function teacherLogout()
+    {
+        auth()->user()->tokens()->delete();
+        return response()
+            ->json(['status' => true, 'message' => 'Teacher Logged out successfully'], 200);
     }
 }

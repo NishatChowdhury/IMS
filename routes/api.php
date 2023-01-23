@@ -21,7 +21,7 @@ use App\Http\Controllers\Flutter\NotificationController;
 |
 */
 
-// Route for students starts here
+// Route for students starts here by Nishat Chowdhury
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('about', [StudentController::class, 'about']);
     Route::get('chairman-message', [StudentController::class, 'chairmanMessage']);
@@ -54,7 +54,7 @@ Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
 Route::post('otp-match', [LoginController::class, 'matchOtp']);
 
-// Route for notifications starts here
+// Route for notifications starts here by Nishat Chowdhury
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('attendance-notification', [NotificationController::class, 'attendanceNotification']);
     Route::get('upcoming-events-notification', [NotificationController::class, 'upcomingEventsNotification']);
@@ -65,7 +65,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('payment-notification', [NotificationController::class, 'paymentNotification']);
 });
 
-// Route for teacher panel starts here
+// Route for teacher panel starts here by Nishat Chowdhury
 Route::post('teacher-login', [LoginController::class, 'teacherLogin']);
 Route::post('teacher-otp', [LoginController::class, 'teacherOtp']);
 Route::post('teacher-otp-match', [LoginController::class, 'teacherMatchOtp']);
@@ -79,4 +79,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('daily-attendance', [TeacherController::class, 'dailyAttendance']);
     Route::get('exam-routine', [TeacherController::class, 'examRoutine']);
     Route::post('mobile-attendance', [TeacherController::class, 'mobileAttendance']);
+    Route::post('mobile-attendance-store', [TeacherController::class, 'mobileAttendanceStore']);
+    Route::get('classes', [TeacherController::class, 'classes']);
+    Route::get('sections', [TeacherController::class, 'sections']);
+    Route::get('groups', [TeacherController::class, 'groups']);
+    Route::get('examinations', [TeacherController::class, 'examinations']);
+    Route::post('teacher-logout', [LoginController::class, 'teacherLogout']);
 });

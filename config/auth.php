@@ -115,15 +115,24 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'users' => 
+        [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'students' => [
+        'students' => 
+        [
             'provider' => 'students',
             'table' => 'password_resets',
-            'expire' => 60,]
+            'expire' => 60,
+        ],
+        'teachers' => 
+        [
+            'provider' => 'teachers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
     ],
 
 ];
