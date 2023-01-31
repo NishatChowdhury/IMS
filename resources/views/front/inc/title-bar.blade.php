@@ -1,5 +1,6 @@
-<section class="" data-primary-overlay="0" style="background-color:{{ themeConfig('header_background') }}">
-    <div class="container">
+{{--<section class="" data-primary-overlay="0" style="background-color:{{ themeConfig('header_background') }}">--}}
+<section class="firstblock" data-primary-overlay="0" >
+<div class="container">
         <div class="row">
             <div class="col-md-2 text-center d-md-flex align-items-center">
                 <div class="navbar-brand">
