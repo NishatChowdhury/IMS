@@ -1,10 +1,11 @@
-<div class="footer-top bg-black-0_9 text-white-0_6 pt-1 pb-1">
+<!-- <div class="footer-top bg-black-0_9 text-white-0_6 pt-1 pb-1"> -->
+<div class="footer-top lfooter pt-1 pb-1">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-4 col-md-6 mt-5">
                 <img src="assets/img/logo-white.png" alt="Logo" width="100">
-                <div class="margin-y-40 text-justify">
+                <div class="margin-y-40 text-justify  ">
                     <p>
                         {{ __('WP-IMS is a latest technology of educational institute’s digitization. This is the fastest and most intelligent application ever made in Bangladesh.') }}
                     </p>
@@ -14,7 +15,8 @@
 
             <div class="col-lg-4 col-md-6 mt-5">
                 <h4 class="h5 text-white">{{ __('Important links')}}</h4>
-                <div class="width-3rem bg-primary height-3 mt-3"></div>
+                <!-- <div class="width-3rem bg-primary height-3 mt-3 "></div> -->
+                <div class="width-3rem height-3 mt-3 rounded lavenderround1"></div>
                 <ul class="list-unstyled marginTop-40">
                     @foreach(importantLinks() as $link)
                         <li class="mb-2"><a href="{{ $link->link }}">{{ $link->title }}</a></li>
@@ -28,16 +30,17 @@
                 </ul>
 
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a class="iconbox bg-white-0_2 hover:primary" href="{{ socialConfig('facebook') }}" target="_blank"><i class="ti-facebook"> </i></a></li>
-                    <li class="list-inline-item"><a class="iconbox bg-white-0_2 hover:primary" href="{{ socialConfig('twitter') }}" target="_blank"><i class="ti-twitter"> </i></a></li>
-                    <li class="list-inline-item"><a class="iconbox bg-white-0_2 hover:primary" href="{{ socialConfig('linkendin') }}" target="_blank"><i class="ti-linkedin"> </i></a></li>
-                    <li class="list-inline-item"><a class="iconbox bg-white-0_2 hover:primary" href="{{ socialConfig('youtube') }}" target="_blank"><i class="ti-youtube"></i></a></li>
+                    <li class="list-inline-item"><a class="iconbox bg-white-0_9 text-dark hover:primary" href="{{ socialConfig('facebook') }}" target="_blank"><i class="ti-facebook"> </i></a></li>
+                    <li class="list-inline-item"><a class="iconbox bg-white-0_9 text-dark hover:primary" href="{{ socialConfig('twitter') }}" target="_blank"><i class="ti-twitter"> </i></a></li>
+                    <li class="list-inline-item"><a class="iconbox bg-white-0_9 text-dark hover:primary" href="{{ socialConfig('linkendin') }}" target="_blank"><i class="ti-linkedin"> </i></a></li>
+                    <li class="list-inline-item"><a class="iconbox bg-white-0_9 text-dark hover:primary" href="{{ socialConfig('youtube') }}" target="_blank"><i class="ti-youtube"></i></a></li>
                 </ul>
             </div>
 
             <div class="col-lg-4 col-md-6 mt-5">
                 <h4 class="h5 text-white">{{ __('Contact Us')}}</h4>
-                <div class="width-3rem bg-primary height-3 mt-3"></div>
+                <!-- <div class="width-3rem bg-primary height-3 mt-3"></div> -->
+                <div class="width-3rem height-3 mt-3 rounded lavenderround1"></div>
                 <ul class="list-unstyled marginTop-40">
                     <li class="mb-3"><i class="ti-headphone mr-3"></i><a href="tel:{{ siteConfig('phone') }}">{{ siteConfig('phone') }}</a></li>
                     <li class="mb-3"><i class="ti-email mr-3"></i><a href="mailto:{{ siteConfig('email') }}">{{ siteConfig('email') }}</a></li>
