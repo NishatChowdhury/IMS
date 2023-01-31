@@ -3,11 +3,13 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-12 text-center text-white mb-md-4">
-                <h2 class="mb-4">
+            <div class="col-12 text-center mb-md-4 ">
+            <!-- <div class="col-12 text-center  text-dark mb-md-4 "> -->
+                <h2 class="mb-4 textCOLOR ">
                     {{ __('Upcoming Events')}}
                 </h2>
-                <div class="width-3rem height-4 rounded bg-white mx-auto"></div>
+                <div class="width-3rem height-4 rounded  mx-auto lavenderround"  ></div>
+                <!-- <div class="width-3rem height-4 rounded bg-white mx-auto lavenderround"  ></div> -->
             </div>
 
             @foreach($events as $event)

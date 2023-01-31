@@ -5,7 +5,8 @@
                 <h2 class="mb-4">
                     {{ __('Suborno Joyontee Corner') }}
                 </h2>
-                <div class="width-3rem height-4 rounded bg-primary mx-auto"></div>
+                <div class="width-3rem height-4 rounded bg-primary mx-auto" ></div>
+           
             </div>
         </div> <!-- END row-->
 

@@ -33,6 +33,7 @@
   .border{
     &-lg-top{
       border-top: 1px solid #dee2e6 !important;
+    
     }
     &-lg-bottom{
       border-bottom: 1px solid #dee2e6 !important;
@@ -81,6 +82,7 @@
 @for $i from 1 through 9{
   .border-white-0_#{$i}{
      border-color: rgba(#fff, $i/10) !important;  
+
   }
 }
 

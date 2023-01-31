@@ -219,7 +219,7 @@
 @for $i from 1 through 9{
   [data-dark-overlay="#{$i}"]{
     &:after{
-     background: rgba(#000, $i/10);
+     background: rgba(primary, $i/10);
     }
   }
 }

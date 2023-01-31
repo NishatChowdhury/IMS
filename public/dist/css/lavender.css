@@ -1,53 +1,127 @@
+.fbg {
+    background-color: #534872;
+    color: #ffffff;
+}
 
-.firstblock{
-    /* background-color: #DBA6F7; */
-     background-color: #E6E6FA;
+.lfooter {
+    background-color: #9EA3F5;
+    color: black;
+}
+
+.btn-link {
+    color: #9EA3F5;
+}
+
+.lavenderround {
+    background-color: #1820AE;
+    color: #fff;
+}
+
+.lavenderround1 {
+    background-color: #1820AE;
+    color: #fff;
+}
+
+
+.btn-primary {
+    background-color: #1820AE !important;
+    color: #fff;
+}
+
+.bg-primary {
+    background-color: #1820AE !important;
+}
+
+.textt {
+    color: #1820AE;
+}
+
+.bg-black-0_9 {
+    background-color: #E8BFFB !important;
+
+}
+
+.lead {
+    color: black;
+}
+
+
+.resultext {
+    color: rgb(8, 8, 8) !important
+}
+
+.border-white-0_1 {
+    border-color: #f8f8f9 !important;
+}
+
+.text-primary {
+    color: #f8f8f9 !important;
+}
+
+.textCOLOR {
+    color: black !important;
+}
+
+.text-white {
+    color: black !important;
+}
+
+[data-primary-overlay="0"] {
+    background-color: #F1DDFA !important;
 }
 
 [data-primary-overlay="7"]:after {
-    background: rgba(0, 139, 203, 0.7);
+    background: #F1DDFA;
 }
 
-.bg-dark{
-    background-color: rgb(30, 32, 34) !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+[data-dark-overlay="6"]:after {
+
+    background: #9EA3F5;
 }
 
-.bg-navy-1{
+.bg-dark {
+    background-color: #9EA3F5 !important;
+    color: rgb(252, 252, 252) !important;
+
+}
+
+.bg-navy-1 {
     background-color: #090a30 !important;
     color: #ffffff !important;
 }
 
-.bg-inner{
+.bg-inner {
     /* background-color: rgba(88, 203, 83, 0.7) !important; */
-    background-image: linear-gradient(to right, hotpink, lightpink);
+    background-color: #F1DDFA;
 
     color: rgb(96, 96, 101) !important;
 }
 
-.bg-white{
+.bg-white {
     background-color: rgb(255, 255, 255) !important;
     color: rgb(96, 96, 101);
 }
+
 /** #4660ee **/
 
-.text-blue, .text-blue h2{
+.text-blue,
+.text-blue h2 {
     color: #22246c !important;
 }
 
-a:hover{
+a:hover {
     color: #00b249 !important;
 }
 
-.ec-nav .nav-link{
+.ec-nav .nav-link {
     color: rgb(96, 96, 101) !important;
 }
 
-.nav-item__has-dropdown .dropdown-menu{
+.nav-item__has-dropdown .dropdown-menu {
     border-top: 3px solid #00CB54 !important;
 }
 
-.hover\:primary:hover{
+.hover\:primary:hover {
     background: #00CB54 !important;
     color: #fff !important;
 }
