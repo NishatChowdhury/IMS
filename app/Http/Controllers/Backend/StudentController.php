@@ -786,8 +786,7 @@ class StudentController extends Controller
               //  $col = explode('|',$row);
                 $col = explode('|',$row);
                // dd($col);
-               dump($col);
-               $data['dob'] = $col[6];
+               //dump($col);
                //dd($data['dob']);
                 //dd($col);
                //dd($col);
@@ -875,7 +874,7 @@ class StudentController extends Controller
                 $dataAC['shift_id']=1;
                 $dataAC['rank'] = $col[28];
                 $dataAC['status'] = 1;
-               dump($dataAC);
+               //dump($dataAC);
 
                 StudentAcademic::query()->create($dataAC);
                 //fathers table
