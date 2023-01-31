@@ -273,9 +273,12 @@ class TeacherController extends Controller
                 // return $attn->attendanceStatus->code;
             if ($attn != null) {
                 $attendArr[] = (object)[
-                    'studentId' => $student->studentId,
-                    'studentName' => $student->name,
-                    'status' => $attn->attendanceStatus->code ?? '',
+                    'student_academic_id' =>  $stuAca->id ?? '',
+                    'studentId' => $student->studentId ?? '',
+                    'studentName' => $student->name ?? '',
+                    'shift_id' => $stuAca->shift_id ?? '',
+                    'attendance_status_id' => $attn->attendance_status_id,
+                    'status' => $attn->attendanceStatus->code ?? ''
                 ];
             }
         }
