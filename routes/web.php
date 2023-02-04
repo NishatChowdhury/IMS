@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Front\AlumniController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Student\NagadPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\AdmissionController;
@@ -54,17 +55,17 @@ Route::get('/galleryCategory/{id}','Front\FrontController@galleryCategory');
 Route::get('/download','Front\FrontController@download');
 Route::get('/contacts','Front\FrontController@contact');
 
-Route::post('api/login','AndroidController@login');
-
-Route::post('api/system-info','AndroidController@systemInfo');
-Route::post('api/attendance','AndroidController@attendance');
-Route::post('api/about','AndroidController@about');
-Route::post('api/president','AndroidController@president');
-Route::post('api/profile','AndroidController@profile');
-Route::post('api/teachers','AndroidController@teachers');
-Route::post('api/syllabus','AndroidController@syllabus');
-Route::post('api/notices','AndroidController@notices');
-Route::post('api/class-routines','AndroidController@classRoutine');
+//Route::post('api/login','AndroidController@login');
+//
+//Route::post('api/system-info','AndroidController@systemInfo');
+//Route::post('api/attendance','AndroidController@attendance');
+//Route::post('api/about','AndroidController@about');
+//Route::post('api/president','AndroidController@president');
+//Route::post('api/profile','AndroidController@profile');
+//Route::post('api/teachers','AndroidController@teachers');
+//Route::post('api/syllabus','AndroidController@syllabus');
+//Route::post('api/notices','AndroidController@notices');
+//Route::post('api/class-routines','AndroidController@classRoutine');
 /** Route for Apps end */
 
 /** Online Admission Starts */
@@ -116,3 +117,8 @@ Route::get('page/{uri}','Front\FrontController@page');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/** Nagad Payment Gateway */
+Route::get('/nagad/create',[NagadPaymentController::class,'create'])->name('nagad.create');
+Route::post('/nagad/store', [NagadPaymentController::class,'store'])->name('nagad.store');
+Route::get('/nagad/callback', [NagadPaymentController::class,'callback'])->name('nagad.callback');

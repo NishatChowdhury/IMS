@@ -1,0 +1,14 @@
+{
+    "Settings": true,
+    "Media": true,
+    "HRM": true,
+    "AccountsAndFinance": true,
+    "Admission": true,
+    "ExamAndResult": true,
+    "Transport": true,
+    "Library": true,
+    "HostelAndCanteen": true,
+    "VirtualClassroom": true,
+    "KPI": true,
+    "ExtraCurriculum": true
+}

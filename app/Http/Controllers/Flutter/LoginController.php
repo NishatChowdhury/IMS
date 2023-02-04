@@ -37,7 +37,7 @@ class LoginController extends Controller
 
         if (Auth::guard('student')->attempt($request->only('studentId', 'password'))) {
             $student = Student::query()->where('studentId', $request->studentId)->latest()->first();
-            $this->otp($student->mobile);
+            //$this->otp($student->mobile);
             return response()
                 ->json(['status' => true, 'message' => 'Login was Successful'], 200);
         } else {
@@ -63,7 +63,7 @@ class LoginController extends Controller
             $mobile = $student->mobile;
             $smsData = [];
             $smsData['mobile'] = $mobile;
-            $smsData['textbody'] = "Your Web Point Verification Code is: " . $otp . "\nKindly keep this code hidden!";
+            $smsData['textbody'] = "Your Lavender Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
             $url = "https://sms.solutionsclan.com/api/sms/send";
             $data = [

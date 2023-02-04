@@ -16,6 +16,8 @@ use App\Models\Backend\StudentLeave;
 use App\Models\Diary;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -240,7 +242,7 @@ class TeacherController extends Controller
             ];
         }
         return response()->json([
-            'status' => true, 
+            'status' => true,
             'class' => $academic_class->classes->name ?? '',
             'Section' => $academic_class->section->name ?? '',
             'group' => $academic_class->group->name ?? '',
@@ -270,7 +272,7 @@ class TeacherController extends Controller
                 ->where('student_academic_id', $stuAca->id)
                 ->whereDate('date', $today)
                 ->first();
-                // return $attn->attendanceStatus->code;
+            // return $attn->attendanceStatus->code;
             if ($attn != null) {
                 $attendArr[] = (object)[
                     'student_academic_id' =>  $stuAca->id ?? '',
@@ -376,22 +378,47 @@ class TeacherController extends Controller
         }
     }
 
-    public function mobileAttendanceStore(Request $request){
+    /**
+     * Store students attendance data in database
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function mobileAttendanceStore(Request $request): JsonResponse
+    {
         $request->validate([
             'date' => 'required',
-            'student_academic_id' => 'required',
-            'shift_id' => 'required',
-            'attendance_status_id' => 'required'
+            'academic_class_id' => 'required',
+            'attendances' => 'required'
         ]);
-        $request['date'] = $request->date;
-        $request['student_academic_id'] = $request->student_academic_id;
-        $request['shift_id'] = 1;
-        $request['attendance_status_id'] = $request->attendance_status_id;
-        $result = Attendance::query()->create($request->all());
-        if ($result) {
-            return response()->json(['status' => true, 'attendances' => $result]);
-        } else {
-            return response()->json(['status' => false]);
+        $attendances = $request->attendances;
+        foreach ($attendances as $attendance){
+            $data['student_academic_id'] = $attendance['student_academic_id'];
+            $data['date'] = $request->date;
+            $data['shift_id'] = $attendance['shift_id'];
+            $data['attendance_status_id'] = $attendance['attendance_status_id'];
+            $isExists = Attendance::query()
+                ->where('date',$request->date)
+                ->where('student_academic_id',$attendance['student_academic_id'])
+                ->exists();
+            if($isExists){
+                $attn = Attendance::query()
+                    ->where('date',$request->date)
+                    ->where('student_academic_id',$attendance['student_academic_id'])
+                    ->first();
+                try {
+                    $attn->update(['attendance_status_id'=>$attendance['attendance_status_id']]);
+                }catch (Exception $e){
+                    return response()->json($e->getMessage());
+                }
+            }else{
+                try {
+                    Attendance::query()->create($data);
+                }catch (Exception $e){
+                    return response()->json($e->getMessage());
+                }
+            }
         }
+        return response()->json(['status' => true]);
     }
 }

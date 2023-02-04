@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\AlumniController;
 use App\Http\Controllers\Backend\DiaryController;
+use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\LinkController;
 use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use App\Http\Controllers\Backend\StudentReportController;
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\DbBackupController;
 use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
@@ -134,15 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('slider/store','Backend\SliderController@store')->name('slider.store');
     Route::delete('slider/destroy/{id}','Backend\SliderController@destroy')->name('slider.destroy');
 
-    // Important Links
-    Route::get('settings/links','Backend\LinkController@index')->name('setting.index');
-    Route::post('settings/link/store','Backend\LinkController@store')->name('setting.store');
-    Route::delete('settings/link/delete/{id}','Backend\LinkController@destroy')->name('setting.destroy');
-// End Important Links
 
-
-    //Settings Route by Rimon
-    Route::get('settings/basicInfo','Backend\SettingsController@basicInfo')->name('settings.basicInfo');
 
     Route::get('students','Backend\StudentController@index')->name('student.list');
     Route::get('student/create','Backend\StudentController@create')->name('student.add');
@@ -357,6 +352,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('socials/update/{id}','Backend\SocialController@update')->name('social.store');
 //Social Links End
 
+    //Route::get('settings/links',[LinkController::class,'index'])->name('settings.link.index');
+
 //    Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 
 
@@ -417,9 +414,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('gallery/albums','Backend\AlbumController@index')->name('gallery-albums.index');
     Route::post('gallery/album/store','Backend\AlbumController@store')->name('gallery-albums.store');
     Route::delete('gallery/album/delete/{id}','Backend\AlbumController@destroy')->name('gallery-albums.destroy');
-    Route::get('GalleryCornerCreate',[\App\Http\Controllers\Backend\GalleryController::class,'galleryCornerCreate'])->name('galleryCorner.create');
-    Route::post('GalleryCornerStore',[\App\Http\Controllers\Backend\GalleryController::class,'galleryCornerStore'])->name('GalleryCornerStore');
-    Route::get('GalleryImageDestroy/{id}',[\App\Http\Controllers\Backend\GalleryController::class,'GalleryImageDestroy'])->name('GalleryImage.destroy');
+    Route::get('GalleryCornerCreate',[GalleryController::class,'galleryCornerCreate'])->name('galleryCorner.create');
+    Route::post('GalleryCornerStore',[GalleryController::class,'galleryCornerStore'])->name('GalleryCornerStore');
+    Route::get('GalleryImageDestroy/{id}',[GalleryController::class,'GalleryImageDestroy'])->name('GalleryImage.destroy');
 
 // Gallery Routes ends
 
@@ -692,9 +689,9 @@ return view('form-pdf');
     Route::get('alumni',[AlumniController::class,'index'])->name('alumni');
 
     //Database backup
-    Route::get('db-backup',[DbBackupContoller::class,'index'])->name('backup.db');
-    Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
-    Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
+    Route::get('db-backup',[DbBackupController::class,'index'])->name('backup.db');
+    //Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
+   // Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
 
 //subscriber
     Route::get('subscriber/list',[SubscriberController::class,'index'])->name('subscriber.list');

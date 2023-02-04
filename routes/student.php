@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Student\NagadPaymentController;
 use App\Http\Controllers\Student\SslCommerzPaymentController;
 use App\Http\Controllers\Student\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,6 @@ Route::post('student/exam-routine',[ProfileController::class, 'examRoutine'])->n
 Route::post('student/syllabus',[ProfileController::class, 'syllabus'])->name('student.syllabus');
 
 // SSLCOMMERZ Start
-
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('student/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('student.pay-via-ajax');
 
@@ -44,6 +44,8 @@ Route::prefix('student')->name('student.')->namespace('Student')->group(function
 //        student diary
     });
 
-
+/** Nagad Payment Gateway Start */
+    Route::post('nagad/create',[NagadPaymentController::class,'create'])->name('student.nagad.create');
+/** Nagad Payment Gateway End */
 
 });

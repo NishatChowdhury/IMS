@@ -18,7 +18,6 @@ use App\Models\Backend\Shift;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentLeave;
-use App\Models\Backend\StudentLogin;
 use App\Models\Backend\Transport;
 use App\Models\Backend\weeklyOff;
 use App\Models\Diary;
@@ -40,7 +39,8 @@ Route::get('system/migrate',function(){
     Artisan::call('migrate');
     dd('migration complete');
 });
-Route::get('storage-link',function(){
+
+Route::get('system/storage-link',function(){
     Artisan::call('storage:link');
     dd('storage complete');
 });
@@ -288,52 +288,41 @@ Route::get('u-a-t/{d}', function ($d){
             ->get();
 
         if ($rawData->isEmpty()) {
-
             $min = null;
             $max = null;
-
-//                $leave = \App\Models\Backend\StudentLeave::query()
-//                    ->where('student_id', $student->id)
-//                    ->where('date', '=', $today)
-//                    ->exists();
-//       return         $weeklyOff = weeklyOff::where('id', 1)->first();
-            $leave = null;
-            $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
-//                return $today;
-            $holiday = Holiday::query()
-                ->where('start', '<=', $today)
-                ->where('end', '>=', $today)
-                ->where('is_holiday', 1)
-                ->exists();
-
-            if ($holiday) {
-                $attendanceStatus = '5'; // Holiday
-            } elseif ($leave) {
-                $attendanceStatus = '7'; // Leave
-            } elseif ($weeklyOff) {
-                $attendanceStatus = '6'; // Weekly Off
-            } else {
-                $attendanceStatus = '2'; // Absent
-            }
         }else{
             $min = $rawData->min('access_time');
             $max = $rawData->max('access_time');
+        }
 
-            $shift = Shift::find($staff->shift_id);
-            $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
-            $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
+        $shift = Shift::query()->find($staff->shift_id);
+        $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
+        $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
 
-            if($min >= $shiftIn && $max <= $shiftOut){
-                $attendanceStatus = '8'; // Late & Early Leave
-            }elseif ($min <= $shiftIn && $max <= $shiftOut) {
-                $attendanceStatus = '4'; // Early Leave
-            } elseif ($min <= $shiftIn) {
-                $attendanceStatus = '1';  // Present
-            } elseif ($min > $shiftIn) {
-                $attendanceStatus = '3'; // Late
-            }
+        $leave = null;
+        $weeklyOff = weeklyOff::query()->where('show_option', $todayCount->format('N'))->first();
+        $holiday = Holiday::query()
+            ->where('start', '<=', $today)
+            ->where('end', '>=', $today)
+            ->where('is_holiday', 1)
+            ->exists();
 
-
+        if ($holiday) {
+            $attendanceStatus = '5'; // Holiday
+        } elseif ($leave) {
+            $attendanceStatus = '7'; // Leave
+        } elseif ($weeklyOff) {
+            $attendanceStatus = '6'; // Weekly Off
+        } elseif ($min >= $shiftIn && $max <= $shiftOut){
+            $attendanceStatus = '8'; // Late & Early Leave
+        }elseif ($min <= $shiftIn && $max <= $shiftOut) {
+            $attendanceStatus = '4'; // Early Leave
+        } elseif ($min <= $shiftIn) {
+            $attendanceStatus = '1';  // Present
+        } elseif ($min > $shiftIn) {
+            $attendanceStatus = '3'; // Late
+        }else {
+            $attendanceStatus = '2'; // Absent
         }
 
         $data = [
