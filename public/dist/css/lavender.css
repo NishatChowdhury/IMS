@@ -28,6 +28,17 @@
     color: #fff;
 }
 
+.btn-primary:hover{
+    background: #1820ae !important;
+    border-color: #1d24af !important;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    border-color: #1820ae !important;
+    color: #1820ae !important;
+}
+
 .bg-primary {
     background-color: #1820AE !important;
 }
@@ -110,7 +121,7 @@
 }
 
 a:hover {
-    color: #00b249 !important;
+    color: #f1ddfa !important;
 }
 
 .ec-nav .nav-link {
@@ -122,7 +133,7 @@ a:hover {
 }
 
 .hover\:primary:hover {
-    background: #00CB54 !important;
+    background: #F1DDFA !important;
     color: #fff !important;
 }
 
