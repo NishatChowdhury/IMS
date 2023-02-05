@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','News')
 
 @section('content')
 

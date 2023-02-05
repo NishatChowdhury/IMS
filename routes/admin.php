@@ -352,7 +352,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('socials/update/{id}','Backend\SocialController@update')->name('social.store');
 //Social Links End
 
-    //Route::get('settings/links',[LinkController::class,'index'])->name('settings.link.index');
+    Route::get('settings/links',[LinkController::class,'index'])->name('settings.link.index');
 
 //    Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 

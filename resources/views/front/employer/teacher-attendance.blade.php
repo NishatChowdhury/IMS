@@ -1,6 +1,6 @@
 { __{('')}}@extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','Teacher Attendance')
 
 @section('content')
 
