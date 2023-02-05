@@ -25,12 +25,10 @@ use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentPayment;
 use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
-use App\Models\Backend\Transport;
 use App\Models\LocationStudent;
 use App\Models\Student\StudentLogin;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
@@ -234,7 +232,6 @@ class StudentController extends Controller
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
-            'blood_group_id' => 'required',
             'religion_id' => 'required',
             'address' => 'required',
             'area' => 'required',
@@ -256,7 +253,7 @@ class StudentController extends Controller
         $data = $req->all();
 
         if ($req->hasFile('pic')){
-            $image = $req->studentId.'.'.$req->file('pic')->getClientOriginalExtension();
+            $image = date('YmdHis').'.'.$req->file('pic')->getClientOriginalExtension();
             $req->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $req->except('pic');
             $data['image'] = $image;
@@ -361,7 +358,6 @@ class StudentController extends Controller
             'status' => 'required',
             'dob' => 'required',
             'gender_id' => 'required',
-            'blood_group_id' => 'required',
             'religion_id' => 'required',
             'address' => 'required',
             'area' => 'required',
@@ -394,10 +390,20 @@ class StudentController extends Controller
             $student->update($data);
         }
 
-        StudentLogin::query()->where('student_id',$id)->first()->updateOrCreate([
-            'name' =>  $request->name,
-            'studentId' => $request->studentId,
-        ]);
+        $studentLogin = StudentLogin::query()->where('student_id',$id)->first();
+
+        if($studentLogin){
+            $studentLogin->update([
+                'name' =>  $request->name,
+                'studentId' => $request->studentId,
+            ]);
+        }else{
+            StudentLogin::query()->create([
+                'name' =>  $request->name,
+                'studentId' => $request->studentId,
+                'student_id' => $id
+            ]);
+        }
 
         $getAcademicClass = AcademicClass::query()->find($request->academic_class_id);
 
@@ -503,7 +509,7 @@ class StudentController extends Controller
         $academic_class_id = $request->academic_class_id;
         $subjectType = $request->subject_type;
         $data = [];
-         $data['studentAcademic'] = StudentAcademic::where('academic_class_id', $academic_class_id)->get();
+        $data['studentAcademic'] = StudentAcademic::where('academic_class_id', $academic_class_id)->get();
         $data['subjects'] = Subject::where('type', $subjectType)->get();
         $data['allSubjects'] = Subject::count();
 
@@ -639,7 +645,7 @@ class StudentController extends Controller
         return view('admin.student.tc');
     }
 
-    
+
     public function moneyReceipt()
     {
         // return 'ddd';
@@ -764,180 +770,144 @@ class StudentController extends Controller
     public function up(Request $request)
     {
         return DB::transaction(function()use($request){
-        $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
-		//dd($academicClass);
-        //$academicYear = substr(trim(Session::query()->where('id',$academicClass->session_id)->first()->year),-2);
-        //$incrementId = Student::query()->max('id');
-        //dd($incrementId);
-       // $increment = $incrementId + 1;
-        
-       // $studentId = 'S'.$academicYear.$increment;
+            $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
 
-        //dd(file($request->file));
-    // return DB::transaction(function()use($request,$academicClass){
-        $file = file($request->file('file'));
-        //dd($file);
-       //dump($file);
-        
-        $sl = 0;
-        foreach($file as $row){
-         // dd($row);
-            if($sl != 0){
-              //  $col = explode('|',$row);
-                $col = explode('|',$row);
-               // dd($col);
-               //dump($col);
-               //dd($data['dob']);
-                //dd($col);
-               //dd($col);
-               /* $data['name'] = $col[1];
-                $data['studentId'] = $studentId;
-                $data['academic_class_id'] = $request->get('academic_class_id');
-                $data['session_id'] = $academicClass->session_id;
-                $data['class_id'] = $academicClass->class_id;
-                $data['section_id'] = $academicClass->section_id;
-                $data['group_id'] = $academicClass->group_id;
-                $data['rank'] = $col[28];
-                $data['father'] = $col[4];
-                $data['mother'] = $col[5];
-                $data['gender_id'] = null;
-                $data['mobile'] = $col[7];
-                $data['dob'] = $col[8];
-                $data['blood_group_id'] = null;
-                $data['religion_id'] = null;
-                $data['image'] = $col[11];
-                $data['address'] = $col[12];
-                $data['area'] = $col[13];
-                $data['zip'] = $col[14];
-                $data['city_id'] = null;
-                $data['country_id'] = null;
-                $data['email'] = $col[17];
-                $data['father_mobile'] = $col[18];
-                $data['mother_mobile'] = $col[19];
-                $data['notification_type_id'] = 0;
-                $data['status'] = 1;*/
+            $file = file($request->file('file'));
 
+            $sl = 0;
+            foreach($file as $row){
+                if($sl != 0){
+                    $col = explode('|',$row);
 
-         //students table
-                $data['name'] = $col[1];
-                //dd($data['name']);
-                //$data['name_bn'] = $col[2];
-                $data['name_bn'] = 'N/A';
-                $data['studentId'] = $col[3];
-                $data['gender_id'] = $col[4];
-                $data['mobile'] = $col[5];
-                $data['dob'] = $col[6];
-                $data['birth_certificate'] = $col[7];
-                $data['blood_group_id'] =$col[8];
-                $data['religion_id'] = $col[9];
-                $data['nationality'] = $col[10];
-                $data['disability'] = $col[11];
-                $data['freedom_fighter'] =$col[12];
-                $data['image'] = $col[13];
-                $data['address'] = $col[14];
-               // dump($data['address']);
-                //dump($col[14]);
-                $data['area'] = $col[15];
-                $data['zip'] = $col[16];
-                $data['city_id'] = $col[17];
-                $data['country_id'] = $col[18];
-                $data['email'] = $col[19];
-                $data['status'] =1;
-                //$data['status'] = $col[20];
-              //  dump($data);
-                $stuid =  Student::query()->create($data);
-           //dump($stuid->id);
+                    //students table
+                    $data['name'] = $col[1];
+                    $data['name_bn'] = $col[2];
+                    $data['studentId'] = $col[3];
+                    $data['gender_id'] = $col[4];
+                    $data['mobile'] = $col[5];
+                    $data['dob'] = $col[6];
+                    $data['birth_certificate'] = $col[7];
+                    $data['blood_group_id'] = $col[8];
+                    $data['religion_id'] = $col[9];
+                    $data['nationality'] = $col[10];
+                    $data['disability'] = $col[11];
+                    $data['freedom_fighter'] = $col[12];
+                    $data['image'] = $col[13];
+                    $data['address'] = $col[14];
+                    $data['area'] = $col[15];
+                    $data['zip'] = $col[16];
+                    $data['city_id'] = $col[17];
+                    $data['country_id'] = $col[18];
+                    $data['email'] = $col[19];
+                    $data['status'] =1;
+                    $student = Student::query()->where('studentId',$col[3])->latest()->first();
 
-           // student_logins table
-                 
-               $Ldata['name'] = $col[1];
-               $Ldata['student_id']=$stuid->id;
-               $Ldata['studentId'] =$col[3];
-               $Ldata['password'] = Hash::make('student123');
-          // $Ldata['password']=$col[54];
-           //dump($Ldata);
-               StudentLogin::query()->create($Ldata);
+                    if($student){
+                        $student->update($data);
+                        $stuid = $student;
+                    }else{
+                        $stuid = Student::query()->create($data);
+                    }
 
-            // student_academics table
-                $dataAC['student_id']=$stuid->id;
-               //$dataAC['academic_class_id'] = $col[22];
-                $dataAC['academic_class_id'] = $request->get('academic_class_id');
-                $dataAC['session_id'] = $academicClass->session_id;
-                //$dataAC['session_id'] = $col[23];
-                $dataAC['class_id'] = $academicClass->class_id;
-                //$dataAC['class_id'] = $col[24];
-                $dataAC['section_id'] = $academicClass->section_id;
-                //$dataAC['section_id'] = $col[25];
-                $dataAC['group_id'] = $academicClass->group_id;//shows null in database;
-                //$dataAC['group_id'] =$col[25];
-               // $dataAC['shift_id']=$col[27];
-                $dataAC['shift_id']=1;
-                $dataAC['rank'] = $col[28];
-                $dataAC['status'] = 1;
-               //dump($dataAC);
+                    // student_logins table
 
-                StudentAcademic::query()->create($dataAC);
-                //fathers table
-                $Fdata['f_name'] = $col[45];
-               
-                $Fdata['f_name_bn'] = $col[46];
-                $Fdata['student_id']=$stuid->id;
-                $Fdata['f_mobile']=$col[47];
-                $Fdata['f_email']=$col[48];
-                $Fdata['f_dob']=$col[49];
-                $Fdata['f_occupation']=$col[50];
-                $Fdata['f_nid']=$col[51];
-                $Fdata['f_birth_certificate']=$col[52];
+                    $Ldata['name'] = $col[1];
+                    $Ldata['student_id'] = $stuid->id;
+                    $Ldata['studentId'] = $col[3];
+                    $Ldata['password'] = Hash::make('student123');
+                    $slogin = StudentLogin::query()->where('studentId',$col[3])->latest()->first();
+                    if($slogin){
+                        $slogin->update($Ldata);
+                    }else{
+                        StudentLogin::query()->create($Ldata);
+                    }
 
-               //dump($Fdata);
-               Father::query()->create($Fdata);
-               
-                
-                
-                //mothers table 
+                    // student_academics table
+                    $dataAC['student_id']=$stuid->id;
+                    $dataAC['academic_class_id'] = $request->get('academic_class_id');
+                    $dataAC['session_id'] = $academicClass->session_id;
+                    $dataAC['class_id'] = $academicClass->class_id;
+                    $dataAC['section_id'] = $academicClass->section_id;
+                    $dataAC['group_id'] = $academicClass->group_id;//shows null in database;
+                    $dataAC['shift_id'] = $col[27];
+                    $dataAC['rank'] = $col[28];
+                    $dataAC['status'] = 1;
 
-                
-                $Mdata['m_name'] = $col[29];
-                $Mdata['m_name_bn'] = $col[30];
-                $Mdata['student_id']=$stuid->id;
-                $Mdata['m_mobile']=$col[31];
-                $Mdata['m_email']=$col[32];
-                $Mdata['m_dob']=$col[33];
-                $Mdata['m_occupation']=$col[34];
-                $Mdata['m_nid']=$col[35];
-                $Mdata['m_birth_certificate']=$col[36];
-              //dump($Mdata);
-                Mother::query()->create($Mdata);
+                    $sacademic = StudentAcademic::query()
+                        ->where('academic_class_id',$academicClass)
+                        ->where('student_id',$stuid->id)
+                        ->latest()
+                        ->first();
+                    if($sacademic){
+                        $sacademic->update($dataAC);
+                    }else{
+                        StudentAcademic::query()->create($dataAC);
+                    }
 
-                // guardians table
-                $Gdata['g_name'] = $col[37];
-                $Gdata['g_name_bn'] = $col[38];
-                $Gdata['student_id']=$stuid->id;
-                $Gdata['g_mobile']=$col[39];
-                $Gdata['g_email']=$col[40];
-                $Gdata['g_dob']=$col[41];
-                $Gdata['g_occupation']=$col[42];
-                $Gdata['g_nid']=$col[43];
-                $Gdata['g_birth_certificate']=$col[44];
-                //dump($Gdata);
-                Guardian::query()->create($Gdata);
-               
-               
+                    //fathers table
+                    $Fdata['f_name'] = $col[45];
+                    $Fdata['f_name_bn'] = $col[46];
+                    $Fdata['student_id']=$stuid->id;
+                    $Fdata['f_mobile']=$col[47];
+                    $Fdata['f_email']=$col[48];
+                    $Fdata['f_dob']=$col[49];
+                    $Fdata['f_occupation']=$col[50];
+                    $Fdata['f_nid']=$col[51];
+                    $Fdata['f_birth_certificate']=$col[52];
+
+                    $fstudent = Father::query()->where('student_id',$stuid->id)->latest()->first();
+                    if($fstudent){
+                        $fstudent->update($Fdata);
+                    }else{
+                        Father::query()->create($Fdata);
+                    }
+
+                    //mothers table
+                    $Mdata['m_name'] = $col[29];
+                    $Mdata['m_name_bn'] = $col[30];
+                    $Mdata['student_id'] = $stuid->id;
+                    $Mdata['m_mobile'] = $col[31];
+                    $Mdata['m_email'] = $col[32];
+                    $Mdata['m_dob'] = $col[33];
+                    $Mdata['m_occupation'] = $col[34];
+                    $Mdata['m_nid'] = $col[35];
+                    $Mdata['m_birth_certificate'] = $col[36];
+
+                    $mstudent = Mother::query()->where('student_id',$stuid->id)->latest()->first();
+                    if($mstudent){
+                        $mstudent->update($Mdata);
+                    }else{
+                        Mother::query()->create($Mdata);
+                    }
+
+                    // guardians table
+                    $Gdata['g_name'] = $col[37];
+                    $Gdata['g_name_bn'] = $col[38];
+                    $Gdata['student_id'] = $stuid->id;
+                    $Gdata['g_mobile'] = $col[39];
+                    $Gdata['g_email'] = $col[40];
+                    $Gdata['g_dob'] = $col[41];
+                    $Gdata['g_occupation'] = $col[42];
+                    $Gdata['g_nid'] = $col[43];
+                    $Gdata['g_birth_certificate'] = $col[44];
+                    $gstudent = Guardian::query()->where('student_id',$stuid->id)->latest()->first();
+                    if($gstudent){
+                        $gstudent->update($Gdata);
+                    }else{
+                        Guardian::query()->create($Gdata);
+                    }
+                }
+                $sl++;
             }
-            $sl++;
-        }
-           // dd('ok');
 
-		   
-       // return redirect('institution/academic-class');
-       return redirect()->back()->withSuccess('success');
-     },5);
-   
+            // return redirect('institution/academic-class');
+            return redirect()->back()->withSuccess('success');
+        },5);
+
     }
 
     public function studentProfile($studentId)
     {
-
         $student = Student::query()->findOrFail($studentId);
         $data = [];
         $data['father'] = Father::query()->where('student_id', $studentId)->first();
@@ -950,7 +920,7 @@ class StudentController extends Controller
         $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
         // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
         $payments = StudentPayment::query()
-            ->where('student_academic_id',$studentAcademic->id)
+            ->where('student_id',$studentId)
             ->get();
 //        if($payments){
 //            $payments = StudentPayment::query()
