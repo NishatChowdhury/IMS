@@ -799,7 +799,9 @@ class StudentController extends Controller
                     $data['city_id'] = $col[17];
                     $data['country_id'] = $col[18];
                     $data['email'] = $col[19];
+                    //$data['status'] =$col[20];
                     $data['status'] =1;
+					
                     $student = Student::query()->where('studentId',$col[3])->latest()->first();
 
                     if($student){
@@ -831,10 +833,10 @@ class StudentController extends Controller
                     $dataAC['group_id'] = $academicClass->group_id;//shows null in database;
                     $dataAC['shift_id'] = $col[27];
                     $dataAC['rank'] = $col[28];
-                    $dataAC['status'] = 1;
-
+                    $dataAC['status'] =1;
+                    
                     $sacademic = StudentAcademic::query()
-                        ->where('academic_class_id',$academicClass)
+                        ->where('academic_class_id',$academicClass->id)
                         ->where('student_id',$stuid->id)
                         ->latest()
                         ->first();
@@ -856,6 +858,7 @@ class StudentController extends Controller
                     $Fdata['f_birth_certificate']=$col[52];
 
                     $fstudent = Father::query()->where('student_id',$stuid->id)->latest()->first();
+					//dd($fstudent);
                     if($fstudent){
                         $fstudent->update($Fdata);
                     }else{
