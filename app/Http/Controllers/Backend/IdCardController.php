@@ -26,7 +26,19 @@ class IdCardController extends Controller
     public function index()
     {
         $repository = $this->repository;
-        return view('admin.student.designStudentCard',compact('repository'));
+        return view('admin.student.studentIdCard',compact('repository'));
+    }
+
+    public function generateStudentCard_v1()
+    {
+        $repository = $this->repository;
+        return view('admin.student.designStudentCard_v1',compact('repository'));
+    }
+
+    public function generateStudentCard_v2()
+    {
+        $repository = $this->repository;
+        return view('admin.student.designStudentCard_v2',compact('repository'));
     }
 
     public function staff()
