@@ -37,7 +37,7 @@
     <div class="col-sm-10">
         <div class="input-group">
 {{--            <input name="start" class="form-control datePicker" aria-describedby="" required>--}}
-            {{ Form::text('start',null,['class'=>'form-control datePicker']) }}
+            {{ Form::text('start',null,['class'=>'form-control datePicker','required']) }}
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
             </div>
