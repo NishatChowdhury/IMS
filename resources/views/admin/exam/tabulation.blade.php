@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tabulation Sheet</h1>
+                    <h1>{{ __('Tabulation Sheet') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Exam Management</a></li>
-                        <li class="breadcrumb-item active">Tabulation Sheet</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Exam Management') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Tabulation Sheet') }}</li>
                     </ol>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="class">Class</label>
+                                    <label for="class">{{ __('Class') }}</label>
                                     <div class="input-group">
                                         <select name="class_id" id="class" class="form-control">
                                             @foreach($repository->academicClasses() as $class)
@@ -61,11 +61,11 @@
     @if($results)
 
         <section class="content" >
-{{--            <div class="row">--}}
-{{--                <div class="col-12 text-right p-5">--}}
-{{--                    <button class="btn btn-dark btn-sm" onclick="printPage()">Print Page</button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="row">
+               <div class="col-12 text-right p-5">
+                  <a href="javascript:window.print()" role="button" class="btn btn-success btn-sm" title="PRINT"><i class="fas fa-print"></i></a>
+               </div>
+           </div>
             <div class="container-fluid" id="print_page">
 
                 <div class="card-body">
@@ -79,10 +79,10 @@
                                 </div>
                                 <div class="col-4 col-offset-2">
                                     <div class="scl-name text-center">
-                                        <h1><b>{{ siteConfig('name') }}</b></h1>
+                                        <h2><b>{{ siteConfig('name') }}</b></h2>
                                         <p>{{ siteConfig('address') }}</p>
-                                        <h6> <b>Exam Name :     </b>{{ $results->first()->exam->name }}</h6>
-                                        <h6> <b>Class Name :    </b>{{ $results->first()->studentAcademic->classes->name ?? ''  }}</h6>
+                                        <h6> <b>{{ __('Exam Name :') }}</b>{{ $results->first()->exam->name }}</h6>
+                                        <h6> <b>{{ __('Class Name :') }}</b>{{ $results->first()->studentAcademic->classes->name ?? ''  }}-{{ $results->first()->studentAcademic->group->name ?? ''  }}-{{ $results->first()->studentAcademic->section->name ?? ''  }}</h6>
                                         <h3>{{ __('Tabulation Sheet') }}</h3>
                                     </div>
                                 </div>
@@ -98,15 +98,16 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Student ID</th>
-                                        <th>Student Name</th>
-                                        <th>Roll No</th>
+                                        <th><b>{{ __('Student ID') }}</b></th>
+                                        <th><b>{{ __('Student Name') }}</b></th>
+                                        <th><b>{{ __('Roll No') }}</b></th>
                                         @foreach($subjects as $subject)
-                                            <td>{{ $subject->subject->short_name }}</td>
+                                            <td><b>{{ $subject->subject->short_name }}</b></td>
                                         @endforeach
-                                        <th>Total Mark</th>
-                                        <th>GPA</th>
-                                        <th>Rank</th>
+                                        <th><b>{{ __('Total Mark') }}</b></th>
+                                        <th><b>{{ __('GPA') }}</b></th>
+                                        <th><b>{{ __('Grade') }}</b></th>
+                                        <th><b>{{ __('No. Of Fails') }}</b></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -116,19 +117,54 @@
                                             <td>{{ $result->studentAcademic->student->name ?? '' }}</td>
                                             <td>{{ $result->studentAcademic->rank ?? '' }}</td>
                                             @foreach($subjects as $subject)
-                                                <td>
-                                                    {{ \App\Models\Backend\Mark::query()
+                                                @php
+                                                   $mark = \App\Models\Backend\Mark::query()
                                                     ->where('academic_class_id',$result->studentAcademic->academic_class_id)
                                                     ->where('exam_id',$result->exam_id)
                                                     ->where('subject_id',$subject->subject_id)
                                                     ->where('student_id',$result->student_academic_id)
                                                     ->first()
-                                                    ->total_mark }}
-                                                </td>
+                                                    ->total_mark ?? ''
+                                                @endphp
+                                                
+                                                @if($mark < 25)
+                                                    <td style="color:red">
+                                                        <b>
+                                                        {{ \App\Models\Backend\Mark::query()
+                                                        ->where('academic_class_id',$result->studentAcademic->academic_class_id)
+                                                        ->where('exam_id',$result->exam_id)
+                                                        ->where('subject_id',$subject->subject_id)
+                                                        ->where('student_id',$result->student_academic_id)
+                                                        ->first()
+                                                        ->total_mark ?? '' }}
+                                                        </b>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        {{ \App\Models\Backend\Mark::query()
+                                                        ->where('academic_class_id',$result->studentAcademic->academic_class_id)
+                                                        ->where('exam_id',$result->exam_id)
+                                                        ->where('subject_id',$subject->subject_id)
+                                                        ->where('student_id',$result->student_academic_id)
+                                                        ->first()
+                                                        ->total_mark ?? '' }}
+                                                    </td>
+                                                @endif
                                             @endforeach
                                             <td>{{ $result->total_mark  ?? ''}}</td>
                                             <td><b>{{ $result->gpa ?? '' }}</b></td>
-                                            <td>{{ $result->rank ?? '' }}</td>
+                                            <td>{{ $result->grade ?? '' }}</td>
+                                            <td>
+                                                {{ \App\Models\Backend\Mark::query()
+                                                ->where('academic_class_id',$result->studentAcademic->academic_class_id)
+                                                ->where('exam_id',$result->exam_id)
+                                                ->where('student_id',$result->student_academic_id)
+                                                ->where('grade','F')
+                                                ->select('grade')
+                                                ->get()
+                                                ->count()
+                                                }}
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
