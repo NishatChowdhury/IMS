@@ -37,39 +37,32 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                                            <div class="card-header" style="padding: 0.5rem 0.25rem;">
+                                            <div class=" bg-white " style="padding: 0.5rem 0.25rem;">
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="left">
-                                                            <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="100%" style="border-radius: 50%;">
+                                                    <div class="col-md-12 ">
+                                                        <div class="left ">
+                                                            <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:.6in ; height:.6in" class="text-center rounded-circle mx-auto d-block">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-9">
-                                                        <div class="right">
-                                                            <div class="scl-cd-dec" style="padding-top: 6px;">
-                                                                <h6 class="scl-cd-name"><strong> {{ siteConfig('name') }}</strong></h6>
-                                                                <p class="scl-cd-add">{{ siteConfig('address') }}</p>
-                                                                {{--<strong class=""> <p>{{ siteConfig('name') }}  <br> </strong>--}}
-                                                                {{--</p>--}}
+                                                    <div class="col-md-12">
+                                                        <div class="right text-center" >
+                                                            <div class="scl-cd-dec text-wrap text-bold" >
+                                                            <h2 style="padding-top: 3px;    position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:green">KARNAPHULI ABDUL JALAL CHOWDHURY COLLEGE</h2>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-body text-center">
-                                                <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
-                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                                <h6 class="card-title text-bold nName"> Student Name </h6>
+                                               
+                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:70px ; height:70px" class="text-center rounded mx-auto d-block">
+                                                <h2 style="padding-top: 3px;    position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:black">Md. Hosen Zisad</h2>
                                                 <div class="row">
-                                                    <div class="right col-12" style="float:left; margin-top: 10px;">
+                                                    <div class="right col-12" style="float:left; margin-top: 3px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                                 <tbody>
-                                                                <tr class="tname">
-                                                                    <td><strong> Name </strong></td>
-                                                                    <td>:</td>
-                                                                    <td><strong> Student Name </strong></td>
-                                                                </tr>
+                                                              
                                                                 <tr class="tfname">
                                                                     <td> Father </td>
                                                                     <td>:</td>
@@ -130,7 +123,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div style="margin-top: 10px;">
+                                                <!-- <div style="margin-top: 10px;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <p class="card-title" style="text-align: left; font-size: 14px"> <strong>ID : S306319</strong> </p>
@@ -139,10 +132,22 @@
                                                             <p id="idsignature" class="card-title text-bold" style="text-align: right; font-size: 14px"> <strong style="border-top: 1px solid red;">Principal</strong></p>
                                                         </div>
                                                     </div>
+                                                </div> -->
+                                                <div class="logoo3 ">
+                                                <img src="sin.png">
+                                                   </div>
+                                            </div>
+
+
+                                            <div class=" grid-container">
+                                                <div class="item1">Signature</div>
+                                                  <div class="item2"> <span>Shikalbaha, Budpura, Karnaphuli, Chattogram - 4317</span>
+                                              </div>
                                                 </div>
-                                            </div>
-                                            <div class="card-footer" style="height: 40px;">
-                                            </div>
+
+
+                                            <!-- <div class="card-footer" style="height: 40px;">
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="col-12" style="padding-top: 50px;">
@@ -487,14 +492,6 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
-                                            {{--                                            <div class="col">--}}
-                                            {{--                                                <div class="form-group">--}}
-                                            {{--                                                    <div class="input-group">--}}
-                                            {{--                                                        {{ Form::select('user',[1=>'Student',2=>'Teacher'],null,['class'=>'form-control','placeholder'=>'Select User','required']) }}--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                </div>--}}
-                                            {{--                                                <!-- /input-group -->--}}
-                                            {{--                                            </div>--}}
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -585,6 +582,70 @@
     background: #f7f7f7;
 }
 
+
+
+.grid-container {
+    position: relative;
+    top: 1px;
+/* bottom: -87px; */
+    border-radius: 10px;
+    display: grid;
+    /* grid-template-columns: auto auto auto auto; */
+ 
+    background-color: #fff;
+  
+}
+
+.grid-container>div {
+
+    text-align: center;
+    height: 36px;
+   
+
+}
+
+.item1 {
+
+    grid-column: 1/ span 2;
+    border-radius: 0px 0px 0px 5px;
+    background-color: rgb(25, 134, 223);
+    font-size: 17px;
+  color: #fff;
+
+
+}
+
+.item2 {
+    grid-column: 3/ span 3;
+    border-radius: 0px 0px 5px 0px;
+    background-color: rgba(56, 147, 11, 0.8);
+    font-size: 11px;
+
+}
+
+.item2 span{
+    top: 3px;
+    position: relative;
+ color: #fff;
+
+}
+
+.logoo3 {
+    position: absolute;
+    height: 35px;
+    width: 140px;
+    bottom: 20px;
+    left: -35px;
+
+}
+
+.logoo3 img {
+    height: 100%;
+    width: 50%;
+    color: white;
+    border-radius: 10px;
+    background-position-x: bottom;
+}
     </style>
 @stop
 
