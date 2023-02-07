@@ -36,7 +36,7 @@
                                 <div class="col-md-6">
                                     <div class="col-md-6">
                                         <a href="{{ route('student.generateStudentCard_v2') }}">
-                                            <img src="{{ asset('assets/img/studentIdCard/studentId_2.png') }}"
+                                            <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpeg') }}"
                                                 alt="" width="270" height="450">
                                         </a>
                                     </div>
