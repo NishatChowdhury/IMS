@@ -219,27 +219,28 @@ class StudentController extends Controller
         return view('admin.student.create', compact('repository','academicClass'));
     }
 
-    public function store(Request $req){
+    public function store(Request $req)
+    {
 
-
+        DB::beginTransaction();
         $rules = [
             'name' => 'required',
-            'name_bn' => 'required',
-            'birth_certificate' => 'required|integer',
-            'nationality' => 'required',
-            'disability' => 'required',
+            //'name_bn' => 'required',
+            //'birth_certificate' => 'required|integer',
+            //'nationality' => 'required',
+            //'disability' => 'required',
             'studentId' => 'required|unique:students',
             'status' => 'required',
-            'dob' => 'required',
+            //'dob' => 'required',
             'gender_id' => 'required',
             'religion_id' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'zip' => 'required',
-            'city_id' => 'required',
-            'country_id' => 'required',
+            //'address' => 'required',
+            //'area' => 'required',
+            //'zip' => 'required',
+            //'city_id' => 'required',
+            //'country_id' => 'required',
             'mobile' => 'required',
-            'email' => 'required',
+            //'email' => 'required',
         ];
 
         $customMessages = [
@@ -323,7 +324,7 @@ class StudentController extends Controller
             'g_nid' => $req->g_nid,
             'g_birth_certificate' => $req->g_birth_certificate,
         ]);
-
+        DB::commit();
         return redirect('admin/students')->with('success','Student Added Successfully');
 
     }
@@ -344,28 +345,27 @@ class StudentController extends Controller
 
     public function update($id, Request $request)
     {
+        DB::beginTransaction();
         $student = Student::query()->findOrFail($id);
 
         $rules = [
             'name' => 'required',
-            'name_bn' => 'required',
-            'f_name' => 'required',
-            'f_name_bn' => 'required',
-            'birth_certificate' => 'required|integer',
-            'nationality' => 'required',
-            'disability' => 'required',
-            'studentId' => ['required',Rule::unique('students')->ignore($id)],
+            //'name_bn' => 'required',
+            //'birth_certificate' => 'required|integer',
+            //'nationality' => 'required',
+            //'disability' => 'required',
+            'studentId' => ['required',Rule::unique('students')->ignore($student->id)],
             'status' => 'required',
-            'dob' => 'required',
+            //'dob' => 'required',
             'gender_id' => 'required',
             'religion_id' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'zip' => 'required',
-            'city_id' => 'required',
-            'country_id' => 'required',
+            //'address' => 'required',
+            //'area' => 'required',
+            //'zip' => 'required',
+            //'city_id' => 'required',
+            //'country_id' => 'required',
             'mobile' => 'required',
-            'email' => 'required',
+            //'email' => 'required',
         ];
 
         $customMessages = [
@@ -455,7 +455,7 @@ class StudentController extends Controller
         ]);
 
         \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
-
+        DB::commit();
         return redirect('admin/students');
 //        return redirect()->back();
     }
