@@ -77,11 +77,11 @@
                                 </tr>
                             @endisset
                             @isset($card['index'])
-                            <tr>
-                                <td> Index No. </td>
-                                <td>&nbsp;:&nbsp;</td>
-                                <td>{{ $staff->code }}</td>
-                            </tr>
+                                <tr>
+                                    <td> Index No. </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $staff->code }}</td>
+                                </tr>
                             @endisset
                             @isset($card['contact'])
                                 <tr>
@@ -109,7 +109,7 @@
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
                         <div class="row">
                             <div class="col">
-                                {{--                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>Index No : {{ $staff->code }}</strong> </p>--}}
+                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>Index No : {{ $staff->card_id }}</strong> </p>
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>
