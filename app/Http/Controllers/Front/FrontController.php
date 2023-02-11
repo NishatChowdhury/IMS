@@ -136,17 +136,16 @@ class FrontController extends Controller
         return view('front.pages.internal-exam',compact('result','marks','repository'));
     }
 
-
-
 //News & Notice Start...
     public function notice()
     {
         $notices = Notice::query()
             ->where('notice_type_id',2)
             ->orderByDesc('start')
-            ->get();
+            ->paginate(25);
 
         $categories = NoticeCategory::all();
+
         return view('front.notice.index',compact('notices','categories'));
     }
     public function noticeDetails($id)
@@ -178,6 +177,7 @@ class FrontController extends Controller
 //Gallery
     public function gallery()
     {
+        dd('gallery');
         $categories = GalleryCategory::all();
         $albums = Album::all();
         return view('front.pages.gallery',compact('categories','albums'));
@@ -323,8 +323,8 @@ class FrontController extends Controller
     public function page($uri,Request $request)
     {
 
-         $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
-//         dd($content);
+        $content = Menu::query()->where('uri',$uri)->firstOr(function (){abort(404);});
+
         if($content->type == 3){
 
             $notices = null;
@@ -334,6 +334,7 @@ class FrontController extends Controller
             $albums = null;
 
             $repository = $this->repository;
+
 
             if($content->system_page === 'notice'){
                 $notices = Notice::query()
@@ -368,7 +369,14 @@ class FrontController extends Controller
                 return view('front.'.$uri.'.index',compact('categories','teachers','notices','staffs','repository'));
             }
 
-            if($content->url === 'news'){
+            if($content->uri === 'teacher'){
+                $teachers = Staff::query()
+                    ->where('staff_type_id',2)
+                    ->get();
+                return view('front.pages.teacher',compact('teachers'));
+            }
+
+            if($content->uri === 'news'){
                 $newses = Notice::query()
                     ->where('notice_type_id',1)
                     ->orderByDesc('start')
