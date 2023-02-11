@@ -135,15 +135,19 @@ class TeacherController extends Controller
     // To retrieve student wise attendance
     public function studentWiseAttendance(Request $request)
     {
+        $year = $request->get('year');
+        $month = $request->get('month');
         $student = Student::query()
             ->where('studentId', $request->studentId)
             ->first();
         $studentAcademic = StudentAcademic::query()
             ->where('id', $student->id)
             ->with('classes', 'section', 'group')
+            ->latest()
             ->first();
         $attendances = Attendance::query()
             ->where('student_academic_id', $studentAcademic->id ?? '')
+            ->where('date','like','%'.$year.'-'.$month.'%')
             ->get();
         if ($attendances) {
             $data = [];
@@ -396,7 +400,7 @@ class TeacherController extends Controller
             $data['student_academic_id'] = $attendance['student_academic_id'];
             $data['date'] = $request->date;
             $data['shift_id'] = $attendance['shift_id'];
-            $data['attendance_status_id'] = $attendance['attendance_status_id'] == 'true' ? 1 : 2;
+            $data['attendance_status_id'] = $attendance['attendance_status_id'] ? 1 : 2;
             $isExists = Attendance::query()
                 ->where('date',$request->date)
                 ->where('student_academic_id',$attendance['student_academic_id'])
@@ -407,7 +411,7 @@ class TeacherController extends Controller
                     ->where('student_academic_id',$attendance['student_academic_id'])
                     ->first();
                 try {
-                    $attn->update(['attendance_status_id'=>$attendance['attendance_status_id']]);
+                    $attn->update(['attendance_status_id'=>$data['attendance_status_id']]);
                 }catch (Exception $e){
                     return response()->json($e->getMessage());
                 }
