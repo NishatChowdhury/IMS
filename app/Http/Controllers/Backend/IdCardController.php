@@ -60,7 +60,7 @@ class IdCardController extends Controller
         if($request->section){
             $std->where('section_id',$request->section);
         }
-        if($request->group){
+        if($request->group_id){
             $std->where('group_id',$request->group);
         }
         if($request->ranks){
