@@ -280,7 +280,7 @@ class TeacherController extends Controller
                     'studentName' => $student->name ?? '',
                     'shift_id' => $stuAca->shift_id ?? '',
                     'attendance_status_id' => $attn->attendance_status_id,
-                    'status' => $attn->attendanceStatus->code ?? ''
+                    //'status' => $attn->attendanceStatus->code ?? ''
                 ];
             }
         }
@@ -396,7 +396,7 @@ class TeacherController extends Controller
             $data['student_academic_id'] = $attendance['student_academic_id'];
             $data['date'] = $request->date;
             $data['shift_id'] = $attendance['shift_id'];
-            $data['attendance_status_id'] = $attendance['attendance_status_id'];
+            $data['attendance_status_id'] = $attendance['attendance_status_id'] == 'true' ? 1 : 2;
             $isExists = Attendance::query()
                 ->where('date',$request->date)
                 ->where('student_academic_id',$attendance['student_academic_id'])

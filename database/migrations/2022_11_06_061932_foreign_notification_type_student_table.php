@@ -14,8 +14,8 @@ class ForeignNotificationTypeStudentTable extends Migration
     public function up()
     {
         Schema::table('notification_type_student', function (Blueprint $table) {
-            $table->foreign('notification_type_id')->references('id')->on('notification_types');
-            $table->foreign('student_id')->references('id')->on('students');
+            //$table->foreign('notification_type_id')->references('id')->on('notification_types');
+            //$table->foreign('student_id')->references('id')->on('students');
         });
     }
 

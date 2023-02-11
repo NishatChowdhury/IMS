@@ -11,7 +11,6 @@ class AssignSubject extends Model
     protected $fillable= [
         'academic_class_id',
         'subject_id',
-        'class_id',
         'teacher_id',
         'is_optional',
         //'objective_pass',

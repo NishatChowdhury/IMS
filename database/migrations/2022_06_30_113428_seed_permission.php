@@ -613,6 +613,7 @@ class SeedPermission extends Migration
                 \App\Models\Backend\Permission::create([
                     'group_name' => $gpName,
                     'name' => $permission,
+                    'module_id' => 1,
                 ]);
             }
         }

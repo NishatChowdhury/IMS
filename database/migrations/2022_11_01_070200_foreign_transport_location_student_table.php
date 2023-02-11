@@ -14,8 +14,8 @@ class ForeignTransportLocationStudentTable extends Migration
     public function up()
     {
         Schema::table('transports', function (Blueprint $table) {
-            $table->foreign('location_id')->references('id')->on('locations');
-            $table->foreign('student_id')->references('id')->on('students');
+            //$table->foreign('location_id')->references('id')->on('locations');
+            //$table->foreign('student_id')->references('id')->on('students');
         });
     }
 
