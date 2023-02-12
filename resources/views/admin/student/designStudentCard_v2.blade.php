@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Student | Design Student ID')
+@section('title', 'Student | Design Student ID')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Design Student ID</h1>
+                    <h1>{{ __('Design Student ID') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Student</a></li>
-                        <li class="breadcrumb-item active">Design Student ID</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Student') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Design Student ID') }}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div style="float: right !important; margin-right: 20px; margin-bottom: 10px;">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@mdo"
+                                        style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                        {{ __('Add') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -41,113 +44,103 @@
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="left ">
-                                                            <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:.6in ; height:.6in" class="text-center rounded-circle mx-auto d-block">
+                                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
+                                                                style="width:.6in ; height:.6in"
+                                                                class="text-center rounded-circle mx-auto d-block">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="right text-center" >
-                                                            <div class="scl-cd-dec text-wrap text-bold" >
-                                                            <h2 style="padding-top: 3px;    position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:green">KARNAPHULI ABDUL JALAL CHOWDHURY COLLEGE</h2>
+                                                        <div class="right text-center">
+                                                            <div class="scl-cd-dec text-wrap text-bold">
+                                                                <h2
+                                                                    style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(151, 4, 4)">
+                                                                    <strong>{{ siteConfig('name') }}</strong>
+                                                                </h2>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-body text-center">
-                                               
-                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:70px ; height:70px" class="text-center rounded mx-auto d-block">
-                                                <h2 style="padding-top: 3px;    position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:black">Md. Hosen Zisad</h2>
+
+                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:70px ; height:70px" class="text-center rounded mx-auto d-block border border-dark">
+                                                <h1 class="card-title text-bold nName"
+                                                    style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
+                                                    {{ __('Student Name') }}</h1>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 3px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                                 <tbody>
-                                                              
-                                                                <tr class="tfname">
-                                                                    <td> Father </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tmname">
-                                                                    <td> Mother </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tcname">
-                                                                    <td> Class </td>
-                                                                    <td>:</td>
-                                                                    <td> Seven </td>
-                                                                </tr>
-                                                                <tr class="tsname">
-                                                                    <td> Section </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="trname">
-                                                                    <td> Roll </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tgname">
-                                                                    <td> Group </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tbname">
-                                                                    <td> Blood Group </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tpname">
-                                                                    <td> Contact </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tdname">
-                                                                    <td> Depertmant </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tdobname">
-                                                                    <td> Date Of Birth </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="taname">
-                                                                    <td> Admission Date </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
+                                                                    <tr class="tfname">
+                                                                        <td><b>{{ __('Father') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ _('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tmname">
+                                                                        <td> <b>{{ __('Mother') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tcname">
+                                                                        <td> <b>{{ __('Class') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td> {{ __('Seven') }} </td>
+                                                                    </tr>
+                                                                    <tr class="tsname">
+                                                                        <td><b>{{ __('Section') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="trname">
+                                                                        <td><b>{{ __('Roll') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tgname">
+                                                                        <td><b>{{ __('Group') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tbname">
+                                                                        <td><b>{{ __('Blood Group') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tpname">
+                                                                        <td><b>{{ __('Contact') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tdname">
+                                                                        <td><b>{{ __('Depertmant') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="tdobname">
+                                                                        <td><b>{{ __('Date Of Birth') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
+                                                                    <tr class="taname">
+                                                                        <td><b>{{ __('Admission Date') }}</b></td>
+                                                                        <td>:</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div style="margin-top: 10px;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <p class="card-title" style="text-align: left; font-size: 14px"> <strong>ID : S306319</strong> </p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p id="idsignature" class="card-title text-bold" style="text-align: right; font-size: 14px"> <strong style="border-top: 1px solid red;">Principal</strong></p>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <div class="logoo3 ">
-                                                <img src="sin.png">
-                                                   </div>
                                             </div>
 
 
                                             <div class=" grid-container">
-                                                <div class="item1">Signature</div>
-                                                  <div class="item2"> <span>Shikalbaha, Budpura, Karnaphuli, Chattogram - 4317</span>
-                                              </div>
+                                                <div class="item1">{{ __('Shikalbaha, Budpura, Karnaphuli, Chattogram -
+                                                    4317') }}
                                                 </div>
-
-
-                                            <!-- <div class="card-footer" style="height: 40px;">
-                                            </div> -->
+                                                <div class="item2" id="idsignature"><span>{{ __('Principal') }}</span></div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12" style="padding-top: 50px;">
@@ -155,39 +148,45 @@
                                             <div class="card-body text-center">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
-                                                            <ul style="margin: 0px !important; padding: 10px 15px !important;">
-                                                                <li>This card is valid till <span class="valid-date">31-Dec-2020</span></li>
-                                                                <li>This card is not transferable</li>
-                                                                <li>This finder of this card may please drop it to the nearest post office.</li>
+                                                        <div class="card-back-dec text-bold"
+                                                            style="text-align: left; margin-top: 10px;font-size: 12px">
+                                                            <ul
+                                                                style="margin: 0px !important; padding: 10px 15px !important;">
+                                                                <li>{{ __('This card is valid till') }} <span
+                                                                        class="valid-date">{{ __('31-Dec-2020') }}</span></li>
+                                                                <li>{{ __('This card is not transferable') }}</li>
+                                                                <li>{{ __('This finder of this card may please drop it to the
+                                                                    nearest post office.') }}</li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
+                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
+                                                    width="60">
                                                 <div class="row">
                                                     <div class="" style="margin-top: 20px;">
-                                                        <p><strong>{{ siteConfig('name') }}  <br> </strong>
+                                                        <p><strong>{{ siteConfig('name') }} <br> </strong>
                                                             {{ siteConfig('address') }}</p>
                                                     </div>
-                                                    <div class="crd-add-dec text-bold" style="margin:5px 10px; text-align: left">
+                                                    <div class="crd-add-dec text-bold"
+                                                        style="margin:5px 10px; text-align: left">
                                                         <table class="table" style="font-size: 10px;">
                                                             <tbody>
-                                                            <tr>
-                                                                <td> Phone </td>
-                                                                <td>:</td>
-                                                                <td id="bphone">+880 01714 000 000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Email </td>
-                                                                <td>:</td>
-                                                                <td id="bemail">Example99@gmail.com.</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Website </td>
-                                                                <td>:</td>
-                                                                <td  id="bwebsite">www.example99.org</td>
-                                                            </tr>
+                                                                <tr>
+                                                                    <td> {{ __('Phone') }} </td>
+                                                                    <td>:</td>
+                                                                    <td id="bphone">{{ __('+880 01714 000 000') }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> {{ __('Email') }} </td>
+                                                                    <td>:</td>
+                                                                    <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> {{ __('Website') }} </td>
+                                                                    <td>:</td>
+                                                                    <td id="bwebsite">{{ __('www.example99.org') }}</td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -198,35 +197,38 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['action'=>'Backend\IdCardController@pdf','method'=>'post']) }}
+                                {{ Form::open(['action' => 'Backend\IdCardController@pdf', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">
-                                        <b>Option</b>
+                                        <b>{{ __('Option') }}</b>
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input nname" type="checkbox" id="nickname" name="nickname">
+                                                    <input class="form-check-input nname" type="checkbox" id="nickname"
+                                                        name="nickname">
                                                     <label class="form-check-label" for="nickname">
-                                                        Nick Name
+                                                        {{ __('Nick Name') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input full-name" checked type="checkbox" id="fullname" name="fullname">
+                                                    <input class="form-check-input full-name" checked type="checkbox"
+                                                        id="fullname" name="fullname">
                                                     <label class="form-check-label" for="fullname">
-                                                        Name
+                                                        {{ __('Name') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input fname" type="checkbox" id="fname" name="fname">
+                                                    <input class="form-check-input fname" type="checkbox" id="fname"
+                                                        name="fname">
                                                     <label class="form-check-label" for="fname">
-                                                        Father
+                                                        {{ __('Father') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -234,25 +236,28 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input mname" type="checkbox" id="mname" name="mname">
+                                                    <input class="form-check-input mname" type="checkbox" id="mname"
+                                                        name="mname">
                                                     <label class="form-check-label" for="mname">
-                                                        Mother
+                                                        {{ __('Mother') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input cname" checked type="checkbox" id="class" name="class">
+                                                    <input class="form-check-input cname" checked type="checkbox"
+                                                        id="class" name="class">
                                                     <label class="form-check-label" for="class">
-                                                        Class
+                                                        {{ __('Class') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input sname" checked type="checkbox" id="section" name="section">
+                                                    <input class="form-check-input sname" checked type="checkbox"
+                                                        id="section" name="section">
                                                     <label class="form-check-label" for="section">
-                                                        Section
+                                                        {{ __('Section') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -260,25 +265,28 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input gname" checked type="checkbox" id="group" name="group">
+                                                    <input class="form-check-input gname" checked type="checkbox"
+                                                        id="group" name="group">
                                                     <label class="form-check-label" for="group">
-                                                        Group
+                                                        {{ __('Group') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input bname" checked type="checkbox" id="blood" name="blood">
+                                                    <input class="form-check-input bname" checked type="checkbox"
+                                                        id="blood" name="blood">
                                                     <label class="form-check-label" for="blood">
-                                                        Blood
+                                                        {{ __('Blood') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input pname" type="checkbox" id="contact" name="contact">
+                                                    <input class="form-check-input pname" type="checkbox" id="contact"
+                                                        name="contact">
                                                     <label class="form-check-label" for="contact">
-                                                        Contact/Phone
+                                                        {{ __('Contact/Phone') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -286,33 +294,28 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input rname" checked type="checkbox" id="roll" name="roll">
+                                                    <input class="form-check-input rname" checked type="checkbox"
+                                                        id="roll" name="roll">
                                                     <label class="form-check-label" for="roll">
-                                                        Roll
+                                                        {{ __('Roll') }}
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dname" type="checkbox" id="department" name="department">
+                                                    <input class="form-check-input dname" type="checkbox" id="department"
+                                                        name="department">
                                                     <label class="form-check-label" for="department">
-                                                        Department
+                                                        {{ __('Department') }}
                                                     </label>
                                                 </div>
                                             </div>
-                                            {{--<div class="form-group col-md-4">--}}
-                                            {{--<div class="form-check">--}}
-                                            {{--<input class="form-check-input" type="checkbox" id="gridCheck">--}}
-                                            {{--<label class="form-check-label" for="gridCheck">--}}
-                                            {{--Designation--}}
-                                            {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dobname" type="checkbox" id="dob" name="dob">
+                                                    <input class="form-check-input dobname" type="checkbox"
+                                                        id="dob" name="dob">
                                                     <label class="form-check-label" for="dob">
-                                                        Date Of Birth
+                                                        {{ __('Date Of Birth') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -320,29 +323,32 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input aname" type="checkbox" id="admissiondate" name="admissiondate">
+                                                    <input class="form-check-input aname" type="checkbox"
+                                                        id="admissiondate" name="admissiondate">
                                                     <label class="form-check-label" for="admissiondate">
-                                                        Admission Date
+                                                       {{ __('Admission Date') }}
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <input id="idTitle" name="title" type="text" class="form-control"  placeholder="Title..">
+                                                <input id="idTitle" name="title" type="text" class="form-control"
+                                                    placeholder="Title..">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input id="idSignature" name="signature" type="text" class="form-control"  placeholder="signature">
+                                                <input id="idSignature" name="signature" type="text"
+                                                    class="form-control" placeholder="signature">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input id="vtd" name="validity" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
-                                                        {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
+                                                        <input id="vtd" name="validity"
+                                                            class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <i class="far fa-calendar-alt"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -353,19 +359,20 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header1">
-                                        <b>Front Side</b>
+                                        <b>{{ __('Front Side') }}</b>
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">BG Color</label>
+                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
                                                     <div class="input-group">
-                                                        <input type="text" name="bgcolor" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
+                                                        <input type="text" name="bgcolor" id="bghf"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                         <i class="fas fa-palette"></i>
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -373,13 +380,14 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">BG Font Color</label>
+                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
                                                     <div class="input-group">
-                                                        <input type="text" name="bgfont" id="hffc" class="form-control my-colorpicker1 colorpicker-element">
+                                                        <input type="text" name="bgfont" id="hffc"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                          <i class="fas fa-palette"></i>
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -387,14 +395,15 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Title Color</label>
+                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
                                                     <div class="input-group">
-                                                        {{--<input type="text" class="form-control">--}}
-                                                        <input type="text" name="titlecolor" id="cbhfc" class="form-control my-colorpicker1 colorpicker-element">
+                                                        {{-- <input type="text" class="form-control"> --}}
+                                                        <input type="text" name="titlecolor" id="cbhfc"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                          <i class="fas fa-palette"></i>
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -403,7 +412,9 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="name_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
+                                                        <input name="name_size" type="text"
+                                                            class="form-control name-size"
+                                                            placeholder="Institute Name Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -411,7 +422,9 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="address_size" type="text" class="form-control add-size" placeholder="Institute Address Font Size ...">
+                                                        <input name="address_size" type="text"
+                                                            class="form-control add-size"
+                                                            placeholder="Institute Address Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -419,7 +432,8 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="title_size" type="text" class="form-control title-size" placeholder="Title Size..">
+                                                        <input name="title_size" type="text"
+                                                            class="form-control title-size" placeholder="Title Size..">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -427,7 +441,8 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="body_size" type="text" class="form-control body-size" placeholder="Body Size..">
+                                                        <input name="body_size" type="text"
+                                                            class="form-control body-size" placeholder="Body Size..">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -437,19 +452,20 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header1">
-                                        <b> Back Side</b>
+                                        <b>{{ __('Back Side') }}</b>
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Phone</label>
+                                                    <label for="exampleInputEmail1">{{ __('Phone') }}</label>
                                                     <div class="input-group">
-                                                        <input name="bPhone" id="bPhone" type="number" class="form-control">
+                                                        <input name="bPhone" id="bPhone" type="number"
+                                                            class="form-control">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                          <input type="checkbox">
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <input type="checkbox">
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,13 +473,14 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <label for="exampleInputEmail1">{{ __('Email') }}</label>
                                                     <div class="input-group">
-                                                        <input name="bemail" id="bEmail" type="email" class="form-control">
+                                                        <input name="bemail" id="bEmail" type="email"
+                                                            class="form-control">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                          <input type="checkbox">
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <input type="checkbox">
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -471,13 +488,14 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Website</label>
+                                                    <label for="exampleInputEmail1">{{ __('Website') }}</label>
                                                     <div class="input-group">
-                                                        <input name="bWebsite" id="bWebsite" type="text" class="form-control">
+                                                        <input name="bWebsite" id="bWebsite" type="text"
+                                                            class="form-control">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                          <input type="checkbox">
-                                                        </span>
+                                                            <span class="input-group-text">
+                                                                <input type="checkbox">
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -488,14 +506,14 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header1">
-                                        <b>View Cards</b>
+                                        <b>{{ __('View Cards') }}</b>
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('class',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
+                                                        {{ Form::select('class', $repository->classes(), null, ['class' => 'form-control', 'placeholder' => 'Select Class', 'required']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -503,7 +521,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('section',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+                                                        {{ Form::select('section', $repository->sections(), null, ['class' => 'form-control', 'placeholder' => 'Select Section']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -511,7 +529,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('group',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
+                                                        {{ Form::select('group', $repository->groups(), null, ['class' => 'form-control', 'placeholder' => 'Select Section']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -541,309 +559,402 @@
             padding: 10px;
             margin: 10px 0;
         }
+
         input.largerCheckbox {
             width: 20px;
             height: 20px;
             background-color: transparent;
         }
-        .checkbox label{
+
+        .checkbox label {
             position: absolute;
             margin-left: 5px;
             margin-top: -2px;
         }
-        .radio-inline input{
+
+        .radio-inline input {
             width: 15px;
             height: 15px;
             background-color: transparent;
         }
-        label span{
+
+        label span {
             margin-left: 15px;
             position: absolute;
             top: -2px;
         }
-        .table td, .table th {
+
+        .table td,
+        .table th {
             padding: 1px;
             vertical-align: top;
             border-top: 0;
         }
-        .card-body{
+
+        .card-body {
             padding: 5px 10px;
         }
-        .scl-cd-dec h6{
+
+        .scl-cd-dec h6 {
             margin-bottom: 0px !important;
             font-size: 10px;
         }
-        .scl-cd-dec p{
+
+        .scl-cd-dec p {
             font-size: 8px;
         }
-             .card-header1 {
-    border-bottom: 1px solid #d8d8d8;
-    padding: 9px 0px 9px 20px;
-    background: #f7f7f7;
-}
+
+        .card-header1 {
+            border-bottom: 1px solid #d8d8d8;
+            padding: 9px 0px 9px 20px;
+            background: #f7f7f7;
+        }
 
 
 
-.grid-container {
-    position: relative;
-    top: 1px;
-/* bottom: -87px; */
-    border-radius: 10px;
-    display: grid;
-    /* grid-template-columns: auto auto auto auto; */
- 
-    background-color: #fff;
-  
-}
+        .grid-container {
+            position: relative;
+            top: 1px;
+            border-radius: 10px;
+            display: grid;
+            background-color: #fff;
 
-.grid-container>div {
+        }
 
-    text-align: center;
-    height: 36px;
-   
+        .grid-container>div {
 
-}
+            text-align: center;
+            height: 36px;
+        }
 
-.item1 {
+        .item1 {
 
-    grid-column: 1/ span 2;
-    border-radius: 0px 0px 0px 5px;
-    background-color: rgb(25, 134, 223);
-    font-size: 17px;
-  color: #fff;
+            grid-column: 1/ span 2;
+            border-radius: 0px 0px 0px 5px;
+            background-color: rgb(13, 94, 13);
+            font-size: 11px;
+            color: #fff;
 
 
-}
+        }
 
-.item2 {
-    grid-column: 3/ span 3;
-    border-radius: 0px 0px 5px 0px;
-    background-color: rgba(56, 147, 11, 0.8);
-    font-size: 11px;
+            .item2 {
+            grid-column: 3/ span 3;
+            border-radius: 0px 0px 5px 0px;
+            background-color: rgb(194, 41, 41);
+            font-size: 15px;
 
-}
+        }
 
-.item2 span{
-    top: 3px;
-    position: relative;
- color: #fff;
+            .item2 span{
+            top: 3px;
+            position: relative;
+            color: #fff;
 
-}
+        }
 
-.logoo3 {
-    position: absolute;
-    height: 35px;
-    width: 140px;
-    bottom: 20px;
-    left: -35px;
 
-}
+        .logoo3 {
+            position: absolute;
+            height: 35px;
+            width: 140px;
+            bottom: 20px;
+            left: -35px;
 
-.logoo3 img {
-    height: 100%;
-    width: 50%;
-    color: white;
-    border-radius: 10px;
-    background-position-x: bottom;
-}
+        }
+
+        .logoo3 img {
+            height: 100%;
+            width: 50%;
+            color: white;
+            border-radius: 10px;
+            background-position-x: bottom;
+        }
     </style>
 @stop
 
 @section('script')
     <script>
-        $(function(){
-            $(".nName").css({"display":"none"});  // for nick name
-            $(".tname").css({"display":"block"});  // for name
-            $(".tfname").css({"display":"none"}); // for farther name
-            $(".tmname").css({"display":"none"}); // for mother name
-            $(".tcname").css({"display":"block"}); // for class name
-            $(".tsname").css({"display":"block"}); // for section name
-            $(".trname").css({"display":"block"}); // for roll name
-            $(".tgname").css({"display":"block"}); // for group name
-            $(".tbname").css({"display":"block"});   // for blood
-            $(".tpname").css({"display":"none"}); // for phone
-            $(".tdname").css({"display":"none"});  // for department
-            $(".tdobname").css({"display":"none"});  // for dob
-            $(".taname").css({"display":"none"}); // for admission
+        $(function() {
+            $(".nName").css({
+                "display": "none"
+            }); // for nick name
+            $(".tname").css({
+                "display": "block"
+            }); // for name
+            $(".tfname").css({
+                "display": "none"
+            }); // for farther name
+            $(".tmname").css({
+                "display": "none"
+            }); // for mother name
+            $(".tcname").css({
+                "display": "block"
+            }); // for class name
+            $(".tsname").css({
+                "display": "block"
+            }); // for section name
+            $(".trname").css({
+                "display": "block"
+            }); // for roll name
+            $(".tgname").css({
+                "display": "block"
+            }); // for group name
+            $(".tbname").css({
+                "display": "block"
+            }); // for blood
+            $(".tpname").css({
+                "display": "none"
+            }); // for phone
+            $(".tdname").css({
+                "display": "none"
+            }); // for department
+            $(".tdobname").css({
+                "display": "none"
+            }); // for dob
+            $(".taname").css({
+                "display": "none"
+            }); // for admission
         });
         //nick name
-        $(document).on('click','.nname',function(){
+        $(document).on('click', '.nname', function() {
             var nName = $(this);
-            if (nName.is (':checked'))
-            {
-                $(".nName").css({"display":"block"})
-            }else{
-                $(".nName").css({"display":"none"})
+            if (nName.is(':checked')) {
+                $(".nName").css({
+                    "display": "block"
+                })
+            } else {
+                $(".nName").css({
+                    "display": "none"
+                })
             }
         });
         //full name
-        $(document).on('click','.full-name',function(){
+        $(document).on('click', '.full-name', function() {
             var tname = $(this);
-            if (tname.is (':checked'))
-            {
-                $(".tname").css({"display":"table-row"})
-            }else{
-                $(".tname").css({"display":"none"})
+            if (tname.is(':checked')) {
+                $(".tname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tname").css({
+                    "display": "none"
+                })
             }
         });
         //father name
-        $(document).on('click','.fname',function(){
+        $(document).on('click', '.fname', function() {
             var tfname = $(this);
-            if (tfname.is (':checked'))
-            {
-                $(".tfname").css({"display":"table-row"})
-            }else{
-                $(".tfname").css({"display":"none"})
+            if (tfname.is(':checked')) {
+                $(".tfname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tfname").css({
+                    "display": "none"
+                })
             }
         });
         //mother name
-        $(document).on('click','.mname',function(){
+        $(document).on('click', '.mname', function() {
             var tmname = $(this);
-            if (tmname.is (':checked'))
-            {
-                $(".tmname").css({"display":"table-row"})
-            }else{
-                $(".tmname").css({"display":"none"})
+            if (tmname.is(':checked')) {
+                $(".tmname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tmname").css({
+                    "display": "none"
+                })
             }
         });
         //class name
-        $(document).on('click','.cname',function(){
+        $(document).on('click', '.cname', function() {
             var tcname = $(this);
-            if (tcname.is (':checked'))
-            {
-                $(".tcname").css({"display":"table-row"})
-            }else{
-                $(".tcname").css({"display":"none"})
+            if (tcname.is(':checked')) {
+                $(".tcname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tcname").css({
+                    "display": "none"
+                })
             }
         });
         //section name
-        $(document).on('click','.sname',function(){
+        $(document).on('click', '.sname', function() {
             var tsname = $(this);
-            if (tsname.is (':checked'))
-            {
-                $(".tsname").css({"display":"table-row"})
-            }else{
-                $(".tsname").css({"display":"none"})
+            if (tsname.is(':checked')) {
+                $(".tsname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tsname").css({
+                    "display": "none"
+                })
             }
         });
         //roll name
-        $(document).on('click','.rname',function(){
+        $(document).on('click', '.rname', function() {
             var trname = $(this);
-            if (trname.is (':checked'))
-            {
-                $(".trname").css({"display":"table-row"})
-            }else{
-                $(".trname").css({"display":"none"})
+            if (trname.is(':checked')) {
+                $(".trname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".trname").css({
+                    "display": "none"
+                })
             }
         });
         //group name
-        $(document).on('click','.gname',function(){
+        $(document).on('click', '.gname', function() {
             var tgname = $(this);
-            if (tgname.is (':checked'))
-            {
-                $(".tgname").css({"display":"inline"})
-            }else{
-                $(".tgname").css({"display":"none"})
+            if (tgname.is(':checked')) {
+                $(".tgname").css({
+                    "display": "inline"
+                })
+            } else {
+                $(".tgname").css({
+                    "display": "none"
+                })
             }
         });
         //blood name
-        $(document).on('click','.bname',function(){
+        $(document).on('click', '.bname', function() {
             var tbname = $(this);
-            if (tbname.is (':checked'))
-            {
-                $(".tbname").css({"display":"table-row"})
-            }else{
-                $(".tbname").css({"display":"none"})
+            if (tbname.is(':checked')) {
+                $(".tbname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tbname").css({
+                    "display": "none"
+                })
             }
         });
         //phone name
-        $(document).on('click','.pname',function(){
+        $(document).on('click', '.pname', function() {
             var tpname = $(this);
-            if (tpname.is (':checked'))
-            {
-                $(".tpname").css({"display":"table-row"})
-            }else{
-                $(".tpname").css({"display":"none"})
+            if (tpname.is(':checked')) {
+                $(".tpname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tpname").css({
+                    "display": "none"
+                })
             }
         });
         //dept name
-        $(document).on('click','.dname',function(){
+        $(document).on('click', '.dname', function() {
             var tdname = $(this);
-            if (tdname.is (':checked'))
-            {
-                $(".tdname").css({"display":"table-row"})
-            }else{
-                $(".tdname").css({"display":"none"})
+            if (tdname.is(':checked')) {
+                $(".tdname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tdname").css({
+                    "display": "none"
+                })
             }
         });
         //dop name
-        $(document).on('click','.dobname',function(){
+        $(document).on('click', '.dobname', function() {
             var tdobname = $(this);
-            if (tdobname.is (':checked'))
-            {
-                $(".tdobname").css({"display":"table-row"})
-            }else{
-                $(".tdobname").css({"display":"none"})
+            if (tdobname.is(':checked')) {
+                $(".tdobname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".tdobname").css({
+                    "display": "none"
+                })
             }
         });
         //admission name
-        $(document).on('click','.aname',function(){
+        $(document).on('click', '.aname', function() {
             var taname = $(this);
-            if (taname.is (':checked'))
-            {
-                $(".taname").css({"display":"table-row"})
-            }else{
-                $(".taname").css({"display":"none"})
+            if (taname.is(':checked')) {
+                $(".taname").css({
+                    "display": "table-row"
+                })
+            } else {
+                $(".taname").css({
+                    "display": "none"
+                })
             }
         });
 
 
 
-        $("body").click(function () {
+        $("body").click(function() {
             var bghf = $("#bghf").val();
             var hffc = $("#hffc").val();
             var cbhfc = $("#cbhfc").val();
             var vtd = $("#vtd").val();
 
 
-            $(".card-header,.card-footer").css({"background-color":bghf});
-            $(".scl-cd-dec").css({"color":hffc});
-            $(".card-title").css({"color":cbhfc});
+            $(".card-header,.card-footer").css({
+                "background-color": bghf
+            });
+            $(".scl-cd-dec").css({
+                "color": hffc
+            });
+            $(".card-title").css({
+                "color": cbhfc
+            });
             $(".valid-date").text(vtd);
 
             //institute font size
             var fins = $('.name-size').val();
-            $(".scl-cd-name").css({"font-size":fins+"px"}) ;
+            $(".scl-cd-name").css({
+                "font-size": fins + "px"
+            });
             //institute address size
             var fas = $('.add-size').val();
-            $(".scl-cd-add").css({"font-size":fas+"px"}) ;
+            $(".scl-cd-add").css({
+                "font-size": fas + "px"
+            });
             //title size
             var ts = $('.title-size').val();
-            $(".card-title").css({"font-size":ts+"px"}) ;
+            $(".card-title").css({
+                "font-size": ts + "px"
+            });
             //body font size
             var bs = $('.body-size').val();
-            $(".table").css({"font-size":bs+"px"}) ;
+            $(".table").css({
+                "font-size": bs + "px"
+            });
         });
 
         //institute font size
-        $(document).on('keyup','.name-size',function () {
+        $(document).on('keyup', '.name-size', function() {
             var fas = $(this).val();
-            $(".scl-cd-name").css({"font-size":fas+"px"}) ;
+            $(".scl-cd-name").css({
+                "font-size": fas + "px"
+            });
         });
         //institute address size
-        $(document).on('keyup','.add-size',function () {
+        $(document).on('keyup', '.add-size', function() {
             var fas = $(this).val();
-            $(".scl-cd-add").css({"font-size":fas+"px"}) ;
+            $(".scl-cd-add").css({
+                "font-size": fas + "px"
+            });
         });
         //title size
-        $(document).on('keyup','.title-size',function () {
+        $(document).on('keyup', '.title-size', function() {
             var fas = $(this).val();
-            $(".card-title").css({"font-size":fas+"px"}) ;
+            $(".card-title").css({
+                "font-size": fas + "px"
+            });
         });
         //card body size
-        $(document).on('keyup','.body-size',function () {
+        $(document).on('keyup', '.body-size', function() {
             var fas = $(this).val();
-            $(".table").css({"font-size":fas+"px"}) ;
+            $(".table").css({
+                "font-size": fas + "px"
+            });
         });
 
 
@@ -860,7 +971,7 @@
         //       });
 
         //colorPicker
-        $(document).ready(function () {
+        $(document).ready(function() {
             //colorPicker
             $('.my-colorpicker1').colorpicker();
 
@@ -871,34 +982,33 @@
 
             // Print entered text value
 
-            $("#idTitle").on("input", function(){
+            $("#idTitle").on("input", function() {
                 // Print entered value in a div box
                 $("#idtitle").text($(this).val());
             });
 
-            $("#bPhone").on("input", function(){
+            $("#bPhone").on("input", function() {
                 // Print entered value in a div box
                 $("#bphone").text($(this).val());
             });
 
-            $("#bEmail").on("input", function(){
+            $("#bEmail").on("input", function() {
                 // Print entered value in a div box
                 $("#bemail").text($(this).val());
             });
 
-            $("#bWebsite").on("input", function(){
+            $("#bWebsite").on("input", function() {
                 // Print entered value in a div box
                 $("#bwebsite").text($(this).val());
             });
 
-            $("#idSignature").on("input", function(){
+            $("#idSignature").on("input", function() {
                 // Print entered value in a div box
                 $("#idsignature").text($(this).val());
             });
 
 
         });
-
     </script>
 @stop
 
@@ -909,11 +1019,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
 @stop
 
-{{--js file--}}
+{{-- js file --}}
 @section('plugin')
-    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>{{--
-    <script src= "{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>--}}
+    <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js">
+    </script>{{--
+    <script src= "{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script> --}}
 @stop
-
