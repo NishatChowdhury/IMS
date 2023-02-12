@@ -55,7 +55,7 @@
                                             </div>
                                             <div class="card-body text-center">
                                                
-                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:70px ; height:70px" class="text-center rounded mx-auto d-block">
+                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:70px ; height:70px" class="text-center rounded mx-auto d-block border border-dark">
                                                 <h2 style="padding-top: 3px;    position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:black">Md. Hosen Zisad</h2>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 3px;">
@@ -140,8 +140,8 @@
 
 
                                             <div class=" grid-container">
-                                                <div class="item1">Signature</div>
-                                                  <div class="item2"> <span>Shikalbaha, Budpura, Karnaphuli, Chattogram - 4317</span>
+                                                <div class="item1">Shikalbaha, Budpura, Karnaphuli, Chattogram - 4317</div>
+                                                  <div class="item2"> <span>signature</span>
                                               </div>
                                                 </div>
 
@@ -609,7 +609,7 @@
     grid-column: 1/ span 2;
     border-radius: 0px 0px 0px 5px;
     background-color: rgb(25, 134, 223);
-    font-size: 17px;
+    font-size: 11px;
   color: #fff;
 
 
@@ -618,8 +618,8 @@
 .item2 {
     grid-column: 3/ span 3;
     border-radius: 0px 0px 5px 0px;
-    background-color: rgba(56, 147, 11, 0.8);
-    font-size: 11px;
+    background-color: red;
+    font-size: 15px;
 
 }
 
@@ -635,7 +635,7 @@
     height: 35px;
     width: 140px;
     bottom: 20px;
-    left: -35px;
+    right: -35px;
 
 }
 

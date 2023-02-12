@@ -375,7 +375,15 @@ class FrontController extends Controller
                     ->get();
                 return view('front.pages.teacher',compact('teachers'));
             }
-
+            
+            if($content->uri === 'staff'){
+                $staffs = Staff::query()
+                    ->where('staff_type_id',1)
+                    ->get();
+                return view('front.pages.staff',compact('staffs'));
+            }
+         
+        
             if($content->uri === 'news'){
                 $newses = Notice::query()
                     ->where('notice_type_id',1)
