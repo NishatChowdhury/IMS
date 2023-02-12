@@ -28,14 +28,14 @@
     </div>
 
 
-    <section class="padding-y-100 wow fadeIn">
+    <section class="padding-y-100 wow fadeIn bgdark">
         <div class="container">
             <div class="row">
                 @foreach($teachers as $teacher)
                     <div class="col-lg-3 col-md-6 marginTop-30">
-                        <div class="card height-100p border border-light text-center">
-                            <img class="card-img-top" src="{{ asset('assets/img/staffs') }}/{{ $teacher->image }}" alt="">
-                            <div class="card-body">
+                        <div class="card height-100p  border border-light text-center">
+                            <img class="card-img-top mx-auto rounded" src="{{ asset('assets/img/staffs') }}/{{ $teacher->image }}" alt="">
+                            <div class="card-body  ">
                                 <h4>
                                     {{ $teacher->name }}
                                 </h4>
