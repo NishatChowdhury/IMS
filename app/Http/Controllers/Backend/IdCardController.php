@@ -49,7 +49,6 @@ class IdCardController extends Controller
 
     public function pdf(Request $request, StudentAcademic $student)
     {
-        //dd($request->all());
         $std = $student->newquery();
 
         $std->whereIn('session_id',activeYear());
