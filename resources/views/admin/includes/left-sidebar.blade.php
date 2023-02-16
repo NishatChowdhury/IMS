@@ -194,12 +194,14 @@
                                     </a>
                                 </li>
                             @endcan
+                            @can('middleware-passed','student.manuel-attendence')
                                 <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                    <a href="{{ route('student.manuel-attendence') }}" class="nav-link ">
+                                    <a href="{{ route('student.manuel-attendence') }}" class="nav-link {{ isActive('admin/student/manuel-attendence') }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Manuel Attendence</p>
                                     </a>
                                 </li>
+                            @endcan
                         </ul>
                     </li>
                 @endcan

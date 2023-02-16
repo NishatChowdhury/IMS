@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AlumniController;
+use App\Http\Controllers\Backend\CompetencyController;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\LinkController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use App\Models\Backend\Competency;
 use Illuminate\Support\Str;
 
 //use App\Http\Controllers\Front\PrincipalController;
@@ -665,6 +667,12 @@ Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@genera
 Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
 Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
 Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
+
+Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
+Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
+Route::get('competency/edit/{id}',[CompetencyController::class,'edit'])->name('competency.edit');
+Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
+Route::delete('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
 
 Route::get('pdf', function(){
 return view('form-pdf');

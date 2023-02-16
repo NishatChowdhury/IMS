@@ -49,6 +49,7 @@
                                                                 class="text-center rounded-circle mx-auto d-block">
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="col-md-12">
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold">

@@ -74,32 +74,6 @@ class StudentController extends Controller
                 $query->where('academic_class_id', $academicClassId);
             });
         }
-
-/// //        if($request->get('session_id')){
-//            $session = $request->get('session_id');
-//            $s->whereHas('academics', function($query) use($session){
-//                $query->where('session_id', $session);
-//            });
-//        }
-//        if($request->get('class_id')){
-//            $class = $request->get('class_id');
-//            $s->whereHas('academics', function($query) use($class){
-//                $query->where('class_id', $class);
-//            });
-//        }
-//        if($request->get('section_id')){
-//            $section = $request->get('section_id');
-//            $s->whereHas('academics', function($query) use($section){
-//                $query->where('section_id', $section);
-//            });
-//        }
-//        if($request->get('group_id')){
-//            $group = $request->get('group_id');
-//            $s->whereHas('academics', function($query) use($group){
-//                $query->where('group_id', $group);
-//            });
-//        }
-
         if($request->has('csv')){
             $table = Student::query()->orderBy('studentId')
                 ->whereHas('academics', function($query){
@@ -107,8 +81,6 @@ class StudentController extends Controller
                         return $query->where('active', '=', 1);
                     });
                 })->get();
-//            dd($table);
-
             $filename = "students.csv";
             $handle = fopen($filename, 'w+');
             fputcsv($handle, [
@@ -747,11 +719,6 @@ class StudentController extends Controller
 
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('id', 'name', 'studentId','rank','father','mother','gender_id','mobile','dob','blood_group_id','religion_id','image','address','area','zip','city_id','country_id','email','father_mobile','mother_mobile'));
-
-//        foreach($table as $row) {
-//            fputcsv($handle, array($col['tweet_text'], $col['screen_name'], $col['name'], $col['created_at']));
-//        }
-
         fclose($handle);
 
         $headers = array(
