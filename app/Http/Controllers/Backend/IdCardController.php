@@ -73,7 +73,7 @@ class IdCardController extends Controller
 //        return  $students;
         $card = $request->except('_token');
 
-        return view('admin.student.card-new',compact('students','card'));
+        return view('admin.student.card_karnaphuli',compact('students','card'));
 
 //        $total = DB::table('partial_shipments')
 //            ->where('lc_id', $request->lc)
