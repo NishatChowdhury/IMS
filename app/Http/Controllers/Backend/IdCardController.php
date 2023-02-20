@@ -26,105 +26,75 @@ class IdCardController extends Controller
     public function index()
     {
         $repository = $this->repository;
-        return view('admin.student.studentIdCard',compact('repository'));
+        return view('admin.student.studentIdCard', compact('repository'));
     }
 
     public function generateStudentCard_v1()
     {
         $repository = $this->repository;
-        return view('admin.student.designStudentCard_v1',compact('repository'));
+        return view('admin.student.designStudentCard_v1', compact('repository'));
     }
 
     public function generateStudentCard_v2()
     {
         $repository = $this->repository;
-        return view('admin.student.designStudentCard_v2',compact('repository'));
+        return view('admin.student.designStudentCard_v2', compact('repository'));
     }
 
     public function staff()
     {
         $repository = $this->repository;
-        return view('admin.staff.designCard',compact('repository'));
+        return view('admin.staff.designCard', compact('repository'));
     }
 
     public function pdf(Request $request, StudentAcademic $student)
     {
         $std = $student->newquery();
 
-        $std->whereIn('session_id',activeYear());
+        $std->whereIn('session_id', activeYear());
 
-        if($request->class){
-            $std->where('class_id',$request->class);
+        if ($request->class) {
+            $std->where('class_id', $request->class);
         }
-        if($request->section){
-            $std->where('section_id',$request->section);
+        if ($request->section) {
+            $std->where('section_id', $request->section);
         }
-        if($request->group_id){
-            $std->where('group_id',$request->group);
+        if ($request->group) {
+            $std->where('group_id', $request->group);
         }
-        if($request->ranks){
-            $ranks = explode(',',$request->ranks);
-            $std->whereIn('rank',$ranks);
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
         }
 
-//        $students = $std->where('status','<>',2)->orderBy('rank')->get();
-          $students = $std->orderBy('rank')->with('student')->get();
+        $students = $std->orderBy('rank')->with('student')->get();
 
-//        return  $students;
+
         $card = $request->except('_token');
 
-        return view('admin.student.card-new',compact('students','card'));
-
-//        $total = DB::table('partial_shipments')
-//            ->where('lc_id', $request->lc)
-//            ->selectRaw('count(*), sum(cont) as conts, sum(qty) as qtys, sum(qty * rate) as lc_values')
-//            ->get();
+        return view('admin.student.card_karnaphuli', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);
-        //view()->share('total', $total);
-
         $pdf = PDF::loadView('admin.student.card');
-
         $pdf->setPaper('a4', 'portrait');
-
-        //return $pdf->download('students.pdf'); // to download use download() function
-        return $pdf->stream(); // to display use stream() function
+        return $pdf->stream();
     }
 
 
     public function staffPdf(Request $request)
     {
-
-        //dd($request->all());
-        if($request->user == 1){
-            $staffs = Staff::query()->where('staff_type_id',1)->get();
-        }elseif($request->user == 2){
-            $staffs = Staff::query()->where('staff_type_id',2)->get();
-        }else{
+        if ($request->user == 1) {
+            $staffs = Staff::query()->where('staff_type_id', 1)->get();
+        } elseif ($request->user == 2) {
+            $staffs = Staff::query()->where('staff_type_id', 2)->get();
+        } else {
             $staffs = Staff::query()->get();
         }
-
         $card = $request->except('_token');
-
-        return view('admin.staff.card-new',compact('staffs','card'));
-
-
-//        $total = DB::table('partial_shipments')
-//            ->where('lc_id', $request->lc)
-//            ->selectRaw('count(*), sum(cont) as conts, sum(qty) as qtys, sum(qty * rate) as lc_values')
-//            ->get();
-
-        /*view()->share('card', (object)$card);
-        view()->share('staffs', $staffs);*/
-        //view()->share('total', $total);
+        return view('admin.staff.card-new', compact('staffs', 'card'));
 
         $pdf = PDF::loadView('admin.staff.card');
-
         $pdf->setPaper('a4', 'portrait');
-
-        //return $pdf->download('staffs.pdf');
-        //return $pdf->stream();
-
     }
 }
