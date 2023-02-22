@@ -268,7 +268,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('exam/mark/store','Backend\MarkController@store')->name('exam-marks.store');
 
     Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
+
+        //Book Category starts by Nishat
+        Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
+        Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
+        Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
+        Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
+    //    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
+        Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
+        Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
     //Exam management End
+
 
 
     //Students Route by Rimon
@@ -672,9 +682,10 @@ Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name
 
 Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
 Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
-Route::get('competency/edit/{id}',[CompetencyController::class,'edit'])->name('competency.edit');
+Route::get('competency/edit',[CompetencyController::class,'edit'])->name('competency.edit');
 Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
-Route::delete('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
+Route::post('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
+
 
 Route::get('pdf', function(){
 return view('form-pdf');
