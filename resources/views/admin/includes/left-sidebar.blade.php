@@ -457,6 +457,14 @@
                                     </a>
                                 </li>
                             @endcan
+                            @can('middleware-passed','competency.index')
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{route('competency.index')}}" class="nav-link {{ isActive('admin/competencies') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Competency') }}</p>
+                                    </a>
+                                </li>
+                            @endcan
 
                         </ul>
                     </li>
