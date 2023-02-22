@@ -146,28 +146,6 @@ class StaffController extends Controller
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if($staff->staff_type_id == 2){
             TeacherLogin::create([
                 'name' => $staff->name,

@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use App\Http\Controllers\Backend\StudentReportController;
 use App\Http\Controllers\Backend\SubscriberController;
+use App\Http\Controllers\Backend\ThemeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
@@ -174,6 +175,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('themes','Backend\ThemeController@index')->name('theme.index');
     Route::get('theme/edit/{id}','Backend\ThemeController@edit')->name('theme.edit');
     Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy')->name('theme.destroy');
+    Route::get('theme/change/{id}',[ThemeController::class,'change'])->name('admin.theme.change');
 
     // smartrahat start
     Route::get('notices','Backend\NoticeController@index')->name('notice.index');

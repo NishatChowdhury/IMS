@@ -191,27 +191,28 @@ class StudentController extends Controller
         return view('admin.student.create', compact('repository','academicClass'));
     }
 
-    public function store(Request $req){
+    public function store(Request $req)
+    {
 
-
+        DB::beginTransaction();
         $rules = [
             'name' => 'required',
-            'name_bn' => 'required',
-            'birth_certificate' => 'required|integer',
-            'nationality' => 'required',
-            'disability' => 'required',
+            //'name_bn' => 'required',
+            //'birth_certificate' => 'required|integer',
+            //'nationality' => 'required',
+            //'disability' => 'required',
             'studentId' => 'required|unique:students',
             'status' => 'required',
-            'dob' => 'required',
+            //'dob' => 'required',
             'gender_id' => 'required',
             'religion_id' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'zip' => 'required',
-            'city_id' => 'required',
-            'country_id' => 'required',
+            //'address' => 'required',
+            //'area' => 'required',
+            //'zip' => 'required',
+            //'city_id' => 'required',
+            //'country_id' => 'required',
             'mobile' => 'required',
-            'email' => 'required',
+            //'email' => 'required',
         ];
 
         $customMessages = [
@@ -295,7 +296,7 @@ class StudentController extends Controller
             'g_nid' => $req->g_nid,
             'g_birth_certificate' => $req->g_birth_certificate,
         ]);
-
+        DB::commit();
         return redirect('admin/students')->with('success','Student Added Successfully');
 
     }
@@ -316,28 +317,27 @@ class StudentController extends Controller
 
     public function update($id, Request $request)
     {
+        DB::beginTransaction();
         $student = Student::query()->findOrFail($id);
 
         $rules = [
             'name' => 'required',
-            'name_bn' => 'required',
-            'f_name' => 'required',
-            'f_name_bn' => 'required',
-            'birth_certificate' => 'required|integer',
-            'nationality' => 'required',
-            'disability' => 'required',
-            'studentId' => ['required',Rule::unique('students')->ignore($id)],
+            //'name_bn' => 'required',
+            //'birth_certificate' => 'required|integer',
+            //'nationality' => 'required',
+            //'disability' => 'required',
+            'studentId' => ['required',Rule::unique('students')->ignore($student->id)],
             'status' => 'required',
-            'dob' => 'required',
+            //'dob' => 'required',
             'gender_id' => 'required',
             'religion_id' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'zip' => 'required',
-            'city_id' => 'required',
-            'country_id' => 'required',
+            //'address' => 'required',
+            //'area' => 'required',
+            //'zip' => 'required',
+            //'city_id' => 'required',
+            //'country_id' => 'required',
             'mobile' => 'required',
-            'email' => 'required',
+            //'email' => 'required',
         ];
 
         $customMessages = [
@@ -427,7 +427,7 @@ class StudentController extends Controller
         ]);
 
         \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
-
+        DB::commit();
         return redirect('admin/students');
 //        return redirect()->back();
     }
@@ -766,7 +766,9 @@ class StudentController extends Controller
                     $data['city_id'] = $col[17];
                     $data['country_id'] = $col[18];
                     $data['email'] = $col[19];
+                    //$data['status'] =$col[20];
                     $data['status'] =1;
+					
                     $student = Student::query()->where('studentId',$col[3])->latest()->first();
 
                     if($student){
@@ -798,10 +800,10 @@ class StudentController extends Controller
                     $dataAC['group_id'] = $academicClass->group_id;//shows null in database;
                     $dataAC['shift_id'] = $col[27];
                     $dataAC['rank'] = $col[28];
-                    $dataAC['status'] = 1;
-
+                    $dataAC['status'] =1;
+                    
                     $sacademic = StudentAcademic::query()
-                        ->where('academic_class_id',$academicClass)
+                        ->where('academic_class_id',$academicClass->id)
                         ->where('student_id',$stuid->id)
                         ->latest()
                         ->first();
@@ -823,6 +825,7 @@ class StudentController extends Controller
                     $Fdata['f_birth_certificate']=$col[52];
 
                     $fstudent = Father::query()->where('student_id',$stuid->id)->latest()->first();
+					//dd($fstudent);
                     if($fstudent){
                         $fstudent->update($Fdata);
                     }else{

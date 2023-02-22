@@ -39,6 +39,14 @@
                         </div>
 
                         <div class="card-body">
+                            @if($errors->any())
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li class="text-danger">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>

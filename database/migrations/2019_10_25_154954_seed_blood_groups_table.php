@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Backend\BloodGroup;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class SeedBloodGroupsTable extends Migration
         Schema::table('blood_groups', function (Blueprint $table) {
             $bloodGroups = ['A+','A-','B+','B-','O+','O-','AB+','AB-'];
             foreach($bloodGroups as $grp){
-                \App\Models\Frontend\BloodGroup::query()->create(['name'=>$grp]);
+                BloodGroup::query()->create(['name'=>$grp]);
             }
         });
     }

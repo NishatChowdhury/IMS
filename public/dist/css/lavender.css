@@ -69,6 +69,11 @@
     color: #f8f8f9 !important;
 }
 
+.noticee .text-primary {
+    color: #3535e7 !important;
+}
+
+
 .textCOLOR {
     color: black !important;
 }
@@ -76,6 +81,12 @@
 .text-white {
     color: black !important;
 }
+
+.media .text-white {
+    color: rgb(249, 244, 244) !important;
+}
+
+
 
 [data-primary-overlay="0"] {
     background-color: #F1DDFA !important;
@@ -93,6 +104,11 @@
 .bg-dark {
     background-color: #9EA3F5 !important;
     color: rgb(252, 252, 252) !important;
+
+}
+.bgdark {
+    background-color: #dfdedf !important;
+    color: rgb(8, 8, 8) !important;
 
 }
 
@@ -142,3 +158,20 @@ a:hover {
 /*        background: #49688e !important*/
 /*    }*/
 /*}*/
+
+
+
+.tab-line .nav-link.active {
+    border-bottom-color: #22246c !important;
+    color: #1218c1;
+}
+
+.btn-success{
+    background-color: #1820ae !important;
+}
+.btn-success:hover{
+    background-color: #8bdae7 !important;
+}
+.hamburger {
+    background-color: #9EA3F5 !important
+    }

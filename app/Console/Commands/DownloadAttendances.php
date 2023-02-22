@@ -91,7 +91,7 @@ class DownloadAttendances extends Command
                 $attendance->user_name = $row->user_name;
                 $attendance->access_date = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
                 $attendance->access_time = date('Y-m-d H:i:s', strtotime($row->access_date . $row->access_time));
-                $attendance->sms_sent = NULL;
+                //$attendance->sms_sent = NULL;
                 $attendance->save();
             }
         }

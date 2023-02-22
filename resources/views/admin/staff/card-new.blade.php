@@ -30,10 +30,10 @@
                 <div class="card text-center" style="width: 18rem;height:25rem">
                     <div class="card-header" style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-2" style="width: .5in">
                                 <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="50">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="width: 2.5in;margin-left: 5px">
                                 <h6 class="scl-cd-name" style="font-size:{{ $card['name_size'] !=null ? $card['name_size'] :  0}}px"><strong> {{ siteConfig('name') }}</strong></h6>
                                 <p class="scl-cd-add" style="font-size:{{ $card['address_size'] !=null ? $card['address_size']:0 }}px">{{ siteConfig('address') }}</p>
                             </div>
@@ -69,13 +69,6 @@
                                     <td>{{ $staff->mother }}</td>
                                 </tr>
                             @endisset
-                            @isset($card['contact'])
-                                <tr>
-                                    <td> Contact </td>
-                                    <td>&nbsp;:&nbsp;</td>
-                                    <td>{{ $staff->mobile }}</td>
-                                </tr>
-                            @endisset
                             @isset($card['designation'])
                                 <tr>
                                     <td> Designation </td>
@@ -83,26 +76,40 @@
                                     <td>{{ $staff->title }}</td>
                                 </tr>
                             @endisset
+                            @isset($card['index'])
+                                <tr>
+                                    <td> Index No. </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $staff->code }}</td>
+                                </tr>
+                            @endisset
+                            @isset($card['contact'])
+                                <tr>
+                                    <td> Contact </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $staff->mobile }}</td>
+                                </tr>
+                            @endisset
                             @isset($card['blood'])
                                 <tr>
-                                    <td> Blood Group </td>
+                                    <td> Blood G. </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->blood->name ?? '' }}</td>
                                 </tr>
                             @endisset
+
                             </tbody>
                         </table>
-
                     </div>
                     <div class="card-footer" style="float:right;background-color:white;border:none">
                         <div class="col-5" style="float: right;">
-                            <img src="{{ asset('assets/img/signature/signature.png') }}" width="75" alt="">
+                            <img src="{{ asset('assets/img/signature/signature.png') }}" width="60" alt="">
                         </div>
                     </div>
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
                         <div class="row">
                             <div class="col">
-                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : 2020{{ $staff->code }}</strong> </p>
+                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>Index No : {{ $staff->card_id }}</strong> </p>
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>
@@ -118,45 +125,55 @@
 
 
 <div class="row" style="margin: 25px;">
-        <div class="col-4" style="max-width:260px; max-height:375px">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <div class="back-top" style="font-size:15px">
-                        <ul>
-                            {{--<li>This card is valid till 13.01.2020</li>--}}
-                            <li>This card is not transferable</li>
-                            <li>This finder of this card may please drop it to the nearest post office.</li>
-                        </ul>
-                    </div>
-                    <div class="back-middle text-center">
-                        <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="50">
-                        <h6 class="scl-cd-name" style=""><strong> {{ siteConfig('name') }}</strong></h6>
-                        <p class="scl-cd-add" style="font-size:15px">{{ siteConfig('address') }}</p>
-                    </div>
-                    <div class="back-bottom" style="font-size:15px">
-                        <table class="table">
-                            <tr>
-                                <td>Phone</td>
-                                <td style="padding: 0 5px">:</td>
-                                <td>{{ siteConfig('phone') }}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td style="padding: 0 5px">:</td>
-                                <td>{{ siteConfig('email') }}</td>
-                            </tr>
-                            <tr>
-                                <td>Website</td>
-                                <td style="padding: 0 5px">:</td>
-                                <td>{{ url('/') }}</td>
-                            </tr>
-                        </table>
-                    </div>
+    <div class="col-4" style="max-width:260px; max-height:375px">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <div class="back-top" style="font-size:15px">
+                    <ul>
+                        {{--<li>This card is valid till 13.01.2020</li>--}}
+                        <li>This card is not transferable</li>
+                        <li>This finder of this card may please drop it to the nearest post office.</li>
+                    </ul>
+                </div>
+                <div class="back-middle text-center">
+                    <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="50">
+                    <h6 class="scl-cd-name" style=""><strong> {{ siteConfig('name') }}</strong></h6>
+                    <p class="scl-cd-add" style="font-size:15px">{{ siteConfig('address') }}</p>
+                </div>
+                <div class="back-bottom" style="font-size:15px">
+                    <table class="table">
+                        <tr>
+                            <td>Phone</td>
+                            <td style="padding: 0 5px">:</td>
+                            <td>{{ siteConfig('phone') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td style="padding: 0 5px">:</td>
+                            <td>{{ siteConfig('email') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td style="padding: 0 5px">:</td>
+                            <td>{{ url('/') }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
-    <p>&nbsp;</p>
+    </div>
+
 </div>
 
+
+<p>
+    Background Color : {{ $card['bgcolor'] }}<br>
+    Background Font Color : {{ $card['bgfont'] }}<br>
+    Name Size : {{ $card['name_size'] }}<br>
+    Address Size : {{ $card['address_size'] }}<br>
+    Title Color : {{ $card['titlecolor'] }}<br>
+    Title Size: {{ $card['title_size'] }}<br>
+    Body Size: {{ $card['body_size'] }}
+</p>
 </body>
 </html>

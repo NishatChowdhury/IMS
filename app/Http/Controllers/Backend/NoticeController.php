@@ -29,14 +29,14 @@ class NoticeController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request,[
-        //     'notice_type_id ' => 'required',
-        //     'notice_category_id' => 'required',
-        //     'title' =>  'required|unique|max:255',
-        //     'description' => 'required',
-        //     'start' => 'required|date',
-        //     'end' => 'required|date'
-        // ]);
+         $this->validate($request,[
+             'notice_type_id' => 'required',
+             'notice_category_id' => 'required',
+             'title' =>  'required|max:255',
+             //'description' => 'required',
+             'start' => 'required|date',
+             //'end' => 'required|date'
+         ]);
 
         if($request->has('file')){
             $file = date('YmdHis').'.'.$request->file('file')->getClientOriginalExtension();

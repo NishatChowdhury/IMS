@@ -27,9 +27,9 @@
     <section class="padding-y-100 border-bottom border-light">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12 text-center ">
                     <ul class="nav tab-line tab-line--2x border-bottom mb-4 nav-isotop-filter">
-                        <a class="nav-item nav-link active" href="#" data-filter="*">
+                        <a class="nav-item nav-link active" href="#" data-filter="*" >
                             {{ __('All') }}
                         </a>
                         @foreach($categories as $category)

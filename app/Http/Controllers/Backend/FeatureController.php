@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Feature;
 use App\Models\Backend\Menu;
+use App\Models\Backend\Page;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

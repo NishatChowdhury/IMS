@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\SiteInformation;
 use App\Models\Backend\Theme;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ThemeController extends Controller
 {
@@ -16,5 +19,13 @@ class ThemeController extends Controller
     {
         $themes = Theme::query()->paginate(25);
         return view('admin.theme.index',compact('themes'));
+    }
+
+    public function change($id)
+    {
+        $site = SiteInformation::query()->first();
+        $site->update(['theme_id'=>$id]);
+        Session::flash('success','Theme has been changed!');
+        return redirect()->back();
     }
 }

@@ -37,7 +37,7 @@
 
                             <div class="col-lg-4 col-md-6 mt-4">
                                 <div class="media">
-                                    <span class="iconbox iconbox-md bg-primary text-white"><i class="fas fa-phone-square-alt"></i></span>
+                                    <span class="iconbox iconbox-md bg-primary text-white" ><i class="fas fa-phone-square-alt"></i></span>
                                     <div class="media-body ml-3">
                                         <h5 class="mb-0">{{ siteConfig('phone') }}</h5>
                                         <p>{{ __('Call Us (9AM-2PM)') }}</p>
