@@ -9,4 +9,9 @@ class Indicator extends Model
 {
     use HasFactory;
     protected $fillable = ['name','description','competency_id'];
+
+    // An Indicator belongs to a Competency
+    public function competency(){
+        return $this->belongsTo(Competency::class);
+    }
 }
