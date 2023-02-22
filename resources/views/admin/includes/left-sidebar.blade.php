@@ -465,6 +465,14 @@
                                     </a>
                                 </li>
                             @endcan
+                            @can('middleware-passed','indicator.index')
+                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{route('indicator.index')}}" class="nav-link {{ isActive('admin/indicators') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Indicator') }}</p>
+                                    </a>
+                                </li>
+                            @endcan
 
                         </ul>
                     </li>

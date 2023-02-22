@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use App\Http\Controllers\Backend\IndicatorController;
 use App\Models\Backend\Competency;
 use Illuminate\Support\Str;
 
@@ -684,6 +685,11 @@ Route::get('competency/edit',[CompetencyController::class,'edit'])->name('compet
 Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
 Route::post('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
 
+Route::get('indicators',[IndicatorController::class,'index'])->name('indicator.index');
+Route::post('indicator/store',[IndicatorController::class,'store'])->name('indicator.store');
+Route::get('indicator/edit',[IndicatorController::class,'edit'])->name('indicator.edit');
+Route::patch('indicator/{id}/update',[IndicatorController::class,'update'])->name('indicator.update');
+Route::post('indicator/destroy/{id}',[IndicatorController::class,'destroy'])->name('indicator.destroy');
 
 Route::get('pdf', function(){
 return view('form-pdf');
