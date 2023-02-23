@@ -178,7 +178,7 @@
                             </figcaption>
                             <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}"
                                 width="70" alt=""
-                                style="border: 2px solid #000;height:70px"
+                                style="border: 0.5px solid #000;height:70px"
                                 class="text-center  mx-auto d-block ">
 
                         </figure>
