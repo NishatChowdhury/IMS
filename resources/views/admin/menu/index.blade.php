@@ -91,7 +91,7 @@
                                     <tr>
                                         <td>{{ $x++ }}</td>
                                         <td>{{ $menu->name }}</td>
-                                        <td>{{ $menu->uri }}</td>
+                                        <td>{{ substr($menu->uri,0,45) }}</td>
                                         <td>{{ $menu->order }}</td>
                                         <td>
 

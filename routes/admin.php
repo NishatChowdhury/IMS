@@ -533,15 +533,7 @@ Route::post('staff/update-course','Backend\StaffController@update_course')->name
 
     //End Staff Route
 
-//Institution Mgnt Route by Rimon
-//Session @MKH
-Route::get('institution/academicyear','Backend\InstitutionController@academicyear')->name('institution.academicyear');
-Route::post('institution/store-session', 'Backend\InstitutionController@store_session')->name('institution.store_session');
-Route::post('institution/edit-session', 'Backend\InstitutionController@edit_session')->name('institution.edit_session');
-Route::post('institution/update-session', 'Backend\InstitutionController@update_session')->name('institution.update_session');
-Route::get('institution/delete-session/{id}', 'Backend\InstitutionController@delete_session')->name('institution.delete_session');
-Route::patch('institution/status/{id}','Backend\InstitutionController@sessionStatus')->name('institution.sessionStatus');
-Route::get('institution/{id}/delete-session', 'Backend\InstitutionController@unAssignSubject')->name('institution.unAssignSubject');
+
 
 //Academic Classes $ Groups
 Route::get('institution/section-groups','Backend\InstitutionController@section_group')->name('section.group');

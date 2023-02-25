@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('settings::layouts.master')
 
 @section('title','Institution Mgnt | Academic Year')
 
@@ -57,7 +57,7 @@
                                         <td>{{$session->start}} - {{ $session->end }}</td>
                                         <td>{{$session->description}}</td>
                                         <td>
-                                            {{ Form::model($session,['action'=>['Backend\InstitutionController@sessionStatus',$session->id],'method'=>'patch','onsubmit'=>'return statusChange()']) }}
+                                            {{ Form::model($session,['route'=>['institution.sessionStatus',$session->id],'method'=>'patch','onsubmit'=>'return statusChange()']) }}
                                             @if($session->active == 0)
                                                 <button class="btn btn-danger btn-sm">Inactive</button>
                                             @else
@@ -71,7 +71,7 @@
 {{--                                               style="margin-left: 10px;"> <i class="fas fa-edit"></i>--}}
 {{--                                            </a>--}}
 
-                                            <a type="button" href="{{action('Backend\InstitutionController@delete_session', $session->id)}}"
+                                            <a type="button" href="{{route('institution.delete_session', $session->id)}}"
                                             class="btn btn-danger btn-sm delete_session"
                                             style="margin-left: 10px;"> <i class="fas fa-trash"></i>
                                             </a>
@@ -100,7 +100,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\InstitutionController@store_session', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'institution.store_session', 'method'=>'post']) !!}
                     <div class="form-group row">
                         {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}
                         <div class="col-sm-10">
@@ -162,7 +162,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\InstitutionController@update_session', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'institution.update_session', 'method'=>'post']) !!}
                     {!! Form::hidden('session_id', null,['id'=>'session_id']) !!}
                     <div class="form-group row">
                         {!!  Form::label('Academic Year*', null, ['class' => 'control-label, col-sm-2', 'style'=>'font-weight: 500; text-align: right'])  !!}

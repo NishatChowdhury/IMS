@@ -7,8 +7,8 @@
     <title>@yield('title')</title>
 
     <!-- SEO Meta-->
-    <meta name="description" content="IMS software for educational institute">
-    <meta name="keywords" content="web point ltd,school,college,ims,software">
+    <meta name="description" content="An English Medium School at Halishahar">
+    <meta name="keywords" content="web point ltd,school,lavender,international,halishahar,chattogram,english-medium">
     <meta name="author" content="web point ltd">
 
     <!-- viewport scale-->

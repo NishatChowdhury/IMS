@@ -51,7 +51,6 @@
 </head>
 <body>
 <section>
-    <div>
         <div class="card" style="width: 210px; height:325px; border: 1px solid red;">
             <div class="card-head">
                 <div class="left" style="float: left; width: 20%;">
@@ -112,10 +111,10 @@
 </section>
 
 {{--<div class="col-md-12">--}}
-    {{--@foreach($data as $student)--}}
-        {{--<p>{{ $card->bgcolor }}</p>--}}
-        {{--<p>{{ $student->studentId }}</p>--}}
-    {{--@endforeach--}}
+{{--@foreach($data as $student)--}}
+{{--<p>{{ $card->bgcolor }}</p>--}}
+{{--<p>{{ $student->studentId }}</p>--}}
+{{--@endforeach--}}
 {{--</div>--}}
 
 </body>

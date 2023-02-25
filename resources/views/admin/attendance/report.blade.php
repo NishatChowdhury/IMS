@@ -104,7 +104,7 @@
                                     <li> <i class="fas fa-circle" style="color: orange"></i> <span> {{('E - Early Leave')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: darkviolet"></i> <span> {{('H - Holiday')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #5e454f"></i> <span> {{('W - Weekly Off')}} </span></li>
-                                    <li> <i class="fas fa-circle" style="color: #EFBC55FF"></i> <span> {{('L - Late')}} </span></li>
+                                    <li> <i class="fas fa-circle" style="color: #9CDCFE"></i> <span> {{('L - Leave')}} </span></li>
                                     <li> <i class="fas fa-circle" style="color: #efbc55"></i> <span> {{('LE - Late & Early Leave')}} </span></li>
                                 </ul>
                             </div>

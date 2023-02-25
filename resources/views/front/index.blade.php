@@ -21,6 +21,10 @@
 
     @include('front.message')
 
+    @if(URL::current() == 'https://www.lisbd.com')
+{{--        @include('front.director')--}}
+    @endif
+
     @include('front.events')
 
     {{--@include('front.gallery')--}}

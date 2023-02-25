@@ -53,7 +53,7 @@
                         <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px;margin-bottom: 0"><strong>{{ $card['title'] }}</strong></h6>
                         <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}" width="70" alt="" style="border: 2px solid #000;min-height: 70px;max-height: 90px">
                         @isset($card['nickname'])
-                            <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->student->name }} </h6>
+                            <h5 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px;font-weight: bold;"> {{ $student->student->name }} </h5>
                         @endisset
 
                         <table class="table" style="text-align:left;font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
@@ -79,18 +79,25 @@
                                     <td>{{ $student->student->mother->m_name }}</td>
                                 </tr>
                             @endisset
+                            @isset($card['session'])
+                                <tr>
+                                    <td> Session </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $student->session->year }}</td>
+                                </tr>
+                            @endisset
                             @isset($card['class'])
                                 <tr>
                                     <td> Class </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>
                                         {{ $student->classes->name ?? '' }}&nbsp;
-                                        @if($card['group'])
+                                        @isset($card['group'])
                                             {{ $student->group->name ?? '' }}&nbsp;
-                                        @endif
-                                        @if($card['section'])
+                                        @endisset
+                                        @isset($card['section'])
                                             {{ $student->section->name ?? '' }}
-                                        @endif
+                                        @endisset
                                     </td>
                                 </tr>
                             @endisset
@@ -126,7 +133,7 @@
                                 <tr>
                                     <td> Blood Group </td>
                                     <td>&nbsp;:&nbsp;</td>
-                                    <td>{{ $student->student->blood->name ?? '' }}</td>
+                                    <td>{{ $student->student->bloodGroup->name ?? '' }}</td>
                                 </tr>
                             @endisset
                             @isset($card['contact'])
@@ -149,6 +156,7 @@
                         <div class="row">
                             <div class="col">
                                 <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId }}</strong> </p>
+                                <p></p>
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>
@@ -170,8 +178,8 @@
                 <div class="back-top" style="font-size:12px">
                     <ul style="padding-left: 15px;padding-top:15px">
                         <li>This card is valid till {{ $card['validity'] }}</li>
-                        <li>This card is not transferable</li>
-                        <li>This finder of this card may please drop it to the nearest post office.</li>
+{{--                        <li>This card is not transferable</li>--}}
+{{--                        <li>This finder of this card may please drop it to the nearest post office.</li>--}}
                     </ul>
                 </div>
                 <div class="back-middle text-center">

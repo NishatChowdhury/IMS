@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('resources.views.layouts.fixed')
 
 @section('title','Institution Mgnt | Classes')
 
@@ -25,24 +25,34 @@
             <div class="row">
                 <div class="col-12">
                     @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="float: left;">
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                data-target="#exampleModal" data-whatever="@mdo"
+                                                style="margin-top: 10px; margin-left: 10px;"><i
+                                                    class="fas fa-plus-circle"></i> New
+                                        </button>
                                     </div>
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#schedule" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px; float: right !important;"> <i class="fas fa-plus-circle"></i> </button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                data-target="#schedule" data-whatever="@mdo"
+                                                style="margin-top: 10px; margin-left: 10px; float: right !important;"><i
+                                                    class="fas fa-plus-circle"></i></button>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                data-target="#schedule" data-whatever="@mdo"
+                                                style="margin-top: 10px; margin-left: 10px; float: right !important;"><i
+                                                    class="fas fa-plus-circle"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -68,17 +78,18 @@
                                     <tr>
                                         <td>{{ $class->id }}</td>
                                         <td>{{ $class->name }}</td>
-                                        <td>{{ $class->numeric_class }}</td>
-                                        <td> {{ $class->student_academic_count }} </td>
+                                        <td>{{ $class->numeric_class ?? '' }}</td>
+                                        <td>{{ $class->student_academic_count ?? '' }} </td>
                                         <td>{{ $class->subjects->count() }}</td>
                                         <td></td>
                                         <td>
-{{--                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>--}}
+                                            {{--                                            <a href="{{ action('InstitutionController@classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>--}}
                                             <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}'
                                                style="margin-left: 10px;"> <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <a type="button" href="{{action('Backend\InstitutionController@delete_SessionClass', $class->id)}}"
+                                            <a type="button"
+                                               href="{{action('Backend\InstitutionController@delete_SessionClass', $class->id)}}"
                                                class="btn btn-danger btn-sm delete_session"
                                                style="margin-left: 10px;"> <i class="fas fa-trash"></i>
                                             </a>
@@ -95,7 +106,8 @@
     </section>
 
     <!-- ***/ Pop Up Model for button -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
@@ -109,7 +121,8 @@
                     {!! Form::open(['action'=>'Backend\InstitutionController@store_class', 'method'=>'post']) !!}
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class
+                            Name*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Class Name']) !!}
@@ -118,7 +131,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric
+                            Class*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('numeric_class', null, ['class'=>'form-control', 'placeholder'=>'E.g. 1/2/3']) !!}
@@ -128,7 +142,8 @@
 
 
                     <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                        <button type="submit" class="btn btn-success  btn-sm"><i class="fas fa-plus-circle"></i> Add
+                        </button>
                     </div>
                     {!! Form::close() !!}
 
@@ -140,7 +155,8 @@
     <!-- ***/ Pop Up Model for button End-->
 
     <!-- ***/ Pop Up Model for Edit Session Class -->
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
@@ -154,7 +170,8 @@
                     {!! Form::hidden('id', null, ['id'=>'id']) !!}
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class Name*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Class
+                            Name*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('name', null, ['class'=>'form-control class_name', 'placeholder'=>'Class Name']) !!}
@@ -163,7 +180,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric Class*</label>
+                        <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Numeric
+                            Class*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {!! Form::text('numeric_class', null, ['class'=>'form-control numeric_class', 'placeholder'=>'E.g. 1/2/3']) !!}
@@ -193,17 +211,17 @@
             $("#edit").modal("show");
             var id = $(this).attr('value');
             $.ajax({
-                method:"post",
-                url:"{{ url('admin/institution/edit-SessionClass')}}",
-                data:{id:id,"_token":"{{ csrf_token() }}"},
-                dataType:"json",
-                success:function(response){
+                method: "post",
+                url: "{{ url('admin/institution/edit-SessionClass')}}",
+                data: {id: id, "_token": "{{ csrf_token() }}"},
+                dataType: "json",
+                success: function (response) {
                     // console.log(response);
                     $("#id").val(response.id);
                     $(".class_name").val(response.name);
                     $(".numeric_class").val(response.numeric_class);
                 },
-                error:function(err){
+                error: function (err) {
                     console.log(err);
                 }
             });

@@ -14,7 +14,7 @@
                 Phone: {{ siteConfig('phone') }} Email: {{ siteConfig('email') }}<br>
                 Website: {{ url('/') }}
             </address>
-            <h3>{{{ __('HSC Admission Form (Session 2021-2022)')}}}</h3>
+            <h3>{{{ __('HSC Admission Form (Session 2022-2023)')}}}</h3>
         </div>
         <div class="col-2">
             <table class="table-bordered" style="font-size: 14px;position: absolute;bottom: 50px;margin-left:25px">
@@ -193,59 +193,59 @@
         <div class="row">
             <table class="table table-bordered table-address">
                 <tr>
-                    <td colspan="2">{{ __('Student's Present Address')}}</td>
-                    <td colspan="2">{{ __('Student's Permanent Address')}}</td>
+                    <td colspan="2">{{ __('Student\'s Present Address') }}</td>
+                    <td colspan="2">{{ __('Student\'s Permanent Address') }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('House Number')}}</td>
+                    <td>{{ __('House Number') }}</td>
                     <td>{{ $student['pre_house_number'] }}</td>
-                    <td>{{ __('House Number')}}</td>
+                    <td>{{ __('House Number') }}</td>
                     <td>{{ $student['per_house_number'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Village/Area')}}</td>
+                    <td>{{ __('Village/Area') }}</td>
                     <td>{{ $student['pre_village'] }}</td>
-                    <td>{{ __('Village/Area')}}</td>
+                    <td>{{ __('Village/Area') }}</td>
                     <td>{{ $student['per_village'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Road/Block/Ward')}}</td>
+                    <td>{{ __('Road/Block/Ward') }}</td>
                     <td>{{ $student['pre_road'] }}</td>
-                    <td>{{ __('Road/Block/Ward')}}</td>
+                    <td>{{ __('Road/Block/Ward') }}</td>
                     <td>{{ $student['per_road'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Post Office')}}</td>
+                    <td>{{ __('Post Office') }}</td>
                     <td>{{ $student['pre_post_office'] }}</td>
-                    <td>{{ __('Post Office')}}</td>
+                    <td>{{ __('Post Office') }}</td>
                     <td>{{ $student['per_post_office'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Post Code')}}</td>
+                    <td>{{ __('Post Code') }}</td>
                     <td>{{ $student['pre_post_code'] }}</td>
-                    <td>{{ __('Post Code')}}</td>
+                    <td>{{ __('Post Code') }}</td>
                     <td>{{ $student['per_post_code'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Upzilla/Thana')}}</td>
+                    <td>{{ __('Upzilla/Thana') }}</td>
                     <td>{{ $student['pre_thana'] }}</td>
-                    <td>{{ __('Upzilla/Thana')}}</td>
+                    <td>{{ __('Upzilla/Thana') }}</td>
                     <td>{{ $student['per_thana'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('District')}}</td>
+                    <td>{{ __('District') }}</td>
                     <td>{{ $student['pre_district'] }}</td>
-                    <td>{{ __('District')}}</td>
+                    <td>{{ __('District') }}</td>
                     <td>{{ $student['per_district'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Co-curricular Activities')}}</td>
+                    <td>{{ __('Co-curricular Activities') }}</td>
                     <td>{{ $student['cocurricular'] }}</td>
-                    <td>{{ __('Hobby')}}</td>
+                    <td>{{ __('Hobby') }}</td>
                     <td>{{ $student['hobby'] }}</td>
                 </tr>
                 <tr>
-                    <td>{{ __('Quota')}}</td>
+                    <td>{{ __('Quota') }}</td>
                     <td>{{ $student['quota'] }}</td>
                     <td></td>
                     <td></td>
@@ -255,7 +255,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <h3 class="col-md-12 text-center">{{ __('Registered Subject for HSC')}}</h3>
+                    <h3 class="col-md-12 text-center">{{ __('Registered Subject for HSC') }}</h3>
                     <table class="table table-bordered table-subject">
                         @foreach($subjects as $key => $subject)
                             <tr>

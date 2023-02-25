@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Settings\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -16,6 +16,7 @@ use App\Models\Backend\Subject;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+//use function App\Http\Controllers\Backend\public_path;
 
 class InstitutionController extends Controller
 {
@@ -33,7 +34,7 @@ class InstitutionController extends Controller
     public function academicyear()
     {
         $sessions = Session::all();
-        return view ('admin.institution.academicyear', compact('sessions'));
+        return view ('settings::institution.academicyear', compact('sessions'));
     }
 
     public function academicyearstore(Request $request){

@@ -153,8 +153,8 @@
                                                         <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
                                                             <ul style="margin: 0px !important; padding: 10px 15px !important;">
                                                                 <li>This card is valid till <span class="valid-date">31-Dec-2020</span></li>
-                                                                <li>This card is not transferable</li>
-                                                                <li>This finder of this card may please drop it to the nearest post office.</li>
+{{--                                                                <li>This card is not transferable</li>--}}
+{{--                                                                <li>This finder of this card may please drop it to the nearest post office.</li>--}}
                                                             </ul>
                                                         </div>
                                                     </div>

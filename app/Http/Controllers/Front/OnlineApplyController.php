@@ -300,7 +300,7 @@ class OnlineApplyController extends Controller
                 'name' => $student->name,
                 'url' => url('student-form?ssc_roll=').$request->get('ssc_roll'),
             ];
-            Mail::to($request->email)->send(new AdmissionMail($details));
+            //Mail::to($request->email)->send(new AdmissionMail($details));
            
         }
 

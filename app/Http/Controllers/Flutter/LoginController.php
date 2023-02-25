@@ -64,11 +64,11 @@ class LoginController extends Controller
             $smsData['mobile'] = $mobile;
             $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
-            $url = "https://sms.solutionsclan.com/api/sms/send";
+            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
-                "apiKey" => 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
-                "senderId" => '8809612440638',
+                "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
 
@@ -199,11 +199,11 @@ class LoginController extends Controller
             $smsData['mobile'] = $mobile;
             $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
-            $url = "https://sms.solutionsclan.com/api/sms/send";
+            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
-                "apiKey" => 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
-                "senderId" => '8809612440638',
+                "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
 
