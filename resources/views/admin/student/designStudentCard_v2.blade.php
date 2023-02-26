@@ -40,7 +40,7 @@
                                             <div class=" bg-white " style="padding: 0.5rem 0.25rem;">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
-                                                        <div class="left ">
+                                                        <div class="left ">     
                                                             <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:.6in ; height:.6in" class="text-center rounded-circle mx-auto d-block">
                                                         </div>
                                                     </div>
