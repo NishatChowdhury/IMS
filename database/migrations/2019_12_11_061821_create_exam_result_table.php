@@ -15,9 +15,9 @@ class CreateExamResultTable extends Migration
     {
         Schema::create('exam_results', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('academic_class_id');
+            $table->unsignedBigInteger('student_academic_id');
             $table->unsignedBigInteger('exam_id');
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('student_id')->nullable();
             $table->integer('total_mark');
             $table->float('gpa',4,2);
             $table->string('grade');

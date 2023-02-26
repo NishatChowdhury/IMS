@@ -15,11 +15,8 @@ class CreateMarksTable extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
-            $table->integer('academic_class_id');
+            $table->integer('academic_class_id')->nullable();
             $table->integer('exam_id');
-//            $table->integer('class_id');
-//            $table->integer('section_id');
-//            $table->integer('group_id');
             $table->integer('subject_id');
             $table->integer('student_id');
             $table->integer('full_mark');

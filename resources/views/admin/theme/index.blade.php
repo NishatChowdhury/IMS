@@ -75,9 +75,9 @@
                                     </td>
                                     <td>{{ $theme->created_at }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm"><i class="fas fa-user-check"></i></a>
-                                        <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>
+                                        <a href="{{ route('admin.theme.change',$theme->id) }}" class="btn btn-info btn-sm"><i class="fas fa-user-check"></i></a>
+{{--                                        <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
+{{--                                        <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>--}}
                                     </td>
                                 </tr>
                             @endforeach

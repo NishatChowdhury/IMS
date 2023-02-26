@@ -78,7 +78,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('student-wise-attendance', [TeacherController::class, 'studentWiseAttendance']);
     Route::get('daily-attendance', [TeacherController::class, 'dailyAttendance']);
     Route::get('exam-routine', [TeacherController::class, 'examRoutine']);
-    Route::post('mobile-attendance', [TeacherController::class, 'mobileAttendance']);
+    Route::get('mobile-attendance', [TeacherController::class, 'mobileAttendance']);
     Route::post('mobile-attendance-store', [TeacherController::class, 'mobileAttendanceStore']);
     Route::get('classes', [TeacherController::class, 'classes']);
     Route::get('sections', [TeacherController::class, 'sections']);

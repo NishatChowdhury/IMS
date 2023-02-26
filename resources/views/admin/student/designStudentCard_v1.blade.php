@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Design Student ID</h1>
+                    <h1>{{ __('Design Student ID') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Student</a></li>
-                        <li class="breadcrumb-item active">Design Student ID</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Student') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Design Student ID') }}</li>
                     </ol>
                 </div>
             </div>
@@ -57,9 +57,9 @@
                                                 </div>
                                             </div>
                                             <div class="card-body text-center">
-                                                <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
+                                                <h6  id="idtitle" class="card-title text-bold">  {{ __('ID CARD') }} </h6>
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                                <h6 class="card-title text-bold nName"> Student Name </h6>
+                                                <h6 class="card-title text-bold nName"> {{ __('Student Name') }} </h6>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 10px;">
                                                         <div class="stu-cd-dec" style="text-align: left">

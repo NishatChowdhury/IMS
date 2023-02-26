@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AlumniController;
+use App\Http\Controllers\Backend\CompetencyController;
 use App\Http\Controllers\Backend\DiaryController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\LinkController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\RolePermissionController;
 use App\Http\Controllers\Backend\StudentReportController;
 use App\Http\Controllers\Backend\SubscriberController;
+use App\Http\Controllers\Backend\ThemeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
@@ -17,13 +20,15 @@ use App\Http\Controllers\Backend\FeeCollectionController;
 use App\Http\Controllers\Backend\OnlineApplyController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
+use App\Models\Backend\Competency;
 use Illuminate\Support\Str;
 
 //use App\Http\Controllers\Front\PrincipalController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
-    Route::get('/', [DashboardController::class, 'index'])->name('admin');
+    //Route::get('/', [DashboardController::class, 'index'])->name('admin');
+    Route::get('/', [HomeController::class, 'index'])->name('admin');
 
     //Route::get('backup', [HomeController::class, 'backup'])->name('admin.backup');
 
@@ -171,6 +176,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('themes','Backend\ThemeController@index')->name('theme.index');
     Route::get('theme/edit/{id}','Backend\ThemeController@edit')->name('theme.edit');
     Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy')->name('theme.destroy');
+    Route::get('theme/change/{id}',[ThemeController::class,'change'])->name('admin.theme.change');
 
     // smartrahat start
     Route::get('notices','Backend\NoticeController@index')->name('notice.index');
@@ -264,7 +270,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('exam/mark/store','Backend\MarkController@store')->name('exam-marks.store');
 
     Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
+
+        //Book Category starts by Nishat
+        Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
+        Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
+        Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
+        Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
+    //    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
+        Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
+        Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
     //Exam management End
+
 
 
     //Students Route by Rimon
@@ -665,6 +681,13 @@ Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@genera
 Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
 Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
 Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
+
+Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
+Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
+Route::get('competency/edit',[CompetencyController::class,'edit'])->name('competency.edit');
+Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
+Route::post('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
+
 
 Route::get('pdf', function(){
 return view('form-pdf');

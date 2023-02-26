@@ -1,0 +1,11 @@
+{
+    "name": "AccountsAndFinance",
+    "alias": "accountsandfinance",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AccountsAndFinance\\Providers\\AccountsAndFinanceServiceProvider"
+    ],
+    "files": []
+}
