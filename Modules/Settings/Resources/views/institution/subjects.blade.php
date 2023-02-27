@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('settings::layouts.master')
 
 @section('title','Institution Mgnt | Subjects')
 
@@ -84,7 +84,7 @@
                                                style="margin-left: 10px;" title="EDIT"> <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <a type="button" href="{{action('Backend\InstitutionController@delete_subject', $subject->id)}}"
+                                            <a type="button" href="{{route('institution.delete_subject', $subject->id)}}"
                                                class="btn btn-danger btn-sm delete_subject"
                                                style="margin-left: 10px;" title="DELETE"> <i class="fas fa-trash"></i>
                                             </a>
@@ -111,7 +111,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\InstitutionController@create_subject', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'institution.create_subject', 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Code</label>
                         <div class="col-sm-10">
@@ -188,7 +188,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\InstitutionController@update_subject', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'institution.update_subject', 'method'=>'post']) !!}
                     {!! Form::hidden('id', null, ['id'=> 'sub_id']) !!}
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Code</label>

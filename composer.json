@@ -15,7 +15,7 @@
         "dgvai/laravel-nagad": "^1.0",
         "guzzlehttp/guzzle": "^7.0",
         "joshtronic/php-loremipsum": "dev-master",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^9.52",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",

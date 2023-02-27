@@ -85,7 +85,7 @@ class InstitutionController extends Controller
     {
         $sections = Section::all();
         $groups = Group::all();
-        return view ('admin.institution.section-group', compact('sections', 'groups'));
+        return view ('settings::institution.section-group', compact('sections', 'groups'));
     }
 
     public function create_section(Request $req){
@@ -160,7 +160,7 @@ class InstitutionController extends Controller
         // dd($classes);
         // return $sutdent = AcademicClass::->get();
         $repository = $this->repository;
-        return view ('admin.institution.academicClasses', compact('classes','repository'));
+        return view ('settings::institution.academicClasses', compact('classes','repository'));
     }
 
     public function storeAcademicClass(Request $req){
@@ -198,7 +198,7 @@ class InstitutionController extends Controller
     {
         $classes = Classes::withCount('studentAcademic')->get();
 
-        return view ('admin.institution.classes', compact('classes'));
+        return view ('settings::institution.classes', compact('classes'));
     }
 
     public function store_class(Request $req){
@@ -240,7 +240,7 @@ class InstitutionController extends Controller
     public function subjects()
     {
          $subjects = Subject::all();
-        return view ('admin.institution.subjects', compact('subjects'));
+        return view ('settings::institution.subjects', compact('subjects'));
     }
 
     public function create_subject(Request $request){
@@ -284,7 +284,7 @@ class InstitutionController extends Controller
          $subjects = $subject->groupBy('type');
         //$staffs = Staff::all()->pluck('name','id');
         $assignedSubjects = AssignSubject::query()->where('academic_class_id',$classId)->get();
-        return view('admin.institution.classsubjects', compact( 'subjects','assignedSubjects','class'));
+        return view('settings::institution.classsubjects', compact( 'subjects','assignedSubjects','class'));
     }
 
     public function assign_subject(Request $request){
@@ -356,7 +356,7 @@ class InstitutionController extends Controller
 
     public function signature()
     {
-        return view('admin.institution.signature');
+        return view('settings::institution.signature');
     }
 
     public function sig(Request $request)
@@ -371,7 +371,7 @@ class InstitutionController extends Controller
 
     public function profile()
     {
-        return view ('admin.institution.profile');
+        return view ('settings::institution.profile');
     }
 
 
@@ -382,7 +382,7 @@ class InstitutionController extends Controller
                 ->get();
          $academic = AcademicClass::find($id);
         $teachers = Staff::query()->where('staff_type_id', 2)->get();
-        return view('admin.institution.assign-teacher', compact('subjects', 'teachers','academic'));
+        return view('settings::institution.assign-teacher', compact('subjects', 'teachers','academic'));
     }
 
     public function assignTeacherStore(Request $request)

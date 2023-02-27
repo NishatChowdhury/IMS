@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('settings::layouts.master')
 
 @section('title','Institution Mgnt | Classes')
 
@@ -73,7 +73,7 @@
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
 
-                                        <a type="button" href="{{action('Backend\InstitutionController@delete_section',$section->id)}}"
+                                        <a type="button" href="{{route('institution.delete_section',$section->id)}}"
                                            class="btn btn-danger btn-sm"
                                            style="margin-left: 5px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
@@ -108,7 +108,7 @@
                                         <a type="button" class="btn btn-info btn-sm edit_group" value='{{$group->id}}'
                                            style="margin-left: 5px;"> <i class="fas fa-edit"></i>Edit
                                         </a>
-                                        <a type="button" href="{{action('Backend\InstitutionController@delete_grp',$group->id)}}"
+                                        <a type="button" href="{{route('institution.delete_grp',$group->id)}}"
                                            class="btn btn-danger btn-sm delete_grp"
                                            style="margin-left: 10px;"> <i class="fas fa-trash "></i>Delete
                                         </a>
@@ -134,7 +134,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\InstitutionController@create_section', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'institution.create_section', 'method'=>'post']) !!}
                     <div class="form-group row">
                         <label for="" class="col-3 col-form-label" style="font-weight: 500; text-align: right">Section Name*</label>
                         <div class="col-9">

@@ -28,7 +28,7 @@ use Illuminate\Support\Str;
 
 //use App\Http\Controllers\Front\PrincipalController;
 
-Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
     //Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/', [HomeController::class, 'index'])->name('admin');
@@ -120,14 +120,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::view('bl', 'admin.reports.balance_sheet');
     // Route for test
     /** Menu Routes Starts */
+    /*
     Route::get('menus','Backend\MenuController@index')->name('menu.index');
     Route::post('menus-search','Backend\MenuController@search')->name('menus.search');
     Route::post('menu/store','Backend\MenuController@store')->name('menu.store');
     Route::get('menu/edit','Backend\MenuController@edit')->name('menu.edit');
     Route::patch('menu/{id}/update','Backend\MenuController@update')->name('menu.update');
     Route::delete('menu/destroy/{id}','Backend\MenuController@destroy')->name('menu.destroy');
+     *
     /** Menu Routes Ends */
 
+    /*
     Route::get('pages','Backend\PageController@index')->name('page.index');
     Route::get('page/create','Backend\PageController@create')->name('page.create');
     Route::post('page/store','Backend\PageController@store')->name('page.store');
@@ -144,7 +147,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('sliders','Backend\SliderController@index')->name('slider.index');
     Route::post('slider/store','Backend\SliderController@store')->name('slider.store');
     Route::delete('slider/destroy/{id}','Backend\SliderController@destroy')->name('slider.destroy');
-
+    */
 
 
     Route::get('students','Backend\StudentController@index')->name('student.list');
@@ -158,7 +161,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
     Route::get('student/promotion','Backend\StudentController@promotion')->name('student.promotion');
     Route::post('student/promote','Backend\StudentController@promote')->name('student.promote');
-
+    /*
     Route::get('features','Backend\FeatureController@index')->name('features.index');
     Route::get('feature/create','Backend\FeatureController@create')->name('features.create');
     Route::post('feature/store','Backend\FeatureController@store')->name('features.store');
@@ -175,11 +178,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('lang-update','Backend\LanguageController@update')->name('lang.update');
     Route::get('lang/translation/{id}','Backend\LanguageController@translation')->name('lang.translation');
     Route::post('lang/translate/{id}','Backend\LanguageController@translate')->name('lang.translate');
-
+    /*
     Route::get('themes','Backend\ThemeController@index')->name('theme.index');
     Route::get('theme/edit/{id}','Backend\ThemeController@edit')->name('theme.edit');
     Route::delete('theme/destroy/{id}','Backend\ThemeController@destroy')->name('theme.destroy');
     Route::get('theme/change/{id}',[ThemeController::class,'change'])->name('admin.theme.change');
+    */
 
     // smartrahat start
     Route::get('notices','Backend\NoticeController@index')->name('notice.index');
@@ -205,17 +209,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy')->name('weeklyOff.destroy');
     //Weekly Off Setting ends by Nishat
 
+
     /** User Routes */
+    /*
     Route::get('users','Backend\UserController@index')->name('user.index');
     Route::get('user/create','Backend\UserController@create')->name('user.add');
     Route::post('user/store','Backend\UserController@store')->name('user.store');
     Route::get('user/edit/{id}','Backend\UserController@edit')->name('user.edit');
     Route::post('user/assign-role-update','Backend\UserController@assignRoleUpdate')->name('user.assign.role.update');
     Route::delete('user/destroy/{id}','Backend\UserController@destroy')->name('user.destroy');
-    /** User Routes start */
+
     Route::get('user/profile','Backend\UserController@profile')->name('user.profile');
     Route::patch('user/update','Backend\UserController@update')->name('user.update');
     Route::patch('user/password','Backend\UserController@password')->name('user.password');
+    */
     /** User Routes End */
 
     //Syllabus Section Start A R Babu
@@ -357,11 +364,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 //    route for api setting ends here
 
     //    route for email setting starts here
+    /*
     Route::get('setting/email', 'Backend\EmailSettingController@index')->name('setting.email');
     Route::post('setting/email/store', 'Backend\EmailSettingController@store')->name('email.store');
     Route::post('setting/email/edit', 'Backend\EmailSettingController@edit')->name('email.edit');
     Route::post('setting/email/update', 'Backend\EmailSettingController@update')->name('email.update');
     Route::delete('setting/email/delete/{id}', 'Backend\EmailSettingController@destroy')->name('email.delete');
+    */
     //    route for email setting ends here
 
     //    route for google map setting starts here
@@ -370,8 +379,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 //    route for google map setting ends here
 
     //Social Links start
+    /*
     Route::get('socials','Backend\SocialController@index')->name('social.index');
     Route::post('socials/update/{id}','Backend\SocialController@update')->name('social.store');
+    */
 //Social Links End
 
     Route::get('settings/links',[LinkController::class,'index'])->name('settings.link.index');
@@ -425,6 +436,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
 
     // Gallery Routes start
+    /*
     Route::get('gallery/image','Backend\GalleryController@index')->name('settings.image');
     Route::post('gallery/image/store','Backend\GalleryController@store')->name('gallery.store');
     Route::delete('gallery/image/destroy/{id}','Backend\GalleryController@destroy')->name('gallery.destroy');
@@ -436,10 +448,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('gallery/albums','Backend\AlbumController@index')->name('gallery-albums.index');
     Route::post('gallery/album/store','Backend\AlbumController@store')->name('gallery-albums.store');
     Route::delete('gallery/album/delete/{id}','Backend\AlbumController@destroy')->name('gallery-albums.destroy');
+
     Route::get('GalleryCornerCreate',[GalleryController::class,'galleryCornerCreate'])->name('galleryCorner.create');
     Route::post('GalleryCornerStore',[GalleryController::class,'galleryCornerStore'])->name('GalleryCornerStore');
     Route::get('GalleryImageDestroy/{id}',[GalleryController::class,'GalleryImageDestroy'])->name('GalleryImage.destroy');
-
+    */
 // Gallery Routes ends
 
     //Route::get('database-backup', [HomeController::class, 'database']);
@@ -529,56 +542,8 @@ Route::post('staff/update-training','Backend\StaffController@update_training')->
 Route::post('staff/store-course','Backend\StaffController@store_course')->name('staff.store_course');
 Route::post('staff/update-course','Backend\StaffController@update_course')->name('staff.update_course');
 
-
-
     //End Staff Route
 
-
-
-//Academic Classes $ Groups
-Route::get('institution/section-groups','Backend\InstitutionController@section_group')->name('section.group');
-Route::post('institution/create-section', 'Backend\InstitutionController@create_section')->name('institution.create_section');
-Route::post('institution/edit-section', 'Backend\InstitutionController@edit_section')->name('institution.edit_section');
-Route::post('institution/update-section', 'Backend\InstitutionController@update_section')->name('institution.update_section');
-Route::get('institution/{id}/delete-section', 'Backend\InstitutionController@delete_section')->name('institution.delete_section');
-
-Route::post('institution/create-group', 'Backend\InstitutionController@create_group')->name('institution.create_group');
-Route::post('institution/edit-group', 'Backend\InstitutionController@edit_group')->name('institution.edit_group');
-Route::post('institution/update-group', 'Backend\InstitutionController@update_group')->name('institution.update_group');
-Route::get('institution/{id}/delete-group', 'Backend\InstitutionController@delete_grp')->name('institution.delete_grp');
-
-//Session-Class
-Route::get('institution/class','Backend\InstitutionController@classes')->name('institution.classes');
-Route::post('institution/store-class','Backend\InstitutionController@store_class')->name('institution.store_class');
-Route::get('institution/academic-class','Backend\InstitutionController@academicClasses')->name('institution.academicClasses');
-Route::post('institution/store-academic-class','Backend\InstitutionController@storeAcademicClass')->name('institution.storeAcademicClass');
-Route::post('institution/edit-AcademicClass','Backend\InstitutionController@editAcademicClass')->name('institution.editAcademicClass');
-Route::post('institution/update-AcademicClass','Backend\InstitutionController@updateAcademicClass')->name('institution.updateAcademicClass');
-Route::post('institution/edit-SessionClass','Backend\InstitutionController@edit_SessionClass')->name('institution.edit_SessionClass');
-Route::post('institution/update-SessionClass','Backend\InstitutionController@update_SessionClass')->name('institution.update_SessionClass');
-Route::get('institution/{id}/delete-SessionClass','Backend\InstitutionController@delete_SessionClass')->name('institution.delete_SessionClass');
-
-Route::get('institution/class/subject/{class}','Backend\InstitutionController@classSubjects')->name('institution.classSubjects');
-//Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@load_online_adminsion_id');
-Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@unAssignSubject')->name('institution.class.subject.unAssignSubject');
-//Subjects
-Route::get('institution/subjects','Backend\InstitutionController@subjects')->name('institution.subjects');
-Route::post('institution/create-subject','Backend\InstitutionController@create_subject')->name('institution.create_subject');
-Route::post('institution/edit-subject','Backend\InstitutionController@edit_subject')->name('institution.edit_subject');
-Route::post('institution/update-subject','Backend\InstitutionController@update_subject')->name('institution.update_subject');
-Route::get('institution/{id}/delete-subject','Backend\InstitutionController@delete_subject')->name('institution.delete_subject');
-
-//Route::get('institution/classsubjects','Backend\InstitutionController@classsubjects')->name('institution.classsubjects');
-Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
-//Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
-Route::post('institution/edit-assigned-subject','Backend\InstitutionController@edit_assigned')->name('edit.assign');
-Route::get('institution/{id}/delete-assigned-subject','Backend\InstitutionController@delete_assigned')->name('institution.delete_assigned');
-Route::get('institution/profile','Backend\InstitutionController@profile')->name('institution.profile')->name('institution.profile');
-
-
-
-Route::get('institution/signature','Backend\InstitutionController@signature')->name('institution.signature');
-Route::post('institution/sig','Backend\InstitutionController@sig')->name('institution.sig');
 
 // Teacher assign
 
@@ -707,7 +672,7 @@ return view('form-pdf');
 });
 
 
-
+    /*
     Route::get('role',[RolePermissionController::class, 'roleIndex'])->name('role.index');
     Route::get('role-create',[RolePermissionController::class, 'roleCreate'])->name('role.create');
     Route::post('role-store',[RolePermissionController::class, 'roleStore'])->name('role.store');
@@ -716,19 +681,23 @@ return view('form-pdf');
     //create module for development
     Route::get('module-create',[RolePermissionController::class, 'moduleCreate'])->name('module.create');
     Route::post('module-store',[RolePermissionController::class, 'moduleStore'])->name('module.store');
+    */
 
 //CMS route
+    /*
     Route::get('chairmanMessage',[MessageController::class,'editChairmanMessage'])->name('chairmanMessage.index');
     Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
     Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
 //principal , chairman and institute message update route
     Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
-
+    */
 
     Route::get('alumni',[AlumniController::class,'index'])->name('alumni');
 
     //Database backup
+    /*
     Route::get('db-backup',[DbBackupController::class,'index'])->name('backup.db');
+    */
     //Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
    // Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
 
