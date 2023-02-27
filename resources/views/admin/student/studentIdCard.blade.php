@@ -27,19 +27,23 @@
                     <div class="card" style="padding: 10px 10px;background-color:#ececec;">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6 text-center">
+                                <div class="col-md-4 text-center">
                                     <a href="{{ action('Backend\IdCardController@generateStudentCard_v1') }}">
                                         <img src="{{ asset('assets/img/studentIdCard/studentId_1.png') }}" alt=""
                                             width="270" height="450">
                                     </a>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-6">
-                                        <a href="{{ route('student.generateStudentCard_v2') }}">
-                                            <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpeg') }}"
-                                                alt="" width="270" height="450">
-                                        </a>
-                                    </div>
+                                <div class="col-md-4">
+                                    <a href="{{ route('student.generateStudentCard_v2') }}">
+                                        <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpeg') }}"
+                                            alt="" width="270" height="450">
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ route('student.generateStudentCard_v3') }}">
+                                        <img src="{{ asset('assets/img/studentIdCard/studentId_3.jpeg') }}"
+                                            alt="" width="270" height="450">
+                                    </a>
                                 </div>
                             </div>
                         </div>

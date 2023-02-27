@@ -27,14 +27,7 @@ use Illuminate\Support\Str;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
-    //Route::get('/', [DashboardController::class, 'index'])->name('admin');
-    Route::get('/', [HomeController::class, 'index'])->name('admin');
-
-    //Route::get('backup', [HomeController::class, 'backup'])->name('admin.backup');
-
-//    Route::get('transactions', 'Backend\TransactionController@index')->name('transactions.index');
-//    Route::get('transaction/create', 'Backend\TransactionController@create')->name('transaction.create');
-//    Route::post('transaction/store', 'Backend\TransactionController@store')->name('transaction.store');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
 
     //Student Routes
     Route::get('student/tod','Backend\StudentController@tod')->name('student.tod');
@@ -287,6 +280,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('student/designStudentCard','Backend\IdCardController@index')->name('student.designStudentCard');
     Route::get('student/generateStudentCard_v1','Backend\IdCardController@generateStudentCard_v1')->name('student.generateStudentCard_v1');
     Route::get('student/generateStudentCard_v2','Backend\IdCardController@generateStudentCard_v2')->name('student.generateStudentCard_v2');
+    Route::get('student/generateStudentCard_v3','Backend\IdCardController@generateStudentCard_v3')->name('student.generateStudentCard_v3');
     
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
