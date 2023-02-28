@@ -47,7 +47,7 @@
                                                     <div class="nat">
                                                       <!-- <img src="image/bg2.JPG" alt="" style="height: 70px; width: 280px; border-radius: 3px;"> -->
                                                             <h2> KINGS'&nbsp; WAY&nbsp; SCHOOL</h2>
-                                                               <h3> “ BHABANA” SOUTH MUNSI PUKUR PAAR, CTG</h3>
+                                                               <h3> “BHABANA”, SOUTH MUNSI PUKUR PAAR, CTG</h3>
                                                                        </div>
                                                     </div>
                                                     
@@ -180,40 +180,31 @@
                                                     </div>
                                                 </div>
                                                 <div class="crd-add-dec text-bold " style="margin: 1px; height: 1.4in;   text-align: center ;   color: black;   background-color: white;">
-                                                        <table class="table" style="font-size: 12px; margin-top:5px">
-                                                            <tbody>
-                                                            <tr>
-                                                                <td> Phone </td>
-                                                                <td>:</td>
-                                                                <td id="bphone">+880 01714 000 000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Email </td>
-                                                                <td>:</td>
-                                                                <td id="bemail">Example99@gmail.com.</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Website </td>
-                                                                <td>:</td>
-                                                                <td  id="bwebsite">www.example99.org</td>
-                                                            </tr>
 
-                                                            <tr>
-                                                            <td>  </td>
-                                                                <td></td>
-                                                                <td>  <p style="    margin: 0px;  text-align: left;  font-size: 16px;"> IF Found Please Return To</p>   </td> </tr>
-                                                                                                                                                                                      </tr>
-                                                             <tr>
-                                                             
-                                                                <td>  Address: </td>
-                                                                <td>:</td>
-                                                                <td  id="baddress">909/4, Hoque Mansion(1st Floor), Arakan Road, Badurtola </td>
-                                                            </tr>
+<p style=" text-align: left;  font-size: 15px;    margin-top: 0;  margin-bottom: 0;">1. Useable only for education purpose</p> 
+ <p style=" text-align: left;font-size: 15px;    margin-top: 0;  margin-bottom: 0;">2. This Card is valid upto 31/12/2023 </p>
+  <table class="table" style="font-size: 12px; margin-top:3px">
+      <tbody>
+    
+     
+
+      <tr>
+      <td>  </td>
+          <td></td>
+          <td>  <p style="    margin: -3px; margin-left:10px; text-align: left;  font-size: 16px;"> IF Found Please Return To</p> 
+<p style="   margin:0px; margin-left: 40px;  text-align: left;  font-size: 16px;"> Kings' Way School</p>    </td> </tr>
+                                                                                                                                
+       <tr>
+       
+          <td>  Address: </td>
+          <td>:</td>
+          <td id="baddress">“BHABANA”, South Munshi Pukur Paar, Mukbul Sawdagor Lane, Kapasgola, Chittagong</td>
+      </tr>
 
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+      </tbody>
+  </table>
+</div>
                                                   
                                             
                                             </div>
@@ -742,7 +733,7 @@
     position: relative;
     top: -8px;
     display: grid;
-    grid-template-columns: 140px 100px ;
+    grid-template-columns: 110px 140px;
  color: #fff;
  margin-left: 105px;
  text-align: right;
