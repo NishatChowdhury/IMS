@@ -76,7 +76,7 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        @include('admin.includes.header')
+        @include('settings::includes.header')
     </nav>
     <!-- /.navbar -->
 
@@ -98,12 +98,12 @@
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
-        @include('admin.includes.right-aside')
+        @include('settings::includes.right-aside')
     </aside>
     <!-- /.control-sidebar -->
     <div class="notprint">
         <footer class="main-footer no_print">
-            @include('admin.includes.footer')
+            @include('settings::includes.footer')
         </footer></div>
 
 </div>
