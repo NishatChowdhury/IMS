@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\UpcomingEvent;
@@ -18,12 +18,12 @@ class UpcomingEventController extends Controller
     public function index()
     {
         $events = UpcomingEvent::query()->paginate(25);
-        return view('admin.event.index',compact('events'));
+        return view('media::event.index',compact('events'));
     }
 
     public function create()
     {
-        return view('admin.event.create');
+        return view('media::event.create');
     }
 
     public function store(Request $request)
@@ -58,7 +58,7 @@ class UpcomingEventController extends Controller
     public function edit($id)
     {
         $event = UpcomingEvent::query()->findOrFail($id);
-        return view('admin.event.edit',compact('event'));
+        return view('media::event.edit',compact('event'));
     }
 
     public function update($id, Request $request)

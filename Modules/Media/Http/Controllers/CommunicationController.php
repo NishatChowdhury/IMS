@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\CommunicationHistory;
@@ -52,24 +52,24 @@ class CommunicationController extends Controller
             $students = [];
         }
         $repository = $this->repository;
-        return view('admin.communication.student-sms',compact('repository','students'));
+        return view('media::communication.student-sms',compact('repository','students'));
     }
 
     public function quick()
     {
-        return view('admin.communication.quick');
+        return view('media::communication.quick');
     }
 
     public function staff(Request $request)
     {
         $staffs = Staff::query()->where('staff_type_id',$request->staff_type_id)->get();
-        return view('admin.communication.staff-sms',compact('staffs'));
+        return view('media::communication.staff-sms',compact('staffs'));
     }
 
     public function history()
     {
         $histories = CommunicationHistory::query()->latest()->paginate(50);
-        return view('admin.communication.history-sms',compact('histories'));
+        return view('media::communication.history-sms',compact('histories'));
     }
 
     public function send(Request $request)

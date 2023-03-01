@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Subscriber;
@@ -10,6 +10,6 @@ class SubscriberController extends Controller
 {
     public function index(){
         $subscribers =  Subscriber::query()->latest()->get();
-        return view('admin.subscriber.list',compact('subscribers'));
+        return view('media::subscriber.list',compact('subscribers'));
     }
 }

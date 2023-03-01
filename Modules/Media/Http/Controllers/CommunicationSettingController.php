@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\CommunicationSetting;
@@ -17,7 +17,7 @@ class CommunicationSettingController extends Controller
     public function index()
     {
         $apiData = CommunicationSetting::query()->firstOrNew();
-        return view('admin.communication.api-settings',compact('apiData'));
+        return view('media::communication.api-settings',compact('apiData'));
     }
 
     public function update(Request $request)

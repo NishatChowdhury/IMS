@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\NoticeCategory;
@@ -16,7 +16,7 @@ class NoticeCategoryController extends Controller
     public function index()
     {
         $categories = NoticeCategory::all();
-        return view('admin.notice.category',compact('categories'));
+        return view('media::notice.category',compact('categories'));
     }
 
     public function store(Request $request)

@@ -61,6 +61,7 @@ use Illuminate\Support\Str;
     //Admission Routes Ends
 
 //Upcoming Events
+    /*
     Route::get('events','Backend\UpcomingEventController@index')->name('event.index');
     Route::get('event/create','Backend\UpcomingEventController@create')->name('event.create');
     Route::post('event/store','Backend\UpcomingEventController@store')->name('event.store');
@@ -68,6 +69,7 @@ use Illuminate\Support\Str;
     Route::get('event/edit/{id}','Backend\UpcomingEventController@edit')->name('event.edit');
     Route::patch('event/{id}/update','Backend\UpcomingEventController@update')->name('event.update');
     Route::delete('event/destroy/{id}','Backend\UpcomingEventController@destroy')->name('event.destroy');
+    */
 //Upcoming Events Ends
 
     //Playlists
@@ -186,6 +188,7 @@ use Illuminate\Support\Str;
     */
 
     // smartrahat start
+    /*
     Route::get('notices','Backend\NoticeController@index')->name('notice.index');
     Route::post('notice/store','Backend\NoticeController@store')->name('notice.store');
     Route::get('notice/edit/{id}','Backend\NoticeController@edit')->name('notice.edit');
@@ -199,7 +202,7 @@ use Illuminate\Support\Str;
     Route::get('notice/type','Backend\NoticeTypeController@index')->name('notice-type.index');
     Route::post('notice/type/store','Backend\NoticeTypeController@store')->name('notice-type.store');
     Route::get('notice/type/edit/{id}','Backend\NoticeTypeController@edit')->name('notice-type.edit');
-
+    */
     // smartrahat end
 
     //Weekly Off Setting starts by Nishat
@@ -226,9 +229,11 @@ use Illuminate\Support\Str;
     /** User Routes End */
 
     //Syllabus Section Start A R Babu
+    /*
     Route::get('syllabuses','Backend\SyllabusController@index')->name('syllabus.index');
     Route::post('syllabus/store','Backend\SyllabusController@store')->name('syllabus.store');
     Route::delete('syllabus/delete/{id}','Backend\SyllabusController@destroy')->name('syllabus.delete');
+    */
 //Syllabus Section End
 
     //leave purpose starts by Nishat
@@ -357,10 +362,10 @@ use Illuminate\Support\Str;
     //library management ends by Nishat
 
 //    route for api setting starts here
-
+    /*
     Route::get('communication/apiSetting','Backend\CommunicationSettingController@index')->name('communication.apiSetting');
     Route::patch('communication/apiSetting/update','Backend\CommunicationSettingController@update')->name('apiSetting.update');
-
+    */
 //    route for api setting ends here
 
     //    route for email setting starts here
@@ -505,13 +510,13 @@ use Illuminate\Support\Str;
 //  Fee Setup End
 
     // Dairy Management Here
-
+    /*
     Route::get('diary-list', [DiaryController::class, 'index'])->name('diary.index');
     Route::get('diary-create', [DiaryController::class, 'create'])->name('diary.create');
     Route::post('diary-store', [DiaryController::class, 'store'])->name('diary.store');
     Route::get('diary-edit/{diary}', [DiaryController::class, 'edit'])->name('diary.edit');
     Route::post('diary-update/{diary}', [DiaryController::class, 'update'])->name('diary.update');
-
+    */
 //Student profile start
     Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
     Route::post('student-password-reset','Backend\StudentController@studentPasswordReset')->name('student.resetPassword');
@@ -571,6 +576,7 @@ Route::get('report/student-monthly-fee-report','Backend\ReportController@student
 
 
 //Communication Route by Rimon
+/*
 Route::get('communication/quick','Backend\CommunicationController@quick')->name('communication.quick');
 Route::get('communication/student','Backend\CommunicationController@student')->name('communication.student');
 Route::get('communication/staff','Backend\CommunicationController@staff')->name('communication.staff');
@@ -578,6 +584,7 @@ Route::get('communication/history','Backend\CommunicationController@history')->n
 
 Route::post('communication/send','Backend\CommunicationController@send')->name('communication.send');
 Route::post('communication/quick/send','Backend\CommunicationController@quickSend')->name('communication.quickSend');
+*/
 //End Communication Route
 
 
@@ -702,7 +709,9 @@ return view('form-pdf');
    // Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
 
 //subscriber
+    /*
     Route::get('subscriber/list',[SubscriberController::class,'index'])->name('subscriber.list');
+    */
 //end subscriber
 });
 

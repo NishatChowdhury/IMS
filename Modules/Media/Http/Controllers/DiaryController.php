@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -23,7 +23,7 @@ class DiaryController extends Controller
         }
 
         $diaries = $diaries->orderBy('id', 'DESC')->get();
-        return view('admin.diary.index', compact('academicClass','diaries'));
+        return view('media::diary.index', compact('academicClass','diaries'));
     }
 
     public function create()
@@ -31,7 +31,7 @@ class DiaryController extends Controller
         $academicClass = AcademicClass::active()->get(); // active() means is show all active sessions
         $subjects = Subject::all();
         $teachers = Staff::where('staff_type_id', 2)->get();
-        return view('admin.diary.create', compact('academicClass','subjects','teachers'));
+        return view('media::diary.create', compact('academicClass','subjects','teachers'));
     }
 
     public function store(Request $request)

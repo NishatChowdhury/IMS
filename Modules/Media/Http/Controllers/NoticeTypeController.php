@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\NoticeType;
@@ -15,6 +15,6 @@ class NoticeTypeController extends Controller
     public function index()
     {
         $types = NoticeType::all();
-        return view('admin.notice.type',compact('types'));
+        return view('media::notice.type',compact('types'));
     }
 }

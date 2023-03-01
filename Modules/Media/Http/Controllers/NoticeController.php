@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Notice;
@@ -24,7 +24,7 @@ class NoticeController extends Controller
     {
         $notices = Notice::query()->get();
         $repository = $this->repositories;
-        return view('admin.notice.index',compact('notices','repository'));
+        return view('media::notice.index',compact('notices','repository'));
     }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ class NoticeController extends Controller
         $notices = [];
         $notice = Notice::query()->findOrFail($id);
         $repository = $this->repositories;
-        return view('admin.notice.edit',compact('notice','repository','notices'));
+        return view('media::notice.edit',compact('notice','repository','notices'));
     }
 
     public function update($id, Request $request)

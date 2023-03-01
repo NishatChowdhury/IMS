@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Media\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Syllabus;
@@ -19,7 +19,7 @@ class SyllabusController extends Controller
         //$session = Session::query()->where('active',1)->first()->id;
         $data['academic_class'] = AcademicClass::active()->get();
         $data['syllabuses'] = Syllabus::query()->orderBy('academic_class_id')->get();
-        return view('admin.syllabus.index')->with($data);
+        return view('media::syllabus.index')->with($data);
     }
 
     public function store(Request $request)
