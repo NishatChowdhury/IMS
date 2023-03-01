@@ -54,6 +54,8 @@ Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
 Route::post('otp-match', [LoginController::class, 'matchOtp']);
 
+Route::post('push-attn-data',[LoginController::class,'pushAttnData']);
+
 // Route for notifications starts here by Nishat Chowdhury
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('attendance-notification', [NotificationController::class, 'attendanceNotification']);

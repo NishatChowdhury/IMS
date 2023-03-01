@@ -79,7 +79,7 @@ class FakeSMS extends Command
 
     public function send($student,$msg)
     {
-        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $url = "https://a2p.solutionsclan.com/api/sms/send";
         $data = [
             "apiKey" => smsConfig('api_key'),
             "contactNumbers" => $student->mobile,

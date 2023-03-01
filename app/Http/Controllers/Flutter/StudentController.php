@@ -313,9 +313,9 @@ class StudentController extends Controller
     // To send sms in mobiles
     public function sms($number, $message)
     {
-        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $url = "https://a2p.solutionsclan.com/api/sms/send";
         $data = [
-            "apiKey" => 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+            "apiKey" => 'A00003902f236fc-f6ed-463d-ad56-3462c3bd16f3',
             "contactNumbers" => $number,
             "senderId" => 'BULKSMS',
             "textBody" => $message

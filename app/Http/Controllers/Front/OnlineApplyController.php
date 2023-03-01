@@ -311,7 +311,7 @@ class OnlineApplyController extends Controller
      // school online admission sms
     public function sms($data)
     {
-        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $url = "https://a2p.solutionsclan.com/api/sms/send";
         $data = [
                 "apiKey"=> smsConfig('api_key'),
                 "contactNumbers"=> $data['mobile'],

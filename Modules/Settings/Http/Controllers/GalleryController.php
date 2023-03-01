@@ -41,7 +41,7 @@ class GalleryController extends Controller
         if($request->hasFile('image')){
             foreach($request->file('image') as $key => $img){
                 $name = time().'-'.$key.'.'.$img->getClientOriginalExtension();
-                $img->move(storage_path('app/public/uploads/gallery/') . $request->album_id . '/', $name);
+                $img->move(storage_path('app/public/gallery/') . $request->album_id . '/', $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 Gallery::query()->create($data);
@@ -61,7 +61,7 @@ class GalleryController extends Controller
     public function destroy($id): RedirectResponse
     {
         $image = Gallery::query()->findOrFail($id);
-        File::delete(storage_path('app/public/uploads/gallery/') . $image->album_id . '/' . $image->image);
+        File::delete(storage_path('app/public/gallery/') . $image->album_id . '/' . $image->image);
         $image->delete();
         return back()->with('status','Image has been deleted Successfully.');
     }
@@ -78,7 +78,7 @@ class GalleryController extends Controller
             $i=0;
             foreach ($request->file('image') as $img) {
                 $name = rand(1000,100000).'-'.time() . '.' . $img->getClientOriginalExtension();
-                $img->move(storage_path('app/public/uploads/gallery/'), $name);
+                $img->move(storage_path('app/public/gallery/'), $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 GalleryCorner::query()->create($data);
@@ -91,7 +91,7 @@ class GalleryController extends Controller
     public function GalleryImageDestroy($id)
     {
         $image = GalleryCorner::query()->findOrFail($id);
-        File::delete(storage_path('app/public/uploads/gallery/') . $image->image);
+        File::delete(storage_path('app/public/gallery/') . $image->image);
         $image->delete();
         return back()->with('status','Image has been Successfully deleted');
     }

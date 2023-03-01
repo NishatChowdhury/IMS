@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Flutter;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
@@ -268,5 +269,33 @@ class LoginController extends Controller
         auth()->user()->tokens()->delete();
         return response()
             ->json(['status' => true, 'message' => 'Teacher Logged out successfully'], 200);
+    }
+
+    /**
+     * Temporary api for our own device integration
+     * @author smartrahat
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function pushAttnData(Request $request)
+    {
+        try {
+            $attendance = new RawAttendance();
+            $attendance->registration_id = $request->registration_id;
+            $attendance->access_id = 1;
+            $attendance->department = 'None';
+            $attendance->unit_id = $request->unit_id;
+            $attendance->card = 'None';
+            $attendance->unit_name = 'Fun Door';
+            $attendance->user_name = 'iamrahat';
+            $attendance->access_date = now()->format('Y-m-d');
+            $attendance->access_time = now()->format('H:i:s A');
+            //$attendance->sms_sent = NULL;
+            $attendance->save();
+        }catch (\Exception $e){
+            dd($e);
+        }
+
+        return response(['status'=>'success']);
     }
 }
