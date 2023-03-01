@@ -57,6 +57,7 @@
                                     <label for="">{{ __('Class') }}</label>
                                     <div class="input-group">
                                         <select name="academic_class_id" id="class" class="form-control">
+                                            <option value="">{{ __('-- Select Class --') }}</option>
                                             @foreach ($repository->academicClasses() as $class)
                                                 <option value="{{ $class->id }}">
                                                     {{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}

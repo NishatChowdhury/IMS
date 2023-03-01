@@ -261,7 +261,7 @@ class StudentController extends Controller
             'rank' => $req->rank,
         ]);
 
-        Father::create([
+        Father::query()->create([
             'f_name' => $req->f_name,
             'student_id' => $studentStore->id,
             'f_name_bn' => $req->f_name_bn,
@@ -329,8 +329,8 @@ class StudentController extends Controller
             'studentId' => ['required',Rule::unique('students')->ignore($student->id)],
             'status' => 'required',
             //'dob' => 'required',
-            'gender_id' => 'required',
-            'religion_id' => 'required',
+            //'gender_id' => 'required',
+            //'religion_id' => 'required',
             //'address' => 'required',
             //'area' => 'required',
             //'zip' => 'required',
@@ -390,7 +390,7 @@ class StudentController extends Controller
             'rank' => $request->rank,
         ]);
 
-        Father::query()->findOrNew($request->f_id)->updateOrCreate([
+        Father::query()->findOrNew($request->f_id)->update([
             'f_name' => $request->f_name,
             'student_id' => $student->id,
             'f_name_bn' => $request->f_name_bn,
