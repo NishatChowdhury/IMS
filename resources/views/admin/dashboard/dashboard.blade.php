@@ -581,7 +581,7 @@
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.6.3-web/js/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.15.4-web/js/all.min.css') }}">
     <!-- Morris.js charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{{ asset('plugins/morris/morris.min.js') }}"></script>

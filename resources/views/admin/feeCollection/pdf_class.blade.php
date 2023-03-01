@@ -8,7 +8,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ public_path('plugins/fontawesome-free-5.6.3-web/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ public_path('plugins/fontawesome-free-5.15.4-web/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ public_path('dist/css/adminlte.min.css?ver:1.2') }}">
         <style>
