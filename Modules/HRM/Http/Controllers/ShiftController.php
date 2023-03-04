@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Shift;
@@ -17,7 +17,7 @@ class ShiftController extends Controller
     public function index()
     {
         $shifts = Shift::all();
-        return view('admin.attendance.setting',compact('shifts'));
+        return view('hrm::attendance.setting',compact('shifts'));
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class ShiftController extends Controller
     public function edit($id)
     {
         $shift = Shift::find($id);
-        return view('admin.attendance.setting-edit',compact('shift'));
+        return view('hrm::attendance.setting-edit',compact('shift'));
     }
     public function update(Request $request)
     {

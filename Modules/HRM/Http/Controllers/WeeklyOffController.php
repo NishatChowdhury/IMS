@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\weeklyOff;
@@ -17,7 +17,7 @@ class WeeklyOffController extends Controller
 //        dd('deone');
         $all = weeklyOff::all();
 
-        return view('admin.attendance.weeklyOffSetting',compact('all'));
+        return view('hrm::attendance.weeklyOffSetting',compact('all'));
     }
 
 
@@ -48,7 +48,7 @@ class WeeklyOffController extends Controller
     {
         $finds = weeklyOff::find($item)->first();
         $offDay =explode(",",$finds->show_option);
-        return view('admin.attendance.EditWeeklyOffSetting',compact('offDay'));
+        return view('hrm::attendance.EditWeeklyOffSetting',compact('offDay'));
     }
 
 
@@ -56,7 +56,7 @@ class WeeklyOffController extends Controller
     {
         $finds = weeklyOff::find($item)->first();
         $offDay =explode(",",$finds->show_option);
-        return view('admin.attendance.EditWeeklyOffSetting',compact('offDay'));
+        return view('hrm::attendance.EditWeeklyOffSetting',compact('offDay'));
     }
 
 

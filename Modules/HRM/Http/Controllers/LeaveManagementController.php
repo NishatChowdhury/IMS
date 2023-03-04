@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\LeavePurpose;
@@ -25,14 +25,14 @@ class LeaveManagementController extends Controller
     {
 //        StudentLeave::query()->truncate();
           $allData = StudentLeave::all()->groupBy('leaveId');
-        return view('admin.leaveManagement.view-leave',compact('allData'));
+        return view('hrm::leaveManagement.view-leave',compact('allData'));
     }
 
 
     public function add()
     {
         $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
-        return view('admin.leaveManagement.add-leave',compact('leave_purpose'));
+        return view('hrm::leaveManagement.add-leave',compact('leave_purpose'));
     }
 
 

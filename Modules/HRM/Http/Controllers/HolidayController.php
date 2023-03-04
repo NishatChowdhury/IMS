@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Holiday;
@@ -15,7 +15,7 @@ class HolidayController extends Controller
     public function index()
     {
         $holidays = Holiday::query()->paginate(25);
-        return view('admin.attendance.holiday',compact('holidays'));
+        return view('hrm::attendance.holiday',compact('holidays'));
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class HolidayController extends Controller
     {
         $holiday = Holiday::query()->findOrFail($id);
         $holidays = Holiday::query()->paginate(25);
-        return view('admin.attendance.holiday-edit',compact('holiday','holidays'));
+        return view('hrm::attendance.holiday-edit',compact('holiday','holidays'));
     }
 
     public function update($id, Request $request)

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Staff;
@@ -26,25 +26,25 @@ class IdCardController extends Controller
     public function index()
     {
         $repository = $this->repository;
-        return view('admin.student.studentIdCard', compact('repository'));
+        return view('hrm::student.studentIdCard', compact('repository'));
     }
 
     public function generateStudentCard_v1()
     {
         $repository = $this->repository;
-        return view('admin.student.designStudentCard_v1', compact('repository'));
+        return view('hrm::student.designStudentCard_v1', compact('repository'));
     }
 
     public function generateStudentCard_v2()
     {
         $repository = $this->repository;
-        return view('admin.student.designStudentCard_v2', compact('repository'));
+        return view('hrm::student.designStudentCard_v2', compact('repository'));
     }
 
     public function staff()
     {
         $repository = $this->repository;
-        return view('admin.staff.designCard', compact('repository'));
+        return view('hrm::staff.designCard', compact('repository'));
     }
 
     public function pdf(Request $request, StudentAcademic $student)
@@ -72,11 +72,11 @@ class IdCardController extends Controller
 
         $card = $request->except('_token');
 
-        return view('admin.student.card_karnaphuli', compact('students', 'card'));
+        return view('hrm::student.card_karnaphuli', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);
-        $pdf = PDF::loadView('admin.student.card');
+        $pdf = PDF::loadView('hrm::student.card');
         $pdf->setPaper('a4', 'portrait');
         return $pdf->stream();
     }
@@ -92,9 +92,9 @@ class IdCardController extends Controller
             $staffs = Staff::query()->get();
         }
         $card = $request->except('_token');
-        return view('admin.staff.card-new', compact('staffs', 'card'));
+        return view('hrm::staff.card-new', compact('staffs', 'card'));
 
-        $pdf = PDF::loadView('admin.staff.card');
+        $pdf = PDF::loadView('hrm::staff.card');
         $pdf->setPaper('a4', 'portrait');
     }
 }

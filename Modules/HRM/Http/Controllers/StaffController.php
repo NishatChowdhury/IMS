@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\BloodGroup;
@@ -33,7 +33,7 @@ class StaffController extends Controller
     public function teacher()
     {
         $staffs = Staff::all()->sortBy('code');
-        return view ('admin.staff.teacher', compact('staffs'));
+        return view ('hrm::staff.teacher', compact('staffs'));
     }
 
     public function addstaff()
@@ -41,7 +41,7 @@ class StaffController extends Controller
         $genders = Gender::all()->pluck('name', 'id');
         $shifts = Shift::query()->pluck('name', 'id');
         $blood_groups = BloodGroup::all()->pluck('name', 'id');
-        return view ('admin.staff.addstaff', compact('genders', 'blood_groups','shifts'));
+        return view ('hrm::staff.addstaff', compact('genders', 'blood_groups','shifts'));
     }
 
     public function store_staff(Request $req){
@@ -175,7 +175,7 @@ class StaffController extends Controller
         $experience = TeacherExperience::query()->where('staff_id', $id)->get();
         $training = TeacherTraining::query()->where('staff_id', $id)->get();
         $course = TeacherCourse::query()->where('staff_id', $id)->get();
-        return view ('admin.staff.editstaff', compact('genders','training','course','blood_groups','info','shifts','academic','experience'))->with('update',$info);
+        return view ('hrm::staff.editstaff', compact('genders','training','course','blood_groups','info','shifts','academic','experience'))->with('update',$info);
     }
 
 
@@ -223,23 +223,23 @@ class StaffController extends Controller
     }
     public function threshold()
     {
-        return view ('admin.staff.threshold');
+        return view ('hrm::staff.threshold');
     }
 
     public function kpi()
     {
-        return view ('admin.staff.kpi');
+        return view ('hrm::staff.kpi');
     }
 
     public function payslip()
     {
-        return view ('admin.staff.payslip');
+        return view ('hrm::staff.payslip');
     }
 
     public function staffProfile($staffId)
     {
         $staff = Staff::query()->findOrFail($staffId);
-        return view('admin.staff.staffProfile',compact('staff'));
+        return view('hrm::staff.staffProfile',compact('staff'));
     }
 
     public function store_academic(Request $request)

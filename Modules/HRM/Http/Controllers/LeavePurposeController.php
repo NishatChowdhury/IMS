@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\LeavePurpose;
@@ -12,7 +12,7 @@ class LeavePurposeController extends Controller
     public function index()
     {
         $leave_purposes = leavePurpose::all();
-        return view('admin.leavePurpose.add-purpose',compact('leave_purposes'));
+        return view('hrm::leavePurpose.add-purpose',compact('leave_purposes'));
     }
 
 
@@ -30,7 +30,7 @@ class LeavePurposeController extends Controller
     {
         $leave_purposes = leavePurpose::all();
         $purpose=leavePurpose::query()->findOrFail($id);
-        return view('admin.leavePurpose.edit-purpose',compact('purpose','leave_purposes'));
+        return view('hrm::leavePurpose.edit-purpose',compact('purpose','leave_purposes'));
     }
 
     public function update($id, Request $request)

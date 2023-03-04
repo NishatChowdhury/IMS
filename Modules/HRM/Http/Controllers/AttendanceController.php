@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -66,7 +66,7 @@ class AttendanceController extends Controller
             $attendences = $stuAttendence->whereDate('date', $date)->get(['id','student_academic_id','date','attendance_status_id']);
         }
 //        return  $attendences;
-        return view('admin.attendance.manuel-attendence', compact('academic_class', 'attendences'));
+        return view('hrm::attendance.manuel-attendence', compact('academic_class', 'attendences'));
     }
 
     public function StuManuelAttendenceStatus(Request $request)
@@ -80,7 +80,7 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        return view('admin.attendance.attendance');
+        return view('hrm::attendance.attendance');
     }
 
     public function dashboard()
@@ -128,7 +128,7 @@ class AttendanceController extends Controller
 
 //        Class wish attendance list end
 
-        return view('admin.attendance.dashboard',compact('month_name','today_date','total_attendance','total_absents','total_student','total_attendance_teacher','total_absents_teacher','total_teacher','academicClasses','class_attendances'));
+        return view('hrm::attendance.dashboard',compact('month_name','today_date','total_attendance','total_absents','total_student','total_attendance_teacher','total_absents_teacher','total_teacher','academicClasses','class_attendances'));
     }
 
     public function getAttendanceMonthly(Request $request){
@@ -152,9 +152,9 @@ class AttendanceController extends Controller
             $attn_teacher[] = Attendance::query()->where('registration_id', $teacher->role_id)->where('access_date','like',$date.'%')->get();
         }
         if ($request->user == 2){
-            return view('admin.attendance.month_row_teacher',compact('teachers','month','year'));
+            return view('hrm::attendance.month_row_teacher',compact('teachers','month','year'));
         }else{
-            return view('admin.attendance.month_row',compact('students','month','year'));
+            return view('hrm::attendance.month_row',compact('students','month','year'));
         }
 
     }
@@ -221,7 +221,7 @@ class AttendanceController extends Controller
                             ->where('staff_type_id',2)
                             ->orderBy('card_id')
                             ->get()->pluck('name','id');
-        return view('admin.attendance.teacher', compact('attend','t','card','staffs','year','month','attendances','teachers'));
+        return view('hrm::attendance.teacher', compact('attend','t','card','staffs','year','month','attendances','teachers'));
     }
 
 
@@ -232,7 +232,7 @@ class AttendanceController extends Controller
         if($request->all() == []){
             $attendances = [];
             $repository = $this->repository;
-            return view('admin.attendance.student',compact('attendances','repository'));
+            return view('hrm::attendance.student',compact('attendances','repository'));
         }
 
         $today = $request->get('date');
@@ -289,7 +289,7 @@ class AttendanceController extends Controller
         $repository = $this->repository;
         $attendances = $attendArr ?? [];
 
-        return view('admin.attendance.student',compact('attendances','repository','academicClass','today'));
+        return view('hrm::attendance.student',compact('attendances','repository','academicClass','today'));
     }
 
     public function report(Request $request){
@@ -333,7 +333,7 @@ class AttendanceController extends Controller
 
         $repository = $this->repository;
 
-        return view('admin.attendance.report',compact('allClasses','repository','year','sessions','month','students','personStatus'));
+        return view('hrm::attendance.report',compact('allClasses','repository','year','sessions','month','students','personStatus'));
     }
 
 
@@ -349,7 +349,7 @@ class AttendanceController extends Controller
                 return Carbon::parse($date->access_date)->format('Y-m-d');
             });
         }
-        return view('admin.attendance.individualStudentAttendance',compact('std','attendances'));
+        return view('hrm::attendance.individualStudentAttendance',compact('std','attendances'));
     }
 
     public function individualTeacherAttendance(Request $request)
@@ -367,7 +367,7 @@ class AttendanceController extends Controller
 
         }
 
-        return view('admin.attendance.individualTeacherAttendance',compact('teachers','attendances'));
+        return view('hrm::attendance.individualTeacherAttendance',compact('teachers','attendances'));
     }
 
     public function classAttendance(Request $request){
@@ -377,7 +377,7 @@ class AttendanceController extends Controller
         $class_id = $request->academicClass;
         $students = Student::query()->where('class_id', $class_id)->get();
 
-        return view('admin.attendance.classAttendance',compact('students','start', 'end'));
+        return view('hrm::attendance.classAttendance',compact('students','start', 'end'));
     }
 
     public function status($studentId, $date, $enter = null, $exit = null)

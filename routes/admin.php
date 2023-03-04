@@ -40,9 +40,11 @@ use Illuminate\Support\Str;
 //    Route::post('transaction/store', 'Backend\TransactionController@store')->name('transaction.store');
 
     //Student Routes
+    /*
     Route::get('student/tod','Backend\StudentController@tod')->name('student.tod');
     Route::get('student/esif','Backend\StudentController@esif')->name('student.esif');
     Route::get('student/images','Backend\StudentController@images')->name('student.images');
+    */
     //Student Routes End
 
     //Accounts
@@ -92,11 +94,13 @@ use Illuminate\Support\Str;
     //Applied Student Ends
 
     //Holiday Setup
+    /*
     Route::get('holidays','Backend\HolidayController@index')->name('attendance.holiday');
     Route::post('holiday/store','Backend\HolidayController@store')->name('holiday.store');
     Route::get('holiday/edit/{id}','Backend\HolidayController@edit')->name('holiday.edit');
     Route::patch('holiday/{id}/update','Backend\HolidayController@update')->name('holiday.update');
     Route::delete('holiday/delete/{id}','Backend\HolidayController@destroy')->name('holiday.destroy');
+    */
     //Holiday Setup
 
 
@@ -151,7 +155,7 @@ use Illuminate\Support\Str;
     Route::delete('slider/destroy/{id}','Backend\SliderController@destroy')->name('slider.destroy');
     */
 
-
+    /*
     Route::get('students','Backend\StudentController@index')->name('student.list');
     Route::get('student/create','Backend\StudentController@create')->name('student.add');
     Route::get('student/edit/{id}','Backend\StudentController@edit')->name('student.edit');
@@ -163,6 +167,7 @@ use Illuminate\Support\Str;
 
     Route::get('student/promotion','Backend\StudentController@promotion')->name('student.promotion');
     Route::post('student/promote','Backend\StudentController@promote')->name('student.promote');
+    */
     /*
     Route::get('features','Backend\FeatureController@index')->name('features.index');
     Route::get('feature/create','Backend\FeatureController@create')->name('features.create');
@@ -206,10 +211,12 @@ use Illuminate\Support\Str;
     // smartrahat end
 
     //Weekly Off Setting starts by Nishat
+    /*
     Route::get('attendance/weeklyOff','Backend\WeeklyOffController@index')->name('weeklyOff.index');
     Route::post('attendance/weeklyOff/store','Backend\WeeklyOffController@store')->name('weeklyOff.store');
     Route::get('attendance/weeklyOff/edit/{id}','Backend\WeeklyOffController@edit')->name('weeklyOff.edit');
     Route::get('attendance/weeklyOff/delete/{id}','Backend\WeeklyOffController@destroy')->name('weeklyOff.destroy');
+    */
     //Weekly Off Setting ends by Nishat
 
 
@@ -237,20 +244,24 @@ use Illuminate\Support\Str;
 //Syllabus Section End
 
     //leave purpose starts by Nishat
+    /*
     Route::get('attendance/leavePurpose','Backend\LeavePurposeController@index')->name('leavePurpose.index');
     Route::get('attendance/leavePurpose/add','Backend\LeavePurposeController@add')->name('leavePurpose.add');
     Route::post('attendance/leavePurpose/store','Backend\LeavePurposeController@store')->name('leavePurpose.store');
     Route::get('attendance/leavePurpose/edit/{id}','Backend\LeavePurposeController@edit')->name('leavePurpose.edit');
     Route::patch('attendance/leavePurpose/{id}/update','Backend\LeavePurposeController@update')->name('leavePurpose.update');
     Route::post('attendance/leavePurpose/delete/{id}','Backend\LeavePurposeController@destroy')->name('leavePurpose.delete');
+    */
     //leave purpose ends by Nishat
 
     //leave management starts by Nishat
+    /*
     Route::get('attendance/leaveManagement','Backend\LeaveManagementController@index')->name('leaveManagement.index');
     Route::get('attendance/leaveManagement/add','Backend\LeaveManagementController@add')->name('leaveManagement.add');
     Route::post('attendance/leaveManagement/store','Backend\LeaveManagementController@store')->name('leaveManagement.store');
     Route::get('attendance/leaveManagement/edit/{id}','Backend\LeaveManagementController@edit')->name('leaveManagement.edit');
     Route::delete('attendance/leaveManagement/delete/{id}','Backend\LeaveManagementController@destroy')->name('leaveManagement.destroy');
+    */
     //leave management ends by Nishat
 
     //Book Category starts by Nishat
@@ -271,13 +282,13 @@ use Illuminate\Support\Str;
     Route::post('admission/upload','Backend\AdmissionController@upload')->name('admission.upload');
 
     Route::post('admission/slip-view','Backend\AdmissionController@slipView');
-
+    /*
     Route::get('attendance/setting','Backend\ShiftController@index')->name('shift.index');
     Route::post('attendance/shift/store','Backend\ShiftController@store')->name('shift.store');
     Route::get('attendance/shift/edit/{id}','Backend\ShiftController@edit')->name('shift.edit');
     Route::post('attendance/shift/update','Backend\ShiftController@update')->name('shift.update');
     Route::delete('attendance/shift/delete/{id}','Backend\ShiftController@destroy')->name('shift.destroy');
-
+    */
     Route::get('exam/marks/{schedule}','Backend\MarkController@index')->name('exam-marks.index');
     Route::get('exam/mark/download/{schedule}','Backend\MarkController@download')->name('exam-marks.download');
     Route::get('exam/mark/upload/{schedule}','Backend\MarkController@upload')->name('exam-marks.upload');
@@ -299,6 +310,7 @@ use Illuminate\Support\Str;
 
 
     //Students Route by Rimon
+    /*
     Route::get('student/designStudentCard','Backend\IdCardController@index')->name('student.designStudentCard');
     Route::get('student/generateStudentCard_v1','Backend\IdCardController@generateStudentCard_v1')->name('student.generateStudentCard_v1');
     Route::get('student/generateStudentCard_v2','Backend\IdCardController@generateStudentCard_v2')->name('student.generateStudentCard_v2');
@@ -313,19 +325,24 @@ use Illuminate\Support\Str;
     Route::get('student/download-blank-csv/{academicClassId}','Backend\StudentController@downloadBlank')->name('student.downloadBlank');
     Route::get('student/upload-student/{academicClassId}','Backend\StudentController@uploadStudent')->name('student.uploadStudent');
     Route::post('student/up','Backend\StudentController@up')->name('student.up');
-
+    */
+    /*
     Route::get('staff/idCard','Backend\IdCardController@staff')->name('staff.staff');
     Route::post('staff/idCard/pdf','Backend\IdCardController@staffPdf')->name('staff.staffPdf');
-
+    */
     //@MKH
+    /*
     Route::post('student/store', 'Backend\StudentController@store')->name('student.store');
     Route::get('student/optional','Backend\StudentController@optional')->name('student.optional');
     Route::get('student/optional/assign','Backend\StudentController@assignOptional')->name('student.assignOptional');
     Route::post('student/optional/subjectStudent','Backend\StudentController@subjectStudent')->name('subject.student');
+    */
     //End Students Route
 
     // ID Card Routes
+    /*
     Route::post('student/card/pdf','Backend\IdCardController@pdf')->name('student.pdf');
+    */
     // ID Card Routes
 
 
@@ -518,10 +535,13 @@ use Illuminate\Support\Str;
     Route::post('diary-update/{diary}', [DiaryController::class, 'update'])->name('diary.update');
     */
 //Student profile start
+    /*
     Route::get('student-profile/{studentId}','Backend\StudentController@studentProfile')->name('admin.student.profile');
     Route::post('student-password-reset','Backend\StudentController@studentPasswordReset')->name('student.resetPassword');
     Route::get('csv','Backend\StudentController@csvDownload')->name('csv');
+    */
 //Staff Route
+    /*
     Route::get('staff-profile/{staffId}','Backend\StaffController@staffProfile')->name('staff.profile');
     Route::get('staff/teacher','Backend\StaffController@teacher')->name('staff.teacher');
     Route::get('staff/staffadd','Backend\StaffController@addstaff')->name('staff.addstaff');
@@ -546,7 +566,7 @@ Route::post('staff/store-training','Backend\StaffController@store_training')->na
 Route::post('staff/update-training','Backend\StaffController@update_training')->name('staff.update_training');
 Route::post('staff/store-course','Backend\StaffController@store_course')->name('staff.store_course');
 Route::post('staff/update-course','Backend\StaffController@update_course')->name('staff.update_course');
-
+*/
     //End Staff Route
 
 
@@ -591,6 +611,7 @@ Route::post('communication/quick/send','Backend\CommunicationController@quickSen
 
 
 //Attendance Route by Rimon
+/*
 Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
 Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
 Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
@@ -600,6 +621,7 @@ Route::post('/get_attendance_monthly', 'Backend\AttendanceController@getAttendan
 Route::post('/indStudentAttendance','Backend\AttendanceController@individulAttendance')->name('student.indAttendance');
 Route::post('/classStudentAttendance','Backend\AttendanceController@classAttendance')->name('student.classAttendance');
 Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeacherAttendance')->name('teacher.indAttendance');
+*/
 //End Attendance Route
 
 
@@ -725,12 +747,16 @@ return view('form-pdf');
 
 
 //Tc
+/*
 Route::get('student/tc','Backend\StudentController@transferCertificate')->name('student.tc');
-
+*/
 // Money Receipt
 // manuel attendence
+    /*
     Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
     Route::get('/student/manuel-attendence-change','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
-//end manuel attendence
-
+    */
+    //end manuel attendence
+/*
 Route::get('student/money','Backend\StudentController@moneyReceipt')->name('student.money');
+*/

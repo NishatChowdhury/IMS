@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -169,7 +169,7 @@ class StudentController extends Controller
 //        dd($s->get());
         $students = $s->orderBy('studentId')->paginate(100);
         $repository = $this->repository;
-        return view('admin.student.list',compact('students','repository'));
+        return view('hrm::student.list',compact('students','repository'));
     }
 
     /*public function get_section(Request $req){
@@ -188,7 +188,7 @@ class StudentController extends Controller
     public function create(){
         $repository = $this->repository;
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
-        return view('admin.student.create', compact('repository','academicClass'));
+        return view('hrm::student.create', compact('repository','academicClass'));
     }
 
     public function store(Request $req)
@@ -312,7 +312,7 @@ class StudentController extends Controller
         $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
 
         $repository = $this->repository;
-        return view('admin.student.edit',compact('student','repository','father','mother','guardian','studentAcademic','academicClass'));
+        return view('hrm::student.edit',compact('student','repository','father','mother','guardian','studentAcademic','academicClass'));
     }
 
     public function update($id, Request $request)
@@ -473,7 +473,7 @@ class StudentController extends Controller
             $academicsubjects = NULL;
         }
 
-        return view('admin.student.optional', compact('academicsubjects','subjects','students','academicclasses','className','notAssignsubjects'));
+        return view('hrm::student.optional', compact('academicsubjects','subjects','students','academicclasses','className','notAssignsubjects'));
     }
 
     public function assignOptional(Request $request)
@@ -541,7 +541,7 @@ class StudentController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.student.promotion',compact('students','repository'));
+        return view('hrm::student.promotion',compact('students','repository'));
     }
 
     public function promote(Request $request)
@@ -608,20 +608,20 @@ class StudentController extends Controller
 
     public function testimonial()
     {
-        return view('admin.student.testimonial');
+        return view('hrm::student.testimonial');
     }
 
     public function transferCertificate()
     {
         // return 'ddd';
-        return view('admin.student.tc');
+        return view('hrm::student.tc');
     }
 
 
     public function moneyReceipt()
     {
         // return 'ddd';
-        return view('admin.student.money');
+        return view('hrm::student.money');
     }
 
     public function csvDownload()
@@ -731,7 +731,7 @@ class StudentController extends Controller
     public function uploadStudent($academicClassId)
     {
         $academicClass = AcademicClass::query()->findOrFail($academicClassId);
-        return view('admin.student.upload',compact('academicClass'));
+        return view('hrm::student.upload',compact('academicClass'));
     }
 
     public function up(Request $request)
@@ -908,7 +908,7 @@ class StudentController extends Controller
             ->take(30)
             ->get();
 
-        return view('admin.student.studentProfile',compact('student','payments','data','studentAcademic','attendaces'));
+        return view('hrm::student.studentProfile',compact('student','payments','data','studentAcademic','attendaces'));
 
 // ->whereHas('academics', function($query){
 //                          $query->whereHas('sessions', function($query){
@@ -933,7 +933,7 @@ class StudentController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.student.tod',compact('students','repository'));
+        return view('hrm::student.tod',compact('students','repository'));
     }
 
     public function esif(Request $request)
@@ -957,7 +957,7 @@ class StudentController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.student.esif',compact('students','repository','group','class'));
+        return view('hrm::student.esif',compact('students','repository','group','class'));
     }
 
     public function images(Request $request)
@@ -973,7 +973,7 @@ class StudentController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.student.images',compact('students','repository'));
+        return view('hrm::student.images',compact('students','repository'));
     }
 
 
@@ -1001,7 +1001,7 @@ class StudentController extends Controller
 
         $subjects = json_decode($student->subjects);
 
-        return view('admin.student.subjects',compact('student','compulsory','selective','optional','subjects','studentSubject'));
+        return view('hrm::student.subjects',compact('student','compulsory','selective','optional','subjects','studentSubject'));
     }
 
     public function assignSubject($id, Request $request)
@@ -1033,7 +1033,7 @@ class StudentController extends Controller
             $locations = [];
             $locationStudents = [];
         }
-        return view('admin.student.assignTransport', compact('academicClass','students','locations','locationStudents'));
+        return view('hrm::student.assignTransport', compact('academicClass','students','locations','locationStudents'));
     }
 
     public function storeAssignTransport(Request $request)
