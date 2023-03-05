@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Admission\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AppliedStudent;
@@ -26,7 +26,7 @@ class AppliedStudentController extends Controller
 
         $subjects = json_decode($student->subjects);
 
-        return view('admin.admission._student-view',compact('student','subjects'));
+        return view('admission::admission._student-view',compact('student','subjects'));
     }
 
     public function sms($data)

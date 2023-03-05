@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Admission\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Confirm;
@@ -42,7 +42,7 @@ class OnlineApplyController extends Controller
         $sessions = Session::query()->get();
         $sections = Section::query()->get();
          $students = onlineApply::query()->orderBy('id')->with('classes','group','sessions','sections')->paginate(100);
-        return view('admin.admission.applicant-school', compact('students','academicClass','sessions','sections'));
+        return view('admission::admission.applicant-school', compact('students','academicClass','sessions','sections'));
     }
 
     public function onlineApplyCollege()
@@ -197,7 +197,7 @@ class OnlineApplyController extends Controller
         $sessions = Session::query()->get();
         $sections = Section::query()->get();
         $student = OnlineApply::find($id);
-        return view('admin.student.applyStudentProfile', compact('student','academicClass','sessions','sections'));
+        return view('admission::student.applyStudentProfile', compact('student','academicClass','sessions','sections'));
     }
 
     public function moveToStudent(Request $req)
@@ -349,7 +349,7 @@ class OnlineApplyController extends Controller
         $sessions = Session::query()->get();
         $onlineAdmissions = OnlineAdmission::query()->with('group','sections')->get();
         $groups = Group::query()->get();
-        return view('admin.admission.onlineAdminssion', compact('sessions','classes','groups','onlineAdmissions'));
+        return view('admission::admission.onlineAdminssion', compact('sessions','classes','groups','onlineAdmissions'));
     }
 
     public function onlineApplySetStore(Request $req)
@@ -384,7 +384,7 @@ class OnlineApplyController extends Controller
         $sessions = Session::query()->get();
         $onlineAdmissions = OnlineAdmission::query()->get();
         $groups = Group::query()->get();
-        return view('admin.admission.online-admission-edit', compact('onlineAdmission','classes','sessions','groups'));
+        return view('admission::admission.online-admission-edit', compact('onlineAdmission','classes','sessions','groups'));
     }
 
     public function onlineApplySetUpdate(Request $req)

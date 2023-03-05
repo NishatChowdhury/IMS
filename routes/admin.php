@@ -60,8 +60,10 @@ use Illuminate\Support\Str;
     //Accounts End
 
     //Admission Routes
+    /*
     Route::post('admission/store','Backend\AdmissionController@store')->name('admission.store');
     Route::post('admission/unapprove/{roll}','Backend\AdmissionController@unapprove')->name('admission.unapprove');
+    */
     //Admission Routes Ends
 
 //Upcoming Events
@@ -283,11 +285,15 @@ use Illuminate\Support\Str;
     //Admission Route by Rimon
     Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
     Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
+    /*
     Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList')->name('admission.browseMeritList');
     Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList')->name('admission.uploadMeritList');
+
     Route::post('admission/upload','Backend\AdmissionController@upload')->name('admission.upload');
 
     Route::post('admission/slip-view','Backend\AdmissionController@slipView');
+    */
+
     /*
     Route::get('attendance/setting','Backend\ShiftController@index')->name('shift.index');
     Route::post('attendance/shift/store','Backend\ShiftController@store')->name('shift.store');
@@ -489,6 +495,7 @@ use Illuminate\Support\Str;
     //Route::get('download-database', [HomeController::class, 'downloadDatabase']);
     //Route::get('download-database1', [HomeController::class, 'downloadDatabase1']);
 
+    /*
     Route::get('admission/applicant', 'Backend\OnlineApplyController@index')->name('online-admission.index');
     Route::get('online-application-view/{id}', 'Backend\OnlineApplyController@applyStudentProfile')->name('online-admission.applyStudentProfile');
     Route::get('get-apply-info', 'Backend\OnlineApplyController@getApplyInfo')->name('online-admission.getApplyInfo');
@@ -499,7 +506,7 @@ use Illuminate\Support\Str;
     Route::get('load_online_adminsion_id/{id}', 'Backend\OnlineApplyController@load_online_adminsion_id')->name('onlineStepEdit');
     Route::post('onlineApplySetUpdate', 'Backend\OnlineApplyController@onlineApplySetUpdate')->name('online.typeUpdate');
     Route::post('/online-apply-move',[OnlineApplyController::class,'moveToStudent'])->name('online.moveToStudent');
-
+    */
     Route::get('academic-calender/index','Backend\AcademicCalenderController@index')->name('academic-calender.index');
     Route::post('academic-calender/store','Backend\AcademicCalenderController@store')->name('academic-calender.store');
     Route::post('academic-calender/edit','Backend\AcademicCalenderController@edit')->name('academic-calender.edit');
@@ -669,7 +676,9 @@ Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@dest
 //    Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList')->name('admission.uploadMeritList');
 //    Route::post('admission/upload','Backend\AdmissionController@upload')->name('admission.upload');
 
+        /*
     Route::post('admission/slip-view','Backend\AdmissionController@slipView')->name('admission.slipView');
+        */
 //End Admission Route
 
 Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails')->name('exam.resultDetails');
