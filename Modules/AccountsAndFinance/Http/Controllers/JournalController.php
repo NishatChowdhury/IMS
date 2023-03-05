@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\COA;
@@ -42,7 +42,7 @@ class JournalController extends Controller
         $journals = $j->orderByDesc('date')->paginate(25);
 
         //dd($journals);
-        return view('admin.journal.index',compact('journals','coa'));
+        return view('accountsandfinance::journal.index',compact('journals','coa'));
     }
 
     public function create()
@@ -50,7 +50,7 @@ class JournalController extends Controller
 
         $coa = COA::all()->where('is_enabled',1)->pluck('name','id');
         $journalNo = $this->journalNumber();
-        return view('admin.journal.create',compact('coa','journalNo'));
+        return view('accountsandfinance::journal.create',compact('coa','journalNo'));
     }
 
     public function store(Request $request)
@@ -89,7 +89,7 @@ class JournalController extends Controller
     public function show($id)
     {
         $journal = Journal::query()->findOrFail($id);
-        return view('admin.journal.show',compact('journal'));
+        return view('accountsandfinance::journal.show',compact('journal'));
     }
 
     /**
@@ -138,7 +138,7 @@ class JournalController extends Controller
         $start = $request->get('start');
         $end = $request->get('end');
         $journals = Journal::query()->whereBetween('date',[$start,$end])->orderBy('date')->paginate(100);
-        return view('admin.journal.classic',compact('journals','start','end'));
+        return view('accountsandfinance::journal.classic',compact('journals','start','end'));
     }
 
     /**

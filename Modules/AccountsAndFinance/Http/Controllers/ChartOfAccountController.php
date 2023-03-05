@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\ChartOfAccount;
@@ -30,14 +30,14 @@ class ChartOfAccountController extends Controller
         //$coa = CoaGrandParent::all();
         //$chartOfAccounts = ChartOfAccount::query()->paginate(50);
         $chartOfAccounts = COA::query()->paginate(50);
-        return view('admin.coa.index',compact('chartOfAccounts'));
+        return view('accountsandfinance::coa.index',compact('chartOfAccounts'));
     }
 
     public function create()
     {
         $autoCode = COA::query()->max('code') + 1;
         $repository = $this->repository;
-        return view('admin.coa.create',compact('repository','autoCode'));
+        return view('accountsandfinance::coa.create',compact('repository','autoCode'));
     }
 
     public function store(Request $request)
@@ -68,7 +68,7 @@ class ChartOfAccountController extends Controller
 
         $repository = $this->repository;
 
-        return view('admin.coa.edit',compact('coa','repository'));
+        return view('accountsandfinance::coa.edit',compact('coa','repository'));
     }
 
     public function update($id, Request $request)

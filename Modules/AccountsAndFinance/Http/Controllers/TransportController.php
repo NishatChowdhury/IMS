@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Location;
@@ -21,7 +21,7 @@ class TransportController extends Controller
     public function index()
     {
         $data['locations'] = Location::paginate(10);
-        return view('admin.transport.location.add-transport')->with($data);
+        return view('accountsandfinance::transport.location.add-transport')->with($data);
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class TransportController extends Controller
     public function edit($id){
         $data['single_location'] = Location::findOrFail($id);
         $data['locations'] = Location::paginate(10);
-        return view('admin.transport.location.edit-transport')->with($data);
+        return view('accountsandfinance::transport.location.edit-transport')->with($data);
     }
 
     public function update(Request $request,$id){
@@ -91,7 +91,7 @@ class TransportController extends Controller
         $repository = $this->repository;
         $transport_fee = Location::query()->pluck('name','id');
 
-        return view('admin.transport.location.assign-location',compact('repository','students','transport_fee'));
+        return view('accountsandfinance::transport.location.assign-location',compact('repository','students','transport_fee'));
     }
 
     public function transport_assign(Request $request)

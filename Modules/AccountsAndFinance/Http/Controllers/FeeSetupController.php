@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -32,7 +32,7 @@ class FeeSetupController extends Controller
             ->orderBy('month_id')
             ->get()
             ->groupBy('month_id');
-        return view('admin.feeSetup.index', compact('fees'));
+        return view('accountsandfinance::feeSetup.index', compact('fees'));
     }
 
     public function create()
@@ -46,7 +46,7 @@ class FeeSetupController extends Controller
         $groups = Group::query()->pluck('name', 'id');
         $fee_category = FeeCategory::query()->where('status', 1)->pluck('name', 'id');
         sessions::forget('fees');
-        return view('admin.feeSetup.create', compact('session', 'classes', 'groups', 'fee_category', 'academic_classes'));
+        return view('accountsandfinance::feeSetup.create', compact('session', 'classes', 'groups', 'fee_category', 'academic_classes'));
     }
 
     public function store(Request $request)
@@ -110,7 +110,7 @@ class FeeSetupController extends Controller
         $students = FeeSetupStudent::query()
             ->where('fee_setup_id',$request->id)->with('student')
             ->get();
-        return view('admin.feeSetup.fee-students',compact('students'));
+        return view('accountsandfinance::feeSetup.fee-students',compact('students'));
     }
 
     public function feeSetupDetails(Request $request)
@@ -119,7 +119,7 @@ class FeeSetupController extends Controller
             ->where('student_id', $request->id)
             ->with('feeSetupPivot', 'student', 'fee_categories')
             ->get();
-        return view('admin.feeSetup.fee_pivot_details', compact('fee_setup'));
+        return view('accountsandfinance::feeSetup.fee_pivot_details', compact('fee_setup'));
     }
 
     public function edit($id)
@@ -155,7 +155,7 @@ class FeeSetupController extends Controller
         $fees = session('fees');
 
 //        return $fee_setup;
-        return view('admin.feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
+        return view('accountsandfinance::feeSetup.edit',compact('fee_setup','fee_category','classes','fees'));
     }
 
     /**
@@ -217,7 +217,7 @@ class FeeSetupController extends Controller
             }
         }
 
-        return  view('admin.feeSetup.edit_by_student', compact('feeSetupStudent', 'categories', 'fee_categories'));
+        return  view('accountsandfinance::feeSetup.edit_by_student', compact('feeSetupStudent', 'categories', 'fee_categories'));
     }
 
     public function updateByStudent($id): RedirectResponse

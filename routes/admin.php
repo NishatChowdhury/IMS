@@ -48,6 +48,7 @@ use Illuminate\Support\Str;
     //Student Routes End
 
     //Accounts
+    /*
     Route::get('coa', 'Backend\ChartOfAccountController@index')->name('coa.name');
     Route::get('coa/create', 'Backend\ChartOfAccountController@create')->name('coa.create');
     Route::post('coa/store', 'Backend\ChartOfAccountController@store')->name('coa.store');
@@ -55,6 +56,7 @@ use Illuminate\Support\Str;
     Route::patch('coa/{id}/update', 'Backend\ChartOfAccountController@update')->name('coa.update');
     Route::delete('coa/destroy/{id}', 'Backend\ChartOfAccountController@destroy')->name('coa.destroy');
     Route::post('coa/status', 'Backend\ChartOfAccountController@isEnabled')->name('coa.isEnabled');
+    */
     //Accounts End
 
     //Admission Routes
@@ -75,10 +77,12 @@ use Illuminate\Support\Str;
 //Upcoming Events Ends
 
     //Playlists
+    /*
     Route::get('playlists','Backend\PlaylistController@index')->name('playlist.index');
     Route::post('playlist/store','Backend\PlaylistController@store')->name('playlist.store');
     Route::get('playlist/show/{id}','Backend\PlaylistController@show')->name('playlist.show');
     Route::delete('playlist/destroy/{id}','Backend\PlaylistController@destroy')->name('playlist.destroy');
+    */
     //Playlists Ends
 
     //Videos
@@ -105,6 +109,7 @@ use Illuminate\Support\Str;
 
 
     // Imam Hasan Journal Routes
+    /*
     Route::resource('journals', "Backend\JournalController")->middleware('auth');
     Route::get('journal/classic','Backend\JournalController@classic')->name('journal.classic');
     Route::get('cash-book','Backend\AccountingController@cashBook')->name('journal.cashBook');
@@ -113,6 +118,7 @@ use Illuminate\Support\Str;
     Route::get('trial-balance','Backend\AccountingController@trialBalance')->name('journal.trialBalance');
     Route::get('profit-n-loss','Backend\AccountingController@profitNLoss')->name('journal.profitNLoss');
     Route::get('balance-sheet','Backend\AccountingController@balanceSheet')->name('journal.balanceSheet');
+    */
     // Imam Hasan Journal Routes
     // Imam Hasan Journal Routes
     //Route::resource('journals', "JournalController")->middleware('auth');
@@ -422,6 +428,7 @@ use Illuminate\Support\Str;
     //Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
 //Route for fee setup starts here
+    /*
     Route::get('fee/fee-setup',[FeeSetupController::class,'create'])->name('fee-setup.create');
     Route::post('fee/fee-setup/store',[FeeSetupController::class,'store'])->name('fee-setup.store');
     Route::get('fee/fee-setup/view',[FeeSetupController::class,'index'])->name('fee-setup.index');
@@ -435,7 +442,7 @@ use Illuminate\Support\Str;
 
     Route::patch('fee/fee-setup/update/{id}',[FeeSetupController::class,'update'])->name('fee.fee-setup.update');
     Route::post('fee/fee-setup/delete/{id}',[FeeSetupController::class,'destroy'])->name('fee.fee-setup.delete');
-
+    */
     Route::post('fee/fee-cart/store',[FeeCartController::class,'store'])->name('fee-cart.store');
     Route::post('fee/fee-cart/destroy',[FeeCartController::class,'destroy'])->name('fee-cart.destroy');
     Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush'])->name('fee-cart.flush');
@@ -444,6 +451,7 @@ use Illuminate\Support\Str;
    //Route for fee setup ends here
 
     //Route for fee collection starts here
+    /*
     Route::get('fee/fee-collection', [FeeCollectionController::class, 'index'])->name('fee-collection.index');
     Route::get('fee/fee-collection/view', [FeeCollectionController::class, 'view'])->name('fee-collection.view');
     Route::post('fee/fee-collection/store', [FeeCollectionController::class, 'store'])->name('fee-collection.store');
@@ -453,7 +461,7 @@ use Illuminate\Support\Str;
     Route::get('fee/collections/report/academic_class', [FeeCollectionController::class, 'academicClassReport'])->name('report.academic_class');
     Route::get('fee/collections/pdf/classReport', [FeeCollectionController::class, 'pdfClassReport'])->name('pdf.classReport');
     Route::get('fee/collections/pdf/dateWiseReport', [FeeCollectionController::class, 'pdfDateReport'])->name('pdf.dateWiseReport');
-
+    */
     //Route for fee collection ends here
 
 
@@ -501,6 +509,7 @@ use Illuminate\Support\Str;
 
 
     // Student Transport management Start
+    /*
     Route::get('fee-category/transport','Backend\TransportController@index')->name('transport.index');
     Route::post('fee-category/transport','Backend\TransportController@store')->name('transport.store');
     Route::post('fee-category/transport','Backend\TransportController@store')->name('transport.store');
@@ -508,8 +517,10 @@ use Illuminate\Support\Str;
     Route::patch('transport/update/{id}','Backend\TransportController@update')->name('transport.update');
     Route::get('transport/student-list','Backend\TransportController@student_list')->name('transport.student-list');
     Route::post('transport/assign','Backend\TransportController@transport_assign')->name('transport.assign');
-// Student Transport management End
+    */
+    // Student Transport management End
 //  Fee Category Start
+    /*
     Route::get('/fee-category/index','Backend\FeeCategoryController@index')->name('fee-category.index');
     Route::post('/fee-category/search','Backend\FeeCategoryController@search')->name('fee_categories.search');
     Route::post('fee-category/store','Backend\FeeCategoryController@store_fee_category')->name('fee-category.store');
@@ -524,7 +535,8 @@ use Illuminate\Support\Str;
     Route::get('fee_setup/list/{classId}','Backend\FeeCategoryController@list_fee_setup')->name('fee-setup.list');
     Route::get('fee_setup/show/{id}', 'Backend\FeeCategoryController@show_fee_setup')->name('fee-setup.show');
     Route::patch('fee_setup/{id}/update','Backend\FeeCategoryController@update_fee_setup')->name('fee-setup.update');
-//  Fee Setup End
+    */
+    //  Fee Setup End
 
     // Dairy Management Here
     /*

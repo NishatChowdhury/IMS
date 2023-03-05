@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Journal;
@@ -28,7 +28,7 @@ class FeeCollectionController extends Controller
 {
     public function index()
     {
-        return view('admin.feeCollection.index');
+        return view('accountsandfinance::feeCollection.index');
     }
 
     public function view(Request $request)
@@ -64,9 +64,9 @@ class FeeCollectionController extends Controller
             $paymentTransportAmount =  TransportPayment::where('student_academic_id',$studentAcademic->id)->sum('amount');
             // $feeSetup = $student->feeSetup;
             $totalTransportDue = 00;
-            return view('admin.feeCollection.view', compact('student','totalTransportDue','paymentTransportAmount','transportAmount', 'term', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment'));
+            return view('accountsandfinance::feeCollection.view', compact('student','totalTransportDue','paymentTransportAmount','transportAmount', 'term', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment'));
         } else {
-            return view('admin.feeCollection.index')->with('message', 'IT WORKS!');
+            return view('accountsandfinance::feeCollection.index')->with('message', 'IT WORKS!');
         }
     }
 
@@ -203,7 +203,7 @@ class FeeCollectionController extends Controller
     public function allCollections()
     {
         $studentPayment = StudentPayment::all();
-        return view('admin.feeCollection.collection', compact('studentPayment'));
+        return view('accountsandfinance::feeCollection.collection', compact('studentPayment'));
     }
 
     public function report($id)
@@ -222,7 +222,7 @@ class FeeCollectionController extends Controller
             $transport_fee = [];
             $payment_details = [];
         }
-        return view('admin.feeCollection.report', compact('student', 'fee_setup', 'payment_details'));
+        return view('accountsandfinance::feeCollection.report', compact('student', 'fee_setup', 'payment_details'));
     }
 
     public function reportGenerate(Request $request)
@@ -264,7 +264,7 @@ class FeeCollectionController extends Controller
 
 
         Session::put('request1',['class'=>$request->academic_class,'from'=>$request->from, 'to'=>$request->to]);
-        return view('admin.feeCollection.report_generate', compact('stupays', 'academic_class'));
+        return view('accountsandfinance::feeCollection.report_generate', compact('stupays', 'academic_class'));
     }
 
     public function academicClassReport(Request $request)
@@ -287,7 +287,7 @@ class FeeCollectionController extends Controller
 
         // return $students;
 
-        return view('admin.feeCollection.academic_class_report', compact('academic_class',  'reqMonth', 'students'));
+        return view('accountsandfinance::feeCollection.academic_class_report', compact('academic_class',  'reqMonth', 'students'));
     }
 
     public function pdfClassReport(Request $request)
@@ -301,7 +301,7 @@ class FeeCollectionController extends Controller
             $query->where('month_id',  $r['month'])->where('year',$r['year']);
         })->get();
 
-        $pdf = PDF::loadView('admin.feeCollection.pdf_class', compact('students'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('accountsandfinance::feeCollection.pdf_class', compact('students'))->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream('invoice.pdf');
 
     }
@@ -329,7 +329,7 @@ class FeeCollectionController extends Controller
             $stupays = null;
         }
 
-        $pdf = PDF::loadView('admin.feeCollection.pdf_date_search_report', compact('stupays'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('accountsandfinance::feeCollection.pdf_date_search_report', compact('stupays'))->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream('Date-search-report.pdf');
 
     }

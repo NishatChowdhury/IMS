@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\COA;
@@ -21,7 +21,7 @@ class AccountingController extends Controller
         $revenue_coas = CoaParent::whereName('Revenue')->first()->children;
         $expense_coas = CoaParent::whereName('Expense')->first()->children;
         // return $coaGrandParent->first()->children->first()->children;
-        return view('admin.reports.balance_sheet', compact('coaGrandParent','revenue_coas','expense_coas'));
+        return view('accountsandfinance::reports.balance_sheet', compact('coaGrandParent','revenue_coas','expense_coas'));
     }
 
     public function ledger(Request $request)
@@ -67,7 +67,7 @@ class AccountingController extends Controller
 //            $account = COA::query()->findOrFail($request->get('account'))->name;
         }
 
-        return view('admin.accounting.ledger',compact('coa','acc'));
+        return view('accountsandfinance::accounting.ledger',compact('coa','acc'));
     }
 
     public function trialBalance(Request $request)
@@ -93,7 +93,7 @@ class AccountingController extends Controller
             ->get();
 
 
-        return view('admin.accounting.trial-balance',compact('accounts','start','end'));
+        return view('accountsandfinance::accounting.trial-balance',compact('accounts','start','end'));
     }
 
     public function profitNLoss(Request $request)
@@ -104,7 +104,7 @@ class AccountingController extends Controller
         $expenses = CoaGrandparent::query()->findOrFail(3);
         $incomes = CoaGrandparent::query()->findOrFail(4);
 
-        return view('admin.accounting.profit-n-loss',compact('incomes','expenses','start','end'));
+        return view('accountsandfinance::accounting.profit-n-loss',compact('incomes','expenses','start','end'));
     }
 
     public function balanceSheet(Request $request)
@@ -116,7 +116,7 @@ class AccountingController extends Controller
         $liabilities = CoaGrandparent::query()->findOrFail(2);
         $equities = CoaGrandparent::query()->findOrFail(5);
 
-        return view('admin.accounting.balance-sheet',compact('start','end','assets','liabilities','equities'));
+        return view('accountsandfinance::accounting.balance-sheet',compact('start','end','assets','liabilities','equities'));
     }
 
 }

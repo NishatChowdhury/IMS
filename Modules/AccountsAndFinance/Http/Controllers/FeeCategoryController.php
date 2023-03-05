@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -19,7 +19,7 @@ class FeeCategoryController extends Controller
     public function index(){
         $sessions = Session::query()->where('active',1)->pluck('year','id');
         $fee_categories = FeeCategory::all();
-        return view('admin.account.fee-category.fee-category',compact('sessions','fee_categories'));
+        return view('accountsandfinance::account.fee-category.fee-category',compact('sessions','fee_categories'));
     }
 
     public function search(Request $request)
@@ -27,7 +27,7 @@ class FeeCategoryController extends Controller
         $query =  $request->searchQuery;
         $sessions = Session::query()->where('active',1)->pluck('year','id');
         $fee_categories = FeeCategory::where('name', 'Like', "%$query%")->get();
-        return view('admin.account.fee-category.fee-category',compact('sessions','fee_categories'));
+        return view('accountsandfinance::account.fee-category.fee-category',compact('sessions','fee_categories'));
     }
 
     public function store_fee_category(Request $request)
