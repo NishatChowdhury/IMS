@@ -46,6 +46,15 @@
                                     </a>
                                 </div>
                             </div>
+                            &nbsp;
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v4') }}">
+                                        <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}" alt=""
+                                            width="200" height="300">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

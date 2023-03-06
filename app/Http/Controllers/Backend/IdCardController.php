@@ -47,6 +47,12 @@ class IdCardController extends Controller
         return view('admin.student.designStudentCard_v3', compact('repository'));
     }
 
+    public function generateStudentCard_v4()
+    {
+        $repository = $this->repository;
+        return view('admin.student.designStudentCard_v4', compact('repository'));
+    }
+
     public function staff()
     {
         $repository = $this->repository;
