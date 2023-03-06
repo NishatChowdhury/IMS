@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\ExamAndResult\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -53,7 +53,7 @@ class MarkController extends Controller
         }
 //        return $students;
 
-        return view('admin.exam.marks',compact('students','examSchedule','table'));
+        return view('examandresult::exam.marks',compact('students','examSchedule','table'));
     }
 
     public function download($schedule)
@@ -118,7 +118,7 @@ class MarkController extends Controller
     public function upload($schedule)
     {
          $schedule = ExamSchedule::query()->findOrFail($schedule);
-         return view('admin.exam.upload',compact('schedule'));
+         return view('examandresult::exam.upload',compact('schedule'));
     }
 
     public function up(Request $request)

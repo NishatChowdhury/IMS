@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\ExamAndResult\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -37,7 +37,7 @@ class ExamController extends Controller
     public function gradesystem()
     {
         $gradings = Grade::all();
-        return view ('admin.exam.gradesystem', compact('gradings'));
+        return view ('examandresult::exam.gradesystem', compact('gradings'));
     }
 
     public function store_grade(Request $request){
@@ -57,7 +57,7 @@ class ExamController extends Controller
             return $q->where('active', 1);
         })->get();
         $repository = $this->repository;
-        return view ('admin.exam.examination', compact('exams','repository'));
+        return view ('examandresult::exam.examination', compact('exams','repository'));
     }
 
     public function store_exam(Request $request){
@@ -78,7 +78,7 @@ class ExamController extends Controller
         $classes = AcademicClass::all()->pluck('name', 'id');
         $schedules = ExamSchedule::all();
         $subjects = Subject::all()->pluck('name','id');
-        return view ('admin.exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
+        return view ('examandresult::exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
     }
 
     public function store_schedule(Request $request){
@@ -162,12 +162,12 @@ class ExamController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.exam.admit-card',compact('repository','academicClass','students','exam','schedules'));
+        return view('examandresult::exam.admit-card',compact('repository','academicClass','students','exam','schedules'));
     }
 
     public function seatAllocate(Request $request)
     {
-        return view('admin.exam.seat-allocate');
+        return view('examandresult::exam.seat-allocate');
     }
 
     public function marks()
@@ -177,7 +177,7 @@ class ExamController extends Controller
             ->where('class_id',9)
             // ->where('group_id',1)
             ->get();
-        return view('admin.exam.marks',compact('students'));
+        return view('examandresult::exam.marks',compact('students'));
     }
 
     public function upload()
@@ -399,7 +399,7 @@ class ExamController extends Controller
         //dd($request->get('group_id').' '.$request->get('class_id'));
         $results = $results->count() == 0 ? null : $results;
         $repository = $this->repository;
-        return view('admin.exam.tabulation-sheet',compact('repository','results','subjects'));
+        return view('examandresult::exam.tabulation-sheet',compact('repository','results','subjects'));
     }
 
     public function tabulationSubjects($classId,$groupId = null)

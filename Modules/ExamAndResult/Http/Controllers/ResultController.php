@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\ExamAndResult\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -59,7 +59,7 @@ class ResultController extends Controller
         }
 
         $repository = $this->repository;
-        return view ('admin.exam.examresult',compact('repository','results'));
+        return view ('examandresult::exam.examresult',compact('repository','results'));
     }
 
     public function generateResult($examId)
@@ -205,7 +205,7 @@ class ResultController extends Controller
             ->orderBy('level')
             ->get();
 
-        return view('admin.exam.result-details',compact('result','marks'));
+        return view('examandresult::exam.result-details',compact('result','marks'));
     }
 
     public function finalResultDetails($id)
@@ -222,13 +222,13 @@ class ResultController extends Controller
             ->orderBy('level')
             ->get();
 
-        return view('admin.exam.final-result-details',compact('result','marks'));
+        return view('examandresult::exam.final-result-details',compact('result','marks'));
     }
 
     public function setfinalresultrule()
     {
         $exams = Exam::query()->get();
-        return view ('admin.exam.setfinalresultrule',compact('exams'));
+        return view ('examandresult::exam.setfinalresultrule',compact('exams'));
     }
 
     public function finalResultNew(Request $request)
@@ -376,7 +376,7 @@ class ResultController extends Controller
         }
 
         $repository = $this->repository;
-        return view ('admin.exam.finalresult',compact('repository','results'));
+        return view ('examandresult::exam.finalresult',compact('repository','results'));
     }
 
     public function gpa($full,$totalMark,$id)
@@ -436,7 +436,7 @@ class ResultController extends Controller
         }
 
         $repository = $this->repository;
-        return view ('admin.exam.finalresult',compact('repository','results'));
+        return view ('examandresult::exam.finalresult',compact('repository','results'));
     }
 
     public function calcFinalResult(){
@@ -718,7 +718,7 @@ class ResultController extends Controller
         }
 
         $repository = $this->repository;
-        return view('admin.exam.all-details',compact('results','repository'));
+        return view('examandresult::exam.all-details',compact('results','repository'));
     }
 
     public function tabulation($examID,Request $request)
@@ -747,6 +747,6 @@ class ResultController extends Controller
         //dd($request->get('group_id').' '.$request->get('class_id'));
         $results = $results->count() == 0 ? null : $results;
         $repository = $this->repository;
-        return view('admin.exam.tabulation',compact('repository','results','subjects','examID'));
+        return view('examandresult::exam.tabulation',compact('repository','results','subjects','examID'));
     }
 }

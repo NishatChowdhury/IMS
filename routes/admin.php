@@ -300,7 +300,7 @@ use Illuminate\Support\Str;
     Route::get('attendance/shift/edit/{id}','Backend\ShiftController@edit')->name('shift.edit');
     Route::post('attendance/shift/update','Backend\ShiftController@update')->name('shift.update');
     Route::delete('attendance/shift/delete/{id}','Backend\ShiftController@destroy')->name('shift.destroy');
-    */
+
     Route::get('exam/marks/{schedule}','Backend\MarkController@index')->name('exam-marks.index');
     Route::get('exam/mark/download/{schedule}','Backend\MarkController@download')->name('exam-marks.download');
     Route::get('exam/mark/upload/{schedule}','Backend\MarkController@upload')->name('exam-marks.upload');
@@ -308,7 +308,7 @@ use Illuminate\Support\Str;
     Route::post('exam/mark/store','Backend\MarkController@store')->name('exam-marks.store');
 
     Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
-
+        */
         //Book Category starts by Nishat
         Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
         Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
@@ -645,6 +645,7 @@ Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeac
 
 
 //Exam Route Start  by Rimon
+        /*
 Route::get('exam/gradesystem',[ExamController::class,'gradesystem'])->name('exam.gradesystem');
 //Grading System @MKH
 Route::post('exam/store-grade', [ExamController::class,'store_grade'])->name('exam.store_grade');
@@ -659,14 +660,16 @@ Route::get('exam/schedule/{examId}', [ExamScheduleController::class,'index'])->n
 Route::post('exam/store-schedule', [ExamController::class,'store_schedule'])->name('exam.store_schedule');
 Route::get('exam/admit-card/{exam_id}',[ExamController::class,'admitCard'])->name('exam.admitCard');
 Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate'])->name('exam.seatAllocate');
+*/
 
 // Exam Seat Plan Start
+        /*
 Route::get('exam/seat-plan/{examId}','Backend\ExamSeatPlanController@seatPlan')->name('exam-seat-plan.seatPlan');
 Route::post('exam/check-roll','Backend\ExamSeatPlanController@CheckRoll')->name('exam-seat-plan.CheckRoll');
 Route::post('exam/store-seat-plan','Backend\ExamSeatPlanController@storeSeatPlan')->name('exam-seat-plan.storeSeatPlan');
 Route::get('exam/pdf-seat-plan/{id}','Backend\ExamSeatPlanController@pdfSeatPlan')->name('exam-seat-plan.pdfSeatPlan');
 Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@destroy')->name('exam-seat-plan.destroy');
-
+*/
 // Exam Seat Plan End
 
 ////Admission Route by Rimon
@@ -680,7 +683,7 @@ Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@dest
     Route::post('admission/slip-view','Backend\AdmissionController@slipView')->name('admission.slipView');
         */
 //End Admission Route
-
+/*
 Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails')->name('exam.resultDetails');
 Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails')->name('exam.finalResultDetails');
 Route::get('exam/result-details-all','Backend\ResultController@allDetails')->name('exam.allDetails');
@@ -691,7 +694,7 @@ Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@genera
 Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
 Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
 Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
-
+*/
 Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
 Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
 Route::get('competency/edit',[CompetencyController::class,'edit'])->name('competency.edit');

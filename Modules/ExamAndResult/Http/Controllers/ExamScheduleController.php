@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\ExamAndResult\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -42,7 +42,7 @@ class ExamScheduleController extends Controller
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
 
-        return view('admin.exam-schedule.index', compact('session_id', 'examId','schedules','sessions','exams','classes', 'class_id', 'exam_type', 'subjects', 'teachers'));
+        return view('examandresult::exam-schedule.index', compact('session_id', 'examId','schedules','sessions','exams','classes', 'class_id', 'exam_type', 'subjects', 'teachers'));
 
 
     }
@@ -81,7 +81,7 @@ class ExamScheduleController extends Controller
             $subjects = [];
         }
 
-        return view('admin.exam-schedule.create',compact('repository','class','subjects','exam','sessions','ClassId'));
+        return view('examandresult::exam-schedule.create',compact('repository','class','subjects','exam','sessions','ClassId'));
     }
 
     public function store(Request $request)

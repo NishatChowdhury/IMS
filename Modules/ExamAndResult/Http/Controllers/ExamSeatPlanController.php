@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\ExamAndResult\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -25,7 +25,7 @@ class ExamSeatPlanController extends Controller
         $id = $examId;
         $repository = $this->repository;
         $data = ExamSeatPlan::query()->orderBy('room')->get();
-        return view('admin.exam.seatplan',compact('repository','id','data'));
+        return view('examandresult::exam.seatplan',compact('repository','id','data'));
     }
 
     public function storeSeatPlan(Request $request)
@@ -57,7 +57,7 @@ class ExamSeatPlanController extends Controller
 //                            ->whereBetween('rank',[$seatData->roll_form, $seatData->roll_to])
 //                            ->get();
         //dd($students);
-        return view('admin.exam.pdf-seat-plan',compact('students','seatData'));
+        return view('examandresult::exam.pdf-seat-plan',compact('students','seatData'));
     }
 
 

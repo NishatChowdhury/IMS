@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('accountsandfinance::layouts.master')
 
 @section('title','Fee Details')
 

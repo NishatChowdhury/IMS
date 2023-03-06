@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('hrm::layouts.master')
 
 @section('title','Student Registration')
 
