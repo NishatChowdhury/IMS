@@ -172,13 +172,11 @@
                     </div>
                     <div class="card-body p-0">
                         <figure class="figure ">
-                            <img src="{{asset('assets/img/logos/nam.jpg')}}"
+                            <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}"
                                 width="85" alt=""
                                 style="border: 0.5px solid #000;height:85px"
                                 class="text-center  mx-auto d-block ">
-
                         </figure>
-
 
                         @isset($card['nickname'])
                             <h2
@@ -187,90 +185,84 @@
                             </h2>
                         @endisset
                         <table class="table "
-                        style="text-align:left;font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px;  position: relative; text-align: left; font-size: 11px;left: 22px; line-height: 12px; top: -15px;">
-                            <tbody>
-                                @isset($card['fullname'])
-                                    <tr class="tname" style="display: block;">
-                                        <td> {{ __('Name') }} </td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong> {{ $student->student->name ?? ''}} </strong></td>
-                                    </tr>
-                                @endisset
-                                @isset($card['fname'])
-                                    <tr class="tfname" style="display: block;">
-                                        <td>{{ __('Father') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->student->father->f_name ?? ''}}</strong></td>
-                                    </tr>
-                                @endisset
-                                <tr class="tgname" style="display: block;">
-                                    <td>{{ __('Group') }}</td>
-                                    <td>&nbsp;:&nbsp;</td>
-                                    <td><strong>{{ $student->group->name ?? ''}}</strong></td>
+                        style="text-align:left;font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px;  position: relative; text-align: left; font-size: 11px;left: 10px; line-height: 12px; top: -15px;">
+                        <tbody>
+                            @isset($card['fullname'])
+                            <tr class="tname" style="display: block;">
+                            <td><strong> {{ __('Name') }}</strong></td>
+                            <td style=" padding-left: 11px;">:</td>
+                                    <td><strong> {{ $student->student->name ?? ''}} </strong></td>
                                 </tr>
-                                @isset($card['class'])
-                                    <tr class="tcname" style="display: block;">
-                                        <td>{{ __('Class') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td>
-                                            <strong>{{ $student->classes->name ?? '' }}</strong>&nbsp;
-                                            @if ($card['group'])
-                                                {{ $student->group->name ?? '' }}&nbsp;
-                                            @endif
-                                            @if ($card['section'])
-                                                {{ $student->section->name ?? '' }}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endisset
-                                @isset($card['roll'])
-                                    <tr class="trname" style="display: block;">
-                                        <td>{{ __('Roll') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->rank ?? ''}}</strong></td>
-                                    </tr>
-                                @endisset
-                                @isset($card['department'])
-                                    <tr class="tdname" style="display: block;">
-                                        <td>{{ __('Department') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->department ?? ''}}</strong></td>
-                                    </tr>
-                                @endisset
-                                @isset($card['admissiondate'])
-                                    <trclass="taname" style="display: block;">
-                                        <td>{{ __('Admission') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->admission_date ?? ''}}</strong></td>
-                                    </trclass=>
-                                @endisset
-                                @isset($card['dob'])
-                                    <tr style="display: block;">
-                                        <td>{{ __('DOB') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->student->dob ?? ''}}</strong></td>
-                                    </tr>
-                                @endisset
-                                <tr  class="tsname" style="display: block;">
-                                    <td>{{ __('Session') }}</td>
-                                    <td>&nbsp;:&nbsp;</td>
-                                    <td><strong>{{ __('2022-2023') }}</strong></td>
+                            @endisset
+                            @isset($card['fname'])
+                                <tr class="tfname" style="display: block;">
+                                    <td>{{ __('Father') }}</td>
+                                    <td style="  padding-left: 9px;">:</td>
+                                    <td><strong>{{ $student->student->father->f_name ?? ''}}</strong></td>
                                 </tr>
-                                @isset($card['blood'])
-                                    <tr class="tbname" style="display: block;">
-                                        <td>{{ __('Blood Group') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->student->bloodGroup->name ?? '' }}</strong></td>
-                                    </tr>
-                                @endisset
-                                @isset($card['contact'])
-                                    <tr class="tbname" style="display: block;">
-                                        <td>{{ __('Contact') }}</td>
-                                        <td>&nbsp;:&nbsp;</td>
-                                        <td><strong>{{ $student->student->mobile ?? ''}}</strong></td>
-                                    </tr>
-                                @endisset
-                            </tbody>
+                            @endisset
+                            <tr class="tgname" style="display: block;">
+                            <td>{{ __('Group') }}</td>
+                                <td style="padding-left: 10px;">: </td>
+                                <td><strong>{{ $student->group->name ?? ''}}</strong></td>
+                            </tr>
+                            @isset($card['class'])
+                                <tr class="tcname" style="display: block;">
+                                <td>{{ __('Class') }}</td>
+                                    <td style="padding-left: 13px;">:</td>
+                                    <td>
+                                        <strong>{{ $student->classes->name ?? '' }}</strong>&nbsp;
+                                    </td>
+                                </tr>
+                            @endisset
+                            @isset($card['roll'])
+                                <tr class="trname" style="display: block;">
+                                <td>{{ __('Roll') }} </td>
+                                    <td style="padding-left: 22px;">:</td>
+                                    <td><strong>{{ $student->rank ?? ''}}</strong></td>
+                                </tr>
+                            @endisset
+                            @isset($card['department'])
+                                <tr class="tdname" style="display: block;">
+                                    <td>{{ __('Department') }}</td>
+                                    <td>:&nbsp;</td>
+                                    <td><strong>{{ $student->department ?? ''}}</strong></td>
+                                </tr>
+                            @endisset
+                            @isset($card['admissiondate'])
+                                <trclass="taname" style="display: block;">
+                                    <td>{{ __('Admission') }}</td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td><strong>{{ $student->admission_date ?? ''}}</strong></td>
+                                </trclass=>
+                            @endisset
+                            @isset($card['dob'])
+                                <tr style="display: block;">
+                                    <td>{{ __('DOB') }}</td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td><strong>{{ $student->student->dob ?? ''}}</strong></td>
+                                </tr>
+                            @endisset
+                            <tr  class="tsname" style="display: block;">
+                            <td>{{ __('Session') }}</td>
+                                <td>:</td>
+                                <td><strong>{{ __('2022-2023') }}</strong></td>
+                            </tr>
+                            @isset($card['blood'])
+                                <tr class="tbname" style="display: block;">
+                                <td>{{ __('Blood') }}&nbsp;</td>
+                                    <td style="padding-left: 9px;">:</td>
+                                    <td><strong>{{ $student->student->bloodGroup->name ?? '' }}</strong></td>
+                                </tr>
+                            @endisset
+                            @isset($card['contact'])
+                                <tr class="tbname" style="display: block;">
+                                    <td>{{ __('Contact') }}</td>
+                                    <td>:&nbsp;</td>
+                                    <td><strong>{{ $student->student->mobile ?? ''}}</strong></td>
+                                </tr>
+                            @endisset
+                        </tbody>
                         </table>
                     </div>
 
