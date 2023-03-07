@@ -602,6 +602,8 @@ class StudentController extends Controller
     {
         $student = Student::query()->findOrFail($id);
         $student->update(['status'=>2]);
+        $student = StudentAcademic::query()->where('student_id',$id)->latest()->first();
+        $student->update(['status'=>2]);
         return redirect()->back();
     }
 

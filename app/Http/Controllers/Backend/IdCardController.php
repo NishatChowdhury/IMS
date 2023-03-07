@@ -79,12 +79,11 @@ class IdCardController extends Controller
             $std->whereIn('rank', $ranks);
         }
 
-        $students = $std->orderBy('rank')->with('student')->get();
-
+        $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
 
         $card = $request->except('_token');
 
-        return view('admin.student.card_karnaphuli', compact('students', 'card'));
+        return view('admin.student.card-new', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);

@@ -33,7 +33,7 @@
             max-width: 20% !important;
         }
 
-        <style>.checkbox {
+        .checkbox {
             padding: 10px;
             margin: 10px 0;
         }

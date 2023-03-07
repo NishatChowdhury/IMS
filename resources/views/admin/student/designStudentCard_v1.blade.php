@@ -153,8 +153,6 @@
                                                         <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
                                                             <ul style="margin: 0px !important; padding: 10px 15px !important;">
                                                                 <li>This card is valid till <span class="valid-date">31-Dec-2020</span></li>
-                                                                <li>This card is not transferable</li>
-                                                                <li>This finder of this card may please drop it to the nearest post office.</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -232,6 +230,14 @@
                                                     <input class="form-check-input mname" type="checkbox" id="mname" name="mname">
                                                     <label class="form-check-label" for="mname">
                                                         Mother
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input cname" checked type="checkbox" id="class" name="session">
+                                                    <label class="form-check-label" for="class">
+                                                        Session
                                                     </label>
                                                 </div>
                                             </div>

@@ -30,8 +30,8 @@ use Illuminate\Support\Str;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
-    //Route::get('/', [DashboardController::class, 'index'])->name('admin');
-    Route::get('/', [HomeController::class, 'index'])->name('admin');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
+    //Route::get('/', [HomeController::class, 'index'])->name('admin');
 
     //Student Routes
     Route::get('student/tod','Backend\StudentController@tod')->name('student.tod');

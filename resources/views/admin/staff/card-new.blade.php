@@ -23,10 +23,10 @@
 
 </head>
 <body>
-@foreach($staffs->chunk(3) as $chunk)
+@foreach($staffs->chunk(4) as $chunk)
     <div class="row" style="margin: 25px;">
         @foreach($chunk as $staff)
-            <div class="col-4" {{--style="max-width:260px; max-height:375px"--}}>
+            <div class="col-3" {{--style="max-width:260px; max-height:375px"--}}>
                 <div class="card text-center" style="width: 18rem;height:25rem">
                     <div class="card-header" style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
                         <div class="row">
@@ -132,7 +132,7 @@
                     <ul>
                         {{--<li>This card is valid till 13.01.2020</li>--}}
                         <li>This card is not transferable</li>
-                        <li>This finder of this card may please drop it to the nearest post office.</li>
+                        <li>If the card is found anywhere, please submit it to the following address.</li>
                     </ul>
                 </div>
                 <div class="back-middle text-center">
