@@ -15,6 +15,10 @@ use function PHPUnit\Framework\isNull;
 
 class LoginController extends Controller
 {
+    public function logo()
+    {
+        return asset('assets/img/logos/'.siteConfig('logo'));
+    }
     // function for student login
     public function studentLogin(Request $request)
     {

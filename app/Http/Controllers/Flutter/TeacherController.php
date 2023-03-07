@@ -13,6 +13,7 @@ use App\Models\Backend\Section;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentLeave;
+use App\Models\Backend\Subject;
 use App\Models\Diary;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -352,6 +353,27 @@ class TeacherController extends Controller
             return response()->json([
                 'status' => true,
                 'groups' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
+    }
+
+    // To retrieve all groups
+    public function subjects(){
+        $subjects = Subject::query()->get();
+        //$groups = Group::query()->get();
+        if ($subjects->isNotEmpty()) {
+            $data = [];
+            foreach ($subjects as $subject) {
+                $data[] = [
+                    'id' => $subject->id,
+                    'name' => $subject->name
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'subjects' => $data
             ]);
         } else {
             return response(null, 204);

@@ -1,0 +1,11 @@
+{
+    "name": "HostelAndCanteen",
+    "alias": "hostelandcanteen",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\HostelAndCanteen\\Providers\\HostelAndCanteenServiceProvider"
+    ],
+    "files": []
+}

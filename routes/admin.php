@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\RolePermissionController;
 use App\Http\Controllers\Backend\StudentReportController;
 use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\ThemeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\FeeCartController;
 use App\Http\Controllers\Backend\FeeSetupController;
@@ -30,6 +31,7 @@ use Illuminate\Support\Str;
 Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
+    //Route::get('/', [HomeController::class, 'index'])->name('admin');
 
     //Student Routes
     Route::get('student/tod','Backend\StudentController@tod')->name('student.tod');

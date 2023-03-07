@@ -79,6 +79,13 @@
                                     <td>{{ $student->student->mother->m_name }}</td>
                                 </tr>
                             @endisset
+                            @isset($card['session'])
+                                <tr>
+                                    <td> Session </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $student->session->year }}</td>
+                                </tr>
+                            @endisset
                             @isset($card['class'])
                                 <tr>
                                     <td> Class </td>
@@ -170,8 +177,6 @@
                 <div class="back-top" style="font-size:12px">
                     <ul style="padding-left: 15px;padding-top:15px">
                         <li>This card is valid till {{ $card['validity'] }}</li>
-                        <li>This card is not transferable</li>
-                        <li>This finder of this card may please drop it to the nearest post office.</li>
                     </ul>
                 </div>
                 <div class="back-middle text-center">
@@ -218,14 +223,33 @@
                 <td>{{ $card['bgfont'] }}</td>
             </tr>
             <tr>
+                <td>Name Size</td>
+                <td>:</td>
+                <td>{{ $card['name_size'] }}</td>
+            </tr>
+            <tr>
+                <td>Address Size</td>
+                <td>:</td>
+                <td>{{ $card['address_size'] }}</td>
+            </tr>
+            <tr>
                 <td>Title Color</td>
                 <td>:</td>
                 <td>{{ $card['titlecolor'] }}</td>
             </tr>
+            <tr>
+                <td>Title Size</td>
+                <td>:</td>
+                <td>{{ $card['title_size'] }}</td>
+            </tr>
+            <tr>
+                <td>Body Size</td>
+                <td>:</td>
+                <td>{{ $card['body_size'] }}</td>
+            </tr>
         </table>
     </div>
 </div>
-
 
 </body>
 </html>
