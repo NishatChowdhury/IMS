@@ -204,14 +204,14 @@ class StudentController extends Controller
             'studentId' => 'required|unique:students',
             'status' => 'required',
             //'dob' => 'required',
-            'gender_id' => 'required',
-            'religion_id' => 'required',
+            // 'gender_id' => 'required',
+            // 'religion_id' => 'required',
             //'address' => 'required',
             //'area' => 'required',
             //'zip' => 'required',
             //'city_id' => 'required',
             //'country_id' => 'required',
-            'mobile' => 'required',
+            // 'mobile' => 'required',
             //'email' => 'required',
         ];
 
@@ -329,14 +329,14 @@ class StudentController extends Controller
             'studentId' => ['required',Rule::unique('students')->ignore($student->id)],
             'status' => 'required',
             //'dob' => 'required',
-            //'gender_id' => 'required',
-            //'religion_id' => 'required',
+            // 'gender_id' => 'required',
+            // 'religion_id' => 'required',
             //'address' => 'required',
             //'area' => 'required',
             //'zip' => 'required',
             //'city_id' => 'required',
             //'country_id' => 'required',
-            'mobile' => 'required',
+            // 'mobile' => 'required',
             //'email' => 'required',
         ];
 
@@ -601,6 +601,8 @@ class StudentController extends Controller
     public function dropOut($id)
     {
         $student = Student::query()->findOrFail($id);
+        $student->update(['status'=>2]);
+        $student = StudentAcademic::query()->where('student_id',$id)->latest()->first();
         $student->update(['status'=>2]);
         return redirect()->back();
     }

@@ -47,6 +47,12 @@ class IdCardController extends Controller
         return view('admin.student.designStudentCard_v3', compact('repository'));
     }
 
+    public function generateStudentCard_v4()
+    {
+        $repository = $this->repository;
+        return view('admin.student.designStudentCard_v4', compact('repository'));
+    }
+
     public function staff()
     {
         $repository = $this->repository;
@@ -65,20 +71,19 @@ class IdCardController extends Controller
         if ($request->section) {
             $std->where('section_id', $request->section);
         }
-        if ($request->group) {
-            $std->where('group_id', $request->group);
+        if($request->group_id){
+            $std->where('group_id',$request->group);
         }
         if ($request->ranks) {
             $ranks = explode(',', $request->ranks);
             $std->whereIn('rank', $ranks);
         }
 
-        $students = $std->orderBy('rank')->with('student')->get();
-
+        $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
 
         $card = $request->except('_token');
 
-        return view('admin.student.card_karnaphuli', compact('students', 'card'));
+        return view('admin.student.card-new', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);

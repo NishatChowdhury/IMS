@@ -49,6 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('storeEvent', [StudentController::class, 'storeEvent']);
 });
 
+Route::get('logo', [LoginController::class, 'logo']);
 Route::post('token/create', [LoginController::class, 'token']);
 Route::post('student-login', [LoginController::class, 'studentLogin']);
 Route::post('otp', [LoginController::class, 'otp']);
@@ -83,6 +84,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('classes', [TeacherController::class, 'classes']);
     Route::get('sections', [TeacherController::class, 'sections']);
     Route::get('groups', [TeacherController::class, 'groups']);
+    Route::get('subjects', [TeacherController::class, 'subjects']);
     Route::get('examinations', [TeacherController::class, 'examinations']);
     Route::post('teacher-logout', [LoginController::class, 'teacherLogout']);
 });
