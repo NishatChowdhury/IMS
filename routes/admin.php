@@ -308,6 +308,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
     // ID Card Routes
     Route::post('student/card/pdf','Backend\IdCardController@pdf')->name('student.pdf');
+    Route::post('student/card/pdf-v2','Backend\IdCardController@pdf_V2')->name('student.pdf_V2');
+    Route::post('student/card/pdf-v3','Backend\IdCardController@pdf_V3')->name('student.pdf_V3');
+    Route::post('student/card/pdf-v4','Backend\IdCardController@pdf_V4')->name('student.pdf_V4');
     // ID Card Routes
 
 

@@ -239,7 +239,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                {{ Form::open(['action' => 'Backend\IdCardController@pdf', 'method' => 'post']) }}
+                                {{ Form::open(['action' => 'Backend\IdCardController@pdf_V3', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">
