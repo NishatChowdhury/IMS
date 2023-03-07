@@ -40,76 +40,77 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                                            <div class="  " style="   background: linear-gradient(#3C3CB9, #3C3CB9 45%, #3C3CB9 45%,  #3C3CB9 100%);    height: 1.9in;">
+                                            <div class="  " style="height: 1.9in;">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
-                                                        <div class="left ">
-                                                            <img src="{{asset('assets/img/logos/jalal.png')}}"
-                                                                style=" height: 54px;  width: 73px;  text-align: center; margin: 5px;   border-radius: 6px;"
-                                                                class="text-center  mx-auto d-block ">
-                                                        </div>
+                                                    <img  src="{{asset('assets/img/logos/klr.png')}}"  alt="" style="    height: 64px;   width: 75px ; border-radius: 3px; ;position: absolute ; top: -6px ; left: 21px;">
+                                                    <div class="nat">
+                                                      <img  src="{{asset('assets/img/logos/bg2.JPG')}}"  alt="" style="height: 54px; width: 238px; border-radius: 3px;">
+                                                  </div>
+                                                  
                                                     </div>
                                                     
                                                     <div class="col-md-12">
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold ">
                                                                 <h2
-                                                                    style="position: relative;top: 10px; margin: 1px;text-align: center;  font-size: 17px;  color: #fff; font-weight: bold;     font-family: sans-serif;">
+                                                                    style="position: relative;top:4px;margin: 1px;text-align: center;font-size: 18px;color: #000;font-weight: bold;font-family: sans-serif;">
                                                                     Jalalabad Grammar School
                                                                 </h2>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <img src="{{asset('assets/img/logos/nam.jpg')}}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 30px;" class="text-center rounded mx-auto d-block border border-dark">
+                                                <img src="{{asset('assets/img/logos/nam.jpg')}}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 10px;" class="text-center rounded mx-auto d-block border border-dark">
+                                                <div class="logoo ">
+                                             <img src="{{asset('assets/img/logos/sid3.JPG')}}">
+                                                </div>
+                                              
                                             </div>
-                                            <div style=" text-align: center; font-size: 18px; font-weight: bold; position: relative; top: 28px;">
-                                               <p>Student Identity Card</p>
-                                                 </div>
+                                         
                                             <div class="card-body text-center">
 
-                                            <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
+                                            <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
                                               <p class="p-0">Sukirti Chakma Poran</p>
-                                                    </div>
-                                                <!-- <h1 class="card-title text-bold nName"
-                                                    style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
-                                                    {{ __('Student Name') }}</h1> -->
+                                                    </div> -->
+                                                <h1 class="card-title text-bold nName"
+                                                    style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
+                                                    {{ __('Student Name') }}</h1>
                                                 <div class="row">
-                                                    <div class="right col-12" style="float:left; margin-top: 3px;">
+                                                    <div class="right col-12" style="    margin-top: -13px; ">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                             <tbody>
-                                                                    <!-- <tr class="tname" style="display: block;">
+                                                                    <tr class="tname" style="display: block;">
                                                                         <td><strong> Name </strong></td>
                                                                         <td>:</td>
                                                                         <td><strong> Student Name </strong></td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tfname" style="display: block;">
+                                                                    </tr>
+                                                                    <tr class="tfname" style="display: block;">
                                                                         <td><b>{{ __('Father') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td><strong> Father's Name </strong></td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tmname" style="display: block;">
+                                                                    </tr>
+                                                                    <tr class="tmname" style="display: block;">
                                                                         <td> <b>{{ __('Mother') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td><strong> Mother's Name </strong></td>
-                                                                    </tr> -->
+                                                                    </tr>
                                                                     <tr class="tcname" style="display: block;">
                                                                         <td> <b>{{ __('Class') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td> {{ __('Seven') }} </td>
                                                                     </tr>
-                                                                    <!-- <tr class="tsname">
+                                                                    <tr class="tsname">
                                                                         <td><b>{{ __('Section') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
-                                                                    </tr> -->
+                                                                    </tr>
                                                                     <tr class="trname" style="display: block;">
                                                                         <td><b>{{ __('Roll') }}</b>
                                                                         </td>
@@ -117,20 +118,20 @@
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
                                                                     </tr>
-                                                                    <!-- <tr class="tgname">
+                                                                    <tr class="tgname">
                                                                         <td><b>{{ __('Group') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tbname">
+                                                                    </tr>
+                                                                    <tr class="tbname">
                                                                         <td><b>{{ __('Blood Group') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
-                                                                    </tr> -->
+                                                                    </tr>
                                                                     <tr class="tpname" style="display: block;">
                                                                         <td><b>{{ __('Contact') }}</b>
                                                                         </td>
@@ -138,38 +139,38 @@
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
                                                                     </tr>
-                                                                    <!-- <tr class="tdname">
+                                                                    <tr class="tdname">
                                                                         <td><b>{{ __('Depertmant') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tdobname">
+                                                                    </tr>
+                                                                    <tr class="tdobname">
                                                                         <td><b>{{ __('Date Of Birth') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="taname">
+                                                                    </tr>
+                                                                    <tr class="taname">
                                                                         <td><b>{{ __('Admission Date') }}</b>
                                                                         </td>
                                                                         <td>:</td>
                                                                         <td>{{ __('Lorem ipsum.') }}
                                                                         </td>
-                                                                    </tr> -->
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                        
                                             <p class="sinn">
-                                                <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="height: 26px;  width: 55px; position: relative;  left: 162px;   top: 72px;">
-                                                 <hr style="position: relative; top: 40px; width: 97px;  left: 142px;">
-                                                <h5 style=" position: relative; top: 22px; left: 159px; font-size: 15px;">Signature </h5>
+                                                <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="    height: 34px;    width: 86px;   position: relative;   left: 154px;    top: 34px;">
+                                                 <!-- <hr style="    position: relative;top: 25px; width: 97px; left: 142px; background-color: white;"> -->
+                                                <h5 style="     position: relative; top: 14px;  left: 159px;  font-size: 16px;  color: white;">Signature </h5>
                                             </p>
                                            
                                         </div>
@@ -684,7 +685,20 @@
 
         }
 
+        .logoo {
+            height: 315px;
+    width: 239px;
+    padding: 2px;
+    margin-top: 71px;
+}
 
+.logoo img {
+    height: 42%;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    background-position-x: bottom;
+}
         .logoo3 {
             position: absolute;
             height: 35px;

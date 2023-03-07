@@ -46,11 +46,16 @@ class IdCardController extends Controller
         $repository = $this->repository;
         return view('admin.student.designStudentCard_v3', compact('repository'));
     }
-
     public function generateStudentCard_v4()
     {
         $repository = $this->repository;
         return view('admin.student.designStudentCard_v4', compact('repository'));
+    }
+
+    public function generateStudentCard_v5()
+    {
+        $repository = $this->repository;
+        return view('admin.student.designStudentCard_v5', compact('repository'));
     }
 
     public function staff()
@@ -83,7 +88,11 @@ class IdCardController extends Controller
 
         $card = $request->except('_token');
 
-        return view('admin.student.card-new', compact('students', 'card'));
+        // return view('admin.student.card-new', compact('students', 'card'));
+        return view('admin.student.card_new5', compact('students', 'card'));
+        // return view('admin.student.card_jalalabad', compact('students', 'card'));
+        // return view('admin.student.card_kingsway', compact('students', 'card'));
+        // return view('admin.student.card_karnaphuli', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);

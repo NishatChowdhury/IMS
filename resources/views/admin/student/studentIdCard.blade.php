@@ -48,10 +48,22 @@
                             </div>
                             &nbsp;
                             <div class="row">
-                                <div class="col-md-3 text-center">
+                                <!-- <div class="col-md-3 text-center">
                                     <a href="{{ action('Backend\IdCardController@generateStudentCard_v4') }}">
                                         <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}" alt=""
                                             width="200" height="300">
+                                    </a>
+                                </div> -->
+                                <div class="col-md-4">
+                                    <a href="{{ route('student.generateStudentCard_v4') }}">
+                                        <img src="{{ asset('assets/img/studentIdCard/studentId_4.png') }}"
+                                            alt="" width="270" height="450">
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ route('student.generateStudentCard_v5') }}">
+                                        <img src="{{ asset('assets/img/studentIdCard/studentId_5.png') }}"
+                                            alt="" width="270" height="450">
                                     </a>
                                 </div>
                             </div>
