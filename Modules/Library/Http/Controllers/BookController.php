@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Library\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Book;
@@ -26,13 +26,13 @@ class BookController extends Controller
     public function index()
     {
         $allData = Book::all();
-        return view('admin.book.view-book',compact('allData'));
+        return view('library::book.view-book',compact('allData'));
     }
 
     public function add()
     {
         $category = BookCategory::all()->pluck('book_category','id');
-        return view('admin.book.add-book',compact('category'));
+        return view('library::book.add-book',compact('category'));
     }
 
 
@@ -41,7 +41,7 @@ class BookController extends Controller
         $studentID = Student::all()->pluck('studentId','id');
         $bookCode =  Book::all()->pluck('book_title','id');
         $allBooks = Book::all();
-        return view('admin.book.allBooks',compact('allBooks','studentID','bookCode'));
+        return view('library::book.allBooks',compact('allBooks','studentID','bookCode'));
     }
 
     public function search(Request $request)
@@ -81,7 +81,7 @@ class BookController extends Controller
         $students = Student::all()->pluck('studentId','id');
         //$bookCode =  Book::all()->pluck('book_code','id');
         $book = Book::query()->findOrFail($request->get('id'));
-        return view('admin.book._issue-book',compact('students','book'));
+        return view('library::book._issue-book',compact('students','book'));
     }
 
     public function issueBookStore(Request $request)
@@ -99,7 +99,7 @@ class BookController extends Controller
         $studentID = Student::all()->pluck('studentId','id');
         $bookCode =  Book::all()->pluck('title','id');
         $issuedData = IssueBook::all()->where('is_return','0');
-        return view('admin.return-books.return-books',compact('studentID','bookCode','issuedData'));
+        return view('library::return-books.return-books',compact('studentID','bookCode','issuedData'));
     }
 
     public function returnBookStore(Request $request)
@@ -148,7 +148,7 @@ class BookController extends Controller
     {
         $repository = $this->repository;
         $book=Book::query()->findOrFail($id);
-        return view('admin.book.edit-book',compact('book','repository'));
+        return view('library::book.edit-book',compact('book','repository'));
     }
 
     public function update($id, Request $request)
@@ -171,6 +171,6 @@ class BookController extends Controller
         $studentID = Student::all()->pluck('studentId','id');
         $bookCode =  Book::all()->pluck('title','id');
         $issuedData = IssueBook::all();
-        return view('admin.book.report',compact('studentID','bookCode','issuedData'));
+        return view('library::book.report',compact('studentID','bookCode','issuedData'));
     }
 }

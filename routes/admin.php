@@ -273,6 +273,7 @@ use Illuminate\Support\Str;
     //leave management ends by Nishat
 
     //Book Category starts by Nishat
+        /*
     Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
     Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
     Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
@@ -280,8 +281,9 @@ use Illuminate\Support\Str;
 //    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
     Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
     Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
-
+        */
     //Book Category ends by Nishat
+
     //Admission Route by Rimon
     Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
     Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
@@ -310,6 +312,7 @@ use Illuminate\Support\Str;
     Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
         */
         //Book Category starts by Nishat
+        /*
         Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
         Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
         Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
@@ -317,6 +320,7 @@ use Illuminate\Support\Str;
     //    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
         Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
         Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
+        */
     //Exam management End
 
 
@@ -367,6 +371,7 @@ use Illuminate\Support\Str;
 
     //library Management Starts By Nishat
     //Add New Book
+        /*
     Route::get('library/books','Backend\BookController@index')->name('allBooks.index');
     Route::get('library/allBooks','Backend\BookController@show')->name('allBooks.show');
     Route::get('library/SearchBook','Backend\BookController@search')->name('allBooks.search');
@@ -387,7 +392,7 @@ use Illuminate\Support\Str;
 
 //    report
     Route::get('library/report','Backend\BookController@report')->name('report');
-
+        */
     //library management ends by Nishat
 
 //    route for api setting starts here

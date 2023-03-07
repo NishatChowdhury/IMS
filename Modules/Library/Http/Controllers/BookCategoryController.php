@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Library\Http\Controllers;
 
 use App\Models\Backend\BookCategory;
 use App\Repository\StudentRepository;
@@ -22,7 +22,7 @@ class BookCategoryController extends Controller
     public function index()
     {
         $categories = BookCategory::all();
-        return view('admin.bookCategory.index',compact('categories'));
+        return view('library::bookCategory.index',compact('categories'));
     }
 
 
@@ -45,7 +45,7 @@ class BookCategoryController extends Controller
     public function edit(Request $request)
     {
         $category = BookCategory::query()->findOrFail($request->get('id'));
-        return view('admin/bookCategory/_edit',compact('category'));
+        return view('library::bookCategory._edit',compact('category'));
 }
 
     public function update($id, Request $request)
