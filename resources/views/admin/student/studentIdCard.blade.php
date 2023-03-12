@@ -66,6 +66,13 @@
                                             alt="" width="270" height="450">
                                     </a>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <a href="{{ route('student.generateStudentCard_v6') }}">
+                                        <img src="{{ asset('assets/img/studentIdCard/studentId_6.png') }}"
+                                            alt="" width="270" height="450">
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

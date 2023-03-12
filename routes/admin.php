@@ -289,6 +289,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
 
     Route::get('student/generateStudentCard_v5','Backend\IdCardController@generateStudentCard_v5')->name('student.generateStudentCard_v5');
+    Route::get('student/generateStudentCard_v6','Backend\IdCardController@generateStudentCard_v6')->name('student.generateStudentCard_v6');
 
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');

@@ -30,9 +30,7 @@
 
         .col-2-5 {
             flex: 0 0 20% !important;
-            max-width: 20% !important;
-        }
-
+            max-w
         <style>.checkbox {
             padding: 10px;
             margin: 10px 0;
@@ -290,4 +288,38 @@
 @endforeach
 </body>
 
-</html>
+</html>lt="">
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted"
+                        style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
+                        <div class=" grid-container">
+                            <div class="item1">{{ __('Karnaphuli, Chattogram') }}</div>
+                            <div class="item2"> <span>{{ __('Principal') }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endforeach
+</body>
+
+</html> --}}
+/div>
+                    </div>
+                    <div class="card-footer text-muted"
+                        style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
+                        <div class=" grid-container">
+                            <div class="item1">{{ __('Karnaphuli, Chattogram') }}</div>
+                            <div class="item2"> <span>{{ __('Principal') }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endforeach
+</body>
+
+</html> --}}
