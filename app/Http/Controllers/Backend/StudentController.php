@@ -747,7 +747,6 @@ class StudentController extends Controller
             foreach($file as $row){
                 if($sl != 0){
                     $col = explode('|',$row);
-
                     //students table
                     $data['name'] = $col[1];
                     $data['name_bn'] = $col[2];
