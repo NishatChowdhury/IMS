@@ -51,9 +51,9 @@
                     </div>
                     <div class="card-body">
                         <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px;margin-bottom: 0"><strong>{{ $card['title'] }}</strong></h6>
-                        <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}" width="70" alt="" style="border: 2px solid #000;min-height: 70px;max-height: 90px">
+                        <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image ?? '' }}" width="70" alt="" style="border: 2px solid #000;min-height: 70px;max-height: 90px">
                         @isset($card['nickname'])
-                            <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->student->name }} </h6>
+                            <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->student->name ?? '' }} </h6>
                         @endisset
 
                         <table class="table" style="text-align:left;font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
@@ -140,7 +140,7 @@
                                 <tr>
                                     <td> Contact </td>
                                     <td>&nbsp;:&nbsp;</td>
-                                    <td>{{ $student->student->mobile }}</td>
+                                    <td>{{ $student->student->mobile ?? '' }}</td>
                                 </tr>
                             @endisset
                             </tbody>
@@ -155,7 +155,7 @@
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
                         <div class="row">
                             <div class="col">
-                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId }}</strong> </p>
+                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId ?? '' }}</strong> </p>
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>

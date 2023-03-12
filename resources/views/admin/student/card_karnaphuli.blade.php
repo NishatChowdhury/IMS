@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ __('WPIMS') }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <style>
         * {
             font-family: Arial;
+        }
+
+        .table tr{
+            margin-bottom: 7px;
         }
 
         .table td {
@@ -149,20 +153,20 @@
             <div class="col-3 col-2-5">
                 <div class="card text-center" style="width: 2.27in;height:4.41in">
                     <div class="card-header bg-white border-0"
-                        style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
+                         style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="left ">
                                     <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                        style="width:.5in ; height:.7in ;    position: relative;top: -7px; text-align: center!important;"
-                                        class="text-center mx-auto d-block">
+                                         style="width:36px;position: relative;top: -7px; text-align: center!important;"
+                                         class="text-center mx-auto d-block">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="right text-center">
                                     <div class="scl-cd-dec text-wrap text-bold">
                                         <h2
-                                            style="padding-top: 3px; position: relative;top: -5px;margin: 2px;text-align: center; font-size:16px; font-weight:500 ;color:#9A001B">
+                                                style="padding-top: 3px; position: relative;top: -5px;margin: 2px;text-align: center; font-size:19px; font-weight:500 ;color:#9A001B">
                                             <strong>{{ siteConfig('name') }}</strong>
                                         </h2>
                                     </div>
@@ -173,43 +177,44 @@
                     <div class="card-body p-0">
                         <figure class="figure ">
                             <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}"
-                                width="85" alt=""
-                                style="border: 0.5px solid #000;height:85px"
-                                class="text-center  mx-auto d-block ">
+                                 width="85" alt=""
+                                 style="border: 0.5px solid #000;height:85px"
+                                 class="text-center  mx-auto d-block ">
                         </figure>
 
                         @isset($card['nickname'])
-                            <h2
-                                style="position: relative;top: -20px;margin: 2px;text-align: center; font-size:17px ;color:#042E57">
+                            <h2 style="position: relative;top: -20px;margin: 2px 2px 9px 2px;text-align: center; font-size:17px ;color:#042E57">
                                 <strong> {{ $student->student->name ?? ''}} </strong>
                             </h2>
                         @endisset
-                        <table class="table "
-                        style="text-align:left;font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px;  position: relative; text-align: left; font-size: 11px;left: 10px; line-height: 12px; top: -15px;">
-                        <tbody>
+                        <table class="table table-condensed"
+                               style="text-align:left;font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px;  position: relative; text-align: left; font-size: 14px;left: 10px; line-height: 12px; top: -15px;">
+                            <tbody>
                             @isset($card['fullname'])
-                            <tr class="tname" style="display: block;">
-                            <td><strong> {{ __('Name') }}</strong></td>
-                            <td style=" padding-left: 11px;">:</td>
+                                <tr class="tname" style="display: block;">
+                                    <td><strong> {{ __('Name') }}</strong></td>
+                                    <td style=" padding-left: 11px;">:</td>
                                     <td><strong> {{ $student->student->name ?? ''}} </strong></td>
                                 </tr>
                             @endisset
                             @isset($card['fname'])
                                 <tr class="tfname" style="display: block;">
                                     <td>{{ __('Father') }}</td>
-                                    <td style="  padding-left: 9px;">:</td>
+                                    <td style="padding-left: 10px;padding-right: 9px;">:</td>
                                     <td><strong>{{ $student->student->father->f_name ?? ''}}</strong></td>
                                 </tr>
                             @endisset
+                            @isset($card['group'])
                             <tr class="tgname" style="display: block;">
-                            <td>{{ __('Group') }}</td>
-                                <td style="padding-left: 10px;">: </td>
+                                <td>{{ __('Group') }}</td>
+                                <td style="padding-left: 12px;padding-right: 9px;">: </td>
                                 <td><strong>{{ $student->group->name ?? ''}}</strong></td>
                             </tr>
+                            @endisset
                             @isset($card['class'])
                                 <tr class="tcname" style="display: block;">
-                                <td>{{ __('Class') }}</td>
-                                    <td style="padding-left: 13px;">:</td>
+                                    <td>{{ __('Class') }}</td>
+                                    <td style="padding-left: 16px;padding-right: 9px;">:</td>
                                     <td>
                                         <strong>{{ $student->classes->name ?? '' }}</strong>&nbsp;
                                     </td>
@@ -217,8 +222,8 @@
                             @endisset
                             @isset($card['roll'])
                                 <tr class="trname" style="display: block;">
-                                <td>{{ __('Roll') }} </td>
-                                    <td style="padding-left: 22px;">:</td>
+                                    <td>{{ __('Roll') }} </td>
+                                    <td style="padding-left: 27px;padding-right: 9px;">:</td>
                                     <td><strong>{{ $student->rank ?? ''}}</strong></td>
                                 </tr>
                             @endisset
@@ -230,11 +235,11 @@
                                 </tr>
                             @endisset
                             @isset($card['admissiondate'])
-                                <trclass="taname" style="display: block;">
+                                <tr class="taname" style="display: block;">
                                     <td>{{ __('Admission') }}</td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td><strong>{{ $student->admission_date ?? ''}}</strong></td>
-                                </trclass=>
+                                </tr>
                             @endisset
                             @isset($card['dob'])
                                 <tr style="display: block;">
@@ -244,15 +249,15 @@
                                 </tr>
                             @endisset
                             <tr  class="tsname" style="display: block;">
-                            <td>{{ __('Session') }}</td>
-                                <td>:</td>
+                                <td>{{ __('Session') }}</td>
+                                <td style="padding-right: 9px;">:</td>
                                 <td><strong>{{ __('2022-2023') }}</strong></td>
                             </tr>
                             @isset($card['blood'])
                                 <tr class="tbname" style="display: block;">
-                                <td>{{ __('Blood') }}&nbsp;</td>
-                                    <td style="padding-left: 9px;">:</td>
-                                    <td><strong>{{ $student->student->bloodGroup->name ?? '' }}</strong></td>
+                                    <td>{{ __('Blood') }}&nbsp;</td>
+                                    <td style="padding-left: 11px;padding-right: 9px;">:</td>
+                                    <td style="color:red"><strong>{{ $student->student->bloodGroup->name ?? '' }}</strong></td>
                                 </tr>
                             @endisset
                             @isset($card['contact'])
@@ -262,22 +267,22 @@
                                     <td><strong>{{ $student->student->mobile ?? ''}}</strong></td>
                                 </tr>
                             @endisset
-                        </tbody>
+                            </tbody>
                         </table>
                     </div>
 
                     <div class="card-footer row" style="float:right;background-color:transparent;border:none">
                         <div class="col text-center ml-3" style="float:right; padding-right:2px">
                             <h6 class="text-center" style=" font-size:9px;margin-top: 17px;">{{ __('Validity:') }}<span
-                                    style="color:red"> {{ __('30 June 2024') }}</span></h6>
+                                        style="color:red"> {{ __('30 June 2024') }}</span></h6>
                         </div>
                         <div class="col" style="float:right; padding-right:3px ;padding-top:2px">
                             <img src="{{ asset('assets/img/signature/kaj_signature.png') }}" width="80"
-                                alt="">
+                                 alt="">
                         </div>
                     </div>
                     <div class="card-footer text-muted"
-                        style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
+                         style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
                         <div class=" grid-container">
                             <div class="item1">{{ __('Karnaphuli, Chattogram') }}</div>
                             <div class="item2"> <span>{{ __('Principal') }}</span></div>
@@ -287,8 +292,8 @@
             </div>
         @endforeach
     </div>
-@endforeach
-</body>
+    @endforeach
+    </body>
 
 </html>
 
