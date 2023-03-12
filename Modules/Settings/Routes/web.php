@@ -13,6 +13,7 @@ use Modules\Settings\Http\Controllers\MenuController;
 use Modules\Settings\Http\Controllers\MessageController;
 use Modules\Settings\Http\Controllers\PageController;
 use Modules\Settings\Http\Controllers\RolePermissionController;
+use Modules\Settings\Http\Controllers\ScheduleController;
 use Modules\Settings\Http\Controllers\SettingsController;
 use Modules\Settings\Http\Controllers\SiteInformationController;
 use Modules\Settings\Http\Controllers\SliderController;
@@ -84,6 +85,12 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('signature',[InstitutionController::class,'signature'])->name('signature');
         Route::post('sig',[InstitutionController::class,'sig'])->name('sig');
 
+        //Class Schedule
+        Route::get('class/schedule/{class}',[ScheduleController::class,'index'])->name('class.schedule.index');
+        Route::post('class/schedule/store',[ScheduleController::class,'store'])->name('class.schedule.store');
+        Route::post('class/schedule/update',[ScheduleController::class,'update'])->name('class.schedule.update');
+        Route::get('class/schedule/delete/{id}',[ScheduleController::class,'delete'])->name('class.schedule.delete');
+
     });
 
     # ---------------------------------------------- CMS -------------------------------------------------------
@@ -110,7 +117,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
         Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
         // principal , chairman and institute message update route
-        Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+        Route::post('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
         // site info
         Route::get('siteinfo',[SiteInformationController::class,'index'])->name('siteinfo');

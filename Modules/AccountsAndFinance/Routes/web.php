@@ -14,6 +14,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\AccountsAndFinance\Http\Controllers\AccountingController;
 use Modules\AccountsAndFinance\Http\Controllers\ChartOfAccountController;
+use Modules\AccountsAndFinance\Http\Controllers\FeeCartController;
 use Modules\AccountsAndFinance\Http\Controllers\FeeCategoryController;
 use Modules\AccountsAndFinance\Http\Controllers\FeeCollectionController;
 use Modules\AccountsAndFinance\Http\Controllers\FeeSetupController;
@@ -58,6 +59,12 @@ Route::prefix('admin')->group(function() {
     Route::patch('fee/fee-setup/update/{id}',[FeeSetupController::class,'update'])->name('fee.fee-setup.update');
     Route::post('fee/fee-setup/delete/{id}',[FeeSetupController::class,'destroy'])->name('fee.fee-setup.delete');
 
+    // fee cart
+    Route::post('fee/fee-cart/store',[FeeCartController::class,'store'])->name('fee-cart.store');
+    Route::post('fee/fee-cart/destroy',[FeeCartController::class,'destroy'])->name('fee-cart.destroy');
+    Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush'])->name('fee-cart.flush');
+
+    Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy'])->name('fee.EditFeeCartDestroy');
 
     //Route for fee collection
     Route::get('fee/fee-collection', [FeeCollectionController::class, 'index'])->name('fee-collection.index');

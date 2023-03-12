@@ -431,11 +431,12 @@ use Illuminate\Support\Str;
 
 
 //Class Schedule
+        /*
     Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index')->name('class.schedule.index');
     Route::post('institution/class/schedule/store','Backend\ScheduleController@store')->name('class.schedule.store');
     Route::post('institution/class/schedule/update','Backend\ScheduleController@update')->name('class.schedule.update');
     Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
-
+    */
     //Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
 //Route for fee setup starts here
@@ -453,13 +454,14 @@ use Illuminate\Support\Str;
 
     Route::patch('fee/fee-setup/update/{id}',[FeeSetupController::class,'update'])->name('fee.fee-setup.update');
     Route::post('fee/fee-setup/delete/{id}',[FeeSetupController::class,'destroy'])->name('fee.fee-setup.delete');
-    */
+
     Route::post('fee/fee-cart/store',[FeeCartController::class,'store'])->name('fee-cart.store');
     Route::post('fee/fee-cart/destroy',[FeeCartController::class,'destroy'])->name('fee-cart.destroy');
     Route::post('fee/fee-cart/flush',[FeeCartController::class,'flush'])->name('fee-cart.flush');
 
     Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy'])->name('fee.EditFeeCartDestroy');
-   //Route for fee setup ends here
+        */
+    //Route for fee setup ends here
 
     //Route for fee collection starts here
     /*

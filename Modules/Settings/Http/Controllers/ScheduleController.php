@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Settings\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -37,7 +37,7 @@ class ScheduleController extends Controller
          $teachers = Staff::query()->where('staff_type_id',2)->get();
 
         $repository = $this->repository;
-        return view('admin.institution.schedule',compact('academicClass','subjects','teachers','schedules','repository'));
+        return view('settings::institution.schedule',compact('academicClass','subjects','teachers','schedules','repository'));
     }
 
     public function store(Request $request)

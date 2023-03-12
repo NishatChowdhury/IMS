@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\AccountsAndFinance\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\FeeCategory;
@@ -23,7 +23,7 @@ class FeeCartController extends Controller
         $fees = $request->session()->get('fees',[]);
         foreach($fees as $fee){
             if(array_search($request->get('category_id'),$fee,true)){
-                return view('admin.feeSetup._fee-cart',compact('fees'));
+                return view('accountsandfinance::feeSetup._fee-cart',compact('fees'));
             }
         }
         // check if fee category exists in session ends
@@ -43,7 +43,7 @@ class FeeCartController extends Controller
 
         $fees = $request->session()->get('fees',[]);
 
-        return view('admin.feeSetup._fee-cart',compact('fees'));
+        return view('accountsandfinance::feeSetup._fee-cart',compact('fees'));
     }
 
     public function destroy(Request $request)
@@ -52,7 +52,7 @@ class FeeCartController extends Controller
 
         $fees = $request->session()->get('fees');
 
-        return view('admin.feeSetup._fee-cart',compact('fees'));
+        return view('accountsandfinance::feeSetup._fee-cart',compact('fees'));
     }
 
     public function flush(Request $request)
@@ -61,7 +61,7 @@ class FeeCartController extends Controller
 
         $fees = $request->session()->get('fees',[]);
 
-        return view('admin.feeSetup._fee-cart',compact('fees'));
+        return view('accountsandfinance::feeSetup._fee-cart',compact('fees'));
     }
 
     public function EditFeeCartDestroy(Request $request)
@@ -75,6 +75,6 @@ class FeeCartController extends Controller
 
         $request->session()->pull('fees.'.$request->get('key'));
         $fees = $request->session()->get('fees');
-        return view('admin.feeSetup._fee-cart',compact('fees'));
+        return view('accountsandfinance::feeSetup._fee-cart',compact('fees'));
     }
 }

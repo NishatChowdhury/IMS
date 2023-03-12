@@ -43,7 +43,7 @@
                                     @foreach($image as $img)
                                         <div class="card-deck col-md-4 mr-2 mb-4">
                                             <div class="card p-1 bg-dark">
-                                                    <img height="250px" class="card-img-top"  src="{{ url('storage/uploads/gallery/'.$img->image) }}" alt="Card image cap">
+                                                    <img height="250px" class="card-img-top"  src="{{ url('storage/gallery/'.$img->image) }}" alt="Card image cap">
                                                 <div class="card-body m-0 p-1">
                                                     <a href="{{ route('GalleryImage.destroy', [$img->id]) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">{{ __('Delete')}}</a>
                                                 </div>
