@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.6.3-web/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.15.4-web/css/all.min.css') }}">
     <!-- Nano Scroller -->
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
@@ -76,7 +76,7 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        @include('admin.includes.header')
+        @include('settings::includes.header')
     </nav>
     <!-- /.navbar -->
 
@@ -98,12 +98,12 @@
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
-        @include('admin.includes.right-aside')
+        @include('settings::includes.right-aside')
     </aside>
     <!-- /.control-sidebar -->
     <div class="notprint">
         <footer class="main-footer no_print">
-            @include('admin.includes.footer')
+            @include('settings::includes.footer')
         </footer></div>
 
 </div>
@@ -118,7 +118,7 @@
 {{--select2--}}
 {{--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
 <!-- Form Awesome -->
-{{--<script src="{{ asset('plugins/fontawesome-free-5.6.3-web/js/all.min.js') }}"></script>--}}
+{{--<script src="{{ asset('plugins/fontawesome-free-5.15.4-web/js/all.min.js') }}"></script>--}}
 
 
 <!-- AdminLTE App -->

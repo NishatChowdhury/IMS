@@ -31,6 +31,14 @@
                     order="If you already have the transaction generated for current order"
                     endpoint="{{ route('student.pay-via-ajax') }}"> {{ __('Pay Now') }}
             </button>
+                <form action="{{ route('nagad.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="amount" value="{{ $due }}">
+                    <label for="payment-btn">
+                        <img src="{{ asset('dist/img/Nagad-Logo.wine.png') }}" alt="nagad" height="100">
+                        <button type="submit" class="d-none" id="payment-btn"></button>
+                    </label>
+                </form>
             @else
                 <span class="bg-warning"> {{ __('Payment amount should be more than 10.00') }}</span>
             @endif

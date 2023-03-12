@@ -119,7 +119,7 @@
                 </div>
 
 
-                {!!  Form::open(['action'=>'Front\OnlineApplyController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                {!! Form::open(['action'=>'Front\OnlineApplyController@store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                 <div class="col-12">
                     @if (session('status'))
                         <div class="alert border border-success text-success bg-success-0_1 px-4 py-3 alert-dismissible fade show" role="alert">
@@ -136,7 +136,7 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="card card-body  border">
                                 <h4 class="mb-3"><b>{{__('Personal Info')}}</b></h4>
                                 <div class="row">
@@ -215,7 +215,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="card card-body border">
                                 <h4 class="mb-3"><b>{{__('Address Info')}} {{ $onlineAdmission->group_id }}</b></h4>
                                 <div class="row">
@@ -294,7 +294,7 @@
                     </div>
 
                     <div class="row mt-5">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="card card-body border">
                                 <h4 class="mb-4"><b>{{__('Father Info')}}</b></h4>
                                 <div class="row">
@@ -365,7 +365,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="card card-body border">
                                 <h4 class="mb-4"><b>{{__('Mother Info')}}</b></h4>
                                 <div class="row">
@@ -437,7 +437,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 mt-5">
+                        <div class="col-md-6 mt-5">
                             <div class="card card-body border">
                                 <h4 class="mb-4"><b>{{__('Guardian Info')}}</b></h4>
                                 <div class="row">
@@ -508,7 +508,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 mt-5">
+                        <div class="col-md-6 mt-5">
                             <div class="card card-body border">
                                 <h4></h4>
                                 <div class="row">
@@ -536,8 +536,8 @@
                                             {{ Form::label('freedom_fighter','Freedom Fighter',['class'=>'control-label']) }}
                                             <span class="red">*</span>
                                             <br>
-                                            {{ Form::radio('freedom_fighter', 1, true, ['id'=>'active', 'class'=> 'checked_f']) }}&nbsp;{{ Form::label('active','Yes') }}
-                                            {{ Form::radio('freedom_fighter', 0, false, ['id'=>'inactive', 'class'=> 'checked_f']) }}&nbsp;{{ Form::label('inactive','No') }}
+                                            {{ Form::radio('freedom_fighter', 1, false, ['id'=>'active', 'class'=> 'checked_f']) }}&nbsp;{{ Form::label('active','Yes') }}
+                                            {{ Form::radio('freedom_fighter', 0, true, ['id'=>'inactive', 'class'=> 'checked_f']) }}&nbsp;{{ Form::label('inactive','No') }}
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -545,8 +545,8 @@
                                             {{ Form::label('disability','Disability',['class'=>'control-label']) }}
                                             <span class="red">*</span>
                                             <br>
-                                            {{ Form::radio('disability', 1, true, ['id'=>'active', 'class'=>"checked_d"]) }}&nbsp;{{ Form::label('active','Yes') }}
-                                            {{ Form::radio('disability', 0, false, ['id'=>'inactive', 'class'=>"checked_d"]) }}&nbsp;{{ Form::label('inactive','No') }}
+                                            {{ Form::radio('disability', 1, false, ['id'=>'active', 'class'=>"checked_d"]) }}&nbsp;{{ Form::label('active','Yes') }}
+                                            {{ Form::radio('disability', 0, true, ['id'=>'inactive', 'class'=>"checked_d"]) }}&nbsp;{{ Form::label('inactive','No') }}
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-2">

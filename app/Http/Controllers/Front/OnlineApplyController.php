@@ -300,7 +300,7 @@ class OnlineApplyController extends Controller
                 'name' => $student->name,
                 'url' => url('student-form?ssc_roll=').$request->get('ssc_roll'),
             ];
-            Mail::to($request->email)->send(new AdmissionMail($details));
+            //Mail::to($request->email)->send(new AdmissionMail($details));
            
         }
 
@@ -311,7 +311,7 @@ class OnlineApplyController extends Controller
      // school online admission sms
     public function sms($data)
     {
-        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $url = "https://a2p.solutionsclan.com/api/sms/send";
         $data = [
                 "apiKey"=> smsConfig('api_key'),
                 "contactNumbers"=> $data['mobile'],

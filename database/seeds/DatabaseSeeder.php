@@ -6,7 +6,7 @@ use App\Models\Backend\Module;
 use App\Models\Backend\Permission;
 use App\Models\Backend\Role;
 use Illuminate\Database\Seeder;
-use Database\Seeder\AcademicClassSeeder;
+use Database\Seeders\AcademicClassSeeder;
 
 class DatabaseSeeder extends Seeder
 {
