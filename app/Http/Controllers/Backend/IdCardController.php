@@ -117,7 +117,7 @@ class IdCardController extends Controller
 
         $card = $request->except('_token');
 
-        return view('admin.student.card-new', compact('students', 'card'));
+        return view('admin.student.card_karnaphuli', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);
