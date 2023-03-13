@@ -342,13 +342,13 @@
                                             <p>Design ID Card</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ action('Backend\IdCardController@index') }}"
-                                            class="nav-link {{ isActive('admin/student/designStudentCard') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Design ID Card 2</p>
-                                        </a>
-                                    </li>
+{{--                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                        <a href="{{ action('Backend\IdCardController@index') }}"--}}
+{{--                                            class="nav-link {{ isActive('admin/student/designStudentCard') }}">--}}
+{{--                                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                                            <p>Design ID Card 2</p>--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
                                 @endcan
                                 @can('middleware-passed', 'student.promotion')
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -496,55 +496,55 @@
                                         </a>
                                     </li>
                                 @endcan
-                                @can('middleware-passed', 'competency.index')
-                                    <li class="nav-item has-treeview {{ isActive(['admin/competency*']) }}">
-                                        <a href="#" class="nav-link {{ isActive(['admin/competency*']) }}">
-                                            <i class="nav-icon fas fa-diagnoses"></i>
-                                            <p>
-                                                {{ __('Competency') }}
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                                            @can('middleware-passed', 'competency.index')
-                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                                    <a href="{{ route('competency.index') }}"
-                                                        class="nav-link {{ isActive('admin/competencies') }}">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                        <p>{{ __('Competency') }}</p>
-                                                    </a>
-                                                </li>
-                                            @endcan
-                                            @can('middleware-passed', 'indicator.index')
-                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                                    <a href="{{ route('indicator.index') }}"
-                                                        class="nav-link {{ isActive('admin/indicators') }}">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                        <p>{{ __('Indicator') }}</p>
-                                                    </a>
-                                                </li>
-                                            @endcan
-                                            @can('middleware-passed', 'remark.index')
-                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                                    <a href="{{ route('remark.index') }}"
-                                                        class="nav-link {{ isActive('admin/remarks') }}">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                        <p>{{ __('Remark') }}</p>
-                                                    </a>
-                                                </li>
-                                            @endcan
-                                            @can('middleware-passed', 'competency-remark.index')
-                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                                    <a href="{{ route('competency-remark.index') }}"
-                                                        class="nav-link {{ isActive('admin/competency-remark') }}">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                        <p>{{ __('Competency Remark') }}</p>
-                                                    </a>
-                                                </li>
-                                            @endcan
-                                        </ul>
-                                    </li>
-                                @endcan
+{{--                                @can('middleware-passed', 'competency.index')--}}
+{{--                                    <li class="nav-item has-treeview {{ isActive(['admin/competency*']) }}">--}}
+{{--                                        <a href="#" class="nav-link {{ isActive(['admin/competency*']) }}">--}}
+{{--                                            <i class="nav-icon fas fa-diagnoses"></i>--}}
+{{--                                            <p>--}}
+{{--                                                {{ __('Competency') }}--}}
+{{--                                                <i class="fas fa-angle-left right"></i>--}}
+{{--                                            </p>--}}
+{{--                                        </a>--}}
+{{--                                        <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                            @can('middleware-passed', 'competency.index')--}}
+{{--                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                                    <a href="{{ route('competency.index') }}"--}}
+{{--                                                        class="nav-link {{ isActive('admin/competencies') }}">--}}
+{{--                                                        <i class="far fa-circle nav-icon"></i>--}}
+{{--                                                        <p>{{ __('Competency') }}</p>--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                            @endcan--}}
+{{--                                            @can('middleware-passed', 'indicator.index')--}}
+{{--                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                                    <a href="{{ route('indicator.index') }}"--}}
+{{--                                                        class="nav-link {{ isActive('admin/indicators') }}">--}}
+{{--                                                        <i class="far fa-circle nav-icon"></i>--}}
+{{--                                                        <p>{{ __('Indicator') }}</p>--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                            @endcan--}}
+{{--                                            @can('middleware-passed', 'remark.index')--}}
+{{--                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                                    <a href="{{ route('remark.index') }}"--}}
+{{--                                                        class="nav-link {{ isActive('admin/remarks') }}">--}}
+{{--                                                        <i class="far fa-circle nav-icon"></i>--}}
+{{--                                                        <p>{{ __('Remark') }}</p>--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                            @endcan--}}
+{{--                                            @can('middleware-passed', 'competency-remark.index')--}}
+{{--                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
+{{--                                                    <a href="{{ route('competency-remark.index') }}"--}}
+{{--                                                        class="nav-link {{ isActive('admin/competency-remark') }}">--}}
+{{--                                                        <i class="far fa-circle nav-icon"></i>--}}
+{{--                                                        <p>{{ __('Competency Remark') }}</p>--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                            @endcan--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+{{--                                @endcan--}}
                             </ul>
                         </li>
                     @endcan

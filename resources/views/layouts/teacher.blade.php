@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.6.3-web/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free-5.15.4-web/css/all.min.css') }}">
     <!-- Nano Scroller -->
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
@@ -148,7 +148,7 @@
 {{--select2--}}
 {{--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
 <!-- Form Awesome -->
-{{--<script src="{{ asset('plugins/fontawesome-free-5.6.3-web/js/all.min.js') }}"></script>--}}
+{{--<script src="{{ asset('plugins/fontawesome-free-5.15.4-web/js/all.min.js') }}"></script>--}}
 
 <!-- Nano Scroller -->
 {{--<script src="{{ asset('plugins/nanoScroller/jquery.nanoscroller.min.js') }}"></script>--}}

@@ -15,10 +15,10 @@
         <tbody id="scheduleBody">
         @foreach($day as $data)
             <tr>
-                <td>{{ $data->subject->name }}</td>
+                <td>{{ $data->subject->name ?? '' }}</td>
                 <td>{{ $data->start }}</td>
                 <td>{{ $data->end }}</td>
-                <td>{{ $data->teacher->name }}</td>
+                <td>{{ $data->teacher->name ?? '' }}</td>
             </tr>
         @endforeach
         </tbody>

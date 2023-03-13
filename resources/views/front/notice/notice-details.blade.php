@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title',$notice->title)
 
 @section('content')
 
@@ -62,7 +62,7 @@
                         @endif
                         <a href="{{ action('Front\FrontController@page','notice') }}" class="btn btn-primary mt-4">{{ __('Back To Notices') }}</a>
                         @if($notice->file)
-                            <a href="{{ asset('assets/files/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary mt-4" target="_blank"><i class="fas fa-download"></i></a>
+                            <a href="{{ asset('storage/uploads/notice') }}/{{ $notice->file }}" class="btn btn-outline-primary mt-4" target="_blank"><i class="fas fa-download"></i></a>
                         @endif
                     </div>
                 </div>

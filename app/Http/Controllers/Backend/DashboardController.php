@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data =[];
+        $data = [];
 
         $data['students'] = Student::query()
             ->whereHas('academics',function($query){

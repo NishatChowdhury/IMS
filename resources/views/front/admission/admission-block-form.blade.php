@@ -30,8 +30,12 @@
     <section class="padding-y-20 border-bottom">
 
         <div class="col-12 text-center">
-            <h4>{{ __('Online Admission Form')}}</h4>
-            <p>{{ __('Download')}} <code><a href="{{ action('Front\FrontController@studentForm',['ssc_roll'=>$student->ssc_roll]) }}">Admission Form</a></code> Download <code><a href="{{ action('Front\FrontController@invoice',['ssc_roll'=>$student->ssc_roll]) }}">Invoice</a></code><!-- Download <code><a href="{{ action('Front\FrontController@bankSlip',['ssc_roll'=>$student->ssc_roll]) }}">Bank Slip</a></code> --></p>
+            <h4>{{ __('Online Admission Form') }}</h4>
+            <p>{{ __('Download')}}
+                <code><a href="{{ action('Front\FrontController@studentForm',['ssc_roll'=>$student->ssc_roll]) }}">Admission Form</a></code> Download
+                <code><a href="{{ action('Front\FrontController@invoice',['ssc_roll'=>$student->ssc_roll]) }}">Invoice</a></code>
+                <!-- Download <code><a href="{{ action('Front\FrontController@bankSlip',['ssc_roll'=>$student->ssc_roll]) }}">Bank Slip</a></code> -->
+            </p>
         </div>
 
         <div class="container">

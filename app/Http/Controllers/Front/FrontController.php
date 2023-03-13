@@ -177,7 +177,7 @@ class FrontController extends Controller
 //Gallery
     public function gallery()
     {
-        dd('gallery');
+        //dd('gallery');
         $categories = GalleryCategory::all();
         $albums = Album::all();
         return view('front.pages.gallery',compact('categories','albums'));
@@ -443,7 +443,8 @@ class FrontController extends Controller
 
             return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','staffs','repository'));
         }
-        $page = $content->page;
+        //$page = $content->page;
+        $page = Page::where('name',$content->name)->first();
 
         $page = $page ?? new Page;
         return view('front.pages.page',compact('page'));

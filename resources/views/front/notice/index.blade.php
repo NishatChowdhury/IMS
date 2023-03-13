@@ -1,6 +1,6 @@
 @extends('layouts.front-inner')
 
-@section('title','Inner Page')
+@section('title','Notices')
 
 @section('content')
 
@@ -48,8 +48,6 @@
                             $typeN = 'News';
                             $types = 'badge-info';
                         }
-
-
                         @endphp
                          <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
                             <div class="media align-items-center">
@@ -97,7 +95,6 @@
                                 @foreach($categories as $category)
                                     <li class="mb-3"><a href="">{{ $category->name }} ({{ $category->notices->count() }})</a></li>
                                 @endforeach
-                               
                             </ul>
                         </div>
                     </div>
@@ -107,52 +104,43 @@
         </div> <!-- END container-->
     </section>
 
-
-
-
-
-
-
-
-
-
 @stop
 
 
 @section('script')
 
 <script>
-    var ENDPOINT = "{{ url('/') }}";
-        var page = 1;
-        infinteLoadMore(page);
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-                page++;
-                infinteLoadMore(page);
-            }
-        });
-        function infinteLoadMore(page) {
-            $.ajax({
-                    url: ENDPOINT + "/page/notice?page=" + page,
-                    datatype: "html",
-                    type: "get",
-                    beforeSend: function () {
-                        $('.auto-load').show();
-                    }
-                })
-                .done(function (response) {
-                    if (response.length == 0) {
-                        $('.auto-load').html("We don't have more data to display :(");
-                        return;
-                    }
-                    $('.auto-load').hide();
-                    $("#data-wrapper").append(response);
-                    console.log(response);
-                })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
-                    console.log('Server error occured');
-                });
-        }
+    {{--var ENDPOINT = "{{ url('/') }}";--}}
+    {{--    var page = 1;--}}
+    {{--    infinteLoadMore(page);--}}
+    {{--    $(window).scroll(function () {--}}
+    {{--        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {--}}
+    {{--            page++;--}}
+    {{--            infinteLoadMore(page);--}}
+    {{--        }--}}
+    {{--    });--}}
+    {{--    function infinteLoadMore(page) {--}}
+    {{--        $.ajax({--}}
+    {{--                url: ENDPOINT + "/notice?page=" + page,--}}
+    {{--                datatype: "html",--}}
+    {{--                type: "get",--}}
+    {{--                beforeSend: function () {--}}
+    {{--                    $('.auto-load').show();--}}
+    {{--                }--}}
+    {{--            })--}}
+    {{--            .done(function (response) {--}}
+    {{--                if (response.length == 0) {--}}
+    {{--                    $('.auto-load').html("We don't have more data to display :(");--}}
+    {{--                    return;--}}
+    {{--                }--}}
+    {{--                $('.auto-load').hide();--}}
+    {{--                $("#data-wrapper").append(response);--}}
+    {{--                console.log(response);--}}
+    {{--            })--}}
+    {{--            .fail(function (jqXHR, ajaxOptions, thrownError) {--}}
+    {{--                console.log('Server error occurred');--}}
+    {{--            });--}}
+    {{--    }--}}
 </script>
 
 @endsection
