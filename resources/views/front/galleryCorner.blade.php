@@ -14,9 +14,9 @@
             <div class="owl-carousel arrow-edge arrow-black" data-space="0"  data-items="4" data-arrow="true" data-tablet-items="2" data-mobile-items="1">
                 @foreach($galleryCorner as $img)
                     <div class="hover:parent">
-                        <img class="w-100 transition-0_3 hover:zoomin" src="{{ url('storage/uploads/gallery/'.$img->image) }}" alt="{{ $img->name }}" style="height: 400px">
+                        <img class="w-100 transition-0_3 hover:zoomin" src="{{ url('storage/gallery/'.$img->image) }}" alt="{{ $img->name }}" style="height: 400px">
                         <div class="card-img-overlay transition-0_3 flex-center bg-black-0_7 hover:show">
-                            <a href="{{ url('storage/uploads/gallery/'.$img->image) }}" data-fancybox="gallery1" class="iconbox iconbox-md bg-white ti-zoom-in text-primary"></a>
+                            <a href="{{ url('storage/gallery/'.$img->image) }}" data-fancybox="gallery1" class="iconbox iconbox-md bg-white ti-zoom-in text-primary"></a>
                         </div>
                     </div>
                 @endforeach

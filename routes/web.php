@@ -47,9 +47,9 @@ Route::get('/news-details/{id}','Front\FrontController@newsDetails');
 //Route::get('/news-details/{id}','Front\FrontController@news');
 
 //Gallery
-Route::get('/gallery','Front\FrontController@gallery');
-Route::get('/album/{name}','Front\FrontController@album');
-Route::get('/galleryCategory/{id}','Front\FrontController@galleryCategory');
+Route::get('page/gallery','Front\FrontController@gallery');
+Route::get('page/album/{name}','Front\FrontController@album');
+Route::get('page/galleryCategory/{id}','Front\FrontController@galleryCategory');
 
 //Download
 Route::get('/download','Front\FrontController@download');
