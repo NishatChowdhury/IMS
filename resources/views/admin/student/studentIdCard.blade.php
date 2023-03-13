@@ -23,41 +23,35 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card" style="padding: 10px 10px;background-color:#ececec;">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-3 text-center">
-                                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v1') }}">
-                                        <img src="{{ asset('assets/img/studentIdCard/studentId_1.png') }}" alt=""
-                                            width="200" height="300">
-                                    </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="{{ route('student.generateStudentCard_v2') }}">
-                                        <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpeg') }}"
-                                            alt="" width="200" height="300">
-                                    </a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="{{ route('student.generateStudentCard_v3') }}">
-                                        <img src="{{ asset('assets/img/studentIdCard/studentId_3.jpeg') }}"
-                                            alt="" width="400" height="300">
-                                    </a>
-                                </div>
-                            </div>
-                            &nbsp;
-                            <div class="row">
-                                <div class="col-md-3 text-center">
-                                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v4') }}">
-                                        <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}" alt=""
-                                            width="200" height="300">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v1') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_1.png') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
+                    <a href="{{ route('student.generateStudentCard_v2') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpeg') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="{{ route('student.generateStudentCard_v3') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_3.jpeg') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v4') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v5') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_5.png') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v6') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_6.png') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
                 </div>
             </div>
         </div>

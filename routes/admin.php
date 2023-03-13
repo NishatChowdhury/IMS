@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\ExamScheduleController;
 use App\Http\Controllers\Backend\IndicatorController;
 use App\Http\Controllers\Backend\RemarkController;
+use App\Http\Controllers\PrivacyPolicyController;
 use App\Models\Backend\Competency;
 use Illuminate\Support\Str;
 
@@ -286,6 +287,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::get('student/generateStudentCard_v2','Backend\IdCardController@generateStudentCard_v2')->name('student.generateStudentCard_v2');
     Route::get('student/generateStudentCard_v3','Backend\IdCardController@generateStudentCard_v3')->name('student.generateStudentCard_v3');
     Route::get('student/generateStudentCard_v4','Backend\IdCardController@generateStudentCard_v4')->name('student.generateStudentCard_v4');
+    Route::get('student/generateStudentCard_v5','Backend\IdCardController@generateStudentCard_v5')->name('student.generateStudentCard_v5');
+    Route::get('student/generateStudentCard_v6','Backend\IdCardController@generateStudentCard_v6')->name('student.generateStudentCard_v6');
     
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
@@ -313,6 +316,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
     Route::post('student/card/pdf-v2','Backend\IdCardController@pdf_V2')->name('student.pdf_V2');
     Route::post('student/card/pdf-v3','Backend\IdCardController@pdf_V3')->name('student.pdf_V3');
     Route::post('student/card/pdf-v4','Backend\IdCardController@pdf_V4')->name('student.pdf_V4');
+    Route::post('student/card/pdf-v5','Backend\IdCardController@pdf_V5')->name('student.pdf_V5');
+    Route::post('student/card/pdf-v6','Backend\IdCardController@pdf_V6')->name('student.pdf_V6');
     // ID Card Routes
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Flutter;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
@@ -203,11 +204,11 @@ class LoginController extends Controller
             $smsData['mobile'] = $mobile;
             $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
-            $url = "https://sms.solutionsclan.com/api/sms/send";
+            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
-                "apiKey" => 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
-                "senderId" => '8809612440638',
+                "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
 
@@ -244,9 +245,9 @@ class LoginController extends Controller
 
         if ($otp->otp == $otpRequest || $otpRequest == 0000) {
             $teacherId = $otp->student_id;
-            $teacherInfo = Staff::query()
+          return  $teacherInfo = Staff::query()
                 ->where('id', $teacherId)
-                ->select('name', 'card_id','dob', 'mobile', 'image', 'email','joining')
+                ->select('id','name', 'card_id','dob', 'mobile', 'image', 'email','joining')
                 ->first();
             $teacher = Staff::query()
                 ->where('id', $teacherId)
@@ -272,5 +273,23 @@ class LoginController extends Controller
         auth()->user()->tokens()->delete();
         return response()
             ->json(['status' => true, 'message' => 'Teacher Logged out successfully'], 200);
+    }
+
+    public function pushAttnData(Request $request)
+    {
+        $attendance = new RawAttendance();
+        $attendance->registration_id = $request->registration_id;
+        $attendance->access_id = $request->access_id;
+        $attendance->department = $request->department;
+        $attendance->unit_id = $request->unit_id;
+        $attendance->card = $request->card;
+        $attendance->unit_name = $request->unit_name;
+        $attendance->user_name = $request->user_name;
+        $attendance->access_date = date('Y-m-d H:i:s', strtotime($request->access_date . $request->access_time));
+        $attendance->access_time = date('Y-m-d H:i:s', strtotime($request->access_date . $request->access_time));
+        //$attendance->sms_sent = NULL;
+        $attendance->save();
+
+        return response(['status'=>'success']);
     }
 }
