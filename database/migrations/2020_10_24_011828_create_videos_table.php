@@ -17,7 +17,7 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->foreignId(Playlist::class);
+            $table->foreignId('playlist_id');
             $table->text('code');
             $table->integer('order');
             $table->timestamps();

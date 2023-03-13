@@ -1,4 +1,4 @@
-@extends('accountsandfinance::layouts.master')
+@extends('settings::layouts.master')
 
 @section('title','Playlists')
 
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                        <li class="breadcrumb-item"><a href="#">Gallery</a></li>
                         <li class="breadcrumb-item active">Playlist</li>
                     </ol>
                 </div>

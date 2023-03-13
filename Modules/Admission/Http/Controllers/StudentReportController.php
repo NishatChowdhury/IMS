@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Admission\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -26,7 +26,7 @@ class StudentReportController extends Controller
 
 //        $students =  Student::query()->where('religion_id', $request->religion_id)->get();
 
-        return view('admin.admissionReg.religion_report', compact('religions', 'students'));
+        return view('admission::admissionReg.religion_report', compact('religions', 'students'));
 
     }
 
@@ -45,7 +45,7 @@ class StudentReportController extends Controller
             $students = null;
         }
 
-        return view('admin.admissionReg.student_group_report', compact('groups', 'students'));
+        return view('admission::admissionReg.student_group_report', compact('groups', 'students'));
 
     }
 
@@ -66,7 +66,7 @@ class StudentReportController extends Controller
         } else {
             $students = null;
         }
-        return view('admin.admissionReg.dynamic-table', compact('students','classes', 'arrayCol' ));
+        return view('admission::admissionReg.dynamic-table', compact('students','classes', 'arrayCol' ));
 
     }
 }
