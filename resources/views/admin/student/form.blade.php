@@ -270,7 +270,6 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
-
                                 <div class="form-group col-12">
                                     <div class="form-group">
                                         <label for="">Academic Class</label>

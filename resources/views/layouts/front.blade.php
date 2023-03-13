@@ -28,19 +28,21 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/themify-icons/css/themify-icons.css') }}">
 
 
-    <!-- stylesheet-->
+    <!-- stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/print.css?ver:1.1') }}">
 
     @yield('style')
 
-    {{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
     @if(theme() == 1)
-        <link rel="stylesheet" href="{{ asset('dist/css/lavender.css?ver:2.0') }}">
+        <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">
     @elseif(theme() == 2)
         <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
-    <!-- @elseif(theme() == 1)
+    @elseif(theme() == 3)
+        <link rel="stylesheet" href="{{ asset('dist/css/lavender.css?ver:2.0') }}">
+    @else
+        <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">
     @endif
 
 </head>

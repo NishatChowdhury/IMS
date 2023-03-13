@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Flutter;
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\RawAttendance;
-use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
@@ -179,7 +178,7 @@ class LoginController extends Controller
             $this->teacherOtp($staff->mobile);
             return response()
                 ->json(['status' => true, 'message' => 'Login was Successful'], 200);
-            
+
         }
         else{
             return response()
@@ -233,7 +232,7 @@ class LoginController extends Controller
         }
     }
 
-     /**
+    /**
      * Match Teacher OTP with database
      *
      * @param Request $request
@@ -249,7 +248,7 @@ class LoginController extends Controller
 
         if ($otp->otp == $otpRequest || $otpRequest == 0000) {
             $teacherId = $otp->student_id;
-          return  $teacherInfo = Staff::query()
+            $teacherInfo = Staff::query()
                 ->where('id', $teacherId)
                 ->select('id','name', 'card_id','dob', 'mobile', 'image', 'email','joining')
                 ->first();

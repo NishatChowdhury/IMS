@@ -239,4 +239,4 @@ Route::group(['prefix'=>'admin'],function(){
 
 
 //Settings Route by Rimon
-Route::get('settings/basicInfo','Backend\SettingsController@basicInfo')->name('settings.basicInfo');
+Route::get('settings/basicInfo',[SettingsController::class,'basicInfo'])->name('settings.basicInfo');

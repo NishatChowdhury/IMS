@@ -25,6 +25,9 @@
     <section class="content">
         <div class="row">
             <div class="col-12">
+                <div class="alert alert-danger">
+                    <p>It will available new version</p>
+                </div>
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">Total Found : {{ $themes->total() }}</h3>
@@ -73,8 +76,8 @@
                                     <td>{{ $theme->created_at }}</td>
                                     <td>
                                         <a href="{{ route('admin.theme.change',$theme->id) }}" class="btn btn-info btn-sm"><i class="fas fa-user-check"></i></a>
-{{--                                        <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
-{{--                                        <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>--}}
+                                        {{--                                        <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
+                                        {{--                                        <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>--}}
                                     </td>
                                 </tr>
                             @endforeach
