@@ -252,10 +252,10 @@
 
 </head>
 
-@foreach ($students->chunk(3) as $key => $chunk)
+@foreach ($students->chunk(2) as $key => $chunk)
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
-            <div class="col-4 col-3-4">
+            <div class="col-6 col-3-4">
                 <div class="card" style="width: 3.9in; height: 2.5in; margin:10px;      background-color: #191970;">
                     <div
                         style="border: 1px solid  white; margin: 10px;     padding: 0;  box-sizing: border-box;height: 223px;">
@@ -282,10 +282,10 @@
                                 {{ __('IDENTITY CARD') }}</h1>
                             <h1 class=" text-bold "
                                 style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    color: rgb(12 96 74);">
-                                {{ $student->classes->name ?? '' }}</h1>
+                                <strong>{{ __('Class:') }}{{ $student->classes->name ?? '' }}</strong></h1>
                             <h1 class=" text-bold "
                                 style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    color: rgb(12 96 74);">
-                                {{ $student->student->studentId ?? '' }}</h1>
+                                <strong>{{ $student->student->studentId ?? '' }}</strong></h1>
 
 
                             <div class="row bg-image">
@@ -294,7 +294,7 @@
                                         <table class="table" style="font-size: 12px;">
                                             <tbody>
                                                 <tr class="tname" style="display: block;">
-                                                    <td><strong> Name </strong></td>
+                                                    <td><strong> {{ __('Name') }} </strong></td>
                                                     <td>:</td>
                                                     <td><strong> {{ $student->student->name ?? '' }} </strong></td>
                                                 </tr>
@@ -336,7 +336,7 @@
 
                         <div class="wrapperr">
                             <div style="text-align: left; margin-top: 3px; margin-left:5px">
-                                {{ __('Cell : 01837215075') }}</div>
+                                {{ $student->student->mobile ?? '' }}</div>
                             <div> <img src="{{ asset('assets/img/logos/kingsWayLogo.jpeg') }}" alt=""
                                     style="    height: 17px;  width: 25px;  border-radius: 50%;   "></div>
                             <div style=" margin-top: 3px;">{{ __('Head Mistress') }}</div>
@@ -374,7 +374,7 @@
                             <td> </td>
                             <td></td>
                             <td>
-                                <p style="    margin: -3px; margin-left:10px; text-align: left;  font-size: 16px;">
+                                <p style="    margin: -3px; margin-left: 25px; text-align: left;  font-size: 16px;">
                                     {{ __('IF Found Please Return To') }}</p>
                                 <p style="   margin:0px; margin-left: 40px;  text-align: left;  font-size: 16px;">
                                     {{ siteConfig('name') }}</p>
@@ -383,7 +383,7 @@
                         <tr>
                             <td> {{ __('Address') }}</td>
                             <td>:</td>
-                            <td id="baddress">{{ __('“BHABANA”, South Munshi Pukur Paar, Mukbul
+                            <td id="baddress">{{ __('“BHABANA”, South Munshi Pukur Paar, Makbul
                                 Sawdagor Lane, Kapasgola, Chittagong') }}</td>
                         </tr>
                     </tbody>
