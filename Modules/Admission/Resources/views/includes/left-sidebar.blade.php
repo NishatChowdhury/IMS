@@ -39,7 +39,7 @@
                 </a>
             </li>
 
-            <!------------------------------------- test  --------------------------------------------------->
+            <!------------------------------------- Admission  --------------------------------------------------->
             @can('middleware-passed', 'online.onlineApplyIndex')
                 @if (in_array('online.onlineApplyIndex', auth()->user()->permissions))
                     <li class="nav-item has-treeview {{ isActive(['admin/admission*']) }}">
@@ -94,6 +94,39 @@
                 @endif
             @endcan
 
+
+            <!------------------------------------- Admission Register  ------------------------------------------>
+            <li class="nav-item has-treeview {{ isActive(['admin/user*']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/user*']) }}">
+                    <i class="fas fa-users-cog"></i>
+                    <p>
+                        Admission register
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    <li class="nav-item">
+                        <a href="{{ route('regligion-wise.report') }}"
+                           class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Religion-wise Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('group-wise.report') }}"
+                           class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Group-wise Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="{{ route('create-custom.table') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> Create Custome Table</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </nav>

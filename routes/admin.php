@@ -82,11 +82,13 @@ use Illuminate\Support\Str;
     //Playlists Ends
 
     //Videos
+        /*
     Route::get('videos','Backend\VideoController@index')->name('video.index');
     Route::post('video/store','Backend\VideoController@store')->name('video.store');
     Route::get('video/edit','Backend\VideoController@edit')->name('video.edit');
     Route::patch('video/{id}/update','Backend\VideoController@update')->name('video.update');
     Route::delete('video/destroy/{id}','Backend\VideoController@destroy')->name('video.destroy');
+        */
     //Videos End
 
     //Applied Student
@@ -768,11 +770,11 @@ return view('form-pdf');
 });
 
 //temp register addmission
-
+    /*
     Route::get('regligion-wise/report',[StudentReportController::class,'regligionWiseReport'])->name('regligion-wise.report');
     Route::get('group-wise/report',[StudentReportController::class,'groupWiseReport'])->name('group-wise.report');
     Route::get('custom/table',[StudentReportController::class,'customTable'])->name('create-custom.table');
-
+    */
 //end temp register addmission
 
 

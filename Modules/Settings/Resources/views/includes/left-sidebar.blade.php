@@ -308,6 +308,12 @@
                                 </a>
                             </li>
                         @endcan
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ route('playlist.index') }}" class="nav-link {{ isActive('admin/gallery/albums') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Video Playlists</p>
+                                </a>
+                            </li>
                     </ul>
                 </li>
             @endcan

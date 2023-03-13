@@ -12,6 +12,7 @@ use Modules\Settings\Http\Controllers\LanguageController;
 use Modules\Settings\Http\Controllers\MenuController;
 use Modules\Settings\Http\Controllers\MessageController;
 use Modules\Settings\Http\Controllers\PageController;
+use Modules\Settings\Http\Controllers\PlaylistController;
 use Modules\Settings\Http\Controllers\RolePermissionController;
 use Modules\Settings\Http\Controllers\ScheduleController;
 use Modules\Settings\Http\Controllers\SettingsController;
@@ -21,6 +22,7 @@ use Modules\Settings\Http\Controllers\LinkController;
 use Modules\Settings\Http\Controllers\SocialController;
 use Modules\Settings\Http\Controllers\ThemeController;
 use Modules\Settings\Http\Controllers\UserController;
+use Modules\Settings\Http\Controllers\VideoController;
 
 Route::group(['prefix'=>'admin'],function(){
 
@@ -190,6 +192,20 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('gallery/albums',[AlbumController::class,'index'])->name('gallery-albums.index');
         Route::post('gallery/album/store',[AlbumController::class,'store'])->name('gallery-albums.store');
         Route::delete('gallery/album/delete/{id}',[AlbumController::class,'destroy'])->name('gallery-albums.destroy');
+
+        //Playlists
+        Route::get('playlists',[PlaylistController::class,'index'])->name('playlist.index');
+        Route::post('playlist/store',[PlaylistController::class,'store'])->name('playlist.store');
+        Route::get('playlist/show/{id}',[PlaylistController::class,'show'])->name('playlist.show');
+        Route::delete('playlist/destroy/{id}',[PlaylistController::class,'destroy'])->name('playlist.destroy');
+        //Playlists Ends
+
+        //Videos
+        Route::get('videos',[VideoController::class,'index'])->name('video.index');
+        Route::post('video/store',[VideoController::class,'store'])->name('video.store');
+        Route::get('video/edit',[VideoController::class,'edit'])->name('video.edit');
+        Route::patch('video/{id}/update',[VideoController::class,'update'])->name('video.update');
+        Route::delete('video/destroy/{id}',[VideoController::class,'destroy'])->name('video.destroy');
 
     # ---------------------------------------------- User Management -------------------------------------------------------
         // User
