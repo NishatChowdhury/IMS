@@ -40,93 +40,55 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                                            <div class=" bg-white " style="padding: 0.5rem 0.25rem;">
+                                            <div class="  " style="   background: linear-gradient(#3C3CB9, #3C3CB9 45%, #3C3CB9 45%,  #3C3CB9 100%);    height: 1.9in;">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="left ">
                                                             <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                                                style="width:.6in ; height:.6in"
-                                                                class="text-center rounded-circle mx-auto d-block">
+                                                                style=" height: 54px;  width: 73px;  text-align: center; margin: 5px;   border-radius: 6px;"
+                                                                class="text-center  mx-auto d-block ">
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="col-md-12">
                                                         <div class="right text-center">
-                                                            <div class="scl-cd-dec text-wrap text-bold">
+                                                            <div class="scl-cd-dec text-wrap text-bold ">
                                                                 <h2
-                                                                    style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(151, 4, 4)">
+                                                                    style="position: relative;top: 10px; margin: 1px;text-align: center;  font-size: 17px;  color: #fff; font-weight: bold;     font-family: sans-serif;">
                                                                     <strong>{{ siteConfig('name') }}</strong>
                                                                 </h2>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 15px;" class="text-center rounded mx-auto d-block border border-dark">
                                             </div>
+                                            <div style=" text-align: center; font-size: 18px; font-weight: bold; position: relative; top: 28px;">
+                                               <p>{{ __('Student Identity Card') }}</p>
+                                                 </div>
                                             <div class="card-body text-center">
 
-                                                <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" style="width:70px ; height:70px" class="text-center rounded mx-auto d-block border border-dark">
-                                                <h1 class="card-title text-bold nName"
-                                                    style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
-                                                    {{ __('Student Name') }}</h1>
+                                            <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
+                                                <p class="p-0">{{ __('Student Name') }}</p>
+                                            </div>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 3px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
-                                                                <tbody>
-                                                                    <tr class="tfname">
-                                                                        <td><b>{{ __('Father') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ _('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tmname">
-                                                                        <td> <b>{{ __('Mother') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tcname">
-                                                                        <td> <b>{{ __('Class') }}</b></td>
+                                                            <tbody>
+                                                                    <tr class="tcname" style="display: block;">
+                                                                        <td> <b>{{ __('Class') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
                                                                         <td> {{ __('Seven') }} </td>
                                                                     </tr>
-                                                                    <tr class="tsname">
-                                                                        <td><b>{{ __('Section') }}</b></td>
+                                                                    <tr class="trname" style="display: block;">
+                                                                        <td><b>{{ __('Roll') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="trname">
-                                                                        <td><b>{{ __('Roll') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tgname">
-                                                                        <td><b>{{ __('Group') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tbname">
-                                                                        <td><b>{{ __('Blood Group') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tpname">
-                                                                        <td><b>{{ __('Contact') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tdname">
-                                                                        <td><b>{{ __('Depertmant') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="tdobname">
-                                                                        <td><b>{{ __('Date Of Birth') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
-                                                                    </tr>
-                                                                    <tr class="taname">
-                                                                        <td><b>{{ __('Admission Date') }}</b></td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        </td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -135,58 +97,53 @@
                                                 </div>
                                             </div>
 
-
-                                            <div class=" grid-container">
-                                                <div class="item1">{{ __('Shikalbaha, Budpura, Karnaphuli, Chattogram -
-                                                    4317') }}
-                                                </div>
-                                                <div class="item2" id="idsignature"><span>{{ __('Principal') }}</span></div>
-                                            </div>
+                                            <p class="sinn">
+                                                <img src="{{asset('assets/img/signature/jalalabadSignature.png')}}"  alt="" style="height: 26px;  width: 55px; position: relative;  left: 162px;   top: 72px;">
+                                                 <hr style="position: relative; top: 40px; width: 97px;  left: 142px;">
+                                                <h5 style=" position: relative; top: 22px; left: 159px; font-size: 15px;">{{ __('Signature') }} </h5>
+                                            </p>
+                                           
                                         </div>
                                     </div>
                                     <div class="col-12" style="padding-top: 50px;">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
                                             <div class="card-body text-center">
+                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" 
+                                                    width="60" style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+
+                        
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="card-back-dec text-bold"
-                                                            style="text-align: left; margin-top: 10px;font-size: 12px">
-                                                            <ul
-                                                                style="margin: 0px !important; padding: 10px 15px !important;">
-                                                                <li>{{ __('This card is valid till') }} <span
-                                                                        class="valid-date">{{ __('31-Dec-2020') }}</span></li>
-                                                                <li>{{ __('This card is not transferable') }}</li>
-                                                                <li>{{ __('This finder of this card may please drop it to the
-                                                                    nearest post office.') }}</li>
-                                                            </ul>
+                                                            style="text-align: left; margin-top: -16px;font-size: 12px">
+                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">{{ __('If Found Please Return The Card To') }}</h2>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                                    width="60">
+                                              
                                                 <div class="row">
-                                                    <div class="" style="margin-top: 20px;">
-                                                        <p><strong>{{ siteConfig('name') }} <br> </strong>
-                                                            {{ siteConfig('address') }}</p>
+                                                    <div class="" style="margin-top: 25px;">
+                                                        <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
+                                                            <p style=" margin-bottom: 5px;">
+                                                                {{ __('Hazi Abdul Mia Road(Chadni),') }}
+                                                                {{ __(' Shitaljharna R/A,  Jalalabad,') }}&nbsp;<br>
+                                                                {{ __('Baizid Bostami,') }} <br>
+                                                                {{ __('Chattogram') }}
+                                                            </p>
+                                                        </p>
                                                     </div>
                                                     <div class="crd-add-dec text-bold"
-                                                        style="margin:5px 10px; text-align: left">
-                                                        <table class="table" style="font-size: 10px;">
+                                                        style="    text-align: center;   position: relative; left: 58px;top: -6px;">
+                                                        <table class="table" style="font-size: 12px;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td> {{ __('Phone') }} </td>
                                                                     <td>:</td>
-                                                                    <td id="bphone">{{ __('+880 01714 000 000') }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> {{ __('Email') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> {{ __('Website') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bwebsite">{{ __('www.example99.org') }}</td>
+                                                                    <td id="bphone">
+                                                                        {{ __('01892-962257') }} 
+                                                                        <br>
+                                                                        {{ __('01878-895646') }}  
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -198,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['route' => 'student.pdf_V2', 'method' => 'post']) }}
+                                {{ Form::open(['route' => 'student.pdf_V4', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">
@@ -843,7 +800,7 @@
                 })
             } else {
                 $(".tpname").css({
-                    "display": "none"
+                    "display": "block"
                 })
             }
         });
