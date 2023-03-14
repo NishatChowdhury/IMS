@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('settings::layouts.master')
 
 @section('title','Institution Mgnt | Subjects')
 @section('style')
