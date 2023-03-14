@@ -23,39 +23,82 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                    <a href="{{ route('student.generateStudentCard_v1') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_1.png') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
-                    <a href="{{ route('student.generateStudentCard_v2') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpg') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v1') }}">
+                            <img class="card-img-top img-fluid"
+                                src="{{ asset('assets/img/studentIdCard/studentId_1.jpg') }}">
+                        </a>
+                        <div class="card-body">
+                            <h3 class="card-title text-center"><b>{{ __('Card Layout 01') }}</b></h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <a href="{{ route('student.generateStudentCard_v3') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_3.jpeg') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
-                    <a href="{{ route('student.generateStudentCard_v4') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
-                    <a href="{{ route('student.generateStudentCard_v7') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_7.jpg') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v2') }}">
+                            <img class="card-img-top img-fluid" 
+                                src="{{ asset('assets/img/studentIdCard/studentId_2.jpg') }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>{{ __('Card Layout 02') }}</b></h5>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <a href="{{ route('student.generateStudentCard_v5') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_5.jpg') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
-                    <a href="{{ route('student.generateStudentCard_v6') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_6.png') }}"
-                            class="w-75 shadow-1-strong rounded mb-4" />
-                    </a>
+
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v4') }}">
+                            <img class="card-img-top img-fluid"
+                                src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>{{ __('Card Layout 03') }}</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v5') }}">
+                            <img class="card-img-top img-fluid" 
+                                src="{{ asset('assets/img/studentIdCard/studentId_5.jpg') }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>{{ __('Card Layout 04') }}</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v6') }}">
+                            <img class="card-img-top img-fluid" 
+                                src="{{ asset('assets/img/studentIdCard/studentId_6.png') }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>{{ __('Card Layout 05') }}</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v7') }}">
+                            <img class="card-img-top img-fluid" 
+                                src="{{ asset('assets/img/studentIdCard/studentId_7.jpg') }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>{{ __('Card Layout 06') }}</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="{{ route('student.generateStudentCard_v3') }}">
+                            <img class="card-img-top img-fluid" src="{{ asset('assets/img/studentIdCard/studentId_3.jpg') }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>{{ __('Card Layout 07') }}</b></h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -284,7 +284,7 @@
                     <div class="card-footer text-muted"
                          style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
                         <div class=" grid-container">
-                            <div class="item1">{{ __('Karnaphuli, Chattogram') }}</div>
+                            <div class="item1">{{ siteConfig('address') }}</div>
                             <div class="item2"> <span>{{ __('Principal') }}</span></div>
                         </div>
                     </div>

@@ -77,19 +77,85 @@
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                             <tbody>
-                                                                    <tr class="tcname" style="display: block;">
-                                                                        <td> <b>{{ __('Class') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td> {{ __('Seven') }} </td>
-                                                                    </tr>
-                                                                    <tr class="trname" style="display: block;">
-                                                                        <td><b>{{ __('Roll') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
+                                                                <tr class="tname" style="display: block;">
+                                                                    <td><strong> {{ __('Name') }} </strong></td>
+                                                                    <td>:</td>
+                                                                    <td><strong> {{ __('Student') }} </strong></td>
+                                                                </tr>
+                                                                <tr class="tfname" style="display: block;">
+                                                                    <td><b>{{ __('Father') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td><strong> {{ __('Father') }} </strong></td>
+                                                                </tr>
+                                                                <tr class="tmname" style="display: block;">
+                                                                    <td> <b>{{ __('Mother') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td><strong> {{ __('Mother') }} </strong></td>
+                                                                </tr>
+                                                                <tr class="tcname" style="display: block;">
+                                                                    <td> <b>{{ __('Class') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td> {{ __('Class') }} </td>
+                                                                </tr>
+                                                                <tr class="tsname">
+                                                                    <td><b>{{ __('Section') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Section') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="trname" style="display: block;">
+                                                                    <td><b>{{ __('Roll') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Roll') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tgname">
+                                                                    <td><b>{{ __('Group') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Group') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tbname">
+                                                                    <td><b>{{ __('Blood Group') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Blood') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tpname" style="display: block;">
+                                                                    <td><b>{{ __('Contact') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Contact') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tdname">
+                                                                    <td><b>{{ __('Depertmant') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Department') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tdobname">
+                                                                    <td><b>{{ __('Date Of Birth') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('DOB') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="taname">
+                                                                    <td><b>{{ __('Admission Date') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Date') }}
+                                                                    </td>
+                                                                </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
