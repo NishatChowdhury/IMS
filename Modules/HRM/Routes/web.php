@@ -74,6 +74,10 @@ Route::prefix('admin')->group(function() {
     Route::get('student/designStudentCard',[IdCardController::class,'index'])->name('student.designStudentCard');
     Route::get('student/generateStudentCard_v1',[IdCardController::class,'generateStudentCard_v1'])->name('student.generateStudentCard_v1');
     Route::get('student/generateStudentCard_v2',[IdCardController::class,'generateStudentCard_v2'])->name('student.generateStudentCard_v2');
+    Route::get('student/generateStudentCard_v3',[IdCardController::class,'generateStudentCard_v3'])->name('student.generateStudentCard_v3');
+    Route::get('student/generateStudentCard_v4',[IdCardController::class,'generateStudentCard_v4'])->name('student.generateStudentCard_v4');
+    Route::get('student/generateStudentCard_v5',[IdCardController::class,'generateStudentCard_v5'])->name('student.generateStudentCard_v5');
+    Route::get('student/generateStudentCard_v6',[IdCardController::class,'generateStudentCard_v6'])->name('student.generateStudentCard_v6');
 
     Route::get('student/testimonial',[StudentController::class,'testimonial'])->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
@@ -91,6 +95,11 @@ Route::prefix('admin')->group(function() {
     Route::post('student/optional/subjectStudent',[StudentController::class,'subjectStudent'])->name('subject.student');
 
     Route::post('student/card/pdf',[IdCardController::class,'pdf'])->name('student.pdf');
+    Route::post('student/card/pdf-v2',[IdCardController::class,'pdf_V2'])->name('student.pdf_V2');
+    Route::post('student/card/pdf-v3',[IdCardController::class,'pdf_V3'])->name('student.pdf_V3');
+    Route::post('student/card/pdf-v4',[IdCardController::class,'pdf_V4'])->name('student.pdf_V4');
+    Route::post('student/card/pdf-v5',[IdCardController::class,'pdf_V5'])->name('student.pdf_V5');
+    Route::post('student/card/pdf-v6',[IdCardController::class,'pdf_V6'])->name('student.pdf_V6');
 
     //Student profile start
     Route::get('student-profile/{studentId}',[StudentController::class,'studentProfile'])->name('admin.student.profile');

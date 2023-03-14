@@ -178,7 +178,7 @@ class LoginController extends Controller
             $this->teacherOtp($staff->mobile);
             return response()
                 ->json(['status' => true, 'message' => 'Login was Successful'], 200);
-            
+
         }
         else{
             return response()
@@ -205,9 +205,12 @@ class LoginController extends Controller
             $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
             $url = "https://a2p.solutionsclan.com/api/sms/send";
+            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
                 "apiKey" => smsConfig('api_key'),
+                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
+                "senderId" => smsConfig('sender_id'),
                 "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
@@ -229,7 +232,7 @@ class LoginController extends Controller
         }
     }
 
-     /**
+    /**
      * Match Teacher OTP with database
      *
      * @param Request $request
@@ -247,7 +250,7 @@ class LoginController extends Controller
             $teacherId = $otp->student_id;
             $teacherInfo = Staff::query()
                 ->where('id', $teacherId)
-                ->select('name', 'card_id','dob', 'mobile', 'image', 'email','joining')
+                ->select('id','name', 'card_id','dob', 'mobile', 'image', 'email','joining')
                 ->first();
             $teacher = Staff::query()
                 ->where('id', $teacherId)

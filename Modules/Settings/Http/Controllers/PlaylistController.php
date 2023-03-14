@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\AccountsAndFinance\Http\Controllers;
+namespace Modules\Settings\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Playlist;
@@ -17,7 +17,7 @@ class PlaylistController extends Controller
     public function index()
     {
          $playlists = Playlist::query()->paginate(20);
-        return view('accountsandfinance::playlist.index',compact('playlists'));
+        return view('settings::playlist.index',compact('playlists'));
     }
 
     public function store(Request $request)
@@ -32,6 +32,6 @@ class PlaylistController extends Controller
     {
         $playlist = Playlist::query()->findOrFail($id);
         //$videos = $playlist->videos;
-        return view('accountsandfinance::playlist.videos',compact('playlist'));
+        return view('settings::playlist.videos',compact('playlist'));
     }
 }

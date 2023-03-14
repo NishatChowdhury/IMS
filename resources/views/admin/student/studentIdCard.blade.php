@@ -1,4 +1,4 @@
-@extends('hrm::layouts.master')
+@extends('layouts.fixed')
 
 @section('title', 'Student | Student Id Card')
 
@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                    <a href="{{ route('student.generateStudentCard_v1') }}">
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v1') }}">
                         <img src="{{ asset('assets/img/studentIdCard/studentId_1.png') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
@@ -38,17 +38,17 @@
                         <img src="{{ asset('assets/img/studentIdCard/studentId_3.jpeg') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
-                    <a href="{{ route('student.generateStudentCard_v4') }}">
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v4') }}">
                         <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <a href="{{ route('student.generateStudentCard_v5') }}">
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v5') }}">
                         <img src="{{ asset('assets/img/studentIdCard/studentId_5.png') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
-                    <a href="{{ route('student.generateStudentCard_v6') }}">
+                    <a href="{{ action('Backend\IdCardController@generateStudentCard_v6') }}">
                         <img src="{{ asset('assets/img/studentIdCard/studentId_6.png') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>

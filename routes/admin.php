@@ -3,35 +3,37 @@
 use App\Http\Controllers\Backend\AlumniController;
 use App\Http\Controllers\Backend\CompetencyController;
 use App\Http\Controllers\Backend\CompetencyRemarkController;
-use App\Http\Controllers\Backend\DiaryController;
-use App\Http\Controllers\Backend\GalleryController;
-use App\Http\Controllers\Backend\LinkController;
-use App\Http\Controllers\Backend\MessageController;
-use App\Http\Controllers\Backend\RolePermissionController;
-use App\Http\Controllers\Backend\StudentReportController;
-use App\Http\Controllers\Backend\SubscriberController;
-use App\Http\Controllers\Backend\ThemeController;
+//use App\Http\Controllers\Backend\DiaryController;
+//use App\Http\Controllers\Backend\GalleryController;
+//use App\Http\Controllers\Backend\LinkController;
+//use App\Http\Controllers\Backend\MessageController;
+//use App\Http\Controllers\Backend\RolePermissionController;
+//use App\Http\Controllers\Backend\StudentReportController;
+//use App\Http\Controllers\Backend\SubscriberController;
+//use App\Http\Controllers\Backend\ThemeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\FeeCartController;
-use App\Http\Controllers\Backend\FeeSetupController;
+//use App\Http\Controllers\Backend\FeeCartController;
+//use App\Http\Controllers\Backend\FeeSetupController;
 use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\DbBackupController;
-use App\Http\Controllers\Backend\FeeCollectionController;
-use App\Http\Controllers\Backend\OnlineApplyController;
-use App\Http\Controllers\Backend\ExamController;
-use App\Http\Controllers\Backend\ExamScheduleController;
+//use App\Http\Controllers\Backend\DbBackupController;
+//use App\Http\Controllers\Backend\FeeCollectionController;
+//use App\Http\Controllers\Backend\OnlineApplyController;
+//use App\Http\Controllers\Backend\ExamController;
+//use App\Http\Controllers\Backend\ExamScheduleController;
 use App\Http\Controllers\Backend\IndicatorController;
 use App\Http\Controllers\Backend\RemarkController;
+//use App\Http\Controllers\PrivacyPolicyController;
 use App\Models\Backend\Competency;
 use Illuminate\Support\Str;
 
 //use App\Http\Controllers\Front\PrincipalController;
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function () {
 
     //Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/', [HomeController::class, 'index'])->name('admin');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
     //Student Routes
     /*
@@ -82,11 +84,13 @@ use Illuminate\Support\Str;
     //Playlists Ends
 
     //Videos
+        /*
     Route::get('videos','Backend\VideoController@index')->name('video.index');
     Route::post('video/store','Backend\VideoController@store')->name('video.store');
     Route::get('video/edit','Backend\VideoController@edit')->name('video.edit');
     Route::patch('video/{id}/update','Backend\VideoController@update')->name('video.update');
     Route::delete('video/destroy/{id}','Backend\VideoController@destroy')->name('video.destroy');
+        */
     //Videos End
 
     //Applied Student
@@ -267,20 +271,20 @@ use Illuminate\Support\Str;
     //leave management ends by Nishat
 
     //Book Category starts by Nishat
-        /*
-    Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
-    Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
-    Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
-    Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
+    /*
+Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
+Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
+Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
+Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
 //    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
-    Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
-    Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
-        */
+Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
+Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
+    */
     //Book Category ends by Nishat
 
     //Admission Route by Rimon
-    Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
-    Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
+    //Route::get('admission/exams','Backend\AdmissionController@admissionExams')->name('admission.exams');
+    //Route::get('admission/examResult','Backend\AdmissionController@admissionExamResult')->name('admission.examResult');
     /*
     Route::get('admission/browse-merit-list','Backend\AdmissionController@browseMeritList')->name('admission.browseMeritList');
     Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList')->name('admission.uploadMeritList');
@@ -305,16 +309,16 @@ use Illuminate\Support\Str;
 
     Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
         */
-        //Book Category starts by Nishat
-        /*
-        Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
-        Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
-        Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
-        Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
-    //    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
-        Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
-        Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
-        */
+    //Book Category starts by Nishat
+    /*
+    Route::get('library/bookCategory','Backend\BookCategoryController@index')->name('bookCategory.index');
+    Route::get('library/bookCategory/add','Backend\BookCategoryController@add')->name('bookCategory.add');
+    Route::post('library/bookCategory/store','Backend\BookCategoryController@store')->name('bookCategory.store');
+    Route::get('library/bookCategory/edit','Backend\BookCategoryController@edit')->name('book-category.edit');
+//    Route::get('library/bookCategory/edit/{id}','Backend\BookCategoryController@edit')->name('bookCategory.edit');
+    Route::patch('library/bookCategory/{id}/update','Backend\BookCategoryController@update')->name('bookCategory.update');
+    Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@destroy')->name('bookCategory.delete');
+    */
     //Exam management End
 
 
@@ -330,7 +334,6 @@ use Illuminate\Support\Str;
 
     Route::get('student/generateStudentCard_v5','Backend\IdCardController@generateStudentCard_v5')->name('student.generateStudentCard_v5');
     Route::get('student/generateStudentCard_v6','Backend\IdCardController@generateStudentCard_v6')->name('student.generateStudentCard_v6');
-
 
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
@@ -363,6 +366,8 @@ use Illuminate\Support\Str;
     Route::post('student/card/pdf-v2','Backend\IdCardController@pdf_V2')->name('student.pdf_V2');
     Route::post('student/card/pdf-v3','Backend\IdCardController@pdf_V3')->name('student.pdf_V3');
     Route::post('student/card/pdf-v4','Backend\IdCardController@pdf_V4')->name('student.pdf_V4');
+    Route::post('student/card/pdf-v5','Backend\IdCardController@pdf_V5')->name('student.pdf_V5');
+    Route::post('student/card/pdf-v6','Backend\IdCardController@pdf_V6')->name('student.pdf_V6');
     // ID Card Routes
         */
 
@@ -375,28 +380,28 @@ use Illuminate\Support\Str;
 
     //library Management Starts By Nishat
     //Add New Book
-        /*
-    Route::get('library/books','Backend\BookController@index')->name('allBooks.index');
-    Route::get('library/allBooks','Backend\BookController@show')->name('allBooks.show');
-    Route::get('library/SearchBook','Backend\BookController@search')->name('allBooks.search');
-    Route::get('library/books/add','Backend\BookController@add')->name('newBook.add');
-    Route::post('library/books/store','Backend\BookController@store')->name('newBook.store');
-    Route::get('library/books/edit/{id}','Backend\BookController@edit')->name('newBook.edit');
-    Route::patch('library/books/{id}/update','Backend\BookController@update')->name('newBook.update');
-    Route::post('library/books/delete/{id}','Backend\BookController@destroy')->name('newBook.delete');
+    /*
+Route::get('library/books','Backend\BookController@index')->name('allBooks.index');
+Route::get('library/allBooks','Backend\BookController@show')->name('allBooks.show');
+Route::get('library/SearchBook','Backend\BookController@search')->name('allBooks.search');
+Route::get('library/books/add','Backend\BookController@add')->name('newBook.add');
+Route::post('library/books/store','Backend\BookController@store')->name('newBook.store');
+Route::get('library/books/edit/{id}','Backend\BookController@edit')->name('newBook.edit');
+Route::patch('library/books/{id}/update','Backend\BookController@update')->name('newBook.update');
+Route::post('library/books/delete/{id}','Backend\BookController@destroy')->name('newBook.delete');
 
-    //issue/return books
-    Route::get('library/issue_books','Backend\BookController@issueBook')->name('issueBook.index');
-    Route::post('library/issue-books/store','Backend\BookController@issueBookStore')->name('issueBook.store');
-    Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
-    Route::get('library/return_books-search','Backend\BookController@returnBookSearch')->name('returnBook.search');
-    Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
-    Route::post('library/return-books/store','Backend\BookController@returnBookStore')->name('returnBook.store');
+//issue/return books
+Route::get('library/issue_books','Backend\BookController@issueBook')->name('issueBook.index');
+Route::post('library/issue-books/store','Backend\BookController@issueBookStore')->name('issueBook.store');
+Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
+Route::get('library/return_books-search','Backend\BookController@returnBookSearch')->name('returnBook.search');
+Route::get('library/return_books','Backend\BookController@returnBook')->name('returnBook.index');
+Route::post('library/return-books/store','Backend\BookController@returnBookStore')->name('returnBook.store');
 
 
 //    report
-    Route::get('library/report','Backend\BookController@report')->name('report');
-        */
+Route::get('library/report','Backend\BookController@report')->name('report');
+    */
     //library management ends by Nishat
 
 //    route for api setting starts here
@@ -428,19 +433,19 @@ use Illuminate\Support\Str;
     */
 //Social Links End
 
-    Route::get('settings/links',[LinkController::class,'index'])->name('settings.link.index');
+    //Route::get('settings/links',[LinkController::class,'index'])->name('settings.link.index');
 
 //    Route::get('page-media/destroy/{id}','PageMediaController@destroy');
 
 
 
 //Class Schedule
-        /*
-    Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index')->name('class.schedule.index');
-    Route::post('institution/class/schedule/store','Backend\ScheduleController@store')->name('class.schedule.store');
-    Route::post('institution/class/schedule/update','Backend\ScheduleController@update')->name('class.schedule.update');
-    Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
-    */
+    /*
+Route::get('institution/class/schedule/{class}','Backend\ScheduleController@index')->name('class.schedule.index');
+Route::post('institution/class/schedule/store','Backend\ScheduleController@store')->name('class.schedule.store');
+Route::post('institution/class/schedule/update','Backend\ScheduleController@update')->name('class.schedule.update');
+Route::get('institution/class/schedule/delete/{id}','Backend\ScheduleController@delete')->name('class.schedule.delete');
+*/
     //Route::get('page-media/destroy/{id}', 'PageMediaController@destroy');
 
 //Route for fee setup starts here
@@ -602,12 +607,12 @@ Route::post('staff/update-course','Backend\StaffController@update_course')->name
 
 // Teacher assign
 
-    Route::get('institution/assign-teacher/{id}', 'Backend\InstitutionController@assignTeacher')
-            ->name('institution.assignTeacher');
-
-
-    Route::post('institution/assign-teacher-store', 'Backend\InstitutionController@assignTeacherStore')
-            ->name('institution.assignTeacher.store');
+//    Route::get('institution/assign-teacher/{id}', 'Backend\InstitutionController@assignTeacher')
+//        ->name('institution.assignTeacher');
+//
+//
+//    Route::post('institution/assign-teacher-store', 'Backend\InstitutionController@assignTeacherStore')
+//        ->name('institution.assignTeacher.store');
 
 
 
@@ -618,45 +623,45 @@ Route::post('staff/update-course','Backend\StaffController@update_course')->name
 // Student Fee Collection End
 
 // Student Fee Collection Report Start
-Route::get('report/student-fee-report','Backend\ReportController@student_fee_report')->name('report.student-fee');
-Route::get('report/student-monthly-fee-report','Backend\ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
+    Route::get('report/student-fee-report','Backend\ReportController@student_fee_report')->name('report.student-fee');
+    Route::get('report/student-monthly-fee-report','Backend\ReportController@student_monthly_fee_report')->name('report.student-monthly-fee');
 // Student Fee Collection Report End
 
 
 
 
 //Communication Route by Rimon
-/*
-Route::get('communication/quick','Backend\CommunicationController@quick')->name('communication.quick');
-Route::get('communication/student','Backend\CommunicationController@student')->name('communication.student');
-Route::get('communication/staff','Backend\CommunicationController@staff')->name('communication.staff');
-Route::get('communication/history','Backend\CommunicationController@history')->name('communication.history');
+    /*
+    Route::get('communication/quick','Backend\CommunicationController@quick')->name('communication.quick');
+    Route::get('communication/student','Backend\CommunicationController@student')->name('communication.student');
+    Route::get('communication/staff','Backend\CommunicationController@staff')->name('communication.staff');
+    Route::get('communication/history','Backend\CommunicationController@history')->name('communication.history');
 
-Route::post('communication/send','Backend\CommunicationController@send')->name('communication.send');
-Route::post('communication/quick/send','Backend\CommunicationController@quickSend')->name('communication.quickSend');
-*/
+    Route::post('communication/send','Backend\CommunicationController@send')->name('communication.send');
+    Route::post('communication/quick/send','Backend\CommunicationController@quickSend')->name('communication.quickSend');
+    */
 //End Communication Route
 
 
 
 
 //Attendance Route by Rimon
-/*
-Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
-Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
-Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
-Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
-Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');
-Route::post('/get_attendance_monthly', 'Backend\AttendanceController@getAttendanceMonthly')->name('attendance.getAttendanceMonthly');
-Route::post('/indStudentAttendance','Backend\AttendanceController@individulAttendance')->name('student.indAttendance');
-Route::post('/classStudentAttendance','Backend\AttendanceController@classAttendance')->name('student.classAttendance');
-Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeacherAttendance')->name('teacher.indAttendance');
-*/
+    /*
+    Route::get('attendance','Backend\AttendanceController@index')->name('custom.view');
+    Route::get('attendance/dashboard','Backend\AttendanceController@dashboard')->name('attendance.dashboard');
+    Route::get('attendance/student','Backend\AttendanceController@student')->name('attendance.student');
+    Route::get('attendance/teacher','Backend\AttendanceController@teacher')->name('attendance.teacher');
+    Route::get('attendance/report','Backend\AttendanceController@report')->name('attendance.report');
+    Route::post('/get_attendance_monthly', 'Backend\AttendanceController@getAttendanceMonthly')->name('attendance.getAttendanceMonthly');
+    Route::post('/indStudentAttendance','Backend\AttendanceController@individulAttendance')->name('student.indAttendance');
+    Route::post('/classStudentAttendance','Backend\AttendanceController@classAttendance')->name('student.classAttendance');
+    Route::post('/indTeacherAttendance','Backend\AttendanceController@individualTeacherAttendance')->name('teacher.indAttendance');
+    */
 //End Attendance Route
 
 
 //Exam Route Start  by Rimon
-        /*
+    /*
 Route::get('exam/gradesystem',[ExamController::class,'gradesystem'])->name('exam.gradesystem');
 //Grading System @MKH
 Route::post('exam/store-grade', [ExamController::class,'store_grade'])->name('exam.store_grade');
@@ -674,7 +679,7 @@ Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate'])->name('e
 */
 
 // Exam Seat Plan Start
-        /*
+    /*
 Route::get('exam/seat-plan/{examId}','Backend\ExamSeatPlanController@seatPlan')->name('exam-seat-plan.seatPlan');
 Route::post('exam/check-roll','Backend\ExamSeatPlanController@CheckRoll')->name('exam-seat-plan.CheckRoll');
 Route::post('exam/store-seat-plan','Backend\ExamSeatPlanController@storeSeatPlan')->name('exam-seat-plan.storeSeatPlan');
@@ -690,50 +695,50 @@ Route::delete('exam/destroy-seat-plan/{id}','Backend\ExamSeatPlanController@dest
 //    Route::get('admission/upload-merit-list','Backend\AdmissionController@uploadMeritList')->name('admission.uploadMeritList');
 //    Route::post('admission/upload','Backend\AdmissionController@upload')->name('admission.upload');
 
-        /*
-    Route::post('admission/slip-view','Backend\AdmissionController@slipView')->name('admission.slipView');
-        */
+    /*
+Route::post('admission/slip-view','Backend\AdmissionController@slipView')->name('admission.slipView');
+    */
 //End Admission Route
-/*
-Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails')->name('exam.resultDetails');
-Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails')->name('exam.finalResultDetails');
-Route::get('exam/result-details-all','Backend\ResultController@allDetails')->name('exam.allDetails');
-Route::get('exam/examresult','Backend\ResultController@index')->name('exam.examresult');
-Route::get('exam/tabulation/{examID}','Backend\ResultController@tabulation')->name('exam.tabulation');
-Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@generateResult')->name('exam.generateResult');
+    /*
+    Route::get('exam/result-details/{id}','Backend\ResultController@resultDetails')->name('exam.resultDetails');
+    Route::get('exam/final-result-details/{id}','Backend\ResultController@finalResultDetails')->name('exam.finalResultDetails');
+    Route::get('exam/result-details-all','Backend\ResultController@allDetails')->name('exam.allDetails');
+    Route::get('exam/examresult','Backend\ResultController@index')->name('exam.examresult');
+    Route::get('exam/tabulation/{examID}','Backend\ResultController@tabulation')->name('exam.tabulation');
+    Route::get('exam/generate-exam-result/{examID}','Backend\ResultController@generateResult')->name('exam.generateResult');
 
-Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
-Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
-Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
-*/
-Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
-Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
-Route::get('competency/edit',[CompetencyController::class,'edit'])->name('competency.edit');
-Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
-Route::post('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
+    Route::get('exam/setfinalresultrule','Backend\ResultController@setfinalresultrule')->name('exam.setfinalresultrule');
+    Route::get('exam/getfinalresultrule','Backend\ResultController@getfinalresultrule')->name('exam.getfinalresultrule');
+    Route::post('exam/final-result','Backend\ResultController@finalResultNew')->name('exam.finalResultNew');
+    */
+    Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
+    Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
+    Route::get('competency/edit',[CompetencyController::class,'edit'])->name('competency.edit');
+    Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
+    Route::post('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
 
-Route::get('indicators',[IndicatorController::class,'index'])->name('indicator.index');
-Route::post('indicator/store',[IndicatorController::class,'store'])->name('indicator.store');
-Route::get('indicator/edit',[IndicatorController::class,'edit'])->name('indicator.edit');
-Route::patch('indicator/{id}/update',[IndicatorController::class,'update'])->name('indicator.update');
-Route::post('indicator/destroy/{id}',[IndicatorController::class,'destroy'])->name('indicator.destroy');
+    Route::get('indicators',[IndicatorController::class,'index'])->name('indicator.index');
+    Route::post('indicator/store',[IndicatorController::class,'store'])->name('indicator.store');
+    Route::get('indicator/edit',[IndicatorController::class,'edit'])->name('indicator.edit');
+    Route::patch('indicator/{id}/update',[IndicatorController::class,'update'])->name('indicator.update');
+    Route::post('indicator/destroy/{id}',[IndicatorController::class,'destroy'])->name('indicator.destroy');
 
-Route::get('remarks',[RemarkController::class,'index'])->name('remark.index');
-Route::post('remark/store',[RemarkController::class,'store'])->name('remark.store');
-Route::get('remark/edit',[RemarkController::class,'edit'])->name('remark.edit');
-Route::patch('remark/{id}/update',[RemarkController::class,'update'])->name('remark.update');
-Route::post('remark/destroy/{id}',[RemarkController::class,'destroy'])->name('remark.destroy');
+    Route::get('remarks',[RemarkController::class,'index'])->name('remark.index');
+    Route::post('remark/store',[RemarkController::class,'store'])->name('remark.store');
+    Route::get('remark/edit',[RemarkController::class,'edit'])->name('remark.edit');
+    Route::patch('remark/{id}/update',[RemarkController::class,'update'])->name('remark.update');
+    Route::post('remark/destroy/{id}',[RemarkController::class,'destroy'])->name('remark.destroy');
 
-Route::get('competency-remark',[CompetencyRemarkController::class,'index'])->name('competency-remark.index');
-Route::get('competency-remark/create',[CompetencyRemarkController::class,'create'])->name('competency-remark.create');
-Route::post('competency-remark/store',[CompetencyRemarkController::class,'store'])->name('competency-remark.store');
-Route::get('competency-remark/edit',[CompetencyRemarkController::class,'edit'])->name('competency-remark.edit');
-Route::patch('competency-remark/{id}/update',[CompetencyRemarkController::class,'update'])->name('competency-remark.update');
-Route::post('competency-remark/destroy/{id}',[CompetencyRemarkController::class,'destroy'])->name('competency-remark.destroy');
+    Route::get('competency-remark',[CompetencyRemarkController::class,'index'])->name('competency-remark.index');
+    Route::get('competency-remark/create',[CompetencyRemarkController::class,'create'])->name('competency-remark.create');
+    Route::post('competency-remark/store',[CompetencyRemarkController::class,'store'])->name('competency-remark.store');
+    Route::get('competency-remark/edit',[CompetencyRemarkController::class,'edit'])->name('competency-remark.edit');
+    Route::patch('competency-remark/{id}/update',[CompetencyRemarkController::class,'update'])->name('competency-remark.update');
+    Route::post('competency-remark/destroy/{id}',[CompetencyRemarkController::class,'destroy'])->name('competency-remark.destroy');
 
-Route::get('pdf', function(){
-return view('form-pdf');
-});
+    Route::get('pdf', function(){
+        return view('form-pdf');
+    });
 
 
     /*
@@ -763,7 +768,7 @@ return view('form-pdf');
     Route::get('db-backup',[DbBackupController::class,'index'])->name('backup.db');
     */
     //Route::get('backup-download/{file_name}',[DbBackupContoller::class,'download'])->name('backup.download');
-   // Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
+    // Route::get('add-backup',[DbBackupContoller::class,'createDatabaseBackup'])->name('backup.create');
 
 //subscriber
     /*
@@ -773,11 +778,11 @@ return view('form-pdf');
 });
 
 //temp register addmission
-
-    Route::get('regligion-wise/report',[StudentReportController::class,'regligionWiseReport'])->name('regligion-wise.report');
-    Route::get('group-wise/report',[StudentReportController::class,'groupWiseReport'])->name('group-wise.report');
-    Route::get('custom/table',[StudentReportController::class,'customTable'])->name('create-custom.table');
-
+    /*
+Route::get('regligion-wise/report',[StudentReportController::class,'regligionWiseReport'])->name('regligion-wise.report');
+Route::get('group-wise/report',[StudentReportController::class,'groupWiseReport'])->name('group-wise.report');
+Route::get('custom/table',[StudentReportController::class,'customTable'])->name('create-custom.table');
+    */
 //end temp register addmission
 
 
@@ -787,11 +792,11 @@ Route::get('student/tc','Backend\StudentController@transferCertificate')->name('
 */
 // Money Receipt
 // manuel attendence
-    /*
-    Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
-    Route::get('/student/manuel-attendence-change','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
-    */
-    //end manuel attendence
+/*
+Route::get('student/manuel-attendence','Backend\AttendanceController@StuManuelAttendence')->name('student.manuel-attendence');
+Route::get('/student/manuel-attendence-change','Backend\AttendanceController@StuManuelAttendenceStatus')->name('student.manuel-attendence-status');
+*/
+//end manuel attendence
 /*
 Route::get('student/money','Backend\StudentController@moneyReceipt')->name('student.money');
 */

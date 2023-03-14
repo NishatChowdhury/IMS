@@ -106,11 +106,4 @@ Route::prefix('admin')->group(function() {
     Route::delete('coa/destroy/{id}', [ChartOfAccountController::class,'destroy'])->name('coa.destroy');
     Route::post('coa/status', [ChartOfAccountController::class,'isEnabled'])->name('coa.isEnabled');
 
-    //Playlists
-    Route::get('playlists',[PlaylistController::class,'index'])->name('playlist.index');
-    Route::post('playlist/store',[PlaylistController::class,'store'])->name('playlist.store');
-    Route::get('playlist/show/{id}',[PlaylistController::class,'show'])->name('playlist.show');
-    Route::delete('playlist/destroy/{id}',[PlaylistController::class,'destroy'])->name('playlist.destroy');
-    //Playlists Ends
-
 });

@@ -1,13 +1,3 @@
-.bg-dark {
-    background-color: rgb(30, 32, 34) !important;
-    color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.bg-navy-1 {
-    background-color: #090a30 !important;
-    color: #ffffff !important;
-}
-
 .bg-inner {
     background-color: rgba(88, 203, 83, 0.7) !important;
     color: rgb(96, 96, 101) !important;
@@ -16,13 +6,6 @@
 .bg-white {
     background-color: rgb(255, 255, 255) !important;
     color: rgb(96, 96, 101);
-}
-
-/** #4660ee **/
-
-.text-blue,
-.text-blue h2 {
-    color: #22246c !important;
 }
 
 a:hover {

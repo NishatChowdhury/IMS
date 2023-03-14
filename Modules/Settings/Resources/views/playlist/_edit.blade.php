@@ -1,4 +1,4 @@
-{{ Form::model($vid,['action'=>['VideoController@update',$vid->id],'method'=>'patch']) }}
+{{ Form::model($vid,['route'=>['video.update',$vid->id],'method'=>'patch']) }}
 {{ Form::hidden('playlist_id',$vid->playlist_id) }}
 <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Video Title*:</label>

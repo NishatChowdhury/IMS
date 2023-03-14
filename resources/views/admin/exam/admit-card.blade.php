@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <!-- form start -->
-                        {{ Form::open(['action'=>['Backend\ExamController@admitCard', basename(request()->path())],'method'=>'get','role'=>'form']) }}
+                        {{ Form::open(['route'=>['exam.admitCard', basename(request()->path())],'method'=>'get','role'=>'form']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <input type="hidden" name="exam_id" value="{{  basename(request()->path()) }}">

@@ -47,9 +47,9 @@
                                                     <div class="nat">
                                                       <img  src="{{asset('assets/img/logos/bg2.JPG')}}"  alt="" style="height: 54px; width: 238px; border-radius: 3px;">
                                                   </div>
-                                                  
+
                                                     </div>
-                                                    
+
                                                     <div class="col-md-12">
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold ">
@@ -65,9 +65,9 @@
                                                 <div class="logoo ">
                                              <img src="{{asset('assets/img/logos/sid3.JPG')}}">
                                                 </div>
-                                              
+
                                             </div>
-                                         
+
                                             <div class="card-body text-center">
 
                                             <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
@@ -166,38 +166,43 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+
                                             <p class="sinn">
                                                 <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="    height: 34px;    width: 86px;   position: relative;   left: 154px;    top: 34px;">
                                                  <!-- <hr style="    position: relative;top: 25px; width: 97px; left: 142px; background-color: white;"> -->
                                                 <h5 style="     position: relative; top: 14px;  left: 159px;  font-size: 16px;  color: white;">Signature </h5>
                                             </p>
-                                           
+
                                         </div>
                                     </div>
                                     <div class="col-12" style="padding-top: 50px;">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
                                             <div class="card-body text-center">
-                                            <img src="{{asset('assets/img/logos/jalal.png')}}" 
+                                            <img src="{{asset('assets/img/logos/jalal.png')}}"
                                                     width="60" style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
 
-                        
+
+                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
+                                                    style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+
+
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="card-back-dec text-bold"
                                                             style="text-align: left; margin-top: -16px;font-size: 12px">
-                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">If Found Please Return The Card To</h2>
+                                                            <h2
+                                                                style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">
+                                                                {{ __('If Found Please Return The Card To') }}</h2>
                                                         </div>
                                                     </div>
                                                 </div>
-                                              
+
                                                 <div class="row">
                                                     <div class="" style="margin-top: 25px;">
-                                                        <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                                                        <p style=" margin-bottom: 5px;">Hazi Abdul Mia Road(Chadni),
-                                                             Shitaljharna R/A,  Jalalabad,&nbsp;<br>
-                                                               Baizid Bostami, <br>
-                                                                  Chattogram</p></p>
+                                                        <p style="margin-bottom: 7px;">
+                                                            <strong>{{ siteConfig('name') }}<br></strong>
+                                                        <p style=" margin-bottom: 5px;">{{ siteConfig('address') }}</p>
+                                                        </p>
                                                     </div>
                                                     <div class="crd-add-dec text-bold"
                                                         style="    text-align: center;   position: relative; left: 58px;top: -6px;">
@@ -206,19 +211,8 @@
                                                                 <tr>
                                                                     <td> {{ __('Phone') }} </td>
                                                                     <td>:</td>
-                                                                    <td id="bphone">01892-962257 <br>
-                                                                      01878-895646  </td>
+                                                                    <td id="bphone">{{ siteConfig('phone') }} </td>
                                                                 </tr>
-                                                                <!-- <tr>
-                                                                    <td> {{ __('Email') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
-                                                                </tr> -->
-                                                                <!-- <tr>
-                                                                    <td> {{ __('Website') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bwebsite">{{ __('www.example99.org') }}</td>
-                                                                </tr> -->
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -229,7 +223,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['action' => 'Backend\IdCardController@pdf', 'method' => 'post']) }}
+                                {{ Form::open(['action' => 'Backend\IdCardController@pdf_V5', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">
@@ -358,7 +352,7 @@
                                                     <input class="form-check-input aname" type="checkbox"
                                                         id="admissiondate" name="admissiondate">
                                                     <label class="form-check-label" for="admissiondate">
-                                                       {{ __('Admission Date') }}
+                                                        {{ __('Admission Date') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -687,7 +681,7 @@
 
         .logoo {
             height: 315px;
-    width: 239px;
+            width: 239px;
     padding: 2px;
     margin-top: 71px;
 }

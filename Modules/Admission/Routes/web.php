@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Admission\Http\Controllers\AdmissionController;
 use Modules\Admission\Http\Controllers\AppliedStudentController;
 use Modules\Admission\Http\Controllers\OnlineApplyController;
+use Modules\Admission\Http\Controllers\StudentReportController;
 
 Route::prefix('admission')->group(function() {
     //Route::get('/', 'AdmissionController@index')->name('admission');
@@ -47,6 +48,12 @@ Route::prefix('admin')->group(function() {
 
     Route::post('admission/slip-view',[AdmissionController::class,'slipView'])->name('admission.slipView');
     Route::post('applied-student/view',[AppliedStudentController::class,'studentView'])->name('student.applied-student.view');
+
+
+    # ----------------------------------------- Admission Register --------------------------------------------------
+    Route::get('regligion-wise/report',[StudentReportController::class,'regligionWiseReport'])->name('regligion-wise.report');
+    Route::get('group-wise/report',[StudentReportController::class,'groupWiseReport'])->name('group-wise.report');
+    Route::get('custom/table',[StudentReportController::class,'customTable'])->name('create-custom.table');
 
 
 });

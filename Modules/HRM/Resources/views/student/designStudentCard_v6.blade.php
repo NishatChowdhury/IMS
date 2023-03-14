@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('hrm::layouts.master')
 
 @section('title', 'Student | Design Student ID')
 
@@ -40,134 +40,139 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                                        <div class="font" style="padding-bottom: 0px;  width: 2.5in;   height: 3.9in;">
-                                            <div  style="height: 1.9in;">
-                                                <div class="row">
-                                                    <div class="col-md-12 ">
-                                                    <img  src="{{asset('assets/img/logos/klr.png')}}"  alt="" style="    height: 76px; width: 82px; border-radius: 3px; position: absolute; top: 47px;left: 22px;">
+                                            <div class="font"
+                                                style="padding-bottom: 0px;  width: 2.5in;   height: 3.9in;">
+                                                <div style="height: 1.9in;">
+                                                    <div class="row">
+                                                        <div class="col-md-12 ">
+                                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
+                                                                alt=""
+                                                                style="    height: 76px; width: 82px; border-radius: 3px; position: absolute; top: 47px;left: 22px;">
 
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="right text-center">
+                                                                <div class="scl-cd-dec text-wrap text-bold ">
+                                                                    <h2
+                                                                        style="    position: relative;top: 9px; margin: 1px; text-align: center; font-size: 18px; color: #f6f0f0; font-weight: bold; font-family: sans-serif;">
+                                                                        {{ siteConfig('name') }}
+                                                                    </h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <img src="{{ asset('assets/img/logos/nam.jpg') }}"
+                                                        style="  width: 93px; height: 91px; position: relative; left: 56px; top: 37px;"
+                                                        class="text-center rounded-circle mx-auto d-block border border-dark">
 
-                                                    <div class="col-md-12">
-                                                        <div class="right text-center">
-                                                            <div class="scl-cd-dec text-wrap text-bold ">
-                                                                <h2 style="    position: relative;top: 9px; margin: 1px; text-align: center; font-size: 18px; color: #f6f0f0; font-weight: bold; font-family: sans-serif;">
-                                                                    Web Point Limited School School
-                                                                </h2>
+                                                </div>
+
+                                                <div class="card-body text-center">
+                                                    <h1 class="card-title text-bold nName"
+                                                        style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
+                                                        {{ __('Student Name') }}</h1>
+                                                    <div class="row">
+                                                        <div class="right col-12" style="margin-top: 0px; ">
+                                                            <div class="stu-cd-dec" style="text-align: left">
+                                                                <table class="table" style="font-size: 12px;">
+                                                                    <tbody>
+                                                                        <tr class="tname" style="display: block;">
+                                                                            <td><strong> {{ __('Name') }} </strong></td>
+                                                                            <td>:</td>
+                                                                            <td><strong> {{ __('Student') }} </strong></td>
+                                                                        </tr>
+                                                                        <tr class="tfname" style="display: block;">
+                                                                            <td><b>{{ __('Father') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td><strong> {{ __('Father') }} </strong></td>
+                                                                        </tr>
+                                                                        <tr class="tmname" style="display: block;">
+                                                                            <td> <b>{{ __('Mother') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td><strong> {{ __('Mother') }} </strong></td>
+                                                                        </tr>
+                                                                        <tr class="tcname" style="display: block;">
+                                                                            <td> <b>{{ __('Class') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td> {{ __('Class') }} </td>
+                                                                        </tr>
+                                                                        <tr class="tsname">
+                                                                            <td><b>{{ __('Section') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Section') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="trname" style="display: block;">
+                                                                            <td><b>{{ __('Roll') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Roll') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="tgname">
+                                                                            <td><b>{{ __('Group') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Group') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="tbname">
+                                                                            <td><b>{{ __('Blood Group') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Blood') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="tpname" style="display: block;">
+                                                                            <td><b>{{ __('Contact') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Contact') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="tdname">
+                                                                            <td><b>{{ __('Depertmant') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Department') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="tdobname">
+                                                                            <td><b>{{ __('Date Of Birth') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('DOB') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="taname">
+                                                                            <td><b>{{ __('Admission Date') }}</b>
+                                                                            </td>
+                                                                            <td>:</td>
+                                                                            <td>{{ __('Date') }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img src="{{asset('assets/img/logos/nam.jpg')}}" style="  width: 93px; height: 91px; position: relative; left: 56px; top: 37px;" class="text-center rounded-circle mx-auto d-block border border-dark">
+
+                                                <p class="sinn">
+                                                    <img src="{{ asset('assets/img/signature/signature.png') }}" alt=""
+                                                        style="height: 34px;   width: 86px;   position: relative;   left: 154px;   top: -29px">
+                                                    <hr
+                                                        style="position: relative; top: -52px; width: 91px; left: 74px; background-color: white;">
+                                                <h5 id="idsignature" style="position: relative; top: -68px; left: -8px; font-size: 16px; color: black ;text-align: right;">
+                                                    {{ __('Signature') }} </h5>
+                                                </p>
 
                                             </div>
-
-                                            <div class="card-body text-center">
-
-                                            <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                              <p class="p-0">Sukirti Chakma Poran</p>
-                                                    </div> -->
-                                                <h1 class="card-title text-bold nName"
-                                                    style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
-                                                    {{ __('Student Name') }}</h1>
-                                                <div class="row">
-                                                    <div class="right col-12" style="    margin-top: 0px; ">
-                                                        <div class="stu-cd-dec" style="text-align: left">
-                                                            <table class="table" style="font-size: 12px;">
-                                                            <tbody>
-                                                                    <tr class="tname" style="display: block;">
-                                                                        <td><strong> Name </strong></td>
-                                                                        <td>:</td>
-                                                                        <td><strong> Student Name </strong></td>
-                                                                    </tr>
-                                                                    <tr class="tfname" style="display: block;">
-                                                                        <td><b>{{ __('Father') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td><strong> Father's Name </strong></td>
-                                                                    </tr>
-                                                                    <tr class="tmname" style="display: block;">
-                                                                        <td> <b>{{ __('Mother') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td><strong> Mother's Name </strong></td>
-                                                                    </tr>
-                                                                    <tr class="tcname" style="display: block;">
-                                                                        <td> <b>{{ __('Class') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td> {{ __('Seven') }} </td>
-                                                                    </tr>
-                                                                    <tr class="tsname">
-                                                                        <td><b>{{ __('Section') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="trname" style="display: block;">
-                                                                        <td><b>{{ __('Roll') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="tgname">
-                                                                        <td><b>{{ __('Group') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="tbname">
-                                                                        <td><b>{{ __('Blood Group') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="tpname" style="display: block;">
-                                                                        <td><b>{{ __('Contact') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="tdname">
-                                                                        <td><b>{{ __('Depertmant') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="tdobname">
-                                                                        <td><b>{{ __('Date Of Birth') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="taname">
-                                                                        <td><b>{{ __('Admission Date') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <p class="sinn">
-                                                <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="height: 34px;   width: 86px;   position: relative;   left: 154px;   top: -29px">
-                                                <hr style="position: relative; top: -52px; width: 91px; left: 74px; background-color: white;">
-                                                <h5 style="position: relative; top: -68px; left: -8px; font-size: 16px; color: black ;text-align: right;">Signature </h5>
-                                            </p>
-
-                                        </div>
                                         </div>
                                     </div>
                                     <div class="col-12" style="padding-top: 50px;">
@@ -214,7 +219,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['action' => 'Backend\IdCardController@pdf_V6', 'method' => 'post']) }}
+                                {{ Form::open(['route' => 'student.pdf_V6', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">
@@ -655,7 +660,7 @@
 
         }
 
-            .item2 {
+        .item2 {
             grid-column: 3/ span 3;
             border-radius: 0px 0px 5px 0px;
             background-color: rgb(194, 41, 41);
@@ -663,7 +668,7 @@
 
         }
 
-            .item2 span{
+        .item2 span {
             top: 3px;
             position: relative;
             color: #fff;
@@ -672,18 +677,19 @@
 
         .logoo {
             height: 315px;
-    width: 239px;
-    padding: 2px;
-    margin-top: 71px;
-}
+            width: 239px;
+            padding: 2px;
+            margin-top: 71px;
+        }
 
-.logoo img {
-    height: 42%;
-    width: 100%;
-    color: white;
-    border-radius: 10px;
-    background-position-x: bottom;
-}
+        .logoo img {
+            height: 42%;
+            width: 100%;
+            color: white;
+            border-radius: 10px;
+            background-position-x: bottom;
+        }
+
         .logoo3 {
             position: absolute;
             height: 35px;
@@ -703,13 +709,13 @@
 
         .font {
             height: 375px;
-    width: 225px;
-    position: relative;
-    border-radius: 10px;
-    background-image: url("{{asset('assets/img/logos/ggg.png')}}");
-    background-size: 240px 375px;
-    background-repeat: no-repeat;
-   }
+            width: 225px;
+            position: relative;
+            border-radius: 10px;
+            background-image: url("{{ asset('assets/img/logos/ggg.png') }}");
+            background-size: 240px 375px;
+            background-repeat: no-repeat;
+        }
     </style>
 @stop
 

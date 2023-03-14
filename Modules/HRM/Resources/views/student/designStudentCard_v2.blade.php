@@ -198,7 +198,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['route' => 'student.pdf', 'method' => 'post']) }}
+                                {{ Form::open(['route' => 'student.pdf_V2', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">

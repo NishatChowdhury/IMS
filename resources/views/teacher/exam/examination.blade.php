@@ -45,7 +45,7 @@
                                     <td>{{ $exam->start }}</td>
                                     <td>{{ $exam->end }}</td>
                                     <td>
-                                        {{ Form::open(['action'=>['Backend\ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
+                                        {{ Form::open(['action'=>['Teacher\ExamController@destroy',$exam->id],'method'=>'delete','onsubmit'=>'return deleteConfirm()']) }}
 {{--                                        <a href="{{ action('Backend\ExamSeatPlanController@seatPlan',$exam->id) }}" class="btn btn-dark btn-sm" title="Exam Set Plan"><i class="fa fa-th"></i></a>--}}
 {{--                                        <a href="{{ url('/admin/exam/admit-card') }}/{{$exam->id}}" class="btn btn-primary btn-sm" title="Admit Card"><i class="fa fa-id-badge" aria-hidden="true"></i></a>--}}
                                         <a href="{{ route('teacher.examination.schedule.list',$exam->id) }}" class="btn btn-info btn-sm" title="Exam Schedule"><i class="far fa-calendar-alt"></i></a>
@@ -92,7 +92,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\ExamController@store_exam', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'exam.store', 'method'=>'post']) !!}
 
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
