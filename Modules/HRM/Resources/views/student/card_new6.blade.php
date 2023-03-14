@@ -273,7 +273,7 @@
                             <div class="card-body text-center">
                                 <h1 class="card-title text-bold nName"
                                     style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:{{ $card['title_size'] != null ? $card['title_size'] : 0 }}px ;color:{{ $card['titlecolor'] }}">
-                                    {{ $student->student->name }}
+                                    {{ $student->student->name ?? '' }}
                                 </h1>
                                 <div class="row">
                                     <div class="right col-12" style="    margin-top: 0px; ">
@@ -284,28 +284,28 @@
                                                         <tr>
                                                             <td><strong> {{ __('Name') }} </strong></td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td><strong> {{ $student->student->name }} </strong></td>
+                                                            <td><strong> {{ $student->student->name ?? '' }} </strong></td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['fname'])
                                                         <tr>
                                                             <td> {{ __('Father') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->father->f_name }}</td>
+                                                            <td>{{ $student->student->father->f_name  ?? ''}}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['mname'])
                                                         <tr>
                                                             <td> {{ __('Mother') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->mother->m_name }}</td>
+                                                            <td>{{ $student->student->mother->m_name  ?? ''}}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['session'])
                                                         <tr>
                                                             <td> {{ __('Session') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->session->year }}</td>
+                                                            <td>{{ $student->session->year ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['class'])
@@ -327,28 +327,28 @@
                                                         <tr>
                                                             <td> {{ __('Roll') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->rank }}</td>
+                                                            <td>{{ $student->rank ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['department'])
                                                         <tr>
                                                             <td> {{ __('Department') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->department }}</td>
+                                                            <td>{{ $student->department ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['admissiondate'])
                                                         <tr>
                                                             <td> {{ __('Admission') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->admission_date }}</td>
+                                                            <td>{{ $student->admission_date ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['dob'])
                                                         <tr>
                                                             <td> {{ __('DOB') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->dob }}</td>
+                                                            <td>{{ $student->student->dob ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['blood'])
@@ -362,7 +362,7 @@
                                                         <tr>
                                                             <td> {{ __('Contact') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->mobile }}</td>
+                                                            <td>{{ $student->student->mobile ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                 </tbody>

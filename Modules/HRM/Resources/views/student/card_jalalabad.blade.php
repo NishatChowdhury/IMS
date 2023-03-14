@@ -299,24 +299,91 @@
                                 <div class="stu-cd-dec" style="text-align: left">
                                     <table class="table" style="font-size: 12px; font-weight:600">
                                         <tbody>
-                                            <tr class="tcname" style="display: block;">
-                                                <td> <b>{{ __('Class') }}</b>
-                                                </td>
-                                                <td>{{ __(':') }}</td>
-                                                <td> {{ $student->classes->name ?? '' }} </td>
-                                            </tr>
-                                            <tr class="trname" style="display: block;">
-                                                <td><b>{{ __('Roll') }}</b>
-                                                </td>
-                                                <td>{{ __(':') }}</td>
-                                                <td>{{ $student->rank ?? '' }}</td>
-                                            </tr>
-                                            <tr class="tpname" style="display: block;">
-                                                <td><b>{{ __('Phone') }}</b>
-                                                </td>
-                                                <td>{{ __(':') }}</td>
-                                                <td>{{ $student->student->mobile ?? '' }}</td>
-                                            </tr>
+                                            @isset($card['fullname'])
+                                                        <tr>
+                                                            <td><strong> {{ __('Name') }} </strong></td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td><strong> {{ $student->student->name ?? '' }} </strong></td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['fname'])
+                                                        <tr>
+                                                            <td> {{ __('Father') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->student->father->f_name  ?? ''}}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['mname'])
+                                                        <tr>
+                                                            <td> {{ __('Mother') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->student->mother->m_name  ?? ''}}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['session'])
+                                                        <tr>
+                                                            <td> {{ __('Session') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->session->year ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['class'])
+                                                        <tr>
+                                                            <td> {{ __('Class') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>
+                                                                {{ $student->classes->name ?? '' }}&nbsp;
+                                                                @if ($card['group'])
+                                                                    {{ $student->group->name ?? '' }}&nbsp;
+                                                                @endif
+                                                                @if ($card['section'])
+                                                                    {{ $student->section->name ?? '' }}
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['roll'])
+                                                        <tr>
+                                                            <td> {{ __('Roll') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->rank ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['department'])
+                                                        <tr>
+                                                            <td> {{ __('Department') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->department ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['admissiondate'])
+                                                        <tr>
+                                                            <td> {{ __('Admission') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->admission_date ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['dob'])
+                                                        <tr>
+                                                            <td> {{ __('DOB') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->student->dob ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['blood'])
+                                                        <tr>
+                                                            <td> {{ __('Blood Group') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->student->blood->name ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    @isset($card['contact'])
+                                                        <tr>
+                                                            <td> {{ __('Contact') }} </td>
+                                                            <td>&nbsp;:&nbsp;</td>
+                                                            <td>{{ $student->student->mobile ?? '' }}</td>
+                                                        </tr>
+                                                    @endisset
                                         </tbody>
                                     </table>
                                 </div>
@@ -329,8 +396,8 @@
                             style="    height: 33px; width: 88px;  position: relative;   left: 126px;  top: 75px;">
                         <hr
                             style="position: relative;     position: relative;  top: 38px;   width: 132px;  left: 105px;">
-                    <h5 style="     position: relative;  top: 22px;  left: 108px; font-size: 15px;">
-                        {{ __('Principal Signature') }} </h5>
+                    <h5 style="position: relative;  top: 22px;  left: 108px; font-size: 15px;">
+                        {{ $card['signature'] }} </h5>
                     </p>
 
                 </div>
