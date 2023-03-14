@@ -29,7 +29,7 @@
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
                     <a href="{{ route('student.generateStudentCard_v2') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpeg') }}"
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_2.jpg') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
                 </div>
@@ -42,10 +42,14 @@
                         <img src="{{ asset('assets/img/studentIdCard/studentId_4.jpg') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
+                    <a href="{{ route('student.generateStudentCard_v7') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_7.jpg') }}"
+                            class="w-75 shadow-1-strong rounded mb-4" />
+                    </a>
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <a href="{{ route('student.generateStudentCard_v5') }}">
-                        <img src="{{ asset('assets/img/studentIdCard/studentId_5.png') }}"
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_5.jpg') }}"
                             class="w-75 shadow-1-strong rounded mb-4" />
                     </a>
                     <a href="{{ route('student.generateStudentCard_v6') }}">
