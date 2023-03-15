@@ -93,6 +93,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('class/schedule/update',[ScheduleController::class,'update'])->name('class.schedule.update');
         Route::get('class/schedule/delete/{id}',[ScheduleController::class,'delete'])->name('class.schedule.delete');
 
+        // Teacher assign
+        Route::get('institution/assign-teacher/{id}', [InstitutionController::class,'assignTeacher'])->name('assignTeacher');
+        Route::post('institution/assign-teacher-store', [InstitutionController::class,'assignTeacherStore'])->name('assignTeacher.store');
+
     });
 
     # ---------------------------------------------- CMS -------------------------------------------------------
