@@ -397,13 +397,18 @@ class StudentController extends Controller
     public function diary(Request $request)
     {
         $date = $request->date ?? Carbon::parse()->format('Y-m-d');
+        $academicClassId = $request->academic_class_id;
+
         $day = Carbon::createFromFormat('Y-m-d', $date)->format('l');
-        $diary = Diary::query()
-            ->whereDate('date', $date)
+
+        $dairies = Diary::query()
+            ->where('academic_class_id',$academicClassId)
+            ->where('date', $date)
             ->get();
-        if ($diary->isNotEmpty()) {
+
+        if ($dairies->isNotEmpty()) {
             $data = [];
-            foreach ($diary as $d) {
+            foreach ($dairies as $d) {
                 $data[] = [
                     'id' => $d->id,
                     'subject' => $d->subject->name,

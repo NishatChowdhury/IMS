@@ -130,6 +130,9 @@ class LoginController extends Controller
             $student = Student::query()
                 ->where('id', $studentId)
                 ->first();
+
+            $academicClassId = $student->studentAcademic->academic_class_id;
+
             //dd($student->createToken($student->name));
             $token = $student->createToken($student->name);
             $sliders = Slider::query()->get();
@@ -145,9 +148,10 @@ class LoginController extends Controller
             return response()
                 ->json(
                     [
-                        'auth_token'    =>  $token->plainTextToken,
-                        'user'          =>  $studentInfo,
-                        'sliders'       =>  $data
+                        'auth_token'        =>  $token->plainTextToken,
+                        'academic_class_id' =>  $academicClassId,
+                        'user'              =>  $studentInfo,
+                        'sliders'           =>  $data
                     ],
                     200
                 );
@@ -205,12 +209,9 @@ class LoginController extends Controller
             $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
             $url = "https://a2p.solutionsclan.com/api/sms/send";
-            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
                 "apiKey" => smsConfig('api_key'),
-                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
-                "senderId" => smsConfig('sender_id'),
                 "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
