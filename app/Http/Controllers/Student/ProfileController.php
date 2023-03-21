@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $id = auth()->guard('student')->user()->student_id;
         $student = Student::query()->with('academics')->findOrFail($id);
 
-        $stuAcademic =  StudentAcademic::query()
+        $stuAcademic = StudentAcademic::query()
             ->where('student_id', $student->id)
             ->latest()
             ->first();

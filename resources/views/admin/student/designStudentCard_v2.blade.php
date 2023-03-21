@@ -514,6 +514,14 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
+                                                        {{ Form::select('sessions', $repository->sessions(), null, ['class' => 'form-control', 'placeholder' => 'Select Session', 'required']) }}
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <div class="input-group">
                                                         {{ Form::select('class', $repository->classes(), null, ['class' => 'form-control', 'placeholder' => 'Select Class', 'required']) }}
                                                     </div>
                                                 </div>

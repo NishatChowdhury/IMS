@@ -47,14 +47,18 @@ class StudentController extends Controller
         $dateFrom = Carbon::parse($request->get('dateFrom'))->startOfDay();
         $dateTo = Carbon::parse($request->get('dateTo'))->endOfDay();
         $user = auth()->user();
+
+        //dd($user->studentAcademic);
         $attendances = Attendance::query()
             ->where('student_academic_id', $user->studentAcademic->id)
             ->whereBetween('date', [$dateFrom, $dateTo])
             ->get();
 
+        //dd($user->studentAcademic);
+
         $attendanceToday = Attendance::query()
             ->where('student_academic_id', $user->studentAcademic->id)
-            ->whereDate('date', now()->format('Y-m-d'))
+            ->where('date', now()->format('Y-m-d'))
             ->first();
 
         if ($attendances) {
@@ -68,12 +72,13 @@ class StudentController extends Controller
                     'status' => $attendance->attendanceStatus->code ?? '',
                 ];
             }
+
             return response()->json([
                 'status' => true,
                 'today' => [
                     'date' => date('d-m-Y', strtotime(now())),
-                    'inTime' => $attendanceToday->manual_in_time ?: $attendanceToday->in_time,
-                    'outTime' => $attendanceToday->manual_out_time ?: $attendanceToday->out_time,
+                    'inTime' => $attendanceToday ? ($attendanceToday->manual_in_time ?: $attendanceToday->in_time) : '-',
+                    'outTime' => $attendanceToday ? ($attendanceToday->manual_out_time ?: $attendanceToday->out_time) : '-',
                     'status' => $attendanceToday->attendanceStatus->code ?? '',
                 ],
                 'dateFrom' => date('d-m-Y', strtotime($dateFrom)),
@@ -401,14 +406,14 @@ class StudentController extends Controller
 
         $day = Carbon::createFromFormat('Y-m-d', $date)->format('l');
 
-        $dairies = Diary::query()
+        $diaries = Diary::query()
             ->where('academic_class_id',$academicClassId)
             ->where('date', $date)
             ->get();
 
-        if ($dairies->isNotEmpty()) {
+        if ($diaries->isNotEmpty()) {
             $data = [];
-            foreach ($dairies as $d) {
+            foreach ($diaries as $d) {
                 $data[] = [
                     'id' => $d->id,
                     'subject' => $d->subject->name,
