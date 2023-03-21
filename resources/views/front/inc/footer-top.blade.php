@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-lg-4 col-md-6 mt-5">
-                <img src="assets/img/logo-white.png" alt="Logo" width="100">
+                <img src="{{asset('assets/img/logo-white.png')}}" alt="Logo" width="100">
                 <div class="margin-y-40 text-justify  ">
                     <p>
                         {{ __('WP-IMS is a latest technology of educational institute’s digitization. This is the fastest and most intelligent application ever made in Bangladesh.') }}

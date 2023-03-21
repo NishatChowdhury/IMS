@@ -252,16 +252,16 @@
 
 </head>
 
-@foreach ($students->chunk(5) as $key => $chunk)
+@foreach ($students->chunk(4) as $key => $chunk)
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
-            <div class="col-3 col-2-5">
+            <div class="col-3 col-3-5">
             <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
                                             <div class="  " style="   background: linear-gradient(#3C3CB9, #3C3CB9 45%, #3C3CB9 45%,  #3C3CB9 100%);    height: 1.9in;">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="left ">
-                                                            <img src="{{asset('assets/img/logos/jalal.png')}}"
+                                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
                                                                 style=" height: 54px;  width: 73px;  text-align: center; margin: 5px;   border-radius: 6px; position: relative; top: 5px;"
                                                                 class="text-center  mx-auto d-block ">
                                                         </div>
@@ -271,111 +271,47 @@
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold ">
                                                                 <h2
-                                                                    style="position: relative;top: 10px; margin: 1px;text-align: center;  font-size: 17px;  color: #fff; font-weight: bold;     font-family: sans-serif;">
-                                                                    Jalalabad Grammar School
+                                                                    style="position: relative;top: 10px; margin: 1px;text-align: center;  font-size: 14px;  color: #fff; font-weight: bold;     font-family: sans-serif;">
+                                                                    {{ siteConfig('name') }}
                                                                 </h2>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <img src="{{asset('assets/img/logos/nam.jpg')}}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 24px;" class="text-center rounded mx-auto d-block border border-dark">
+                                                <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 24px;" class="text-center rounded mx-auto d-block border border-dark">
                                             </div>
                                             <div style=" text-align: center; font-size: 18px; font-weight: bold; position: relative; top: 28px;">
-                                               <p>Student Identity Card</p>
+                                               <p>{{ __('Student Identity Card') }}</p>
                                                  </div>
                                             <div class="card-body text-center">
 
                                             <div  style=" text-align: center; margin-top: 12px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 32px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                              <p class="p-0">Sukirti Chakma Poran</p>
-                                                    </div>
-                                                <!-- <h1 class="card-title text-bold nName"
-                                                    style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
-                                                    {{ __('Student Name') }}</h1> -->
+                                              <p class="p-0">{{ $student->student->name ?? ''}}</p>
+                                            </div>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 3px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px; font-weight:600">
                                                             <tbody>
-                                                                    <!-- <tr class="tname" style="display: block;">
-                                                                        <td><strong> Name </strong></td>
-                                                                        <td>:</td>
-                                                                        <td><strong> Student Name </strong></td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tfname" style="display: block;">
-                                                                        <td><b>{{ __('Father') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td><strong> Father's Name </strong></td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tmname" style="display: block;">
-                                                                        <td> <b>{{ __('Mother') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td><strong> Mother's Name </strong></td>
-                                                                    </tr> -->
                                                                     <tr class="tcname" style="display: block;">
                                                                         <td> <b>{{ __('Class') }}</b>
                                                                         </td>
-                                                                        <td>:</td>
-                                                                        <td> {{ __('Seven') }} </td>
+                                                                        <td>{{ __(':') }}</td>
+                                                                        <td> {{ $student->classes->name ?? '' }} </td>
                                                                     </tr>
-                                                                    <!-- <tr class="tsname">
-                                                                        <td><b>{{ __('Section') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr> -->
                                                                     <tr class="trname" style="display: block;">
                                                                         <td><b>{{ __('Roll') }}</b>
                                                                         </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
+                                                                        <td>{{ __(':') }}</td>
+                                                                        <td>{{ $student->rank ?? ''}}</td>
                                                                     </tr>
-                                                                    <!-- <tr class="tgname">
-                                                                        <td><b>{{ __('Group') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tbname">
-                                                                        <td><b>{{ __('Blood Group') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr> -->
                                                                     <tr class="tpname" style="display: block;">
                                                                         <td><b>{{ __('Phone') }}</b>
                                                                         </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
+                                                                        <td>{{ __(':') }}</td>
+                                                                        <td>{{ $student->student->mobile ?? ''}}</td>
                                                                     </tr>
-                                                                    <!-- <tr class="tdname">
-                                                                        <td><b>{{ __('Depertmant') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="tdobname">
-                                                                        <td><b>{{ __('Date Of Birth') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr> -->
-                                                                    <!-- <tr class="taname">
-                                                                        <td><b>{{ __('Admission Date') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr> -->
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -384,9 +320,9 @@
                                             </div>
 
                                             <p class="sinn">
-                                                <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="    height: 33px; width: 88px;  position: relative;   left: 126px;  top: 75px;">
+                                                <img src="{{asset('assets/img/signature/jalalabadSignature.png')}}"  alt="" style="    height: 33px; width: 88px;  position: relative;   left: 126px;  top: 75px;">
                                                  <hr style="position: relative;     position: relative;  top: 38px;   width: 132px;  left: 105px;">
-                                                <h5 style="     position: relative;  top: 22px;  left: 108px; font-size: 15px;">Principal Signature </h5>
+                                                <h5 style="     position: relative;  top: 22px;  left: 108px; font-size: 15px;">{{ __('Principal Signature') }} </h5>
                                             </p>
                                            
                                         </div>
@@ -398,7 +334,7 @@
 <div class="col-12" style="padding-top: 50px;">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 33px;">
                                             <div class="card-body text-center">
-                                            <img src="{{asset('assets/img/logos/jalal.png')}}" 
+                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" 
                                                     width="60" style=" height: 74px;   width: 96px;  text-align: center;  margin: 10px;   border-radius: 6px;">
 
                         
@@ -406,7 +342,7 @@
                                                     <div class="col-md-12">
                                                         <div class="card-back-dec text-bold"
                                                             style="text-align: left; margin-top: -16px;font-size: 12px">
-                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">If Found Please Return The Card To</h2>
+                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">{{ __('If Found Please Return The Card To') }}</h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -429,16 +365,6 @@
                                                                     <td id="bphone">01892-962257 <br>
                                                                       01878-895646  </td>
                                                                 </tr>
-                                                                <!-- <tr>
-                                                                    <td> {{ __('Email') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
-                                                                </tr> -->
-                                                                <!-- <tr>
-                                                                    <td> {{ __('Website') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bwebsite">{{ __('www.example99.org') }}</td>
-                                                                </tr> -->
                                                             </tbody>
                                                         </table>
                                                     </div>

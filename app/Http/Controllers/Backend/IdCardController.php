@@ -46,20 +46,11 @@ class IdCardController extends Controller
         $repository = $this->repository;
         return view('admin.student.designStudentCard_v3', compact('repository'));
     }
+
     public function generateStudentCard_v4()
     {
         $repository = $this->repository;
         return view('admin.student.designStudentCard_v4', compact('repository'));
-    }
-
-    public function generateStudentCard_v5()
-    {
-        $repository = $this->repository;
-        return view('admin.student.designStudentCard_v5', compact('repository'));
-    }   public function generateStudentCard_v6()
-    {
-        $repository = $this->repository;
-        return view('admin.student.designStudentCard_v6', compact('repository'));
     }
 
     public function staff()
@@ -92,12 +83,114 @@ class IdCardController extends Controller
 
         $card = $request->except('_token');
 
-        // return view('admin.student.card-new', compact('students', 'card'));
-        // return view('admin.student.card_new5', compact('students', 'card'));
-        return view('admin.student.card_new6', compact('students', 'card'));
-        // return view('admin.student.card_jalalabad', compact('students', 'card'));
-        // return view('admin.student.card_kingsway', compact('students', 'card'));
-        // return view('admin.student.card_karnaphuli', compact('students', 'card'));
+        return view('admin.student.card-new', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function pdf_V2(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        //$std->whereIn('session_id', activeYear());
+
+        if ($request->sessions) {
+            $std->where('session_id', $request->sessions);
+        }
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+
+        $students = $std->whereHas('student')
+            ->where('status',1)
+            ->orderBy('rank')
+            ->with('student')->get();
+
+        $card = $request->except('_token');
+
+        return view('admin.student.card_karnaphuli', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function pdf_V3(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        $std->whereIn('session_id', activeYear());
+
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group_id){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+
+        $students = $std->orderBy('rank')->with('student')->get();
+
+
+        $card = $request->except('_token');
+
+        return view('admin.student.card_kingsway', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function pdf_V4(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        $std->whereIn('session_id', activeYear());
+
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group_id){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+
+        $students = $std->orderBy('rank')->with('student')->get();
+
+
+        $card = $request->except('_token');
+
+        return view('admin.student.card_jalalabad', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);

@@ -25,9 +25,6 @@
     <section class="content">
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-danger">
-                    <p>It will available new version</p>
-                </div>
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">Total Found : {{ $themes->total() }}</h3>

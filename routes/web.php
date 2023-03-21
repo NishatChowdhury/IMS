@@ -10,7 +10,7 @@ use App\Http\Controllers\Front\AdmissionController;
 use App\Http\Controllers\Front\OnlineApplyController;
 
 /** Dashboard Routes */
-Route::get('dashboard','Backend\DashboardController@index');
+Route::get('dashboard','Backend\DashboardController@index')->name('admin.dashboard');
 
 // Routes For ADMIN LTE Alpha END........//
 

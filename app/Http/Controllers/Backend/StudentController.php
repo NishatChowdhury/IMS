@@ -399,6 +399,7 @@ class StudentController extends Controller
             'group_id' => $getAcademicClass->group_id,
             'shift_id' => 1,
             'rank' => $request->rank,
+            'status' => $request->status,
         ]);
 
         Father::query()->findOrNew($request->f_id)->updateOrCreate([

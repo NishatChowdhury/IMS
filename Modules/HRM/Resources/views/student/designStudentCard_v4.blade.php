@@ -65,31 +65,97 @@
                                                 <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 15px;" class="text-center rounded mx-auto d-block border border-dark">
                                             </div>
                                             <div style=" text-align: center; font-size: 18px; font-weight: bold; position: relative; top: 28px;">
-                                               <p>{{ __('Student Identity Card') }}</p>
+                                               <p  id="idtitle" class="card-title text-bold">{{ __('Student Identity Card') }}</p>
                                                  </div>
                                             <div class="card-body text-center">
 
                                             <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                                <p class="p-0">{{ __('Student Name') }}</p>
+                                                <p class="p-0 nName">{{ __('Student Name') }}</p>
                                             </div>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 3px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                             <tbody>
-                                                                    <tr class="tcname" style="display: block;">
-                                                                        <td> <b>{{ __('Class') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td> {{ __('Seven') }} </td>
-                                                                    </tr>
-                                                                    <tr class="trname" style="display: block;">
-                                                                        <td><b>{{ __('Roll') }}</b>
-                                                                        </td>
-                                                                        <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
-                                                                        </td>
-                                                                    </tr>
+                                                                <tr class="tname" style="display: block;">
+                                                                    <td><strong> {{ __('Name') }} </strong></td>
+                                                                    <td>:</td>
+                                                                    <td><strong> {{ __('Student') }} </strong></td>
+                                                                </tr>
+                                                                <tr class="tfname" style="display: block;">
+                                                                    <td><b>{{ __('Father') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td><strong> {{ __('Father') }} </strong></td>
+                                                                </tr>
+                                                                <tr class="tmname" style="display: block;">
+                                                                    <td> <b>{{ __('Mother') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td><strong> {{ __('Mother') }} </strong></td>
+                                                                </tr>
+                                                                <tr class="tcname" style="display: block;">
+                                                                    <td> <b>{{ __('Class') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td> {{ __('Class') }} </td>
+                                                                </tr>
+                                                                <tr class="tsname">
+                                                                    <td><b>{{ __('Section') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Section') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="trname" style="display: block;">
+                                                                    <td><b>{{ __('Roll') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Roll') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tgname">
+                                                                    <td><b>{{ __('Group') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Group') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tbname">
+                                                                    <td><b>{{ __('Blood Group') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Blood') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tpname" style="display: block;">
+                                                                    <td><b>{{ __('Contact') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Contact') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tdname">
+                                                                    <td><b>{{ __('Depertmant') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Department') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tdobname">
+                                                                    <td><b>{{ __('Date Of Birth') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('DOB') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="taname">
+                                                                    <td><b>{{ __('Admission Date') }}</b>
+                                                                    </td>
+                                                                    <td>:</td>
+                                                                    <td>{{ __('Date') }}
+                                                                    </td>
+                                                                </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -100,7 +166,7 @@
                                             <p class="sinn">
                                                 <img src="{{asset('assets/img/signature/jalalabadSignature.png')}}"  alt="" style="height: 26px;  width: 55px; position: relative;  left: 162px;   top: 72px;">
                                                  <hr style="position: relative; top: 40px; width: 97px;  left: 142px;">
-                                                <h5 style=" position: relative; top: 22px; left: 159px; font-size: 15px;">{{ __('Signature') }} </h5>
+                                                <h5 id="idsignature" style=" position: relative; top: 22px; left: 159px; font-size: 15px;">{{ __('Signature') }} </h5>
                                             </p>
                                            
                                         </div>
@@ -125,10 +191,7 @@
                                                     <div class="" style="margin-top: 25px;">
                                                         <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
                                                             <p style=" margin-bottom: 5px;">
-                                                                {{ __('Hazi Abdul Mia Road(Chadni),') }}
-                                                                {{ __(' Shitaljharna R/A,  Jalalabad,') }}&nbsp;<br>
-                                                                {{ __('Baizid Bostami,') }} <br>
-                                                                {{ __('Chattogram') }}
+                                                                {{ siteConfig('address') }}
                                                             </p>
                                                         </p>
                                                     </div>
@@ -291,26 +354,11 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <input id="idTitle" name="title" type="text" class="form-control"
-                                                    placeholder="Title..">
+                                                <input id="idTitle" name="title" type="text" class="form-control"  placeholder="Title..">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <input id="idSignature" name="signature" type="text"
                                                     class="form-control" placeholder="signature">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input id="vtd" name="validity"
-                                                            class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="far fa-calendar-alt"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -321,81 +369,6 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgcolor" id="bghf"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgfont" id="hffc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
-                                                    <div class="input-group">
-                                                        {{-- <input type="text" class="form-control"> --}}
-                                                        <input type="text" name="titlecolor" id="cbhfc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="name_size" type="text"
-                                                            class="form-control name-size"
-                                                            placeholder="Institute Name Font Size ...">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="address_size" type="text"
-                                                            class="form-control add-size"
-                                                            placeholder="Institute Address Font Size ...">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="title_size" type="text"
-                                                            class="form-control title-size" placeholder="Title Size..">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -419,36 +392,6 @@
                                                     <label for="exampleInputEmail1">{{ __('Phone') }}</label>
                                                     <div class="input-group">
                                                         <input name="bPhone" id="bPhone" type="number"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Email') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bemail" id="bEmail" type="email"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Website') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bWebsite" id="bWebsite" type="text"
                                                             class="form-control">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">

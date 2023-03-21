@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('settings::layouts.master')
 
 @section('title','Institution Mgnt | Subjects')
 
@@ -87,7 +87,7 @@
                                         <td>{{$sub->is_optional ? 'YES' : 'NO'}}</td>
                                         <td></td>
                                         <td>
-                                            {{ Form::open(['action'=>['Backend\InstitutionController@unAssignSubject',$sub->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            {{ Form::open(['route'=>['institution.unAssignSubject',$sub->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
                                         </td>
@@ -116,7 +116,7 @@
                     {{--                        {{ Form::model($subject,['action'=>'InstitutionController@assign_subject']) }}--}}
 
                     {{--                        {{ Form::close() }}--}}
-                    {!! Form::open(['action'=>'Backend\InstitutionController@assign_subject', 'method'=>'post', 'class'=>'form-inline']) !!}
+                    {!! Form::open(['route'=>'institution.assign.subject', 'method'=>'post', 'class'=>'form-inline']) !!}
                         {{--                        <div class="col-12">--}}
                         {{--                            <div class="form-check form-check-inline mb-2" style="justify-content: normal">--}}
                         {{--                                <input type="checkbox"  class="form-check-input sub" id="allSelect">--}}

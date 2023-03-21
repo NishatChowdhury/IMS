@@ -45,9 +45,10 @@
                     backgound-color: transparent;
                 }
 
-                .checkbox label position: absolute;
-                margin-left: 5px;
-                margin-top:-2px;
+                .checkbox label {
+                    position: absolute;
+                    margin-left: 5px;
+                    margin-top: -2px;
                 }
 
                 .radio-inline inut {
@@ -145,92 +146,22 @@
                     background: #f7f7f7;
                 }
 
-
-
-                .grid-container {
-                    position: relative;
-                    top: 1px;
-                    border-radius: 10px;
-                    display: grid;
-                    background-color: #fff;
-
-                }
-
-                .grid-container>div {
-
-                    text-align: center;
-                    height: 36px;
-                }
-
-                .item1 {
-
-                    grid-column: 1/ span 2;
-                    border-radius: 0px 0px 0px 5px;
-                    background-color: rgb(13, 94, 13);
-                    font-size: 11px;
-                    color: #fff;
-
-
-                }
-
-                .item2 {
-                    grid-column: 3/ span 3;
-                    border-radius: 0px 0px 5px 0px;
-                    background-color: rgb(194, 41, 41);
-                    font-size: 15px;
-
-                }
-
-                .item2 span {
-                    top: 3px;
-                    position: relative;
-                    color: #fff;
-
-                }
-
-
-
-
-
-
-                .logoo {
-                    height: 315px;
-                    width: 239px;
-                    padding: 2px;
-                    margin-top: 71px;
-                }
-
-                .logoo img {
-                    height: 42%;
-                    width: 100%;
-                    color: white;
-                    border-radius: 10px;
-                    background-position-x: bottom;
-                }
-
-                .logoo3 {
-                    position: absolute;
-                    height: 35px;
-                    width: 140px;
-                    bottom: 20px;
-                    left: -35px;
-
-                }
-
-                .logoo3 img {
-                    height: 100%;
-                    width: 50%;
-                    color: white;
-                    border-radius: 10px;
-                    background-position-x: bottom;
-                }
-
                 .font {
                     height: 375px;
                     width: 225px;
                     position: relative;
                     border-radius: 10px;
-                    background-image: url("{{ asset('assets/img/logos/ggg.png') }}");
+                    background-image: url("{{ asset('assets/img/logos/BGFont7.png') }}");
+                    background-size: 240px 375px;
+                    background-repeat: no-repeat;
+                }
+
+                .back {
+                    height: 375px;
+                    width: 225px;
+                    position: relative;
+                    border-radius: 10px;
+                    background-image: url("{{ asset('assets/img/logos/BGBack7.png') }}");
                     background-size: 240px 375px;
                     background-repeat: no-repeat;
                 }
@@ -243,29 +174,30 @@
             @foreach ($chunk as $student)
                 <div class="col-3 col-2-5">
                     <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                        <div class="font" style="padding-bottom: 0px;  width: 2.5in;   height: 3.9in;">
+                        <div class="font" style="padding-bottom: 0px;  width: 2.5in;   height: 3.882in;">
                             <div style="height: 1.9in;">
                                 <div class="row">
-                                    <div class="col-md-12 ">
-                                        <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                            alt=""
-                                            style="    height: 76px; width: 82px; border-radius: 3px; position: absolute; top: 47px;left: 22px;">
 
-                                    </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-9">
                                         <div class="right text-center">
                                             <div class="scl-cd-dec text-wrap text-bold ">
-                                                <h2
-                                                    style="    position: relative;top: 9px; margin: 1px; text-align: center; font-size: 18px; color: #f6f0f0; font-weight: bold; font-family: sans-serif;">
+                                                <h2 class="scl-cd-name"
+                                                    style="position: relative;top: 9px; margin: 1px; text-align: center; font-size: 20px; color: #080808;; font-weight: bold; font-family: sans-serif;">
                                                     {{ siteConfig('name') }}
                                                 </h2>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-3 ">
+                                        <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
+                                            alt=""
+                                            style=" height: 82px;width: 87px;border-radius: 3px;position: absolute;top: 1px;left: -29px">
+
+                                    </div>
                                 </div>
                                 <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image ?? '' }}"
-                                    style="  width: 93px; height: 91px; position: relative; left: 56px; top: 37px;"
+                                    style="width: 98px;height: 95px;position: relative;left: 1px;top: 30px;"
                                     class="text-center rounded-circle mx-auto d-block border border-dark">
 
                             </div>
@@ -273,7 +205,7 @@
                             <div class="card-body text-center">
                                 <h1 class="card-title text-bold nName"
                                     style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:{{ $card['title_size'] != null ? $card['title_size'] : 0 }}px ;color:{{ $card['titlecolor'] }}">
-                                    {{ $student->student->name }}
+                                    <strong>{{ $student->student->name ?? '' }}</strong>
                                 </h1>
                                 <div class="row">
                                     <div class="right col-12" style="    margin-top: 0px; ">
@@ -284,28 +216,28 @@
                                                         <tr>
                                                             <td><strong> {{ __('Name') }} </strong></td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td><strong> {{ $student->student->name }} </strong></td>
+                                                            <td><strong> {{ $student->student->name ?? '' }} </strong></td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['fname'])
                                                         <tr>
                                                             <td> {{ __('Father') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->father->f_name }}</td>
+                                                            <td>{{ $student->student->father->f_name ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['mname'])
                                                         <tr>
                                                             <td> {{ __('Mother') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->mother->m_name }}</td>
+                                                            <td>{{ $student->student->mother->m_name ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['session'])
                                                         <tr>
                                                             <td> {{ __('Session') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->session->year }}</td>
+                                                            <td>{{ $student->session->year ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['class'])
@@ -327,28 +259,28 @@
                                                         <tr>
                                                             <td> {{ __('Roll') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->rank }}</td>
+                                                            <td>{{ $student->rank ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['department'])
                                                         <tr>
                                                             <td> {{ __('Department') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->department }}</td>
+                                                            <td>{{ $student->department ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['admissiondate'])
                                                         <tr>
                                                             <td> {{ __('Admission') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->admission_date }}</td>
+                                                            <td>{{ $student->admission_date ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['dob'])
                                                         <tr>
                                                             <td> {{ __('DOB') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->dob }}</td>
+                                                            <td>{{ $student->student->dob ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['blood'])
@@ -362,7 +294,7 @@
                                                         <tr>
                                                             <td> {{ __('Contact') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->mobile }}</td>
+                                                            <td>{{ $student->student->mobile ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                 </tbody>
@@ -373,12 +305,14 @@
                             </div>
 
                             <p class="sinn">
-                                <img src="{{ asset('assets/img/logos/re.png') }}" alt=""
-                                    style="height: 34px;   width: 86px;   position: relative;   left: 154px;   top: -29px">
-                                <hr style="position: relative; top: -52px; width: 91px; left: 74px; background-color: white;">
-                                <h5 id="idsignature"
-                                style="position: relative; top: 16px;  left: 159px;  font-size: 16px;  color: white;">
-                                {{ $card['signature'] }} </h5>
+                                <img src="{{ asset('assets/img/signature/signature.png') }}" alt=""
+                                    style="height: 34px; width: 86px; position: absolute; left: 154px; top: 320px;">
+                                <hr
+                                    style="position: absolute;top: 333px;width: 91px;left: 143px;background-color: white;">
+                            <h5
+                                style="position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">
+                                {{ $card['signature'] }}
+                            </h5>
                             </p>
 
                         </div>
@@ -388,8 +322,8 @@
         </div>
     @endforeach
 
-    <div class="col-12" style="padding-top: 50px;">
-        <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 33px;">
+    <div class=" col-12" style="padding-top: 50px;">
+        <div class="card back" style="width: 2.5in; height: 3.9in; margin-left: 33px;">
             <div class="card-body text-center">
                 <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
                     style=" height: 74px;   width: 96px;  text-align: center;  margin: 10px;   border-radius: 6px;">
@@ -400,8 +334,8 @@
                         <div class="card-back-dec text-bold"
                             style="text-align: left; margin-top: -16px;font-size: 12px">
                             <h2
-                                style="text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">
-                               {{ __(' If Found Please Return The Card To') }}</h2>
+                                style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">
+                                {{ __('If Found Please Return The Card To') }}</h2>
                         </div>
                     </div>
                 </div>
@@ -409,7 +343,8 @@
                 <div class="row">
                     <div class="" style="margin-top: 27px;">
                         <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                        <p style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}</p>
+                        <p style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}
+                        </p>
                         </p>
                     </div>
                     <div class="crd-add-dec text-bold"

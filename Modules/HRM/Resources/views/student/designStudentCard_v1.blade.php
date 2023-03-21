@@ -48,9 +48,7 @@
                                                         <div class="right">
                                                             <div class="scl-cd-dec" style="padding-top: 6px;">
                                                                 <h6 class="scl-cd-name"><strong> {{ siteConfig('name') }}</strong></h6>
-                                                                <p class="scl-cd-add">{{ siteConfig('address') }}</p>
-                                                                {{--<strong class=""> <p>{{ siteConfig('name') }}  <br> </strong>--}}
-                                                                {{--</p>--}}
+                                                                <p class="scl-cd-add"><b>{{ __('Knowledge is Power') }}</b></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -77,6 +75,11 @@
                                                                 </tr>
                                                                 <tr class="tmname">
                                                                     <td> Mother </td>
+                                                                    <td>:</td>
+                                                                    <td>Lorem ipsum.</td>
+                                                                </tr>
+                                                                <tr class="guardian_name">
+                                                                    <td> Guardian </td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
@@ -295,14 +298,6 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            {{--<div class="form-group col-md-4">--}}
-                                            {{--<div class="form-check">--}}
-                                            {{--<input class="form-check-input" type="checkbox" id="gridCheck">--}}
-                                            {{--<label class="form-check-label" for="gridCheck">--}}
-                                            {{--Designation--}}
-                                            {{--</label>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
                                                     <input class="form-check-input dobname" type="checkbox" id="dob" name="dob">
@@ -318,6 +313,14 @@
                                                     <input class="form-check-input aname" type="checkbox" id="admissiondate" name="admissiondate">
                                                     <label class="form-check-label" for="admissiondate">
                                                         Admission Date
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input guardian_name" type="checkbox" id="guardian_name" name="guardian_name">
+                                                    <label class="form-check-label" for="guardian_name">
+                                                        Guardian Name
                                                     </label>
                                                 </div>
                                             </div>
@@ -595,6 +598,7 @@
             $(".tname").css({"display":"block"});  // for name
             $(".tfname").css({"display":"none"}); // for farther name
             $(".tmname").css({"display":"none"}); // for mother name
+            $(".guardian_name").css({"display":"none"}); // for mother name
             $(".tcname").css({"display":"block"}); // for class name
             $(".tsname").css({"display":"block"}); // for section name
             $(".trname").css({"display":"block"}); // for roll name
@@ -643,6 +647,17 @@
                 $(".tmname").css({"display":"table-row"})
             }else{
                 $(".tmname").css({"display":"none"})
+            }
+        });
+
+        //guardian name
+        $(document).on('click','.mname',function(){
+            var guardian_name = $(this);
+            if (guardian_name.is (':checked'))
+            {
+                $(".guardian_name").css({"display":"table-row"})
+            }else{
+                $(".guardian_name").css({"display":"none"})
             }
         });
         //class name

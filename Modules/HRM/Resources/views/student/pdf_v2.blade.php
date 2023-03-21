@@ -153,7 +153,7 @@
             <div class="col-3 col-2-5">
                 <div class="card text-center" style="width: 2.27in;height:4.41in">
                     <div class="card-header bg-white border-0"
-                         style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
+                         style="padding:10px 0 0 10px;">
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="left ">
@@ -282,9 +282,9 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted"
-                         style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
+                         style="font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
                         <div class=" grid-container">
-                            <div class="item1">{{ __('Karnaphuli, Chattogram') }}</div>
+                            <div class="item1">{{ siteConfig('address') }}</div>
                             <div class="item2"> <span>{{ __('Principal') }}</span></div>
                         </div>
                     </div>

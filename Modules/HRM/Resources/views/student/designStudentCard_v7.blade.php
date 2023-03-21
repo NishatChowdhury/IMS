@@ -1,4 +1,4 @@
-@extends('layouts.fixed')
+@extends('hrm::layouts.master')
 
 @section('title', 'Student | Design Student ID')
 
@@ -49,13 +49,13 @@
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold ">
                                                                 <h2 style="    position: relative;top: 9px; margin: 1px; text-align: center; font-size: 18px; color: #080808;; font-weight: bold; font-family: sans-serif;">
-                                                                    Web Point Limited School School
+                                                                    {{ siteConfig('name') }}
                                                                 </h2>
                                                             </div>
                                                         </div> 
                                                     </div>
                                                     <div class="col-md-3 ">
-                                                    <img  src="{{asset('assets/img/logos/klr.png')}}"  alt="" style=" height: 82px;width: 87px;border-radius: 3px;position: absolute;top: 1px;left: -29px">
+                                                    <img  src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"  alt="" style=" height: 82px;width: 87px;border-radius: 3px;position: absolute;top: 1px;left: -29px">
                                                   
                                                     </div>
                                                 </div>
@@ -64,10 +64,6 @@
                                             </div>
                                          
                                             <div class="card-body text-center">
-
-                                            <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                              <p class="p-0">Sukirti Chakma Poran</p>
-                                                    </div> -->
                                                 <h1 class="card-title text-bold nName"
                                                     style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
                                                     {{ __('Student Name') }}</h1>
@@ -75,84 +71,84 @@
                                                     <div class="right col-12" style="    margin-top: 0px; ">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
-                                                            <tbody>
+                                                                <tbody>
                                                                     <tr class="tname" style="display: block;">
-                                                                        <td><strong> Name </strong></td>
+                                                                        <td><strong> {{ __('Name') }} </strong></td>
                                                                         <td>:</td>
-                                                                        <td><strong> Student Name </strong></td>
+                                                                        <td><strong> {{ __('Student') }} </strong></td>
                                                                     </tr>
                                                                     <tr class="tfname" style="display: block;">
                                                                         <td><b>{{ __('Father') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td><strong> Father's Name </strong></td>
+                                                                        <td><strong> {{ __('Father') }} </strong></td>
                                                                     </tr>
                                                                     <tr class="tmname" style="display: block;">
                                                                         <td> <b>{{ __('Mother') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td><strong> Mother's Name </strong></td>
+                                                                        <td><strong> {{ __('Mother') }} </strong></td>
                                                                     </tr>
                                                                     <tr class="tcname" style="display: block;">
                                                                         <td> <b>{{ __('Class') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td> {{ __('Seven') }} </td>
+                                                                        <td> {{ __('Class') }} </td>
                                                                     </tr>
                                                                     <tr class="tsname">
                                                                         <td><b>{{ __('Section') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Section') }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="trname" style="display: block;">
                                                                         <td><b>{{ __('Roll') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Roll') }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="tgname">
                                                                         <td><b>{{ __('Group') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Group') }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="tbname">
                                                                         <td><b>{{ __('Blood Group') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Blood') }}
                                                                         </td>
                                                                     </tr>
-                                                                    <tr class="tpname" style="display: block;">
+                                                                    <tr class="tpname">
                                                                         <td><b>{{ __('Contact') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Contact') }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="tdname">
                                                                         <td><b>{{ __('Depertmant') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Department') }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="tdobname">
                                                                         <td><b>{{ __('Date Of Birth') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('DOB') }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="taname">
                                                                         <td><b>{{ __('Admission Date') }}</b>
                                                                         </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}
+                                                                        <td>{{ __('Date') }}
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -165,7 +161,7 @@
                                             <p class="sinn">
                                                 <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="    height: 34px; width: 86px; position: absolute; left: 154px; top: 320px;">
                                                 <hr style="position: absolute;top: 333px;width: 91px;left: 143px;background-color: white;">
-                                                <h5 style="    position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">Signature </h5>
+                                                <h5 id="idsignature" style="    position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">{{ __('Signature') }} </h5>
                                             </p>
                                            
                                         </div>
@@ -174,7 +170,7 @@
                                     <div class="col-12" style="padding-top: 50px;">
                                         <div class="card back" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
                                             <div class="card-body text-center">
-                                            <img src="{{asset('assets/img/logos/jalal.png')}}" 
+                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
                                                     width="60" style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
 
                         
@@ -182,7 +178,7 @@
                                                     <div class="col-md-12">
                                                         <div class="card-back-dec text-bold"
                                                             style="text-align: left; margin-top: -16px;font-size: 12px">
-                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">If Found Please Return The Card To</h2>
+                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">{{ __('If Found Please Return The Card To') }}</h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,10 +186,7 @@
                                                 <div class="row">
                                                     <div class="" style="margin-top: 25px;">
                                                         <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                                                        <p style=" margin-bottom: 5px;">Hazi Abdul Mia Road(Chadni),
-                                                             Shitaljharna R/A,  Jalalabad,&nbsp;<br>
-                                                               Baizid Bostami, <br>
-                                                                  Chattogram</p></p>
+                                                        <p style=" margin-bottom: 5px;">{{ siteConfig('address') }}</p></p>
                                                     </div>
                                                     <div class="crd-add-dec text-bold"
                                                         style="    text-align: center;   position: relative; left: 58px;top: -6px;">
@@ -202,19 +195,8 @@
                                                                 <tr>
                                                                     <td> {{ __('Phone') }} </td>
                                                                     <td>:</td>
-                                                                    <td id="bphone">01892-962257 <br>
-                                                                      <!-- 01878-895646  </td> -->
+                                                                    <td id="bphone">{{ siteConfig('phone') }} </td>
                                                                 </tr>
-                                                                <!-- <tr>
-                                                                    <td> {{ __('Email') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
-                                                                </tr> -->
-                                                                <!-- <tr>
-                                                                    <td> {{ __('Website') }} </td>
-                                                                    <td>:</td>
-                                                                    <td id="bwebsite">{{ __('www.example99.org') }}</td>
-                                                                </tr> -->
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -225,7 +207,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['action' => 'Backend\IdCardController@pdf', 'method' => 'post']) }}
+                                {{ Form::open(['route' => 'student.pdf_V7', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">
@@ -361,26 +343,8 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <input id="idTitle" name="title" type="text" class="form-control"
-                                                    placeholder="Title..">
-                                            </div>
-                                            <div class="form-group col-md-4">
                                                 <input id="idSignature" name="signature" type="text"
                                                     class="form-control" placeholder="signature">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input id="vtd" name="validity"
-                                                            class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="far fa-calendar-alt"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -393,66 +357,15 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgcolor" id="bghf"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgfont" id="hffc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
                                                     <div class="input-group">
                                                         {{-- <input type="text" class="form-control"> --}}
                                                         <input type="text" name="titlecolor" id="cbhfc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                            class="form-control my-colorpicker1 colorpicker-element" placeholder="Title Color...">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="fas fa-palette"></i>
                                                             </span>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="name_size" type="text"
-                                                            class="form-control name-size"
-                                                            placeholder="Institute Name Font Size ...">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="address_size" type="text"
-                                                            class="form-control add-size"
-                                                            placeholder="Institute Address Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -489,36 +402,6 @@
                                                     <label for="exampleInputEmail1">{{ __('Phone') }}</label>
                                                     <div class="input-group">
                                                         <input name="bPhone" id="bPhone" type="number"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Email') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bemail" id="bEmail" type="email"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Website') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bWebsite" id="bWebsite" type="text"
                                                             class="form-control">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">

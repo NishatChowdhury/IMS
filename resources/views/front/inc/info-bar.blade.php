@@ -43,6 +43,7 @@
                     </form>
                 @else
                     <a href="{{ url('student/login') }}">{{ __('Login') }}</a>
+
                 @endauth
             </li>
         </ul>
