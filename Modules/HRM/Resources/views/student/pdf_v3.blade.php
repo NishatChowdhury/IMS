@@ -252,10 +252,10 @@
 
 </head>
 
-@foreach ($students->chunk(2) as $key => $chunk)
+@foreach ($students->chunk(4) as $key => $chunk)
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
-            <div class="col-6 col-3-4">
+            <div class="col-3 col-3-5">
                 <div class="card" style="width: 3.9in; height: 2.5in; margin:10px;      background-color: #191970;">
                     <div
                         style="border: 1px solid  white; margin: 10px;     padding: 0;  box-sizing: border-box;height: 223px;">
@@ -264,7 +264,7 @@
                                 <div class="col-md-12 ">
                                     <div class="nat">
                                         <h2> {{ siteConfig('name') }}</h2>
-                                        <h3> {{ __('“BHABANA”, SOUTH MUNSI PUKUR PAAR, CTG') }}</h3>
+                                        <h3> {{ siteConfig('address') }}</h3>
                                     </div>
                                 </div>
 
@@ -330,14 +330,14 @@
                         </div>
 
                         <div class="logoo ">
-                            <img src="{{ asset('assets/img/logos/kingsWayLogo.jpeg') }}" style="height: 120%; Width:130%">
+                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="height: 120%; Width:130%">
 
                         </div>
 
                         <div class="wrapperr">
                             <div style="text-align: left; margin-top: 3px; margin-left:5px">
                                 {{ $student->student->mobile ?? '' }}</div>
-                            <div> <img src="{{ asset('assets/img/logos/kingsWayLogo.jpeg') }}" alt=""
+                            <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt=""
                                     style="    height: 17px;  width: 25px;  border-radius: 50%;   "></div>
                             <div style=" margin-top: 3px;">{{ __('Head Mistress') }}</div>
 
@@ -355,7 +355,7 @@
             <div class="row text-left  "
                 style="text-align: left!important; margin-left: -0.6rem;  margin-right: -0.6rem;  border-bottom: 1px solid white;">
                 <div class="col-md-3 ">
-                    <img src="{{ asset('assets/img/logos/kingsWayLogo.jpeg') }}" style="width: 55px;height: 40px;border-radius: 50%;">
+                    <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="width: 55px;height: 40px;border-radius: 50%;">
                 </div>
                 <div class="col-md-9">
                     <h3>{{ __('INSTRUCTION') }}</h3>
@@ -383,8 +383,7 @@
                         <tr>
                             <td> {{ __('Address') }}</td>
                             <td>:</td>
-                            <td id="baddress">{{ __('“BHABANA”, South Munshi Pukur Paar, Makbul
-                                Sawdagor Lane, Kapasgola, Chittagong') }}</td>
+                            <td id="baddress">{{ siteConfig('address') }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -393,7 +392,7 @@
         </div>
 
         <div class="wrapperrr">
-            <div> <img src="{{ asset('assets/img/logos/kingsWayLogo.jpeg') }}" alt=""
+            <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt=""
                     style="height: 30px;  width: 40px;  border-radius: 50%;   "></div>
 
 

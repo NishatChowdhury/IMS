@@ -64,10 +64,6 @@
                                             </div>
                                          
                                             <div class="card-body text-center">
-
-                                            <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                              <p class="p-0">Sukirti Chakma Poran</p>
-                                                    </div> -->
                                                 <h1 class="card-title text-bold nName"
                                                     style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
                                                     {{ __('Student Name') }}</h1>
@@ -127,7 +123,7 @@
                                                                         <td>{{ __('Blood') }}
                                                                         </td>
                                                                     </tr>
-                                                                    <tr class="tpname" style="display: block;">
+                                                                    <tr class="tpname">
                                                                         <td><b>{{ __('Contact') }}</b>
                                                                         </td>
                                                                         <td>:</td>
@@ -347,26 +343,8 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <input id="idTitle" name="title" type="text" class="form-control"
-                                                    placeholder="Title..">
-                                            </div>
-                                            <div class="form-group col-md-4">
                                                 <input id="idSignature" name="signature" type="text"
                                                     class="form-control" placeholder="signature">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input id="vtd" name="validity"
-                                                            class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="far fa-calendar-alt"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -379,66 +357,15 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgcolor" id="bghf"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgfont" id="hffc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
                                                     <div class="input-group">
                                                         {{-- <input type="text" class="form-control"> --}}
                                                         <input type="text" name="titlecolor" id="cbhfc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                            class="form-control my-colorpicker1 colorpicker-element" placeholder="Title Color...">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="fas fa-palette"></i>
                                                             </span>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="name_size" type="text"
-                                                            class="form-control name-size"
-                                                            placeholder="Institute Name Font Size ...">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input name="address_size" type="text"
-                                                            class="form-control add-size"
-                                                            placeholder="Institute Address Font Size ...">
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -475,36 +402,6 @@
                                                     <label for="exampleInputEmail1">{{ __('Phone') }}</label>
                                                     <div class="input-group">
                                                         <input name="bPhone" id="bPhone" type="number"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Email') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bemail" id="bEmail" type="email"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Website') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bWebsite" id="bWebsite" type="text"
                                                             class="form-control">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">

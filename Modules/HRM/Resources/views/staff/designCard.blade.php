@@ -154,19 +154,19 @@
                                                         <table class="table" style="font-size: 10px;">
                                                             <tbody>
                                                             <tr>
-                                                                <td> Phone </td>
+                                                                <td> {{ __('Phone') }} </td>
                                                                 <td>:</td>
-                                                                <td id="bphone">+880 01714 000 000</td>
+                                                                <td id="bphone">{{ __('+880 01714 000 000') }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td> Email </td>
+                                                                <td> {{ __('Email') }} </td>
                                                                 <td>:</td>
-                                                                <td id="bemail">Example99@gmail.com.</td>
+                                                                <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td> Website </td>
-                                                                <td>:</td>
-                                                                <td  id="bwebsite">www.example99.org</td>
+                                                                <td> {{ __('Website') }} </td>
+                                                                <td>{{ __(':') }}</td>
+                                                                <td  id="bwebsite">{{ __('www.example99.org') }}</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -182,13 +182,13 @@
 
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title"> Option</h5>
+                                        <h5 class="card-title"> {{ __('Option') }}</h5>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
                                                     <input class="form-check-input nname" name="nickname" type="checkbox" id="nickname">
                                                     <label class="form-check-label" for="nickname">
-                                                        Nick Name
+                                                        {{ __('Nick Name') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -196,7 +196,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input full-name" name="fulname" checked  type="checkbox" id="fullname">
                                                     <label class="form-check-label" for="fullname">
-                                                        Name
+                                                        {{ __('Name') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -204,7 +204,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input fname" name="fname" type="checkbox" id="fname">
                                                     <label class="form-check-label" for="fname">
-                                                        Father
+                                                        {{ __('Father') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input mname" type="checkbox" name="mname" id="mname">
                                                     <label class="form-check-label" for="mname">
-                                                        Mother
+                                                        {{ __('Mother') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -222,7 +222,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input dob" type="checkbox" id="dob" name="dob">
                                                     <label class="form-check-label" for="dob">
-                                                        Dob
+                                                        {{ __('Dob') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -230,7 +230,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input blood" checked type="checkbox" id="blood" name="blood">
                                                     <label class="form-check-label" for="blood">
-                                                        Blood
+                                                        {{ __('Blood') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -240,7 +240,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input phone" checked type="checkbox" id="contact" name="contact">
                                                     <label class="form-check-label" for="contact">
-                                                        Contact/Phone
+                                                        {{ __('Contact/Phone') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -248,7 +248,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input dept" type="checkbox" id="dept" name="department">
                                                     <label class="form-check-label" for="department">
-                                                        Department
+                                                        {{ __('Department') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -256,7 +256,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input dgtn" checked type="checkbox" id="designation" name="designation">
                                                     <label class="form-check-label" for="designation">
-                                                        Designation
+                                                        {{ __('Designation') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -266,7 +266,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input joindate" checked type="checkbox" id="joining" name="joining">
                                                     <label class="form-check-label" for="joining">
-                                                        Joining
+                                                        {{ __('Joining') }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -282,7 +282,6 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <input id="vtd" name="validity" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
-                                                        {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                         </div>
@@ -295,11 +294,11 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title"> Front Side</h5>
+                                        <h5 class="card-title">{{ __('Front Side') }}</h5>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">BG Color</label>
+                                                    <label for="exampleInputEmail1"{{ __('>BG Color') }}</label>
                                                     <div class="input-group">
                                                         <input type="text" name="bgcolor" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
@@ -311,7 +310,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">BG Font Color</label>
+                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
                                                     <div class="input-group">
                                                         <input type="text" name="bgfont" id="hffc" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
@@ -325,9 +324,8 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Title Color</label>
+                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
                                                     <div class="input-group">
-                                                        {{--<input type="text" class="form-control">--}}
                                                         <input type="text" name="titlecolor" id="cbhfc" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -375,11 +373,11 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title"> Back Side</h5>
+                                        <h5 class="card-title">{{ __('Back Side') }}</h5>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Phone</label>
+                                                    <label for="exampleInputEmail1">{{ __('Phone') }}</label>
                                                     <div class="input-group">
                                                         <input name="bPhone" id="bPhone" type="number" class="form-control">
                                                         <div class="input-group-prepend">
@@ -393,7 +391,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <label for="exampleInputEmail1">{{ __('Email') }}</label>
                                                     <div class="input-group">
                                                         <input name="bemail" id="bEmail" type="email" class="form-control">
                                                         <div class="input-group-prepend">
@@ -407,7 +405,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Website</label>
+                                                    <label for="exampleInputEmail1">{{ __('Website') }}</label>
                                                     <div class="input-group">
                                                         <input name="bWebsite" id="bWebsite" type="text" class="form-control">
                                                         <div class="input-group-prepend">
@@ -424,7 +422,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title"> View Cards</h5>
+                                        <h5 class="card-title">{{ __('View Cards') }}</h5>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
@@ -436,7 +434,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-info">View PDF</button>
+                                                    <button type="submit" class="btn btn-info">{{ __('View PDF') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -658,20 +656,6 @@
             var fas = $(this).val();
             $(".table").css({"font-size":fas+"px"}) ;
         });
-
-
-        //       $(document).on("click",".ffcolor",function () {
-        //           var color = $(this).val();
-        //
-        //           $(".scl-cd-dec").css({"color":color});
-        //       });
-        //
-        //       $(document).on("click",".hfcolor",function () {
-        //           var color = $(this).val();
-        //
-        //           $(".").css({"background-color":color});
-        //       });
-
         //colorPicker
         $(document).ready(function () {
             //colorPicker

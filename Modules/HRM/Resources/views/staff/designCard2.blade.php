@@ -1,6 +1,6 @@
 @extends('hrm::layouts.master')
 
-@section('title','Student | Design Student ID')
+@section('title','Teacher | Design Teacher ID')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Design Student ID') }}</h1>
+                    <h1>Design Teacher ID</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Student') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Design Student ID') }}</li>
+                        <li class="breadcrumb-item"><a href="#">Teacher</a></li>
+                        <li class="breadcrumb-item active">Design Teacher ID</li>
                     </ol>
                 </div>
             </div>
@@ -48,16 +48,18 @@
                                                         <div class="right">
                                                             <div class="scl-cd-dec" style="padding-top: 6px;">
                                                                 <h6 class="scl-cd-name"><strong> {{ siteConfig('name') }}</strong></h6>
-                                                                <p class="scl-cd-add"><b>{{ __('Knowledge is Power') }}</b></p>
+                                                                <p class="scl-cd-add">{{ siteConfig('address') }}</p>
+                                                                {{--<strong class=""> <p>{{ siteConfig('name') }}  <br> </strong>--}}
+                                                                {{--</p>--}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-body text-center">
-                                                <h6  id="idtitle" class="card-title text-bold">  {{ __('ID CARD') }} </h6>
+                                                <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                                <h6 class="card-title text-bold nName"> {{ __('Student Name') }} </h6>
+                                                <h6 class="card-title text-bold cname"> Student Name </h6>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 10px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
@@ -66,65 +68,44 @@
                                                                 <tr class="tname">
                                                                     <td><strong> Name </strong></td>
                                                                     <td>:</td>
-                                                                    <td><strong> Student Name </strong></td>
+                                                                    <td><strong> Teacher Name </strong></td>
                                                                 </tr>
                                                                 <tr class="tfname">
                                                                     <td> Father </td>
                                                                     <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
+                                                                    <td> Father Name </td>
+                                                                <tr>
                                                                 <tr class="tmname">
                                                                     <td> Mother </td>
                                                                     <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="guardian_name">
-                                                                    <td> Guardian </td>
+                                                                    <td> Guardi </td>
+                                                                <tr class="tdob">
+                                                                    <td> Date of Birth </td>
                                                                     <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
+                                                                    <td>30.01.2020</td>
                                                                 </tr>
-                                                                <tr class="tcname">
-                                                                    <td> Class </td>
-                                                                    <td>:</td>
-                                                                    <td> Seven </td>
-                                                                </tr>
-                                                                <tr class="tsname">
-                                                                    <td> Section </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="trname">
-                                                                    <td> Roll </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tgname">
-                                                                    <td> Group </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="tbname">
+                                                                <tr class="tblood">
                                                                     <td> Blood Group </td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
-                                                                <tr class="tpname">
+                                                                <tr class="tphone">
                                                                     <td> Contact </td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
-                                                                <tr class="tdname">
-                                                                    <td> Depertmant </td>
+                                                                <tr class="tdept">
+                                                                    <td> Department </td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
-                                                                <tr class="tdobname">
-                                                                    <td> Date Of Birth </td>
+                                                                <tr class="tdgtn">
+                                                                    <td> Designation</td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
-                                                                <tr class="taname">
-                                                                    <td> Admission Date </td>
+                                                                <tr class="tjoindate">
+                                                                    <td> Joining </td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
@@ -143,6 +124,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <div class="card-footer" style="height: 40px;">
                                             </div>
@@ -156,8 +138,8 @@
                                                         <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
                                                             <ul style="margin: 0px !important; padding: 10px 15px !important;">
                                                                 <li>This card is valid till <span class="valid-date">31-Dec-2020</span></li>
-{{--                                                                <li>This card is not transferable</li>--}}
-{{--                                                                <li>This finder of this card may please drop it to the nearest post office.</li>--}}
+                                                                <li>This card is not transferable</li>
+                                                                <li>This finder of this card may please drop it to the nearest post office.</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -165,8 +147,8 @@
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
                                                 <div class="row">
                                                     <div class="" style="margin-top: 20px;">
-                                                        <p><strong>{{ siteConfig('name') }}  <br> </strong>
-                                                            {{ siteConfig('address') }}</p>
+                                                       <p> <strong> {{ siteConfig('name') }}  <br> </strong>
+                                                        {{ siteConfig('address') }}</p>
                                                     </div>
                                                     <div class="crd-add-dec text-bold" style="margin:5px 10px; text-align: left">
                                                         <table class="table" style="font-size: 10px;">
@@ -196,17 +178,15 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['route'=>'student.pdf','method'=>'post']) }}
+                                {{ Form::open(['route'=>'staff.staffPdf','method'=>'post']) }}
 
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>Option</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Option</h5>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input nname" type="checkbox" id="nickname" name="nickname">
+                                                    <input class="form-check-input nname" name="nickname" type="checkbox" id="nickname">
                                                     <label class="form-check-label" for="nickname">
                                                         Nick Name
                                                     </label>
@@ -214,7 +194,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input full-name" checked type="checkbox" id="fullname" name="fullname">
+                                                    <input class="form-check-input full-name" name="fulname" checked  type="checkbox" id="fullname">
                                                     <label class="form-check-label" for="fullname">
                                                         Name
                                                     </label>
@@ -222,7 +202,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input fname" type="checkbox" id="fname" name="fname">
+                                                    <input class="form-check-input fname" name="fname" type="checkbox" id="fname">
                                                     <label class="form-check-label" for="fname">
                                                         Father
                                                     </label>
@@ -232,7 +212,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input mname" type="checkbox" id="mname" name="mname">
+                                                    <input class="form-check-input mname" type="checkbox" name="mname" id="mname">
                                                     <label class="form-check-label" for="mname">
                                                         Mother
                                                     </label>
@@ -240,59 +220,33 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input cname" checked type="checkbox" id="class" name="class">
-                                                    <label class="form-check-label" for="class">
-                                                        Class
+                                                    <input class="form-check-input dob" type="checkbox" id="dob" name="dob">
+                                                    <label class="form-check-label" for="dob">
+                                                        Dob
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input sname" checked type="checkbox" id="section" name="section">
-                                                    <label class="form-check-label" for="section">
-                                                        Section
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input gname" checked type="checkbox" id="group" name="group">
-                                                    <label class="form-check-label" for="group">
-                                                        Group
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input bname" checked type="checkbox" id="blood" name="blood">
+                                                    <input class="form-check-input blood" checked type="checkbox" id="blood" name="blood">
                                                     <label class="form-check-label" for="blood">
                                                         Blood
                                                     </label>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input pname" type="checkbox" id="contact" name="contact">
+                                                    <input class="form-check-input phone" checked type="checkbox" id="contact" name="contact">
                                                     <label class="form-check-label" for="contact">
                                                         Contact/Phone
                                                     </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input rname" checked type="checkbox" id="roll" name="roll">
-                                                    <label class="form-check-label" for="roll">
-                                                        Roll
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input dname" type="checkbox" id="department" name="department">
+                                                    <input class="form-check-input dept" type="checkbox" id="dept" name="department">
                                                     <label class="form-check-label" for="department">
                                                         Department
                                                     </label>
@@ -300,9 +254,9 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input dobname" type="checkbox" id="dob" name="dob">
-                                                    <label class="form-check-label" for="dob">
-                                                        Date Of Birth
+                                                    <input class="form-check-input dgtn" checked type="checkbox" id="designation" name="designation">
+                                                    <label class="form-check-label" for="designation">
+                                                        Designation
                                                     </label>
                                                 </div>
                                             </div>
@@ -310,17 +264,9 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input aname" type="checkbox" id="admissiondate" name="admissiondate">
-                                                    <label class="form-check-label" for="admissiondate">
-                                                        Admission Date
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input guardian_name" type="checkbox" id="guardian_name" name="guardian_name">
-                                                    <label class="form-check-label" for="guardian_name">
-                                                        Guardian Name
+                                                    <input class="form-check-input joindate" checked type="checkbox" id="joining" name="joining">
+                                                    <label class="form-check-label" for="joining">
+                                                        Joining
                                                     </label>
                                                 </div>
                                             </div>
@@ -330,7 +276,7 @@
                                                 <input id="idTitle" name="title" type="text" class="form-control"  placeholder="Title..">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input id="idSignature" name="signature" type="text" class="form-control"  placeholder="signature">
+                                                <input id="idSignature" name="signature"  type="text" class="form-control"  placeholder="signature">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
@@ -338,9 +284,7 @@
                                                         <input id="vtd" name="validity" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
                                                         {{--{!!  Form::text('start', null, array_merge(['class' => 'form-control datePicker','id'=>'start'])) !!}--}}
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                        </span>
+                                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -349,11 +293,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>Front Side</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Front Side</h5>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -361,9 +303,7 @@
                                                     <div class="input-group">
                                                         <input type="text" name="bgcolor" id="bghf" class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                         <i class="fas fa-palette"></i>
-                                                        </span>
+                                                        <span class="input-group-text"><i class="fas fa-palette"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -433,11 +373,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b> Back Side</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Back Side</h5>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -446,7 +384,7 @@
                                                         <input name="bPhone" id="bPhone" type="number" class="form-control">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <input type="checkbox" name="bphonecheck">
                                                         </span>
                                                         </div>
                                                     </div>
@@ -460,7 +398,7 @@
                                                         <input name="bemail" id="bEmail" type="email" class="form-control">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <input type="checkbox" name="bemailcheck">
                                                         </span>
                                                         </div>
                                                     </div>
@@ -474,7 +412,7 @@
                                                         <input name="bWebsite" id="bWebsite" type="text" class="form-control">
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                          <input type="checkbox">
+                                                          <input type="checkbox" name="bwebsitecheck">
                                                         </span>
                                                         </div>
                                                     </div>
@@ -484,47 +422,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>View Cards</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> View Cards</h5>
                                         <div class="row">
-                                            {{--                                            <div class="col">--}}
-                                            {{--                                                <div class="form-group">--}}
-                                            {{--                                                    <div class="input-group">--}}
-                                            {{--                                                        {{ Form::select('user',[1=>'Student',2=>'Teacher'],null,['class'=>'form-control','placeholder'=>'Select User','required']) }}--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                </div>--}}
-                                            {{--                                                <!-- /input-group -->--}}
-                                            {{--                                            </div>--}}
                                             <div class="col">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        {{ Form::select('class',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class','required']) }}
+                                                        {{ Form::select('user',[2=>'Teacher',1=>'Staff',3=>'ALL'],1,['class'=>'form-control','placeholder'=>'Select User','required']) }}
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <div class="input-group">
-                                                        {{ Form::select('section',$repository->sections(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        {{ Form::select('group',$repository->groups(),null,['class'=>'form-control','placeholder'=>'Select Section']) }}
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-info">PDF</button>
+                                                    <button type="submit" class="btn btn-info">View PDF</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -568,7 +480,7 @@
             top: -2px;
         }
         .table td, .table th {
-            padding: 1px;
+            padding: 3px;
             vertical-align: top;
             border-top: 0;
         }
@@ -582,11 +494,6 @@
         .scl-cd-dec p{
             font-size: 8px;
         }
-             .card-header1 {
-    border-bottom: 1px solid #d8d8d8;
-    padding: 9px 0px 9px 20px;
-    background: #f7f7f7;
-}
 
     </style>
 @stop
@@ -594,29 +501,25 @@
 @section('script')
     <script>
         $(function(){
-            $(".nName").css({"display":"none"});  // for nick name
+            $(".cname").css({"display":"none"});  // for nick name
             $(".tname").css({"display":"block"});  // for name
             $(".tfname").css({"display":"none"}); // for farther name
             $(".tmname").css({"display":"none"}); // for mother name
-            $(".guardian_name").css({"display":"none"}); // for mother name
-            $(".tcname").css({"display":"block"}); // for class name
-            $(".tsname").css({"display":"block"}); // for section name
-            $(".trname").css({"display":"block"}); // for roll name
-            $(".tgname").css({"display":"block"}); // for group name
-            $(".tbname").css({"display":"block"});   // for blood
-            $(".tpname").css({"display":"none"}); // for phone
-            $(".tdname").css({"display":"none"});  // for department
-            $(".tdobname").css({"display":"none"});  // for dob
-            $(".taname").css({"display":"none"}); // for admission
+            $(".tdob").css({"display":"none"});   // for dob
+            $(".tblood").css({"display":"block"}); // for blood
+            $(".tphone").css({"display":"block"}); // for phone
+            $(".tdept").css({"display":"none"});  // for department
+            $(".tdgtn").css({"display":"block"});  // for designation
+            $(".tjoindate").css({"display":"block"}); // for joining
         });
         //nick name
         $(document).on('click','.nname',function(){
-            var nName = $(this);
-            if (nName.is (':checked'))
+            var cname = $(this);
+            if (cname.is (':checked'))
             {
-                $(".nName").css({"display":"block"})
+                $(".cname").css({"display":"block"})
             }else{
-                $(".nName").css({"display":"none"})
+                $(".cname").css({"display":"none"})
             }
         });
         //full name
@@ -629,7 +532,7 @@
                 $(".tname").css({"display":"none"})
             }
         });
-        //father name
+        //father
         $(document).on('click','.fname',function(){
             var tfname = $(this);
             if (tfname.is (':checked'))
@@ -639,7 +542,7 @@
                 $(".tfname").css({"display":"none"})
             }
         });
-        //mother name
+        //mother
         $(document).on('click','.mname',function(){
             var tmname = $(this);
             if (tmname.is (':checked'))
@@ -649,116 +552,72 @@
                 $(".tmname").css({"display":"none"})
             }
         });
-
-        //guardian name
-        $(document).on('click','.mname',function(){
-            var guardian_name = $(this);
-            if (guardian_name.is (':checked'))
+        //dob
+        $(document).on('click','.dob',function(){
+            var tdob = $(this);
+            if (tdob.is (':checked'))
             {
-                $(".guardian_name").css({"display":"table-row"})
+                $(".tdob").css({"display":"table-row"})
             }else{
-                $(".guardian_name").css({"display":"none"})
+                $(".tdob").css({"display":"none"})
             }
         });
-        //class name
-        $(document).on('click','.cname',function(){
-            var tcname = $(this);
-            if (tcname.is (':checked'))
+        //blood
+        $(document).on('click','.blood',function(){
+            var tblood = $(this);
+            if (tblood.is (':checked'))
             {
-                $(".tcname").css({"display":"table-row"})
+                $(".tblood").css({"display":"table-row"})
             }else{
-                $(".tcname").css({"display":"none"})
+                $(".tblood").css({"display":"none"})
             }
         });
-        //section name
-        $(document).on('click','.sname',function(){
-            var tsname = $(this);
-            if (tsname.is (':checked'))
+        //contact/phone
+        $(document).on('click','.phone',function(){
+            var tphone = $(this);
+            if (tphone.is (':checked'))
             {
-                $(".tsname").css({"display":"table-row"})
+                $(".tphone").css({"display":"table-row"})
             }else{
-                $(".tsname").css({"display":"none"})
+                $(".tphone").css({"display":"none"})
             }
         });
-        //roll name
-        $(document).on('click','.rname',function(){
-            var trname = $(this);
-            if (trname.is (':checked'))
+        //department
+        $(document).on('click','.dept',function(){
+            var tdept = $(this);
+            if (tdept.is (':checked'))
             {
-                $(".trname").css({"display":"table-row"})
+                $(".tdept").css({"display":"table-row"})
             }else{
-                $(".trname").css({"display":"none"})
+                $(".tdept").css({"display":"none"})
             }
         });
-        //group name
-        $(document).on('click','.gname',function(){
-            var tgname = $(this);
-            if (tgname.is (':checked'))
+        //designaation
+        $(document).on('click','.dgtn',function(){
+            var tdgtn = $(this);
+            if (tdgtn.is (':checked'))
             {
-                $(".tgname").css({"display":"inline"})
+                $(".tdgtn").css({"display":"table-row"})
             }else{
-                $(".tgname").css({"display":"none"})
+                $(".tdgtn").css({"display":"none"})
             }
         });
-        //blood name
-        $(document).on('click','.bname',function(){
-            var tbname = $(this);
-            if (tbname.is (':checked'))
+        //joining
+        $(document).on('click','.joindate',function(){
+            var tjoindate = $(this);
+            if (tjoindate.is (':checked'))
             {
-                $(".tbname").css({"display":"table-row"})
+                $(".tjoindate").css({"display":"table-row"})
             }else{
-                $(".tbname").css({"display":"none"})
+                $(".tjoindate").css({"display":"none"})
             }
         });
-        //phone name
-        $(document).on('click','.pname',function(){
-            var tpname = $(this);
-            if (tpname.is (':checked'))
-            {
-                $(".tpname").css({"display":"table-row"})
-            }else{
-                $(".tpname").css({"display":"none"})
-            }
-        });
-        //dept name
-        $(document).on('click','.dname',function(){
-            var tdname = $(this);
-            if (tdname.is (':checked'))
-            {
-                $(".tdname").css({"display":"table-row"})
-            }else{
-                $(".tdname").css({"display":"none"})
-            }
-        });
-        //dop name
-        $(document).on('click','.dobname',function(){
-            var tdobname = $(this);
-            if (tdobname.is (':checked'))
-            {
-                $(".tdobname").css({"display":"table-row"})
-            }else{
-                $(".tdobname").css({"display":"none"})
-            }
-        });
-        //admission name
-        $(document).on('click','.aname',function(){
-            var taname = $(this);
-            if (taname.is (':checked'))
-            {
-                $(".taname").css({"display":"table-row"})
-            }else{
-                $(".taname").css({"display":"none"})
-            }
-        });
-
-
 
         $("body").click(function () {
             var bghf = $("#bghf").val();
             var hffc = $("#hffc").val();
             var cbhfc = $("#cbhfc").val();
             var vtd = $("#vtd").val();
-
 
             $(".card-header,.card-footer").css({"background-color":bghf});
             $(".scl-cd-dec").css({"color":hffc});
@@ -820,7 +679,7 @@
 
             // datePicker
             $('.datePicker').datepicker({
-                format: 'yyyy-mm-dd'
+                format: 'dd-mm-yyyy'
             });
 
             // Print entered text value

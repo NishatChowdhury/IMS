@@ -47,9 +47,8 @@
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="nat">
-                                                                <!-- <img src="image/bg2.JPG" alt="" style="height: 70px; width: 280px; border-radius: 3px;"> -->
-                                                                <h2> {{ siteConfig('name') }}</h2>
-                                                                <h3 style="    font-size: 9px;
+                                                                <h2 class="scl-cd-name"> {{ siteConfig('name') }}</h2>
+                                                                <h3 class="scl-cd-add" style="font-size: 9px;
                                                                 font-weight: bold;"> {{ siteConfig('address') }}
                                                                 </h3>
                                                             </div>
@@ -64,15 +63,15 @@
                                                     <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
                                                         style="width:70px ; height:70px ;    width: 70px;   position: absolute; left: 265px;"
                                                         class="text-center rounded mx-auto d-block border border-dark">
-                                                    <h1 class=" text-bold  "
+                                                    <h1 id="idtitle" class=" text-bold  "
                                                         style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    -webkit-text-stroke-width: 0.4px; -webkit-text-stroke-color: rgb(20, 19, 19);  color: red;">
-                                                        IDENTITY CARD</h1>
+                                                        {{ __('IDENTITY CARD') }}</h1>
                                                     <h1 class=" text-bold "
                                                         style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    color: rgb(12 96 74);">
-                                                        Class-Play</h1>
+                                                        {{ __('Class-Play') }}</h1>
                                                     <h1 class=" text-bold "
                                                         style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    color: rgb(12 96 74);">
-                                                        KWS/2020/007/07</h1>
+                                                        {{ __('KWS/2020/007/07') }}</h1>
 
 
                                                     <div class="row bg-image">
@@ -81,19 +80,19 @@
                                                                 <table class="table" style="font-size: 12px;">
                                                                     <tbody>
                                                                         <tr class="tname" style="display: block;">
-                                                                            <td><strong> Name </strong></td>
+                                                                            <td><strong> {{ __('Name') }} </strong></td>
                                                                             <td>:</td>
-                                                                            <td><strong> Student Name </strong></td>
+                                                                            <td><strong> {{ __('Student Name') }} </strong></td>
                                                                         </tr>
                                                                         <tr class="tfname">
                                                                             <td><b>{{ __('Father') }}</b></td>
                                                                             <td>:</td>
-                                                                            <td><strong> Father's Name </strong></td>
+                                                                            <td><strong> {{ __('Father Name') }} </strong></td>
                                                                         </tr>
                                                                         <tr class="tmname">
                                                                             <td> <b>{{ __('Mother') }}</b></td>
                                                                             <td>:</td>
-                                                                            <td><strong> Mother's Name </strong></td>
+                                                                            <td><strong> {{ __('Mother Name') }} </strong></td>
                                                                         </tr>
                                                                         <tr class="tcname">
                                                                             <td> <b>{{ __('Class') }}</b></td>
@@ -163,7 +162,7 @@
                                                             alt=""
                                                             style="    height: 20px;  width: 35px;  border-radius: 50%;   ">
                                                     </div>
-                                                    <div style=" margin-top: 3px;">{{ __('Head Mistress') }}</div>
+                                                    <div id="idsignature" style=" margin-top: 3px;">{{ __('Head Mistress') }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,15 +246,6 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input nname" type="checkbox" id="nickname"
-                                                        name="nickname">
-                                                    <label class="form-check-label" for="nickname">
-                                                        {{ __('Nick Name') }}
-                                                    </label>
-                                                </div>
-                                            </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
                                                     <input class="form-check-input full-name" checked type="checkbox"
@@ -385,12 +375,11 @@
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input id="vtd" name="validity"
-                                                            class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
+                                                        <input id="vtd" name="validity" class="form-control datePicker" placeholder="ex: yyyy-mm-dd">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="far fa-calendar-alt"></i>
-                                                            </span>
+                                                        <span class="input-group-text">
+                                                        <i class="far fa-calendar-alt"></i>
+                                                        </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -405,52 +394,6 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgcolor" id="bghf"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="bgfont" id="hffc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
-                                                    <div class="input-group">
-                                                        {{-- <input type="text" class="form-control"> --}}
-                                                        <input type="text" name="titlecolor" id="cbhfc"
-                                                            class="form-control my-colorpicker1 colorpicker-element">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-palette"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -474,71 +417,8 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="title_size" type="text"
-                                                            class="form-control title-size" placeholder="Title Size..">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
                                                         <input name="body_size" type="text"
                                                             class="form-control body-size" placeholder="Body Size..">
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>{{ __('Back Side') }}</b>
-                                    </div>
-                                    <div class="card-body p-3">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Phone') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bPhone" id="bPhone" type="number"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Email') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bemail" id="bEmail" type="email"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /input-group -->
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{ __('Website') }}</label>
-                                                    <div class="input-group">
-                                                        <input name="bWebsite" id="bWebsite" type="text"
-                                                            class="form-control">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <input type="checkbox">
-                                                            </span>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- /input-group -->
@@ -578,7 +458,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-info">PDF</button>
+                                                    <button type="submit" class="btn btn-info">{{ __('PDF') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1043,19 +923,6 @@
                 "font-size": fas + "px"
             });
         });
-
-
-        //       $(document).on("click",".ffcolor",function () {
-        //           var color = $(this).val();
-        //
-        //           $(".scl-cd-dec").css({"color":color});
-        //       });
-        //
-        //       $(document).on("click",".hfcolor",function () {
-        //           var color = $(this).val();
-        //
-        //           $(".").css({"background-color":color});
-        //       });
 
         //colorPicker
         $(document).ready(function() {

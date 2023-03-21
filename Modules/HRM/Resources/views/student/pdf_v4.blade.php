@@ -286,7 +286,7 @@
                     </div>
                     <div
                         style=" text-align: center; font-size: 18px; font-weight: bold; position: relative; top: 28px;">
-                        <p>{{ __('Student Identity Card') }}</p>
+                        <p>{{ $card['title'] }}</p>
                     </div>
                     <div class="card-body text-center">
 
