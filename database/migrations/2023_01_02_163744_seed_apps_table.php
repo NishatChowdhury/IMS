@@ -35,7 +35,7 @@ class SeedAppsTable extends Migration
                 [
                     'name' => 'HRM',
                     'color' => 'white',
-                    'background' => 'fas fa-users',
+                    'background' => '#3498db',
                     'icon' => 'fas fa-globe',
                     'prefix' => 'hrm',
                     'guard' => 'web'
