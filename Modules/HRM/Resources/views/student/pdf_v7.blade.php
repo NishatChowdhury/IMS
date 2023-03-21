@@ -182,7 +182,8 @@
                                     <div class="col-md-9">
                                         <div class="right text-center">
                                             <div class="scl-cd-dec text-wrap text-bold ">
-                                                <h2 class="scl-cd-name" style="position: relative;top: 9px; margin: 1px; text-align: center; font-size: {{ $card['name_size'] !=null ? $card['name_size'] :  0}}px; color: #080808;; font-weight: bold; font-family: sans-serif;">
+                                                <h2 class="scl-cd-name"
+                                                    style="position: relative;top: 9px; margin: 1px; text-align: center; font-size: 20px; color: #080808;; font-weight: bold; font-family: sans-serif;">
                                                     {{ siteConfig('name') }}
                                                 </h2>
                                             </div>
@@ -204,7 +205,7 @@
                             <div class="card-body text-center">
                                 <h1 class="card-title text-bold nName"
                                     style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:{{ $card['title_size'] != null ? $card['title_size'] : 0 }}px ;color:{{ $card['titlecolor'] }}">
-                                    <strong>{{ $student->student->name }}</strong>
+                                    <strong>{{ $student->student->name ?? '' }}</strong>
                                 </h1>
                                 <div class="row">
                                     <div class="right col-12" style="    margin-top: 0px; ">
@@ -215,28 +216,28 @@
                                                         <tr>
                                                             <td><strong> {{ __('Name') }} </strong></td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td><strong> {{ $student->student->name }} </strong></td>
+                                                            <td><strong> {{ $student->student->name ?? '' }} </strong></td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['fname'])
                                                         <tr>
                                                             <td> {{ __('Father') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->father->f_name }}</td>
+                                                            <td>{{ $student->student->father->f_name ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['mname'])
                                                         <tr>
                                                             <td> {{ __('Mother') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->mother->m_name }}</td>
+                                                            <td>{{ $student->student->mother->m_name ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['session'])
                                                         <tr>
                                                             <td> {{ __('Session') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->session->year }}</td>
+                                                            <td>{{ $student->session->year ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['class'])
@@ -258,28 +259,28 @@
                                                         <tr>
                                                             <td> {{ __('Roll') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->rank }}</td>
+                                                            <td>{{ $student->rank ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['department'])
                                                         <tr>
                                                             <td> {{ __('Department') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->department }}</td>
+                                                            <td>{{ $student->department ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['admissiondate'])
                                                         <tr>
                                                             <td> {{ __('Admission') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->admission_date }}</td>
+                                                            <td>{{ $student->admission_date ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['dob'])
                                                         <tr>
                                                             <td> {{ __('DOB') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->dob }}</td>
+                                                            <td>{{ $student->student->dob ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                     @isset($card['blood'])
@@ -293,7 +294,7 @@
                                                         <tr>
                                                             <td> {{ __('Contact') }} </td>
                                                             <td>&nbsp;:&nbsp;</td>
-                                                            <td>{{ $student->student->mobile }}</td>
+                                                            <td>{{ $student->student->mobile ?? '' }}</td>
                                                         </tr>
                                                     @endisset
                                                 </tbody>
@@ -304,12 +305,14 @@
                             </div>
 
                             <p class="sinn">
-                                <img src="{{ asset('assets/img/logos/re.png') }}" alt=""
-                                        style="height: 34px; width: 86px; position: absolute; left: 154px; top: 320px;">
-                                <hr style="position: absolute;top: 333px;width: 91px;left: 143px;background-color: white;">
-                                <h5 style="position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">
-                                    {{ $card['signature'] }} 
-                                </h5>
+                                <img src="{{ asset('assets/img/signature/signature.png') }}" alt=""
+                                    style="height: 34px; width: 86px; position: absolute; left: 154px; top: 320px;">
+                                <hr
+                                    style="position: absolute;top: 333px;width: 91px;left: 143px;background-color: white;">
+                            <h5
+                                style="position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">
+                                {{ $card['signature'] }}
+                            </h5>
                             </p>
 
                         </div>
@@ -340,7 +343,8 @@
                 <div class="row">
                     <div class="" style="margin-top: 27px;">
                         <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                        <p style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}</p>
+                        <p style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}
+                        </p>
                         </p>
                     </div>
                     <div class="crd-add-dec text-bold"

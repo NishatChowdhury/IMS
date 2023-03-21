@@ -47,20 +47,7 @@ class StaffController extends Controller
     public function store_staff(Request $req){
 
         $this->validate($req,[
-            'name' => 'required',
-            'mobile' => 'required',
-            'dob' => 'sometimes|date',
-            'gender_id' => 'required',
-            'blood_group_id' => 'required',
-            'image' => 'sometimes|max:2000',
-            //'mail' => 'sometimes|email',
-            'code' => 'required',
-            'title' => 'required',
-            'role_id' => 'required',
-            //'shift_id' => 'required',
-            'job_type_id' => 'required',
-            'staff_type_id' => 'required',
-            'card_id' => 'required|unique:staffs',
+            'name' => 'required'
         ]);
         if ($req->hasFile('image')){
             $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
@@ -183,19 +170,7 @@ class StaffController extends Controller
     public function update_staff(Request $req){
         //dd($req->id);
         $this->validate($req,[
-            'name' => 'required',
-            'mobile' => 'required',
-            'dob' => 'sometimes|date',
-            'gender_id' => 'required',
-            'blood_group_id' => 'required',
-            'image' => 'sometimes|max:2000',
-            //'mail' => 'sometimes|email',
-            'code' => 'required',
-            'shift_id' => 'required',
-            'title' => 'required',
-            'role_id' => 'required',
-            'job_type_id' => 'required',
-            'staff_type_id' => 'required',
+            'name' => 'required'
         ]);
         $staff = Staff::query()->findOrFail($req->id);
         if ($req->hasFile('image')){

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WPIMS</title>
+    <title>{{ __('WPIMS') }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <style>
@@ -50,49 +50,49 @@
                             <tbody>
                             @isset($card['fulname'])
                                 <tr>
-                                    <td><strong> Name </strong></td>
+                                    <td><strong> {{ __('Name') }} </strong></td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td><strong> {{ $staff->name }} </strong></td>
                                 </tr>
                             @endisset
                             @isset($card['fname'])
                                 <tr>
-                                    <td> Father/Husband </td>
+                                    <td> {{ __('Father/Husband') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->father_husband }}</td>
                                 </tr>
                             @endisset
                             @isset($card['mname'])
                                 <tr>
-                                    <td> Mother </td>
+                                    <td> {{ __('Mother') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->mother }}</td>
                                 </tr>
                             @endisset
                             @isset($card['designation'])
                                 <tr>
-                                    <td> Designation </td>
+                                    <td> {{ __('Designation') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->title }}</td>
                                 </tr>
                             @endisset
                             @isset($card['index'])
                                 <tr>
-                                    <td> Index No. </td>
+                                    <td> {{ __('Index No.') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->code }}</td>
                                 </tr>
                             @endisset
                             @isset($card['contact'])
                                 <tr>
-                                    <td> Contact </td>
+                                    <td> {{ __('Contact') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->mobile }}</td>
                                 </tr>
                             @endisset
                             @isset($card['blood'])
                                 <tr>
-                                    <td> Blood G. </td>
+                                    <td> {{ __('Blood G.') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $staff->blood->name ?? '' }}</td>
                                 </tr>
@@ -130,9 +130,8 @@
             <div class="card-body">
                 <div class="back-top" style="font-size:15px">
                     <ul>
-                        {{--<li>This card is valid till 13.01.2020</li>--}}
-                        <li>This card is not transferable</li>
-                        <li>This finder of this card may please drop it to the nearest post office.</li>
+                        <li>{{ __('This card is not transferable') }}</li>
+                        <li>{{ __('This finder of this card may please drop it to the nearest post office.') }}</li>
                     </ul>
                 </div>
                 <div class="back-middle text-center">
@@ -143,17 +142,17 @@
                 <div class="back-bottom" style="font-size:15px">
                     <table class="table">
                         <tr>
-                            <td>Phone</td>
+                            <td>{{ __('Phone') }}</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ siteConfig('phone') }}</td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td>{{ __('Email') }}</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ siteConfig('email') }}</td>
                         </tr>
                         <tr>
-                            <td>Website</td>
+                            <td>{{ __('Website') }}</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ url('/') }}</td>
                         </tr>

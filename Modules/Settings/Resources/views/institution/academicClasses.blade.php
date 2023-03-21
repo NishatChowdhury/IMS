@@ -85,7 +85,7 @@
                                             <a href="{{ route('institution.classSubjects',$class->id) }}" role="button" class="btn btn-info btn-sm" title="Assign Subject"><i class="fas fa-book"></i></a>
                                             <a href="{{ route('institution.class.schedule.index',$class->id) }}" role="button" class="btn btn-success btn-sm" title="Class Schedule"><i class="fas fa-clock"></i></a>
                                             <a href="{{ route('fee-setup.list',$class->id) }}" class="btn btn-dark btn-sm"><i class="fas fa-funnel-dollar"></i></a>
-                                            <a href="{{ route('institution.assignTeacher',$class->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-user"></i></a>
+                                            {{-- <a href="{{ route('institution.assignTeacher',$class->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-user"></i></a> --}}
                                             <a type="button" class="btn btn-warning btn-sm edit" value='{{$class->id}}' title="Edit"> <i class="fas fa-edit"></i></a>
                                             <button type="submit" disabled class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
                                             {{ Form::close() }}
