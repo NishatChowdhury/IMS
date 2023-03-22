@@ -80,6 +80,7 @@ Route::prefix('admin')->group(function() {
     Route::get('student/generateStudentCard_v6',[IdCardController::class,'generateStudentCard_v6'])->name('student.generateStudentCard_v6');
     Route::get('student/generateStudentCard_v7',[IdCardController::class,'generateStudentCard_v7'])->name('student.generateStudentCard_v7');
     Route::get('student/generateStudentCard_v8',[IdCardController::class,'generateStudentCard_v8'])->name('student.generateStudentCard_v8');
+    Route::get('student/generateStudentCard_v9',[IdCardController::class,'generateStudentCard_v9'])->name('student.generateStudentCard_v9');
 
     Route::get('student/testimonial',[StudentController::class,'testimonial'])->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
@@ -104,6 +105,7 @@ Route::prefix('admin')->group(function() {
     Route::post('student/card/pdf-v6',[IdCardController::class,'pdf_V6'])->name('student.pdf_V6');
     Route::post('student/card/pdf-v7',[IdCardController::class,'pdf_V7'])->name('student.pdf_V7');
     Route::post('student/card/pdf-v8',[IdCardController::class,'pdf_V8'])->name('student.pdf_V8');
+    Route::post('student/card/pdf-v9',[IdCardController::class,'pdf_V9'])->name('student.pdf_V9');
 
     //Student profile start
     Route::get('student-profile/{studentId}',[StudentController::class,'studentProfile'])->name('admin.student.profile');
