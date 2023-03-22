@@ -252,11 +252,11 @@
 
 </head>
 
-@foreach ($staffs->chunk(4) as $chunk)
-    <div class="row" style="margin: 25px;">
+@foreach ($staffs->chunk(5) as $chunk)
+    <div class="row" >
         @foreach($chunk as $staff)
-            <div class="col-3 col-3-5">
-                <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
+            <div class="col-3 col-2-5">
+                <div class="card" style="width: 2.5in; height: 3.9in;  ">
                     <div class="  "
                         style="   background: #d01010;    height: 1.9in;">
                         <div class="row">

@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Design Student ID') }}</h1>
+                    <h1>Design Student ID</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Student') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Design Student ID') }}</li>
+                        <li class="breadcrumb-item"><a href="#">Student</a></li>
+                        <li class="breadcrumb-item active">Design Student ID</li>
                     </ol>
                 </div>
             </div>
@@ -48,18 +48,18 @@
                                                         <div class="right">
                                                             <div class="scl-cd-dec" style="padding-top: 6px;">
                                                                 <h6 class="scl-cd-name"><strong> {{ siteConfig('name') }}</strong></h6>
-                                                                <p class="scl-cd-add"><b>{{ __('Knowledge is Power') }}</b></p>
+                                                                <p class="scl-cd-add">{{ siteConfig('address') }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-body text-center">
-                                                <h6  id="idtitle" class="card-title text-bold">  {{ __('ID CARD') }} </h6>
+                                                <h6  id="idtitle" class="card-title text-bold">  ID CARD </h6>
                                                 <img src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="60">
-                                                <h6 class="card-title text-bold nName"> {{ __('Student Name') }} </h6>
+                                                <h6 class="card-title text-bold nName"> Student Name </h6>
                                                 <div class="row">
-                                                    <div class="right col-12" style="float:left; margin-top: 10px;">
+                                                    <div class="right" style="float:left; margin-top: 10px;">
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                                 <tbody>
@@ -75,11 +75,6 @@
                                                                 </tr>
                                                                 <tr class="tmname">
                                                                     <td> Mother </td>
-                                                                    <td>:</td>
-                                                                    <td>Lorem ipsum.</td>
-                                                                </tr>
-                                                                <tr class="guardian_name">
-                                                                    <td> Guardian </td>
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
@@ -156,8 +151,8 @@
                                                         <div class="card-back-dec text-bold" style="text-align: left; margin-top: 10px;font-size: 12px">
                                                             <ul style="margin: 0px !important; padding: 10px 15px !important;">
                                                                 <li>This card is valid till <span class="valid-date">31-Dec-2020</span></li>
-{{--                                                                <li>This card is not transferable</li>--}}
-{{--                                                                <li>This finder of this card may please drop it to the nearest post office.</li>--}}
+                                                                <li>This card is not transferable</li>
+                                                                <li>This finder of this card may please drop it to the nearest post office.</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -196,13 +191,11 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                {{ Form::open(['route'=>'student.pdf','method'=>'post']) }}
+                                {{ Form::open(['route' => 'student.pdf','method'=>'post']) }}
 
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>Option</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Option</h5>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
@@ -298,6 +291,14 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            {{--<div class="form-group col-md-4">--}}
+                                            {{--<div class="form-check">--}}
+                                            {{--<input class="form-check-input" type="checkbox" id="gridCheck">--}}
+                                            {{--<label class="form-check-label" for="gridCheck">--}}
+                                            {{--Designation--}}
+                                            {{--</label>--}}
+                                            {{--</div>--}}
+                                            {{--</div>--}}
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
                                                     <input class="form-check-input dobname" type="checkbox" id="dob" name="dob">
@@ -313,14 +314,6 @@
                                                     <input class="form-check-input aname" type="checkbox" id="admissiondate" name="admissiondate">
                                                     <label class="form-check-label" for="admissiondate">
                                                         Admission Date
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input guardian_name" type="checkbox" id="guardian_name" name="guardian_name">
-                                                    <label class="form-check-label" for="guardian_name">
-                                                        Guardian Name
                                                     </label>
                                                 </div>
                                             </div>
@@ -349,11 +342,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>Front Side</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Front Side</h5>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -433,11 +424,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b> Back Side</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Back Side</h5>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -484,11 +473,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3">
-                                    <div class="card-header1">
-                                        <b>View Cards</b>
-                                    </div>
-                                    <div class="card-body p-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> View Cards</h5>
                                         <div class="row">
                                             {{--                                            <div class="col">--}}
                                             {{--                                                <div class="form-group">--}}
@@ -582,11 +569,6 @@
         .scl-cd-dec p{
             font-size: 8px;
         }
-             .card-header1 {
-    border-bottom: 1px solid #d8d8d8;
-    padding: 9px 0px 9px 20px;
-    background: #f7f7f7;
-}
 
     </style>
 @stop
@@ -598,7 +580,6 @@
             $(".tname").css({"display":"block"});  // for name
             $(".tfname").css({"display":"none"}); // for farther name
             $(".tmname").css({"display":"none"}); // for mother name
-            $(".guardian_name").css({"display":"none"}); // for mother name
             $(".tcname").css({"display":"block"}); // for class name
             $(".tsname").css({"display":"block"}); // for section name
             $(".trname").css({"display":"block"}); // for roll name
@@ -647,17 +628,6 @@
                 $(".tmname").css({"display":"table-row"})
             }else{
                 $(".tmname").css({"display":"none"})
-            }
-        });
-
-        //guardian name
-        $(document).on('click','.mname',function(){
-            var guardian_name = $(this);
-            if (guardian_name.is (':checked'))
-            {
-                $(".guardian_name").css({"display":"table-row"})
-            }else{
-                $(".guardian_name").css({"display":"none"})
             }
         });
         //class name
@@ -870,4 +840,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>{{--
     <script src= "{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>--}}
 @stop
+
+
 
