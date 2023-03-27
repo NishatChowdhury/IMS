@@ -40,9 +40,11 @@ class FakeSMS extends Command
      */
     public function handle()
     {
-        $id = ['S15'];
+        //$id = ['S15'];
+        $id = [];
 
         $attendances = RawAttendance::query()
+            ->where('access_date',today())
             ->whereIn('registration_id',$id)
             ->where('sms_sent',NULL)
             ->get();
@@ -77,7 +79,7 @@ class FakeSMS extends Command
 
     public function send($student,$msg)
     {
-        $url = "https://sms.solutionsclan.com/api/sms/send";
+        $url = "https://a2p.solutionsclan.com/api/sms/send";
         $data = [
             "apiKey" => smsConfig('api_key'),
             "contactNumbers" => $student->mobile,

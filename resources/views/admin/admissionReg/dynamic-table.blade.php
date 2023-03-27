@@ -50,7 +50,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">{{ __('Addmisson Registration') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Custom-table') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Custom Table') }}</li>
                     </ol>
                 </div>
             </div>

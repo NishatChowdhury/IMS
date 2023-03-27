@@ -62,7 +62,7 @@
                                     <td>{{$grade->grade}}</td>
                                     <td>{{$grade->comment}}</td>
                                     <td>
-                                        <a type="button" href="{{action('Backend\ExamController@delete_grade',$grade->id)}}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"> <i class="fas fa-trash "></i>
+                                        <a type="button" href="{{route('exam.delete_grade',$grade->id)}}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"> <i class="fas fa-trash "></i>
                                         </a>
                                     </td>
 
@@ -103,7 +103,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['action'=>'Backend\ExamController@store_grade', 'method'=>'post']) !!}
+                    {!! Form::open(['route'=>'exam.store_grade', 'method'=>'post']) !!}
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Result
                                 System')}}</label>

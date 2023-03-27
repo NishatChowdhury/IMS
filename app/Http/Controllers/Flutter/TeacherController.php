@@ -13,6 +13,7 @@ use App\Models\Backend\Section;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentLeave;
+use App\Models\Backend\Subject;
 use App\Models\Diary;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -135,15 +136,19 @@ class TeacherController extends Controller
     // To retrieve student wise attendance
     public function studentWiseAttendance(Request $request)
     {
+        $year = $request->get('year');
+        $month = $request->get('month');
         $student = Student::query()
             ->where('studentId', $request->studentId)
             ->first();
         $studentAcademic = StudentAcademic::query()
-            ->where('id', $student->id)
+            ->where('student_id', $student->id)
             ->with('classes', 'section', 'group')
+            ->latest()
             ->first();
         $attendances = Attendance::query()
-            ->where('student_academic_id', $studentAcademic->id ?? '')
+            ->where('student_academic_id', $studentAcademic->id)
+            ->where('date','like','%'.$year.'-'.$month.'%')
             ->get();
         if ($attendances) {
             $data = [];
@@ -174,37 +179,32 @@ class TeacherController extends Controller
     public function dailyAttendance(Student $student, Request $request)
     {
         $today = $request->get('date');
-        $s = $student->newQuery();
-        if ($request->get('class_id')) {
-            $class = $request->get('class_id');
-            $s->whereHas('studentAcademic', function ($query) use ($class) {
-                return $query->where('academic_class_id', $class);
-            });
-            $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
-        } else {
-            $academicClass = '';
-        }
+        $class = $request->get('class_id');
 
-        $students = $s->get();
-        $attend = [];
+        $students = StudentAcademic::query()
+            ->where('academic_class_id',$class)
+            ->get();
+
+        $attendArr = [];
         foreach ($students as $student) {
-            $stuAca = StudentAcademic::where('student_id', $student->id)->first();
             $attn = Attendance::query()
                 ->whereDate('date', $today)
-                ->where('student_academic_id', $stuAca->id)
+                ->where('student_academic_id', $student->id)
                 ->first();
+
             if ($attn != null) {
                 $attendArr[] = (object)[
-                    'studentName' => $student->name,
-                    'studentId' => $student->studentId,
+                    'studentName' => $student->student->name??'',
+                    'studentId' => $student->student->studentId??'',
                     'date' => $today,
-                    'class' => $stuAca->classes->name,
+                    'class' => $student->classes->name??'',
                     'in_time' => $attn->manual_in_time ?? $attn->in_time,
                     'out_time' => $attn->manual_out_time ?? $attn->out_time,
                     'status' => $attn->attendanceStatus->code ?? '',
                 ];
             }
         }
+
         $attendances = $attendArr ?? [];
         return response()->json([
             'status' => true,
@@ -254,35 +254,37 @@ class TeacherController extends Controller
     public function mobileAttendance(Student $student, Request $request)
     {
         $today = Carbon::now();
-        $s = $student->newQuery();
-        if ($request->get('class_id')) {
-            $class = $request->get('class_id');
-            $s->whereHas('studentAcademic', function ($query) use ($class) {
-                return $query->where('academic_class_id', $class);
-            });
-            $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
-        } else {
-            $academicClass = '';
-        }
+       // $today = '2023-02-11';
+        $class = $request->get('class_id');
+//        $s = $student->newQuery();
+//        if ($request->get('class_id')) {
+//            $class = $request->get('class_id');
+//            $s->whereHas('studentAcademic', function ($query) use ($class) {
+//                return $query->where('academic_class_id', $class);
+//            });
+//            $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
+//        } else {
+//            $academicClass = '';
+//        }
 
-        $students = $s->get();
+        //$students = $s->get();
+        $students = StudentAcademic::query()->where('academic_class_id', $class)->get();
+        $attendArr = [];
         foreach ($students as $student) {
-            $stuAca = StudentAcademic::where('student_id', $student->id)->first();
             $attn = Attendance::query()
-                ->where('student_academic_id', $stuAca->id)
+                ->where('student_academic_id', $student->id)
                 ->whereDate('date', $today)
                 ->first();
             // return $attn->attendanceStatus->code;
-            if ($attn != null) {
-                $attendArr[] = (object)[
-                    'student_academic_id' =>  $stuAca->id ?? '',
-                    'studentId' => $student->studentId ?? '',
-                    'studentName' => $student->name ?? '',
-                    'shift_id' => $stuAca->shift_id ?? '',
-                    'attendance_status_id' => $attn->attendance_status_id,
-                    'status' => $attn->attendanceStatus->code ?? ''
-                ];
-            }
+            $attendArr[] = (object)[
+                'student_academic_id' =>  $student->id ?? '',
+                'studentId' => $student->student->studentId ?? '',
+                'studentName' => $student->student->name ?? '',
+                'shift_id' => $student->shift_id ?? '',
+                'attendance_status_id' => $attn != null ? $attn->attendance_status_id : 2,
+                //'status' => $attn->attendanceStatus->code ?? ''
+            ];
+
         }
         $attendances = $attendArr ?? [];
         return response()->json([
@@ -293,14 +295,19 @@ class TeacherController extends Controller
 
     // To retrieve all classes
     public function classes(){
-        $classes = Classes::query()->get();
+        //$classes = Classes::query()->get();
+        $classes = AcademicClass::query()->get();
         if ($classes->isNotEmpty()) {
             $data = [];
             foreach ($classes as $class) {
+                //dd($class->section->name);
+                $c = $class->classes->name??'';
+                $s = $class->section->name??'';
+                $g = $class->group->name??'';
                 $data[] = [
                     'id' => $class->id,
-                    'name' => $class->name,
-                    'numericClass' => $class->numeric_class,
+                    'name' => $c.' '.$s.' '.$g,
+                    'numericClass' => $class->classes->numeric_class ?? ' ',
                 ];
             }
             return response()->json([
@@ -352,6 +359,27 @@ class TeacherController extends Controller
         }
     }
 
+    // To retrieve all groups
+    public function subjects(){
+        $subjects = Subject::query()->get();
+        //$groups = Group::query()->get();
+        if ($subjects->isNotEmpty()) {
+            $data = [];
+            foreach ($subjects as $subject) {
+                $data[] = [
+                    'id' => $subject->id,
+                    'name' => $subject->name
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'subjects' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
+    }
+
     // To retrieve all examinations
     public function examinations(){
         $exams = Exam::whereHas('session', function($q){
@@ -396,7 +424,7 @@ class TeacherController extends Controller
             $data['student_academic_id'] = $attendance['student_academic_id'];
             $data['date'] = $request->date;
             $data['shift_id'] = $attendance['shift_id'];
-            $data['attendance_status_id'] = $attendance['attendance_status_id'];
+            $data['attendance_status_id'] = $attendance['attendance_status_id'] ? 1 : 2;
             $isExists = Attendance::query()
                 ->where('date',$request->date)
                 ->where('student_academic_id',$attendance['student_academic_id'])
@@ -407,7 +435,7 @@ class TeacherController extends Controller
                     ->where('student_academic_id',$attendance['student_academic_id'])
                     ->first();
                 try {
-                    $attn->update(['attendance_status_id'=>$attendance['attendance_status_id']]);
+                    $attn->update(['attendance_status_id'=>$data['attendance_status_id']]);
                 }catch (Exception $e){
                     return response()->json($e->getMessage());
                 }

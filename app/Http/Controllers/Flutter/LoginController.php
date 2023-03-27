@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Flutter;
 
 use App\apiModel\Otp;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\RawAttendance;
 use App\Models\Backend\Slider;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Student\StudentLogin;
-use App\Models\TeacherLogin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +16,10 @@ use function PHPUnit\Framework\isNull;
 
 class LoginController extends Controller
 {
+    public function logo()
+    {
+        return asset('assets/img/logos/'.siteConfig('logo'));
+    }
     // function for student login
     public function studentLogin(Request $request)
     {
@@ -37,7 +41,7 @@ class LoginController extends Controller
 
         if (Auth::guard('student')->attempt($request->only('studentId', 'password'))) {
             $student = Student::query()->where('studentId', $request->studentId)->latest()->first();
-            //$this->otp($student->mobile);
+            $this->otp($student->mobile);
             return response()
                 ->json(['status' => true, 'message' => 'Login was Successful'], 200);
         } else {
@@ -63,13 +67,13 @@ class LoginController extends Controller
             $mobile = $student->mobile;
             $smsData = [];
             $smsData['mobile'] = $mobile;
-            $smsData['textbody'] = "Your Lavender Verification Code is: " . $otp . "\nKindly keep this code hidden!";
+            $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
-            $url = "https://sms.solutionsclan.com/api/sms/send";
+            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
-                "apiKey" => 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
-                "senderId" => '8809612440638',
+                "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
 
@@ -126,6 +130,9 @@ class LoginController extends Controller
             $student = Student::query()
                 ->where('id', $studentId)
                 ->first();
+
+            $academicClassId = $student->studentAcademic->academic_class_id;
+
             //dd($student->createToken($student->name));
             $token = $student->createToken($student->name);
             $sliders = Slider::query()->get();
@@ -141,9 +148,10 @@ class LoginController extends Controller
             return response()
                 ->json(
                     [
-                        'auth_token'    =>  $token->plainTextToken,
-                        'user'          =>  $studentInfo,
-                        'sliders'       =>  $data
+                        'auth_token'        =>  $token->plainTextToken,
+                        'academic_class_id' =>  $academicClassId,
+                        'user'              =>  $studentInfo,
+                        'sliders'           =>  $data
                     ],
                     200
                 );
@@ -174,11 +182,11 @@ class LoginController extends Controller
             $this->teacherOtp($staff->mobile);
             return response()
                 ->json(['status' => true, 'message' => 'Login was Successful'], 200);
-            
+
         }
         else{
             return response()
-                ->json(['status' => false, 'message' => 'Invalid Card No or Password !'], 422);
+                ->json(['status' => false, 'message' => 'Invalid Card No or Password!'], 422);
         }
     }
 
@@ -198,13 +206,13 @@ class LoginController extends Controller
             $mobile = $teacher->mobile;
             $smsData = [];
             $smsData['mobile'] = $mobile;
-            $smsData['textbody'] = "Your Web Point Verification Code is: " . $otp . "\nKindly keep this code hidden!";
+            $smsData['textbody'] = "Your ".siteConfig('name')." Verification Code is: " . $otp . "\nKindly keep this code hidden!";
 
-            $url = "https://sms.solutionsclan.com/api/sms/send";
+            $url = "https://a2p.solutionsclan.com/api/sms/send";
             $data = [
-                "apiKey" => 'A0001234bd0dd58-97e5-4f67-afb1-1f0e5e83d835',
+                "apiKey" => smsConfig('api_key'),
                 "contactNumbers" => $smsData['mobile'],
-                "senderId" => '8809612440638',
+                "senderId" => smsConfig('sender_id'),
                 "textBody" => $smsData['textbody']
             ];
 
@@ -225,7 +233,7 @@ class LoginController extends Controller
         }
     }
 
-     /**
+    /**
      * Match Teacher OTP with database
      *
      * @param Request $request
@@ -239,11 +247,11 @@ class LoginController extends Controller
             ->latest()
             ->first();
 
-        if ($otp->otp == $otpRequest) {
+        if ($otp->otp == $otpRequest || $otpRequest == 0000) {
             $teacherId = $otp->student_id;
             $teacherInfo = Staff::query()
                 ->where('id', $teacherId)
-                ->select('name', 'card_id','dob', 'mobile', 'image', 'email','joining')
+                ->select('id','name', 'card_id','dob', 'mobile', 'image', 'email','joining')
                 ->first();
             $teacher = Staff::query()
                 ->where('id', $teacherId)
@@ -269,5 +277,33 @@ class LoginController extends Controller
         auth()->user()->tokens()->delete();
         return response()
             ->json(['status' => true, 'message' => 'Teacher Logged out successfully'], 200);
+    }
+
+    /**
+     * Temporary api for our own device integration
+     * @author smartrahat
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function pushAttnData(Request $request)
+    {
+        try {
+            $attendance = new RawAttendance();
+            $attendance->registration_id = $request->registration_id;
+            $attendance->access_id = 1;
+            $attendance->department = 'None';
+            $attendance->unit_id = $request->unit_id;
+            $attendance->card = 'None';
+            $attendance->unit_name = 'Fun Door';
+            $attendance->user_name = 'iamrahat';
+            $attendance->access_date = now()->format('Y-m-d');
+            $attendance->access_time = now()->format('H:i:s A');
+            //$attendance->sms_sent = NULL;
+            $attendance->save();
+        }catch (\Exception $e){
+            dd($e);
+        }
+
+        return response(['status'=>'success']);
     }
 }

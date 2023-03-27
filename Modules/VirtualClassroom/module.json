@@ -1,0 +1,11 @@
+{
+    "name": "VirtualClassroom",
+    "alias": "virtualclassroom",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\VirtualClassroom\\Providers\\VirtualClassroomServiceProvider"
+    ],
+    "files": []
+}

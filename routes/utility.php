@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Modules\ExamAndResult\Http\Controllers\ExamController;
 
 
 Route::get('system/migrate',function(){
@@ -678,15 +679,6 @@ Route::get('rename-pic',function(){
     }
 });
 
-Route::get('sync-image-name',function(){
-    $students = Student::query()->get();
-    foreach($students as $student){
-        $id = $student->studentId;
-        $student->update(['image'=>$id.'.jpg']);
-    }
-    dd('sync complete '.date('ymd'));
-});
-
 Route::get('add-zero-to-number',function (){
     $students = Student::query()->get();
     foreach($students as $student){
@@ -844,11 +836,11 @@ Route::get('sync-group',function(){
     dd('group id synced');
 });
 
-Route::get('upload-csv','Backend\ExamController@upload');
-Route::get('bulk-upload-csv','Backend\ExamController@bulkUpload');
+Route::get('upload-csv',[ExamController::class,'upload']);
+Route::get('bulk-upload-csv',[ExamController::class,'bulkUpload']);
 
-Route::post('upload-file','Backend\ExamController@file');
-Route::post('bulk-upload-file','Backend\ExamController@bulkFile');
+Route::post('upload-file',[ExamController::class,'file']);
+Route::post('bulk-upload-file',[ExamController::class,'bulkFile']);
 
 Route::get('calc-final-result',function(){
     $sessionId = 2;
@@ -1028,7 +1020,7 @@ Route::get('sync-academic-class-id',function(){
 Route::get('sync-image-name',function(){
     $students = Student::query()->get();
     foreach($students as $student){
-        $image = $student->studentId.'.jpg';
+        $image = 'students'.$student->studentId.'.jpg';
         $student->update(['image'=>$image]);
     }
     dd('sync complete');

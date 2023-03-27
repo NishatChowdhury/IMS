@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Backend\Gender;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class SeedGenderTable extends Migration
         Schema::table('genders', function (Blueprint $table) {
             $genders = ['Male','Female','Other'];
             foreach($genders as $gender){
-                \App\Models\Frontend\Gender::query()->create(['name'=>$gender]);
+                Gender::query()->create(['name'=>$gender]);
             }
         });
     }

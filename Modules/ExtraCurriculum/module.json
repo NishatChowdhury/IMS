@@ -1,0 +1,11 @@
+{
+    "name": "ExtraCurriculum",
+    "alias": "extracurriculum",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ExtraCurriculum\\Providers\\ExtraCurriculumServiceProvider"
+    ],
+    "files": []
+}

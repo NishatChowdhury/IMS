@@ -348,24 +348,7 @@ class StudentController extends Controller
 
         $rules = [
             'name' => 'required',
-            'name_bn' => 'required',
-            'f_name' => 'required',
-            'f_name_bn' => 'required',
-            'birth_certificate' => 'required|integer',
-            'nationality' => 'required',
-            'disability' => 'required',
             'studentId' => ['required',Rule::unique('students')->ignore($id)],
-            'status' => 'required',
-            'dob' => 'required',
-            'gender_id' => 'required',
-            'religion_id' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'zip' => 'required',
-            'city_id' => 'required',
-            'country_id' => 'required',
-            'mobile' => 'required',
-            'email' => 'required',
         ];
 
         $customMessages = [
@@ -416,6 +399,7 @@ class StudentController extends Controller
             'group_id' => $getAcademicClass->group_id,
             'shift_id' => 1,
             'rank' => $request->rank,
+            'status' => $request->status,
         ]);
 
         Father::query()->findOrNew($request->f_id)->updateOrCreate([

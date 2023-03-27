@@ -51,9 +51,9 @@
                     </div>
                     <div class="card-body">
                         <h6  id="idtitle" class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px;margin-bottom: 0"><strong>{{ $card['title'] }}</strong></h6>
-                        <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}" width="70" alt="" style="border: 2px solid #000;min-height: 70px;max-height: 90px">
+                        <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image ?? '' }}" width="70" alt="" style="border: 2px solid #000;min-height: 70px;max-height: 90px">
                         @isset($card['nickname'])
-                            <h6 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px"> {{ $student->student->name }} </h6>
+                            <h5 class="card-title" style="color:{{ $card['titlecolor'] }};font-size:{{ $card['title_size']!=null ? $card['title_size'] : 0 }}px;font-weight: bold;"> {{ $student->student->name ?? '' }} </h5>
                         @endisset
 
                         <table class="table" style="text-align:left;font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
@@ -81,17 +81,38 @@
                             @endisset
                             @isset($card['class'])
                                 <tr>
+                                    <td> Course </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>B.B.S</td>
+                                </tr>
+                            @endisset
+                            @isset($card['session'])
+                                <tr>
+                                    <td> Session </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $student->session->year }}</td>
+                                </tr>
+                            @endisset
+                            @isset($card['class'])
+                                <tr>
                                     <td> Class </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>
                                         {{ $student->classes->name ?? '' }}&nbsp;
-                                        @if($card['group'])
-                                            {{ $student->group->name ?? '' }}&nbsp;
-                                        @endif
-                                        @if($card['section'])
-                                            {{ $student->section->name ?? '' }}
-                                        @endif
+{{--                                        @isset($card['group'])--}}
+{{--                                            {{ $student->group->name ?? '' }}&nbsp;--}}
+{{--                                        @endisset--}}
+{{--                                        @isset($card['section'])--}}
+{{--                                            {{ $student->section->name ?? '' }}--}}
+{{--                                        @endisset--}}
                                     </td>
+                                </tr>
+                            @endisset
+                            @isset($card['group'])
+                                <tr>
+                                    <td> Group </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $student->group->name }}</td>
                                 </tr>
                             @endisset
                             @isset($card['roll'])
@@ -133,7 +154,7 @@
                                 <tr>
                                     <td> Contact </td>
                                     <td>&nbsp;:&nbsp;</td>
-                                    <td>{{ $student->student->mobile }}</td>
+                                    <td>{{ $student->student->mobile ?? '' }}</td>
                                 </tr>
                             @endisset
                             </tbody>
@@ -148,7 +169,7 @@
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
                         <div class="row">
                             <div class="col">
-                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId }}</strong> </p>
+                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId ?? '' }}</strong> </p>
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>
@@ -170,8 +191,6 @@
                 <div class="back-top" style="font-size:12px">
                     <ul style="padding-left: 15px;padding-top:15px">
                         <li>This card is valid till {{ $card['validity'] }}</li>
-                        <li>This card is not transferable</li>
-                        <li>This finder of this card may please drop it to the nearest post office.</li>
                     </ul>
                 </div>
                 <div class="back-middle text-center">
@@ -218,14 +237,33 @@
                 <td>{{ $card['bgfont'] }}</td>
             </tr>
             <tr>
+                <td>Name Size</td>
+                <td>:</td>
+                <td>{{ $card['name_size'] }}</td>
+            </tr>
+            <tr>
+                <td>Address Size</td>
+                <td>:</td>
+                <td>{{ $card['address_size'] }}</td>
+            </tr>
+            <tr>
                 <td>Title Color</td>
                 <td>:</td>
                 <td>{{ $card['titlecolor'] }}</td>
             </tr>
+            <tr>
+                <td>Title Size</td>
+                <td>:</td>
+                <td>{{ $card['title_size'] }}</td>
+            </tr>
+            <tr>
+                <td>Body Size</td>
+                <td>:</td>
+                <td>{{ $card['body_size'] }}</td>
+            </tr>
         </table>
     </div>
 </div>
-
 
 </body>
 </html>

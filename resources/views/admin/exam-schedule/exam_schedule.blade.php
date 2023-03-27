@@ -24,7 +24,7 @@
     <section class="content">
         <div class="row">
             <div class="col-12">
-                {!! Form::open(['action'=>'Backend\ExamController@store_schedule', 'method'=>'post']) !!}
+                {!! Form::open(['route'=>'exam.store_schedule', 'method'=>'post']) !!}
                     {!! Form::hidden('session_id', $session_id, []) !!}
                     {!! Form::hidden('exam_id', $examId, []) !!}
                     {!! Form::hidden('class_id', $class_id, []) !!}

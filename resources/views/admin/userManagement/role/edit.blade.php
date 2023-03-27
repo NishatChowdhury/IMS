@@ -94,24 +94,6 @@
                                                                 </label>
                                                             </div>
                                                         @endforeach
-
-                                                        {{--                                                    @if(isset($role))--}}
-                                                        {{--                                                        @foreach($role->permissions as $rolePermission)--}}
-                                                        {{--                                                            {{ $permission->id ==  $rolePermission->id ? 'checked' : ''}}--}}
-                                                        {{--                                                        @endforeach--}}
-                                                        {{--                                                    @endif--}}
-
-                                                        {{--                                                        <div>--}}
-                                                        {{--                                                            <input   type="checkbox"--}}
-                                                        {{--                                                                     value="{{ $permission->id }}"--}}
-                                                        {{--                                                                     id="check01"--}}
-                                                        {{--                                                                     name="permission[]">--}}
-                                                        {{--                                                                     onClick="checkPermission('all-permission-{{ $key }}','checkModule-{{ $key }}',{{ count($module->permissions) }})">--}}
-                                                        {{--                                                            $module count  {{ count($module->permissions) }}--}}
-                                                        {{--                                                            <label for="check-{{ $key }}">--}}
-                                                        {{--                                                                {{ $permission->name }}--}}
-                                                        {{--                                                            </label>--}}
-                                                        {{--                                                        </div>--}}
                                                     @endforeach
                                                 </div>
                                             </div>

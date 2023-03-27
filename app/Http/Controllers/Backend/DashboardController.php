@@ -9,6 +9,7 @@ use App\Models\Backend\Notice;
 use App\Models\Backend\Permission;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -19,46 +20,52 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data =[];
-
-        $data['students'] = Student::query()
-            ->whereHas('academics',function($query){
-                $query->whereIn('session_id',activeYear());
-            })
-            ->where('status',1)
-            ->count();
-
-        $data['studentMale'] = Student::query()
-            ->whereHas('academics',function($query){
-                $query->whereIn('session_id',activeYear());
-            })
-            ->where('status',1)
-            ->where('gender_id',1)
-            ->count('id');
-
-        $data['studentFemale'] = Student::query()
-            ->whereHas('academics',function($query){
-                $query->whereIn('session_id',activeYear());
-            })
-            ->where('status',1)
-            ->where('gender_id',2)
-            ->count('id');
-
-        $data['teachers'] = Staff::query()->where('staff_type_id',2)->count('id');
-
-        $data['teacherMale'] = Staff::query()->where('staff_type_id',2)->where('gender_id',1)->count('id');
-
-        $data['teacherFemale'] = Staff::query()->where('staff_type_id',2)->where('gender_id',2)->count('id');
-
-        $data['classes'] = AcademicClass::query()->count('id');
-
-        $data['calenders'] = AcademicCalender::query()->where('status',1)->orderBy('start')->paginate(5);
-
-        $data['notices'] = Notice::query()->where('notice_type_id',2)->orderBy('start','desc')->limit(5)->get();
-
-
-        //dd($data['calenders']);
-
-        return view('admin.dashboard.dashboard')->with($data);
+        $apps = DB::table('apps')->get();
+        return view('home',compact('apps'));
     }
+
+//    public function index()
+//    {
+//        $data = [];
+//
+//        $data['students'] = Student::query()
+//            ->whereHas('academics',function($query){
+//                $query->whereIn('session_id',activeYear());
+//            })
+//            ->where('status',1)
+//            ->count();
+//
+//        $data['studentMale'] = Student::query()
+//            ->whereHas('academics',function($query){
+//                $query->whereIn('session_id',activeYear());
+//            })
+//            ->where('status',1)
+//            ->where('gender_id',1)
+//            ->count('id');
+//
+//        $data['studentFemale'] = Student::query()
+//            ->whereHas('academics',function($query){
+//                $query->whereIn('session_id',activeYear());
+//            })
+//            ->where('status',1)
+//            ->where('gender_id',2)
+//            ->count('id');
+//
+//        $data['teachers'] = Staff::query()->where('staff_type_id',2)->count('id');
+//
+//        $data['teacherMale'] = Staff::query()->where('staff_type_id',2)->where('gender_id',1)->count('id');
+//
+//        $data['teacherFemale'] = Staff::query()->where('staff_type_id',2)->where('gender_id',2)->count('id');
+//
+//        $data['classes'] = AcademicClass::query()->count('id');
+//
+//        $data['calenders'] = AcademicCalender::query()->where('status',1)->orderBy('start')->paginate(5);
+//
+//        $data['notices'] = Notice::query()->where('notice_type_id',2)->orderBy('start','desc')->limit(5)->get();
+//
+//
+//        //dd($data['calenders']);
+//
+//        return view('admin.dashboard.dashboard')->with($data);
+//    }
 }

@@ -34,6 +34,11 @@ class StudentAcademic extends Model
     {
         return $this->belongsTo(Session::class,'session_id');
     }
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class,'session_id');
+    }
   public function group()
     {
         return $this->belongsTo(Group::class);

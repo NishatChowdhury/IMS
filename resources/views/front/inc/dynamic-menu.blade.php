@@ -24,7 +24,7 @@
                                 <ul class="list-unstyled">
                                     @foreach($menu->children->sortBy('order') as $subMenu)
                                         <li class="{{ $subMenu->hasChild() ? 'nav-item__has-dropdown' : '' }}">
-                                            <a class="nav-link__list {{ $subMenu->hasChild() ? 'dropdown-toggle' : '' }}" href="{{ url('page',$subMenu->uri) }}" {{ $subMenu->hasChild() ? 'data-toggle=dropdown' : '' }}> {{ $subMenu->name }} </a>
+                                            <a class="nav-link__list {{ $subMenu->hasChild() ? 'dropdown-toggle' : '' }}" href="{{ $subMenu->url ?: url('page',$subMenu->uri) }}" {{ $subMenu->hasChild() ? 'data-toggle=dropdown' : '' }}> {{ $subMenu->name }} </a>
                                             @if($subMenu->hasChild())
                                                 <div class="dropdown-menu">
                                                     <ul class="list-unstyled">

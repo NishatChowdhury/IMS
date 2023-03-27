@@ -42,9 +42,10 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <form action="{{route('instituteMessageUpdate')}}" method="POST" enctype="multipart/form-data">
-                                @method('patch')
-                                @csrf
+{{--                            <form action="{{route('instituteMessageUpdate')}}" enctype="multipart/form-data">--}}
+                                {{ Form::open(['route'=>'instituteMessageUpdate','method'=>'patch','files'=>true]) }}
+{{--                                @method('patch')--}}
+{{--                                @csrf--}}
                                 <input type="hidden" value="{{$message->alias ?? 'principal'}}" name="alias">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Title</label>
@@ -62,7 +63,8 @@
                                 <div class="mb-3">
                                     <input type="submit" class="btn btn-info" value=" Save ">
                                 </div>
-                            </form>
+                            {{ Form::close() }}
+{{--                            </form>--}}
                         </div>
                     </div>
                 </div>

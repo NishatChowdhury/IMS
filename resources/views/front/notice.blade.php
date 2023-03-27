@@ -6,7 +6,7 @@
                     <div class="col-md-12 mt-4">
                         <h2>{{ $about->title ?? __('Undefined') }}</h2>
                         @if($about)
-                            {!! Str::limit($about->body,800) !!}
+                            {!! strip_tags(Str::limit($about->body,800)) !!}
                             <a style="color: blue" data-toggle="modal" data-target="#aboutModal" data-whatever="@mdo">{{ __('...more') }}</a>
                         @endif
                     </div>
@@ -24,9 +24,9 @@
                         <div class="p-4 border-bottom wow fadeInUp">
                             <p class="text-warning mb-1">
                                 @if($notice->start)
-                                    {{ $notice->start->format('Y-m-d') }}
+                                    {{ $notice->start->format('Y-m-d') ?? '' }}
                                 @else
-                                    {{ $notice->created_at->format('Y-m-d') }}
+                                    {{ $notice->created_at->format('Y-m-d') ?? '' }}
                                 @endif
                             </p>
                             <a href="{{ action('Front\FrontController@noticeDetails',$notice->id) }}" class="text-info">
@@ -37,7 +37,7 @@
 
                     <div class="p-4">
                         <a href="{{ action('Front\FrontController@notice') }}" class="btn btn-link pl-0">
-                            {{ __('View All Notices')}}
+                            {{ __('View All Notices') }}
                         </a>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
 </section>
 
 <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>{{ __('About Institute') }}</h4>
