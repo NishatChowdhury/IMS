@@ -104,8 +104,8 @@
 
 
             @can('middleware-passed','menu.index')
-                <li class="nav-item has-treeview {{ isActive(['admin/menus*','admin/pages*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/cms*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admin/menus*','admin/pages*','admin/chairmanMessage','admin/principalMessage','admin/siteinfo','admin/aboutInstitute','admin/GalleryCornerCreate','admin/features','admin/sliders','admin/settings/links','admin/socials']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/menus*','admin/pages*','admin/chairmanMessage','admin/principalMessage','admin/siteinfo','admin/aboutInstitute','admin/GalleryCornerCreate','admin/features','admin/sliders','admin/settings/links','admin/socials']) }}">
                         <i class="fas fa-tasks"></i>
                         <p>
                             CMS
@@ -129,8 +129,8 @@
                                 </a>
                             </li>
                         @endcan
-                        <li class="nav-item has-treeview {{ isActive('admin/attendance*') }}">
-                            <a href="#" class="nav-link {{ isActive('admin/attendance*') }}">
+                        <li class="nav-item has-treeview {{ isActive(['admin/chairmanMessage','admin/principalMessage','admin/siteinfo','admin/aboutInstitute','admin/GalleryCornerCreate','admin/features','admin/sliders','admin/settings/links','admin/socials']) }}">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
                                     Frontend Settings
@@ -140,7 +140,7 @@
                             <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                                 @can('middleware-passed','chairmanMessage.index')
                                     <li class="nav-item">
-                                        <a href="{{ route('chairmanMessage.index') }}" class="nav-link {{ isActive('chairmanMessage') }}">
+                                        <a href="{{ route('chairmanMessage.index') }}" class="nav-link {{ isActive('admin/chairmanMessage') }}">
                                             <i class="far nav-icon"></i>
                                             <p>Chairman Message </p>
                                         </a>
@@ -148,7 +148,7 @@
                                 @endcan
                                 @can('middleware-passed','principalMessage.index')
                                     <li class="nav-item">
-                                        <a href="{{ route('principalMessage.index') }}" class="nav-link {{ isActive('principalMessage') }}">
+                                        <a href="{{ route('principalMessage.index') }}" class="nav-link {{ isActive('admin/principalMessage') }}">
                                             <i class="far nav-icon"></i>
                                             <p>{{ __('Principal Message') }}</p>
                                         </a>
@@ -156,7 +156,7 @@
                                 @endcan
                                 @can('middleware-passed','siteinfo')
                                     <li class="nav-item">
-                                        <a href="{{ route('siteinfo') }}" class="nav-link {{ isActive('siteinfo') }}">
+                                        <a href="{{ route('siteinfo') }}" class="nav-link {{ isActive('admin/siteinfo') }}">
                                             <i class="far nav-icon"></i>
                                             <p>Site Basic Info </p>
                                         </a>
@@ -164,7 +164,7 @@
                                 @endcan
                                 @can('middleware-passed','aboutInstitute.index')
                                     <li class="nav-item">
-                                        <a href="{{ route('aboutInstitute.index') }}" class="nav-link {{ isActive('aboutInstitute') }}">
+                                        <a href="{{ route('aboutInstitute.index') }}" class="nav-link {{ isActive('admin/aboutInstitute') }}">
                                             <i class="far nav-icon"></i>
                                             <p>About Institute</p>
                                         </a>
@@ -172,7 +172,7 @@
                                 @endcan
                                 @can('middleware-passed','leaveManagement.index')
                                     <li class="nav-item">
-                                        <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('galleryCorner') }}">
+                                        <a href="{{ route('galleryCorner.create') }}" class="nav-link {{ isActive('admin/GalleryCornerCreate') }}">
                                             <i class="far nav-icon"></i>
                                             <p>Suborno Joyontee</p>
                                         </a>
@@ -181,7 +181,7 @@
                                 @can('middleware-passed','features.index')
                                     {{-- @if(in_array("features.index", auth()->user()->permissions)) --}}
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('features.index') }}" class="nav-link {{ isActive('admin/pages') }}">
+                                        <a href="{{ route('features.index') }}" class="nav-link {{ isActive('admin/features') }}">
                                             <i class="far nav-icon"></i>
                                             <p>Feature</p>
                                         </a>
@@ -221,8 +221,8 @@
             @endcan
             @can('middleware-passed','academic-calender.index')
                 {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
-                <li class="nav-item has-treeview {{ isActive(['admin/settings*','admin/language*','admin/site*','admin/slider*','admin/social*','admin/calender*','admin/theme','admin/attendance']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/settings*','admin/site*','admin/slider*','admin/social*','admin/theme']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admin/setting/email','admin/themes','admin/languages']) }}">
+                    <a href="#" class="nav-link ">
                         <i class="fas fa-shapes"></i>
                         <p>
                             Settings
@@ -260,7 +260,7 @@
                         @can('middleware-passed','academic-calender.index')
                             {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
                             <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('language.index') }}" class="nav-link {{ isActive('admin/language*') }}">
+                                <a href="{{ route('language.index') }}" class="nav-link {{ isActive('admin/languages') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Language</p>
                                 </a>
@@ -272,8 +272,8 @@
 
             @can('middleware-passed','settings.image')
                 {{-- @if(in_array("settings.image", auth()->user()->permissions)) --}}
-                <li class="nav-item has-treeview {{ isActive(['admin/gallery*']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/gallery*']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admin/gallery*','admin/playlists']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/gallery*','admin/playlists']) }}">
                         <i class="fas fa-camera-retro"></i>
                         <p>
                             Gallery
@@ -309,7 +309,7 @@
                             </li>
                         @endcan
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('playlist.index') }}" class="nav-link {{ isActive('admin/gallery/albums') }}">
+                                <a href="{{ route('playlist.index') }}" class="nav-link {{ isActive('admin/playlists') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Video Playlists</p>
                                 </a>
@@ -318,8 +318,8 @@
                 </li>
             @endcan
 
-            <li class="nav-item has-treeview {{ isActive(['admin/user*']) }}">
-                <a href="#" class="nav-link {{ isActive(['admin/user*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/user*','admin/role']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/user*','admin/role']) }}">
                     <i class="fas fa-users-cog"></i>
                     <p>
                         User Management
@@ -328,19 +328,19 @@
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item" >
-                        <a href="{{ route('user.profile') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                        <a href="{{ route('user.profile') }}" class="nav-link {{ isActive('admin/user/profile') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profile</p>
                         </a>
                     </li>
                     <li class="nav-item" >
-                        <a href="{{ route('user.index') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                        <a href="{{ route('user.index') }}" class="nav-link {{ isActive('admin/users') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Users</p>
                         </a>
                     </li>
                     <li class="nav-item" >
-                        <a href="{{ route('role.index') }}" class="nav-link">
+                        <a href="{{ route('role.index') }}" class="nav-link {{ isActive('admin/role') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Role</p>
                         </a>

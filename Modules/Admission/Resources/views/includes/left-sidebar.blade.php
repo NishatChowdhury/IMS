@@ -96,8 +96,8 @@
 
 
             <!------------------------------------- Admission Register  ------------------------------------------>
-            <li class="nav-item has-treeview {{ isActive(['admin/user*']) }}">
-                <a href="#" class="nav-link {{ isActive(['admin/user*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/regligion-wise/report','admin/group-wise/report','admin/custom/table']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/regligion-wise/report','admin/group-wise/report','admin/custom/table']) }}">
                     <i class="fas fa-users-cog"></i>
                     <p>
                         Admission register
@@ -107,20 +107,20 @@
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
                     <li class="nav-item">
                         <a href="{{ route('regligion-wise.report') }}"
-                           class="nav-link {{ isActive('admin/gallery/image') }}">
+                           class="nav-link {{ isActive('admin/regligion-wise/report') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Religion-wise Report</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('group-wise.report') }}"
-                           class="nav-link {{ isActive('admin/gallery/image') }}">
+                           class="nav-link {{ isActive('admin/group-wise/report') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Group-wise Report</p>
                         </a>
                     </li>
                     <li class="nav-item" >
-                        <a href="{{ route('create-custom.table') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
+                        <a href="{{ route('create-custom.table') }}" class="nav-link {{ isActive('admin/custom/table') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p> Create Custome Table</p>
                         </a>

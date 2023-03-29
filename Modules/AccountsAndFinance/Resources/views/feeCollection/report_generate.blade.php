@@ -62,7 +62,7 @@
                                     <select name="academic_class" id="" class="form-control">
                                         <option value="">Select class </option>
                                         @foreach ($academic_class as $key => $class)
-                                            <option value="{{ $class->id }}">{{ $class->classes->name }}
+                                            <option value="{{ $class->id }}">{{ $class->classes->name ?? '' }}
                                                 {{ $class->section->name ?? '' }} {{ $class->group->name ?? '' }}
                                             </option>
                                         @endforeach

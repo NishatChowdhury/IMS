@@ -73,7 +73,7 @@
                             @can('middleware-passed', 'allBooks.show')
                                 <li class="nav-item">
                                     <a href="{{ route('allBooks.show') }}"
-                                       class="nav-link {{ isActive('admin/library/books') }}">
+                                       class="nav-link {{ isActive('admin/library/allBooks') }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>All Books</p>
                                     </a>
