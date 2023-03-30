@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
     //Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/', [HomeController::class, 'index'])->name('admin');
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    //Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
     //Student Routes
     /*
@@ -358,16 +358,14 @@ Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@d
     //End Students Route
 
     // ID Card Routes
-    /*
-    Route::post('student/card/pdf','Backend\IdCardController@pdf')->name('student.pdf');
+//    Route::post('student/card/pdf','Backend\IdCardController@pdf')->name('student.pdf');
 
-    Route::post('student/card/pdf-v2','Backend\IdCardController@pdf_V2')->name('student.pdf_V2');
-    Route::post('student/card/pdf-v3','Backend\IdCardController@pdf_V3')->name('student.pdf_V3');
-    Route::post('student/card/pdf-v4','Backend\IdCardController@pdf_V4')->name('student.pdf_V4');
-    Route::post('student/card/pdf-v5','Backend\IdCardController@pdf_V5')->name('student.pdf_V5');
-    Route::post('student/card/pdf-v6','Backend\IdCardController@pdf_V6')->name('student.pdf_V6');
+//    Route::post('student/card/pdf-v2','Backend\IdCardController@pdf_V2')->name('student.pdf_V2');
+//    Route::post('student/card/pdf-v3','Backend\IdCardController@pdf_V3')->name('student.pdf_V3');
+//    Route::post('student/card/pdf-v4','Backend\IdCardController@pdf_V4')->name('student.pdf_V4');
+//    Route::post('student/card/pdf-v5','Backend\IdCardController@pdf_V5')->name('student.pdf_V5');
+//    Route::post('student/card/pdf-v6','Backend\IdCardController@pdf_V6')->name('student.pdf_V6');
     // ID Card Routes
-        */
 
 //Contact page start
 //Route::get('message-index','Backend\MessagesController@index')->name('message.index');

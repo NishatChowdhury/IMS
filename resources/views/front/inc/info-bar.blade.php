@@ -26,12 +26,10 @@
         </ul>
         <ul class="list-inline mb-0">
             @auth('student')
-
                 <li class="list-inline-item mr-0 p-md-3 p-2 border-left border-white-0_1 ">
                     <a href="{{ route('student.profile') }}">{{ __('Dashboard') }}</a>
                 </li>
             @endauth
-
             <li class="list-inline-item mr-0 p-md-3 p-2 border-right border-left border-white-0_1 ">
                 @auth('student')
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

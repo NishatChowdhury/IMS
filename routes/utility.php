@@ -679,15 +679,6 @@ Route::get('rename-pic',function(){
     }
 });
 
-Route::get('sync-image-name',function(){
-    $students = Student::query()->get();
-    foreach($students as $student){
-        $id = $student->studentId;
-        $student->update(['image'=>$id.'.jpg']);
-    }
-    dd('sync complete '.date('ymd'));
-});
-
 Route::get('add-zero-to-number',function (){
     $students = Student::query()->get();
     foreach($students as $student){
@@ -1029,7 +1020,7 @@ Route::get('sync-academic-class-id',function(){
 Route::get('sync-image-name',function(){
     $students = Student::query()->get();
     foreach($students as $student){
-        $image = $student->studentId.'.jpg';
+        $image = 'students'.$student->studentId.'.jpg';
         $student->update(['image'=>$image]);
     }
     dd('sync complete');

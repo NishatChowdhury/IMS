@@ -37,7 +37,7 @@
 
                     <div class="p-4">
                         <a href="{{ action('Front\FrontController@notice') }}" class="btn btn-link pl-0">
-                            {{ __('View All Notices')}}
+                            {{ __('View All Notices') }}
                         </a>
                     </div>
                 </div>

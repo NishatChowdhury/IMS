@@ -79,6 +79,13 @@
                                     <td>{{ $student->student->mother->m_name }}</td>
                                 </tr>
                             @endisset
+                            @isset($card['class'])
+                                <tr>
+                                    <td> Course </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>B.B.S</td>
+                                </tr>
+                            @endisset
                             @isset($card['session'])
                                 <tr>
                                     <td> Session </td>
@@ -92,13 +99,20 @@
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>
                                         {{ $student->classes->name ?? '' }}&nbsp;
-                                        @isset($card['group'])
-                                            {{ $student->group->name ?? '' }}&nbsp;
-                                        @endisset
-                                        @isset($card['section'])
-                                            {{ $student->section->name ?? '' }}
-                                        @endisset
+{{--                                        @isset($card['group'])--}}
+{{--                                            {{ $student->group->name ?? '' }}&nbsp;--}}
+{{--                                        @endisset--}}
+{{--                                        @isset($card['section'])--}}
+{{--                                            {{ $student->section->name ?? '' }}--}}
+{{--                                        @endisset--}}
                                     </td>
+                                </tr>
+                            @endisset
+                            @isset($card['group'])
+                                <tr>
+                                    <td> Group </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $student->group->name }}</td>
                                 </tr>
                             @endisset
                             @isset($card['roll'])
