@@ -28,22 +28,16 @@ class FeeCollectionController extends Controller
 {
     public function index()
     {
-        return view('accountsandfinance::feeCollection.index');
+        $feeCollections = StudentPayment::query()->paginate(50);
+        return view('accountsandfinance::feeCollection.index',compact('feeCollections'));
     }
 
     public function view(Request $request)
     {
-
-//         StudentPayment::truncate();
-//         FeeSetupStudent::truncate();
-//         FeeSetupCategory::truncate();
-//         FeeSetup::truncate();
-//         return "done";
         Session::forget(['receipt','spay']);
         $payment_method = DB::table('payment_methods')->pluck('name', 'id');
         $term = $request->term;
         $student = Student::query()->where('studentId', $term)->with('academics')->first();
-        // dd($student);
         $paidAmount = StudentPayment::query()->where('student_academic_id', $student->academics[0]->id)
             ->selectRaw('year(date) as year, monthname(date) as month, sum(amount) as amount')
             ->groupBy('year', 'month')
@@ -62,7 +56,6 @@ class FeeCollectionController extends Controller
             $studentAcademic =  StudentAcademic::where('student_id', $student->id)->first();
             $transportAmount =  Transport::where('student_academic_id',$studentAcademic->id)->sum('amount');
             $paymentTransportAmount =  TransportPayment::where('student_academic_id',$studentAcademic->id)->sum('amount');
-            // $feeSetup = $student->feeSetup;
             $totalTransportDue = 00;
             return view('accountsandfinance::feeCollection.view', compact('student','totalTransportDue','paymentTransportAmount','transportAmount', 'term', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment'));
         } else {
@@ -74,10 +67,8 @@ class FeeCollectionController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|date',
-            'payment_method' => 'required',
-//            'amount' => 'required'
+            'payment_method' => 'required'
         ]);
-        // return $request->all();
         $ss =  StudentAcademic::where('student_id', $request->student_id)->first();
         $feeSetupID = FeeSetup::where('academic_class_id', $ss->academic_class_id)->first();
 
@@ -88,7 +79,6 @@ class FeeCollectionController extends Controller
         } else {
             $paying = $request->amount;
         }
-        // $paying = ;
 
         if($request->amount){
                 foreach ($fss as $fs) {
@@ -308,7 +298,6 @@ class FeeCollectionController extends Controller
     public function pdfDateReport(Request $request)
     {
         $r = Session::get('request1');
-//       dd($r['from']);
 
          $stupays = StudentPayment::query();
         if ( $r['from']   &&  $r['to'] && $r['class'] ) {
@@ -334,5 +323,11 @@ class FeeCollectionController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $fee_collection = StudentPayment::query()->findOrFail($id);
+        $fee_collection->delete();
+        return redirect('admin/fee/fee-collection')->with('message','Deleted Successfully!');
+    }
 
 }

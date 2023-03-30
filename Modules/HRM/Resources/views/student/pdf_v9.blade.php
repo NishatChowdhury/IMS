@@ -145,57 +145,58 @@
                     padding: 9px 0px 9px 20px;
                     background: #f7f7f7;
                 }
-                
-                
-        .font {    
-    width: 2.5in; 
-    height: 3.9in;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    overflow: hidden;
-    border-radius: 10px;
-   }
-
-   .back {
-color: #080808;
-   }
-
-.bottom1{
-    background-color: maroon;
-    border-radius: 0 0 9px 9px;
-    height: 84%;
-    width: 2.49in;
-    height: .47in;
-
-}
-
-.circle1{
-    width: 450px;
-    height: 524px;
-    background-color: maroon;
-    border-radius: 50%;
-
-}
-.circle2{
-    width: 449px;
-    height: 539px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: relative;
-    top: -423px;
-    left: 0px;
-
-   }
 
 
-.bg{
-    position: absolute;
-    top: 70px;
-    left: -105px;
-}
+                .font {
+                    width: 2.5in;
+                    height: 3.9in;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border: 1px solid black;
+                    overflow: hidden;
+                    border-radius: 10px;
+                }
+
+                .back {
+                    color: #080808;
+                }
+
+                .bottom1 {
+                    background-color: maroon;
+                    border-radius: 0 0 9px 9px;
+                    height: 84%;
+                    width: 2.49in;
+                    height: .47in;
+
+                }
+
+                .circle1 {
+                    width: 450px;
+                    height: 524px;
+                    background-color: maroon;
+                    border-radius: 50%;
+
+                }
+
+                .circle2 {
+                    width: 449px;
+                    height: 539px;
+                    background-color: #fff;
+                    border-radius: 50%;
+                    position: relative;
+                    top: -423px;
+                    left: 0px;
+
+                }
+
+
+                .bg {
+                    position: absolute;
+                    top: 70px;
+                    left: -105px;
+                }
             </style>
 
     </head>
@@ -204,47 +205,48 @@ color: #080808;
         <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
             @foreach ($chunk as $student)
                 <div class="col-3 col-2-5">
-                <div class="card" style="width: 2.5in;height: 3.9in;margin-left: 50px;border-radius: 10px;  ">
-                                        <div class="font " >
-                                           <div class="bg">
-                                             <div class="circle1"></div>
-                                             <div class="circle2"></div>
-                                                  </div>
-                                          <div class="" style=" height: 1.9in;">
-                                         
-                                                <div class="row ">
-                                              <div class="col-md-3 ">
-                                                    <img  src="{{asset('assets/img/logos/klr.png')}}"  alt="" style=" height: 76px;width: 80px;border-radius: 3px;position: absolute;top: -4px;left: 13px;">
-                                                  
-                                                  </div>
-                                                  
-                                                    <div class="col-md-9 ">
-                                                      <div class="right text-center">
-                                                            <div class="scl-cd-dec text-wrap text-bold ">
-                                                                <h2 style=" position: relative;  top: 10px;  margin: 1px; text-align: center;  font-size: 17px;  color: #080808;  font-weight: bold;  font-family: sans-serif;">
-                                                                  Web Point Limited School School
-                                                                </h2>
-                                                            </div>
-                                                      </div> 
-                                                    </div>
-                                                   
-                                              </div>
-                                                <img src="{{asset('assets/img/logos/nam.jpg')}}" style="width: 98px;height: 95px;position: relative;left: 1px;top: 30px;" class="text-center rounded-circle mx-auto d-block border border-dark">
-                                                                              
-                                          </div>
-                                         
-                                            <div class="card-body text-center">
-  
-                                            <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                              <p class="p-0">Sukirti Chakma Poran</p>
-                                                  </div> -->
-                                                <h1 class="card-title text-bold nName"
-                                                    style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
-                                                  {{ __('Student Name') }}</h1>
-                                                <div class="row">
-                                                    <div class="right col-12" style="    margin-top: 0px; ">
-                                                      <div class="stu-cd-dec" style="text-align: left">
-                                                      <table class="table" style="font-size: 12px;">
+                    <div class="card" style="width: 2.5in;height: 3.9in;margin-left: 50px;border-radius: 10px;  ">
+                        <div class="font ">
+                            <div class="bg">
+                                <div class="circle1" style="background-color:{{ $card['bgcolor'] }}"></div>
+                                <div class="circle2"></div>
+                            </div>
+                            <div class="" style=" height: 1.9in;">
+
+                                <div class="row ">
+                                    <div class="col-md-3 ">
+                                        <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
+                                            alt=""
+                                            style="height: 70px;width: 70px;border-radius: 3px;position: absolute;top: 3px;left: 20px;">
+
+                                    </div>
+
+                                    <div class="col-md-9 ">
+                                        <div class="right text-center">
+                                            <div class="scl-cd-dec text-wrap text-bold ">
+                                                <h2
+                                                    style=" position: relative;  top: 10px;  margin: 1px; text-align: center;  font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;  color: color:{{ $card['bgfont'] }};  font-weight: bold;  font-family: sans-serif;">
+                                                    {{ siteConfig('name') }}
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image ?? '' }}"
+                                    style="width: 98px;height: 95px;position: relative;left: 1px;top: 30px;"
+                                    class="text-center rounded-circle mx-auto d-block border border-dark">
+
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h1 class="card-title text-bold nName"
+                                    style="padding-top: 3px;position: relative;top: -11px;margin: 2px;text-align: center; font-size:{{ $card['title_size'] != null ? $card['title_size'] : 0 }}px ;color:{{ $card['titlecolor'] }}">
+                                    {{ $student->student->name ?? '' }}</h1>
+                                <div class="row">
+                                    <div class="right col-12" style="    margin-top: 0px; ">
+                                        <div class="stu-cd-dec" style="text-align: left">
+                                            <table class="table" style="font-size: 12px;">
                                                 <tbody>
                                                     @isset($card['fullname'])
                                                         <tr>
@@ -333,86 +335,77 @@ color: #080808;
                                                     @endisset
                                                 </tbody>
                                             </table>
-                                                      </div>
-                                                    </div>
-                                                </div>
-                                          </div>
-                                        
-                                            <p class="sinn">
-                                              <img src="{{asset('assets/img/logos/re.png')}}"  alt="" style="    height: 34px; width: 86px; position: absolute; left: 154px; top: 320px;">
-                                                <hr style="position: absolute;top: 333px;width: 91px;left: 143px;background-color: white;">
-                                                <h5 style="    position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">Signature </h5>
-                                          </p>
-                                           
                                         </div>
-                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="sinn">
+                                <img src="{{ asset('assets/img/signature/signature.png') }}" alt=""
+                                    style="    height: 34px; width: 86px; position: absolute; left: 154px; top: 320px;">
+                                <hr
+                                    style="position: absolute;top: 333px;width: 91px;left: 143px;background-color: white;">
+                            <h5
+                                style="    position: absolute; top: 350px; left: 162px; font-size: 16px;color: black; text-align: right;">
+                                {{ $card['signature'] }} </h5>
+                            </p>
+
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>
     @endforeach
 
     <div class=" col-12" style="padding-top: 50px;">
-    <div class="card back" style="width: 2.5in; height: 3.9in; margin-left: 33px; border-radius: 10px;   border: 1px solid black;">
-                                            <div class="card-body text-center">
-                                      
-                                            <img src="{{asset('assets/img/logos/jalal.png')}}" 
-                                                    width="60" style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+        <div class="card back"
+            style="width: 2.5in; height: 3.9in; margin-left: 33px; border-radius: 10px;   border: 1px solid black;">
+            <div class="card-body text-center">
 
-                        
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="card-back-dec text-bold"
-                                                            style="text-align: left; margin-top: -16px;font-size: 12px">
-                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">If Found Please Return The Card To</h2>
-                                                      </div>
-                                                    </div>
-                                                </div>
-                                            
-                                                <div class="row">
-                                                    <div class="" style="margin-top: 25px;">
-                                                      <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                                                        <p style=" margin-bottom: 5px;">Hazi Abdul Mia Road(Chadni),
-                                                             Shitaljharna R/A,  Jalalabad,&nbsp;<br>
-                                                             Baizid Bostami, <br>
-                                                                  Chattogram</p></p>
-                                                    </div>
-                           
+                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
+                    style="  height: 71px;  width: 75px;  text-align: center;  margin: 10px;   border-radius: 6px;">
 
-                                                   <div class="crd-add-dec text-bold "style="    text-align: center;   position: relative; left: 58px;top: -6px;">                                         
-                                                <table class="table" style="font-size: 12px;">
-                                                  <tbody>
-                                                   <tr>
-                                                  <td> {{ __('Phone') }} </td>
-                                                   <td>:</td>
-                                                      <td id="bphone">01892-962257 <br>
-                                                             <!-- 01878-895646  </td> -->
-                                                   </tr>
-                                                                <!-- <tr>
-              
-                                                      <td> {{ __('Email') }} </td>
-              
-                                                      <td>:</td>
-                                                                    <td id="bemail">{{ __('Example99@gmail.com.') }}</td>
-                                                                </tr> -->
-             
-                                                   <!-- <tr>
-                                                                    <td> {{ __('Website') }} </td>
-                                                                    <td>:</td>
-              
-                                                      <td id="bwebsite">{{ __('www.example99.org') }}</td>
-                                                                </tr> -->
-                                                            </tbody>
-                                                        </table>
-                                                       
-                                                        <p class="bottom1"  style="  text-align: center;position: absolute;left: -53px;top: 30px;">
 
-                                                        </p>
-                                                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-back-dec text-bold"
+                            style="text-align: left; margin-top: -16px;font-size: 12px">
+                            <h2
+                                style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">
+                                {{ __('If Found Please Return The Card To') }}</h2>
+                        </div>
+                    </div>
+                </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                <div class="row">
+                    <div class="" style="margin-top: 25px;">
+                        <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
+                        <p style=" margin-bottom: 5px;">{{ siteConfig('address') }}</p>
+                        </p>
+                    </div>
+
+
+                    <div
+                        class="crd-add-dec text-bold "style="    text-align: center;   position: relative; left: 58px;top: -6px;">
+                        <table class="table" style="font-size: 12px;">
+                            <tbody>
+                                <tr>
+                                    <td> {{ __('Phone') }} </td>
+                                    <td>:</td>
+                                    <td id="bphone">{{ siteConfig('phone') }}<br>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="bottom1" style="text-align: center;position: absolute;left: -53px;top: 77px;background-color:{{ $card['bgcolor'] }}">
+
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     </body>

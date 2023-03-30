@@ -75,6 +75,64 @@
                     </div>
                 </div>
             </div>
+            <div class="row no_print">
+                <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h3><b>{{ __('All Fee Collections') }}</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-sm">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>{{ __('Payment Date') }}</th>
+                                            <th>{{ __('Student Name') }}</th>
+                                            <th>{{ __('Student ID') }}</th>
+                                            <th>{{ __('Academic Class') }}</th>
+                                            <th>{{ __('Payment Method') }}</th>
+                                            <th>{{ __('Paid Amount') }}</th>
+                                            <th>{{ __('Action') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($feeCollections as $data)
+                                    <tr>
+                                        <td>
+                                            {{ $data->date->format('Y-m-d') ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $data->academics->student->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $data->academics->student->studentId ?? '' }}
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-info">{{ $data->academics->classes->name ?? '' }}</span>
+                                            <span class="badge badge-info">{{ $data->academics->section->name ?? '' }}</span>
+                                            <span class="badge badge-info">{{ $data->academics->group->name ?? '' }}</span>
+                                        </td>
+                                        <td> {{ $data->payment_methods->name ?? '' }}</td>
+                                        <td>
+                                            {{ $data->amount ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ Form::open(['url'=>['admin/fee/collection/delete',$data->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fas fa-trash"></i>
+                                            </button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-body">
+                                {{ $feeCollections->appends(Request::except('page'))->links() }}
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -87,13 +145,18 @@
             <div class="container-fluid">
                 <div class="row m-5">
                     <div class="col-md-12">
-                        <div class="card" style="border: 1px solid black;font-size: 10px">
+                        <div class="card" style="border: 1px solid black;font-size: 15px">
                             <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-12 text-center">
+                                        <img class="img-responsive" src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" alt="" style="height:40px;width:80px">
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <h2>{{ siteConfig('name') }}</h2>
-                                        <h3 class="text-center"><u>{{ __('Money Receipt') }}</u></h3>
-                                        <h5><u>{{ __('Office Copy') }}</u></h5>
+                                        <h5>{{ siteConfig('name') }}</h5>
+                                        <p class="text-center"><u>{{ __('Money Receipt') }}</u></p>
+                                        <p><u>{{ __('Office Copy') }}</u></p>
                                         <div>
                                             <strong class="float-left">{{ __('Receipt No:') }}
                                                 {{ __('#00') }}{{ session()->get('spay')['id'] ?? session()->get('trans')['id'] }}</strong>
@@ -137,12 +200,8 @@
                                         
                                         ?>
                                         <address>
-                                            <strong>{{ $studentAcademic->student->name ?? '' }}</strong><br>
-                                            <span>Father's Name:</span> Clinton<br>
-                                            <span>Id:</span>
-                                            {{ $studentAcademic->student->studentId ?? '' }}<br>
-                                            <span>Phone No:</span>
-                                            {{ $studentAcademic->student->mobile ?? '' }}<br>
+                                            <strong>{{ $studentAcademic->student->name ?? '' }}</strong> || <span>Id:</span>{{ $studentAcademic->student->studentId ?? '' }} <br>
+                                            <span>Phone No:</span>{{ $studentAcademic->student->mobile ?? '' }}
                                         </address>
                                     </div>
                                     <!-- /.col -->
@@ -150,13 +209,12 @@
                                         <address>
                                             <span>Class:</span>{{ $studentAcademic->classes->name ?? 'N/A' }}<br>
                                             <span>Section:</span>{{ $studentAcademic->section->name ?? 'N/A' }}<br>
-                                            <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
-                                            <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A' }}<br>
                                         </address>
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-sm-4 invoice-col">
-                                        {{-- <b>Date:</b> 03/04/2022<br> --}}
+                                        <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
+                                        <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A' }}<br>
                                     </div>
                                     <!-- /.col -->
                                 </div>
@@ -165,7 +223,7 @@
                                 <!-- Table row -->
                                 <div class="row">
                                     <div class="col-12 table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered table-sm">
                                             <thead>
                                                 <tr>
                                                     <th>{{ __('Category') }}</th>
@@ -288,19 +346,22 @@
                 </div>
             </div>
         </section>
-
-        <section class="content " style="width: 9in;height: 7.5in">
+        <section class="content" style="width: 9in;height: 7.5in">
             <div class="container-fluid">
                 <div class="row m-5">
                     <div class="col-md-12">
-                        <div class="card" style="border: 1px solid black;font-size: 10px">
+                        <div class="card" style="border: 1px solid black;font-size: 15px">
                             <div class="card-body">
-
+                                <div class="row mb-3">
+                                    <div class="col-12 text-center">
+                                        <img class="img-responsive" src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" alt="" style="height:40px;width:80px">
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <h2>{{ siteConfig('name') }}</h2>
-                                        <h3 class="text-center"><u>{{ __('Money Receipt') }}</u></h3>
-                                        <h5><u>{{ __('Student Copy') }}</u></h5>
+                                        <h5>{{ siteConfig('name') }}</h5>
+                                        <p class="text-center"><u>{{ __('Money Receipt') }}</u></p>
+                                        <p><u>{{ __('Student Copy') }}</u></p>
                                         <div>
                                             <strong class="float-left">{{ __('Receipt No:') }}
                                                 {{ __('#00') }}{{ session()->get('spay')['id'] ?? session()->get('trans')['id'] }}</strong>
@@ -344,12 +405,8 @@
                                         
                                         ?>
                                         <address>
-                                            <strong>{{ $studentAcademic->student->name ?? '' }}</strong><br>
-                                            <span>Father's Name:</span> Clinton<br>
-                                            <span>Id:</span>
-                                            {{ $studentAcademic->student->studentId ?? '' }}<br>
-                                            <span>Phone No:</span>
-                                            {{ $studentAcademic->student->mobile ?? '' }}<br>
+                                            <strong>{{ $studentAcademic->student->name ?? '' }}</strong> || <span>Id:</span>{{ $studentAcademic->student->studentId ?? '' }} <br>
+                                            <span>Phone No:</span>{{ $studentAcademic->student->mobile ?? '' }}
                                         </address>
                                     </div>
                                     <!-- /.col -->
@@ -357,13 +414,12 @@
                                         <address>
                                             <span>Class:</span>{{ $studentAcademic->classes->name ?? 'N/A' }}<br>
                                             <span>Section:</span>{{ $studentAcademic->section->name ?? 'N/A' }}<br>
-                                            <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
-                                            <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A' }}<br>
                                         </address>
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-sm-4 invoice-col">
-                                        {{-- <b>Date:</b> 03/04/2022<br> --}}
+                                        <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
+                                        <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A' }}<br>
                                     </div>
                                     <!-- /.col -->
                                 </div>
@@ -372,7 +428,7 @@
                                 <!-- Table row -->
                                 <div class="row">
                                     <div class="col-12 table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered table-sm">
                                             <thead>
                                                 <tr>
                                                     <th>{{ __('Category') }}</th>
@@ -395,14 +451,14 @@
                                                 @endforeach
                                                 @if ($trans != null)
                                                     <tr>
-                                                        <td> {{ __('Transport Cost') }} </td>
+                                                        <td> Transport Cost </td>
                                                         <td class="text-right">{{ number_format($trans->amount, 2) }} /-
                                                         </td>
                                                     </tr>
                                                 @endif
                                                 <tr>
                                                     <td colspan="1">
-                                                        <strong class="float-right">{{ __('Paid =') }}</strong>
+                                                        <strong class="float-right">Paid =</strong>
                                                     </td>
                                                     @if ($trans != null)
                                                         <td class="text-right">
@@ -494,7 +550,6 @@
                     </div>
                 </div>
             </div>
-
         </section>
     @endif
 @stop

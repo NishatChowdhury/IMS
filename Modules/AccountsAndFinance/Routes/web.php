@@ -76,6 +76,7 @@ Route::prefix('admin')->group(function() {
     Route::get('fee/collections/report/academic_class', [FeeCollectionController::class, 'academicClassReport'])->name('report.academic_class');
     Route::get('fee/collections/pdf/classReport', [FeeCollectionController::class, 'pdfClassReport'])->name('pdf.classReport');
     Route::get('fee/collections/pdf/dateWiseReport', [FeeCollectionController::class, 'pdfDateReport'])->name('pdf.dateWiseReport');
+    Route::post('fee/collection/delete/{id}',[FeeCollectionController::class,'destroy'])->name('fee-collection.delete');
 
     // Student Transport management
     Route::get('fee-category/transport',[TransportController::class,'index'])->name('transport.index');
