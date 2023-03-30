@@ -1,7 +1,7 @@
 /* This stylesheet was created for nave school & college */
 
 .bg-dark{
-    background-color: #49688e !important;
+    background-color: #0F4C81 !important;
     color: #ffffff !important;
 }
 
@@ -11,17 +11,17 @@
 }
 
 .bg-inner{
-    background-color: #294a70 !important;
-    color: #ffffff !important;
+    background-color: #6DA8DB !important;
+    color: #070707 !important;
 }
 
 .bg-inner h1{
     color: #ffffff !important;
 }
 
-.bg-white{
-    background-color: #101250 !important;
-    color: #fff;
+.bg-white {
+    background-color: #f6fafc !important;
+    color: rgb(9, 9, 9) !important;
 }
 /** #4660ee **/
 
@@ -30,19 +30,17 @@
 }
 
 a:hover{
-    color: #ffcb00 !important;
+    color: #7dacdc !important;
 }
 
-.ec-nav .nav-link{
-    color: #ffffff !important;
-}
+
 
 .nav-item__has-dropdown .dropdown-menu{
     border-top: 3px solid #0064ff !important;
 }
 
 .hover\:primary:hover{
-    background: #ffcb00 !important;
+    background: #408ad4 !important;
     color: #fff !important;
 }
 
@@ -54,4 +52,101 @@ a:hover{
     .when-collapsed {
         background: #49688e !important
     }
+}
+
+
+
+/* ---------------------- */
+[data-primary-overlay="0"] {
+    background-color: #A9CBE9 !important;
+}
+
+
+[data-primary-overlay="7"]:after {
+    background: #D8E3ED!important;
+}
+
+.textCOLOR {
+    color: #212529 !important;
+}
+
+.lavenderround {
+    background-color: #1820AE;
+    color: #fff;
+}
+
+
+[data-dark-overlay="6"]:after {
+    background: #6699CC !important;
+}
+.fbg {
+    background-color: #094F8C;
+    color: #ffffff;
+}
+.lfooter {
+    background-color: #D8E3ED !important;
+    color: black !important;
+}
+
+.lavenderround1 {
+    background-color: #1820AE !important;
+    color: #fff;
+}
+.text-white {
+    color: #fcf9f9;
+}
+.bg-black-0_9 {
+    background-color: #6DA8DB !important;
+color: #070707;
+}
+.lead {
+    color: black !important;
+}
+
+.text-primary {
+    color: #f8f8f9 !important;
+}
+.textt {
+    color: #1820AE !important;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a:hover {
+    color:#1820AE  !important;
+}
+.bg-light-v2 {
+    background-color: #f1f3f7!important;
+}
+.bg-primary {
+    background-color: #1820AE !important;
+}
+.btn-outline-white-hover {
+    background: #fff;
+    border-color: #393ceb;
+    color: #000;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1820AE !important;
+    border-color: #007bff !important;
+}
+.btn-outline-primary {
+    background-color: transparent;
+    border-color: #1820ae !important;
+    color: #1820ae !important;
+}
+
+marquee ul li a{
+    color: #0064ff ;
+}
+.list-unstyled a{
+    color: #0e0f0f ;
+}
+.txt {
+    color: #000 !important;
 }

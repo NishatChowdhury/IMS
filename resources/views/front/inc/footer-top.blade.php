@@ -14,7 +14,7 @@
 
 
             <div class="col-lg-4 col-md-6 mt-5">
-                <h4 class="h5 text-white">{{ __('Important links')}}</h4>
+                <h4 class="h5 text-white txt ">{{ __('Important links')}}</h4>
                 <!-- <div class="width-3rem bg-primary height-3 mt-3 "></div> -->
                 <div class="width-3rem height-3 mt-3 rounded lavenderround1"></div>
                 <ul class="list-unstyled marginTop-40">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="col-lg-4 col-md-6 mt-5">
-                <h4 class="h5 text-white">{{ __('Contact Us')}}</h4>
+                <h4 class="h5 text-white txt">{{ __('Contact Us')}}</h4>
                 <!-- <div class="width-3rem bg-primary height-3 mt-3"></div> -->
                 <div class="width-3rem height-3 mt-3 rounded lavenderround1"></div>
                 <ul class="list-unstyled marginTop-40">
