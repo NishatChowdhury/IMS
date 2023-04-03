@@ -31,19 +31,22 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
+    
  
     <link rel="stylesheet" href="{{ asset('assets/css/print.css?ver:1.1') }}">
 
     @yield('style')
    
     @if(theme() == 1)
-    <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/yellow.css?ver:1.0') }}">
         <!-- <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}"> -->
     @elseif(theme() == 2)
         <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">
     @elseif(theme() == 3)
         <link rel="stylesheet" href="{{ asset('dist/css/lavender.css?ver:2.0') }}">
+        
+     @elseif(theme() == 4)
+        <link rel="stylesheet" href="{{ asset('dist/css/yellow.css?ver:1.0') }}">
     @else
         <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">
     @endif
