@@ -252,7 +252,7 @@
 
 </head>
 
-@foreach ($students->chunk(4) as $key => $chunk)
+@foreach ($students->chunk(5) as $key => $chunk)
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
             <div class="col-3 col-3-5">

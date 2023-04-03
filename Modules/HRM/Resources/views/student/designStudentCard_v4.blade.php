@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                                            <div class="  " style="   background: linear-gradient(#3C3CB9, #3C3CB9 45%, #3C3CB9 45%,  #3C3CB9 100%);    height: 1.9in;">
+                                            <div class="front" style="height: 1.9in;">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="left ">
@@ -69,7 +69,7 @@
                                                  </div>
                                             <div class="card-body text-center">
 
-                                            <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
+                                            <div class="front2"  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
                                                 <p class="p-0 nName">{{ __('Student Name') }}</p>
                                             </div>
                                                 <div class="row">
@@ -369,6 +369,71 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="bgcolor" id="bghf"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">{{ __('BG Font Color') }}</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="bgfont" id="hffc"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
+                                                    <div class="input-group">
+                                                        {{-- <input type="text" class="form-control"> --}}
+                                                        <input type="text" name="titlecolor" id="cbhfc"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="name_size" type="text"
+                                                            class="form-control name-size"
+                                                            placeholder="Institute Name Font Size ...">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="title_size" type="text"
+                                                            class="form-control title-size" placeholder="Title Size..">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -796,7 +861,7 @@
             var vtd = $("#vtd").val();
 
 
-            $(".card-header,.card-footer").css({
+            $(".front,.front2").css({
                 "background-color": bghf
             });
             $(".scl-cd-dec").css({

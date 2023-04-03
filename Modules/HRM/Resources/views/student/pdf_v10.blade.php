@@ -378,7 +378,7 @@ color: #080808;
                                                    <tr>
                                                   <td> {{ __('Phone') }} </td>
                                                    <td>:</td>
-                                                      <td id="bphone">{{ siteConfig('phone') }}
+                                                      <td id="bphone">{{ $card['bPhone'] }}
                                                    </tr>
                                                                 
                                                             </tbody>
