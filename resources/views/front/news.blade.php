@@ -30,11 +30,11 @@
                 <div class="card">
                     <img class="card-img-top" src="{{ asset('storage/uploads/notice') }}/{{ $latestNews->file }}" alt="">
                     <div class="card-body">
-                        <p class="text-primary">
+                        <p class="text-primary txt_1">
                             {{ $latestNews->start->format('F d, Y') }}
                         </p>
-                        <h4>
-                            <a href="#">
+                        <h4 >
+                            <a href="#" class="txtt">
                                 {{ $latestNews->title }}
                             </a>
                         </h4>
