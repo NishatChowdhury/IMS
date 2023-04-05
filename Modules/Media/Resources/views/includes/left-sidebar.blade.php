@@ -42,8 +42,8 @@
             <!------------------------------- Notice, Diary, Events --------------------------------------->
             @can('middleware-passed', 'notice.index')
                 @if (in_array('notice.index', auth()->user()->permissions))
-                    <li class="nav-item has-treeview {{ isActive(['admin/notice*', 'admin/event*']) }}">
-                        <a href="#" class="nav-link {{ isActive(['admin/notice*', 'admin/event*']) }}">
+                    <li class="nav-item has-treeview {{ isActive(['admin/notice*', 'admin/event*','admin/diary-list','admin/events']) }}">
+                        <a href="#" class="nav-link {{ isActive(['admin/notice*', 'admin/event*','admin/diary-list','admin/events']) }}">
                             <i class="fas fa-bullhorn"></i>
                             <p>
                                 Notice
@@ -78,7 +78,7 @@
                                 @can('middleware-passed', 'diary.index')
                                     @if (in_array('diary.index', auth()->user()->permissions))
                                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                            <a href="{{ route('diary.index') }}" class="nav-link {{ isActive(['dairy-list']) }}">
+                                            <a href="{{ route('diary.index') }}" class="nav-link {{ isActive('admin/diary-list') }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dairy List</p>
                                             </a>
@@ -89,7 +89,7 @@
                                     @if (in_array('event.index', auth()->user()->permissions))
                                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                             <a href="{{ route('event.index') }}"
-                                               class="nav-link {{ isActive(['event*']) }}">
+                                               class="nav-link {{ isActive(['admin/events']) }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Upcoming Events</p>
                                             </a>
@@ -130,8 +130,8 @@
             @endcan
 
             <!------------------------------- Communication --------------------------------------->
-            <li class="nav-item has-treeview {{ isActive(['admin/communication*']) }}">
-                <a href="#" class="nav-link {{ isActive(['admin/communication*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/communication*','admin/subscriber/list']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/communication*','admin/subscriber/list']) }}">
                     <i class="nav-icon fas fa-comments"></i>
                     <p>
                         Communication
