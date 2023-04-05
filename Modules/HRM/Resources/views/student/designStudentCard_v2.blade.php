@@ -53,7 +53,7 @@
                                                     <div class="col-md-12">
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold">
-                                                                <h2
+                                                                <h2 class="scl-cd-name"
                                                                     style="padding-top: 3px;position: relative;top: 4px;margin: 2px;text-align: center; font-size:15px ;color:rgb(151, 4, 4)">
                                                                     <strong>{{ siteConfig('name') }}</strong>
                                                                 </h2>
@@ -73,62 +73,86 @@
                                                         <div class="stu-cd-dec" style="text-align: left">
                                                             <table class="table" style="font-size: 12px;">
                                                                 <tbody>
-                                                                    <tr class="tfname">
-                                                                        <td><b>{{ __('Father') }}</b></td>
+                                                                    <tr class="tname" style="display: block;">
+                                                                        <td><strong> {{ __('Name') }} </strong></td>
                                                                         <td>:</td>
-                                                                        <td>{{ _('Lorem ipsum.') }}</td>
+                                                                        <td><strong> {{ __('Student') }} </strong></td>
                                                                     </tr>
-                                                                    <tr class="tmname">
-                                                                        <td> <b>{{ __('Mother') }}</b></td>
+                                                                    <tr class="tfname" style="display: block;">
+                                                                        <td><b>{{ __('Father') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td><strong> {{ __('Father') }} </strong></td>
                                                                     </tr>
-                                                                    <tr class="tcname">
-                                                                        <td> <b>{{ __('Class') }}</b></td>
+                                                                    <tr class="tmname" style="display: block;">
+                                                                        <td> <b>{{ __('Mother') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td> {{ __('Seven') }} </td>
+                                                                        <td><strong> {{ __('Mother') }} </strong></td>
+                                                                    </tr>
+                                                                    <tr class="tcname" style="display: block;">
+                                                                        <td> <b>{{ __('Class') }}</b>
+                                                                        </td>
+                                                                        <td>:</td>
+                                                                        <td> {{ __('Class') }} </td>
                                                                     </tr>
                                                                     <tr class="tsname">
-                                                                        <td><b>{{ __('Section') }}</b></td>
+                                                                        <td><b>{{ __('Section') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Section') }}
+                                                                        </td>
                                                                     </tr>
-                                                                    <tr class="trname">
-                                                                        <td><b>{{ __('Roll') }}</b></td>
+                                                                    <tr class="trname" style="display: block;">
+                                                                        <td><b>{{ __('Roll') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Roll') }}
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="tgname">
-                                                                        <td><b>{{ __('Group') }}</b></td>
+                                                                        <td><b>{{ __('Group') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Group') }}
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="tbname">
-                                                                        <td><b>{{ __('Blood Group') }}</b></td>
+                                                                        <td><b>{{ __('Blood Group') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Blood') }}
+                                                                        </td>
                                                                     </tr>
-                                                                    <tr class="tpname">
-                                                                        <td><b>{{ __('Contact') }}</b></td>
+                                                                    <tr class="tpname" style="display: block;">
+                                                                        <td><b>{{ __('Contact') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Contact') }}
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="tdname">
-                                                                        <td><b>{{ __('Depertmant') }}</b></td>
+                                                                        <td><b>{{ __('Depertmant') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Department') }}
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="tdobname">
-                                                                        <td><b>{{ __('Date Of Birth') }}</b></td>
+                                                                        <td><b>{{ __('Date Of Birth') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('DOB') }}
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="taname">
-                                                                        <td><b>{{ __('Admission Date') }}</b></td>
+                                                                        <td><b>{{ __('Admission Date') }}</b>
+                                                                        </td>
                                                                         <td>:</td>
-                                                                        <td>{{ __('Lorem ipsum.') }}</td>
+                                                                        <td>{{ __('Date') }}
+                                                                        </td>
                                                                     </tr>
-                                                                </tbody>
+                                                                    </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
@@ -359,6 +383,39 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" name="titlecolor" id="cbhfc"
+                                                            class="form-control my-colorpicker1 colorpicker-element" placeholder="Title Color">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="name_size" type="text"
+                                                            class="form-control name-size"
+                                                            placeholder="Institute Name Font Size ...">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="title_size" type="text"
+                                                            class="form-control title-size" placeholder="Title Size..">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">

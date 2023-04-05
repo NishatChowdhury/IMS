@@ -216,8 +216,8 @@
                                 <div class="row ">
                                     <div class="col-md-3 ">
                                         <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                            alt=""
-                                            style="height: 70px;width: 70px;border-radius: 3px;position: absolute;top: 3px;left: 20px;">
+                                            width="70px"
+                                            style="border-radius: 3px;position: absolute;top: 3px;left: 20px;">
 
                                     </div>
 
@@ -362,8 +362,8 @@
             style="width: 2.5in; height: 3.9in; margin-left: 33px; border-radius: 10px;   border: 1px solid black;">
             <div class="card-body text-center">
 
-                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
-                    style="  height: 71px;  width: 75px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="70px"
+                    style="text-align: center;  margin: 10px;   border-radius: 6px;">
 
 
                 <div class="row">
@@ -397,7 +397,7 @@
                             </tbody>
                         </table>
 
-                        <p class="bottom1" style="text-align: center;position: absolute;left: -53px;top: 77px;background-color:{{ $card['bgcolor'] }}">
+                        <p class="bottom1" style="text-align: center;position: absolute;left: -54px;top: 78px;background-color:{{ $card['bgcolor'] }}">
 
                         </p>
 
