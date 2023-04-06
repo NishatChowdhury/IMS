@@ -38,7 +38,7 @@
                                 {{ $latestNews->title }}
                             </a>
                         </h4>
-                        <p>
+                        <p class="txt_2">
                             {{ substr($latestNews->description,0,100) }}
                         </p>
                         <a href="{{ action('Front\FrontController@newsDetails',$latestNews) }}" class="btn btn-outline-primary">
