@@ -192,8 +192,8 @@ class FeeCollectionController extends Controller
 
     public function allCollections()
     {
-        $studentPayment = StudentPayment::all();
-        return view('accountsandfinance::feeCollection.collection', compact('studentPayment'));
+        $feeCollections = StudentPayment::query()->paginate(50);
+        return view('accountsandfinance::feeCollection.collection', compact('feeCollections'));
     }
 
     public function report($id)

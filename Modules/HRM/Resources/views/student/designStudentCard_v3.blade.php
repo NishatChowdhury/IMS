@@ -39,14 +39,14 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="card"
+                                        <div class="card card-bg"
                                             style="width: 3.9in; height: 2.5in; margin-left: 50px;background-color: #191970;">
                                             <div
                                                 style="border: 1px solid  white; margin: 10px;     padding: 0;  box-sizing: border-box;height: 223px;">
                                                 <div class=" " style="">
                                                     <div class="row">
                                                         <div class="col-md-12 ">
-                                                            <div class="nat">
+                                                            <div class="nat scl-cd-dec">
                                                                 <h2 class="scl-cd-name"> {{ siteConfig('name') }}</h2>
                                                                 <h3 class="scl-cd-add" style="font-size: 9px;
                                                                 font-weight: bold;"> {{ siteConfig('address') }}
@@ -168,7 +168,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12" style="padding-top: 50px;">
-                                        <div class="card"
+                                        <div class="card card-bg"
                                             style="    height: 2.5in; width: 3.9in;   margin-left: 50px; background-color: #191970;   color: white; ">
                                             <div class="card-body text-center"
                                                 style="border: 1px solid white;   margin: 5px 5px -25px 5px;">
@@ -394,6 +394,45 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" name="bgcolor" id="bghf" class="form-control my-colorpicker1 colorpicker-element" placeholder="Background Color">
+                                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                         <i class="fas fa-palette"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" name="bgfont" id="hffc" class="form-control my-colorpicker1 colorpicker-element" placeholder="BG Font Color">
+                                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                          <i class="fas fa-palette"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" name="titlecolor" id="cbhfc" class="form-control my-colorpicker1 colorpicker-element" placeholder="Title Color">
+                                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                          <i class="fas fa-palette"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -862,7 +901,7 @@
             var vtd = $("#vtd").val();
 
 
-            $(".card-header,.card-footer").css({
+            $(".card-bg,.wrapperr,.nat,.card-footer").css({
                 "background-color": bghf
             });
             $(".scl-cd-dec").css({

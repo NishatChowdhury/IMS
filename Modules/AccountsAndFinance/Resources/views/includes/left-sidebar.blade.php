@@ -86,6 +86,15 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('middleware-passed', 'fee-collection.allCollections')
+                            <li class="nav-item">
+                                <a href="{{ url('admin/fee/all-collections') }}"
+                                   class="nav-link {{ isActive(['admin/fee/all-collections', 'admin/fee/all-collections*']) }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('All Collections') }}</p>
+                                </a>
+                            </li>
+                        @endcan
                         @can('middleware-passed', 'report.generate')
                             <li class="nav-item">
                                 <a href="{{ url('admin/fee/collections/report/generate') }}"

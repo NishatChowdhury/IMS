@@ -248,16 +248,16 @@
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                            alt=""
-                                            style="    height: 76px; width: 82px; border-radius: 3px; position: absolute; top: 47px;left: 22px;">
+                                            width="70"
+                                            style="border-radius: 3px; position: absolute; top: 47px;left: 22px;">
 
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="right text-center">
                                             <div class="scl-cd-dec text-wrap text-bold ">
-                                                <h2
-                                                    style="    position: relative;top: 9px; margin: 1px; text-align: center; font-size: 18px; color: #f6f0f0; font-weight: bold; font-family: sans-serif;">
+                                                <h2 class="scl-cd-name"
+                                                    style="position: relative;top: 9px; margin: 1px; text-align: center; font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px; color: #f6f0f0; font-weight: bold; font-family: sans-serif;">
                                                     {{ siteConfig('name') }}
                                                 </h2>
                                             </div>
@@ -376,7 +376,7 @@
                                 <img src="{{ asset('assets/img/logos/re.png') }}" alt=""
                                     style="height: 34px;   width: 86px;   position: relative;   left: 154px;   top: -29px">
                                 <hr style="position: relative; top: -52px; width: 91px; left: 74px; background-color: white;">
-                                <h5 id="idsignature"
+                                <h5
                                 style="position: relative; top: 16px;  left: 159px;  font-size: 16px;  color: white;">
                                 {{ $card['signature'] }} </h5>
                             </p>
@@ -391,8 +391,8 @@
     <div class="col-12" style="padding-top: 50px;">
         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 33px;">
             <div class="card-body text-center">
-                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
-                    style=" height: 74px;   width: 96px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="70"
+                    style="text-align: center;  margin: 10px;   border-radius: 6px;">
 
 
                 <div class="row">
@@ -408,8 +408,8 @@
 
                 <div class="row">
                     <div class="" style="margin-top: 27px;">
-                        <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                        <p style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}</p>
+                        <p class="scl-cd-name" style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
+                        <p class="scl-cd-add" style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}</p>
                         </p>
                     </div>
                     <div class="crd-add-dec text-bold"

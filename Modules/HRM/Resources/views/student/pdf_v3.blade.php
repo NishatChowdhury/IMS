@@ -255,15 +255,17 @@
 @foreach ($students->chunk(5) as $key => $chunk)
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
-            <div class="col-3 col-3-5">
-                <div class="card" style="width: 3.9in; height: 2.5in; margin:10px;      background-color: #191970;">
+            <div class="col-3 col-2-5">
+                <div class="card" style="width: 3.9in; height: 2.5in; margin:10px;background-color:{{ $card['bgcolor'] }}">
                     <div
                         style="border: 1px solid  white; margin: 10px;     padding: 0;  box-sizing: border-box;height: 223px;">
                         <div class=" " style="">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <div class="nat">
-                                        <h2> {{ siteConfig('name') }}</h2>
+                                    <div class="nat" style="background-color:{{ $card['bgcolor'] }}">
+                                        <h2 style="color:#fff;font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;"> 
+                                            {{ siteConfig('name') }}
+                                        </h2>
                                         <h3> {{ siteConfig('address') }}</h3>
                                     </div>
                                 </div>
@@ -322,7 +324,7 @@
 
                             <div>
 
-                                <img src="{{ asset('assets/img/signature/kingsWaySignature.png') }}" alt=""
+                                <img src="{{ asset('assets/img/signature/signature.png') }}" alt=""
                                     class="img1"
                                     style="    height: 30px;  width: 50px;         position: absolute;   top: 92px; left: 275px;">
 
@@ -330,16 +332,16 @@
                         </div>
 
                         <div class="logoo ">
-                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="height: 120%; Width:130%">
+                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="50px">
 
                         </div>
 
-                        <div class="wrapperr">
+                        <div class="wrapperr" style="background-color:{{ $card['bgcolor'] }}">
                             <div style="text-align: left; margin-top: 3px; margin-left:5px">
                                 {{ $student->student->mobile ?? '' }}</div>
-                            <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt=""
-                                    style="    height: 17px;  width: 25px;  border-radius: 50%;   "></div>
-                            <div style=" margin-top: 3px;">{{ __('Head Mistress') }}</div>
+                            <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="25px"
+                                    style="border-radius: 50%;   "></div>
+                            <div style=" margin-top: 3px;">{{ $card['signature'] }}</div>
 
                         </div>
                     </div>
@@ -350,12 +352,12 @@
 @endforeach
 
 <div class="col-12" style="padding-top: 50px;">
-    <div class="card" style="height: 2.5in; width: 3.9in;background-color: #191970;   color: white; ">
+    <div class="card" style="height: 2.5in; width: 3.9in;background-color:{{ $card['bgcolor'] }};   color: white; ">
         <div class="card-body text-center" style="border: 1px solid white;   margin: 5px 5px -25px 5px;">
             <div class="row text-left  "
                 style="text-align: left!important; margin-left: -0.6rem;  margin-right: -0.6rem;  border-bottom: 1px solid white;">
                 <div class="col-md-3 ">
-                    <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="width: 55px;height: 40px;border-radius: 50%;">
+                    <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="40px" style="border-radius: 50%;">
                 </div>
                 <div class="col-md-9">
                     <h3>{{ __('INSTRUCTION') }}</h3>
@@ -367,7 +369,7 @@
                 <p style=" text-align: left;  font-size: 15px;    margin-top: 0;  margin-bottom: 0; padding-left:5px">
                     {{ __('1. Useable only for education purpose') }}</p>
                 <p style=" text-align: left;font-size: 15px;    margin-top: 0;  margin-bottom: 0;padding-left:5px">
-                    {{ __('2. This card is valid upto 31/12/2023') }} </p>
+                    {{ __('2. This card is valid upto') }}&nbsp;{{ $card['validity'] }} </p>
                 <table class="table" style="font-size: 12px; margin-top:3px">
                     <tbody>
                         <tr>
@@ -392,8 +394,8 @@
         </div>
 
         <div class="wrapperrr">
-            <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt=""
-                    style="height: 30px;  width: 40px;  border-radius: 50%;   "></div>
+            <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="30px"
+                    style="border-radius: 50%;   "></div>
 
 
         </div>

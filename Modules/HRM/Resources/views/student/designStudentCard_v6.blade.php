@@ -46,15 +46,15 @@
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                                                alt=""
-                                                                style="    height: 76px; width: 82px; border-radius: 3px; position: absolute; top: 47px;left: 22px;">
+                                                                width="70"
+                                                                style="border-radius: 3px; position: absolute; top: 47px;left: 22px;">
 
                                                         </div>
 
                                                         <div class="col-md-12">
                                                             <div class="right text-center">
                                                                 <div class="scl-cd-dec text-wrap text-bold ">
-                                                                    <h2
+                                                                    <h2 class="scl-cd-name"
                                                                         style="position: relative;top: 9px; margin: 1px; text-align: center; font-size: 18px; color: #f6f0f0; font-weight: bold; font-family: sans-serif;">
                                                                         {{ siteConfig('name') }}
                                                                     </h2>
@@ -164,11 +164,13 @@
                                                 </div>
 
                                                 <p class="sinn">
-                                                    <img src="{{ asset('assets/img/signature/signature.png') }}" alt=""
+                                                    <img src="{{ asset('assets/img/signature/signature.png') }}"
+                                                        alt=""
                                                         style="height: 34px;   width: 86px;   position: relative;   left: 154px;   top: -29px">
                                                     <hr
                                                         style="position: relative; top: -52px; width: 91px; left: 74px; background-color: white;">
-                                                <h5 id="idsignature" style="position: relative; top: -68px; left: -8px; font-size: 16px; color: black ;text-align: right;">
+                                                <h5 id="idsignature"
+                                                    style="position: relative; top: -68px; left: -8px; font-size: 16px; color: black ;text-align: right;">
                                                     {{ __('Signature') }} </h5>
                                                 </p>
 
@@ -178,8 +180,9 @@
                                     <div class="col-12" style="padding-top: 50px;">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
                                             <div class="card-body text-center">
-                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
-                                                    style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
+                                                    width="70"
+                                                    style="text-align: center;  margin: 10px;   border-radius: 6px;">
 
 
                                                 <div class="row">
@@ -370,6 +373,14 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
+                                                        <input name="name_size" type="text" class="form-control name-size" placeholder="Institute Name Font Size ...">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
                                                         <input name="title_size" type="text"
                                                             class="form-control title-size" placeholder="Title Size..">
                                                     </div>
@@ -388,7 +399,8 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input type="text" name="titlecolor" id="cbhfc" placeholder="Title Color"
+                                                        <input type="text" name="titlecolor" id="cbhfc"
+                                                            placeholder="Title Color"
                                                             class="form-control my-colorpicker1 colorpicker-element">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
