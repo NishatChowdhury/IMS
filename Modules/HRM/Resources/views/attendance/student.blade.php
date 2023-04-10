@@ -1,4 +1,4 @@
-{ __{('}}@extends('hrm::layouts.master')
+@extends('hrm::layouts.master')
 
 @section('title','Attendance | Student Attendance')
 
@@ -33,25 +33,28 @@
                             <div class="form-row">
                                 <div class="col">
                                     <label for="">{{ __('Student ID')}}</label>
-                                    <div class="input-group">
+                                    <div class="form-group">
                                         {{ Form::text('studentId',null,['class'=>'form-control','placeholder'=>'Student ID']) }}
+                                        @error('studentId')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">{{ __('Date*')}}</label>
-                                    <div class="input-group">
+                                    <div class="form-group">
                                         {{ Form::text('date',null,['class'=>'form-control datePicker','placeholder'=>'Select Date','required']) }}
+                                        @error('date')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="">Class*</label>
-                                    <div class="input-group">
-                                        <select name="class_id" id="class" class="form-control">
+                                    <div class="form-group">
+                                        <select name="class_id" id="class" class="form-control" required>
                                             <option value="">{{ __('Select Class')}}</option>
                                             @foreach($repository->academicClasses() as $class)
                                                 <option value="{{ $class->id }}">{{ $class->academicClasses->name ?? '' }}&nbsp;{{ $class->group->name ?? '' }}{{ $class->section->name ?? '' }}</option>
                                             @endforeach
                                         </select>
+                                        @error('class_id')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
 

@@ -18,7 +18,9 @@ use App\Models\Backend\StudentLeave;
 use App\Models\Backend\weeklyOff;
 use App\Repository\AttendanceRepository;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class AttendanceController extends Controller
 {
@@ -176,17 +178,17 @@ class AttendanceController extends Controller
                 ->where('id',$request->get('staff_id'))
                 ->first();
 
-             $attend = [];
+            $attend = [];
 
-        //            return strval($today);
+            //            return strval($today);
 //                    $stuAca = StudentAcademic::where('student_id',$student->id)->first();
 
-                    $attn = AttendanceTeacher::query()
-                                    ->whereYear('date', $request->year)
-                                    ->whereMonth('date', $request->month)
-                                    ->where('staff_id',$staffs->card_id)
-                                    ->orderBy('date', 'DESC')
-                                    ->get();
+            $attn = AttendanceTeacher::query()
+                ->whereYear('date', $request->year)
+                ->whereMonth('date', $request->month)
+                ->where('staff_id',$staffs->card_id)
+                ->orderBy('date', 'DESC')
+                ->get();
 
 
 //                    if($attn != null) {
@@ -198,13 +200,13 @@ class AttendanceController extends Controller
 //                            'is_notified' => 'Is Notified'
 //                        ];
 //                    }
-        //                array_push($attend, $attendArr);
+            //                array_push($attend, $attendArr);
 
-                $repository = $this->repository;
-                $attendances = $attn ?? [];
+            $repository = $this->repository;
+            $attendances = $attn ?? [];
 
-                $t = $staffs->name;
-                $card = $staffs->card_id;
+            $t = $staffs->name;
+            $card = $staffs->card_id;
 
 //                return $attendances;
         }else{
@@ -217,16 +219,24 @@ class AttendanceController extends Controller
             $year = '';
             $month = '';
         }
+
         $teachers =  Staff::query()
-                            ->where('staff_type_id',2)
-                            ->orderBy('card_id')
-                            ->get()->pluck('name','id');
+            ->where('staff_type_id',2)
+            ->orderBy('card_id')
+            ->get()->pluck('name','id');
+
         return view('hrm::attendance.teacher', compact('attend','t','card','staffs','year','month','attendances','teachers'));
     }
 
 
-
-   public function student(Student $student, Request $request)
+    /**
+     * Display student's daily attendance
+     *
+     * @param Student $student
+     * @param Request $request
+     * @return View
+     */
+    public function student(Student $student, Request $request)
     {
 
         if($request->all() == []){
@@ -242,15 +252,17 @@ class AttendanceController extends Controller
             $studentId = $request->get('studentId');
             $s->where('studentId',$studentId);
         }
+
         if($request->get('name')){
             $name = $request->get('name');
             $s->where('name','like','%'.$name.'%');
         }
+
         if($request->get('class_id')){
             $class = $request->get('class_id');
 //            $s->where('academic_class_id',$class);
             $s->whereHas('studentAcademic', function($query) use ($class){
-                    return $query->where('academic_class_id', $class);
+                return $query->where('academic_class_id', $class);
             });
             $academicClass = AcademicClass::query()->findOrFail($request->get('class_id'));
         }else{
@@ -259,12 +271,10 @@ class AttendanceController extends Controller
 
         $students = $s->get();
 
-
-
         $attend = [];
         foreach($students as $student){
 //            return strval($today);
-            $stuAca = StudentAcademic::where('student_id',$student->id)->first();
+            $stuAca = StudentAcademic::query()->where('student_id',$student->id)->first();
             $attn = Attendance::query()
                 ->whereDate('date', $today)
                 ->where('student_academic_id',$stuAca->id)

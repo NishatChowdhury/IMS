@@ -131,10 +131,11 @@ function isMenu(): bool
 }
 
 /** Get current theme id */
-function theme()
+function theme($col)
 {
-    $setting = SiteInformation::query()->first();
-    return $setting->theme_id;
+    $theme = Theme::query()->findOrFail(siteConfig('theme_id'));
+
+    return $theme->$col;
 }
 
 /** Get current theme

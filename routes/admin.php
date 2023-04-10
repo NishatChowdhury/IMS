@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkPermission'], function 
 
     //Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/', [HomeController::class, 'index'])->name('admin');
-    //Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
     //Student Routes
     /*
