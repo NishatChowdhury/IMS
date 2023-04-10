@@ -159,44 +159,43 @@
                     border-radius: 10px;
                 }
 
-                .back {
-                    color: #080808;
-                }
+   .back {
+color: #080808;
+   }
 
-                .bottom1 {
-                    background-color: maroon;
-                    border-radius: 0 0 9px 9px;
-                    height: 84%;
-                    width: 2.49in;
-                    height: .47in;
+.bottom1{
+    background-color: maroon;
+    border-radius: 0 0 9px 9px;
+    height: 84%;
+    width: 2.49in;
+    height: .47in;
 
-                }
+}
 
-                .circle1 {
-                    width: 450px;
-                    height: 524px;
-                    background-color: maroon;
-                    border-radius: 50%;
+.circle1{
+    width: 450px;
+    height: 524px;
+    background-color: maroon;
+    border-radius: 50%;
 
-                }
+}
+.circle2{
+    width: 449px;
+    height: 539px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    top: -423px;
+    left: 0px;
 
-                .circle2 {
-                    width: 449px;
-                    height: 539px;
-                    background-color: #fff;
-                    border-radius: 50%;
-                    position: relative;
-                    top: -423px;
-                    left: 0px;
-
-                }
+   }
 
 
-                .bg {
-                    position: absolute;
-                    top: 70px;
-                    left: -105px;
-                }
+.bg{
+    position: absolute;
+    top: 70px;
+    left: -105px;
+}
             </style>
 
     </head>

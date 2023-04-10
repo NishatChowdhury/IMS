@@ -330,9 +330,11 @@ Route::post('library/bookCategory/delete/{id}','Backend\BookCategoryController@d
     Route::get('student/generateStudentCard_v2','Backend\IdCardController@generateStudentCard_v2')->name('student.generateStudentCard_v2');
     Route::get('student/generateStudentCard_v3','Backend\IdCardController@generateStudentCard_v3')->name('student.generateStudentCard_v3');
     Route::get('student/generateStudentCard_v4','Backend\IdCardController@generateStudentCard_v4')->name('student.generateStudentCard_v4');
+
+
     Route::get('student/generateStudentCard_v5','Backend\IdCardController@generateStudentCard_v5')->name('student.generateStudentCard_v5');
     Route::get('student/generateStudentCard_v6','Backend\IdCardController@generateStudentCard_v6')->name('student.generateStudentCard_v6');
-    
+
     Route::get('student/testimonial','Backend\StudentController@testimonial')->name('student.testimonial');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
     Route::get('student/assign-transport','Backend\StudentController@assignTransport')->name('student.transport');

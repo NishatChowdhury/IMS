@@ -1,7 +1,7 @@
 /* This stylesheet was created for nave school & college */
 
 .bg-dark{
-    background-color: #0F4C81 !important;
+    background-color: #59593B !important;
     color: #ffffff !important;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .bg-inner{
-    background-color: #6DA8DB !important;
+    background-color: #FFDE88 !important;
     color: #070707 !important;
 }
 
@@ -30,7 +30,7 @@
 }
 
 a:hover{
-    color: #7dacdc !important;
+    color: #e8c40e !important;
 }
 
 
@@ -40,7 +40,7 @@ a:hover{
 }
 
 .hover\:primary:hover{
-    background: #408ad4 !important;
+    background: #65d440 !important;
     color: #fff !important;
 }
 
@@ -58,12 +58,13 @@ a:hover{
 
 /* ---------------------- */
 [data-primary-overlay="0"] {
-    background-color: #A9CBE9 !important;
+    background-color: #F8E5B4 !important;
 }
 
 
 [data-primary-overlay="7"]:after {
-    background: #D8E3ED!important;
+    background: #F6EDD6!important;
+    color: #000;
 }
 
 .textCOLOR {
@@ -77,15 +78,15 @@ a:hover{
 
 
 [data-dark-overlay="6"]:after {
-    background: #6699CC !important;
+    background: #FFDE88 !important;
 }
 .fbg {
-    background-color: #094F8C;
+    background-color: #59593B;
     color: #ffffff;
 }
 .lfooter {
-    background-color: #D8E3ED !important;
-    color: black !important;
+    background-color: #F8E5B4 !important;
+    color: #000 !important;
 }
 
 .lavenderround1 {
@@ -96,7 +97,7 @@ a:hover{
     color: #fcf9f9;
 }
 .bg-black-0_9 {
-    background-color: #6DA8DB !important;
+    background-color: #FFDE88 !important;
 color: #070707;
 }
 .lead {
@@ -104,7 +105,7 @@ color: #070707;
 }
 
 .text-primary {
-    color: #f8f8f9 !important;
+    color: #1820AE!important;
 }
 .textt {
     color: #1820AE !important;

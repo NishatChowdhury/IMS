@@ -233,13 +233,13 @@
                                                 <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" alt=""
                                                         style="height: 30px;  width: 50px;  border-radius: 50%;   "></div>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                {{ Form::open(['action' => 'Backend\IdCardController@pdf_V3', 'method' => 'post']) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ Form::open(['action' => 'Backend\IdCardController@pdf_V3', 'method' => 'post']) }}
 
                                 <div class="card mb-3">
                                     <div class="card-header1">

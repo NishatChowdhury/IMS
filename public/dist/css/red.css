@@ -1,7 +1,7 @@
 /* This stylesheet was created for nave school & college */
 
 .bg-dark{
-    background-color: #0F4C81 !important;
+    background-color: #A70000 !important;
     color: #ffffff !important;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .bg-inner{
-    background-color: #6DA8DB !important;
+    background-color: #FFBABA !important;
     color: #070707 !important;
 }
 
@@ -30,17 +30,17 @@
 }
 
 a:hover{
-    color: #7dacdc !important;
+    color: #e8c40e !important;
 }
 
 
 
 .nav-item__has-dropdown .dropdown-menu{
-    border-top: 3px solid #0064ff !important;
+    border-top: 3px solid #ec5656 !important;
 }
 
 .hover\:primary:hover{
-    background: #408ad4 !important;
+    background: #95e1f8 !important;
     color: #fff !important;
 }
 
@@ -58,12 +58,13 @@ a:hover{
 
 /* ---------------------- */
 [data-primary-overlay="0"] {
-    background-color: #A9CBE9 !important;
+    background-color: #FFBABA !important;
 }
 
 
 [data-primary-overlay="7"]:after {
-    background: #D8E3ED!important;
+    background: #FFBABA!important;
+    color: #000;
 }
 
 .textCOLOR {
@@ -71,32 +72,32 @@ a:hover{
 }
 
 .lavenderround {
-    background-color: #1820AE;
+    background-color: #28B7E4;
     color: #fff;
 }
 
 
 [data-dark-overlay="6"]:after {
-    background: #6699CC !important;
+    background: #FF7B7B !important;
 }
 .fbg {
-    background-color: #094F8C;
+    background-color: #A70000;
     color: #ffffff;
 }
 .lfooter {
-    background-color: #D8E3ED !important;
-    color: black !important;
+    background-color: #FFBABA !important;
+    color: #000 !important;
 }
 
 .lavenderround1 {
-    background-color: #1820AE !important;
+    background-color: #28B7E4 !important;
     color: #fff;
 }
 .text-white {
     color: #fcf9f9;
 }
 .bg-black-0_9 {
-    background-color: #6DA8DB !important;
+    background-color: #FFBABA !important;
 color: #070707;
 }
 .lead {
@@ -104,7 +105,7 @@ color: #070707;
 }
 
 .text-primary {
-    color: #f8f8f9 !important;
+    color: #f3f3f7!important;
 }
 .textt {
     color: #1820AE !important;
@@ -117,13 +118,13 @@ a {
     -webkit-text-decoration-skip: objects;
 }
 a:hover {
-    color:#1820AE  !important;
+    color:#f08080  !important;
 }
 .bg-light-v2 {
     background-color: #f1f3f7!important;
 }
 .bg-primary {
-    background-color: #1820AE !important;
+    background-color: #28B7E4 !important;
 }
 .btn-outline-white-hover {
     background: #fff;
@@ -149,4 +150,13 @@ marquee ul li a{
 }
 .txt {
     color: #000 !important;
+}
+.txtt {
+    color: #79c1e0 !important;
+}
+.txt_1 {
+    color: #1820ae !important;
+}
+.card-header{
+    background-color: #6699CC !important;
 }

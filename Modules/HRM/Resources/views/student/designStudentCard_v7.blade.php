@@ -150,7 +150,7 @@
                                                                         <td>:</td>
                                                                         <td>{{ __('Date') }}
                                                                         </td>
-                                                                    </tr>     
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>

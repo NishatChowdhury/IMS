@@ -612,7 +612,6 @@
             border-radius: 10px;
             background-position-x: bottom;
         }
-
         .logoo3 {
             position: absolute;
             height: 35px;

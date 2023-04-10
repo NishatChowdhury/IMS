@@ -49,15 +49,15 @@
                                          
                                                 <div class="row ">
                                               <div class="col-md-3 ">
-                                                    <img  src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"  alt="" style=" height: 63px;width: 64px;border-radius: 3px;position: absolute;top: 4px;left: 20px;">
+                                                    <img  src="{{asset('assets/img/logos/klr.png')}}"  alt="" style=" height: 76px;width: 80px;border-radius: 3px;position: absolute;top: -4px;left: 13px;">
                                                   
                                                   </div>
                                                   
                                                     <div class="col-md-9 ">
                                                       <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold ">
-                                                                <h2 class="scl-cd-name" style=" position: relative;  top: 10px;  margin: 1px; text-align: center;  font-size: 17px; font-weight: bold;  font-family: sans-serif;">
-                                                                    {{ siteConfig('name') }}
+                                                                <h2 style=" position: relative;  top: 10px;  margin: 1px; text-align: center;  font-size: 17px;  color: #080808;  font-weight: bold;  font-family: sans-serif;">
+                                                                  Web Point Limited School School
                                                                 </h2>
                                                             </div>
                                                       </div> 
@@ -69,6 +69,10 @@
                                           </div>
                                          
                                             <div class="card-body text-center">
+
+                                            <!-- <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
+                                              <p class="p-0">Sukirti Chakma Poran</p>
+                                                  </div> -->
                                                 <h1 class="card-title text-bold nName"
                                                     style="padding-top: 3px;position: relative;top: -14px;margin: 2px;text-align: center; font-size:15px ;color:rgb(35, 12, 167)">
                                                   {{ __('Student Name') }}</h1>
@@ -176,7 +180,7 @@
                                     <div class="card back" style="width: 2.5in; height: 3.9in; margin-left: 50px; border-radius: 10px;   border: 1px solid black;">
                                             <div class="card-body text-center">
                                       
-                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" 
+                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
                                                     width="60" style="  height: 65px;  width: 68px;  text-align: center;  margin: 10px;   border-radius: 6px;">
 
                         
@@ -184,7 +188,7 @@
                                                     <div class="col-md-12">
                                                         <div class="card-back-dec text-bold"
                                                             style="text-align: left; margin-top: -16px;font-size: 12px">
-                                                            <h2 style="text-align: center;position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">{{ __('If Found Please Return The Card To') }}</h2>
+                                                            <h2 style="    text-align: center;   position: relative;  top: 23px;   font-size: 20px;  font-weight: bold;">If Found Please Return The Card To</h2>
                                                       </div>
                                                     </div>
                                                 </div>
@@ -206,7 +210,7 @@
                                                    </tr>
                                                             </tbody>
                                                         </table>
-                                                       
+
                                                         <p class="bottom1"  style="  text-align: center;position: absolute;left: -53px;top: 84px;">
 
                                                         </p>
