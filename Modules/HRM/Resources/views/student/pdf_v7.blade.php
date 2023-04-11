@@ -191,8 +191,8 @@
                                     </div>
                                     <div class="col-md-3 ">
                                         <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                            alt=""
-                                            style=" height: 82px;width: 87px;border-radius: 3px;position: absolute;top: 1px;left: -29px">
+                                            width="70px"
+                                            style="border-radius: 3px;position: absolute;top: 1px;left: -29px">
 
                                     </div>
                                 </div>
@@ -325,8 +325,8 @@
     <div class=" col-12" style="padding-top: 50px;">
         <div class="card back" style="width: 2.5in; height: 3.9in; margin-left: 33px;">
             <div class="card-body text-center">
-                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
-                    style=" height: 74px;   width: 96px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="90px"
+                    style="text-align: center;  margin: 10px;   border-radius: 6px;">
 
 
                 <div class="row">
@@ -342,13 +342,13 @@
 
                 <div class="row">
                     <div class="" style="margin-top: 27px;">
-                        <p style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
-                        <p style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}
+                        <p class="scl-cd-name" style="margin-bottom: 7px;"><strong>{{ siteConfig('name') }} <br> </strong>
+                        <p class="scl-cd-add" style=" margin-bottom: 5px;font-weight: 600;  font-size: 14px;">{{ siteConfig('address') }}
                         </p>
                         </p>
                     </div>
                     <div class="crd-add-dec text-bold"
-                        style="    text-align: center;   position: relative; left: 58px;top: -6px;">
+                        style="text-align: center;   position: relative; left: 58px;top: -6px;">
                         <table class="table" style="font-size: 12px; font-weight:bold">
                             <tbody>
                                 <tr>

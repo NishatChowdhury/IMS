@@ -195,7 +195,7 @@ class StudentController extends Controller
 //            ->paginate(100);
         // $students = $s->orderBy('rank')->paginate(100);
 //        dd($s->get());
-        $students = $s->orderBy('studentId')->paginate(100);
+        $students = $s->orderBy('rank')->paginate(100);
         $repository = $this->repository;
         return view('admin.student.list',compact('students','repository'));
     }

@@ -141,14 +141,14 @@
                             </li>
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{ route('student.testimonial') }}"
-                                   class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                   class="nav-link ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>TC</p>
                                 </a>
                             </li>
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{ route('student.testimonial') }}"
-                                   class="nav-link {{ isActive('admin/student/testimonial') }}">
+                                   class="nav-link ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Concern Letter</p>
                                 </a>
@@ -222,8 +222,8 @@
             <!---------------------------------- Attendance -------------------------------------------------->
             @can('middleware-passed', 'attendance.dashboard')
                 @if (in_array('attendance.dashboard', auth()->user()->permissions))
-                    <li class="nav-item has-treeview {{ isActive('admin/attendance*') }}">
-                        <a href="#" class="nav-link {{ isActive('admin/attendance*') }}">
+                    <li class="nav-item has-treeview {{ isActive(['admin/attendance*','admin/holidays']) }}">
+                        <a href="#" class="nav-link {{ isActive(['admin/attendance*','admin/holidays']) }}">
                             <i class="nav-icon fas fa-tree"></i>
                             <p>
                                 Attendance
@@ -270,8 +270,8 @@
                                     </li>
                                 @endif
                             @endcan
-                            <li class="nav-item has-treeview {{ isActive('admin/attendance*') }}">
-                                <a href="#" class="nav-link {{ isActive('admin/attendance*') }}">
+                            <li class="nav-item has-treeview {{ isActive(['admin/attendance/setting','admin/attendance/weeklyOff']) }}">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-circle"></i>
                                     <p>
                                         Setting
@@ -279,7 +279,6 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-
                                     @can('middleware-passed', 'shift.index')
                                         @if (in_array('shift.index', auth()->user()->permissions))
                                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -303,12 +302,6 @@
                                         @endif
                                     @endcan
                                 </ul>
-                            </li>
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('shift.index') }}" class="nav-link {{ isActive('admin/attendance/setting') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Setting</p>
-                                </a>
                             </li>
                             @can('middleware-passed', 'attendance.student')
                                 @if (in_array('attendance.student', auth()->user()->permissions))

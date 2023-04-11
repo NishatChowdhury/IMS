@@ -157,16 +157,15 @@
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="left ">
-                                    <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                         style="width:36px;position: relative;top: -7px; text-align: center!important;"
+                                    <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="50"
+                                         style="position: relative;top: -7px; text-align: center!important;"
                                          class="text-center mx-auto d-block">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="right text-center">
                                     <div class="scl-cd-dec text-wrap text-bold">
-                                        <h2
-                                                style="padding-top: 3px; position: relative;top: -5px;margin: 2px;text-align: center; font-size:19px; font-weight:500 ;color:#9A001B">
+                                        <h2 class="scl-cd-name" style="padding-top: 3px; position: relative;top: -5px;margin: 2px;text-align: center; font-size:{{ $card['name_size'] != null ? $card['name_size'] : 0 }}px; font-weight:500 ;color:#9A001B">
                                             <strong>{{ siteConfig('name') }}</strong>
                                         </h2>
                                     </div>
@@ -183,7 +182,7 @@
                         </figure>
 
                         @isset($card['nickname'])
-                            <h2 style="position: relative;top: -20px;margin: 2px 2px 9px 2px;text-align: center; font-size:17px ;color:#042E57">
+                            <h2 style="position: relative;top: -20px;margin: 2px 2px 9px 2px;text-align: center; font-size:{{ $card['title_size'] != null ? $card['title_size'] : 0 }}px ;color:{{ $card['titlecolor'] }}">
                                 <strong> {{ $student->student->name ?? ''}} </strong>
                             </h2>
                         @endisset
@@ -277,7 +276,7 @@
                                         style="color:red"> {{ __('30 June 2024') }}</span></h6>
                         </div>
                         <div class="col" style="float:right; padding-right:3px ;padding-top:2px">
-                            <img src="{{ asset('assets/img/signature/kaj_signature.png') }}" width="80"
+                            <img src="{{ asset('assets/img/signature/signature.png') }}" width="80"
                                  alt="">
                         </div>
                     </div>
@@ -285,7 +284,7 @@
                          style="font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
                         <div class=" grid-container">
                             <div class="item1">{{ siteConfig('address') }}</div>
-                            <div class="item2"> <span>{{ __('Principal') }}</span></div>
+                            <div class="item2"> <span>{{ $card['signature'] }}</span></div>
                         </div>
                     </div>
                 </div>

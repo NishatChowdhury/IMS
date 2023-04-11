@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{('All Fee Collections')}}</h1>
+                    <h1>{{__('All Fee Collections')}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -35,37 +35,50 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>{{ __('Serial') }}</th>
+                                        <th>{{ __('Payment Date') }}</th>
                                         <th>{{ __('Student Name') }}</th>
                                         <th>{{ __('Student ID') }}</th>
-                                        <th>{{ __('Payment Date') }}</th>
-                                        <th>{{ __('Balance') }}</th>
+                                        <th>{{ __('Academic Class') }}</th>
                                         <th>{{ __('Payment Method') }}</th>
                                         <th>{{ __('Paid Amount') }}</th>
                                         <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($studentPayment as $key=>$payment)
+                                    @foreach($feeCollections as $data)
                                     <tr>
-                                        <td>{{$key+1}}</td>
-                                        <td>{{$payment->academics}}</td>
-                                        <td>{{$payment->academics}}</td>
-                                        <td>{{$payment->payment_date}}</td>
-                                        <td>{{$payment->balance}}</td>
-                                        <td>{{$payment->payment_method}}</td>
-                                        <td>{{$payment->paid_amount}}</td>
                                         <td>
-                                            <a href="{{ url('admin/fee/all-collection/report',$payment->student_id) }}" role="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
-                                            {{-- <a href="{{ url('admin/fee/fee-setup/edit',$fee->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> --}}
-                                            {{-- <button type="submit" class="btn btn-danger btn-sm">
+                                            {{ $data->date->format('Y-m-d') ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $data->academics->student->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $data->academics->student->studentId ?? '' }}
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-info">{{ $data->academics->classes->name ?? '' }}</span>
+                                            <span class="badge badge-info">{{ $data->academics->section->name ?? '' }}</span>
+                                            <span class="badge badge-info">{{ $data->academics->group->name ?? '' }}</span>
+                                        </td>
+                                        <td> {{ $data->payment_methods->name ?? '' }}</td>
+                                        <td>
+                                            {{ $data->amount ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ Form::open(['url'=>['admin/fee/collection/delete',$data->id],'method'=>'post','onsubmit'=>'return confirmDelete()']) }}
+                                            <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fas fa-trash"></i>
-                                            </button> --}}
+                                            </button>
+                                            {{ Form::close() }}
                                         </td>
                                     </tr>
-                                @endforeach
-                                </tbody>
+                                    @endforeach
+                                    </tbody>
                             </table>
+                        </div>
+                        <div class="card-body">
+                            {{ $feeCollections->appends(Request::except('page'))->links() }}
                         </div>
                     </div>
                 </div>

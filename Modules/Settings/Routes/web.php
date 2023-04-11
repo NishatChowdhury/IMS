@@ -51,7 +51,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('update-AcademicClass',[InstitutionController::class,'updateAcademicClass'])->name('updateAcademicClass');
         Route::post('edit-SessionClass',[InstitutionController::class,'edit_SessionClass'])->name('edit_SessionClass');
         Route::post('update-SessionClass',[InstitutionController::class,'update_SessionClass'])->name('update_SessionClass');
-        Route::get('{id}/delete-SessionClass',[InstitutionController::class,'delete_SessionClass'])->name('delete_SessionClass');
+        Route::delete('{id}/delete-SessionClass',[InstitutionController::class,'delete_SessionClass'])->name('delete_SessionClass');
 
         Route::get('class/subject/{class}',[InstitutionController::class,'classSubjects'])->name('classSubjects');
         //Route::delete('institution/class/subject/destroy/{id}','Backend\InstitutionController@load_online_adminsion_id');

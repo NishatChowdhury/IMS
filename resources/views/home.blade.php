@@ -30,7 +30,7 @@
         }
 
         .bx:hover {
-            /*background-color: #25252d;*/
+            /background-color: #25252d;/
             opacity: .3;
         }
 

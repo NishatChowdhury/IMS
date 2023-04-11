@@ -76,11 +76,32 @@ class IdCardController extends Controller
         $repository = $this->repository;
         return view('hrm::student.designStudentCard_v8', compact('repository'));
     }
+    public function generateStudentCard_v9()
+    {
+        $repository = $this->repository;
+        return view('hrm::student.designStudentCard_v9', compact('repository'));
+    }  public function generateStudentCard_v10()
+    {
+        $repository = $this->repository;
+        return view('hrm::student.designStudentCard_v10', compact('repository'));
+    }
+
+    public function generateStudentCard_v9()
+    {
+        $repository = $this->repository;
+        return view('hrm::student.designStudentCard_v9', compact('repository'));
+    }
+
+    public function generateStudentCard_v10()
+    {
+        $repository = $this->repository;
+        return view('hrm::student.designStudentCard_v10', compact('repository'));
+    }
 
     public function staff()
     {
         $repository = $this->repository;
-        return view('hrm::staff.designCard', compact('repository'));
+        return view('hrm::staff.designCard2', compact('repository'));
     }
 
     public function pdf(Request $request, StudentAcademic $student)
@@ -329,8 +350,131 @@ class IdCardController extends Controller
         $pdf = PDF::loadView('admin.student.card');
         $pdf->setPaper('a4', 'portrait');
         return $pdf->stream();
+    } 
+    
+    public function pdf_V9(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        $std->whereIn('session_id', activeYear());
+
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group_id){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+        $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
+        $card = $request->except('_token');
+
+        return view('hrm::student.pdf_v9', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
     }
 
+ public function pdf_V10(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        $std->whereIn('session_id', activeYear());
+
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group_id){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+        $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
+        $card = $request->except('_token');
+
+        return view('hrm::student.pdf_v10', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function pdf_V9(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        $std->whereIn('session_id', activeYear());
+
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group_id){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+        $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
+        $card = $request->except('_token');
+
+        return view('hrm::student.pdf_v9', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function pdf_V10(Request $request, StudentAcademic $student)
+    {
+        $std = $student->newquery();
+
+        $std->whereIn('session_id', activeYear());
+
+        if ($request->class) {
+            $std->where('class_id', $request->class);
+        }
+        if ($request->section) {
+            $std->where('section_id', $request->section);
+        }
+        if($request->group_id){
+            $std->where('group_id',$request->group);
+        }
+        if ($request->ranks) {
+            $ranks = explode(',', $request->ranks);
+            $std->whereIn('rank', $ranks);
+        }
+        $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
+        $card = $request->except('_token');
+
+        return view('hrm::student.pdf_v10', compact('students', 'card'));
+
+        view()->share('card', (object)$card);
+        view()->share('data', $data);
+        $pdf = PDF::loadView('admin.student.card');
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
 
     public function staffPdf(Request $request)
     {
@@ -342,7 +486,7 @@ class IdCardController extends Controller
             $staffs = Staff::query()->get();
         }
         $card = $request->except('_token');
-        return view('hrm::staff.card-new', compact('staffs', 'card'));
+        return view('hrm::staff.card-new2', compact('staffs', 'card'));
 
         $pdf = PDF::loadView('admin.staff.card');
         $pdf->setPaper('a4', 'portrait');

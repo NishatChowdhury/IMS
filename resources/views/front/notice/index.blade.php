@@ -52,7 +52,7 @@
                          <div class="d-md-flex justify-content-between align-items-center bg-white shadow-v1 rounded mb-4 py-4 px-5 hover:transformLeft">
                             <div class="media align-items-center">
                                 <div class="text-center border-right pr-4  noticee">
-                                <strong class="text-primary font-size-38">
+                                <strong class="text-primary txt font-size-38">
                                             {{$date}}
                                 </strong>
                                 <p class="mb-0 text-gray">

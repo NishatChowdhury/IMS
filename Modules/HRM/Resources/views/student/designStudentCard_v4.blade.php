@@ -40,12 +40,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;  ">
-                                            <div class="  " style="   background: linear-gradient(#3C3CB9, #3C3CB9 45%, #3C3CB9 45%,  #3C3CB9 100%);    height: 1.9in;">
+                                            <div class="front" style="height: 1.9in;background-color:#24b95b">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="left ">
-                                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                                                style=" height: 54px;  width: 73px;  text-align: center; margin: 5px;   border-radius: 6px;"
+                                                            <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="50"
+                                                                style="text-align: center; margin: 5px;   border-radius: 6px;"
                                                                 class="text-center  mx-auto d-block ">
                                                         </div>
                                                     </div>
@@ -53,7 +53,7 @@
                                                     <div class="col-md-12">
                                                         <div class="right text-center">
                                                             <div class="scl-cd-dec text-wrap text-bold ">
-                                                                <h2
+                                                                <h2 class="scl-cd-name"
                                                                     style="position: relative;top: 10px; margin: 1px;text-align: center;  font-size: 17px;  color: #fff; font-weight: bold;     font-family: sans-serif;">
                                                                     <strong>{{ siteConfig('name') }}</strong>
                                                                 </h2>
@@ -62,15 +62,15 @@
                                                     </div>
                                                 </div>
 
-                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" style="    width: 90px;  height: 90px;   position: relative; left: 1px; top: 15px;" class="text-center rounded mx-auto d-block border border-dark">
+                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="70" style="position: relative; left: 1px; top: 15px;" class="text-center rounded mx-auto d-block border border-dark">
                                             </div>
                                             <div style=" text-align: center; font-size: 18px; font-weight: bold; position: relative; top: 28px;">
                                                <p  id="idtitle" class="card-title text-bold">{{ __('Student Identity Card') }}</p>
                                                  </div>
                                             <div class="card-body text-center">
 
-                                            <div  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #3C3CB9;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
-                                                <p class="p-0 nName">{{ __('Student Name') }}</p>
+                                            <div class="front2"  style=" text-align: center; margin-top: 13px; font-size: 18px; font-weight: bold;  color: white;  background-color: #24b95b;   height: 34px;  width: 2.487in; margin-left: -10px; padding: 2px;">
+                                                <p class="card-title p-0 nName">{{ __('Student Name') }}</p>
                                             </div>
                                                 <div class="row">
                                                     <div class="right col-12" style="float:left; margin-top: 3px;">
@@ -164,7 +164,7 @@
                                             </div>
 
                                             <p class="sinn">
-                                                <img src="{{asset('assets/img/signature/jalalabadSignature.png')}}"  alt="" style="height: 26px;  width: 55px; position: relative;  left: 162px;   top: 72px;">
+                                                <img src="{{asset('assets/img/signature/signature.png')}}"  alt="" style="height: 26px;  width: 55px; position: relative;  left: 162px;   top: 72px;">
                                                  <hr style="position: relative; top: 40px; width: 97px;  left: 142px;">
                                                 <h5 id="idsignature" style=" position: relative; top: 22px; left: 159px; font-size: 15px;">{{ __('Signature') }} </h5>
                                             </p>
@@ -175,7 +175,7 @@
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
                                             <div class="card-body text-center">
                                             <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" 
-                                                    width="60" style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+                                                    width="70" style="text-align: center;  margin: 10px;   border-radius: 6px;">
 
                         
                                                 <div class="row">
@@ -204,8 +204,6 @@
                                                                     <td>:</td>
                                                                     <td id="bphone">
                                                                         {{ __('01892-962257') }} 
-                                                                        <br>
-                                                                        {{ __('01878-895646') }}  
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -369,6 +367,56 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">{{ __('BG Color') }}</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="bgcolor" id="bghf"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">{{ __('Title Color') }}</label>
+                                                    <div class="input-group">
+                                                        {{-- <input type="text" class="form-control"> --}}
+                                                        <input type="text" name="titlecolor" id="cbhfc"
+                                                            class="form-control my-colorpicker1 colorpicker-element">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-palette"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="name_size" type="text"
+                                                            class="form-control name-size"
+                                                            placeholder="Institute Name Font Size ...">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="title_size" type="text"
+                                                            class="form-control title-size" placeholder="Title Size..">
+                                                    </div>
+                                                </div>
+                                                <!-- /input-group -->
+                                            </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -796,7 +844,7 @@
             var vtd = $("#vtd").val();
 
 
-            $(".card-header,.card-footer").css({
+            $(".front,.front2").css({
                 "background-color": bghf
             });
             $(".scl-cd-dec").css({

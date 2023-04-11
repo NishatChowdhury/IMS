@@ -68,8 +68,32 @@
                     </a>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 text-center">
+                    <a href="{{ route('student.generateStudentCard_v9') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_9.jpg') }}"
+                             class="w-75 shadow-1-strong rounded img-thumbnail mb-4" />
+                    </a>
+                </div>
+                <div class="col-lg-2 mb-4 mb-lg-0 text-center">
+                    <a href="{{ route('student.generateStudentCard_v10') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_10.jpeg') }}"
+                             class="w-75 shadow-1-strong rounded img-thumbnail mb-4" />
+                    </a>
+                </div>
+                <div class="col-lg-2 mb-4 mb-lg-0 text-center">
                     <a href="{{ route('student.generateStudentCard_v3') }}">
                         <img src="{{ asset('assets/img/studentIdCard/studentId_3.jpg') }}"
+                             class="w-75 shadow-1-strong rounded img-thumbnail mb-4" />
+                    </a>
+                </div>
+                <div class="col-lg-2 mb-4 mb-lg-0 text-center">
+                    <a href="{{ route('student.generateStudentCard_v9') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_9.png') }}"
+                             class="w-75 shadow-1-strong rounded img-thumbnail mb-4" />
+                    </a>
+                </div>
+                <div class="col-lg-2 mb-4 mb-lg-0 text-center">
+                    <a href="{{ route('student.generateStudentCard_v10') }}">
+                        <img src="{{ asset('assets/img/studentIdCard/studentId_10.png') }}"
                              class="w-75 shadow-1-strong rounded img-thumbnail mb-4" />
                     </a>
                 </div>

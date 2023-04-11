@@ -8,7 +8,7 @@
                 <h2 class="mb-4 textCOLOR ">
                     {{ __('Upcoming Events')}}
                 </h2>
-                <div class="width-3rem height-4 rounded  mx-auto lavenderround"  ></div>
+                <div class="width-3rem height-4 rounded  mx-auto lavenderround1"  ></div>
                 <!-- <div class="width-3rem height-4 rounded bg-white mx-auto lavenderround"  ></div> -->
             </div>
 

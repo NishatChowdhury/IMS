@@ -90,17 +90,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-info">
-                    <div class="card-header ">
+                    <div class="card-header">
                         @if (request()->academic_class_id)
                             <strong>Class : {{ request()->academic_class_id ?? '' }}</strong> &nbsp; &nbsp; &nbsp;
                             <span> student found : {{ $students->total() ?? '' }}</span>
                         @endif
 
                         <div class=" float-right">
-                            <a href="{{ route('student.add') }}" class="btn btn-success btn-sm"
-                                style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
-                            <a href="{{ route('csv') }}" target="_blank" class="btn btn-primary btn-sm"><i
-                                    class="fas fa-cloud-download-alt"></i> CSV</a>
+                            <a href="{{ route('student.add') }}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>
+                            <a href="{{ route('csv') }}" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -109,6 +107,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>{{ __('Id') }}</th>
+                                    <th>{{ __('Roll') }}</th>
                                     <th>{{ __('Student') }}</th>
                                     <th>{{ __('Mobile') }}</th>
                                     <th>{{ __('Father/Mother') }}</th>
@@ -120,6 +119,7 @@
                                 @foreach ($students as $student)
                                     <tr>
                                         <td>{{ $student->studentId }}</td>
+                                        <td>{{ $student->studentacademic->rank ?? '' }}</td>
                                         <td>{{ $student->name }}
                                             @if ($student->status == 2)
                                                 <span class="badge badge-danger">Drop Out</span>

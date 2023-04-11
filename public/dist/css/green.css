@@ -1,6 +1,6 @@
 .bg-inner {
-    background-color: rgba(88, 203, 83, 0.7) !important;
-    color: rgb(96, 96, 101) !important;
+    background-color: rgba(88, 203, 83, 0.7) ;
+    color: rgb(96, 96, 101) ;
 }
 
 .bg-white {
@@ -17,7 +17,7 @@ a:hover {
 }
 
 .nav-item__has-dropdown .dropdown-menu {
-    border-top: 3px solid #00CB54 !important;
+    border-top: 3px solid #00CB54 ;
 }
 
 .hover\:primary:hover {
@@ -35,7 +35,7 @@ a:hover {
 
 /* ADDED */
 .textCOLOR {
-    color: #f8f8f9 !important;
+    color: #f8f8f9 ;
 }
 
 

@@ -1,0 +1,153 @@
+/* This stylesheet was created for nave school & college */
+
+.bg-dark{
+    background-color: #59593B !important;
+    color: #ffffff !important;
+}
+
+.bg-navy-1{
+    background-color: #090a30 !important;
+    color: #ffffff !important;
+}
+
+.bg-inner{
+    background-color: #FFDE88 !important;
+    color: #070707 !important;
+}
+
+.bg-inner h1{
+    color: #ffffff !important;
+}
+
+.bg-white {
+    background-color: #f6fafc !important;
+    color: rgb(9, 9, 9) !important;
+}
+/** #4660ee **/
+
+.text-blue, .text-blue h2{
+    color: #22246c !important;
+}
+
+a:hover{
+    color: #e8c40e !important;
+}
+
+
+
+.nav-item__has-dropdown .dropdown-menu{
+    border-top: 3px solid #0064ff !important;
+}
+
+.hover\:primary:hover{
+    background: #65d440 !important;
+    color: #fff !important;
+}
+
+.hamburger{
+    background-color: #49688e !important
+}
+
+@media screen and (max-width:992px){
+    .when-collapsed {
+        background: #49688e !important
+    }
+}
+
+
+
+/* ---------------------- */
+[data-primary-overlay="0"] {
+    background-color: #F8E5B4 !important;
+}
+
+
+[data-primary-overlay="7"]:after {
+    background: #F6EDD6!important;
+    color: #000;
+}
+
+.textCOLOR {
+    color: #212529 !important;
+}
+
+.lavenderround {
+    background-color: #1820AE;
+    color: #fff;
+}
+
+
+[data-dark-overlay="6"]:after {
+    background: #FFDE88 !important;
+}
+.fbg {
+    background-color: #59593B;
+    color: #ffffff;
+}
+.lfooter {
+    background-color: #F8E5B4 !important;
+    color: #000 !important;
+}
+
+.lavenderround1 {
+    background-color: #1820AE !important;
+    color: #fff;
+}
+.text-white {
+    color: #fcf9f9;
+}
+.bg-black-0_9 {
+    background-color: #FFDE88 !important;
+color: #070707;
+}
+.lead {
+    color: black !important;
+}
+
+.text-primary {
+    color: #1820AE!important;
+}
+.textt {
+    color: #1820AE !important;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a:hover {
+    color:#1820AE  !important;
+}
+.bg-light-v2 {
+    background-color: #f1f3f7!important;
+}
+.bg-primary {
+    background-color: #1820AE !important;
+}
+.btn-outline-white-hover {
+    background: #fff;
+    border-color: #393ceb;
+    color: #000;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1820AE !important;
+    border-color: #007bff !important;
+}
+.btn-outline-primary {
+    background-color: transparent;
+    border-color: #1820ae !important;
+    color: #1820ae !important;
+}
+
+marquee ul li a{
+    color: #0064ff ;
+}
+.list-unstyled a{
+    color: #0e0f0f ;
+}
+.txt {
+    color: #000 !important;
+}

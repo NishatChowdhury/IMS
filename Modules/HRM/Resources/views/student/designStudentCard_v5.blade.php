@@ -44,8 +44,8 @@
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}"
-                                                            alt=""
-                                                            style="    height: 47px;   width: 55px ; border-radius: 3px; ;position: absolute ; top: 3px ; left: 21px;">
+                                                            width="50px"
+                                                            style="border-radius: 3px; ;position: absolute ; top: 3px ; left: 21px;">
                                                         <div class="nat">
                                                             <img src="{{ asset('assets/img/logos/bg2.JPG') }}"
                                                                 alt=""
@@ -181,8 +181,8 @@
                                     <div class="col-12" style="padding-top: 50px;">
                                         <div class="card" style="width: 2.5in; height: 3.9in; margin-left: 50px;">
                                             <div class="card-body text-center">
-                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="60"
-                                                    style="  height: 71px;  width: 94px;  text-align: center;  margin: 10px;   border-radius: 6px;">
+                                                <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="90px"
+                                                    style="text-align: center;  margin: 10px;   border-radius: 6px;">
 
 
                                                 <div class="row">
