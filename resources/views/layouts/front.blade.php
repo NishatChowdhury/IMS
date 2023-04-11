@@ -37,7 +37,7 @@
 
     @yield('style')
 
-    <link rel="stylesheet" href="{{ asset('dist/css/'.theme('css').'?ver:2.0') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/'.themeConfig('css').'?ver:2.0') }}">
 
 {{--    @if(theme() == 1)--}}
 {{--        <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">--}}

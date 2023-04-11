@@ -52,9 +52,7 @@
                                     <td>
                                         {{ $theme->name }}
                                         @if($theme->id === 1) <i class="text-sm" style="color:lightslategray">(default)</i> @endif
-                                        @if($theme->current)
-                                            <i class="far fa-check-circle" style="color:lightslategray"></i>
-                                        @endif
+                                        @if($theme->current) <i class="far fa-check-circle" style="color:lightslategray"></i> @endif
                                     </td>
                                     <td>
                                         <span style="float:left;background: {{ $theme->top_bar_background }}">&nbsp;</span>
