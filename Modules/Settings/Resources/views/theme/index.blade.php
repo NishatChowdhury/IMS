@@ -54,27 +54,28 @@
                                         @if($theme->id === 1) <i class="text-sm" style="color:lightslategray">(default)</i> @endif
                                         @if($theme->current) <i class="far fa-check-circle" style="color:lightslategray"></i> @endif
                                     </td>
-                                    <td>
-                                        <span style="float:left;background: {{ $theme->top_bar_background }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->top_bar_color }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->header_background }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->header_color }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->menu_background }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->menu_color }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->submenu_background }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->submenu_color }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->inner_background }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->inner_color }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->footer_background }}">&nbsp;</span>
-                                        <span style="float:left;background: {{ $theme->footer_color }}">&nbsp;</span>
+ <td>
+                                        <span style="float:left;background: #49688e">&nbsp;</span>
+                                        <span style="float:left;background: #ffffff">&nbsp;</span>
+                                        <span style="float:left;background: rgb(17, 201, 93)">&nbsp;</span>
+                                        <span style="float:left;background: #22246C">&nbsp;</span>
+                                        <span style="float:left;background: #101250">&nbsp;</span>
+                                        <span style="float:left;background: #ffffff">&nbsp;</span>
+                                        <span style="float:left;background: #ffffff">&nbsp;</span>
+                                        <span style="float:left;background: #212529">&nbsp;</span>
+                                        <span style="float:left;background: #294a70">&nbsp;</span>
+                                        <span style="float:left;background: #FFFFFF">&nbsp;</span>
+                                        <span style="float:left;background: #121416">&nbsp;</span>
+                                        <span style="float:left;background: #FFFFFF">&nbsp;</span>
                                     </td>
                                     <td>{{ $theme->created_at }}</td>
                                     <td>
                                         <a href="{{ route('admin.theme.change',$theme->id) }}" class="btn btn-info btn-sm"><i class="fas fa-user-check"></i></a>
-                                        {{--                                        <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
-                                        {{--                                        <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>--}}
+                                        {{--   <a href="{{ action('Backend\ThemeController@edit',$theme->id) }}" role="button" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>--}}
+                                        {{--    <a href="{{ action('Backend\ThemeController@destroy',$theme->id) }}" role="button" class="btn btn-danger btn-sm" title="Remove"><i class="fas fa-sign-out-alt"></i></a>--}}
                                     </td>
                                 </tr>
+                            
                             @endforeach
                             </tbody>
                         </table>

@@ -16,7 +16,7 @@
             <div class="col-lg-4 col-md-6 mt-5">
                 <h4 class="h5 text-white txt ">{{ __('Important links')}}</h4>
                 <!-- <div class="width-3rem bg-primary height-3 mt-3 "></div> -->
-                <div class="width-3rem height-3 mt-3 rounded lavenderround1"></div>
+                <div class="width-3rem height-3 mt-3 bg-primary rounded lavenderround1"></div>
                 <ul class="list-unstyled marginTop-40">
                     @foreach(importantLinks() as $link)
                         <li class="mb-2"><a href="{{ $link->link }}">{{ $link->title }}</a></li>
@@ -40,7 +40,7 @@
             <div class="col-lg-4 col-md-6 mt-5">
                 <h4 class="h5 text-white txt">{{ __('Contact Us')}}</h4>
                 <!-- <div class="width-3rem bg-primary height-3 mt-3"></div> -->
-                <div class="width-3rem height-3 mt-3 rounded lavenderround1"></div>
+                <div class="width-3rem height-3 mt-3 rounded  bg-primary lavenderround1"></div>
                 <ul class="list-unstyled marginTop-40">
                     <li class="mb-3"><i class="ti-headphone mr-3"></i><a href="tel:{{ siteConfig('phone') }}">{{ siteConfig('phone') }}</a></li>
                     <li class="mb-3"><i class="ti-email mr-3"></i><a href="mailto:{{ siteConfig('email') }}">{{ siteConfig('email') }}</a></li>

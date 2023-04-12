@@ -37,10 +37,11 @@
 
     @yield('style')
 
-    <link rel="stylesheet" href="{{ asset('dist/css/'.themeConfig('css').'?ver:2.0') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/'.theme('css').'?ver:2.0') }}">
 
 {{--    @if(theme() == 1)--}}
-{{--        <link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">--}}
+<link rel="stylesheet" href="{{ asset('dist/css/green.css?ver:2.0') }}">
+<!-- <link rel="stylesheet" href="{{ asset('dist/css/red.css?ver:1.0') }}">   -->
 {{--    @elseif(theme() == 2)--}}
 {{--        <link rel="stylesheet" href="{{ asset('dist/css/navy.css?ver:1.0') }}">--}}
 {{--    @elseif(theme() == 3)--}}
