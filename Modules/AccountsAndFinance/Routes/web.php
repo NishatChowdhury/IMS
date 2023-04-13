@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function() {
 
     Route::post('fee/edit-fee-cart/destroy',[FeeCartController::class,'EditFeeCartDestroy'])->name('fee.EditFeeCartDestroy');
 
+    
     //Route for fee collection
     Route::get('fee/fee-collection', [FeeCollectionController::class, 'index'])->name('fee-collection.index');
     Route::get('fee/fee-collection/view', [FeeCollectionController::class, 'view'])->name('fee-collection.view');

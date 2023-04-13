@@ -402,7 +402,7 @@
                         <tr>
                             <td>Cell</td>
                             <td style="padding: 0 5px">:</td>
-                            <td>{{ __('0312550249') }}</td>
+                            <td>{{ siteConfig('phone') }}</td>
                         </tr>
                     </table>
                 </div>
