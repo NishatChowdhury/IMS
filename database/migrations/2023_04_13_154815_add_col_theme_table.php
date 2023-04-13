@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('themes', function (Blueprint $table) {
-            $table->string('js')->after('name');
-            $table->string('css')->after('name');
-            $table->string('layout')->after('name');
+            $table->renameColumn('layout','layout_home');
+            $table->string('layout_inner')->after('layout');
         });
     }
 
@@ -28,7 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('themes', function (Blueprint $table) {
-            $table->dropColumn(['js','css','layout']);
+            $table->renameColumn('layout_home','layout');
+            $table->dropColumn('layout_inner');
         });
     }
 };
