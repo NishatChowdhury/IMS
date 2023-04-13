@@ -148,7 +148,7 @@ class IdCardController extends Controller
         $students = $std->where('status',1)->orderBy('rank')->with('student')->get();
         $card = $request->except('_token');
 
-        return view('hrm::student.pdf_v2', compact('students', 'card'));
+        return view('hrm::student.pdf_v2_02', compact('students', 'card'));
 
         view()->share('card', (object)$card);
         view()->share('data', $data);

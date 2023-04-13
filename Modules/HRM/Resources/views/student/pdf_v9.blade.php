@@ -225,7 +225,7 @@
                                         <div class="right text-center">
                                             <div class="scl-cd-dec text-wrap text-bold ">
                                                 <h2
-                                                    style=" position: relative;  top: 10px;  margin: 1px; text-align: center;  font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;  color: color:{{ $card['bgfont'] }};  font-weight: bold;  font-family: sans-serif;">
+                                                    style=" position: relative;  top: 10px;  margin: 1px; text-align: center;  font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;  color: {{ $card['bgfont'] }};  font-weight: bold;  font-family: sans-serif;">
                                                     {{ siteConfig('name') }}
                                                 </h2>
                                             </div>
