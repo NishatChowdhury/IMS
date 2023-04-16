@@ -268,9 +268,7 @@
                             @endisset
                             </tbody>
                         </table>
-                    </div>
 
-                    <div class="card-footer row" style="float:right;background-color:transparent;border:none">
                         <div class="col text-center ml-3" style=" float: right;
                         POSITION: relative;
                         TOP: 26PX;
@@ -281,7 +279,7 @@
                         <div class="col" style="float:right; padding-right:3px ;padding-top:2px">
                             <img src="{{ asset('assets/img/signature/signature.png') }}" width="80"
                                  alt="">
-                                 <P style="    POSITION: relative;
+                            <P style="    POSITION: relative;
                                  margin-top: 0;
                                  margin-bottom: 0PX;
                                  FONT-SIZE: 8PX;
