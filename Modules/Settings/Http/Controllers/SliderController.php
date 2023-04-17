@@ -3,10 +3,12 @@
 namespace Modules\Settings\Http\Controllers;
 
 use App\Models\Backend\Slider;
+use App\Slim\Slim;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SliderController extends Controller
 {
@@ -23,27 +25,42 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'image' => 'required'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-        if($request->hasFile('image')){
-            $name = time().$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path().'/assets/img/sliders/', $name);
-            $data = $request->except('image');
-            $data['image'] = $name;
+        $data = $request->all();
+
+        $images = Slim::getImages('image');
+        // dd($images);
+        if (!empty($images)) {
+            $image = array_shift($images);
+            $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
+            $Imagedata = $image['output']['data'];
+            $output = Slim::saveFile($Imagedata, $Imagename, '../storage/app/public/uploads/slider', false);
+            $data['image'] = $Imagename;
             $data['active'] = 1;
-            try{
-                Slider::query()->create($data);
-            }catch(\Exception $e){
-                dd($e);
-            }
         }
+        Slider::query()->create($data);
+
+        // if ($request->hasFile('image')) {
+        //     $name = time() . $request->file('image')->getClientOriginalName();
+        //     $request->file('image')->move(public_path() . '/assets/img/sliders/', $name);
+        //     $data = $request->except('image');
+        //     $data['image'] = $name;
+        //     $data['active'] = 1;
+        //     try {
+        //         Slider::query()->create($data);
+        //     } catch (\Exception $e) {
+        //         dd($e);
+        //     }
+        // }
+
         return redirect('admin/sliders');
     }
 
