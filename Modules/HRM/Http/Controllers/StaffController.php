@@ -62,7 +62,6 @@ class StaffController extends Controller
         }
 
         // staff academic information store
-
         if($req->ac_label_education[0] != null){
             foreach ($req->ac_label_education as $key => $item) {
                 TeacherAcademic::create([
@@ -80,6 +79,7 @@ class StaffController extends Controller
             }
 
         }
+
         // staff experience information store
         if($req->er_institute[0] != null){
             foreach ($req->er_institute as $key => $item) {
@@ -97,6 +97,7 @@ class StaffController extends Controller
 
         }
 
+        // staff training
         if($req->tr_title[0] != null){
             foreach ($req->tr_title as $key => $item) {
                 TeacherTraining::create([
@@ -112,8 +113,9 @@ class StaffController extends Controller
                     'tr_country' => $req->tr_country[$key],
                 ]);
             }
-
         }
+
+        // staff course
         if($req->co_title[0] != null){
             foreach ($req->co_title as $key => $item) {
                 TeacherCourse::create([
@@ -133,19 +135,20 @@ class StaffController extends Controller
             }
         }
 
+        // staff login
         if($staff->staff_type_id == 2){
-            TeacherLogin::create([
+            TeacherLogin::query()->create([
                 'name' => $staff->name,
                 'card_no' => $staff->card_id,
                 'staff_id' => $staff->id,
-                'password' => Hash::make('password'),
+                'password' => Hash::make('teacher123'),
             ]);
         }else{
-            StaffLogin::create([
+            StaffLogin::query()->create([
                 'name' => $staff->name,
                 'card_no' => $staff->card_id,
                 'staff_id' => $staff->id,
-                'password' => Hash::make('password'),
+                'password' => Hash::make('staff123'),
             ]);
         }
 

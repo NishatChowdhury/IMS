@@ -222,7 +222,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="inputEmail4">Add File</label>
+                                                    <label for="inputEmail4">Add Image</label>
                                                     <div class="form-group files color">
                                                         <input type="file" name="image" class="form-control customImage">
                                                     </div>
