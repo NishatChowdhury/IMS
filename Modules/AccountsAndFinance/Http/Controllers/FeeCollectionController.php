@@ -153,7 +153,7 @@ class FeeCollectionController extends Controller
 
     public function makeJournal($stuAcaId, $total)
     {
-        $journal_id = [35,34];
+        $journal_id = [55,34];
         $len = count($journal_id);
 
         $debit = [null, $total];
