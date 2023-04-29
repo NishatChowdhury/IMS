@@ -49,35 +49,36 @@ class StudentController extends Controller
         $this->repository = $repository;
     }
 
-    public function index(Request $request,Student $student){
+    public function index(Request $request, Student $student)
+    {
 
         $s = $student->newQuery()
-            ->whereHas('academics', function($query){
-                $query->whereHas('sessions', function($query){
-                    return $query->where('active',1);
+            ->whereHas('academics', function ($query) {
+                $query->whereHas('sessions', function ($query) {
+                    return $query->where('active', 1);
                 });
             });
 
-        if($request->get('studentId')){
+        if ($request->get('studentId')) {
             $studentId = $request->get('studentId');
-            $s->where('studentId',$studentId);
+            $s->where('studentId', $studentId);
         }
 
-        if($request->get('name')){
+        if ($request->get('name')) {
             $name = $request->get('name');
-            $s->where('name','like','%'.$name.'%');
+            $s->where('name', 'like', '%' . $name . '%');
         }
 
-        if($request->get('academic_class_id')){
+        if ($request->get('academic_class_id')) {
             $academicClassId = $request->get('academic_class_id');
-            $s->whereHas('academics', function($query) use($academicClassId){
+            $s->whereHas('academics', function ($query) use ($academicClassId) {
                 $query->where('academic_class_id', $academicClassId);
             });
         }
-        if($request->has('csv')){
+        if ($request->has('csv')) {
             $table = Student::query()->orderBy('studentId')
-                ->whereHas('academics', function($query){
-                    $query->whereHas('sessions', function($query){
+                ->whereHas('academics', function ($query) {
+                    $query->whereHas('sessions', function ($query) {
                         return $query->where('active', '=', 1);
                     });
                 })->get();
@@ -112,7 +113,7 @@ class StudentController extends Controller
                 'status'
             ]);
 
-            foreach($table as $row) {
+            foreach ($table as $row) {
                 fputcsv($handle, [
                     $row['id'],
                     $row['name'],
@@ -157,26 +158,27 @@ class StudentController extends Controller
         //     return $query->where('active', '=', 1);
         // })->with('student')->paginate(100);  
 
-//        $students = Student::query()
-//            ->orderBy('studentId')
-//            ->whereHas('academics', function($query){
-//                $query->whereHas('sessions', function($query){
-//                    return $query->where('active', '=', 1);
-//                });
-//            })
-//            ->paginate(100);
+        //        $students = Student::query()
+        //            ->orderBy('studentId')
+        //            ->whereHas('academics', function($query){
+        //                $query->whereHas('sessions', function($query){
+        //                    return $query->where('active', '=', 1);
+        //                });
+        //            })
+        //            ->paginate(100);
         // $students = $s->orderBy('rank')->paginate(100);
-//        dd($s->get());
+        //        dd($s->get());
         $students = $s->orderBy('studentId')->paginate(100);
         $repository = $this->repository;
-        return view('hrm::student.list',compact('students','repository'));
+        return view('hrm::student.list', compact('students', 'repository'));
     }
 
     /*public function get_section(Request $req){
         $sections = Section::query()->where('session_id', $req->session_id)->where('class_id', $req->id)->get();
         return $sections;
     }*/
-    public function get_class_section($id){
+    public function get_class_section($id)
+    {
         $classes = DB::table('session_classes')
             ->join('academic_classes', 'session_classes.academic_class_id', '=', 'academic_classes.id')
             ->join('sections', 'session_classes.id', '=', 'sections.class_id')
@@ -185,10 +187,11 @@ class StudentController extends Controller
         return $classes;
     }
 
-    public function create(){
+    public function create()
+    {
         $repository = $this->repository;
-        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
-        return view('hrm::student.create', compact('repository','academicClass'));
+        $academicClass = AcademicClass::with('classes', 'sessions', 'section', 'group')->get();
+        return view('hrm::student.create', compact('repository', 'academicClass'));
     }
 
     public function store(Request $req)
@@ -225,20 +228,20 @@ class StudentController extends Controller
 
         $data = $req->all();
 
-        if ($req->hasFile('pic')){
-            $image = date('YmdHis').'.'.$req->file('pic')->getClientOriginalExtension();
+        if ($req->hasFile('pic')) {
+            $image = date('YmdHis') . '.' . $req->file('pic')->getClientOriginalExtension();
             $req->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $req->except('pic');
             $data['image'] = $image;
-            try{
+            try {
                 $studentStore = Student::query()->create($data);
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 dd($e);
             }
-        }else{
-            try{
+        } else {
+            try {
                 $studentStore = Student::query()->create($data);
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 dd($e);
             }
         }
@@ -297,8 +300,7 @@ class StudentController extends Controller
             'g_birth_certificate' => $req->g_birth_certificate,
         ]);
         DB::commit();
-        return redirect('admin/students')->with('success','Student Added Successfully');
-
+        return redirect('admin/students')->with('success', 'Student Added Successfully');
     }
 
     public function edit($id)
@@ -309,10 +311,10 @@ class StudentController extends Controller
         $mother = Mother::query()->where('student_id', $id)->first();
         $guardian = Guardian::query()->where('student_id', $id)->first();
         $studentAcademic = StudentAcademic::query()->where('student_id', $id)->latest()->first();
-        $academicClass = AcademicClass::with('classes','sessions','section','group')->get();
+        $academicClass = AcademicClass::with('classes', 'sessions', 'section', 'group')->get();
 
         $repository = $this->repository;
-        return view('hrm::student.edit',compact('student','repository','father','mother','guardian','studentAcademic','academicClass'));
+        return view('hrm::student.edit', compact('student', 'repository', 'father', 'mother', 'guardian', 'studentAcademic', 'academicClass'));
     }
 
     public function update($id, Request $request)
@@ -326,7 +328,7 @@ class StudentController extends Controller
             //'birth_certificate' => 'required|integer',
             //'nationality' => 'required',
             //'disability' => 'required',
-            'studentId' => ['required',Rule::unique('students')->ignore($student->id)],
+            'studentId' => ['required', Rule::unique('students')->ignore($student->id)],
             'status' => 'required',
             //'dob' => 'required',
             // 'gender_id' => 'required',
@@ -344,32 +346,32 @@ class StudentController extends Controller
             'required' => 'The :attribute field is required.'
         ];
 
-        $this->validate($request,$rules,$customMessages);
+        $this->validate($request, $rules, $customMessages);
 
         $data = $request->all();
 
-        if ($request->hasFile('pic')){
-            $image = date('YmdHis').'.'.$request->file('pic')->getClientOriginalExtension();
+        if ($request->hasFile('pic')) {
+            $image = date('YmdHis') . '.' . $request->file('pic')->getClientOriginalExtension();
             $request->file('pic')->move(storage_path('app/public/uploads/students/'), $image);
             $data = $request->except('pic');
             $data['image'] = $image;
-            try{
+            try {
                 $student->update($data);
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 dd($e);
             }
-        }else{
+        } else {
             $student->update($data);
         }
 
-        $studentLogin = StudentLogin::query()->where('student_id',$id)->first();
+        $studentLogin = StudentLogin::query()->where('student_id', $id)->first();
 
-        if($studentLogin){
+        if ($studentLogin) {
             $studentLogin->update([
                 'name' =>  $request->name,
                 'studentId' => $request->studentId,
             ]);
-        }else{
+        } else {
             StudentLogin::query()->create([
                 'name' =>  $request->name,
                 'studentId' => $request->studentId,
@@ -426,22 +428,23 @@ class StudentController extends Controller
             'g_birth_certificate' => $request->g_birth_certificate,
         ]);
 
-        \Illuminate\Support\Facades\Session::flash('success','Student has been updated successfully!');
+        \Illuminate\Support\Facades\Session::flash('success', 'Student has been updated successfully!');
         DB::commit();
         return redirect('admin/students');
-//        return redirect()->back();
+        //        return redirect()->back();
     }
 
-    public function loadStudentId(Request $request){
+    public function loadStudentId(Request $request)
+    {
 
         $id = $request->academicYear;
 
         $getSessionId =  AcademicClass::where('id', $id)->first();
 
-        $academicYear = substr(trim(Session::query()->where('id',$getSessionId->session_id)->first()->year),-2);
+        $academicYear = substr(trim(Session::query()->where('id', $getSessionId->session_id)->first()->year), -2);
         $incrementId = Student::query()->max('id');
         $increment = $incrementId + 1;
-        $studentId = 'S'.$academicYear.$increment;
+        $studentId = 'S' . $academicYear . $increment;
         // return $academicYear;
         return $studentId;
     }
@@ -449,31 +452,31 @@ class StudentController extends Controller
     public function optional(Request $request, StudentAcademic $academic)
     {
 
-        $academicclasses = AcademicClass::whereHas('sessions', function($query){
+        $academicclasses = AcademicClass::whereHas('sessions', function ($query) {
             return $query->where('active', '=', 1);
         })->get();
         $subjects = Subject::all();
-        if($request->has('academic_class_id')){
+        if ($request->has('academic_class_id')) {
             $className = AcademicClass::find($request->academic_class_id);
             $notAssignsubjects = $className->subjects;
             $academicsubjects = AssignSubject::where('academic_class_id', $request->academic_class_id)->get();
             $s = $academic->newQuery();
-            $s->where('academic_class_id',$request->get('academic_class_id'));
-//            $s->whereHas('studentSubject', function($query){
-//               return $query->whereHas('subject', function($q){
-//                   return $q->where('type', 1);
-//               });
-//            });
+            $s->where('academic_class_id', $request->get('academic_class_id'));
+            //            $s->whereHas('studentSubject', function($query){
+            //               return $query->whereHas('subject', function($q){
+            //                   return $q->where('type', 1);
+            //               });
+            //            });
             $s->with('studentSubject');
             $students = $s->get();
-        }else{
+        } else {
             $students = NULL;
             $className = NULL;
             $notAssignsubjects = NULL;
             $academicsubjects = NULL;
         }
 
-        return view('hrm::student.optional', compact('academicsubjects','subjects','students','academicclasses','className','notAssignsubjects'));
+        return view('hrm::student.optional', compact('academicsubjects', 'subjects', 'students', 'academicclasses', 'className', 'notAssignsubjects'));
     }
 
     public function assignOptional(Request $request)
@@ -486,14 +489,14 @@ class StudentController extends Controller
         $data['allSubjects'] = Subject::count();
 
         return redirect('admin/student/optional')->with($data);
-
     }
 
-    function subjectStudent(Request $req){
+    function subjectStudent(Request $req)
+    {
 
         $studentAcademic = StudentAcademic::where('student_id', $req->id)->first();
         StudentSubject::where('student_id', $req->id)->delete();
-        foreach ($req->subjects as $sb){
+        foreach ($req->subjects as $sb) {
             StudentSubject::create([
                 'student_academic_id' => $studentAcademic->id,
                 'student_id' => $req->id,
@@ -508,40 +511,40 @@ class StudentController extends Controller
     public function promotion(Request $request, StudentAcademic $studentAcademic)
     {
 
-        if($request->has('class_id')){
+        if ($request->has('class_id')) {
 
             $s = $studentAcademic->newQuery();
 
-            if($request->get('studentId')){
+            if ($request->get('studentId')) {
                 $studentId = $request->get('studentId');
-                $s->where('studentId',$studentId);
+                $s->where('studentId', $studentId);
             }
 
-            if($request->get('session_id')){
+            if ($request->get('session_id')) {
                 $session = $request->get('session_id');
-                $s->where('session_id',$session);
+                $s->where('session_id', $session);
             }
-            if($request->get('class_id')){
+            if ($request->get('class_id')) {
 
                 $class = $request->get('class_id');
-                $s->where('class_id',$class);
+                $s->where('class_id', $class);
             }
-            if($request->get('section_id')){
+            if ($request->get('section_id')) {
                 $section = $request->get('section_id');
-                $s->where('section_id',$section);
+                $s->where('section_id', $section);
             }
-            if($request->get('group_id')){
+            if ($request->get('group_id')) {
                 $group = $request->get('group_id');
-                $s->where('group_id',$group);
+                $s->where('group_id', $group);
             }
 
             $students = $s->orderBy('rank', 'ASC')->get();
-        }else{
+        } else {
             $students = collect();
         }
 
         $repository = $this->repository;
-        return view('hrm::student.promotion',compact('students','repository'));
+        return view('hrm::student.promotion', compact('students', 'repository'));
     }
 
     public function promote(Request $request)
@@ -550,33 +553,33 @@ class StudentController extends Controller
 
         $ids = $request->get('ids');
 
-        foreach($ids as $key => $id){
+        foreach ($ids as $key => $id) {
 
 
-//                $academicClassId = AcademicClass::query()
-//                    ->where('session_id',$request->session_id)
-//                    ->where('class_id',$request->class_id)
-//                    ->where('section_id',$request->section_id)
-//                    ->where('group_id',$request->group_id)
-//                    ->first();
+            //                $academicClassId = AcademicClass::query()
+            //                    ->where('session_id',$request->session_id)
+            //                    ->where('class_id',$request->class_id)
+            //                    ->where('section_id',$request->section_id)
+            //                    ->where('group_id',$request->group_id)
+            //                    ->first();
 
             $academicClassId = AcademicClass::query();
-            if($request->has('session_id')){
-                $academicClassId->where('session_id',$request->session_id);
+            if ($request->has('session_id')) {
+                $academicClassId->where('session_id', $request->session_id);
             }
-            if($request->has('class_id')){
-                $academicClassId->where('class_id',$request->class_id);
+            if ($request->has('class_id')) {
+                $academicClassId->where('class_id', $request->class_id);
             }
-            if($request->has('section_id')){
-                $academicClassId->where('section_id',$request->section_id);
+            if ($request->has('section_id')) {
+                $academicClassId->where('section_id', $request->section_id);
             }
-            if($request->has('group_id')){
-                $academicClassId->where('group_id',$request->group_id);
+            if ($request->has('group_id')) {
+                $academicClassId->where('group_id', $request->group_id);
             }
 
             $academicClassId = $academicClassId->first();
 
-            if(!$academicClassId){
+            if (!$academicClassId) {
                 return back()->with('status', 'Academic Class Not Created Yet');
             }
 
@@ -592,7 +595,6 @@ class StudentController extends Controller
                 'shift_id' => 0,
                 'rank' => $request->get('rank')[$id],
             ]);
-
         }
 
         return redirect()->back()->with('status', 'Promoted Was Done');
@@ -601,9 +603,9 @@ class StudentController extends Controller
     public function dropOut($id)
     {
         $student = Student::query()->findOrFail($id);
-        $student->update(['status'=>2]);
-        $student = StudentAcademic::query()->where('student_id',$id)->latest()->first();
-        $student->update(['status'=>2]);
+        $student->update(['status' => 2]);
+        $student = StudentAcademic::query()->where('student_id', $id)->latest()->first();
+        $student->update(['status' => 2]);
         return redirect()->back();
     }
 
@@ -628,14 +630,14 @@ class StudentController extends Controller
 
     public function csvDownload()
     {
-//        $table = Student::all()->where('session_id',2);
+        //        $table = Student::all()->where('session_id',2);
         $table = Student::orderBy('studentId')
-            ->whereHas('academics', function($query){
-                $query->whereHas('sessions', function($query){
+            ->whereHas('academics', function ($query) {
+                $query->whereHas('sessions', function ($query) {
                     return $query->where('active', '=', 1);
                 });
             })->get();
-//        dd($table);
+        //        dd($table);
         $filename = "students.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, [
@@ -667,7 +669,7 @@ class StudentController extends Controller
             'status'
         ]);
 
-        foreach($table as $row) {
+        foreach ($table as $row) {
             $studentAcademic = StudentAcademic::query()->where('student_id', $row['id'])->first();
             fputcsv($handle, [
                 $row['id'],
@@ -717,10 +719,10 @@ class StudentController extends Controller
         $group = $academicClass->group->name ?? '';
         $section = $academicClass->section->name ?? '';
 
-        $filename = $class.$section.$group.".csv";
+        $filename = $class . $section . $group . ".csv";
 
         $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('id', 'name', 'studentId','rank','father','mother','gender_id','mobile','dob','blood_group_id','religion_id','image','address','area','zip','city_id','country_id','email','father_mobile','mother_mobile'));
+        fputcsv($handle, array('id', 'name', 'studentId', 'rank', 'father', 'mother', 'gender_id', 'mobile', 'dob', 'blood_group_id', 'religion_id', 'image', 'address', 'area', 'zip', 'city_id', 'country_id', 'email', 'father_mobile', 'mother_mobile'));
         fclose($handle);
 
         $headers = array(
@@ -733,20 +735,20 @@ class StudentController extends Controller
     public function uploadStudent($academicClassId)
     {
         $academicClass = AcademicClass::query()->findOrFail($academicClassId);
-        return view('hrm::student.upload',compact('academicClass'));
+        return view('hrm::student.upload', compact('academicClass'));
     }
 
     public function up(Request $request)
     {
-        return DB::transaction(function()use($request){
+        return DB::transaction(function () use ($request) {
             $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
 
             $file = file($request->file('file'));
 
             $sl = 0;
-            foreach($file as $row){
-                if($sl != 0){
-                    $col = explode('|',$row);
+            foreach ($file as $row) {
+                if ($sl != 0) {
+                    $col = explode('|', $row);
                     //students table
                     $data['name'] = $col[1];
                     $data['name_bn'] = $col[2];
@@ -768,14 +770,14 @@ class StudentController extends Controller
                     $data['country_id'] = $col[18];
                     $data['email'] = $col[19];
                     //$data['status'] =$col[20];
-                    $data['status'] =1;
-					
-                    $student = Student::query()->where('studentId',$col[3])->latest()->first();
+                    $data['status'] = 1;
 
-                    if($student){
+                    $student = Student::query()->where('studentId', $col[3])->latest()->first();
+
+                    if ($student) {
                         $student->update($data);
                         $stuid = $student;
-                    }else{
+                    } else {
                         $stuid = Student::query()->create($data);
                     }
 
@@ -785,51 +787,51 @@ class StudentController extends Controller
                     $Ldata['student_id'] = $stuid->id;
                     $Ldata['studentId'] = $col[3];
                     $Ldata['password'] = Hash::make('student123');
-                    $slogin = StudentLogin::query()->where('studentId',$col[3])->latest()->first();
-                    if($slogin){
+                    $slogin = StudentLogin::query()->where('studentId', $col[3])->latest()->first();
+                    if ($slogin) {
                         $slogin->update($Ldata);
-                    }else{
+                    } else {
                         StudentLogin::query()->create($Ldata);
                     }
 
                     // student_academics table
-                    $dataAC['student_id']=$stuid->id;
+                    $dataAC['student_id'] = $stuid->id;
                     $dataAC['academic_class_id'] = $request->get('academic_class_id');
                     $dataAC['session_id'] = $academicClass->session_id;
                     $dataAC['class_id'] = $academicClass->class_id;
                     $dataAC['section_id'] = $academicClass->section_id;
-                    $dataAC['group_id'] = $academicClass->group_id;//shows null in database;
+                    $dataAC['group_id'] = $academicClass->group_id; //shows null in database;
                     $dataAC['shift_id'] = $col[27];
                     $dataAC['rank'] = $col[28];
-                    $dataAC['status'] =1;
-                    
+                    $dataAC['status'] = 1;
+
                     $sacademic = StudentAcademic::query()
-                        ->where('academic_class_id',$academicClass->id)
-                        ->where('student_id',$stuid->id)
+                        ->where('academic_class_id', $academicClass->id)
+                        ->where('student_id', $stuid->id)
                         ->latest()
                         ->first();
-                    if($sacademic){
+                    if ($sacademic) {
                         $sacademic->update($dataAC);
-                    }else{
+                    } else {
                         StudentAcademic::query()->create($dataAC);
                     }
 
                     //fathers table
                     $Fdata['f_name'] = $col[45];
                     $Fdata['f_name_bn'] = $col[46];
-                    $Fdata['student_id']=$stuid->id;
-                    $Fdata['f_mobile']=$col[47];
-                    $Fdata['f_email']=$col[48];
-                    $Fdata['f_dob']=$col[49];
-                    $Fdata['f_occupation']=$col[50];
-                    $Fdata['f_nid']=$col[51];
-                    $Fdata['f_birth_certificate']=$col[52];
+                    $Fdata['student_id'] = $stuid->id;
+                    $Fdata['f_mobile'] = $col[47];
+                    $Fdata['f_email'] = $col[48];
+                    $Fdata['f_dob'] = $col[49];
+                    $Fdata['f_occupation'] = $col[50];
+                    $Fdata['f_nid'] = $col[51];
+                    $Fdata['f_birth_certificate'] = $col[52];
 
-                    $fstudent = Father::query()->where('student_id',$stuid->id)->latest()->first();
-					//dd($fstudent);
-                    if($fstudent){
+                    $fstudent = Father::query()->where('student_id', $stuid->id)->latest()->first();
+                    //dd($fstudent);
+                    if ($fstudent) {
                         $fstudent->update($Fdata);
-                    }else{
+                    } else {
                         Father::query()->create($Fdata);
                     }
 
@@ -844,10 +846,10 @@ class StudentController extends Controller
                     $Mdata['m_nid'] = $col[35];
                     $Mdata['m_birth_certificate'] = $col[36];
 
-                    $mstudent = Mother::query()->where('student_id',$stuid->id)->latest()->first();
-                    if($mstudent){
+                    $mstudent = Mother::query()->where('student_id', $stuid->id)->latest()->first();
+                    if ($mstudent) {
                         $mstudent->update($Mdata);
-                    }else{
+                    } else {
                         Mother::query()->create($Mdata);
                     }
 
@@ -861,10 +863,10 @@ class StudentController extends Controller
                     $Gdata['g_occupation'] = $col[42];
                     $Gdata['g_nid'] = $col[43];
                     $Gdata['g_birth_certificate'] = $col[44];
-                    $gstudent = Guardian::query()->where('student_id',$stuid->id)->latest()->first();
-                    if($gstudent){
+                    $gstudent = Guardian::query()->where('student_id', $stuid->id)->latest()->first();
+                    if ($gstudent) {
                         $gstudent->update($Gdata);
-                    }else{
+                    } else {
                         Guardian::query()->create($Gdata);
                     }
                 }
@@ -873,8 +875,7 @@ class StudentController extends Controller
 
             // return redirect('institution/academic-class');
             return redirect()->back()->withSuccess('success');
-        },5);
-
+        }, 5);
     }
 
     public function studentProfile($studentId)
@@ -885,23 +886,12 @@ class StudentController extends Controller
         $data['mother'] = Mother::query()->where('student_id', $studentId)->first();
         $data['guardian'] = Guardian::query()->where('student_id', $studentId)->first();
         $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
-            ->with('classes','section','group')
+            ->with('classes', 'section', 'group')
             ->first();
-        // return $studentAcademic;
-        $data['academicClass'] = AcademicClass::with('classes','sessions','section','group')->get();
-        // $payments = StudentPayment::query()->where('student_id',$studentId)->get();
+        $data['academicClass'] = AcademicClass::with('classes', 'sessions', 'section', 'group')->get();
         $payments = StudentPayment::query()
-            ->where('student_id',$studentId)
+            ->where('student_academic_id', $studentId)
             ->get();
-//        if($payments){
-//            $payments = StudentPayment::query()
-//                                    ->whereHas('academics', function($q) use($studentId){
-//                                      return $q->where('student_id',$studentId);
-//                                    })->exists();
-//        }else{
-//            $payments = [];
-//        }
-//            return $payments;
 
         $attendaces = Attendance::query()
             ->where('student_academic_id', $studentAcademic->id)
@@ -909,72 +899,65 @@ class StudentController extends Controller
             ->take(30)
             ->get();
 
-        return view('hrm::student.studentProfile',compact('student','payments','data','studentAcademic','attendaces'));
-
-// ->whereHas('academics', function($query){
-//                          $query->whereHas('sessions', function($query){
-//                             return $query->where('active', '=', 1);
-//                          });
-//                     })
-
+        return view('hrm::student.studentProfile', compact('student', 'payments', 'data', 'studentAcademic', 'attendaces'));
     }
 
     public function tod(Request $request)
     {
 
-        if($request->has('session_id') && $request->has('class_id')){
+        if ($request->has('session_id') && $request->has('class_id')) {
             $students = StudentAcademic::query()
-                ->where('session_id',$request->get('session_id'))
-                ->where('class_id',$request->get('class_id'))
+                ->where('session_id', $request->get('session_id'))
+                ->where('class_id', $request->get('class_id'))
                 ->orderBy('rank')
                 ->with('student')
                 ->get();
-        }else{
+        } else {
             $students = [];
         }
 
         $repository = $this->repository;
-        return view('hrm::student.tod',compact('students','repository'));
+        return view('hrm::student.tod', compact('students', 'repository'));
     }
 
     public function esif(Request $request)
     {
 
-        if($request->has('session_id') && $request->has('class_id')){
+        if ($request->has('session_id') && $request->has('class_id')) {
 
-//        return $request->all();
+            //        return $request->all();
             $group = Group::query()->findOrFail($request->get('group_id'));
             $class = Classes::query()->findOrFail($request->get('class_id'));
             $students = StudentAcademic::query()
-                ->where('session_id',$request->get('session_id'))
-                ->where('class_id',$request->get('class_id'))
-                ->orWhere('group_id',$request->get('group_id'))
+                ->where('session_id', $request->get('session_id'))
+                ->where('class_id', $request->get('class_id'))
+                ->orWhere('group_id', $request->get('group_id'))
                 ->orderBy('rank')
                 ->get();
-        }else{
+        } else {
             $students = [];
             $group = null;
             $class = null;
         }
 
         $repository = $this->repository;
-        return view('hrm::student.esif',compact('students','repository','group','class'));
+        return view('hrm::student.esif', compact('students', 'repository', 'group', 'class'));
     }
 
     public function images(Request $request)
     {
-        if($request->has('session_id') && $request->has('class_id') && $request->has('group_id')){
+        if ($request->has('session_id') && $request->has('class_id') && $request->has('group_id')) {
             $students = StudentAcademic::query()
-                ->where('session_id',$request->get('session_id'))
-                ->where('class_id',$request->get('class_id'))
-                ->orWhere('group_id',$request->get('group_id'))
+                ->where('session_id', $request->get('session_id'))
+                ->where('class_id', $request->get('class_id'))
+                ->orWhere('group_id', $request->get('group_id'))
                 ->get();
-        }else{
+        } else {
             $students = [];
         }
 
         $repository = $this->repository;
-        return view('hrm::student.images',compact('students','repository'));
+        return view('hrm::student.images', compact('students', 'repository'));
     }
 
 
@@ -982,35 +965,35 @@ class StudentController extends Controller
     {
         $student = Student::query()->findOrFail($id);
         $studentSubject = StudentSubject::query()
-            ->where('student_id',$id)
+            ->where('student_id', $id)
             ->get();
 
         $compulsory = OnlineSubject::query()
             //->where('group_id',$student->group_id)
-            ->where('type',1)
+            ->where('type', 1)
             ->get();
 
         $selective = OnlineSubject::query()
-            ->where('group_id',$student->group_id)
-            ->where('type',2)
+            ->where('group_id', $student->group_id)
+            ->where('type', 2)
             ->get();
 
         $optional = OnlineSubject::query()
-            ->where('group_id',$student->group_id)
-            ->where('type',3)
+            ->where('group_id', $student->group_id)
+            ->where('type', 3)
             ->get();
 
         $subjects = json_decode($student->subjects);
 
-        return view('hrm::student.subjects',compact('student','compulsory','selective','optional','subjects','studentSubject'));
+        return view('hrm::student.subjects', compact('student', 'compulsory', 'selective', 'optional', 'subjects', 'studentSubject'));
     }
 
     public function assignSubject($id, Request $request)
     {
         $student = Student::query()->findOrFail($id);
         $subjects = json_encode($request->get('subjects'));
-        $student->update(['subjects'=>$subjects]);
-        \Illuminate\Support\Facades\Session::flash('success','Subject has been assigned!');
+        $student->update(['subjects' => $subjects]);
+        \Illuminate\Support\Facades\Session::flash('success', 'Subject has been assigned!');
         return redirect()->back();
     }
 
@@ -1018,10 +1001,10 @@ class StudentController extends Controller
     {
 
         $academicClass = AcademicClass::query()
-            ->whereHas('sessions', function($q){
+            ->whereHas('sessions', function ($q) {
                 return $q->where('active', 1);
             })->get();
-        if($request->get('academic_class_id')){
+        if ($request->get('academic_class_id')) {
             $students = StudentAcademic::query()
                 ->where('academic_class_id', $request->academic_class_id)
                 ->with('student')
@@ -1029,30 +1012,30 @@ class StudentController extends Controller
                 ->get();
             $locations = Location::all();
             $locationStudents = LocationStudent::all();
-        }else{
+        } else {
             $students = [];
             $locations = [];
             $locationStudents = [];
         }
-        return view('hrm::student.assignTransport', compact('academicClass','students','locations','locationStudents'));
+        return view('hrm::student.assignTransport', compact('academicClass', 'students', 'locations', 'locationStudents'));
     }
 
     public function storeAssignTransport(Request $request)
     {
 
         $student = $request->student_academic_id;
-        foreach ($student as $key => $stu){
-//             return $request->location_id[$key] .'-'.$request->direction[$key];
+        foreach ($student as $key => $stu) {
+            //             return $request->location_id[$key] .'-'.$request->direction[$key];
             $dataExists = LocationStudent::where('student_academic_id', $stu)->first();
-            if($dataExists){
+            if ($dataExists) {
                 $dataExists->update([
                     'student_academic_id' => $stu,
                     'location_id' => $request->location_id[$key] ?? 0,
                     'direction' => $request->direction[$key] ?? 0,
                     'starting_date' => $request->starting_date[$key] ?? 0,
-//                     'student_id' => 0,
+                    //                     'student_id' => 0,
                 ]);
-            }else{
+            } else {
                 LocationStudent::create([
                     'student_academic_id' => $stu,
                     'location_id' => $request->location_id[$key] ?? 0,
@@ -1060,44 +1043,39 @@ class StudentController extends Controller
                     'starting_date' => $request->starting_date[$key] ?? 0,
                 ]);
             }
-
         }
 
         return back();
-
     }
 
     public function assignTransportEnd(Request $request)
     {
 
-        $ending =  LocationStudent::where('student_academic_id',$request->id)->first();
+        $ending =  LocationStudent::where('student_academic_id', $request->id)->first();
         $ending->update([
             'ending_date' => $request->ending_date
         ]);
 
         return back();
-
     }
 
 
     public function studentPasswordReset(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'password' => 'required|confirmed'
         ]);
 
-        if($request->password){
+        if ($request->password) {
 
             $student = StudentLogin::query()
-                ->where('student_id',$request->id)
+                ->where('student_id', $request->id)
                 ->first();
             $student->password = Hash::make($request->password);
             $student->save();
 
             return redirect()->back()->with('status', 'Your Password has been Change');
-
         }
         return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
     }
-
 }
