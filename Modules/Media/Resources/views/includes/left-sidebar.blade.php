@@ -42,8 +42,8 @@
             <!------------------------------- Notice, Diary, Events --------------------------------------->
             @can('middleware-passed', 'notice.index')
                 @if (in_array('notice.index', auth()->user()->permissions))
-                    <li class="nav-item has-treeview {{ isActive(['admin/notice*', 'admin/event*','admin/diary-list','admin/events']) }}">
-                        <a href="#" class="nav-link {{ isActive(['admin/notice*', 'admin/event*','admin/diary-list','admin/events']) }}">
+                    <li class="nav-item has-treeview {{ isActive(['admin/notice*','admin/notice/edit*', 'admin/event*','admin/diary-list','admin/events*']) }}">
+                        <a href="#" class="nav-link {{ isActive(['admin/notice*','admin/notice/edit*', 'admin/event*','admin/diary-list','admin/events*']) }}">
                             <i class="fas fa-bullhorn"></i>
                             <p>
                                 Notice
@@ -89,7 +89,7 @@
                                     @if (in_array('event.index', auth()->user()->permissions))
                                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                             <a href="{{ route('event.index') }}"
-                                               class="nav-link {{ isActive(['admin/events']) }}">
+                                               class="nav-link {{ isActive(['admin/events','admin/event*']) }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Upcoming Events</p>
                                             </a>
@@ -104,8 +104,8 @@
             <!------------------------------- Syllabus --------------------------------------->
             @can('middleware-passed', 'syllabus.index')
                 @if (in_array('syllabus.index', auth()->user()->permissions))
-                    <li class="nav-item has-treeview {{ isActive(['admin/syllabus*']) }}">
-                        <a href="#" class="nav-link {{ isActive(['admin/syllabus*']) }}">
+                    <li class="nav-item has-treeview {{ isActive(['admin/syllabuses*']) }}">
+                        <a href="#" class="nav-link {{ isActive(['admin/syllabuses*']) }}">
                             <i class="fas fa-book"></i>
                             <p>
                                 Syllabus
@@ -117,7 +117,7 @@
                                 @if (in_array('syllabus.index', auth()->user()->permissions))
                                     <li class="nav-item">
                                         <a href="{{ route('syllabus.index') }}"
-                                           class="nav-link {{ isActive('admin/syllabus/syllabus') }}">
+                                           class="nav-link {{ isActive('admin/syllabuses') }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Syllabus Management</p>
                                         </a>
