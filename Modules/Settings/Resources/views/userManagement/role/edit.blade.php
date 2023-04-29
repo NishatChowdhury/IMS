@@ -42,7 +42,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="">{{ __('Role Name')}}</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $role->name }}">
+                                        <input type="text" class="form-control" name="name" value="{{ $role->name }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
