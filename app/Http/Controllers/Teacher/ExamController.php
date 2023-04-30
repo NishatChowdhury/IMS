@@ -306,6 +306,15 @@ class ExamController extends Controller
         return Response::download($filename, $filename, $headers);
     }
 
+    public function store_exam(Request $request){
+        Exam::query()->create($request->all());
+        return redirect('teacher.examination.list')->with('success', 'Exam Added Successfully');
+    }
 
+    public function destroy($id){
+        $exam = Exam::query()->findOrFail($id);
+        $exam->delete();
+        return redirect('teacher.examination.list')->with('success', 'Exam Deleted Successfully');
+    }
 
 }
