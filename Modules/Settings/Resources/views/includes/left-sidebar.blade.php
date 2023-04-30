@@ -318,8 +318,8 @@
                 </li>
             @endcan
 
-            <li class="nav-item has-treeview {{ isActive(['admin/user*','admin/role*']) }}">
-                <a href="#" class="nav-link {{ isActive(['admin/user*','admin/role*']) }}">
+            <li class="nav-item has-treeview {{ isActive(['admin/user/profile','admin/users','admin/user/edit*','admin/role*']) }}">
+                <a href="#" class="nav-link {{ isActive(['admin/user/profile','admin/users','admin/user/edit*','admin/role*']) }}">
                     <i class="fas fa-users-cog"></i>
                     <p>
                         User Management
@@ -327,24 +327,30 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                    @can('middleware-passed','user.profile')
                     <li class="nav-item" >
                         <a href="{{ route('user.profile') }}" class="nav-link {{ isActive('admin/user/profile') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Profile</p>
                         </a>
                     </li>
-                    <li class="nav-item" >
-                        <a href="{{ route('user.index') }}" class="nav-link {{ isActive('admin/user*') }}">
+                    @endcan
+                    @can('middleware-passed','user.index')
+                        <li class="nav-item" >
+                        <a href="{{ route('user.index') }}" class="nav-link {{ isActive(['admin/users','admin/user/edit*']) }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Users</p>
                         </a>
                     </li>
-                    <li class="nav-item" >
-                        <a href="{{ route('role.index') }}" class="nav-link {{ isActive('admin/role*') }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Role</p>
-                        </a>
-                    </li>
+                    @endcan
+                        @can('middleware-passed','user.index')
+                            <li class="nav-item" >
+                                <a href="{{ route('role.index') }}" class="nav-link {{ isActive('admin/role*') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Role</p>
+                                </a>
+                            </li>
+                        @endcan
                 </ul>
             </li>
 
