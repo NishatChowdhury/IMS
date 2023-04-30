@@ -46,7 +46,7 @@
         <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">Active Status*</label>
         <div class="col-sm-8">
             <div class="input-group">
-                {{ Form::select('is_active',[1 => 'Active', 0 =>  'Inactive'],null,['class'=>'form-control','required']) }}
+                {{ Form::select('is_active',[null=>'Select status',1 => 'Active', 0 =>  'Inactive'],null,['class'=>'form-control','required']) }}
             </div>
         </div>
     </div>
