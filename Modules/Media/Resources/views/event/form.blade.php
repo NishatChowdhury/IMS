@@ -53,16 +53,27 @@
         </div>
     </div>
 </div>
+{{--<div class="form-group row">--}}
+{{--    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)')}}*</label>--}}
+{{--    <div class="col-sm-10">--}}
+{{--        <div class="form-group files color">--}}
+{{--            <input type="file" name="thumbnail" class="form-control" multiple="">--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)')}}*</label>
+    <label for="" class="col-sm-2 col-form-label"
+           style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)')}}*</label>
     <div class="col-sm-10">
-        <div class="form-group files color">
-            <input type="file" name="thumbnail" class="form-control" multiple="">
+        <div class="form-group slim" data-ratio="16:9" data-max-file-size="2" data-instant-edit="true">
+            <img src="{{ asset('storage/uploads/events/') }}/{{ $event->image }}" alt="" />
+            <input type="file" name="thumbnail" class="form-control">
         </div>
     </div>
 </div>
 <div style="float: right">
-    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Save')}}</button>
+    <button type="submit" class="btn btn-success  btn-sm" ><i class="fas fa-plus-circle"></i> {{ __('Save')}}</button>
 </div>
 
 <!-- /Notices page inner Content End*** -->

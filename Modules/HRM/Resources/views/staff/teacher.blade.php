@@ -108,7 +108,7 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>
-                                        <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="{{asset('assets/img/staffs/'.$staff->image)}}" alt="Staff Image">
+                                        <img style="width: 40px; height: auto; border-radius: 50%; text-align: center;" src="{{ asset('storage/uploads/staffs/') }}/{{ $staff->image }}" alt="Staff Image">
                                     </td>
                                     <td>{{$staff->card_id}}</td>
                                     <td>{{$staff->name}}</td>

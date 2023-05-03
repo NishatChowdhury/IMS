@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeacherTrainingsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,13 @@ class CreateTeacherTrainingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_trainings', function (Blueprint $table) {
-            $table->id();
-            $table->integer('staff_id');
+        Schema::table('teacher_trainings', function (Blueprint $table) {
             $table->string('tr_title')->nullable()->change();
             $table->string('tr_topic_cover')->nullable()->change();
             $table->string('tr_institute')->nullable()->change();
             $table->string('tr_location')->nullable()->change();
             $table->string('tr_year')->nullable()->change();
             $table->string('tr_duration')->nullable()->change();
-            $table->string('tr_country')->nullable();
-            $table->string('tr_start')->nullable();
-            $table->string('tr_end')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -36,6 +30,13 @@ class CreateTeacherTrainingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_trainings');
+        Schema::table('teacher_trainings', function (Blueprint $table) {
+            $table->string('tr_title')->nullable(false)->change();
+            $table->string('tr_topic_cover')->nullable(false)->change();
+            $table->string('tr_institute')->nullable(false)->change();
+            $table->string('tr_location')->nullable(false)->change();
+            $table->string('tr_year')->nullable(false)->change();
+            $table->string('tr_duration')->nullable(false)->change();
+        });
     }
-}
+};

@@ -90,12 +90,10 @@
                             <li><a href="#tab3" data-toggle="tab">{{ __('Address & Images') }}</a></li>
                             <li><a href="#tab4" data-toggle="tab">{{ __('Other Inoformation') }}</a></li>
                         </ul>
-
-
+                        {{ Form::model($info,['route'=>['staff.update_staff',$info->id], 'method' => 'PATCH', 'enctype'=>'multipart/form-data']) }}
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
                                 <div class="row">
-                                    {{ Form::model($info,['route'=>['staff.update_staff',$info->id], 'method' => 'PATCH', 'files'=>true]) }}
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-body row">
@@ -153,7 +151,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                              </div>
+
+
                             <div class="tab-pane" id="tab2">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -205,34 +205,46 @@
                                                         {!! Form::select('blood_group_id', $blood_groups,  $info->blood_group_id ?? '', ['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane" id="tab3">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-8">
                                                 <div class="form-group">
                                                     <label for="">Address</label>
-                                                    <textarea name="address" class="form-control" placeholder="Enter Address .. . . " id="" cols="30" rows="5">
+                                                    <textarea name="address" class="form-control" placeholder="Enter Address .. . . " id="" cols="30"
+                                                              rows="5">
                                                        {{ $info->address ?? '' }}
                                                     </textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="inputEmail4">Add File</label>
-                                                    <div class="form-group files color">
-                                                        <input type="file" name="image" class="form-control customImage">
+                                            <div class="col-4">
+                                                <div class="form-group ">
+                                                    <label for="image">Update File</label>
+                                                    <div class="form-group slim" data-ratio="3:3" data-instant-edit="true">
+                                                            <input type="file" name="slim[]"
+                                                                   class="form-control customImage">
+                                                        <img src="{{ asset('storage/uploads/staffs/') }}/{{ $info->image }}" alt="" />
                                                     </div>
                                                 </div>
                                             </div>
+{{--                                            <div class="col-4">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="inputEmail4">Add File</label>--}}
+{{--                                                    <div class="form-group files color">--}}
+{{--                                                        <input type="file" name="image" class="form-control customImage">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
                                             <div class="col-12">
-                                                <button class="btn btn-primary btn-sm btn-block">Save Data</button>
+                                                <button  class="btn btn-primary btn-sm btn-block">Save Data</button>
                                             </div>
                                         </div>
                                     </div>
@@ -269,7 +281,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 {{--    academic info--}}
- @endforeach
+                                                            @endforeach
                                                                 <div class="modal fade" id="academicModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog model-lg" role="document" >
                                                                         <div class="modal-content" style="width: 700px">
@@ -279,8 +291,6 @@
                                                                                     <span aria-hidden="true">&times;</span>
                                                                                 </button>
                                                                             </div>
-
-
                                                                             <form method="post" class="trainingForm">
                                                                             @csrf
                                                                             <input type="hidden" class="id" name="id">
@@ -341,19 +351,14 @@
                                                                                             <div class="col-12 mt-3">
                                                                                                 <button type="submit" class="btn btn-primary btn-block btn-sm">Save</button>
                                                                                             </div>
-
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             </form>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-
-
                                                         </table>
                                                     </div>
                                                 </div>
@@ -379,7 +384,6 @@
                                                                         </button>
                                                                     </td>
                                                                 </tr>
-
                                                                 <div class="modal fade" id="experienceModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog model-lg" role="document" >
                                                                         <div class="modal-content" style="width: 700px">
@@ -389,12 +393,10 @@
                                                                                     <span aria-hidden="true">&times;</span>
                                                                                 </button>
                                                                             </div>
-
                                                                           <form method="post" class="trainingForm">
                                                                             @csrf
                                                                             <input type="hidden" class="id" name="id">
                                                                             <input type="hidden"  value="{{ $info->id }}" name="staff_id">
-
                                                                             <input type="hidden" name="id" value="{{$ex->id}}">
                                                                             <div class="row takeExperience" style="margin-top: 10px">
                                                                                 <div class="col-md-12">
@@ -445,14 +447,11 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-                                                                              </form>
-
+                                                                          </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             @endforeach
-
                                                         </table>
                                                     </div>
                                                 </div>
@@ -596,7 +595,6 @@
                                                                                     <span aria-hidden="true">&times;</span>
                                                                                 </button>
                                                                             </div>
-
                                                                           <form method="post" class="trainingForm">
                                                                             @csrf
                                                                             <input type="hidden" class="id" name="id">
@@ -666,18 +664,14 @@
                                                                                             <div class="col-12 mt-3">
                                                                                                 <button type="submit" class="btn btn-primary btn-block btn-sm">Save</button>
                                                                                             </div>
-
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                           </form>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-
                                                         </table>
                                                     </div>
                                                 </div>
@@ -688,30 +682,11 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @stop
 <!-- *** External CSS File-->

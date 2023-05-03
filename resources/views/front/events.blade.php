@@ -15,7 +15,7 @@
             @foreach($events as $event)
             <div class="col-md-4 mt-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset('assets/img/events/') }}/{{ $event->image }}" alt="">
+                    <img class="card-img-top" src="{{ asset('storage/uploads/events/') }}/{{ $event->image }}" alt="">
                     <div class="card-body">
                         <h4 class="h5">
                             {{ $event->title }}
