@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Settings\Http\Controllers;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\GalleryCategory;
@@ -16,7 +16,7 @@ class GalleryCategoryController extends Controller
     public function index()
     {
         $categories = GalleryCategory::all();
-        return view('settings::gallery.category',compact('categories'));
+        return view('media::gallery.category',compact('categories'));
     }
 
     public function store(Request $request)

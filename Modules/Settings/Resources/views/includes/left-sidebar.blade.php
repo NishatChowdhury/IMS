@@ -270,54 +270,6 @@
                 </li>
             @endcan
 
-            @can('middleware-passed','settings.image')
-                {{-- @if(in_array("settings.image", auth()->user()->permissions)) --}}
-                <li class="nav-item has-treeview {{ isActive(['admin/gallery*','admin/playlists']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/gallery*','admin/playlists']) }}">
-                        <i class="fas fa-camera-retro"></i>
-                        <p>
-                            Gallery
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                        @can('middleware-passed','settings.image')
-                            {{-- @if(in_array("settings.image", auth()->user()->permissions)) --}}
-                            <li class="nav-item" >
-                                <a href="{{ route('settings.image') }}" class="nav-link {{ isActive('admin/gallery/image') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Image Mgmt</p>
-                                </a>
-                            </li>
-                        @endcan
-                        @can('middleware-passed','gallery-category.index')
-                            {{--                            @if(in_array("gallery-category.index", auth()->user()->permissions))--}}
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('gallery-category.index') }}" class="nav-link {{ isActive('admin/gallery/category') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Image Category</p>
-                                </a>
-                            </li>
-                        @endcan
-                        @can('middleware-passed','gallery-albums.index')
-                            {{--                            @if(in_array("gallery-albums.index", auth()->user()->permissions))--}}
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('gallery-albums.index') }}" class="nav-link {{ isActive('admin/gallery/albums') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Image Album</p>
-                                </a>
-                            </li>
-                        @endcan
-                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('playlist.index') }}" class="nav-link {{ isActive('admin/playlists') }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Video Playlists</p>
-                                </a>
-                            </li>
-                    </ul>
-                </li>
-            @endcan
-
             <li class="nav-item has-treeview {{ isActive(['admin/user/profile','admin/users','admin/user/edit*','admin/role*']) }}">
                 <a href="#" class="nav-link {{ isActive(['admin/user/profile','admin/users','admin/user/edit*','admin/role*']) }}">
                     <i class="fas fa-users-cog"></i>

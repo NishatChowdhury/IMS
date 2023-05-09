@@ -1,6 +1,6 @@
-@extends('settings::layouts.master')
+@extends('media::layouts.master')
 
-@section('title','Settings | Image')
+@section('title','Media | Image')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Media')}}</a></li>
                         <li class="breadcrumb-item active">{{ __('Image')}}</li>
                     </ol>
                 </div>

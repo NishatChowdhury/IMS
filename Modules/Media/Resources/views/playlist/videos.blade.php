@@ -1,4 +1,4 @@
-@extends('settings::layouts.master')
+@extends('media::layouts.master')
 
 @section('title','Videos')
 
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                        <li class="breadcrumb-item"><a href="#">Media</a></li>
                         <li class="breadcrumb-item active">Playlist</li>
                     </ol>
                 </div>
