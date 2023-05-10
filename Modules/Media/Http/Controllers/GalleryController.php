@@ -41,7 +41,7 @@ class GalleryController extends Controller
         if($request->hasFile('image')){
             foreach($request->file('image') as $key => $img){
                 $name = time().'-'.$key.'.'.$img->getClientOriginalExtension();
-                $img->move(GalleryController . phpstorage_path('app/public/gallery/') . $request->album_id . '/', $name);
+                $img->move(storage_path('app/public/gallery/') . $request->album_id . '/', $name);
                 $data = $request->except('image');
                 $data['image'] = $name;
                 Gallery::query()->create($data);
