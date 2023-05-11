@@ -1,6 +1,6 @@
 @extends('media::layouts.master')
 
-@section('title','Settings | Notices')
+@section('title', 'Settings | Notices')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -32,20 +32,23 @@
                             <div class="row">
                                 <div class="col-12">
                                     @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</button>
+                                        <div class="alert alert-success">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@mdo"
+                                        style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                        New</button>
                                 </div>
                             </div>
                         </div>
@@ -53,30 +56,31 @@
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Total Notice</th>
-{{--                                    <th>Action</th>--}}
-                                </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Total Notice</th>
+                                        {{--                                    <th>Action</th> --}}
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->notices->count() }}</td>
-                                        <td>
-                                            <a href="{{ route('notice-category.edit',$category->id) }}"
-                                               class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->notices->count() }}</td>
+                                            <td>
+                                                <a href="{{ route('notice-category.edit', $category->id) }}"
+                                                    class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                            <div class="row" style="margin-top: 10px">
+                            {{-- <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        Showing 0 to 0 of 0 entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
@@ -88,7 +92,7 @@
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -97,9 +101,11 @@
     </section>
 
     <!-- ***/ Pop Up Model for button Start-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content">
+                {{ Form::open(['route' => 'notice-category.store', 'method' => 'post']) }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Notice</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -107,34 +113,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(['route'=>'notice-category.store','method'=>'post']) }}
-                    {{--<form>--}}
+                    {{-- <form> --}}
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Name*</label>
+                        <label for="" class="col-sm-2 col-form-label"
+                            style="font-weight: 500; text-align: right">Name*</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                {{ Form::text('name',null,['class'=>'form-control']) }}
+                                {{-- <input type="text" class="form-control" id=""  aria-describedby=""> --}}
+                                {{ Form::text('name', null, ['class' => 'form-control']) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Short Description</label>
+                        <label for="" class="col-sm-2 col-form-label"
+                            style="font-weight: 500; text-align: right">Short Desc</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                {{--<textarea type="text" class="form-control" rows="5" id=""> </textarea>--}}
-                                {{ Form::textarea('description',null,['class'=>'form-control','row'=>5]) }}
+                                {{-- <textarea type="text" class="form-control" rows="5" id=""> </textarea> --}}
+                                {{ Form::textarea('description', null, ['class' => 'form-control', 'row' => 5]) }}
                             </div>
                         </div>
                     </div>
-                    <div style="float: right">
-                        <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
-                    </div>
-                    {{--</form>--}}
-                    {{ Form::close() }}
-
                 </div>
-                <div class="modal-footer"></div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success  btn-sm"> <i
+                            class="fas fa-plus-circle"></i>
+                        Add</button></div>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

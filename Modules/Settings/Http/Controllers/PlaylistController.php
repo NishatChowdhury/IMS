@@ -16,15 +16,15 @@ class PlaylistController extends Controller
 
     public function index()
     {
-         $playlists = Playlist::query()->paginate(20);
-        return view('settings::playlist.index',compact('playlists'));
+        $playlists = Playlist::query()->paginate(20);
+        return view('settings::playlist.index', compact('playlists'));
     }
 
     public function store(Request $request)
     {
-         $request->all();
+        $request->all();
         Playlist::query()->create($request->all());
-        Session::flash('success','Playlist has been created');
+        Session::flash('success', 'Playlist has been created');
         return redirect()->back();
     }
 
@@ -32,6 +32,6 @@ class PlaylistController extends Controller
     {
         $playlist = Playlist::query()->findOrFail($id);
         //$videos = $playlist->videos;
-        return view('settings::playlist.videos',compact('playlist'));
+        return view('settings::playlist.videos', compact('playlist'));
     }
 }
