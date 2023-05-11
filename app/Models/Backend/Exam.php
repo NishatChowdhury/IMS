@@ -12,4 +12,8 @@ class Exam extends Model
     {
         return $this->belongsTo(Session::class);
     }
+
+    public function rooms(){
+        return $this->hasMany(ExamSeatPlan::class);
+    }
 }

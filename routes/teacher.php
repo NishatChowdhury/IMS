@@ -57,6 +57,12 @@ Route::middleware("teacher")->prefix('teacher')->group(function(){
     Route::get('examination-mark-download/{id}', [\App\Http\Controllers\Teacher\ExamController::class, 'markDownload'])
         ->name('teacher.examination.mark.download');
 
+    Route::get('exam-store', [\App\Http\Controllers\Teacher\ExamController::class, 'store_exam'])
+        ->name('exam.store');
+
+    Route::get('examination-destroy', [\App\Http\Controllers\Teacher\ExamController::class, 'destroy'])
+        ->name('teacher.examination.destroy');
+
     // profile
 
     Route::get('profile', [\App\Http\Controllers\Teacher\MainController::class, 'teacherProfile'])->name('teacher.profile');

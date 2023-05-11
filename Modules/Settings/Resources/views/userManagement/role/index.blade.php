@@ -55,7 +55,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

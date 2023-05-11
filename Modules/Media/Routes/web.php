@@ -13,15 +13,20 @@
 
 
 use Illuminate\Support\Facades\Route;
+use Modules\Media\Http\Controllers\AlbumController;
 use Modules\Media\Http\Controllers\CommunicationController;
 use Modules\Media\Http\Controllers\CommunicationSettingController;
 use Modules\Media\Http\Controllers\DiaryController;
+use Modules\Media\Http\Controllers\GalleryCategoryController;
 use Modules\Media\Http\Controllers\NoticeCategoryController;
 use Modules\Media\Http\Controllers\NoticeController;
 use Modules\Media\Http\Controllers\NoticeTypeController;
+use Modules\Media\Http\Controllers\PlaylistController;
 use Modules\Media\Http\Controllers\SubscriberController;
 use Modules\Media\Http\Controllers\SyllabusController;
 use Modules\Media\Http\Controllers\UpcomingEventController;
+use Modules\Media\Http\Controllers\GalleryController;
+use Modules\Media\Http\Controllers\VideoController;
 
 Route::prefix('media')->group(function() {
     Route::get('/', 'MediaController@index')->name('media');
@@ -76,5 +81,32 @@ Route::prefix('admin')->group(function() {
     Route::get('communication/apiSetting',[CommunicationSettingController::class,'index'])->name('communication.apiSetting');
     Route::patch('communication/apiSetting/update',[CommunicationSettingController::class,'update'])->name('apiSetting.update');
 
+    # ---------------------------------------------- Gallery -------------------------------------------------------
+    // Image Mgmt
+    Route::get('gallery/image',[GalleryController::class,'index'])->name('settings.image');
+    Route::post('gallery/image/store',[GalleryController::class,'store'])->name('gallery.store');
+    Route::delete('gallery/image/destroy/{id}',[GalleryController::class,'destroy'])->name('gallery.destroy');
+
+    Route::get('gallery/category',[GalleryCategoryController::class,'index'])->name('gallery-category.index');
+    Route::post('gallery/category/store',[GalleryCategoryController::class,'store'])->name('gallery-category.store');
+    Route::delete('gallery/category/destroy/{id}',[GalleryCategoryController::class,'destroy'])->name('gallery-category.destroy');
+
+    Route::get('gallery/albums',[AlbumController::class,'index'])->name('gallery-albums.index');
+    Route::post('gallery/album/store',[AlbumController::class,'store'])->name('gallery-albums.store');
+    Route::delete('gallery/album/delete/{id}',[AlbumController::class,'destroy'])->name('gallery-albums.destroy');
+
+    //Playlists
+    Route::get('playlists',[PlaylistController::class,'index'])->name('playlist.index');
+    Route::post('playlist/store',[PlaylistController::class,'store'])->name('playlist.store');
+    Route::get('playlist/show/{id}',[PlaylistController::class,'show'])->name('playlist.show');
+    Route::delete('playlist/destroy/{id}',[PlaylistController::class,'destroy'])->name('playlist.destroy');
+    //Playlists Ends
+
+    //Videos
+    Route::get('videos',[VideoController::class,'index'])->name('video.index');
+    Route::post('video/store',[VideoController::class,'store'])->name('video.store');
+    Route::get('video/edit',[VideoController::class,'edit'])->name('video.edit');
+    Route::patch('video/{id}/update',[VideoController::class,'update'])->name('video.update');
+    Route::delete('video/destroy/{id}',[VideoController::class,'destroy'])->name('video.destroy');
 
 });

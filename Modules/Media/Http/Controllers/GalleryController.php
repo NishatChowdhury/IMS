@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Settings\Http\Controllers;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Gallery;
@@ -27,7 +27,7 @@ class GalleryController extends Controller
     {
         $images = Gallery::all();
         $repository = $this->repositories;
-        return view('settings::gallery.image', compact('images', 'repository'));
+        return view('media::gallery.image', compact('images', 'repository'));
     }
 
     /**
@@ -61,7 +61,7 @@ class GalleryController extends Controller
     public function destroy($id): RedirectResponse
     {
         $image = Gallery::query()->findOrFail($id);
-        File::delete(storage_path('app/public/gallery/') . $image->album_id . '/' . $image->image);
+        File::delete(GalleryController . phpstorage_path('app/public/gallery/') . $image->album_id . '/' . $image->image);
         $image->delete();
         return back()->with('status','Image has been deleted Successfully.');
     }
@@ -69,7 +69,7 @@ class GalleryController extends Controller
     public function galleryCornerCreate()
     {
         $image = GalleryCorner::all();
-        return view('settings::galleryCorner.galleryCorner',compact('image'));
+        return view('media::galleryCorner.galleryCorner',compact('image'));
     }
 
     public function galleryCornerStore(Request $request)
@@ -91,7 +91,7 @@ class GalleryController extends Controller
     public function GalleryImageDestroy($id)
     {
         $image = GalleryCorner::query()->findOrFail($id);
-        File::delete(storage_path('app/public/gallery/') . $image->image);
+        File::delete(GalleryController . phpstorage_path('app/public/gallery/') . $image->image);
         $image->delete();
         return back()->with('status','Image has been Successfully deleted');
     }

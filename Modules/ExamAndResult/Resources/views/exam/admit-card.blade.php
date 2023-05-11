@@ -45,7 +45,7 @@
                                         <select name="academic_class" class="form-control">
                                             @foreach($repository->academicClasses() as $class)
                                                 <option value="{{ $class->id }}">
-                                                    {{ $class->academicClasses->name }}&nbsp;
+                                                    {{ $class->academicClasses->name ?? '' }}&nbsp;
                                                     {{ $class->section->name ?? '' }}&nbsp;
                                                     {{ $class->group->name ?? '' }}
                                                 </option>
@@ -134,9 +134,15 @@
                                     </tr>
                                     <tr>
                                         <th>{{ __('Room No')}} :</th>
-                                        <td></td>
+                                        <td>
+                                            @foreach($exam->rooms as $room)
+                                                @if( ($studentAcademic->rank >= $room->roll_form) && ($studentAcademic->rank <= $room->roll_to) )
+                                                    {{$room->room}}
+                                                @endif
+                                            @endforeach
+                                        </td>
                                         <th>{{ __('Seat No')}} :</th>
-                                        <td></td>
+                                        <td>{{ $studentAcademic->student->studentId ?? ''}}</td>
                                     </tr>
                                 </table>
 
