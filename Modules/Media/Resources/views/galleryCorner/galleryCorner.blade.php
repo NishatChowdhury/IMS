@@ -1,6 +1,6 @@
 @extends('media::layouts.master')
 
-@section('title','Gallery | Multiple Image')
+@section('title', 'Gallery | Multiple Image')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('All Image')}}</h1>
+                    <h1>{{ __('All Image') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Gallery')}}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Image')}}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Gallery') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Image') }}</li>
                     </ol>
                 </div>
             </div>
@@ -70,33 +70,32 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Image')}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('GalleryCornerStore')}}" method="post" enctype="multipart/form-data">
-                        @csrf
+            <div class="modal-content">
+                <form action="{{ route('GalleryCornerStore') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Image') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label"
                                    style="font-weight: 500; text-align: right">{{ __('Image')}}*</label>
                             <div class="col-sm-10">
                                 <div class="form-group files color">
-                                    <input type="file" name="image[]" class="form-control" multiple="multiple">
+                                    <input type="file" name="image[]" class="form-control" multiple="multiple"required>
                                 </div>
                             </div>
                         </div>
-                        <div style="float: right">
-                            <button type="submit" class="btn btn-success  btn-sm"><i
+                        </div>
+                            <div class="modal-footer"><button type="submit" class="btn btn-success  btn-sm"><i
                                         class="fas fa-image"></i> {{ __('Upload')}}</button>
                         </div>
                     </form>
 
-                </div>
-                <div class="modal-footer"></div>
+
             </div>
         </div>
     </div>
@@ -111,12 +110,12 @@
 
 @section('script')
     <script>
-        @if(session('status'))
-        Swal.fire({
-            title: "Success",
-            text: "{{ session('status') }}",
-            icon: "success",
-        });
+        @if (session('status'))
+            Swal.fire({
+                title: "Success",
+                text: "{{ session('status') }}",
+                icon: "success",
+            });
         @endif
         function confirmDelete() {
             // var x = confirm('Are you sure you want to delete this album? All images in this album will also be deleted!!!');
