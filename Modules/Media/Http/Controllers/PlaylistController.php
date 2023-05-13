@@ -34,4 +34,11 @@ class PlaylistController extends Controller
         //$videos = $playlist->videos;
         return view('media::playlist.videos',compact('playlist'));
     }
+
+    public function destroy($id)
+    {
+        $playlist = Playlist::query()->findOrFail($id);
+        $playlist->delete();
+        return back();
+    }
 }

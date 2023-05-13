@@ -71,11 +71,13 @@
                                             <img src="{{ asset('storage/gallery') }}/{{ $image->album ? $image->album->id : '' }}/{{ $image->image }}" alt="{{ $image->title }}" width="75">
                                         </td>
                                         <td>
-                                            {{ Form::open(['route'=>['gallery.destroy',$image->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                            {{ Form::close() }}
+                                            <form  action="{{route('gallery.destroy',$image->id)}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <div class="right gap-items-2">
+                                                    <button class="btn btn-danger btn-sm" name="archive" type="submit" onclick="archiveFunction()"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -172,9 +174,22 @@
 
 @section('script')
     <script>
-        function confirmDelete(){
-            var x = confirm('Are you sure you want delete this image?');
-            return !!x;
+        function archiveFunction() {
+            event.preventDefault(); // prevent form submit
+            var form = event.target.form; // storing the form
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to delete this?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                }
+            })
         }
     </script>
 @stop

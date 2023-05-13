@@ -59,12 +59,17 @@
                                         <td>{{ $playlist->videos->count() }} Video(s)</td>
                                         <td>{{ $playlist->created_at }}</td>
                                         <td>
-                                            {{ Form::open(['route'=>['playlist.destroy',$playlist->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ route('playlist.show',$playlist->id) }}"
-                                               class="btn btn-info btn-sm"><i class="fas fa-file-video"></i></a>
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="far fa-trash-alt"></i></button>
-                                            {{ Form::close() }}
+                                            <div class="row ml-1">
+                                                <a href="{{ route('playlist.show',$playlist->id) }}" class="btn btn-info btn-sm mr-1"><i class="fas fa-file-video"></i></a>
+                                                <form  action="{{route('playlist.destroy',$playlist->id)}}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <div class="right gap-items-2">
+                                                        <button class="btn btn-danger btn-sm" name="archive" type="submit" onclick="archiveFunction()"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -107,7 +112,6 @@
                     </div>
                     {{ Form::close() }}
                 </div>
-                <div class="modal-footer"></div>
             </div>
         </div>
     </div>
@@ -125,6 +129,23 @@
         function confirmDelete() {
             var x = confirm('Are you sure you want to delete this playlist? All albums and images in this playlist will also be deleted!!!');
             return !!x;
+        }
+        function archiveFunction() {
+            event.preventDefault(); // prevent form submit
+            var form = event.target.form; // storing the form
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to delete this playlist? All albums and images in this playlist will also be deleted!!!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                }
+            })
         }
     </script>
 @stop

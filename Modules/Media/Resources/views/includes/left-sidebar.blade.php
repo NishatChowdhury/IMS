@@ -183,8 +183,8 @@
 
             @can('middleware-passed','settings.image')
                 {{-- @if(in_array("settings.image", auth()->user()->permissions)) --}}
-                <li class="nav-item has-treeview {{ isActive(['admin/gallery*','admin/playlists']) }}">
-                    <a href="#" class="nav-link {{ isActive(['admin/gallery*','admin/playlists']) }}">
+                <li class="nav-item has-treeview {{ isActive(['admin/gallery*','admin/playlist*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/gallery*','admin/playlist*']) }}">
                         <i class="fas fa-camera-retro"></i>
                         <p>
                             Gallery
@@ -220,7 +220,7 @@
                             </li>
                         @endcan
                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                            <a href="{{ route('playlist.index') }}" class="nav-link {{ isActive('admin/playlists') }}">
+                            <a href="{{ route('playlist.index') }}" class="nav-link {{ isActive('admin/playlist*') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Video Playlists</p>
                             </a>

@@ -61,7 +61,7 @@ class GalleryController extends Controller
     public function destroy($id): RedirectResponse
     {
         $image = Gallery::query()->findOrFail($id);
-        File::delete(GalleryController . phpstorage_path('app/public/gallery/') . $image->album_id . '/' . $image->image);
+        File::delete(storage_path('app/public/gallery/') . $image->album_id . '/' . $image->image);
         $image->delete();
         return back()->with('status','Image has been deleted Successfully.');
     }
@@ -91,7 +91,7 @@ class GalleryController extends Controller
     public function GalleryImageDestroy($id)
     {
         $image = GalleryCorner::query()->findOrFail($id);
-        File::delete(GalleryController . phpstorage_path('app/public/gallery/') . $image->image);
+        File::delete(storage_path('app/public/gallery/') . $image->image);
         $image->delete();
         return back()->with('status','Image has been Successfully deleted');
     }
