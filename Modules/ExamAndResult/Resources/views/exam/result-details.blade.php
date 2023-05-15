@@ -24,7 +24,7 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-12 text-center">
-                                    <img src="{{ asset('/assets/img/logos/') }}/{{ siteConfig('logo') }}" alt="">
+                                    <img src="{{ asset('/assets/img/logos/') }}/{{ siteConfig('logo') }}" alt="" style="width: 100px;height:100px">
                                     <h1>{{ siteConfig('name') }}</h1>
                                     <p>{{ siteConfig('address') }}</p>
                                 </div>

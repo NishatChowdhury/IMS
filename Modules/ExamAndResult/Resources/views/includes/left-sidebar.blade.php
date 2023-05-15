@@ -5,7 +5,6 @@
 </a>
 <!-- Sidebar -->
 <div class="sidebar nano" id="style-1">
-    <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
             <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" class="img-circle elevation-2" alt="User Image">
@@ -18,23 +17,11 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-{{--            <li class="nav-item has-treeview {{ isActive(['/','dashboard*']) }}">--}}
-{{--                <a href="{{ action('Backend\DashboardController@index') }}" class="nav-link {{ isActive(['dashboard*','/']) }}">--}}
-{{--                    <i class="nav-icon fas fa-tachometer-alt"></i>--}}
-{{--                    <p> --}}
-{{--                        Dashboard--}}
-{{--                    </p>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-
-            <!-- Home -->
             <li class="nav-item has-treeview">
                 <a href="{{ url('/admin') }}" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
-                        Home
+                        {{ __('Home') }}
                     </p>
                 </a>
             </li>
@@ -65,7 +52,7 @@
                                 <a href="{{ route('exam.examination') }}"
                                    class="nav-link {{ isActive('admin/exam/examination') }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Examinations</p>
+                                    <p>{{ __('Examinations') }}</p>
                                 </a>
                             </li>
                         @endcan
@@ -74,59 +61,20 @@
                                 <a href="{{ route('exam.examresult') }}"
                                    class="nav-link {{ isActive('admin/exam/examresult') }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Exam Results</p>
+                                    <p>{{ __('Exam Results') }}</p>
                                 </a>
                             </li>
                         @endcan
-{{--                        @can('middleware-passed', 'competency.index')--}}
-{{--                            <li class="nav-item has-treeview {{ isActive(['admin/competency*']) }}">--}}
-{{--                                <a href="#" class="nav-link {{ isActive(['admin/competency*']) }}">--}}
-{{--                                    <i class="nav-icon fas fa-diagnoses"></i>--}}
-{{--                                    <p>--}}
-{{--                                        {{ __('Competency') }}--}}
-{{--                                        <i class="fas fa-angle-left right"></i>--}}
-{{--                                    </p>--}}
-{{--                                </a>--}}
-{{--                                <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">--}}
-{{--                                    @can('middleware-passed', 'competency.index')--}}
-{{--                                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                                            <a href="{{ route('competency.index') }}"--}}
-{{--                                               class="nav-link {{ isActive('admin/competencies') }}">--}}
-{{--                                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                                <p>{{ __('Competency') }}</p>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('middleware-passed', 'indicator.index')--}}
-{{--                                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                                            <a href="{{ route('indicator.index') }}"--}}
-{{--                                               class="nav-link {{ isActive('admin/indicators') }}">--}}
-{{--                                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                                <p>{{ __('Indicator') }}</p>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('middleware-passed', 'remark.index')--}}
-{{--                                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                                            <a href="{{ route('remark.index') }}"--}}
-{{--                                               class="nav-link {{ isActive('admin/remarks') }}">--}}
-{{--                                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                                <p>{{ __('Remark') }}</p>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('middleware-passed', 'competency-remark.index')--}}
-{{--                                        <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-{{--                                            <a href="{{ route('competency-remark.index') }}"--}}
-{{--                                               class="nav-link {{ isActive('admin/competency-remark') }}">--}}
-{{--                                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                                <p>{{ __('Competency Remark') }}</p>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    @endcan--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                        @endcan--}}
+                        @can('middleware-passed', 'exam.bulkResult')
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href="{{ route('exam.bulkResult') }}"
+                                   class="nav-link {{ isActive('admin/exam/bulk-result') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Download Bulk Results') }}</p>
+                                </a>
+                            </li>
+                        @endcan
+{{--                    
                     </ul>
                 </li>
             @endcan
