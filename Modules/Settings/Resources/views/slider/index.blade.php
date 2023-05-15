@@ -102,7 +102,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="container">
-                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
+                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">All Slider</h4>
                             <table class="table table-condensed">
                                 <thead>
                                 <tr>
@@ -125,10 +125,13 @@
                                         <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
                                     </td>
                                     <td>
-                                        {{ Form::open(['route'=>['slider.destroy',$slider->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-{{--                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>--}}
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        {{ Form::close() }}
+                                        <form  action="{{route('slider.destroy',$slider->id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <div class="right gap-items-2">
+                                                <button class="btn btn-danger btn-sm" name="archive" type="submit" onclick="archiveFunction()"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -165,9 +168,23 @@
                 })
         });
 
-        function confirmDelete(){
-            var x = confirm('Are you sure you want to delete this slider image?');
-            return !!x;
+        // delete slider
+        function archiveFunction() {
+            event.preventDefault(); // prevent form submit
+            var form = event.target.form; // storing the form
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to delete this slider!!!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                }
+            })
         }
     </script>
 @stop

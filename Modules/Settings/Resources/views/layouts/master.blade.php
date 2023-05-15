@@ -70,6 +70,8 @@
 
     </style>
     @yield('style')
+    <!-- toastr css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -130,6 +132,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 {{--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
 <script src="{{ asset('plugins/select2/select2.min.css') }}"></script>
+<!-- toastr js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 
 @yield('plugin')
 
@@ -143,19 +147,45 @@
     });
 </script>
 <script>
-    @if(session('success'))
-    Swal.fire({
-        title: "Success",
-        text: "{{ session('success') }}",
-        icon: "success",
-    });
-    @endif
+{{--    @if(session('success'))--}}
+{{--    Swal.fire({--}}
+{{--        title: "Success",--}}
+{{--        text: "{{ session('success') }}",--}}
+{{--        icon: "success",--}}
+{{--    });--}}
+{{--    @endif--}}
     $(function () {
         $('#reservationdate').datetimepicker({
             format: 'YYYY-MM-DD'
         });
     })
 
+</script>
+<!-- Toastr notification -->
+<script type="text/javascript">
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "500",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    @if(session('success'))
+    toastr.success("{{ session('success') }}");
+    @endif
+    @if(session('status'))
+    toastr.success("{{ session('status') }}");
+    @endif
 </script>
 
 </body>

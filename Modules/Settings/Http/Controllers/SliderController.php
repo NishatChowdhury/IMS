@@ -44,6 +44,7 @@ class SliderController extends Controller
                 dd($e);
             }
         }
+        session()->flash('success', 'Slider added successfully!');
         return redirect('admin/sliders');
     }
 
@@ -52,7 +53,7 @@ class SliderController extends Controller
         $slider = Slider::query()->findOrFail($id);
         File::delete(public_path().'/assets/img/sliders/'.$slider->image);
         $slider->delete();
-        \Illuminate\Support\Facades\Session::flash('Slider removed successfully!');
+        session()->flash('success', 'Slider removed successfully!');
         return redirect('admin/sliders');
     }
 }
