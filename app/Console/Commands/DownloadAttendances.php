@@ -40,8 +40,10 @@ class DownloadAttendances extends Command
     public function handle()
     {
         $startDate = today()->subWeek();
+        //$startDate = Carbon::parse('2023-05-02');
         $startDate = $startDate->format('Y-m-d');
         $endDate = today();
+        //$endDate = Carbon::parse('2023-05-02');
         $endDate = $endDate->format('Y-m-d');
         $accessId = "00000000";
 

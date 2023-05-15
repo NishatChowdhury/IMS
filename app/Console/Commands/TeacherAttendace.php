@@ -21,7 +21,7 @@ class TeacherAttendace extends Command
      *
      * @var string
      */
-    protected $description = 'Command For Teacher Attendance';
+    protected $description = 'Generate attendance from raw attendance to teacher attendance';
 
     /**
      * Create a new command instance.
@@ -40,25 +40,22 @@ class TeacherAttendace extends Command
      */
     public function handle()
     {
-
-
-//       $todayCount =  Carbon::parse('2022-06-12');
-//       $today =  Carbon::parse('2022-06-12')->format('Y-m-d');
-
         $today = \Carbon\Carbon::today()->format('Y-m-d');
         $todayCount = \Carbon\Carbon::today();
 
+        //$todayCount =  Carbon::parse('2023-05-02');
+        //$today =  Carbon::parse('2023-05-02')->format('Y-m-d');
 
-     $staffs = \App\Models\Backend\Staff::query()->where('staff_type_id', 2)->get();
+        $staffs = \App\Models\Backend\Staff::query()->where('staff_type_id', 2)->get();
 
-    foreach ($staffs as $key => $staff){
+        foreach ($staffs as $key => $staff){
 
-          $rawData = RawAttendance::query()
+            $rawData = RawAttendance::query()
                 ->where('access_date', $today)
                 ->where('registration_id', $staff->card_id)
                 ->get();
 
-        if ($rawData->isEmpty()) {
+            if ($rawData->isEmpty()) {
 
                 $min = null;
                 $max = null;
@@ -72,10 +69,10 @@ class TeacherAttendace extends Command
                 $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
 //                return $today;
                 $holiday = \App\Models\Backend\Holiday::query()
-                                ->where('start', '<=', $today)
-                                ->where('end', '>=', $today)
-                                ->where('is_holiday', 1)
-                                ->exists();
+                    ->where('start', '<=', $today)
+                    ->where('end', '>=', $today)
+                    ->where('is_holiday', 1)
+                    ->exists();
 
                 if ($holiday) {
                     $attendanceStatus = '5'; // Holiday
@@ -86,7 +83,7 @@ class TeacherAttendace extends Command
                 } else {
                     $attendanceStatus = '2'; // Absent
                 }
-        }else{
+            }else{
                 $min = $rawData->min('access_time');
                 $max = $rawData->max('access_time');
 
@@ -105,9 +102,9 @@ class TeacherAttendace extends Command
                 }
 
 
-        }
+            }
 
-         $data = [
+            $data = [
                 'staff_id' => $staff->card_id ?? 0,
                 'date' => $today,
                 'in_time' => $min,
@@ -116,13 +113,13 @@ class TeacherAttendace extends Command
             ];
 
 
-        $attendanceExists = \App\Models\Backend\AttendanceTeacher::query()
+            $attendanceExists = \App\Models\Backend\AttendanceTeacher::query()
                 ->where('staff_id', $staff->card_id ?? 0)
                 ->where('date', $today)
                 ->exists();
 
 
-        if ($attendanceExists) {
+            if ($attendanceExists) {
                 $attendance = \App\Models\Backend\AttendanceTeacher::query()
                     ->where('staff_id', $staff->card_id ?? 0)
                     ->where('date', $today)
@@ -132,7 +129,7 @@ class TeacherAttendace extends Command
                 \App\Models\Backend\AttendanceTeacher::create($data);
             }
 
-    }
+        }
         $this->info('done');
 
 
