@@ -256,7 +256,7 @@ class MarkController extends Controller
             ->where('mark_to','>=',$total)
             ->first();
 
-        return $grade->grade;
+        return $grade->grade ?? '';
     }
 
     public function gpa($total)
@@ -267,6 +267,6 @@ class MarkController extends Controller
             ->where('mark_from','<=',$total)
             ->where('mark_to','>=',$total)
             ->first();
-        return $grade->point_from;
+        return $grade->point_from ?? '';
     }
 }

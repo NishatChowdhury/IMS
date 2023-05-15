@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WPIMS</title>
+    <title>{{ __('WPIMS') }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <style>
@@ -33,7 +33,7 @@
 @foreach($students->chunk(5) as $key => $chunk)
     <div class="row" style="{{ ($key+1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach($chunk as $student)
-            <div class="col-3 col-2-5" {{--style="max-width:260px; max-height:375px"--}}>
+            <div class="col-3 col-2-5">
                 <div class="card text-center" style="width: 2.17in;height:3.42in">
                     <div class="card-header" style="padding:10px 0 0 10px;background-color:{{ $card['bgcolor'] }};color:{{ $card['bgfont'] }}">
                         <div class="row">
@@ -60,35 +60,35 @@
                             <tbody>
                             @isset($card['fullname'])
                                 <tr>
-                                    <td><strong> Name </strong></td>
+                                    <td><strong> {{ __('Name') }} </strong></td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td><strong> {{ $student->student->name }} </strong></td>
                                 </tr>
                             @endisset
                             @isset($card['fname'])
                                 <tr>
-                                    <td> Father </td>
+                                    <td> {{ __('Father') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->student->father->f_name }}</td>
                                 </tr>
                             @endisset
                             @isset($card['mname'])
                                 <tr>
-                                    <td> Mother </td>
+                                    <td> {{ __('Mother') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->student->mother->m_name }}</td>
                                 </tr>
                             @endisset
                             @isset($card['session'])
                                 <tr>
-                                    <td> Session </td>
+                                    <td> {{ __('Session') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->session->year }}</td>
                                 </tr>
                             @endisset
                             @isset($card['class'])
                                 <tr>
-                                    <td> Class </td>
+                                    <td> {{ __('Class') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>
                                         {{ $student->classes->name ?? '' }}&nbsp;
@@ -103,42 +103,42 @@
                             @endisset
                             @isset($card['roll'])
                                 <tr>
-                                    <td> Roll </td>
+                                    <td> {{ __('Roll') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->rank }}</td>
                                 </tr>
                             @endisset
                             @isset($card['department'])
                                 <tr>
-                                    <td> Department </td>
+                                    <td> {{ __('Department') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->department }}</td>
                                 </tr>
                             @endisset
                             @isset($card['admissiondate'])
                                 <tr>
-                                    <td> Admission </td>
+                                    <td> {{ __('Admission') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->admission_date }}</td>
                                 </tr>
                             @endisset
                             @isset($card['dob'])
                                 <tr>
-                                    <td> DOB </td>
+                                    <td> {{ __('DOB') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->student->dob }}</td>
                                 </tr>
                             @endisset
                             @isset($card['blood'])
                                 <tr>
-                                    <td> Blood Group </td>
+                                    <td> {{ __('Blood Group') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->student->blood->name ?? '' }}</td>
                                 </tr>
                             @endisset
                             @isset($card['contact'])
                                 <tr>
-                                    <td> Contact </td>
+                                    <td> {{ __('Contact') }} </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->student->mobile ?? '' }}</td>
                                 </tr>
@@ -155,7 +155,7 @@
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
                         <div class="row">
                             <div class="col">
-                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId ?? '' }}</strong> </p>
+                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>{{ __('ID :') }} {{ $student->student->studentId ?? '' }}</strong> </p>
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>
@@ -165,7 +165,6 @@
                 </div>
             </div>
         @endforeach
-        {{--        <p>&nbsp;</p>--}}
     </div>
 @endforeach
 
@@ -176,7 +175,7 @@
             <div class="card-body">
                 <div class="back-top" style="font-size:12px">
                     <ul style="padding-left: 15px;padding-top:15px">
-                        <li>This card is valid till {{ $card['validity'] }}</li>
+                        <li>{{ __('This card is valid till') }} {{ $card['validity'] }}</li>
                     </ul>
                 </div>
                 <div class="back-middle text-center">
@@ -187,17 +186,17 @@
                 <div class="back-bottom" style="font-size:12px">
                     <table class="table">
                         <tr>
-                            <td>Phone</td>
+                            <td>{{ __('Phone') }}</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ $card['bPhone'] }}</td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td>{{ __('Email') }}</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ $card['bemail'] }}</td>
                         </tr>
                         <tr>
-                            <td>Website</td>
+                            <td>{{ __('Website') }}</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ $card['bWebsite'] }}</td>
                         </tr>
@@ -213,38 +212,38 @@
     <div class="col-4">
         <table>
             <tr>
-                <td>Background Color</td>
-                <td>:</td>
+                <td>{{ __('Background Color') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['bgcolor'] }}</td>
             </tr>
             <tr>
-                <td>Background Font Color</td>
-                <td>:</td>
+                <td>{{ __('Background Font Color') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['bgfont'] }}</td>
             </tr>
             <tr>
-                <td>Name Size</td>
-                <td>:</td>
+                <td>{{ __('Name Size') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['name_size'] }}</td>
             </tr>
             <tr>
-                <td>Address Size</td>
-                <td>:</td>
+                <td>{{ __('Address Size') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['address_size'] }}</td>
             </tr>
             <tr>
-                <td>Title Color</td>
-                <td>:</td>
+                <td>{{ __('Title Color') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['titlecolor'] }}</td>
             </tr>
             <tr>
-                <td>Title Size</td>
-                <td>:</td>
+                <td>{{ __('Title Size') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['title_size'] }}</td>
             </tr>
             <tr>
-                <td>Body Size</td>
-                <td>:</td>
+                <td>{{ __('Body Size') }}</td>
+                <td>{{ __(':') }}</td>
                 <td>{{ $card['body_size'] }}</td>
             </tr>
         </table>

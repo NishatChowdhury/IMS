@@ -48,6 +48,10 @@ Route::prefix('admin')->group(function() {
     Route::get('exam/examresult',[ResultController::class,'index'])->name('exam.examresult');
     Route::get('exam/tabulation/{examID}',[ResultController::class,'tabulation'])->name('exam.tabulation');
     Route::get('exam/generate-exam-result/{examID}',[ResultController::class,'generateResult'])->name('exam.generateResult');
+    Route::get('exam/bulk-result',[ResultController::class,'bulkResult'])->name('exam.bulkResult');
+    Route::post('exam/bulk-result/pdf',[ResultController::class,'bulkResultPdf'])->name('exam.bulkResultPdf');
+
+
 
     Route::get('exam/setfinalresultrule',[ResultController::class,'setfinalresultrule'])->name('exam.setfinalresultrule');
     Route::get('exam/getfinalresultrule',[ResultController::class,'getfinalresultrule'])->name('exam.getfinalresultrule');

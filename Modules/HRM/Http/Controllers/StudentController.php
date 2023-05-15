@@ -888,18 +888,10 @@ class StudentController extends Controller
         $studentAcademic = StudentAcademic::query()->where('student_id', $studentId)
             ->with('classes', 'section', 'group')
             ->first();
-        // return $studentAcademic;
         $data['academicClass'] = AcademicClass::with('classes', 'sessions', 'section', 'group')->get();
-        $payments = StudentPayment::query()->where('student_academic_id', $studentId)->get();
-        //        if($payments){
-        //            $payments = StudentPayment::query()
-        //                                    ->whereHas('academics', function($q) use($studentId){
-        //                                      return $q->where('student_id',$studentId);
-        //                                    })->exists();
-        //        }else{
-        //            $payments = [];
-        //        }
-        //            return $payments;
+        $payments = StudentPayment::query()
+            ->where('student_academic_id', $studentId)
+            ->get();
 
         $attendaces = Attendance::query()
             ->where('student_academic_id', $studentAcademic->id)
@@ -909,11 +901,6 @@ class StudentController extends Controller
 
         return view('hrm::student.studentProfile', compact('student', 'payments', 'data', 'studentAcademic', 'attendaces'));
 
-        // ->whereHas('academics', function($query){
-        //                          $query->whereHas('sessions', function($query){
-        //                             return $query->where('active', '=', 1);
-        //                          });
-        //                     })
 
     }
 
