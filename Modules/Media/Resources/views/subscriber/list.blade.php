@@ -106,12 +106,13 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped table-sm">
+                        <table id="example1" class="table table-bordered table-striped table-sm text-center">
                             <thead class="">
                             <tr>
                                 <th>Sl.</th>
                                 <th>Email</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -124,6 +125,13 @@
                                             <span class="badge badge-danger">unsubscribed</span>
                                         @else
                                             <span class="badge badge-success">subscribed</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($subscriber->unsubscribed == 1)
+                                            <a href="{{ route('subscriberStatusUpdate',$subscriber->id) }}" class="btn btn-sm btn-success">Subscribe</a>
+                                        @else
+                                            <a href="{{ route('subscriberStatusUpdate',$subscriber->id) }}" class="btn btn-sm btn-danger">Unsubscribe</a>
                                         @endif
                                     </td>
                                 </tr>

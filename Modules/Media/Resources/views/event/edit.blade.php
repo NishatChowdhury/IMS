@@ -27,18 +27,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header" style="border-bottom: none !important;">
-                            <div class="row">
-                                <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
-                                        {{ __('New') }}</button>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="card-body">
                             {{ Form::model($event,['route'=>['event.update',$event->id],'method'=>'patch','files'=>true]) }}
-                            @include('admin.event.form')
+                            @include('media::event.form')
                             {{ Form::close() }}
                         </div>
                     </div>

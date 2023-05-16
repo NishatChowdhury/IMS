@@ -89,7 +89,7 @@
                                     @if (in_array('event.index', auth()->user()->permissions))
                                         <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                             <a href="{{ route('event.index') }}"
-                                               class="nav-link {{ isActive(['admin/events','admin/event*']) }}">
+                                               class="nav-link {{ isActive(['admin/events','admin/event/create','admin/event/edit*']) }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Upcoming Events</p>
                                             </a>

@@ -269,21 +269,21 @@
                             </tbody>
                         </table>
 
-                        <div class="col text-center ml-3" style=" float: right;
+                        <div class="col text-center ml-3" style="     float: right;
                         POSITION: relative;
-                        TOP: 26PX;
-                        LEFT: -8PX;">
+                        TOP: 12PX;
+                        LEFT: -55PX;">
                             <h6 class="text-center" style=" font-size:9px;margin-top: 17px;">{{ __('Validity:') }}<span
                                         style="color:red"> {{ $card['validity'] }}</span></h6>
                         </div>
-                        <div class="col" style="float:right; padding-right:3px ;padding-top:2px">
+                        <div class="col" style=" padding-top: 3px;
+                        position: relative;
+                        left: 57px;
+                        top: -41px;">
                             <img src="{{ asset('assets/img/signature/signature.png') }}" width="80"
                                  alt="">
-                            <P style="    POSITION: relative;
-                                 margin-top: 0;
-                                 margin-bottom: 0PX;
-                                 FONT-SIZE: 8PX;
-                                 LEFT: -6PX;">{{ __('A.H.M Belal Chy') }}</P>
+                            <P style="  POSITION: relative; margin-top: -8px; margin-bottom: 0PX; FONT-SIZE: 8PX;
+                        LEFT: -5PX;">{{ __('A.H.M Belal Chy') }}</P>
                         </div>
                     </div>
                     <div class="card-footer text-muted"
@@ -310,7 +310,7 @@
                     </div>
                     <div class="back-middle text-center">
                         <img  src="{{asset('assets/img/logos')}}/{{ siteConfig('logo') }}" width="50">
-                        <h6 class="scl-cd-name" style=""><strong> {{ siteConfig('name') }}</strong></h6>
+                        <h6 class="scl-cd-name" style="font-size:{{ $card['name_size'] != null ? $card['name_size'] : 0 }}px"><strong> {{ siteConfig('name') }}</strong></h6>
                         <p class="scl-cd-add" style="font-size:15px">{{ siteConfig('address') }}</p>
                     </div>
                     <div class="back-bottom" style="font-size:12px">

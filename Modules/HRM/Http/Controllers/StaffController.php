@@ -16,6 +16,9 @@ use App\Models\TeacherTraining;
 use App\Repository\StaffRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Slim\Slim;
+use Illuminate\Support\Str;
+
 
 class StaffController extends Controller
 {
@@ -46,20 +49,63 @@ class StaffController extends Controller
 
     public function store_staff(Request $req){
 
-        $this->validate($req,[
-            'name' => 'required'
+//        $this->validate($req,[
+//            'name' => 'required'
+//        ]);
+
+        $staffC = $this->validate($req, [
+            'name' => 'required',
+            'mobile' => 'required',
+            'dob' => 'sometimes|date',
+            'gender_id' => 'required',
+            'blood_group_id' => 'required',
+            'image' => 'required',
+            //'mail' => 'sometimes|email',
+            'code' => 'required',
+            'title' => 'required',
+            'role_id' => 'required',
+            //'shift_id' => 'required',
+            'job_type_id' => 'required',
+            'staff_type_id' => 'required',
+            'card_id' => 'required|unique:staffs',
         ]);
-        if ($req->hasFile('image')){
-            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
-            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
-            $data = $req->except('image');
-            $data['image'] = $image;
-            //dd($data);
-            $staff = Staff::query()->create($data);
-            //dd('added');
+
+
+        $images = Slim::getImages('image');
+        // dd($images);
+        if (!empty($images)) {
+            $image = array_shift($images);
+            $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
+            $data = $image['output']['data'];
+            $output = Slim::saveFile($data, $Imagename, '../storage/app/public/uploads/staffs', false);
+            $staffC['image'] = $Imagename;
+            try{
+                $staff = Staff::query()->create($staffC);
+            }catch (Exception $e){
+                dd($e);
+            }
         }else{
-            $staff = Staff::query()->create($req->except('image'));
+            try{
+                $staff = Staff::query()->create($req->all());
+            }catch (Exception $e){
+                dd($e);
+            }
         }
+
+//        $staff = Staff::query()->create($staff);
+
+//        if ($req->hasFile('image')){
+//            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
+//            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
+//            $data = $req->except('image');
+//            $data['image'] = $image;
+//            //dd($data);
+//            $staff = Staff::query()->create($data);
+//            //dd('added');
+//        }else{
+//            $staff = Staff::query()->create($req->except('image'));
+//        }
+
 
         // staff academic information store
         if($req->ac_label_education[0] != null){
@@ -172,20 +218,54 @@ class StaffController extends Controller
 
     public function update_staff(Request $req){
         //dd($req->id);
-        $this->validate($req,[
-            'name' => 'required'
+//         dd($req->all());
+        $staffC = $this->validate($req, [
+            'name' => 'required',
+            'mobile' => 'sometimes',
+            'dob' => 'sometimes|date',
+            'gender_id' => 'sometimes',
+            'blood_group_id' => 'sometimes',
+            'code' => 'required',
+            'title' => 'required',
+            'role_id' => 'required',
+            'job_type_id' => 'required',
+            'staff_type_id' => 'required',
+            'card_id' => 'sometimes',
         ]);
+
         $staff = Staff::query()->findOrFail($req->id);
-        if ($req->hasFile('image')){
-            //unlink(public_path('/assets/img/staffs/').$is_exists->image);
-            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
-            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
-            $data = $req->except('image');
-            $data['image'] = $image;
-            $staff->update($data);
+        $images = Slim::getImages();
+//         dd($images);
+        if (!empty($images)) {
+            $image = array_shift($images);
+            $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
+            $data = $image['output']['data'];
+            $output = Slim::saveFile($data, $Imagename, '../storage/app/public/uploads/staffs', false);
+            $staffC['image'] = $Imagename;
+            try{
+                $staff->update($staffC);
+            }catch (Exception $e){
+                dd($e);
+            }
         }else{
-            $staff->update($req->all());
+            try{
+                $staff->update($req->all());
+            }catch (Exception $e){
+                dd($e);
+            }
         }
+
+
+//        if ($req->hasFile('image')){
+//            //unlink(public_path('/assets/img/staffs/').$is_exists->image);
+//            $image = $req->code.'.'.$req->file('image')->getClientOriginalExtension();
+//            $req->file('image')->move(public_path().'/assets/img/staffs/', $image);
+//            $data = $req->except('image');
+//            $data['image'] = $image;
+//            $staff->update($data);
+//        }else{
+//            $staff->update($req->all());
+//        }
 
         return redirect(route('staff.teacher'))->with('success','Staff Saved Successfully');
     }
@@ -194,7 +274,7 @@ class StaffController extends Controller
         $is_exists = Staff::query()->findOrFail($id);
 
         if ($is_exists->image != null){
-            unlink(public_path('/assets/img/staffs/'.$is_exists->image));
+            unlink(public_path('storage/uploads/staffs/'.$is_exists->image));
         }
         $is_exists->delete();
         return redirect(route('staff.teacher'))->with('success','Staff Deleted Successfully');

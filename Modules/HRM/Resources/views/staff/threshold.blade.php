@@ -1,6 +1,6 @@
 @extends('hrm::layouts.master')
 
-@section('title','Staff | Irregular Attendance Threshold')
+@section('title', 'Staff | Irregular Attendance Threshold')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -30,7 +30,8 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="dec-block">
-                                        <div class="ec-block-icon" style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;" >
+                                        <div class="ec-block-icon"
+                                            style="float:left;margin-right:6px;height: 50px; width:50px; color: #ffffff; background-color: #00AAAA; border-radius: 50%;">
                                             <i class="far fa-check-circle fa-2x" style="padding: 9px;"></i>
                                         </div>
                                         <div class="dec-block-dec" style="float:left;">
@@ -42,7 +43,10 @@
                             </div>
                             <div class="row">
                                 <div>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> Add</button>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@mdo"
+                                        style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                        Add</button>
                                 </div>
                             </div>
                         </div>
@@ -50,25 +54,26 @@
                         <div class="card-body" style="padding: 1.00rem;">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                    <th>Threshold</th>
-                                    <th>Consequence</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>Threshold</th>
+                                        <th>Consequence</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            <div class="row" style="margin-top: 10px">
+                            {{-- <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        Showing 0 to 0 of 0 entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     <nav aria-label="Page navigation example">
@@ -80,7 +85,7 @@
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -89,19 +94,22 @@
     </section>
 
     <!-- ***/Threshold add new form -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Threshold</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
+            <div class="modal-content">
+                <form action="" method="">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Threshold</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Threshold*</label>
+                            <label for="" class="col-sm-3 col-form-label"
+                                style="font-weight: 500; text-align: right">Threshold*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <select id="inputState" class="form-control">
@@ -112,7 +120,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Consequence*</label>
+                            <label for="" class="col-sm-3 col-form-label"
+                                style="font-weight: 500; text-align: right">Consequence*</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <select id="inputState" class="form-control">
@@ -123,20 +132,20 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">Description</label>
+                            <label for="" class="col-sm-3 col-form-label"
+                                style="font-weight: 500; text-align: right">Description</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <textarea type="text" class="form-control" rows="5" id=""> </textarea>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <div style="float: right; margin-right: 75px;">
-                        <button type="button" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-success  btn-sm"> <i
+                                class="fas fa-plus-circle"></i>
+                            Add</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

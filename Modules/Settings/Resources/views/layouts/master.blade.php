@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+
+    <!--Slim-->
+    <link rel="stylesheet" href="{{ asset('plugins/slim-cropping-plugin/example/css/slim.min.css') }}">
     <style>
         span.brand-text.font-weight-light {
             font-size: 13px;
@@ -134,6 +137,9 @@
 <script src="{{ asset('plugins/select2/select2.min.css') }}"></script>
 <!-- toastr js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+<!--Slim -->
+<script src="{{ asset('plugins/slim-cropping-plugin/example/js/slim.kickstart.min.js') }}"></script>
 
 @yield('plugin')
 

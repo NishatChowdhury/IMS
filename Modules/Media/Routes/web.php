@@ -76,6 +76,7 @@ Route::prefix('admin')->group(function() {
     Route::post('communication/quick/send',[CommunicationController::class,'quickSend'])->name('communication.quickSend');
     // communication/Subscribers
     Route::get('subscriber/list',[SubscriberController::class,'index'])->name('subscriber.list');
+    Route::get('subscriber/status/{id}',[SubscriberController::class,'subscriberStatusUpdate'])->name('subscriberStatusUpdate');
     // communication/ api setting
     Route::get('communication/apiSetting',[CommunicationSettingController::class,'index'])->name('communication.apiSetting');
     Route::patch('communication/apiSetting/update',[CommunicationSettingController::class,'update'])->name('apiSetting.update');

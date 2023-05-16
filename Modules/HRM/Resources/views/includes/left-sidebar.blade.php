@@ -55,7 +55,7 @@
                                 @if (in_array('staff.teacher', auth()->user()->permissions))
                                     <li class="nav-item">
                                         <a href="{{ route('staff.teacher') }}"
-                                           class="nav-link {{ isActive('admin/staff/teacher') }}">
+                                           class="nav-link {{ isActive(['admin/staff/teacher','admin/staff/staffadd','admin/staff/edit-staff*']) }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Teacher & Staff</p>
                                         </a>

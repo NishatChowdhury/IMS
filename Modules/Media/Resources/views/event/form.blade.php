@@ -1,29 +1,33 @@
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Title')}}*</label>
+    <label for="" class="col-sm-2 col-form-label"
+        style="font-weight: 500; text-align: right">{{ __('Title') }}*</label>
     <div class="col-sm-10">
         <div class="input-group">
-            {{ Form::text('title',null,['class'=>'form-control','required']) }}
+            {{ Form::text('title', null, ['class' => 'form-control', 'required']) }}
         </div>
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Venue')}}*</label>
+    <label for="" class="col-sm-2 col-form-label"
+        style="font-weight: 500; text-align: right">{{ __('Venue') }}*</label>
     <div class="col-sm-10">
         <div class="input-group">
-            {{ Form::text('venue',null,['class'=>'form-control','required']) }}
+            {{ Form::text('venue', null, ['class' => 'form-control', 'required']) }}
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="" class="col-sm-4 col-form-label" style="font-weight: 500; text-align: right">{{ __('Start Date')}}</label>
+            <label for="" class="col-sm-4 col-form-label"
+                style="font-weight: 500; text-align: right">{{ __('Start Date') }}</label>
             <div class="col-sm-8">
                 <div class="input-group">
-{{--                    <input name="date" class="form-control datePicker" aria-describedby="">--}}
-                    {{ Form::text('date',null,['class'=>'form-control datePicker','aria-describedby','required']) }}
+                    {{--                    <input name="date" class="form-control datePicker" aria-describedby=""> --}}
+                    {{ Form::text('date', null, ['class' => 'form-control datePicker', 'aria-describedby', 'required']) }}
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupPrepend2"> <i class="far fa-calendar-alt"></i></span>
+                        <span class="input-group-text" id="inputGroupPrepend2"> <i
+                                class="far fa-calendar-alt"></i></span>
                     </div>
                 </div>
             </div>
@@ -31,11 +35,12 @@
     </div>
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="" class="col-sm-3 col-form-label" style="font-weight: 500; text-align: right">{{ __('Start Time')}}</label>
+            <label for="" class="col-sm-3 col-form-label"
+                style="font-weight: 500; text-align: right">{{ __('Start Time') }}</label>
             <div class="col-sm-9">
                 <div class="input-group">
-{{--                    <input name="time" type="text" class="form-control timepicker">--}}
-                    {{ Form::text('time',null,['class'=>'form-control timepicker','required']) }}
+                    {{--                    <input name="time" type="text" class="form-control timepicker"> --}}
+                    {{ Form::text('time', null, ['class' => 'form-control timepicker', 'required']) }}
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="far fa-clock"></i></span>
                     </div>
@@ -45,24 +50,41 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Short Description')}}</label>
+    <label for="" class="col-sm-2 col-form-label"
+        style="font-weight: 500; text-align: right">{{ __('Short Description') }}</label>
     <div class="col-sm-10">
         <div class="input-group">
-            {{--<textarea type="text" class="form-control" rows="5" id=""> </textarea>--}}
-            {{ Form::textarea('details',null,['class'=>'form-control','row'=>5,'required']) }}
+            {{-- <textarea type="text" class="form-control" rows="5" id=""> </textarea> --}}
+            {{ Form::textarea('details', null, ['class' => 'form-control', 'row' => 5, 'required']) }}
         </div>
     </div>
 </div>
+{{-- <div class="form-group row"> --}}
+{{--    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)')}}*</label> --}}
+{{--    <div class="col-sm-10"> --}}
+{{--        <div class="form-group files color"> --}}
+{{--            <input type="file" name="thumbnail" class="form-control" multiple=""> --}}
+{{--        </div> --}}
+{{--    </div> --}}
+{{-- </div> --}}
+
 <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)')}}*</label>
+    <label for="" class="col-sm-2 col-form-label"
+        style="font-weight: 500; text-align: right">{{ __('Thumbnail(360X220)') }}*</label>
     <div class="col-sm-10">
-        <div class="form-group files color">
-            <input type="file" name="thumbnail" class="form-control" multiple="">
+        <div class="form-group slim" data-ratio="16:9" data-max-file-size="2" data-instant-edit="true">
+            @if (isset($event->image))
+                <img src="{{ asset('storage/uploads/events/') }}/{{ $event->image }}" alt="" />
+                <input type="file" name="thumbnail" class="form-control">
+            @else
+                <input type="file" name="thumbnail" class="form-control">
+            @endif
         </div>
     </div>
 </div>
 <div style="float: right">
-    <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Save')}}</button>
+    <button type="submit" class="btn btn-success  btn-sm"><i class="fas fa-plus-circle"></i>
+        {{ __('Save') }}</button>
 </div>
 
 <!-- /Notices page inner Content End*** -->
@@ -95,7 +117,5 @@
                 timeFormat: 'h:mm'
             });
         });
-
-
     </script>
 @stop

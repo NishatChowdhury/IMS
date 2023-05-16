@@ -12,4 +12,19 @@ class SubscriberController extends Controller
         $subscribers =  Subscriber::query()->latest()->get();
         return view('media::subscriber.list',compact('subscribers'));
     }
+
+    public function subscriberStatusUpdate($id)
+    {
+        $subscribers =  Subscriber::query()->find($id);
+        if ($subscribers->unsubscribed == 1)
+        {
+            $subscribers->unsubscribed = 0;
+        }else{
+            $subscribers->unsubscribed = 1;
+        }
+        $subscribers->update();
+        return back();
+    }
+
+
 }
