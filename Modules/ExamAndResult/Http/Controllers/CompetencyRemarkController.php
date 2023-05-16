@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\ExamAndResult\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\AcademicClass;
@@ -49,7 +49,7 @@ class CompetencyRemarkController extends Controller
         $indicators = Indicator::query()->pluck('name','id');
         $remarks = Remark::query()->pluck('name','id');
 
-        return view('admin.competencyRemark.competency-remark',compact('repository','students','subjects','competencies','indicators','remarks'));
+        return view('examandresult::competencyRemark.competency-remark',compact('repository','students','subjects','competencies','indicators','remarks'));
     }
 
     public function store(Request $request)
