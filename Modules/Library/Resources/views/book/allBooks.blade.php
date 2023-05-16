@@ -27,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['route'=>'allBooks.search','role'=>'form','method'=>'get']) }}
+{{--                        {{ Form::open(['route'=>'allBooks.search','role'=>'form','method'=>'get']) }}--}}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">
@@ -38,13 +38,13 @@
                                 </div>
                                 <div class="col-1" style="padding-top: 32px;">
                                     <div class="input-group">
-                                        <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        {{--   <button  style="padding: 6px 20px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>--}}
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        {{ Form::close() }}
+{{--                        {{ Form::close() }}--}}
                     </div>
                     <!-- /.card -->
                 </div>
