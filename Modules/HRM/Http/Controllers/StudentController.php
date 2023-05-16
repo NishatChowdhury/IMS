@@ -900,6 +900,8 @@ class StudentController extends Controller
             ->get();
 
         return view('hrm::student.studentProfile', compact('student', 'payments', 'data', 'studentAcademic', 'attendaces'));
+
+
     }
 
     public function tod(Request $request)

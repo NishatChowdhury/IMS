@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Settings\Http\Controllers;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Video;
@@ -18,7 +18,7 @@ class VideoController extends Controller
     public function edit(Request $request)
     {
         $vid = Video::query()->findOrFail($request->get('id'));
-        return view('settings::playlist._edit',compact('vid'));
+        return view('media::playlist._edit',compact('vid'));
     }
 
     public function update(Request $request, $id)

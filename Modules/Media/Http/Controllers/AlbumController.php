@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Settings\Http\Controllers;
+namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Album;
@@ -24,7 +24,7 @@ class AlbumController extends Controller
     {
         $albums = Album::all();
         $repository = $this->repositories;
-        return view('settings::gallery.album',compact('albums','repository'));
+        return view('media::gallery.album',compact('albums','repository'));
     }
 
     public function store(Request $request)

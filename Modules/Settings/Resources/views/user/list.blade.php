@@ -68,7 +68,7 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>
-                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

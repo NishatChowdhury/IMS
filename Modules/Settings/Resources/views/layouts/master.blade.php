@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/nanoScroller/nanoscroller.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datepicker3.min.css') }}">
+
+    <!--Slim-->
+    <link rel="stylesheet" href="{{ asset('plugins/slim-cropping-plugin/example/css/slim.min.css') }}">
     <style>
         span.brand-text.font-weight-light {
             font-size: 13px;
@@ -130,6 +133,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 {{--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
 <script src="{{ asset('plugins/select2/select2.min.css') }}"></script>
+
+<!--Slim -->
+<script src="{{ asset('plugins/slim-cropping-plugin/example/js/slim.kickstart.min.js') }}"></script>
 
 @yield('plugin')
 

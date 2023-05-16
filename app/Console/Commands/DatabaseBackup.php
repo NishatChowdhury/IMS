@@ -49,7 +49,7 @@ class DatabaseBackup extends Command
      //backup code by hamid
         $filename = "database_backup".".sql";
 //        $filename = "backup_" . date('y-m-d-H') .".sql";
-        $command = "mysqldump --user=" . env('DB_USERNAME')." --password=" . env('DB_PASSWORD'). " --host=" . env('DB_HOST')  . " " . env('DB_DATABASE') . ">" . storage_path("app/public/backup/"). $filename;
+        $command = "mysqldump --user=" . env('DB_USERNAME')." --password=" . env('DB_PASSWORD'). " --host=" . env('DB_HOST')  . " " . env('DB_DATABASE') . ">" . storage_path("app/public/db/"). $filename;
 
         exec($command);
         //end backup code

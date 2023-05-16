@@ -54,7 +54,7 @@
                                         </td>
                                         <td>{!! $event->details !!}</td>
                                         <td>
-                                            <img src="{{ asset('assets/img/events/') }}/{{ $event->image }}" alt="" width="60">
+                                            <img src="{{ asset('storage/uploads/events/') }}/{{ $event->image }}" alt="" width="60">
                                         </td>
                                         <td>
                                             {{ Form::model($event,['route'=>['event.destroy',$event->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
