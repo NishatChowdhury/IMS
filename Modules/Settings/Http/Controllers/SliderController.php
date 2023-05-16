@@ -52,8 +52,6 @@ class SliderController extends Controller
             }
         }
         session()->flash('success', 'Slider added successfully!');
-        }
-        Slider::query()->create($data);
 
         // if ($request->hasFile('image')) {
         //     $name = time() . $request->file('image')->getClientOriginalName();

@@ -101,7 +101,7 @@
                         </div>
                         <div style="float: right">
                             <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
-                        </div>
+                        </div><br>
                     {{ Form::close() }}
                 </div>
             </div>
