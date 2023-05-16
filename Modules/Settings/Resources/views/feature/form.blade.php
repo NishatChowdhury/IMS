@@ -26,15 +26,33 @@
 <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">{{ __('Thumbnail(70X70)')}}*</label>
     <div class="col-sm-5">
-        <div class="form-group files color">
-            <input type="file" name="image" class="form-control" multiple="">
+{{--        <div class="form-group slim" data-ratio="1:1" data-max-file-size="2" data-instant-edit="true">--}}
+{{--            <input type="file" name="image" class="form-control" multiple="">--}}
+{{--        @if($feature->image)--}}
+{{--                <img src="{{ asset('storage/uploads/feature/') }}/{{ $feature->image }}" class="img-thumbnail mx-auto d-block" alt="" width="150">--}}
+{{--            @else--}}
+{{--            <input type="file" name="image" class="form-control" multiple="">--}}
+{{--            @endif--}}
+{{--        </div>--}}
+
+        <div class="slim" data-ratio="1:1" data-instant-edit="true">
+            @if(isset($feature->image))
+                <img src="{{ asset('storage/uploads/feature/') }}/{{ $feature->image }}" alt="" />
+                {{ Form::file('slim[]', ['class' => 'drop-zone__input', 'id' => 'file-input']) }}
+            @else
+                {{ Form::file('slim[]', ['class' => 'drop-zone__input', 'id' => 'file-input']) }}
+            @endif
+            <p></p>
+            @error('pic')
+            <b style="color: red">{{ $message }}</b>
+            @enderror
         </div>
     </div>
-    <div class="col-sm-5">
-        <div class="form-group">
-            <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}" class="img-thumbnail mx-auto d-block" alt="" width="150">
-        </div>
-    </div>
+{{--    <div class="col-sm-5">--}}
+{{--        <div class="form-group">--}}
+{{--            <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}" class="img-thumbnail mx-auto d-block" alt="" width="150">--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div>
 <div style="float: right">
     <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Save')}}</button>
