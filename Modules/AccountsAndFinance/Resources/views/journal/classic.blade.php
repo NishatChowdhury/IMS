@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Journal Classic</h1>
+                    <h1>{{ __('Journal Classic') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Accounts</a></li>
-                        <li class="breadcrumb-item active">Journal Report</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Accounts') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Journal Report') }}</li>
                     </ol>
                 </div>
             </div>
@@ -27,9 +27,9 @@
                     <div class="card">
                         <div class="card-body">
                             {{ Form::open(['route'=>'journal.classic','method'=>'get','class'=>'form-inline']) }}
-                            <label class="col-sm-2">Start Date</label>
+                            <label class="col-sm-2">{{ __('Start Date') }}</label>
                             {{ Form::date('start',null,['class'=>'form-control mr-sm-2']) }}
-                            <label class="col-sm-2">End Date</label>
+                            <label class="col-sm-2">{{ __('End Date') }}</label>
                             {{ Form::date('end',null,['class'=>'form-control mr-sm-2']) }}
                             <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                             {{ Form::close() }}
@@ -50,32 +50,32 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Heading and Description</th>
-                                    <th>Journal no.</th>
-                                    <th>Debit</th>
-                                    <th>Credit</th>
+                                    <th>{{ __('Date') }}</th>
+                                    <th>{{ __('Heading and Description') }}</th>
+                                    <th>{{ __('Journal no.') }}</th>
+                                    <th>{{ __('Debit') }}</th>
+                                    <th>{{ __('Credit') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($journals as $journal)
                                     <tr>
-                                        <td>{{ $journal->date }}</td>
+                                        <td>{{ $journal->date ?? '' }}</td>
                                         <td>
                                             @foreach($journal->items as $item)
-                                                {{ $item->coa->name }}<br>
+                                                {{ $item->coa->name ?? ''}}<br>
                                             @endforeach
-                                            <small class="text-secondary"><em>{{ $journal->description }}</em></small>
+                                            <small class="text-secondary"><em>{{ $journal->description ?? ''}}</em></small>
                                         </td>
-                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ route('journals.show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
+                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ route('journals.show',$journal->id) }}">{{ $journal->journal_no ?? ''}}</a></th>
                                         <td>
                                             @foreach($journal->items as $item)
-                                                <p>{{ $item->debit }}</p>
+                                                <p>{{ $item->debit ?? ''}}</p>
                                             @endforeach
                                         </td>
                                         <td>
                                             @foreach($journal->items as $item)
-                                                <p>{{ $item->credit }}</p>
+                                                <p>{{ $item->credit ?? ''}}</p>
                                             @endforeach
                                         </td>
                                     </tr>
@@ -100,7 +100,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Image') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
