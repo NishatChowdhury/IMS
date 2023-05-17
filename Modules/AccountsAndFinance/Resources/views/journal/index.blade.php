@@ -70,7 +70,7 @@
                                 <tbody>
                                 @foreach($journals as $journal)
                                     <tr>
-                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ action('Backend\JournalController@show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
+                                        <th><a class="btn btn-outline-primary btn-sm text-bold" href="{{ route('journals.show',$journal->id) }}">{{ $journal->journal_no }}</a></th>
                                         <td>{{ $journal->date }}</td>
                                         <td>{{ $journal->items->sum('credit') }}</td>
                                         <td>{{ $journal->description }}</td>

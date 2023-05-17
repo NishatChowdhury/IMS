@@ -54,38 +54,9 @@ class CompetencyRemarkController extends Controller
 
     public function store(Request $request)
     {
-        // $competencyResult = $request->all();
-
-        // foreach($competencyResult as $result){
-        //     CompetencyRemark::create([
-        //         'academic_class_id' => $request->get('academic_class_id'),
-        //         'subject_id' => $request->get('subject_id'),
-        //         'student_id' => $result['student_id'],
-        //         'competency_id' => $result->competency_id,
-        //         'indicator_id' => $result->indicator_id,
-        //         'remark_id' => $result->remark_id
-        //     ]);
-
-        //     // $data['academic_class_id'] = $request->get('academic_class_id');
-        //     // $data['subject_id'] = $request->get('subject_id');
-        //     // $data['student_id'] = $request->get('student_id')[$key];
-        //     // $data['competency_id'] = $request->get('competency_id')[$key];
-        //     // $data['indicator_id'] = $request->get('indicator_id')[$key];
-        //     // $data['remark_id'] = $request->get('remark_id')[$key];
-        // }
-        // // CompetencyRemark::query()->create($data);
-        // return redirect()->back();
-
-
-
-
-
-
-
-
         $data = $request->input('data');
             dd($data);
-        $models = [];
+        $models = [];   
     
         foreach ($data as $row) {
             $model = new CompetencyRemark();

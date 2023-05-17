@@ -95,7 +95,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($students as $student)
+                                    @foreach ($students as $key => $student)
                                         {{ Form::hidden('student_id[]', $student->id) }}
                                         {{ Form::hidden('academic_class_id', $student->studentAcademic->academicClass->id ?? '') }}
                                         <tr>
@@ -109,7 +109,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                {{ Form::select('competency_id[]', $competencies, null, ['class' => 'form-control']) }}
+                                                {{ Form::select('competency_id[]', $competencies, null, ['class' => 'form-control','name'=>"data[{{ $i }}][name]"]) }}
                                             </td>
                                             <td>
                                                 {{ Form::select('indicator_id[]', $indicators, null, ['class' => 'form-control']) }}
