@@ -45,7 +45,8 @@
                             </div>
                         </div>
                         <div>
-                            <p class="scl-cd-add" style="font-size:{{ $card['address_size'] !=null ? $card['address_size']:0 }}px;margin-bottom: 0;">{{ siteConfig('address') }}</p>
+                           <!-- <p class="scl-cd-add" style="font-size:{{-- $card['address_size'] !=null ? $card['address_size']:0 --}}px;margin-bottom: 0;">{{-- siteConfig('address') --}}</p>-->
+                            <p class="scl-cd-add" style="font-size:{{ $card['address_size'] !=null ? $card['address_size']:0 }}px;margin-bottom: 0;">Knowlede Is Power</p>
 
                         </div>
                     </div>
@@ -77,6 +78,13 @@
                                     <td> Mother </td>
                                     <td>&nbsp;:&nbsp;</td>
                                     <td>{{ $student->student->mother->m_name }}</td>
+                                </tr>
+                            @endisset
+                            @isset($card['guardianname'])
+                                <tr>
+                                    <td> Guardian </td>
+                                    <td>&nbsp;:&nbsp;</td>
+                                    <td>{{ $student->student->guardian->g_name }}</td>
                                 </tr>
                             @endisset
                             @isset($card['session'])
@@ -143,6 +151,8 @@
                                     <td>{{ $student->student->mobile ?? '' }}</td>
                                 </tr>
                             @endisset
+
+
                             </tbody>
                         </table>
 
@@ -155,7 +165,7 @@
                     <div class="card-footer text-muted" style="background-color:{{ $card['bgcolor'] }};font-size:{{ $card['body_size']!=null ? $card['body_size']: 0 }}px">
                         <div class="row">
                             <div class="col">
-                                <p class="card-title" style="color:{{ $card['bgfont']}};"> <strong>ID : {{ $student->student->studentId ?? '' }}</strong> </p>
+                                <!--<p class="card-title" style="color:{{-- $card['bgfont']--}};"> <strong>ID : {{-- $student->student->studentId ?? '' --}}</strong> </p>-->
                             </div>
                             <div class="col">
                                 <p id="idsignature" class="card-title" style="color:{{ $card['titlecolor'] }};"> <strong style="color:{{ $card['bgfont']}}">{{ $card['signature'] }}</strong></p>
@@ -177,6 +187,7 @@
                 <div class="back-top" style="font-size:12px">
                     <ul style="padding-left: 15px;padding-top:15px">
                         <li>This card is valid till {{ $card['validity'] }}</li>
+
                     </ul>
                 </div>
                 <div class="back-middle text-center">
@@ -190,6 +201,7 @@
                             <td>Phone</td>
                             <td style="padding: 0 5px">:</td>
                             <td>{{ $card['bPhone'] }}</td>
+
                         </tr>
                         <tr>
                             <td>Email</td>

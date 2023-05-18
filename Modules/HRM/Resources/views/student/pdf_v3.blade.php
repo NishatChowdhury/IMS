@@ -255,18 +255,23 @@
 @foreach ($students->chunk(5) as $key => $chunk)
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
-            <div class="col-3 col-2-5">
-                <div class="card" style="width: 3.9in; height: 2.5in; margin:10px;background-color:{{ $card['bgcolor'] }}">
+            <div class="col-4 col-2-4 m-2 ">
+                <div class="card" style="width: 3.9in; height: 2.5in; margin:5px;  background-color:{{ $card['bgcolor'] }}">
                     <div
                         style="border: 1px solid  white; margin: 10px;     padding: 0;  box-sizing: border-box;height: 223px;">
                         <div class=" " style="">
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <div class="nat" style="background-color:{{ $card['bgcolor'] }}">
-                                        <h2 style="color:#fff;font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;"> 
+                                        <!--<h2 style="color:#fff;font-size: {{-- $card['name_size'] != null ? $card['name_size'] : 0 --}}px;">
+                                            {{-- siteConfig('name') --}}
+                                        </h2>-->
+                                        <h2 style="color: {{ $card['bgfont'] }}; font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;">
                                             {{ siteConfig('name') }}
                                         </h2>
-                                        <h3> {{ siteConfig('address') }}</h3>
+                                       <!-- <h3> {{-- siteConfig('address') --}}</h3>-->
+                                        <h3>"BHABANA", SOUTH MUNSI PUKUR PAAR, CTG</h3>
+
                                     </div>
                                 </div>
 
@@ -280,7 +285,7 @@
                                 style="width:70px ; height:70px ;    width: 70px;   position: absolute; left: 265px;"
                                 class="text-center rounded mx-auto d-block border border-dark">
                             <h1 class=" text-bold  "
-                                style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    -webkit-text-stroke-width: 0.4px; -webkit-text-stroke-color: rgb(20, 19, 19);  color: red;">
+                                style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    -webkit-text-stroke-width: 0.4px; -webkit-text-stroke-color: rgb(20, 19, 19);  color:darkred;">
                                 {{ __('IDENTITY CARD') }}</h1>
                             <h1 class=" text-bold "
                                 style="position: relative;top: -2px;margin: 2px;text-align: center; font-size:15px ;    color: rgb(12 96 74);">
@@ -337,11 +342,11 @@
                         </div>
 
                         <div class="wrapperr" style="background-color:{{ $card['bgcolor'] }}">
-                            <div style="text-align: left; margin-top: 3px; margin-left:5px">
+                            <div style="text-align: left; margin-top: 7px; margin-left:5px">
                                 {{ $student->student->mobile ?? '' }}</div>
                             <div> <img src="{{ asset('assets/img/logos') }}/{{ siteConfig('logo') }}" width="25px"
                                     style="border-radius: 50%;   "></div>
-                            <div style=" margin-top: 3px;">{{ $card['signature'] }}</div>
+                            <div style=" margin-top: 7px;">{{ $card['signature'] }}</div>
 
                         </div>
                     </div>
@@ -368,8 +373,10 @@
 
                 <p style=" text-align: left;  font-size: 15px;    margin-top: 0;  margin-bottom: 0; padding-left:5px">
                     {{ __('1. Useable only for education purpose') }}</p>
+                <!--<p style=" text-align: left;font-size: 15px;    margin-top: 0;  margin-bottom: 0;padding-left:5px">
+                    {{-- __('2. This card is valid upto') }}&nbsp;{{ $card['validity'] --}} </p>-->
                 <p style=" text-align: left;font-size: 15px;    margin-top: 0;  margin-bottom: 0;padding-left:5px">
-                    {{ __('2. This card is valid upto') }}&nbsp;{{ $card['validity'] }} </p>
+                    {{ __('2. This card is valid upto') }}&nbsp; 31/12/2023 </p>
                 <table class="table" style="font-size: 12px; margin-top:3px">
                     <tbody>
                         <tr>

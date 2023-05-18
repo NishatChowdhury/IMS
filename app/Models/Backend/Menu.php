@@ -13,7 +13,7 @@ class Menu extends Model
     use SoftDeletes;
 
     protected $fillable = ['menu_id','type','name','uri','page_id','system_page','url','order','editable','deletable','is_active'];
-
+   // public $timestamps = false;
     public function children()
     {
         return $this->hasMany(Menu::class);
