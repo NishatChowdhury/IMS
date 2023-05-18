@@ -8,6 +8,23 @@
                 display: none;
             }
         }
+
+        .padding-0{
+            padding-right:0;
+            padding-left:0;
+        }
+
+        .col {
+  float: left;
+  width: 4.5in;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
     </style>
 @stop
 @section('content')
@@ -84,13 +101,12 @@
         $checkSP = session()->get('spay');
         ?>
         <div class="container-fluid">
-            <div class="col-12">
                 <div class="row">
-                    <div class="col-6">
-                        <section class="content" style="width: 4.5in">
+                    <div class="col padding-0" style="width: 4.5in">
+                        <section class="content">
                             <div class="container-fluid">
-                                <div class="row m-5">
-                                    <div class="col-md-12">
+                                <div class="row">
+                                    <div>
                                         <div class="card" style="border: 1px solid black;font-size: 15px">
                                             <div class="card-body">
                                                 <div class="row mb-3">
@@ -282,11 +298,11 @@
                             </div>
                         </section>
                     </div>
-                    <div class="col-6">
-                        <section class="content" style="width: 4.5in">
+                    <div class="col padding-0"  style="width: 4.5in">
+                        <section class="content">
                             <div class="container-fluid">
-                                <div class="row m-5">
-                                    <div class="col-md-12">
+                                <div class="row" style="float: right">
+                                    <div >
                                         <div class="card" style="border: 1px solid black;font-size: 15px">
                                             <div class="card-body">
                                                 <div class="row mb-3">
@@ -479,7 +495,6 @@
                         </section>
                     </div>
                 </div>
-            </div>
         </div>
     @endif
 @stop

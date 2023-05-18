@@ -75,28 +75,28 @@ class ResultController extends Controller
         if($method == 1){
             $this->normalResult($sessionId,$examId);
         }elseif($method == 2){
-            $classes = AcademicClass::with('classes')->get();
+              $classes = AcademicClass::with('classes')->get();
             foreach($classes as $class){
                 $subjectCount = ExamSchedule::query()
                     ->where('academic_class_id',$class->id)   //class id means acadimic class id
                     ->where('exam_id',$examId)
                     ->count();
 
-                $marks = Mark::query()
-                    ->where('academic_class_id',$class->id)
-                    ->where('exam_id',$examId)
-                    ->with('subject')
-                    ->get()
-                    ->groupBy('student_id');
+                  $marks = Mark::query()
+                                    ->where('academic_class_id',$class->id)
+                                    ->where('exam_id',$examId)
+                                    ->with('subject')
+                                    ->get()
+                                    ->groupBy('student_id');
 
                 foreach($marks as $student => $mark){
                     $countOptionalSubject = 0;
                     foreach ($mark as $m){
                         if($m->subject->type == 3){
-                            $countOptionalSubject++;
+                             $countOptionalSubject++;
                         }
                     }
-                    //$countOptionalSubject;
+                     //$countOptionalSubject;
 
 
 
@@ -118,7 +118,9 @@ class ResultController extends Controller
 
                     $optionalMark = $mark->where('subject_id',0)->first()->gpa ?? 0;
                     //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
-//                    return $mark;
+                //    return $mark;
+                    //  $gpa = (float)$mark->sum('gpa');
+                    // dd($gpa);
                     $mainSubjectGpa = $mark->sum('gpa') - $countOptionalSubject * 3;
                     $mainSubject = $subjectCount - $countOptionalSubject;
                     $mainGpa = $mainSubjectGpa / $subjectCount;
@@ -128,7 +130,7 @@ class ResultController extends Controller
 
 
 //                    return $data;
-                    $grade = Grade::query()
+                     $grade = Grade::query()
                         ->where('system',1)
                         ->where('point_from','<=',$data['gpa'])
                         ->where('point_to','>=', $data['gpa'])
@@ -139,7 +141,7 @@ class ResultController extends Controller
 
                         $data['total_mark'] = $mark->sum('total_mark') - 40;
 
-                        $grade = Grade::query()
+                         $grade = Grade::query()
                             ->where('system',1)
                             ->where('point_from','<=',$data['gpa'])
                             ->where('point_to','>=',$data['gpa'])
@@ -155,12 +157,13 @@ class ResultController extends Controller
 
                     $data['rank'] = null;
 
+                    // return $data;
                     $result = ExamResult::query()
 //                        ->where('academic_class_id',$class->id) remove
                         ->where('exam_id',$examId)
                         ->where('student_academic_id',$data['student_academic_id'])
                         ->first();
-//                    return $data;
+//                    return $result;
                     if($result != null){
                         $result->update($data);
                     }else{
@@ -748,5 +751,44 @@ class ResultController extends Controller
         $results = $results->count() == 0 ? null : $results;
         $repository = $this->repository;
         return view('examandresult::exam.tabulation',compact('repository','results','subjects','examID'));
+    }
+    
+    public function bulkResult(){
+
+        $repository = $this->repository;
+        return view ('examandresult::exam.bulkresult',compact('repository'));
+
+    }
+
+    public function bulkResultPdf(Request $request, ExamResult $examResult){
+
+        if($request->all()){
+            $r = $examResult->newQuery();
+
+            if($request->get('studentId')){
+                $r->whereHas('studentAcademic',function($query) use ($request){
+                    $query->whereHas('student', function($q) use ($request){
+                        $q->where('studentId', $request->studentId);
+                    });
+                });
+            }
+
+            if($request->get('exam_id')){
+                $r->where('exam_id',$request->get('exam_id'));
+            }
+
+            if($request->has('academic_class_id')){
+                $r->whereHas('studentAcademic',function($query) use ($request){
+                    $query->where('academic_class_id',$request->get('academic_class_id'));
+                });
+            }
+
+            $results = $r->get();
+        }else{
+            $results = [];
+        }
+
+        $repository = $this->repository;
+        return view ('examandresult::exam.bulkresult-pdf',compact('repository','results'));
     }
 }

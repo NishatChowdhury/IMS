@@ -13,6 +13,7 @@
         "ext-json": "*",
         "barryvdh/laravel-dompdf": "^1.0",
         "dgvai/laravel-nagad": "^1.0",
+        "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.0",
         "joshtronic/php-loremipsum": "dev-master",
         "laravel/framework": "^9.52",

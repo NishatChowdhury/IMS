@@ -395,7 +395,7 @@
                             style="height: 33px; width: 88px;  position: relative;   left: 126px;  top: 75px;">
                         <hr
                             style="position: relative;     position: relative;  top: 38px;   width: 132px;  left: 105px;">
-                    <h5 style="position: relative;  top: 22px;  left: 140px; font-size: 15px;">
+                    <h5 style="position: relative;  top: 22px;  left: 150px; font-size: 15px;">
                         {{ $card['signature'] }} </h5>
                     </p>
 

@@ -1,6 +1,6 @@
-{ __{('}}@extends('settings::layouts.master')
+@extends('settings::layouts.master')
 
-@section('title','Set Feature Services')
+@section('title', 'Set Feature Services')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,19 +8,19 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ __('Featured Service')}}</h1>
+                    <h1>{{ __('Featured Service') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('Settings')}}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Feature')}}</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Feature') }}</li>
                     </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
 
-    @if(Session::has('success'))
+    @if (Session::has('success'))
         <div class="col-md-12">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('success') }}
@@ -39,59 +39,65 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             <div class="row">
-                                <a href="{{ route('features.create') }}" class="btn btn-info btn-sm"> <i class="fas fa-plus-circle"></i>{{ __('
-                                    Add New')}}</a>
+                                <a href="{{ route('features.create') }}" class="btn btn-info btn-sm"> <i
+                                        class="fas fa-plus-circle"></i>{{ __('
+                                                                            Add New') }}</a>
                             </div>
                         </div>
 
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                    <th>{{ __('ID')}}</th>
-                                    <th>{{ __('Name')}}</th>
-                                    <th>{{ __('Status')}}</th>
-                                    <th>{{ __('Image')}}</th>
-                                    <th>{{ __('Action')}}</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{ __('ID') }}</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Status') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Action') }}</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($features as $feature)
-                                    <tr>
-                                        <td>{{ $feature->id }}</td>
-                                        <td>
-                                            {{ $feature->name }}
-                                            @if($feature->active == 1)
-                                                <span class="badge badge-success">{{ __('Active')}}</span>
-                                            @else
-                                                <span class="badge badge-secondary">{{ __('Inactive')}}</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{ Form::model($feature,['route'=>['features.update',$feature->id],'method'=>'patch']) }}
-                                            <select name="active" class="active" title="Toggle activeness">
-                                                <option value="0" {{ $feature->active == 0 ? 'selected' : '' }}>
-                                                    {{ __('Inactive')}}</option>
-                                                <option value="1" {{ $feature->active == 1 ? 'selected' : '' }}>{{ __('Active')}}</option>
-                                            </select>
-                                            {{ Form::close() }}
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}" alt="" width="60">
-                                        </td>
-                                        <td>
-                                            {{ Form::model($feature,['route'=>['features.destroy',$feature->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
-                                            <a href="{{ route('features.edit',$feature->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                            {{ Form::submit('X',['class'=>'btn btn-danger btn-sm']) }}
-                                            {{ Form::close() }}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($features as $feature)
+                                        <tr>
+                                            <td>{{ $feature->id }}</td>
+                                            <td>
+                                                {{ $feature->name }}
+                                                @if ($feature->active == 1)
+                                                    <span class="badge badge-success">{{ __('Active') }}</span>
+                                                @else
+                                                    <span class="badge badge-secondary">{{ __('Inactive') }}</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{ Form::model($feature, ['route' => ['features.update', $feature->id], 'method' => 'patch']) }}
+                                                <select name="active" class="active" title="Toggle activeness">
+                                                    <option value="0" {{ $feature->active == 0 ? 'selected' : '' }}>
+                                                        {{ __('Inactive') }}</option>
+                                                    <option value="1" {{ $feature->active == 1 ? 'selected' : '' }}>
+                                                        {{ __('Active') }}</option>
+                                                </select>
+                                                {{ Form::close() }}
+                                            </td>
+                                            <td>
+                                                <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}"
+                                                    alt="" width="60">
+                                            </td>
+                                            <td>
+                                                {{ Form::model($feature, ['route' => ['features.destroy', $feature->id], 'method' => 'delete', 'onsubmit' => 'return confirmDelete()']) }}
+                                                <a href="{{ route('features.edit', $feature->id) }}"
+                                                    class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                {{ Form::submit('X', ['class' => 'btn btn-danger btn-sm']) }}
+                                                {{ Form::close() }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing {{ $features->firstItem() }} to {{ $features->lastItem() }} of {{ $features->total() }} entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                        Showing {{ $features->firstItem() }} to {{ $features->lastItem() }} of
+                                        {{ $features->total() }} entries</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     {{ $features->appends('page')->links() }}
@@ -116,23 +122,22 @@
 
 <!-- *** External JS File-->
 @section('plugin')
-    <script src= "{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
 @stop
 
 
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.active').change(function(){
+            $('.active').change(function() {
                 $(this).closest('form').submit();
             })
         });
     </script>
     <script>
-        function confirmDelete(){
+        function confirmDelete() {
             let x = confirm('Are you sure you want to delete this Feature from home page?');
             return !!x;
         }
     </script>
 @stop
-

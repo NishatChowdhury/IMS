@@ -292,20 +292,26 @@ class MainController extends Controller
     public function resetPassword(Request $request)
     {
         $this->validate($request,[
-            'password' => 'required|confirmed'
+            'current_password'  => 'required',
+            'password'          => 'required|confirmed'
         ]);
         $staff = Staff::where('id', $request->id)->first();
-        if($request->password){
 
+        if($request->password){
             $teacherLogin = TeacherLogin::query()
                 ->where('staff_id', $staff->id)
                 ->first();
+
+            // match current password
+            if(!Hash::check($request->current_password,$teacherLogin->password)){
+                return redirect()->back()->withErrors( 'You have entered wrong current password');
+            }
+
             $teacherLogin->password = Hash::make($request->password);
             $teacherLogin->save();
 
             return redirect()->back()->with('status', 'Your Password has been Change');
-
         }
-        return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
+        return redirect()->back()->with('status', 'New Password can not be same old password:)');
     }
 }

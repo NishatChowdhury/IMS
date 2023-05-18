@@ -99,7 +99,7 @@
   color:#fff;
 }
 .bg-dark {
- background-color: map-get($theme-colors, dark) !important; 
+ background-color: map-get($theme-colors, dark) ; 
   color:#fff;
 }
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Front\AlumniController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Student\NagadPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +11,8 @@ use App\Http\Controllers\Front\AdmissionController;
 use App\Http\Controllers\Front\OnlineApplyController;
 
 /** Dashboard Routes */
-Route::get('dashboard','Backend\DashboardController@index')->name('admin.dashboard');
+//Route::get('dashboard','Backend\DashboardController@index')->name('admin.dashboard');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
 // Routes For ADMIN LTE Alpha END........//
 
@@ -111,8 +113,6 @@ Route::get('alumni/login',[AlumniController::class,'index'])->name('alumni.login
 Route::post('alumni/show/',[AlumniController::class,'show'])->name('alumni.show');
 
 Route::get('page/{uri}','Front\FrontController@page');
-
-
 
 Auth::routes();
 

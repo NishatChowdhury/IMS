@@ -214,20 +214,32 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-8">
                                                 <div class="form-group">
                                                     <label for="">Address</label>
                                                     <textarea name="address" class="form-control" placeholder="Enter Address .. . . " id="" cols="30" rows="5"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
+
+                                            <div class="col-4">
+                                                <div class="form-group ">
                                                     <label for="inputEmail4">Add File</label>
-                                                    <div class="form-group files color">
-                                                        <input type="file" name="image" class="form-control customImage">
+                                                    <div class="form-group slim" data-ratio="3:3" data-instant-edit="true">
+                                                        <input type="file" name="image"
+                                                               class="form-control customImage">
                                                     </div>
                                                 </div>
                                             </div>
+
+{{--                                            <div class="col-6">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="inputEmail4">Add Image</label>--}}
+{{--                                                    <div class="form-group files color">--}}
+{{--                                                        <input type="file" name="image" class="form-control customImage">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
                                             <div class="col-12">
                                                 <button class="btn btn-primary btn-sm btn-block">Save Data</button>
                                             </div>

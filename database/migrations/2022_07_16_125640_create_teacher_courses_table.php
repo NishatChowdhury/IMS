@@ -16,14 +16,14 @@ class CreateTeacherCoursesTable extends Migration
         Schema::create('teacher_courses', function (Blueprint $table) {
             $table->id();
             $table->integer('staff_id');
-            $table->string('co_title');
-            $table->string('co_topic_cover');
-            $table->string('co_institute');
-            $table->string('co_location');
-            $table->string('co_year');
-            $table->string('co_duration');
+            $table->string('co_title')->nullable();
+            $table->string('co_topic_cover')->nullable();
+            $table->string('co_institute')->nullable();
+            $table->string('co_location')->nullable();
+            $table->string('co_year')->nullable();
+            $table->string('co_duration')->nullable();
             $table->string('co_country')->nullable();
-            $table->string('co_result');
+            $table->string('co_result')->nullable();
             $table->string('co_c_no')->nullable();
             $table->string('co_start')->nullable();
             $table->string('co_end')->nullable();

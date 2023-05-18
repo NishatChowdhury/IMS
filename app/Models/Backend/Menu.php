@@ -19,6 +19,11 @@ class Menu extends Model
         return $this->hasMany(Menu::class);
     }
 
+    public function childrenActive()
+    {
+        return $this->hasMany(Menu::class)->where('is_active',1);
+    }
+
     public function hasChild()
     {
         return $this->children()->count() > 0;

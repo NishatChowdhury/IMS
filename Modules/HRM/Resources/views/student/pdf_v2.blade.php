@@ -268,9 +268,7 @@
                             @endisset
                             </tbody>
                         </table>
-                    </div>
 
-                    <div class="card-footer row" style="float:right;background-color:transparent;border:none">
                         <div class="col text-center ml-3" style="float:right; padding-right:2px">
                             <h6 class="text-center" style=" font-size:9px;margin-top: 17px;">{{ __('Validity:') }}<span
                                         style="color:red"> {{ __('30 June 2024') }}</span></h6>
@@ -279,7 +277,9 @@
                             <img src="{{ asset('assets/img/signature/signature.png') }}" width="80"
                                  alt="">
                         </div>
+
                     </div>
+
                     <div class="card-footer text-muted"
                          style="font-size:{{ $card['body_size'] != null ? $card['body_size'] : 0 }}px">
                         <div class=" grid-container">

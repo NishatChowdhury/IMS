@@ -133,16 +133,16 @@ function isMenu(): bool
 /** Get current theme id */
 function theme($col)
 {
-    $theme = Theme::query()->findOrFail(siteConfig('theme_id'));
-
-    return $theme->$col;
+   $theme = Theme::query()->findOrFail(siteConfig('theme_id'));
+   return $theme->$col;
 }
 
-/** Get current theme
+/** Get a specific value current theme
  * @param $col
  * @return HigherOrderBuilderProxy|HigherOrderCollectionProxy|mixed
  */
-function themeConfig($col){
+function themeConfig($col)
+{
     $setting = SiteInformation::query()->first();
     $config = Theme::query()->findOrFail($setting->theme_id);
     return $config->$col;

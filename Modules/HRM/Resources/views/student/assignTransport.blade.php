@@ -13,13 +13,14 @@
             margin-left: 2px;
             line-height: 12px;
         }
+
         .input_date {
-    width: 69%;
-    display: inline-block;
-}
+            width: 69%;
+            display: inline-block;
+        }
     </style>
 @endsection
-@section('title','Student Profile')
+@section('title', 'Student Profile')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -50,24 +51,25 @@
                             <form action="{{ route('student.transport') }}" method="get">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-md-11">
                                         <div class="form-group">
                                             <label for="">Class</label>
                                             <select name="academic_class_id" id="" class="form-control">
                                                 <option disabled selected>--Select Class--</option>
-                                                @foreach($academicClass as $ac)
-                                                <option value="{{$ac->id}}">
-                                                    {{ $ac->classes->name ?? '' }} {{ $ac->group->name ?? '' }} {{ $ac->section->name ?? '' }}
-                                                </option>
+                                                @foreach ($academicClass as $ac)
+                                                    <option value="{{ $ac->id }}">
+                                                        {{ $ac->classes->name ?? '' }} {{ $ac->group->name ?? '' }}
+                                                        {{ $ac->section->name ?? '' }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 mt-4">
+                                    <div class="col-md-1 mt-4">
                                         <div class="form-group" style="margin-top: 9px">
-                                           <button type="submit" class="btn btn-block btn-primary btn-sm">
-                                               <i class="fa fa-search"></i>&nbsp
-                                           </button>
+                                            <button type="submit" class="btn btn-block btn-primary ">
+                                                <i class="fa fa-search"></i>&nbsp
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -78,86 +80,93 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            @if(count($students) > 0)
-                               <div class="table-responsive">
-                                   <form action="{{ route('storeAssignTransport') }}" method="post">
-                                       @csrf
-                                   <table class="table table-bordered table-sm text-center">
-                                       <tr>
-                                           <th>SL</th>
-                                           <th>Name</th>
-                                           <th>Rank</th>
-                                           <th>Location</th>
-                                           <th>Direction</th>
-                                           <th>Date</th>
-                                       </tr>
-                                       @foreach($students as $key => $s)
-                                           <input type="hidden" name="student_academic_id[]" value="{{ $s->id ?? '' }}">
-                                       <tr>
-                                           <td>{{ $key+1 }} </td>
-                                           <td>{{ $s->student->name ?? '' }}</td>
-                                           <td>{{ $s->rank ?? '' }}</td>
-                                           <td>
-                                               <div class="form-group">
-                                                   <select name="location_id[]" id="" class="form-control">
-{{--                                                       <option value="" disabled selected>--Select Transport--</option>--}}
-                                                       <option value="0">Not Taking Transport</option>
-                                                       @foreach($locations as $l)
-                                                            <option
-                                                                    value="{{ $l->id }}"
+                            @if (count($students) > 0)
+                                <div class="table-responsive">
+                                    <form action="{{ route('storeAssignTransport') }}" method="post">
+                                        @csrf
+                                        <table class="table table-bordered table-sm text-center">
+                                            <tr>
+                                                <th>SL</th>
+                                                <th>Name</th>
+                                                <th>Rank</th>
+                                                <th>Location</th>
+                                                <th>Direction</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            @foreach ($students as $key => $s)
+                                                <input type="hidden" name="student_academic_id[]"
+                                                    value="{{ $s->id ?? '' }}">
+                                                <tr>
+                                                    <td>{{ $key + 1 }} </td>
+                                                    <td>{{ $s->student->name ?? '' }}</td>
+                                                    <td>{{ $s->rank ?? '' }}</td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <select name="location_id[]" id=""
+                                                                class="form-control">
+                                                                {{--                                                       <option value="" disabled selected>--Select Transport--</option> --}}
+                                                                <option value="0">Not Taking Transport</option>
+                                                                @foreach ($locations as $l)
+                                                                    <option value="{{ $l->id }}"
+                                                                        @isset($s->locationStudent)
+                                                                    {{ $s->locationStudent->location_id == $l->id ? 'selected' : '' }}
+                                                                    @endisset>
+                                                                        {{ $l->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <select name="direction[]" id="" class="form-control">
+                                                                <option value="0">Not Taking Transport</option>
+                                                                <option value="1"
                                                                     @isset($s->locationStudent)
-                                                                    {{ $s->locationStudent->location_id == $l->id ? 'selected' : ''}}
-                                                                    @endisset
-                                                                    >{{ $l->name }}</option>
-                                                       @endforeach
-                                                   </select>
-                                               </div>
-                                           </td>
-                                           <td>
-                                               <div class="form-group">
-                                                   <select name="direction[]" id="" class="form-control">
-                                                       <option value="0">Not Taking Transport</option>
-                                                       <option value="1"
-                                                               @isset($s->locationStudent)
-                                                               {{ $s->locationStudent->direction == 1 ? 'selected' : ''}}
-                                                               @endisset
-                                                       >Home To Institute </option>
-                                                       <option value="2"
-                                                               @isset($s->locationStudent)
-                                                               {{ $s->locationStudent->direction == 2 ? 'selected' : ''}}
-                                                               @endisset
-                                                       >Institute To Home </option>
-                                                       <option value="3"
-                                                               @isset($s->locationStudent)
-                                                               {{ $s->locationStudent->direction == 3 ? 'selected' : ''}}
-                                                               @endisset
-                                                       >Both</option>
-                                                   </select>
-                                               </div>
-                                           </td>
-                                           <td>
-                                               <div class="input_date">
-                                                    <input type="date" name="starting_date[]" class="form-control" value="{{ $s->locationStudent->starting_date ?? '' }}">
-                                               </div>
-                                        <button type="button" onclick="getId({{$s->id}})"  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> <i class="fas fa-sign-out-alt"></i>
-                                          </button>
-                                               @isset($s->locationStudent)
-                                               @if($s->locationStudent->ending_date && $s->locationStudent->ending_date >= $s->locationStudent->starting_date)
-                                               <br>
-                                               <span><b>Ending Date : {{$s->locationStudent->ending_date}}</b> </span>
-                                               @endif
-                                               @endisset
-                                           </td>
-                                       </tr>
-                                       @endforeach
-                                       <tr>
-                                           <td colspan="6">
-                                               <button class="btn btn-block btn-dark">Save Data</button>
-                                           </td>
-                                       </tr>
-                                   </table>
+                                                               {{ $s->locationStudent->direction == 1 ? 'selected' : '' }}
+                                                               @endisset>
+                                                                    Home To Institute </option>
+                                                                <option value="2"
+                                                                    @isset($s->locationStudent)
+                                                               {{ $s->locationStudent->direction == 2 ? 'selected' : '' }}
+                                                               @endisset>
+                                                                    Institute To Home </option>
+                                                                <option value="3"
+                                                                    @isset($s->locationStudent)
+                                                               {{ $s->locationStudent->direction == 3 ? 'selected' : '' }}
+                                                               @endisset>
+                                                                    Both</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input_date">
+                                                            <input type="date" name="starting_date[]"
+                                                                class="form-control"
+                                                                value="{{ $s->locationStudent->starting_date ?? '' }}">
+                                                        </div>
+                                                        <button type="button" onclick="getId({{ $s->id }})"
+                                                            class="btn btn-danger btn-sm" data-toggle="modal"
+                                                            data-target="#exampleModal" data-whatever="@mdo"> <i
+                                                                class="fas fa-sign-out-alt"></i>
+                                                        </button>
+                                                        @isset($s->locationStudent)
+                                                            @if ($s->locationStudent->ending_date && $s->locationStudent->ending_date >= $s->locationStudent->starting_date)
+                                                                <br>
+                                                                <span><b>Ending Date :
+                                                                        {{ $s->locationStudent->ending_date }}</b> </span>
+                                                            @endif
+                                                        @endisset
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            <tr>
+                                                <td colspan="6">
+                                                    <button class="btn btn-block btn-dark">Save Data</button>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </form>
-                               </div>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -167,7 +176,8 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -200,14 +210,11 @@
 
 @section('script')
     <script>
-
         // create action url here
-        function getId(id){
+        function getId(id) {
             $('#onlineId').val(id);
         }
 
         // update action url here
-
-
     </script>
 @endsection

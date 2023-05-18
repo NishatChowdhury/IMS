@@ -71,12 +71,16 @@
                         <form action="{{ route('teacher.resetPassword') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label>New password</label>
-                                <input class="form-control" name="password" type="password" placeholder="Enter New Password">
+                                <label>Current password <span class="text-danger">*</span></label>
+                                <input class="form-control" name="current_password" type="password" placeholder="Enter Current/Old Password" required>
                             </div>
                             <div class="form-group">
-                                <label>Confirm new password</label>
-                                <input class="form-control" name="password_confirmation"  type="password" placeholder="Enter Confirm New Password">
+                                <label>New password <span class="text-danger">*</span></label>
+                                <input class="form-control" name="password" type="password" placeholder="Enter New Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm new password <span class="text-danger">*</span></label>
+                                <input class="form-control" name="password_confirmation"  type="password" placeholder="Enter Confirm New Password" required>
                             </div>
                             <input type="hidden" name="id" value="{{ $staff->id }}">
                             <button class="btn btn-primary btn-sm">Reset Password</button>

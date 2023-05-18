@@ -11,7 +11,7 @@ class DbBackupController extends Controller
 {
     public function index()
     {
-        $allFiles = Storage::files('backup');
+        $allFiles = Storage::files('db');
         $backups = [];
         // make an array of backup files, with their filesize and creation date
         foreach ($allFiles as $k => $f) {
@@ -19,7 +19,7 @@ class DbBackupController extends Controller
             if (substr($f, -4) == '.sql' && Storage::exists($f)) {
                 //$created_at =  Carbon::parse(Storage::lastModified($f));
                 // $file_size = Storage::size($f);
-                $file_name = substr($f, 7);
+                $file_name = substr($f, 3);
 
                 $backups[] = [
                     'file_path' => $f,
@@ -36,7 +36,7 @@ class DbBackupController extends Controller
     //download - database
     public function download($file_name)
     {
-        return Storage::download('/backup/'.$file_name);
+        return Storage::download('/db/'.$file_name);
     }
 
 
