@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Slider</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Slider') }}</li>
                     </ol>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="container">
-                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">Add Slider</h4>
+                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">{{ __('Add Slider') }}</h4>
                             {{-- <form> --}}
                             {{ Form::open(['route' => 'slider.store', 'method' => 'post', 'files' => 'true']) }}
                             <div class="form-group row">

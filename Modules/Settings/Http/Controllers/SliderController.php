@@ -42,7 +42,7 @@ class SliderController extends Controller
             $image = array_shift($images);
             $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
             $Imagedata = $image['output']['data'];
-            $output = Slim::saveFile($Imagedata, $Imagename, '../storage/app/public/uploads/slider', false);
+            $output = Slim::saveFile($Imagedata, $Imagename, '../storage/app/public/uploads/sliders', false);
             $data['image'] = $Imagename;
             $data['active'] = 1;
             try{
@@ -72,7 +72,7 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::query()->findOrFail($id);
-        File::delete(public_path().'/assets/img/sliders/'.$slider->image);
+        File::delete(public_path().'/storage/app/public/uploads/sliders/'.$slider->image);
         $slider->delete();
         session()->flash('success', 'Slider removed successfully!');
         return redirect('admin/sliders');
