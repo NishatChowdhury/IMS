@@ -161,12 +161,12 @@
                                 ?>
                                 <address>
                                     <strong>{{ $studentAcademic->student->name ?? '' }}</strong> ||
-                                    <span>Id:</span>{{ $studentAcademic->student->studentId ?? '' }} <br>
-                                    <span>Phone No:</span>{{ $studentAcademic->student->mobile ?? '' }} ||
-                                    <span>Class:</span>{{ $studentAcademic->classes->name ?? 'N/A' }} <br>
-                                    <span>Section:</span>{{ $studentAcademic->section->name ?? 'N/A' }} ||
-                                    <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
-                                    <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A' }}
+                                    <span>{{ __('Id:') }}</span>{{ $studentAcademic->student->studentId ?? '' }} <br>
+                                    <span>{{ __('Phone No:') }}</span>{{ $studentAcademic->student->mobile ?? '' }} ||
+                                    <span>{{ __('Class:') }}</span>{{ $studentAcademic->classes->name ?? 'N/A' }} <br>
+                                    <span>{{ __('Section:') }}</span>{{ $studentAcademic->section->name ?? 'N/A' }} ||
+                                    <span>{{ __('Group:') }}</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
+                                    <span>{{ __('Roll No:') }}</span>{{ $studentAcademic->rank ?? 'N/A' }}
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -353,12 +353,12 @@
                                 ?>
                                 <address>
                                     <strong>{{ $studentAcademic->student->name ?? '' }}</strong> ||
-                                    <span>Id:</span>{{ $studentAcademic->student->studentId ?? '' }} <br>
-                                    <span>Phone No:</span>{{ $studentAcademic->student->mobile ?? '' }} ||
-                                    <span>Class:</span>{{ $studentAcademic->classes->name ?? 'N/A' }} <br>
-                                    <span>Section:</span>{{ $studentAcademic->section->name ?? 'N/A' }} ||
-                                    <span>Group:</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
-                                    <span>Roll No:</span>{{ $studentAcademic->rank ?? 'N/A' }}
+                                    <span>{{ __('Id:') }}</span>{{ $studentAcademic->student->studentId ?? '' }} <br>
+                                    <span>{{ __('Phone No:') }}</span>{{ $studentAcademic->student->mobile ?? '' }} ||
+                                    <span>{{ __('Class:') }}</span>{{ $studentAcademic->classes->name ?? 'N/A' }} <br>
+                                    <span>{{ __('Section:') }}</span>{{ $studentAcademic->section->name ?? 'N/A' }} ||
+                                    <span>{{ __('Group:') }}</span>{{ $studentAcademic->group->name ?? 'N/A' }}<br>
+                                    <span>{{ __('Roll No:') }}</span>{{ $studentAcademic->rank ?? 'N/A' }}
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -398,7 +398,7 @@
                                         @endif
                                         <tr>
                                             <td colspan="1">
-                                                <strong class="float-right">Paid =</strong>
+                                                <strong class="float-right">{{ __('Paid =') }}</strong>
                                             </td>
                                             @if ($trans != null)
                                                 <td class="text-right">
