@@ -79,7 +79,7 @@
                                                 {{ Form::close() }}
                                             </td>
                                             <td>
-                                                <img src="{{ asset('assets/img/features/') }}/{{ $feature->image }}"
+                                                <img src="{{ asset('storage/uploads/feature/') }}/{{ $feature->image }}" class="rounded"
                                                     alt="" width="60">
                                             </td>
                                             <td>

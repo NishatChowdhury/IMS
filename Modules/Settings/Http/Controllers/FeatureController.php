@@ -9,6 +9,9 @@ use App\Models\Backend\Page;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Slim\Slim;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class FeatureController extends Controller
 {
@@ -33,11 +36,15 @@ class FeatureController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasFile('image')){
-            $image = date('Ymdhis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path().'/assets/img/features/', $image);
-            $data = $request->except('image');
-            $data['image'] = $image;
+        $data = $request->all();
+        $images = Slim::getImages();
+//         dd($images);
+        if (!empty($images)) {
+            $image = array_shift($images);
+            $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
+            $imageData = $image['output']['data'];
+            $output = Slim::saveFile($imageData, $Imagename, '../storage/app/public/uploads/feature', false);
+            $data['image'] = $Imagename;
             try{
                 Feature::query()->create($data);
             }catch (Exception $e){
@@ -50,6 +57,24 @@ class FeatureController extends Controller
                 dd($e);
             }
         }
+
+//        if($request->hasFile('image')){
+//            $image = date('Ymdhis').'.'.$request->file('image')->getClientOriginalExtension();
+//            $request->file('image')->move(public_path().'/assets/img/features/', $image);
+//            $data = $request->except('image');
+//            $data['image'] = $image;
+//            try{
+//                Feature::query()->create($data);
+//            }catch (Exception $e){
+//                dd($e);
+//            }
+//        }else{
+//            try{
+//                Feature::query()->create($request->all());
+//            }catch (Exception $e){
+//                dd($e);
+//            }
+//        }
 
         Session::flash('success','Item added to feature!');
 
@@ -67,25 +92,36 @@ class FeatureController extends Controller
 
     public function update($id, Request $request)
     {
-        $feature = Feature::query()->findOrFail($id);
-
-        if($request->hasFile('image')){
-            $image = date('Ymdhis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path().'/assets/img/features/', $image);
-            $data = $request->except('image');
-            $data['image'] = $image;
-            try{
-                $feature->update($data);
-            }catch (Exception $e){
-                dd($e);
-            }
-        }else{
-            try{
-                $feature->update($request->except('image'));
-            }catch (Exception $e){
-                dd($e);
-            }
+        $featureId = Feature::query()->findOrFail($id);
+        $feature = $request->all();
+        $images = Slim::getImages();
+//         dd($images);
+        if (!empty($images)) {
+            $image = array_shift($images);
+            $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
+            $imageData = $image['output']['data'];
+            $output = Slim::saveFile($imageData, $Imagename, '../storage/app/public/uploads/feature', false);
+            $feature['image'] = $Imagename;
         }
+        $featureId->update($feature);
+
+//        if($request->hasFile('image')){
+//            $image = date('Ymdhis').'.'.$request->file('image')->getClientOriginalExtension();
+//            $request->file('image')->move(public_path().'/assets/img/features/', $image);
+//            $data = $request->except('image');
+//            $data['image'] = $image;
+//            try{
+//                $feature->update($data);
+//            }catch (Exception $e){
+//                dd($e);
+//            }
+//        }else{
+//            try{
+//                $feature->update($request->except('image'));
+//            }catch (Exception $e){
+//                dd($e);
+//            }
+//        }
 
         Session::flash('success','Feature has been updated!');
 
