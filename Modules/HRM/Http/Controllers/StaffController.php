@@ -39,15 +39,15 @@ class StaffController extends Controller
         return view ('hrm::staff.teacher', compact('staffs'));
     }
 
-    public function addstaff()
+    public function create()
     {
         $genders = Gender::all()->pluck('name', 'id');
         $shifts = Shift::query()->pluck('name', 'id');
         $blood_groups = BloodGroup::all()->pluck('name', 'id');
-        return view ('hrm::staff.addstaff', compact('genders', 'blood_groups','shifts'));
+        return view ('hrm::staff.create', compact('genders', 'blood_groups','shifts'));
     }
 
-    public function store_staff(Request $req){
+    public function store(Request $req){
 
 //        $this->validate($req,[
 //            'name' => 'required'
@@ -56,16 +56,16 @@ class StaffController extends Controller
         $staffC = $this->validate($req, [
             'name' => 'required',
             'mobile' => 'required',
-            'dob' => 'sometimes|date',
+            //'dob' => 'sometimes|date',
             'gender_id' => 'required',
             'blood_group_id' => 'required',
-            'image' => 'required',
-            //'mail' => 'sometimes|email',
+            //'image' => 'required',
+            //'email' => 'sometimes|email',
             'code' => 'required',
-            'title' => 'required',
+            //'title' => 'required',
             'role_id' => 'required',
             //'shift_id' => 'required',
-            'job_type_id' => 'required',
+            //'job_type_id' => 'required',
             'staff_type_id' => 'required',
             'card_id' => 'required|unique:staffs',
         ]);
@@ -201,7 +201,7 @@ class StaffController extends Controller
         return redirect(route('staff.teacher'))->with('success','Staff Saved Successfully');
     }
 
-    public function edit_staff($id){
+    public function edit($id){
         $info = Staff::query()->findOrFail($id);
         $shifts = Shift::query()->pluck('name', 'id');
         $genders = Gender::all()->pluck('name', 'id');
@@ -216,17 +216,17 @@ class StaffController extends Controller
 
 
 
-    public function update_staff(Request $req){
+    public function update(Request $req){
         //dd($req->id);
 //         dd($req->all());
         $staffC = $this->validate($req, [
             'name' => 'required',
             'mobile' => 'sometimes',
-            'dob' => 'sometimes|date',
+            //'dob' => 'sometimes|date',
             'gender_id' => 'sometimes',
             'blood_group_id' => 'sometimes',
             'code' => 'required',
-            'title' => 'required',
+            //'title' => 'required',
             'role_id' => 'required',
             'job_type_id' => 'required',
             'staff_type_id' => 'required',
@@ -270,7 +270,7 @@ class StaffController extends Controller
         return redirect(route('staff.teacher'))->with('success','Staff Saved Successfully');
     }
 
-    public function delete_staff($id){
+    public function destroy($id){
         $is_exists = Staff::query()->findOrFail($id);
 
         if ($is_exists->image != null){
@@ -278,20 +278,6 @@ class StaffController extends Controller
         }
         $is_exists->delete();
         return redirect(route('staff.teacher'))->with('success','Staff Deleted Successfully');
-    }
-    public function threshold()
-    {
-        return view ('hrm::staff.threshold');
-    }
-
-    public function kpi()
-    {
-        return view ('hrm::staff.kpi');
-    }
-
-    public function payslip()
-    {
-        return view ('hrm::staff.payslip');
     }
 
     public function staffProfile($staffId)
