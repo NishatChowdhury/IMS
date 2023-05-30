@@ -62,38 +62,6 @@
                                     </li>
                                 @endif
                             @endcan
-                            @can('middleware-passed', 'staff.threshold')
-                                @if (in_array('staff.threshold', auth()->user()->permissions))
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('staff.threshold') }}"
-                                           class="nav-link {{ isActive('admin/staff/threshold') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Threshold</p>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endcan
-                            @can('middleware-passed', 'staff.kpi')
-                                @if (in_array('staff.kpi', auth()->user()->permissions))
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('staff.kpi') }}" class="nav-link {{ isActive('admin/staff/kpi') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>kpi</p>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endcan
-                            @can('middleware-passed', 'staff.payslip')
-                                @if (in_array('staff.payslip', auth()->user()->permissions))
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('staff.payslip') }}"
-                                           class="nav-link {{ isActive('admin/staff/payslip') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>PaySlip</p>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endcan
                             @can('middleware-passed', 'staff.staff')
                                 @if (in_array('staff.staff', auth()->user()->permissions))
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -285,7 +253,7 @@
                                                 <a href="{{ route('shift.index') }}"
                                                    class="nav-link {{ isActive('admin/attendance/setting') }}">
                                                     <i class="far nav-icon"></i>
-                                                    <p>Attendance Setting</p>
+                                                    <p>Shift</p>
                                                 </a>
                                             </li>
                                         @endif

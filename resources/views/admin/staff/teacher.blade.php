@@ -83,7 +83,7 @@
 
                             <div class="row">
                                 <div>
-                                    <a href="{{route('staff.addstaff')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
+                                    <a href="{{route('staff.create')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>

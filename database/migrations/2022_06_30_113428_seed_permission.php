@@ -361,7 +361,7 @@ class SeedPermission extends Migration
                     "staff.staffPdf",
                     "staff.profile",
                     "staff.teacher",
-                    "staff.addstaff",
+                    "staff.create",
                     "staff.store_staff",
                     "staff.edit_staff",
                     "staff.update_staff",

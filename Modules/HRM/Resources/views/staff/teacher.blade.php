@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label for="">Staff Type</label>
+                                        <label for="">Attendance Type</label>
                                         <div class="input-group">
                                             {{ Form::select('staff_type_id',[1=>'teacher',2=>'staff'],null,['class'=>'form-control','placeholder'=>'Staff Type']) }}
                                         </div>
@@ -83,7 +83,7 @@
 
                             <div class="row">
                                 <div>
-                                    <a href="{{route('staff.addstaff')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
+                                    <a href="{{route('staff.create')}}" type="button" class="btn btn-info btn-sm"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i> New</a>
                                 </div>
                             </div>
                         </div>
