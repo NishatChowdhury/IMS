@@ -103,6 +103,30 @@ class TeacherController extends Controller
         }
     }
 
+        // To retrieve all leaves
+        public function allLeaves(){
+            $leaves = StudentLeave::query()->get();
+            if ($leaves->isNotEmpty()) {
+                $data = [];
+                foreach ($leaves as $leave) {
+                    $data[] = [
+                        'id' => $leave->id ?? '',
+                        'leaveID' => $leave->leaveId ?? '',
+                        'studentID' => $leave->student_id ?? '',
+                        'date' => $leave->date ?? '',
+                        'leavePurpose' => $leave->purpose->leave_purpose ?? '',
+                        'leaveID' => $leave->leaveId ?? '',
+                    ];
+                }
+                return response()->json([
+                    'status' => true,
+                    'subjects' => $data
+                ]);
+            } else {
+                return response(null, 204);
+            }
+        }
+
     // To add a new leave
     public function addLeave(Request $request)
     {
