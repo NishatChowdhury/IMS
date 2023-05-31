@@ -68,9 +68,9 @@
                                                     <span class="badge badge-secondary">{{ __('Inactive') }}</span>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td class="col-2">
                                                 {{ Form::model($feature, ['route' => ['features.update', $feature->id], 'method' => 'patch']) }}
-                                                <select name="active" class="active" title="Toggle activeness">
+                                                <select name="active" class="form-control active" title="Toggle activeness">
                                                     <option value="0" {{ $feature->active == 0 ? 'selected' : '' }}>
                                                         {{ __('Inactive') }}</option>
                                                     <option value="1" {{ $feature->active == 1 ? 'selected' : '' }}>
