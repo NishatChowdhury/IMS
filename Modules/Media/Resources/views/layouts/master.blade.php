@@ -156,6 +156,13 @@
         icon: "success",
     });
     @endif
+    @if(session('status'))
+    Swal.fire({
+        title: "Success",
+        text: "{{ session('status') }}",
+        icon: "success",
+    });
+    @endif
     $(function () {
         $('#reservationdate').datetimepicker({
             format: 'YYYY-MM-DD'

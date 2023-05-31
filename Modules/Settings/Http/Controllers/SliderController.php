@@ -42,11 +42,16 @@ class SliderController extends Controller
             $image = array_shift($images);
             $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
             $Imagedata = $image['output']['data'];
-            $output = Slim::saveFile($Imagedata, $Imagename, '../storage/app/public/uploads/slider', false);
+            $output = Slim::saveFile($Imagedata, $Imagename, '../storage/app/public/uploads/sliders', false);
             $data['image'] = $Imagename;
             $data['active'] = 1;
+            try{
+                Slider::query()->create($data);
+            }catch(\Exception $e){
+                dd($e);
+            }
         }
-        Slider::query()->create($data);
+        session()->flash('success', 'Slider added successfully!');
 
         // if ($request->hasFile('image')) {
         //     $name = time() . $request->file('image')->getClientOriginalName();
@@ -67,9 +72,9 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::query()->findOrFail($id);
-        File::delete(public_path().'/assets/img/sliders/'.$slider->image);
+        File::delete(public_path().'/storage/app/public/uploads/sliders/'.$slider->image);
         $slider->delete();
-        \Illuminate\Support\Facades\Session::flash('Slider removed successfully!');
+        session()->flash('success', 'Slider removed successfully!');
         return redirect('admin/sliders');
     }
 }

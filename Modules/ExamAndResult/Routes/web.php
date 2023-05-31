@@ -17,6 +17,10 @@ use Modules\ExamAndResult\Http\Controllers\ExamScheduleController;
 use Modules\ExamAndResult\Http\Controllers\ExamSeatPlanController;
 use Modules\ExamAndResult\Http\Controllers\MarkController;
 use Modules\ExamAndResult\Http\Controllers\ResultController;
+use Modules\ExamAndResult\Http\Controllers\CompetencyController;
+use Modules\ExamAndResult\Http\Controllers\IndicatorController;
+use Modules\ExamAndResult\Http\Controllers\RemarkController;
+use Modules\ExamAndResult\Http\Controllers\CompetencyRemarkController;
 
 Route::prefix('examandresult')->group(function() {
     Route::get('/', 'ExamAndResultController@index')->name('exam-n-result');
@@ -73,6 +77,32 @@ Route::prefix('admin')->group(function() {
     Route::post('exam/mark/store',[MarkController::class,'store'])->name('exam-marks.store');
 
     Route::get('exam/tabulationSheet',[ExamController::class,'tabulationSheet'])->name('exam.tabulationSheet');
+
+    // Competency Management System Starts Here
+    Route::get('competencies',[CompetencyController::class,'index'])->name('competency.index');
+    Route::post('competency/store',[CompetencyController::class,'store'])->name('competency.store');
+    Route::get('competency/edit',[CompetencyController::class,'edit'])->name('competency.edit');
+    Route::patch('competency/{id}/update',[CompetencyController::class,'update'])->name('competency.update');
+    Route::post('competency/destroy/{id}',[CompetencyController::class,'destroy'])->name('competency.destroy');
+
+    Route::get('indicators',[IndicatorController::class,'index'])->name('indicator.index');
+    Route::post('indicator/store',[IndicatorController::class,'store'])->name('indicator.store');
+    Route::get('indicator/edit',[IndicatorController::class,'edit'])->name('indicator.edit');
+    Route::patch('indicator/{id}/update',[IndicatorController::class,'update'])->name('indicator.update');
+    Route::post('indicator/destroy/{id}',[IndicatorController::class,'destroy'])->name('indicator.destroy');
+
+    Route::get('remarks',[RemarkController::class,'index'])->name('remark.index');
+    Route::post('remark/store',[RemarkController::class,'store'])->name('remark.store');
+    Route::get('remark/edit',[RemarkController::class,'edit'])->name('remark.edit');
+    Route::patch('remark/{id}/update',[RemarkController::class,'update'])->name('remark.update');
+    Route::post('remark/destroy/{id}',[RemarkController::class,'destroy'])->name('remark.destroy');
+
+    Route::get('competency-remark',[CompetencyRemarkController::class,'index'])->name('competency-remark.index');
+    Route::get('competency-remark/create',[CompetencyRemarkController::class,'create'])->name('competency-remark.create');
+    Route::post('competency-remark/store',[CompetencyRemarkController::class,'store'])->name('competency-remark.store');
+    Route::get('competency-remark/edit',[CompetencyRemarkController::class,'edit'])->name('competency-remark.edit');
+    Route::patch('competency-remark/{id}/update',[CompetencyRemarkController::class,'update'])->name('competency-remark.update');
+    Route::post('competency-remark/destroy/{id}',[CompetencyRemarkController::class,'destroy'])->name('competency-remark.destroy');
 
 });
 
