@@ -7,6 +7,7 @@ use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\Classes;
 use App\Models\Backend\Exam;
+use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\Group;
 use App\Models\Backend\Section;
@@ -20,6 +21,7 @@ use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -120,7 +122,7 @@ class TeacherController extends Controller
                 }
                 return response()->json([
                     'status' => true,
-                    'subjects' => $data
+                    'leaves' => $data
                 ]);
             } else {
                 return response(null, 204);
@@ -472,5 +474,72 @@ class TeacherController extends Controller
             }
         }
         return response()->json(['status' => true]);
+    }
+
+    /**
+     * To retrieve exam result of student
+     *
+     * @param Request $request
+     * @return JsonResponse
+    */
+    public function examResult(Request $request): JsonResponse
+    {
+
+            $classId=$request->class_id;
+            $examResult = ExamResult::query()
+                ->whereHas('studentAcademic', function($q) use($classId){
+                    $q->where('academic_class_id', $classId);
+                })
+                ->orWhere('exam_id',$request->exam_id)
+                ->orWhere('student_academic_id', $request->student_academic_id)
+                ->with('exam', 'studentAcademic')
+                ->get();
+
+        if ($examResult) {
+            $data = [];
+            foreach ($examResult as $result) {
+                $TotalNumbers = DB::table('exam_schedules')
+                    ->where('exam_id', $result->exam_id)
+                    ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                    ->selectRaw('SUM(objective_full) as obj, SUM(written_full) as wri, 
+                                SUM(practical_full) as pra, SUM(viva_full) as viva')
+                    ->first();
+
+                $obj_full = $TotalNumbers->obj ?? 0;
+                $written_full = $TotalNumbers->wri ?? 0;
+                $practical_full = $TotalNumbers->pra ?? 0;
+                $viva_full = $TotalNumbers->viva ?? 0;
+                $total = $obj_full + $written_full + $practical_full + $viva_full;
+
+                $data[] = [
+                    'id' => $result->id,
+                    'studentAcademicId' => $result->student_academic_id,
+                    'title' => $result->exam->name ?? '',
+                    'isPassed' => $result->grade == 'F' ? false : true,
+                    'result' => [
+                        [
+                            'label' => 'GPA',
+                            'obtained' => $result->gpa,
+                            'total' => '5.00',
+                        ], [
+                            'label' => 'TOTAL',
+                            'obtained' => $result->total_mark,
+                            'total' => strval($total),
+                        ], [
+                            'label' => 'ATTENDANCE',
+                            'obtained' => '35',
+                            'total' => '98',
+                        ],
+
+                    ]
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'results' => $data
+            ]);
+        } else {
+            return response(null, 204);
+        }
     }
 }
