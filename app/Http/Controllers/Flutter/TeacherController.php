@@ -10,6 +10,7 @@ use App\Models\Backend\Exam;
 use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\Group;
+use App\Models\Backend\LeavePurpose;
 use App\Models\Backend\Section;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
@@ -104,6 +105,26 @@ class TeacherController extends Controller
             return response()->json(['status' => false]);
         }
     }
+
+        // To retrieve all Leave Purposes
+        public function leavePurposes(){
+            $purposes = LeavePurpose::query()->get();
+            if ($purposes->isNotEmpty()) {
+                $data = [];
+                foreach ($purposes as $purpose) {
+                    $data[] = [
+                        'id' => $purpose->id,
+                        'name' => $purpose->leave_purpose
+                    ];
+                }
+                return response()->json([
+                    'status' => true,
+                    'leavePurposes' => $data
+                ]);
+            } else {
+                return response(null, 204);
+            }
+        }
 
         // To retrieve all leaves
         public function allLeaves(){
