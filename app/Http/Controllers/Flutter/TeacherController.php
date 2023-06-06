@@ -559,8 +559,56 @@ class TeacherController extends Controller
                 'status' => true,
                 'results' => $data
             ]);
-        } else {
+        } 
+        else {
             return response(null, 204);
         }
     }
+
+
+    public function studentInfo(Request $request , Student $student)
+    {
+        $studentId = $request->get('student_id');
+        $class = $request->get('class_id');
+
+        $students = StudentAcademic::query()->where('academic_class_id', $class)->get();
+        $student = Student::query()->where('studentId',$studentId)->first();
+
+        if ($students->isNotEmpty()) {
+            $data = [];
+            foreach ($students as $student) {
+                $data[] = [
+                    'id' => $student->id,
+                    'name' => $student->student->name ?? '',
+                    'studentId' => $student->student->studentId ?? '',
+                    'Department' => $student->group->name ?? '',
+                    'mobile' => $student->student->mobile ?? ''
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'students' => $data
+            ]);
+        } 
+
+        elseif ($student) {
+            return response()->json([
+                'status' => true,
+                'studentInfo' => 
+                    [
+                        'id' => $student->id,
+                        'name' => $student->name ?? '',
+                        'studentId' => $student->studentId ?? '',
+                        'Department' => $student->studentAcademic->group->name ?? '',
+                        'mobile' => $student->mobile ?? '',
+                        'gender' => $student->gender->name ?? ''
+                    ],
+            ]);
+        } 
+        else {
+            return response(null, 204);
+        }
+    }
+
+    
 }

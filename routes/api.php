@@ -92,4 +92,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('examinations', [TeacherController::class, 'examinations']);
     Route::post('teacher-logout', [LoginController::class, 'teacherLogout']);
     Route::get('exam-result', [TeacherController::class, 'examResult']);
+    Route::get('student-info', [TeacherController::class, 'studentInfo']);
 });
