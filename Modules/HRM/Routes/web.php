@@ -30,14 +30,11 @@ Route::prefix('admin')->group(function() {
     # ----------------------------------- Staff -----------------------------------------------------
     Route::get('staff-profile/{staffId}',[StaffController::class,'staffProfile'])->name('staff.profile');
     Route::get('staff/teacher',[StaffController::class,'teacher'])->name('staff.teacher');
-    Route::get('staff/staffadd',[StaffController::class,'addstaff'])->name('staff.addstaff');
-    Route::post('staff/store-staff',[StaffController::class,'store_staff'])->name('staff.store_staff');
-    Route::get('staff/edit-staff/{id}',[StaffController::class,'edit_staff'])->name('staff.edit_staff');
-    Route::patch('staff/{id}/update-staff',[StaffController::class,'update_staff'])->name('staff.update_staff');
-    Route::get('staff/delete-staff/{id}',[StaffController::class,'delete_staff'])->name('staff.delete_staff');
-    Route::get('staff/threshold',[StaffController::class,'threshold'])->name('staff.threshold');
-    Route::get('staff/kpi',[StaffController::class,'kpi'])->name('staff.kpi');
-    Route::get('staff/payslip',[StaffController::class,'payslip'])->name('staff.payslip');
+    Route::get('staff/staffadd',[StaffController::class,'create'])->name('staff.create');
+    Route::post('staff/store-staff',[StaffController::class,'store'])->name('staff.store_staff');
+    Route::get('staff/edit-staff/{id}',[StaffController::class,'edit'])->name('staff.edit_staff');
+    Route::patch('staff/{id}/update-staff',[StaffController::class,'update'])->name('staff.update_staff');
+    Route::get('staff/delete-staff/{id}',[StaffController::class,'destroy'])->name('staff.delete_staff');
 
     Route::get('staff/staff_training/{id}',[StaffController::class,'staff_training'])->name('staff.staff_training');
     Route::get('staff/staff_course/{id}',[StaffController::class,'staff_course'])->name('staff.staff_course');

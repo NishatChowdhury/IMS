@@ -150,6 +150,13 @@
         icon: "success",
     });
     @endif
+    @if(session('fail'))
+    Swal.fire({
+        title: "Fail!",
+        text: "{{ session('fail') }}",
+        icon: "error",
+    });
+    @endif
     $(function () {
         $('#reservationdate').datetimepicker({
             format: 'YYYY-MM-DD'

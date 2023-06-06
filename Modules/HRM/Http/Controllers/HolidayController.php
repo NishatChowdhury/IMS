@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 
 class HolidayController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $holidays = Holiday::query()->paginate(25);

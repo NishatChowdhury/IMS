@@ -8,13 +8,16 @@ use Illuminate\Http\Request;
 
 class LeavePurposeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
         $leave_purposes = leavePurpose::all();
         return view('hrm::leavePurpose.add-purpose',compact('leave_purposes'));
     }
-
 
     public function store(Request $request)
     {

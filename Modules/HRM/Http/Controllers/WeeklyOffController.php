@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class WeeklyOffController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -19,7 +23,6 @@ class WeeklyOffController extends Controller
 
         return view('hrm::attendance.weeklyOffSetting',compact('all'));
     }
-
 
     public function store(Request $request)
     {

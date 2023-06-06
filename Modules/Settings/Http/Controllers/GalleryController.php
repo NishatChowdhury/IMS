@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Media\Http\Controllers;
+namespace Modules\Settings\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Gallery;
@@ -23,53 +23,10 @@ class GalleryController extends Controller
         $this->repositories = $repositories;
     }
 
-    public function index()
-    {
-        $images = Gallery::all();
-        $repository = $this->repositories;
-        return view('media::gallery.image', compact('images', 'repository'));
-    }
-
-    /**
-     * Upload images to gallery folder
-     *
-     * @param Request $request
-     * @return RedirectResponse
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        if($request->hasFile('image')){
-            foreach($request->file('image') as $key => $img){
-                $name = time().'-'.$key.'.'.$img->getClientOriginalExtension();
-                $img->move(storage_path('app/public/gallery/') . $request->album_id . '/', $name);
-                $data = $request->except('image');
-                $data['image'] = $name;
-                Gallery::query()->create($data);
-            }
-        }else{
-            Gallery::query()->create($request->all());
-        }
-        return redirect('admin/gallery/image')->with('status','Image Successfully Stored.');
-    }
-
-    /**
-     * Remove images from storage
-     *
-     * @param $id
-     * @return RedirectResponse
-     */
-    public function destroy($id): RedirectResponse
-    {
-        $image = Gallery::query()->findOrFail($id);
-        File::delete(storage_path('app/public/gallery/') . $image->album_id . '/' . $image->image);
-        $image->delete();
-        return back()->with('status','Image has been deleted Successfully.');
-    }
-
     public function galleryCornerCreate()
     {
         $image = GalleryCorner::all();
-        return view('media::galleryCorner.galleryCorner',compact('image'));
+        return view('settings::galleryCorner.galleryCorner',compact('image'));
     }
 
     public function galleryCornerStore(Request $request)

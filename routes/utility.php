@@ -29,12 +29,32 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\ExamAndResult\Http\Controllers\ExamController;
+use App\Models\Backend\User;
 
+// set default admin password
+Route::get('set-default-password',function (){
+    $user = User::where('email','admin@gmail.com')->first();
+    $password = Hash::make('admin123');
+    if($user){
+        $user->update(['password'=>$password]);
+    }
+    else{
+        User::insert([
+           'module'     => 0,
+           'name'       => 'Administrator',
+           'email'      => 'admin@gmail.com',
+           'password'   => $password,
+           'role_id'    => 1,
+        ]);
+    }
+    return "Success";
+});
 
 Route::get('system/migrate',function(){
     Artisan::call('migrate');
