@@ -143,7 +143,7 @@
                                     <td>{{ $slider->description }}</td>
                                     <td>{{ $slider->start }}<br>{{ $slider->end }}</td>
                                     <td>
-                                        <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
+                                        <img src="{{ asset('storage/uploads/sliders/') }}/{{ $slider->image }}" width="100" alt="">
                                     </td>
                                     <td>
                                         <form  action="{{route('slider.destroy',$slider->id)}}" method="post">
