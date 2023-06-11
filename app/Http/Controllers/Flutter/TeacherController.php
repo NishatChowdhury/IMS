@@ -565,33 +565,13 @@ class TeacherController extends Controller
         }
     }
 
-
-    public function studentInfo(Request $request , Student $student)
+    // To retreive a student's information through search
+    
+    public function studentInfo(Request $request)
     {
         $studentId = $request->get('student_id');
-        $class = $request->get('class_id');
-
-        $students = StudentAcademic::query()->where('academic_class_id', $class)->get();
         $student = Student::query()->where('studentId',$studentId)->first();
-
-        if ($students->isNotEmpty()) {
-            $data = [];
-            foreach ($students as $student) {
-                $data[] = [
-                    'id' => $student->id,
-                    'name' => $student->student->name ?? '',
-                    'studentId' => $student->student->studentId ?? '',
-                    'Department' => $student->group->name ?? '',
-                    'mobile' => $student->student->mobile ?? ''
-                ];
-            }
-            return response()->json([
-                'status' => true,
-                'students' => $data
-            ]);
-        } 
-
-        elseif ($student) {
+        if ($student) {
             return response()->json([
                 'status' => true,
                 'studentInfo' => 
