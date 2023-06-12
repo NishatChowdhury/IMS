@@ -53,7 +53,8 @@ class TeachersLeaveController extends Controller
                 'teacher_id' => $request->get('teacher_id')
             ];
 
-            $attn = AttendanceTeacher::query()->where('date',$date)->where('staff_id',$request->get('teacher_id'))->first();
+            $staff = Staff::query()->find($request->get('teacher_id'));
+            $attn = AttendanceTeacher::query()->where('date',$date)->where('staff_id',$staff->card_id)->first();
             if($attn){
                 $attn->update(['attendance_status_id'=>7]);
             }else{
