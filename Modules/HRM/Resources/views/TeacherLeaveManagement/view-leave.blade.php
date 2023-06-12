@@ -28,7 +28,7 @@
                 <div class="card card-info">
                     <div class="card-header">
                             <h3 class="card-title">{{ __('Manage Teachers Leave') }}</h3>
-                            <a href="{{ route('TeacherLeaveManagement.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> {{ __('Add Leave') }}</a>
+                            <a href="{{ route('TeacherLeaveManagement.create') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> {{ __('Add Leave') }}</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

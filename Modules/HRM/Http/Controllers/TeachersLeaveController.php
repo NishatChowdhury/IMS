@@ -3,6 +3,7 @@
 namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AttendanceTeacher;
 use App\Models\Backend\LeavePurpose;
 use App\Models\Backend\Staff;
 use Carbon\CarbonPeriod;
@@ -21,7 +22,7 @@ class TeachersLeaveController extends Controller
     }
 
 
-    public function add()
+    public function create()
     {
         $teachers = Staff::all()->pluck('name','id');
         $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
@@ -51,6 +52,18 @@ class TeachersLeaveController extends Controller
                 'leave_purpose_id' => $request->get('leave_purpose_id'),
                 'teacher_id' => $request->get('teacher_id')
             ];
+
+            $attn = AttendanceTeacher::query()->where('date',$date)->where('staff_id',$request->get('teacher_id'))->first();
+            if($attn){
+                $attn->update(['attendance_status_id'=>7]);
+            }else{
+                AttendanceTeacher::query()->create([
+                    'staff_id' => $request->get('teacher_id'),
+                    'date' => $date,
+                    'shift_id' => 1,
+                    'attendance_status_id' => 7,
+                ]);
+            }
 
             TeachersLeave::query()->create($data);
         }

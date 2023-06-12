@@ -28,7 +28,7 @@
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('Manage Leave') }}</h3>
-                        <a href="{{ route('leaveManagement.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add Leave</a>
+                        <a href="{{ route('leaveManagement.create') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add Leave</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
