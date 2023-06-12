@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 use Modules\HRM\Http\Controllers\AttendanceController;
 use Modules\HRM\Http\Controllers\HolidayController;
 use Modules\HRM\Http\Controllers\IdCardController;
-use Modules\HRM\Http\Controllers\LeaveManagementController;
+use Modules\HRM\Http\Controllers\StudentsLeaveController;
 use Modules\HRM\Http\Controllers\LeavePurposeController;
 use Modules\HRM\Http\Controllers\ShiftController;
 use Modules\HRM\Http\Controllers\StaffController;
 use Modules\HRM\Http\Controllers\StudentController;
+use Modules\HRM\Http\Controllers\TeachersLeaveController;
 use Modules\HRM\Http\Controllers\WeeklyOffController;
 
 Route::prefix('hrm')->group(function() {
@@ -134,12 +135,18 @@ Route::prefix('admin')->group(function() {
     Route::post('/indStudentAttendance',[AttendanceController::class,'individulAttendance'])->name('student.indAttendance');
     Route::post('/classStudentAttendance',[AttendanceController::class,'classAttendance'])->name('student.classAttendance');
     Route::post('/indTeacherAttendance',[AttendanceController::class,'individualTeacherAttendance'])->name('teacher.indAttendance');
-    // leave management
-    Route::get('attendance/leaveManagement',[LeaveManagementController::class,'index'])->name('leaveManagement.index');
-    Route::get('attendance/leaveManagement/add',[LeaveManagementController::class,'add'])->name('leaveManagement.add');
-    Route::post('attendance/leaveManagement/store',[LeaveManagementController::class,'store'])->name('leaveManagement.store');
-    Route::get('attendance/leaveManagement/edit/{id}',[LeaveManagementController::class,'edit'])->name('leaveManagement.edit');
-    Route::delete('attendance/leaveManagement/delete/{id}',[LeaveManagementController::class,'destroy'])->name('leaveManagement.destroy');
+    // leave management for students
+    Route::get('attendance/leaveManagement',[StudentsLeaveController::class,'index'])->name('leaveManagement.index');
+    Route::get('attendance/leaveManagement/add',[StudentsLeaveController::class,'add'])->name('leaveManagement.add');
+    Route::post('attendance/leaveManagement/store',[StudentsLeaveController::class,'store'])->name('leaveManagement.store');
+    Route::get('attendance/leaveManagement/edit/{id}',[StudentsLeaveController::class,'edit'])->name('leaveManagement.edit');
+    Route::delete('attendance/leaveManagement/delete/{id}',[StudentsLeaveController::class,'destroy'])->name('leaveManagement.destroy');
+    // leave management for Teachers
+    Route::get('attendance/TeacherLeaveManagement',[TeachersLeaveController::class,'index'])->name('TeacherLeaveManagement.index');
+    Route::get('attendance/TeacherLeaveManagement/add',[TeachersLeaveController::class,'add'])->name('TeacherLeaveManagement.add');
+    Route::post('attendance/TeacherLeaveManagement/store',[TeachersLeaveController::class,'store'])->name('TeacherLeaveManagement.store');
+    Route::get('attendance/TeacherLeaveManagement/edit/{id}',[TeachersLeaveController::class,'edit'])->name('TeacherLeaveManagement.edit');
+    Route::delete('attendance/TeacherLeaveManagement/delete/{id}',[TeachersLeaveController::class,'destroy'])->name('TeacherLeaveManagement.destroy');
     // leave purpose
     Route::get('attendance/leavePurpose',[LeavePurposeController::class,'index'])->name('leavePurpose.index');
     Route::get('attendance/leavePurpose/add',[LeavePurposeController::class,'add'])->name('leavePurpose.add');
