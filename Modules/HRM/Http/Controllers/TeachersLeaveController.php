@@ -3,6 +3,7 @@
 namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\AttendanceTeacher;
 use App\Models\Backend\LeavePurpose;
 use App\Models\Backend\Staff;
 use Carbon\CarbonPeriod;
@@ -17,15 +18,15 @@ class TeachersLeaveController extends Controller
     public function index()
     {
         $leaves = TeachersLeave::all()->groupBy('leaveId');
-        return view('hrm::TeacherleaveManagement.view-leave',compact('leaves'));
+        return view('hrm::TeacherLeaveManagement.view-leave',compact('leaves'));
     }
 
 
-    public function add()
+    public function create()
     {
         $teachers = Staff::all()->pluck('name','id');
         $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
-        return view('hrm::TeacherleaveManagement.add-leave',compact('leave_purpose','teachers'));
+        return view('hrm::TeacherLeaveManagement.add-leave',compact('leave_purpose','teachers'));
     }
 
 
@@ -39,16 +40,31 @@ class TeachersLeaveController extends Controller
             $end = $start;
         }
 
-         $period = CarbonPeriod::create($start,$end);
+        $period = CarbonPeriod::create($start,$end);
+
+        $rnd = rand(10,99);
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
             $data = [
-                'leaveId' => date('ymd').$request->get('teacher_id'),
+                'leaveId' => date('ymd').$request->get('teacher_id').$rnd,
                 'date' => $d,
                 'leave_purpose_id' => $request->get('leave_purpose_id'),
                 'teacher_id' => $request->get('teacher_id')
             ];
+
+            $staff = Staff::query()->find($request->get('teacher_id'));
+            $attn = AttendanceTeacher::query()->where('date',$date)->where('staff_id',$staff->card_id)->first();
+            if($attn){
+                $attn->update(['attendance_status_id'=>7]);
+            }else{
+                AttendanceTeacher::query()->create([
+                    'staff_id' => $request->get('teacher_id'),
+                    'date' => $date,
+                    'shift_id' => 1,
+                    'attendance_status_id' => 7,
+                ]);
+            }
 
             TeachersLeave::query()->create($data);
         }

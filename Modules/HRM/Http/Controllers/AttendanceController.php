@@ -147,11 +147,11 @@ class AttendanceController extends Controller
         }
         //dd($attn);
 
-        $teachers = Staff::query()->where('staff_type_id','teacher')->get();
+        $teachers = Staff::query()->where('staff_type_id','teacher')->orderBy('code')->get();
 
         $attn_teacher =[];
         foreach ($teachers as $teacher){
-            $attn_teacher[] = Attendance::query()->where('registration_id', $teacher->role_id)->where('access_date','like',$date.'%')->get();
+            $attn_teacher[] = Attendance::query()->where('registration_id', $teacher->role_id)->where('access_date','like',$date.'%')->orderBy('code')->get();
         }
         if ($request->user == 2){
             return view('hrm::attendance.month_row_teacher',compact('teachers','month','year'));

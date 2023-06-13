@@ -304,7 +304,7 @@ class SeedPermission extends Migration
                 'group_name' => 'leave Management',
                 'permissions' => [
                     "leaveManagement.index",
-                    "leaveManagement.add",
+                    "leaveManagement.create",
                     "leaveManagement.store",
                     "leaveManagement.edit",
                     "leaveManagement.destroy",

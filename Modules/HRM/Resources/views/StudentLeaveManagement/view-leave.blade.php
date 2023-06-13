@@ -27,8 +27,8 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                            <h3 class="card-title">{{ __('Manage Leave') }}</h3>
-                            <a href="{{ route('leaveManagement.add') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add Leave</a>
+                        <h3 class="card-title">{{ __('Manage Leave') }}</h3>
+                        <a href="{{ route('leaveManagement.create') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add Leave</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -49,8 +49,8 @@
                                 <tr>
                                     <td>{{ $value->first()->leaveId }}</td>
                                     <td>
-                                        {{ $value->first()->student->name }}<br>
-                                    <i class="text-secondary">ID: {{ $value->first()->student->studentId }}</i>
+                                        {{ $value->first()->student->name ?? '' }}<br>
+                                        <i class="text-secondary">ID: {{ $value->first()->student->studentId ?? '' }}</i>
                                     </td>
                                     <td>{{ $value->first()->date->format('Y-m-d') }} {{ __('to') }} {{ $value->last()->date->format('Y-m-d') }}</td>
                                     <td>{{ $value->count() }}</td>
@@ -58,7 +58,7 @@
                                         {{ $value->first()->purpose->leave_purpose ?? '' }}
                                     </td>
                                     <td>
-                                         {{ $value->first()->teacher->name ?? 'Admin' }}
+                                        {{ $value->first()->teacher->name ?? 'Admin' }}
                                     </td>
                                     <td>
                                         <a href="{{ route('leaveManagement.edit',$value->first()->leaveId) }}" role="button" class="btn btn-dark btn-sm"><i class="fas fa-trash"></i></a>
@@ -68,6 +68,10 @@
                             </tbody>
                         </table>
                     </div>
+                    {{--                    <div class="card-body">--}}
+                    {{--                        {{ $value->appends(Request::except('page'))->links() }}--}}
+                    {{--                    </div>--}}
+                    <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>

@@ -137,13 +137,13 @@ Route::prefix('admin')->group(function() {
     Route::post('/indTeacherAttendance',[AttendanceController::class,'individualTeacherAttendance'])->name('teacher.indAttendance');
     // leave management for students
     Route::get('attendance/leaveManagement',[StudentsLeaveController::class,'index'])->name('leaveManagement.index');
-    Route::get('attendance/leaveManagement/add',[StudentsLeaveController::class,'add'])->name('leaveManagement.add');
+    Route::get('attendance/leaveManagement/create',[StudentsLeaveController::class,'create'])->name('leaveManagement.create');
     Route::post('attendance/leaveManagement/store',[StudentsLeaveController::class,'store'])->name('leaveManagement.store');
     Route::get('attendance/leaveManagement/edit/{id}',[StudentsLeaveController::class,'edit'])->name('leaveManagement.edit');
     Route::delete('attendance/leaveManagement/delete/{id}',[StudentsLeaveController::class,'destroy'])->name('leaveManagement.destroy');
     // leave management for Teachers
     Route::get('attendance/TeacherLeaveManagement',[TeachersLeaveController::class,'index'])->name('TeacherLeaveManagement.index');
-    Route::get('attendance/TeacherLeaveManagement/add',[TeachersLeaveController::class,'add'])->name('TeacherLeaveManagement.add');
+    Route::get('attendance/TeacherLeaveManagement/create',[TeachersLeaveController::class,'create'])->name('TeacherLeaveManagement.create');
     Route::post('attendance/TeacherLeaveManagement/store',[TeachersLeaveController::class,'store'])->name('TeacherLeaveManagement.store');
     Route::get('attendance/TeacherLeaveManagement/edit/{id}',[TeachersLeaveController::class,'edit'])->name('TeacherLeaveManagement.edit');
     Route::delete('attendance/TeacherLeaveManagement/delete/{id}',[TeachersLeaveController::class,'destroy'])->name('TeacherLeaveManagement.destroy');

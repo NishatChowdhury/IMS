@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('teachers_leaves', function (Blueprint $table) {
             $table->id();
-            $table->integer('leaveId');
+            $table->bigInteger('leaveId');
             $table->date('date');
             $table->unsignedBigInteger('leave_purpose_id');
             $table->unsignedBigInteger('teacher_id');

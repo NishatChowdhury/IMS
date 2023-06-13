@@ -23,22 +23,22 @@ class StudentsLeaveController extends Controller
 
     public function index()
     {
-          $allData = StudentLeave::all()->groupBy('leaveId');
-        return view('hrm::StudentleaveManagement.view-leave',compact('allData'));
+        $allData = StudentLeave::all()->groupBy('leaveId');
+        return view('hrm::StudentLeaveManagement.view-leave',compact('allData'));
     }
 
 
-    public function add()
+    public function create()
     {
         $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
-        return view('hrm::StudentleaveManagement.add-leave',compact('leave_purpose'));
+        return view('hrm::StudentLeaveManagement.add-leave',compact('leave_purpose'));
     }
 
 
     public function store(Request $request)
     {
 
-         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
+        $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
 
         if(!$student){
             return redirect()->back();
@@ -51,7 +51,7 @@ class StudentsLeaveController extends Controller
             $end = $start;
         }
 
-         $period = CarbonPeriod::create($start,$end);
+        $period = CarbonPeriod::create($start,$end);
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');

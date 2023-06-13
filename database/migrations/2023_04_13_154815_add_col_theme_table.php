@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('themes', function (Blueprint $table) {
-            $table->renameColumn('layout','layout_home');
+            $table->removeColumn('layout');
+            $table->string('layout_home')->after('name');
             $table->string('layout_inner')->after('layout');
         });
     }
