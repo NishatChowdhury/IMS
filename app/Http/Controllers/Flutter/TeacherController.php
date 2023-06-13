@@ -36,9 +36,9 @@ class TeacherController extends Controller
             ->where('academic_class_id', $request->academic_class_id)
             ->get();
         $academic_class = AcademicClass::query()->where('id', $request->academic_class_id)->first();
-        $className = Classes::query()->where('id', $academic_class->class_id)->first();
-        $groupName = Group::query()->where('id', $academic_class->group_id)->first();
-        $sectionName = Section::query()->where('id', $academic_class->section_id)->first();
+        $className = Classes::query()->where('id', $academic_class->class_id ?? '')->first();
+        $groupName = Group::query()->where('id', $academic_class->group_id ?? '')->first();
+        $sectionName = Section::query()->where('id', $academic_class->section_id ?? '')->first();
 
         if ($diary->isNotEmpty()) {
             $data = [];
