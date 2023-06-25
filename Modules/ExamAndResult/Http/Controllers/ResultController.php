@@ -211,6 +211,21 @@ class ResultController extends Controller
         return view('examandresult::exam.result-details',compact('result','marks'));
     }
 
+    public function resultDetails_Layout2($id)
+    {
+        $result = ExamResult::query()->with('studentAcademic')->findOrFail($id);
+
+        $marks = Mark::query()
+            ->where('student_id',$result->studentAcademic->id) //student_id == student academic id
+            ->where('exam_id',$result->exam_id)
+            ->join('subjects','subjects.id','=','marks.subject_id')
+            ->select('marks.*','subjects.level')
+            ->orderBy('level')
+            ->get();
+
+        return view('examandresult::exam.result-details_layout2',compact('result','marks'));
+    }
+
     public function finalResultDetails($id)
     {
         $result = FinalResult::query()->findOrFail($id);
