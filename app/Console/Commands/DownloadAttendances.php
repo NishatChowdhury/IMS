@@ -51,11 +51,11 @@ class DownloadAttendances extends Command
             "operation" => env("STELLAR_OPERATION"),
             "auth_user" => env("STELLAR_USERNAME"),
             "auth_code" => env("STELLAR_AUTH_CODE"),
-            "start_date" => "$startDate",
-            "end_date" => "$endDate",
+            "start_date" => $startDate,
+            "end_date" => $endDate,
             "start_time" => "00:00:00",
             "end_time" => "23:59:59",
-            "access_id" => "$accessId"
+            "access_id" => $accessId
         );
 
         $url_send ="https://rumytechnologies.com/rams/json_api";
