@@ -104,10 +104,6 @@
         font-size: 15px;
     }
 
-    .underline {
-        margin-bottom: 7px;
-    }
-
     .pm-certified {
         font-size: 24px;
     }
@@ -162,13 +158,14 @@
                             <div class="container">
                                 <div class="welcome_con_main d-flex justify-content-center">
                                     <div class="welcome_con text-white text-center">
-                                        <h2 class="text-dark text-center">{{ $result->exam->name ?? '' }}</h2>
+                                        <h2 class="text-dark text-center">
+                                            {{ $result->exam->name ?? '' }}
+                                        </h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Welcome Part End -->
-
 
                         <!-- Service Part Start -->
                         <div class="service_part">
@@ -176,14 +173,7 @@
                                 <div class="service_con_main ">
                                     <div class="row gy-5">
                                         <div class="col-md-4 col-sm-6">
-                                            <div class="service_con text-left ">
-                                                {{-- <p style="font-size: x-large; font-weight: bold;" class="my-4">Serial No.
-                                                    CB 6178589</p>
-
-                                                <p style="font-weight: 700;">
-                                                    CBCS08 &nbsp; 80864078
-                                                </p> --}}
-                                            </div>
+                                            <div class="service_con text-left "></div>
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="service_con text-center">
@@ -258,23 +248,30 @@
                         <!-- Name part start -->
                         <div class="container mb-3">
                             <div class="Name col-md-12 col-sm-4 mx-3 my-1">
-                                <p>{{ __('Name of Student') }}&nbsp;&nbsp;&nbsp;&nbsp; <Span class="cursive"
-                                        style="margin-left: 72px;">{{ $result->studentAcademic->student->name ?? '' }}</Span>
+                                <p>{{ __('Name of Student') }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <Span class="cursive" style="margin-left: 72px;">
+                                        {{ $result->studentAcademic->student->name ?? '' }}
+                                    </Span>
                                 </p>
                             </div>
                             <div class="Name col-md-12 col-sm-4 mx-3 my-1">
-                                <p>{{ __('Father Name') }}&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<Span class="cursive"
-                                        style="margin-left: 76px;">{{ $result->studentAcademic->student->father->f_name ?? '' }}</Span>
+                                <p>{{ __('Father Name') }}&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                    <Span class="cursive" style="margin-left: 76px;">
+                                        {{ $result->studentAcademic->student->father->f_name ?? '' }}
+                                    </Span>
                                 </p>
                             </div>
                             <div class="Name col-md-12 col-sm-4 mx-3 my-1">
-                                <p>{{ __('Mother Name') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Span class="cursive"
-                                        style="margin-left: 73px;">{{ $result->studentAcademic->student->mother->m_name ?? '' }}</Span>
+                                <p>{{ __('Mother Name') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <Span class="cursive" style="margin-left: 73px;">
+                                        {{ $result->studentAcademic->student->mother->m_name ?? '' }}
+                                    </Span>
                                 </p>
                             </div>
                             <div class="Name col-md-12 col-sm-4 mx-3 my-1">
-                                <p>{{ __('Name of Institution') }}&nbsp;&nbsp; <Span
-                                        class="cursive">{{ siteconfig('name') }}</Span>
+                                <p>{{ __('Name of Institution') }}&nbsp;&nbsp;
+                                    <Span class="cursive">{{ siteconfig('name') }}
+                                    </Span>
                                 </p>
                             </div>
                         </div>
@@ -287,40 +284,54 @@
                                     <div class="row">
                                         <div class="col-6 ">
                                             <div class="Name col-md-6 col-sm-4 mx-3 my-1">
-                                                <p>{{ __('StudentID :') }} <Span class="cursive testi_con1"
-                                                        style="margin-left: -55px; position: relative;left: 113px;">{{ $result->studentAcademic->student->studentId ?? '' }}</Span>
+                                                <p>{{ __('StudentID :') }}
+                                                    <Span class="cursive testi_con1"
+                                                        style="margin-left: -55px; position: relative;left: 113px;">
+                                                        {{ $result->studentAcademic->student->studentId ?? '' }}
+                                                    </Span>
                                                 </p>
                                             </div>
                                             <div class="Name col-md-6 col-sm-4 mx-3 my-1">
-                                                <p>{{ __('Current Rank:') }} <Span class="testi_con1"
-                                                        style="font-family: none; position: relative;left: 145px;">{{ $result->studentAcademic->rank ?? '' }}</Span>
+                                                <p>{{ __('Current Rank:') }}
+                                                    <Span class="testi_con1"
+                                                        style="font-family: none; position: relative;left: 145px;">
+                                                        {{ $result->studentAcademic->rank ?? '' }}
+                                                    </Span>
                                                 </p>
                                             </div>
                                             <div class="Name col-md-6 col-sm-4 mx-3 my-1">
-                                                <p>{{ __('Grade Point:') }} <Span class="cursive testi_con1"
-                                                        style="margin-left: -72px; position: relative;left: 203px;">{{ $result->gpa ?? '' }}</Span>
+                                                <p>{{ __('Grade Point:') }}
+                                                    <Span class="cursive testi_con1"
+                                                        style="margin-left: -72px; position: relative;left: 203px;">
+                                                        {{ $result->gpa ?? '' }}
+                                                    </Span>
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div class="testi_con col-6 text-center text-md-start text-sm-center text-right">
                                             <div class="Name col-md-6 col-sm-4 mx-3 my-1">
-                                                <p style="text-align: right;">{{ __('Result Rank:') }}<span
-                                                        class="testi_con_span "
-                                                        style=" margin-left: -10px;  position: relative; left: 81px;">{{ $result->rank ?? '' }}</Span>
+                                                <p style="text-align: right;">{{ __('Result Rank:') }}
+                                                    <span class="testi_con_span "
+                                                        style=" margin-left: -10px;  position: relative; left: 81px;">
+                                                        {{ $result->rank ?? '' }}
+                                                    </Span>
                                                 </p>
                                             </div>
                                             <div class="Name col-md-6 col-sm-4 mx-3 my-1">
-                                                <p style="text-align: right;">{{ __('Total Mark:') }}<span
-                                                        class="testi_con_span "
-                                                        style=" margin-left: -10px;  position: relative; left: 81px;">{{ $result->total_mark ?? '' }}</Span>
+                                                <p style="text-align: right;">{{ __('Total Mark:') }}
+                                                    <span class="testi_con_span "
+                                                        style=" margin-left: -10px;  position: relative; left: 81px;">
+                                                        {{ $result->total_mark ?? '' }}
+                                                    </Span>
                                                 </p>
                                             </div>
                                             <div class="Name col-md-6 col-sm-4 mx-3 my-1">
-                                                <p style="text-align: right;">{{ __('Exam Date:') }}<span
-                                                        class="testi_con_span "
-                                                        style=" margin-left: -10px;  position: relative; left: 81px;">{{ $result->exam->start }}
-                                                        - {{ $result->exam->end }}</Span>
+                                                <p style="text-align: right;">{{ __('Exam Date:') }}
+                                                    <span class="testi_con_span "
+                                                        style=" margin-left: -10px;  position: relative; left: 81px;">
+                                                        {{ $result->exam->start }} - {{ $result->exam->end }}
+                                                    </Span>
                                                 </p>
                                             </div>
                                         </div>
@@ -382,22 +393,27 @@
                         <!-- last part start -->
 
                         <div class="col-xs-12 mt-2">
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 30px !important;">
                                 <div class=" d-flex justify-content-around  pm-certificate-footer w-100">
-                                    <div class="col-sm-6 col-lg-7 text-center pm-certified ">
-                                        <span class="pm-empty-space block underline"></span>
-                                        {{-- <span style="font-size: 20px;
-    font-weight: bold;" class="bold ">Date of
-                                            Publication of Result &nbsp; June 17, 2023 </span> --}}
+                                    <div class="col-4 pm-certified col-lg-4 text-center">
+                                        <span class="pm-empty-space block"></span>
+                                        <span
+                                            style="font-size: 20px; font-weight: bold;text-decoration:overline;font-weight:bold"
+                                            class="bold ">{{ __('Guardian') }} </span>
                                     </div>
 
                                     <div class="col-4 pm-certified col-lg-4 text-center">
+                                        <span class="pm-empty-space block"></span>
+                                        <span
+                                            style="font-size: 20px; font-weight: bold;text-decoration:overline;font-weight:bold"
+                                            class="bold ">{{ __('Class Teacher') }} </span>
+                                    </div>
 
-                                        <span class="pm-empty-space block underline"></span>
-                                        <span style="font-size: 20px;
-    font-weight: bold;"
-                                            class="bold ">{{ __('Controller of Examinations') }} </span>
-
+                                    <div class="col-4 pm-certified col-lg-4 text-center">
+                                        <span class="pm-empty-space block"></span>
+                                        <span
+                                            style="font-size: 20px; font-weight: bold;text-decoration:overline;font-weight:bold"
+                                            class="bold ">{{ __('Head Master') }} </span>
                                     </div>
                                 </div>
                             </div>
