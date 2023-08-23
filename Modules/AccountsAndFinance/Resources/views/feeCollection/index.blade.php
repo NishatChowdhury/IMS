@@ -11,17 +11,14 @@
 
         .container {
             display: flex;
-            border: 1px solid black;
-            width: 9in;
-            /* Total width of both columns */
-            height: 7in;
+            justify-content: space-between;
+            width: 9.5in; /* Total width including the border */
+            height: 7in; /* Total height including the border */
         }
 
         .column {
             width: 4.5in;
             height: 7in;
-            border-right: 1px solid black;
-            box-sizing: border-box;
         }
 
         .column:last-child {
@@ -105,7 +102,7 @@
 
         <div class="container">
             <div class="column">
-                <div class="card" style="font-size: 15px;margin-left: -15px;">
+                <div class="card" style="font-size: 15px;margin-left: -15px;border: 1px solid #000000;">
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-12 text-center">
@@ -297,7 +294,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="card" style="font-size: 15px;margin-left: -15px;margin-right: -15px;">
+                <div class="card" style="font-size: 15px;margin-left: -15px;margin-right: -15px;border: 1px solid #000000;">
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-12 text-center">

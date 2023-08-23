@@ -11,7 +11,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class LeaveManagementController extends Controller
+class StudentsLeaveController extends Controller
 {
     private $repository;
 
@@ -23,23 +23,22 @@ class LeaveManagementController extends Controller
 
     public function index()
     {
-//        StudentLeave::query()->truncate();
-          $allData = StudentLeave::all()->groupBy('leaveId');
-        return view('hrm::leaveManagement.view-leave',compact('allData'));
+        $allData = StudentLeave::all()->groupBy('leaveId');
+        return view('hrm::StudentLeaveManagement.view-leave',compact('allData'));
     }
 
 
-    public function add()
+    public function create()
     {
         $leave_purpose = LeavePurpose::all()->pluck('leave_purpose','id');
-        return view('hrm::leaveManagement.add-leave',compact('leave_purpose'));
+        return view('hrm::StudentLeaveManagement.add-leave',compact('leave_purpose'));
     }
 
 
     public function store(Request $request)
     {
 
-         $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
+        $student = Student::query()->where('studentId',$request->student_id)->latest()->first();
 
         if(!$student){
             return redirect()->back();
@@ -52,7 +51,7 @@ class LeaveManagementController extends Controller
             $end = $start;
         }
 
-         $period = CarbonPeriod::create($start,$end);
+        $period = CarbonPeriod::create($start,$end);
 
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
@@ -76,9 +75,5 @@ class LeaveManagementController extends Controller
     {
         StudentLeave::where('leaveId',$id)->delete();
         return back();
-    }
-    public function destroy($id)
-    {
-        //
     }
 }

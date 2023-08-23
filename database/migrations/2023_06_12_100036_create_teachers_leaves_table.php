@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('themes', function (Blueprint $table) {
-            $table->removeColumn('layout');
-            $table->string('layout_home')->after('name');
-            $table->string('layout_inner')->after('layout');
+        Schema::create('teachers_leaves', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('leaveId');
+            $table->date('date');
+            $table->unsignedBigInteger('leave_purpose_id');
+            $table->unsignedBigInteger('teacher_id');
+            $table->timestamps();
         });
     }
 
@@ -27,9 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('themes', function (Blueprint $table) {
-            $table->renameColumn('layout_home','layout');
-            $table->dropColumn('layout_inner');
-        });
+        Schema::dropIfExists('teachers_leaves');
     }
 };

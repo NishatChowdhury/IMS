@@ -5,7 +5,7 @@ namespace App\Console;
 use App\Console\Commands\AttendanceSMS;
 use App\Console\Commands\DatabaseBackup;
 use App\Console\Commands\FakeSMS;
-use App\Console\Commands\TeacherAttendace;
+use App\Console\Commands\TeacherAttendance;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\DownloadAttendances;
 use App\Console\Commands\StoreRawAttendance;
@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
         DownloadAttendances::class,
         AttendanceSMS::class,
         DatabaseBackup::class,
-        TeacherAttendace::class,
+        TeacherAttendance::class,
         StoreRawAttendance::class,
         FakeSMS::class,
     ];

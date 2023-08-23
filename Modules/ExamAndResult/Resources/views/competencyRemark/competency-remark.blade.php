@@ -109,7 +109,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                {{ Form::select('competency_id[]', $competencies, null, ['class' => 'form-control','name'=>"data[{{ $i }}][name]"]) }}
+                                                {{ Form::select('competency_id[]', $competencies, null, ['class' => 'form-control']) }}
                                             </td>
                                             <td>
                                                 {{ Form::select('indicator_id[]', $indicators, null, ['class' => 'form-control']) }}

@@ -402,12 +402,10 @@ class StudentController extends Controller
     public function diary(Request $request)
     {
         $date = $request->date ?? Carbon::parse()->format('Y-m-d');
-        $academicClassId = $request->academic_class_id;
 
         $day = Carbon::createFromFormat('Y-m-d', $date)->format('l');
 
         $diaries = Diary::query()
-            ->where('academic_class_id',$academicClassId)
             ->where('date', $date)
             ->get();
 
