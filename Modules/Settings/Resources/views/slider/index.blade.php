@@ -79,30 +79,14 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="form-group row">
-                                 <label for="" class="col-sm-2 col-form-label"
-                                     style="font-weight: 500; text-align: right">Upload Image*</label>
-                                 <div class="col-sm-8">
-                                     <div class="form-group files color">
-                                         <input type="file" name="image" class="form-control" multiple="">
-                                     </div>
-                                     <small class="text-danger">For better view resize all images to 1920*800 pixel. For a
-                                         quick help click on the link <a href="https://imageresizer.com/"
-                                             target="_blank">https://imageresizer.com/</a></small>
-                                 </div>
-                             </div> --}}
-
                             <div class="form-group row">
-                                <label for="" class="col-sm-2 col-form-label"
-                                    style="font-weight: 500; text-align: right">Upload Image*</label>
-                                <div class="col-sm-8">
-                                    <div class="form-group slim" data-ratio="12:5" data-max-file-size="2" data-instant-edit="true">
-                                        <input type="file" name="image" class="form-control" multiple="">
-                                    </div>
-{{--                                    <small class="text-danger">For better view resize all images to 1920*800 pixel. For a--}}
-{{--                                        quick help click on the link <a href="https://imageresizer.com/"--}}
-{{--                                                                        target="_blank">https://imageresizer.com/</a></small>--}}
-                                </div>
+                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Upload Image*</label>
+                             <div class="col-sm-8">
+                               <div class="form-group files color">
+                                  <input type="file" name="image" class="form-control" multiple="">
+                               </div>
+                              <small class="text-danger">For better view resize all images to 1920*800 pixel. For a quick help click on the link <a href="https://imageresizer.com/" target="_blank">https://imageresizer.com/</a></small>
+                              </div>
                             </div>
                             <div style="float: right;padding-bottom: 50px">
                                 <button type="submit" class="btn btn-success"> <i class="fas fa-plus-circle"></i>
@@ -143,8 +127,8 @@
                                     <td>{{ $slider->description }}</td>
                                     <td>{{ $slider->start }}<br>{{ $slider->end }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/uploads/sliders/') }}/{{ $slider->image }}" width="100" alt="">
-                                    </td>
+                                        <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
+                                     </td>
                                     <td>
                                         <form  action="{{route('slider.destroy',$slider->id)}}" method="post">
                                             @csrf
