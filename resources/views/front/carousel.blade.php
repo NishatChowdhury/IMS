@@ -7,7 +7,9 @@
 
     <div class="carousel-inner">
         @foreach($sliders as $key => $slider)
-        <div class="bg-absolute" data-dark-overlay="4" style="background:url('{{ asset('assets/img/sliders') }}/{{ $slider->image }}') no-repeat"></div>
+            <div class="carousel-item padding-y-80 height-90vh {{ $key == 0 ? 'active' : '' }}">
+                <div class="bg-absolute" data-dark-overlay="4" style="background:url('{{ asset('assets/img/sliders') }}/{{ $slider->image }}') no-repeat"></div>
+            </div>
         @endforeach
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
