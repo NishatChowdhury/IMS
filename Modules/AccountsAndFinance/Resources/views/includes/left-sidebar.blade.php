@@ -80,7 +80,7 @@
                         @can('middleware-passed', 'fee-collection.index')
                             <li class="nav-item">
                                 <a href="{{ url('admin/fee/fee-collection') }}"
-                                   class="nav-link {{ isActive(['admin/fee/fee-collection', 'admin/fee/fee-collection/view*']) }}">
+                                   class="nav-link {{ isActive(['admin/fee/fee-collection', 'admin/fee/fee-collection/view*','admin/fee/bulk-fee-collection']) }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Fee Collection') }}</p>
                                 </a>

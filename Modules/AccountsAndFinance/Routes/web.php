@@ -71,6 +71,7 @@ Route::prefix('admin')->group(function() {
     Route::get('fee/fee-collection', [FeeCollectionController::class, 'index'])->name('fee-collection.index');
     Route::get('fee/fee-collection/view', [FeeCollectionController::class, 'view'])->name('fee-collection.view');
     Route::post('fee/fee-collection/store', [FeeCollectionController::class, 'store'])->name('fee-collection.store');
+    Route::get('fee/bulk-fee-collection', [FeeCollectionController::class, 'bulkFeeCollection'])->name('fee-collection.bulk');
     Route::get('fee/all-collections', [FeeCollectionController::class, 'allCollections'])->name('fee-collection.allCollections');
     Route::get('fee/all-collection/report/{id}', [FeeCollectionController::class, 'report'])->name('fee-collection.report');
     Route::get('fee/collections/report/generate', [FeeCollectionController::class, 'reportGenerate'])->name('report.generate');

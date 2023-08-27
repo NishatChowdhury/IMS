@@ -44,6 +44,11 @@
                     </ol>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <a href={{route('fee-collection.bulk')}}><button class="btn btn-primary float-right">Bulk Fee Collection</button></a>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 

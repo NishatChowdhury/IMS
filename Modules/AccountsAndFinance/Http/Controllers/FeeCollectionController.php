@@ -151,6 +151,55 @@ class FeeCollectionController extends Controller
             ->with('trans', $trans);
     }
 
+    public function bulkFeeCollection(Request $request){
+        $academicClass = AcademicClass::active()->get();
+        $students=[];
+
+        if($request->academic_class_id){
+            $payment_method = DB::table('payment_methods')->select('id','name')->get();
+            $students = Student::query()->select('id','name','studentId')->with('academics:id,student_id,academic_class_id,session_id,class_id,section_id,group_id')->get();
+
+            $paidAmount = [];
+            $totalDue= [];
+            $previousPayment =[];
+            $transportAmount = [];
+            $paymentTransportAmount = [];
+            $totalTransportDue = [];
+
+            foreach ($students as $key=>$student){
+                //paid amount
+                $paidAmount[] = StudentPayment::query()->selectRaw('YEAR(date) as year, MONTH(date) as month, sum(amount) as amount')
+                    ->where('student_academic_id',$student->academics[0]->id)
+                    ->groupBy('year', 'month')
+                    ->get();
+                //dd($paidAmount[$key][0]->amount);
+
+                //total due
+                $fss = FeeSetupStudent::query()->select('amount')->where('student_id', $student->id)->get();
+                $amount = 0;
+                $paid = $paidAmount[$key][0]->amount ?? 0;
+                foreach ($fss as $fs) {
+                    $amount += $fs->amount;
+                }
+                $totalDue[] = $amount - $paid;
+
+                //previous payment
+                $previousPayment[] = StudentPayment::query()->where('student_academic_id', $student->academics[0]->id)->latest()->get();
+
+                //transport
+                //$studentAcademic[] =  StudentAcademic::where('student_id', $student->id)->first();
+                $transportAmount[] =  Transport::query()->where('student_academic_id',$student->academics[0]->id)->sum('amount');
+                $paymentTransportAmount[] =  TransportPayment::query()->where('student_academic_id',$student->academics[0]->id)->sum('amount');
+                $totalTransportDue[] = $transportAmount[$key]-$paymentTransportAmount[$key];
+            }
+            return view('accountsandfinance::feeCollection.bulk_fee_collection', compact('students','totalTransportDue','paymentTransportAmount','transportAmount', 'payment_method', 'totalDue', 'paidAmount', 'previousPayment','academicClass'));
+        }
+
+        return view('accountsandfinance::feeCollection.bulk_fee_collection',compact('academicClass','students'));
+
+
+    }
+
     public function makeJournal($stuAcaId, $total)
     {
         $journal_id = [55,34];
