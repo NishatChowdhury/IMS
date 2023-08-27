@@ -77,6 +77,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('teacher-diaries', [TeacherController::class, 'diaries']);
     Route::get('teacher-diary', [TeacherController::class, 'diary']);
     Route::post('teacher-add-diary', [TeacherController::class, 'addDiary']);
+    Route::get('leave-purposes', [TeacherController::class, 'leavePurposes']);
+    Route::get('all-leaves', [TeacherController::class, 'allLeaves']);
     Route::post('teacher-add-leave', [TeacherController::class, 'addLeave']);
     Route::get('student-wise-attendance', [TeacherController::class, 'studentWiseAttendance']);
     Route::get('daily-attendance', [TeacherController::class, 'dailyAttendance']);
@@ -89,4 +91,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('subjects', [TeacherController::class, 'subjects']);
     Route::get('examinations', [TeacherController::class, 'examinations']);
     Route::post('teacher-logout', [LoginController::class, 'teacherLogout']);
+    Route::get('exam-result', [TeacherController::class, 'examResult']);
+    Route::get('student-info', [TeacherController::class, 'studentInfo']);
 });

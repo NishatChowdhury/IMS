@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 use Modules\HRM\Http\Controllers\AttendanceController;
 use Modules\HRM\Http\Controllers\HolidayController;
 use Modules\HRM\Http\Controllers\IdCardController;
-use Modules\HRM\Http\Controllers\LeaveManagementController;
+use Modules\HRM\Http\Controllers\StudentsLeaveController;
 use Modules\HRM\Http\Controllers\LeavePurposeController;
 use Modules\HRM\Http\Controllers\ShiftController;
 use Modules\HRM\Http\Controllers\StaffController;
 use Modules\HRM\Http\Controllers\StudentController;
+use Modules\HRM\Http\Controllers\TeachersLeaveController;
 use Modules\HRM\Http\Controllers\WeeklyOffController;
 
 Route::prefix('hrm')->group(function() {
@@ -30,14 +31,11 @@ Route::prefix('admin')->group(function() {
     # ----------------------------------- Staff -----------------------------------------------------
     Route::get('staff-profile/{staffId}',[StaffController::class,'staffProfile'])->name('staff.profile');
     Route::get('staff/teacher',[StaffController::class,'teacher'])->name('staff.teacher');
-    Route::get('staff/staffadd',[StaffController::class,'addstaff'])->name('staff.addstaff');
-    Route::post('staff/store-staff',[StaffController::class,'store_staff'])->name('staff.store_staff');
-    Route::get('staff/edit-staff/{id}',[StaffController::class,'edit_staff'])->name('staff.edit_staff');
-    Route::patch('staff/{id}/update-staff',[StaffController::class,'update_staff'])->name('staff.update_staff');
-    Route::get('staff/delete-staff/{id}',[StaffController::class,'delete_staff'])->name('staff.delete_staff');
-    Route::get('staff/threshold',[StaffController::class,'threshold'])->name('staff.threshold');
-    Route::get('staff/kpi',[StaffController::class,'kpi'])->name('staff.kpi');
-    Route::get('staff/payslip',[StaffController::class,'payslip'])->name('staff.payslip');
+    Route::get('staff/staffadd',[StaffController::class,'create'])->name('staff.create');
+    Route::post('staff/store-staff',[StaffController::class,'store'])->name('staff.store_staff');
+    Route::get('staff/edit-staff/{id}',[StaffController::class,'edit'])->name('staff.edit_staff');
+    Route::patch('staff/{id}/update-staff',[StaffController::class,'update'])->name('staff.update_staff');
+    Route::get('staff/delete-staff/{id}',[StaffController::class,'destroy'])->name('staff.delete_staff');
 
     Route::get('staff/staff_training/{id}',[StaffController::class,'staff_training'])->name('staff.staff_training');
     Route::get('staff/staff_course/{id}',[StaffController::class,'staff_course'])->name('staff.staff_course');
@@ -137,12 +135,18 @@ Route::prefix('admin')->group(function() {
     Route::post('/indStudentAttendance',[AttendanceController::class,'individulAttendance'])->name('student.indAttendance');
     Route::post('/classStudentAttendance',[AttendanceController::class,'classAttendance'])->name('student.classAttendance');
     Route::post('/indTeacherAttendance',[AttendanceController::class,'individualTeacherAttendance'])->name('teacher.indAttendance');
-    // leave management
-    Route::get('attendance/leaveManagement',[LeaveManagementController::class,'index'])->name('leaveManagement.index');
-    Route::get('attendance/leaveManagement/add',[LeaveManagementController::class,'add'])->name('leaveManagement.add');
-    Route::post('attendance/leaveManagement/store',[LeaveManagementController::class,'store'])->name('leaveManagement.store');
-    Route::get('attendance/leaveManagement/edit/{id}',[LeaveManagementController::class,'edit'])->name('leaveManagement.edit');
-    Route::delete('attendance/leaveManagement/delete/{id}',[LeaveManagementController::class,'destroy'])->name('leaveManagement.destroy');
+    // leave management for students
+    Route::get('attendance/leaveManagement',[StudentsLeaveController::class,'index'])->name('leaveManagement.index');
+    Route::get('attendance/leaveManagement/create',[StudentsLeaveController::class,'create'])->name('leaveManagement.create');
+    Route::post('attendance/leaveManagement/store',[StudentsLeaveController::class,'store'])->name('leaveManagement.store');
+    Route::get('attendance/leaveManagement/edit/{id}',[StudentsLeaveController::class,'edit'])->name('leaveManagement.edit');
+    Route::delete('attendance/leaveManagement/delete/{id}',[StudentsLeaveController::class,'destroy'])->name('leaveManagement.destroy');
+    // leave management for Teachers
+    Route::get('attendance/TeacherLeaveManagement',[TeachersLeaveController::class,'index'])->name('TeacherLeaveManagement.index');
+    Route::get('attendance/TeacherLeaveManagement/create',[TeachersLeaveController::class,'create'])->name('TeacherLeaveManagement.create');
+    Route::post('attendance/TeacherLeaveManagement/store',[TeachersLeaveController::class,'store'])->name('TeacherLeaveManagement.store');
+    Route::get('attendance/TeacherLeaveManagement/edit/{id}',[TeachersLeaveController::class,'edit'])->name('TeacherLeaveManagement.edit');
+    Route::delete('attendance/TeacherLeaveManagement/delete/{id}',[TeachersLeaveController::class,'destroy'])->name('TeacherLeaveManagement.destroy');
     // leave purpose
     Route::get('attendance/leavePurpose',[LeavePurposeController::class,'index'])->name('leavePurpose.index');
     Route::get('attendance/leavePurpose/add',[LeavePurposeController::class,'add'])->name('leavePurpose.add');

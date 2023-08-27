@@ -2,12 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Backend\AttendanceTeacher;
+use App\Models\Backend\Holiday;
 use App\Models\Backend\RawAttendance;
+use App\Models\Backend\Shift;
+use App\Models\Backend\Staff;
+use App\Models\Backend\TeachersLeave;
 use App\Models\Backend\weeklyOff;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class TeacherAttendace extends Command
+class TeacherAttendance extends Command
 {
     /**
      * The name and signature of the console command.
@@ -40,13 +45,13 @@ class TeacherAttendace extends Command
      */
     public function handle()
     {
-        $today = \Carbon\Carbon::today()->format('Y-m-d');
-        $todayCount = \Carbon\Carbon::today();
+        $today = Carbon::today()->format('Y-m-d');
+        $todayCount = Carbon::today();
 
         //$todayCount =  Carbon::parse('2023-05-02');
         //$today =  Carbon::parse('2023-05-02')->format('Y-m-d');
 
-        $staffs = \App\Models\Backend\Staff::query()->where('staff_type_id', 2)->get();
+        $staffs = Staff::query()->where('staff_type_id', 2)->get();
 
         foreach ($staffs as $key => $staff){
 
@@ -60,15 +65,15 @@ class TeacherAttendace extends Command
                 $min = null;
                 $max = null;
 
-//                $leave = \App\Models\Backend\StudentLeave::query()
-//                    ->where('student_id', $student->id)
-//                    ->where('date', '=', $today)
-//                    ->exists();
+                $leave = TeachersLeave::query()
+                    ->where('teacher_id', $staff->id)
+                    ->where('date', '=', $today)
+                    ->exists();
 //       return         $weeklyOff = weeklyOff::where('id', 1)->first();
-                $leave = null;
-                $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
+                //$leave = null;
+                $weeklyOff = weeklyOff::query()->where('show_option', $todayCount->format('N'))->first();
 //                return $today;
-                $holiday = \App\Models\Backend\Holiday::query()
+                $holiday = Holiday::query()
                     ->where('start', '<=', $today)
                     ->where('end', '>=', $today)
                     ->where('is_holiday', 1)
@@ -87,7 +92,7 @@ class TeacherAttendace extends Command
                 $min = $rawData->min('access_time');
                 $max = $rawData->max('access_time');
 
-                $shift = \App\Models\Backend\Shift::find($staff->shift_id);
+                $shift = Shift::query()->find($staff->shift_id);
                 $shiftIn =  Carbon::parse($shift->start)->addMinutes($shift->grace);
                 $shiftOut = Carbon::parse($shift->end)->subMinutes($shift->grace);
 
@@ -113,20 +118,20 @@ class TeacherAttendace extends Command
             ];
 
 
-            $attendanceExists = \App\Models\Backend\AttendanceTeacher::query()
+            $attendanceExists = AttendanceTeacher::query()
                 ->where('staff_id', $staff->card_id ?? 0)
                 ->where('date', $today)
                 ->exists();
 
 
             if ($attendanceExists) {
-                $attendance = \App\Models\Backend\AttendanceTeacher::query()
+                $attendance = AttendanceTeacher::query()
                     ->where('staff_id', $staff->card_id ?? 0)
                     ->where('date', $today)
                     ->first();
                 $attendance->update($data);
             } else {
-                \App\Models\Backend\AttendanceTeacher::create($data);
+                AttendanceTeacher::query()->create($data);
             }
 
         }

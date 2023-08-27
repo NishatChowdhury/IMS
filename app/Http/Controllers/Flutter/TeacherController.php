@@ -7,8 +7,10 @@ use App\Models\Backend\AcademicClass;
 use App\Models\Backend\Attendance;
 use App\Models\Backend\Classes;
 use App\Models\Backend\Exam;
+use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\Group;
+use App\Models\Backend\LeavePurpose;
 use App\Models\Backend\Section;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
@@ -20,6 +22,7 @@ use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -33,9 +36,9 @@ class TeacherController extends Controller
             ->where('academic_class_id', $request->academic_class_id)
             ->get();
         $academic_class = AcademicClass::query()->where('id', $request->academic_class_id)->first();
-        $className = Classes::query()->where('id', $academic_class->class_id)->first();
-        $groupName = Group::query()->where('id', $academic_class->group_id)->first();
-        $sectionName = Section::query()->where('id', $academic_class->section_id)->first();
+        $className = Classes::query()->where('id', $academic_class->class_id ?? '')->first();
+        $groupName = Group::query()->where('id', $academic_class->group_id ?? '')->first();
+        $sectionName = Section::query()->where('id', $academic_class->section_id ?? '')->first();
 
         if ($diary->isNotEmpty()) {
             $data = [];
@@ -102,6 +105,50 @@ class TeacherController extends Controller
             return response()->json(['status' => false]);
         }
     }
+
+        // To retrieve all Leave Purposes
+        public function leavePurposes(){
+            $purposes = LeavePurpose::query()->get();
+            if ($purposes->isNotEmpty()) {
+                $data = [];
+                foreach ($purposes as $purpose) {
+                    $data[] = [
+                        'id' => $purpose->id,
+                        'name' => $purpose->leave_purpose
+                    ];
+                }
+                return response()->json([
+                    'status' => true,
+                    'leavePurposes' => $data
+                ]);
+            } else {
+                return response(null, 204);
+            }
+        }
+
+        // To retrieve all leaves
+        public function allLeaves(){
+            $leaves = StudentLeave::query()->get();
+            if ($leaves->isNotEmpty()) {
+                $data = [];
+                foreach ($leaves as $leave) {
+                    $data[] = [
+                        'id' => $leave->id ?? '',
+                        'leaveID' => $leave->leaveId ?? '',
+                        'studentID' => $leave->student_id ?? '',
+                        'date' => $leave->date ?? '',
+                        'leavePurpose' => $leave->purpose->leave_purpose ?? '',
+                        'leaveID' => $leave->leaveId ?? '',
+                    ];
+                }
+                return response()->json([
+                    'status' => true,
+                    'leaves' => $data
+                ]);
+            } else {
+                return response(null, 204);
+            }
+        }
 
     // To add a new leave
     public function addLeave(Request $request)
@@ -449,4 +496,99 @@ class TeacherController extends Controller
         }
         return response()->json(['status' => true]);
     }
+
+    /**
+     * To retrieve exam result of student
+     *
+     * @param Request $request
+     * @return JsonResponse
+    */
+    public function examResult(Request $request): JsonResponse
+    {
+
+            $classId=$request->class_id;
+            $examResult = ExamResult::query()
+                ->whereHas('studentAcademic', function($q) use($classId){
+                    $q->where('academic_class_id', $classId);
+                })
+                ->orWhere('exam_id',$request->exam_id)
+                ->orWhere('student_academic_id', $request->student_academic_id)
+                ->with('exam', 'studentAcademic')
+                ->get();
+
+        if ($examResult) {
+            $data = [];
+            foreach ($examResult as $result) {
+                $TotalNumbers = DB::table('exam_schedules')
+                    ->where('exam_id', $result->exam_id)
+                    ->where('academic_class_id', $result->studentAcademic->academic_class_id)
+                    ->selectRaw('SUM(objective_full) as obj, SUM(written_full) as wri, 
+                                SUM(practical_full) as pra, SUM(viva_full) as viva')
+                    ->first();
+
+                $obj_full = $TotalNumbers->obj ?? 0;
+                $written_full = $TotalNumbers->wri ?? 0;
+                $practical_full = $TotalNumbers->pra ?? 0;
+                $viva_full = $TotalNumbers->viva ?? 0;
+                $total = $obj_full + $written_full + $practical_full + $viva_full;
+
+                $data[] = [
+                    'id' => $result->id,
+                    'studentAcademicId' => $result->student_academic_id,
+                    'title' => $result->exam->name ?? '',
+                    'isPassed' => $result->grade == 'F' ? false : true,
+                    'result' => [
+                        [
+                            'label' => 'GPA',
+                            'obtained' => $result->gpa,
+                            'total' => '5.00',
+                        ], [
+                            'label' => 'TOTAL',
+                            'obtained' => $result->total_mark,
+                            'total' => strval($total),
+                        ], [
+                            'label' => 'ATTENDANCE',
+                            'obtained' => '35',
+                            'total' => '98',
+                        ],
+
+                    ]
+                ];
+            }
+            return response()->json([
+                'status' => true,
+                'results' => $data
+            ]);
+        } 
+        else {
+            return response(null, 204);
+        }
+    }
+
+    // To retreive a student's information through search
+    
+    public function studentInfo(Request $request)
+    {
+        $studentId = $request->get('student_id');
+        $student = Student::query()->where('studentId',$studentId)->first();
+        if ($student) {
+            return response()->json([
+                'status' => true,
+                'studentInfo' => 
+                    [
+                        'id' => $student->id,
+                        'name' => $student->name ?? '',
+                        'studentId' => $student->studentId ?? '',
+                        'Department' => $student->studentAcademic->group->name ?? '',
+                        'mobile' => $student->mobile ?? '',
+                        'gender' => $student->gender->name ?? ''
+                    ],
+            ]);
+        } 
+        else {
+            return response(null, 204);
+        }
+    }
+
+    
 }

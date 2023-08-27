@@ -62,38 +62,6 @@
                                     </li>
                                 @endif
                             @endcan
-                            @can('middleware-passed', 'staff.threshold')
-                                @if (in_array('staff.threshold', auth()->user()->permissions))
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('staff.threshold') }}"
-                                           class="nav-link {{ isActive('admin/staff/threshold') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Threshold</p>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endcan
-                            @can('middleware-passed', 'staff.kpi')
-                                @if (in_array('staff.kpi', auth()->user()->permissions))
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('staff.kpi') }}" class="nav-link {{ isActive('admin/staff/kpi') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>kpi</p>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endcan
-                            @can('middleware-passed', 'staff.payslip')
-                                @if (in_array('staff.payslip', auth()->user()->permissions))
-                                    <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                        <a href="{{ route('staff.payslip') }}"
-                                           class="nav-link {{ isActive('admin/staff/payslip') }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>PaySlip</p>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endcan
                             @can('middleware-passed', 'staff.staff')
                                 @if (in_array('staff.staff', auth()->user()->permissions))
                                     <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -171,13 +139,6 @@
                                     <p>Design ID Card</p>
                                 </a>
                             </li>
-                            {{--                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-                            {{--                                <a href="{{ route('student.designStudentCard') }}"--}}
-                            {{--                                   class="nav-link {{ isActive('admin/student/designStudentCard') }}">--}}
-                            {{--                                    <i class="far fa-circle nav-icon"></i>--}}
-                            {{--                                    <p>Design ID Card 2</p>--}}
-                            {{--                                </a>--}}
-                            {{--                            </li>--}}
                         @endcan
                         @can('middleware-passed', 'student.promotion')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
@@ -247,7 +208,16 @@
                                     <a href="{{ route('leaveManagement.index') }}"
                                        class="nav-link {{ isActive('admin/attendance/leaveManagement') }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ __('Leave Management') }}</p>
+                                        <p>{{ __('Students Leave') }}</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('middleware-passed', 'TeacherLeaveManagement.index')
+                                <li class="nav-item">
+                                    <a href="{{ route('TeacherLeaveManagement.index') }}"
+                                       class="nav-link {{ isActive('admin/attendance/TeacherLeaveManagement') }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Teachers Leave') }}</p>
                                     </a>
                                 </li>
                             @endcan
@@ -256,7 +226,7 @@
                                     <a href="{{ route('leavePurpose.index') }}"
                                        class="nav-link {{ isActive('admin/attendance/leavePurpose') }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Leave Purpose</p>
+                                        <p>{{ __('Leave Purpose') }}</p>
                                     </a>
                                 </li>
                             @endcan
@@ -265,7 +235,7 @@
                                     <li class="nav-item">
                                         <a href="{{ route('attendance.holiday') }}" class="nav-link {{ isActive('admin/holidays') }}">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Calendar</p>
+                                            <p>{{ __('Calendar') }}</p>
                                         </a>
                                     </li>
                                 @endif
@@ -274,7 +244,7 @@
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-circle"></i>
                                     <p>
-                                        Setting
+                                        {{ __('Setting') }}
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -285,7 +255,7 @@
                                                 <a href="{{ route('shift.index') }}"
                                                    class="nav-link {{ isActive('admin/attendance/setting') }}">
                                                     <i class="far nav-icon"></i>
-                                                    <p>Attendance Setting</p>
+                                                    <p>{{ __('Shift') }}</p>
                                                 </a>
                                             </li>
                                         @endif
@@ -296,7 +266,7 @@
                                                 <a href="{{ route('weeklyOff.index') }}"
                                                    class="nav-link {{ isActive('admin/attendance/weeklyOff') }}">
                                                     <i class="far nav-icon"></i>
-                                                    <p>Weekly Off</p>
+                                                    <p>{{ __('Weekly Off') }}</p>
                                                 </a>
                                             </li>
                                         @endif
@@ -309,7 +279,7 @@
                                         <a href="{{ route('attendance.student') }}"
                                            class="nav-link {{ isActive('admin/attendance/student') }}">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Student Attendance</p>
+                                            <p>{{ __('Student Attendance') }}</p>
                                         </a>
                                     </li>
                                 @endif
@@ -320,7 +290,7 @@
                                         <a href="{{ route('attendance.teacher') }}"
                                            class="nav-link {{ isActive('admin/attendance/teacher') }}">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Teacher Attendance</p>
+                                            <p>{{ __('Teacher Attendance') }}</p>
                                         </a>
                                     </li>
                                 @endif
@@ -331,17 +301,11 @@
                                         <a href="{{ route('attendance.report') }}"
                                            class="nav-link {{ isActive('admin/attendance/report') }}">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Monthly Report</p>
+                                            <p>{{ __('Monthly Report') }}</p>
                                         </a>
                                     </li>
                                 @endif
                             @endcan
-                            {{--                                                <li class="nav-item" style="background-color: rgb(40, 40, 45);">--}}
-                            {{--                                                    <a href="{{ route('student.manuel-attendance') }}" class="nav-link ">--}}
-                            {{--                                                        <i class="far fa-circle nav-icon"></i>--}}
-                            {{--                                                        <p>Manual Attendance</p>--}}
-                            {{--                                                    </a>--}}
-                            {{--                                                </li>--}}
                         </ul>
                     </li>
                 @endif

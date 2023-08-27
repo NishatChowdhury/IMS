@@ -44,7 +44,7 @@
                             @php
                             $academic = \App\Models\Backend\AcademicClass::find($key);
                             @endphp
-                                <h4>{{$academic->classes->name ?? '' }} - {{$academic->group->name ?? '' }}</h4>
+                                <h4>{{$academic->classes->name ?? '' }} - {{$academic->group->name ?? '' }}- {{$academic->section->name ?? '' }}</h4>
                             </div>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>

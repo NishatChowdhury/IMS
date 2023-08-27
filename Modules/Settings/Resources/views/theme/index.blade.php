@@ -1,6 +1,6 @@
 @extends('settings::layouts.master')
 
-@section('title','Student List')
+@section('title','Theme')
 
 @section('content')
     <!-- Content Header (Page header) -->

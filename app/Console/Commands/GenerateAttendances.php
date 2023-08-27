@@ -67,7 +67,8 @@ class GenerateAttendances extends Command
 
                 $leave = StudentLeave::query()
                     ->where('student_id', $student->id)
-                    ->where('date', '=', $today)
+                    ->where('start_date', '<=', $today)
+                    ->where('end_date', '>=', $today)
                     ->exists();
 //       return         $weeklyOff = weeklyOff::where('id', 1)->first();
                 $weeklyOff = weeklyOff::where('show_option', $todayCount->format('N'))->first();
