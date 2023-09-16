@@ -19,7 +19,7 @@ class CreateMenuTable extends Migration
             $table->string('name');
             $table->text('uri')->nullable();
             $table->integer('type');
-            $table->integer('is_active')->nullable()->after('type');
+            $table->integer('is_active')->nullable();
             $table->unsignedBigInteger('page_id')->nullable();
             $table->string('system_page')->nullable();
             $table->string('url')->nullable();
