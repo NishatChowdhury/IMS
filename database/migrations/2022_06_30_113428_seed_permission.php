@@ -545,6 +545,7 @@ class SeedPermission extends Migration
                     "student.indAttendance",
                     "student.classAttendance",
                     "teacher.indAttendance",
+                    "TeacherLeaveManagement.index"
                 ],
             ],
             [
