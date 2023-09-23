@@ -44,6 +44,7 @@
                         <div class="card-body">
                             <form action="{{route('instituteMessageUpdate')}}" enctype="multipart/form-data" method="POST">
                                 @csrf
+                                @method('patch')
                                 <input type="hidden" value="{{$message->alias ?? 'chairman'}}" name="alias">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">{{ __('Title')}}</label>
