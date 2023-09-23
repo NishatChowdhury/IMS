@@ -442,8 +442,8 @@ class FrontController extends Controller
 
             return view('front.pages.'.$content->system_page,compact('categories','albums','teachers','notices','staffs','repository'));
         }
-        //$page = $content->page;
-        $page = Page::query()->where('page_id',$content->id)->first();
+        $page = $content->page;
+//        $page = Page::query()->where('page_id',$content->id)->first();
 
         $page = $page ?? new Page;
         return view('front.pages.page',compact('page'));
