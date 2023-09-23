@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Principal Message</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Principal Message') }}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h5>Principal Message</h5>
+                                <h5>{{ __('Principal Message') }}</h5>
                             </div>
                         </div>
                         <!-- /.card-header -->
