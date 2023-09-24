@@ -138,7 +138,10 @@
                                         <td>{{ $result->gpa < 1 ? 0 : $result->gpa }}</td>
                                         <td>{{ $result->rank }}</td>
                                         <td>{{ $result->total_mark }}</td>
-                                        <td><a href="{{route('exam.resultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a></td>
+                                        <td>
+                                            <a href="{{route('exam.resultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a>
+                                            <a href="{{route('exam.resultDetails_Layout2',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -94,7 +94,7 @@ class ExamScheduleController extends Controller
                 $data['exam_id'] = $request->get('exam_id');
                 $data['academic_class_id'] = $request->get('academic_class_id');
                 $data['subject_id'] = $request->get('subject_id')[$key];
-                $data['date'] = $request->get('date')[$key];
+                $data['date'] = $request->get('date')[$key] ?? '';
                 $data['start'] = $request->get('start')[$key];
                 $data['end'] = $request->get('end')[$key];
                 $data['objective_full'] = $request->get('objective_full')[$key];
