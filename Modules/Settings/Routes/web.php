@@ -119,7 +119,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('principalMessage',[MessageController::class,'editPrincipalMessage'])->name('principalMessage.index');
         Route::get('aboutInstitute',[MessageController::class,'editAboutInstitute'])->name('aboutInstitute.index');
         // principal , chairman and institute message update route
-        Route::post('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
+        Route::patch('chairmanMessageUpdate',[MessageController::class,'instituteMessageUpdate'])->name('instituteMessageUpdate');
 
         // site info
         Route::get('siteinfo',[SiteInformationController::class,'index'])->name('siteinfo');

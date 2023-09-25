@@ -16,12 +16,12 @@ class CreateTeacherTrainingsTable extends Migration
         Schema::create('teacher_trainings', function (Blueprint $table) {
             $table->id();
             $table->integer('staff_id');
-            $table->string('tr_title')->nullable()->change();
-            $table->string('tr_topic_cover')->nullable()->change();
-            $table->string('tr_institute')->nullable()->change();
-            $table->string('tr_location')->nullable()->change();
-            $table->string('tr_year')->nullable()->change();
-            $table->string('tr_duration')->nullable()->change();
+            $table->string('tr_title')->nullable();
+            $table->string('tr_topic_cover')->nullable();
+            $table->string('tr_institute')->nullable();
+            $table->string('tr_location')->nullable();
+            $table->string('tr_year')->nullable();
+            $table->string('tr_duration')->nullable();
             $table->string('tr_country')->nullable();
             $table->string('tr_start')->nullable();
             $table->string('tr_end')->nullable();
