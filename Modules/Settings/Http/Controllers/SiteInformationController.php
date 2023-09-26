@@ -60,4 +60,35 @@ class SiteInformationController extends Controller
 
         return redirect('admin/siteinfo');
     }
+
+    public function resultSystem(){
+        $data = SiteInformation::query()->first();
+        return view('settings::settings.result_setting',compact('data'));
+    }
+
+    public function resultSystem1(Request $request)
+    {
+        $data = SiteInformation::query()->first();
+        $data->update($request->only('result_id'));
+        return redirect()->back();
+    }
+
+    public function resultSystem2(Request $request)
+    {
+        $data = SiteInformation::query()->first();
+        $data->update($request->only('result_id'));
+        return redirect()->back();
+    }
+    public function resultSystem3(Request $request)
+    {
+        $data = SiteInformation::query()->first();
+        $data->update($request->only('result_id'));
+        return redirect()->back();
+    }
+    public function resultSystem4(Request $request)
+    {
+        $data = SiteInformation::query()->first();
+        $data->update($request->only('result_id'));
+        return redirect()->back();
+    }
 }

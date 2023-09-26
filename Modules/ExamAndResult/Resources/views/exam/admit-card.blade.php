@@ -182,7 +182,8 @@
                                             <p>{{ __('বিঃদ্রঃ অনিবার্য কারণ বশতঃ পরীক্ষার সময়সূচী পরিবর্তন সাধনের ব্যাপারে
                                                 কর্তৃপক্ষের সিদ্ধান্ত চুড়ান্ত।')}} </p>
                                         </div>
-                                        <div class="col-md-3" style="margin-top: 50px;border-top: 1px solid #333;text-align: center;font-weight: bold;">
+                                        <img src="{{ asset('assets/img/signature/signature.png') }}" width="80" height="50" alt="">
+                                        <div class="col-md-3" style="margin-top: 100px;border-top: 1px solid #333;text-align: center;font-weight: bold;">
                                             {{ __(' Principal Signature')}}
                                         </div>
                                     </div>
