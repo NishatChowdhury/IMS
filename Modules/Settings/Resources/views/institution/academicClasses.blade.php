@@ -84,6 +84,7 @@
                                                     class="badge badge-primary">{{ $class->academicClasses->name ?? '' }}</span>
                                                 <span class="badge badge-secondary">{{ $class->section->name ?? '' }}</span>
                                                 <span class="badge badge-dark">{{ $class->group->name ?? '' }}</span>
+                                                <span class="badge badge-success">{{ $class->sessions->year ?? '' }}</span>
 
                                             </td>
                                             <td> {{ $class->student_academic_count }} </td>

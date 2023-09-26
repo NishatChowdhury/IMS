@@ -1,0 +1,11 @@
+{
+    "name": "ExamAndResultV2",
+    "alias": "examandresultv2",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ExamAndResultV2\\Providers\\ExamAndResultV2ServiceProvider"
+    ],
+    "files": []
+}
