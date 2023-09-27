@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\ExamAndResult\Http\Controllers;
+namespace Modules\ExamAndResultV2\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
