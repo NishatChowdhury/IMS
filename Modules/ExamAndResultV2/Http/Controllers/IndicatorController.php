@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\ExamAndResult\Http\Controllers;
+namespace Modules\ExamAndResultV2\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Competency;
