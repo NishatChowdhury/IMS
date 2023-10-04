@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function() {
 
     // result
     Route::get('exam/result-details/{id}',[ResultController::class,'resultDetails'])->name('exam.resultDetails');
+    Route::get('exam/result-details-layout2/{id}',[ResultController::class,'resultDetails_Layout2'])->name('exam.resultDetails_Layout2');
     Route::get('exam/final-result-details/{id}',[ResultController::class,'finalResultDetails'])->name('exam.finalResultDetails');
     Route::get('exam/result-details-all',[ResultController::class,'allDetails'])->name('exam.allDetails');
     Route::get('exam/examresult',[ResultController::class,'index'])->name('exam.examresult');

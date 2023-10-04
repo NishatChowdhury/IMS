@@ -24,26 +24,12 @@ class SliderController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'image' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }
-
-        $data = $request->all();
-
-        $images = Slim::getImages('image');
-         //dd($images);
-        if (!empty($images)) {
-            $image = array_shift($images);
-            $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
-            $Imagedata = $image['output']['data'];
-            $output = Slim::saveFile($Imagedata, $Imagename, '../storage/app/public/uploads/sliders', false);
-            $data['image'] = $Imagename;
+        {
+        if($request->hasFile('image')){
+            $name = time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path().'/assets/img/sliders/', $name);
+            $data = $request->except('image');
+            $data['image'] = $name;
             $data['active'] = 1;
             try{
                 Slider::query()->create($data);
@@ -51,23 +37,10 @@ class SliderController extends Controller
                 dd($e);
             }
         }
-        session()->flash('success', 'Slider added successfully!');
-
-        // if ($request->hasFile('image')) {
-        //     $name = time() . $request->file('image')->getClientOriginalName();
-        //     $request->file('image')->move(public_path() . '/assets/img/sliders/', $name);
-        //     $data = $request->except('image');
-        //     $data['image'] = $name;
-        //     $data['active'] = 1;
-        //     try {
-        //         Slider::query()->create($data);
-        //     } catch (\Exception $e) {
-        //         dd($e);
-        //     }
-        // }
 
         return redirect('admin/sliders');
-    }
+
+}
 
     public function destroy($id)
     {

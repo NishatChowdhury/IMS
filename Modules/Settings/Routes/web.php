@@ -211,6 +211,14 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('db-backup',[DbBackupController::class,'index'])->name('backup.db');
         Route::get('backup-download/{file_name}',[DbBackupController::class,'download'])->name('backup.download');
         Route::get('add-backup',[DbBackupController::class,'createDatabaseBackup'])->name('backup.create');
+
+        // Result System Setup
+        Route::get('result-system',[SiteInformationController::class,'resultSystem'])->name('result-system.index');
+        Route::post('result-system/{id1}/result-system-1', [SiteInformationController::class,'resultSystem1'])->name('result-system.result-system-1');
+        Route::post('result-system/{id2}/result-system-2', [SiteInformationController::class,'resultSystem2'])->name('result-system.result-system-2');
+        Route::post('result-system/{id3}/result-system-2', [SiteInformationController::class,'resultSystem3'])->name('result-system.result-system-3');
+        Route::post('result-system/{id4}/result-system-2', [SiteInformationController::class,'resultSystem4'])->name('result-system.result-system-4');
+
 });
 
 

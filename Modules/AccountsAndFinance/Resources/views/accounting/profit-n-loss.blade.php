@@ -48,7 +48,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h3>{{ __('Profit & Loss')}}</h3>
+                            <h3>{{ __('Showing Report Of Profit & Loss From:')}}&nbsp;<strong>{{ $start }}</strong>&nbsp;{{ __('to:') }}&nbsp;<strong>{{ $end }}</strong></h3>
                         </div>
 
                         <div class="card-body">

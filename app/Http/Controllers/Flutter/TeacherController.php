@@ -16,6 +16,7 @@ use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\StudentLeave;
 use App\Models\Backend\Subject;
+use App\Models\Backend\TeachersLeave;
 use App\Models\Diary;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -128,17 +129,16 @@ class TeacherController extends Controller
 
         // To retrieve all leaves
         public function allLeaves(){
-            $leaves = StudentLeave::query()->get();
+            $leaves = TeachersLeave::query()->get();
             if ($leaves->isNotEmpty()) {
                 $data = [];
                 foreach ($leaves as $leave) {
                     $data[] = [
                         'id' => $leave->id ?? '',
                         'leaveID' => $leave->leaveId ?? '',
-                        'studentID' => $leave->student_id ?? '',
+                        'teacherId' => $leave->teacher->card_id ?? '',
                         'date' => $leave->date ?? '',
-                        'leavePurpose' => $leave->purpose->leave_purpose ?? '',
-                        'leaveID' => $leave->leaveId ?? '',
+                        'leavePurpose' => $leave->purpose->leave_purpose ?? ''
                     ];
                 }
                 return response()->json([
@@ -165,13 +165,14 @@ class TeacherController extends Controller
         foreach ($period as $date) {
             $d = $date->format('Y-m-d');
             $data = [
-                'leaveId' => date('ymd') . $request->student_id,
-                'student_id' => $request->student_id,
+                'leaveId' => date('ymd') . $request->teacher_id,
+                'teacher_id' => $request->teacher_id,
                 'date' => $d,
                 'leave_purpose_id' => $request->leave_purpose_id,
                 'teacher_id' => $request->teacher_id,
+                'note' => $request->note,
             ];
-            $result = StudentLeave::query()->create($data);
+            $result = TeachersLeave::query()->create($data);
         }
         if ($result) {
             return response()->json(['status' => true, 'Leave' => $data]);

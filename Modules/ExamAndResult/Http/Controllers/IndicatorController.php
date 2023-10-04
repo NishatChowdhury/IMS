@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class IndicatorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $competencies = Competency::get()->pluck('name','id'); 
