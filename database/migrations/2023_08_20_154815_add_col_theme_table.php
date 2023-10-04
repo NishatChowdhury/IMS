@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('themes', function (Blueprint $table) {
             $table->removeColumn('layout');
             $table->string('layout_home')->after('name');
-            $table->string('layout_inner')->after('layout');
+            $table->string('layout_inner'); //->after('layout_home');
         });
     }
 

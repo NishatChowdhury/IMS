@@ -37,7 +37,7 @@ class SliderController extends Controller
         $data = $request->all();
 
         $images = Slim::getImages('image');
-        // dd($images);
+         //dd($images);
         if (!empty($images)) {
             $image = array_shift($images);
             $Imagename = Str::slug(now()) . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);

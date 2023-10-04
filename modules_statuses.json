@@ -10,5 +10,6 @@
     "HostelAndCanteen": true,
     "VirtualClassroom": true,
     "KPI": true,
-    "ExtraCurriculum": true
+    "ExtraCurriculum": true,
+    "Result": true
 }

@@ -104,5 +104,8 @@ Route::prefix('admin')->group(function() {
     Route::patch('competency-remark/{id}/update',[CompetencyRemarkController::class,'update'])->name('competency-remark.update');
     Route::post('competency-remark/destroy/{id}',[CompetencyRemarkController::class,'destroy'])->name('competency-remark.destroy');
 
+
+
+
 });
 

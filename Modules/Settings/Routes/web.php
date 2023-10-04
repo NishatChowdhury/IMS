@@ -10,6 +10,7 @@ use Modules\Settings\Http\Controllers\LanguageController;
 use Modules\Settings\Http\Controllers\MenuController;
 use Modules\Settings\Http\Controllers\MessageController;
 use Modules\Settings\Http\Controllers\PageController;
+use Modules\Settings\Http\Controllers\ResultSettingsController;
 use Modules\Settings\Http\Controllers\RolePermissionController;
 use Modules\Settings\Http\Controllers\ScheduleController;
 use Modules\Settings\Http\Controllers\SettingsController;
@@ -178,6 +179,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('lang-update',[LanguageController::class,'update'])->name('lang.update');
         Route::get('lang/translation/{id}',[LanguageController::class,'translation'])->name('lang.translation');
         Route::post('lang/translate/{id}',[LanguageController::class,'translate'])->name('lang.translate');
+
+    // Result Settings
+        Route::get('results',[ResultSettingsController::class,'index'])->name('result.index');
+
 
     # ---------------------------------------------- User Management -------------------------------------------------------
         // User
