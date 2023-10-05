@@ -42,17 +42,13 @@
                                 <i class="ti-time mr-1"></i>
                                 {{ $news->start->format('F Y, d') }}
                             </li>
-                            {{--<li class="list-inline-item mr-3">--}}
-                                {{--<i class="ti-location-pin mr-1"></i>--}}
-                                {{--Room:102, block: A, New auditorium building--}}
-                            {{--</li>--}}
                         </ul>
                         <h4 class="mb-4">
                             {{ $news->title }}
                         </h4>
                         {{ $news->description }}
 
-                        <a href="{{ action('FrontController@news') }}" class="btn btn-primary mt-4">{{('Back To News')}}</a>
+                        <a href="{{ action('Front\FrontController@newsDetails',$news->id) }}" class="btn btn-primary mt-4">{{('Back To News')}}</a>
                     </div>
                 </div>
                 <div class="col-lg-3 mt-5">
