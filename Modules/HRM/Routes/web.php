@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function() {
     Route::get('student/drop/{id}',[StudentController::class,'dropOut'])->name('student.dropOut');
     Route::get('student/subjects/{id}',[StudentController::class,'subjects'])->name('student.subjects');
     Route::patch('student/{id}/assign',[StudentController::class,'assignSubject'])->name('student.assignSubject');
-    Route::get('/load_student_id/{id}',[StudentController::class,'loadStudentId'])->name('student.load_student_id');
+    Route::get('/load_student_id/',[StudentController::class,'loadStudentId'])->name('student.load_student_id');
 
     Route::get('student/promotion',[StudentController::class,'promotion'])->name('student.promotion');
     Route::post('student/promote',[StudentController::class,'promote'])->name('student.promote');
