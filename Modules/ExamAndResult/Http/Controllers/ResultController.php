@@ -120,7 +120,6 @@ class ResultController extends Controller
                     //$subjectCount = $subjectCount - ($optional > 0 ? 1 : 0);
                     //    return $mark;
                     //  $gpa = (float)$mark->sum('gpa');
-                    // dd($gpa);
                     $mainSubjectGpa = $mark->sum('gpa') - $countOptionalSubject * 3;
                     $mainSubject = $subjectCount - $countOptionalSubject;
                     $mainGpa = $mainSubjectGpa / $subjectCount;
