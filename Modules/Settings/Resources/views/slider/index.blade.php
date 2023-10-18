@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Slider</h1>
+                    <h1>{{ __('Slider') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -37,62 +37,56 @@
                     <div class="card">
                         <div class="container">
                             <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">{{ __('Add Slider') }}</h4>
-                            {{-- <form> --}}
                             {{ Form::open(['route' => 'slider.store', 'method' => 'post', 'files' => 'true']) }}
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label"
-                                    style="font-weight: 500; text-align: right">Title*</label>
+                                    style="font-weight: 500; text-align: right">{{ __('Title*') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        {{-- <input type="text" class="form-control" id=""  aria-describedby=""> --}}
                                         {{ Form::text('title', null, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label"
-                                    style="font-weight: 500; text-align: right">Short Description*</label>
+                                    style="font-weight: 500; text-align: right">{{ __('Short Description*') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        {{-- <textarea type="text" class="form-control" rows="5" id=""> </textarea> --}}
                                         {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 5]) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label"
-                                    style="font-weight: 500; text-align: right">Start Date</label>
+                                    style="font-weight: 500; text-align: right">{{ __('Start Date') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        {{-- <input name="start" class="form-control" id="datePicker"  aria-describedby=""> --}}
                                         {{ Form::text('start', null, ['class' => 'form-control datePicker']) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label"
-                                    style="font-weight: 500; text-align: right">End Date</label>
+                                    style="font-weight: 500; text-align: right">{{ __('End Date') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        {{-- <input name="end" class="form-control" id="datePicker1"  aria-describedby=""> --}}
                                         {{ Form::text('end', null, ['class' => 'form-control datePicker']) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Upload Image*</label>
-                             <div class="col-sm-8">
-                               <div class="form-group files color">
-                                  <input type="file" name="image" class="form-control" multiple="">
-                               </div>
-                              <small class="text-danger">For better view resize all images to 1920*800 pixel. For a quick help click on the link <a href="https://imageresizer.com/" target="_blank">https://imageresizer.com/</a></small>
-                              </div>
+                                <label for="" class="col-sm-2 col-form-label"
+                                    style="font-weight: 500; text-align: right">{{ __('Upload Image*') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group slim" data-ratio="12:5" data-max-file-size="2" data-instant-edit="true">
+                                        <input type="file" name="image" class="form-control" multiple="">
+                                    </div>
+                                </div>
                             </div>
                             <div style="float: right;padding-bottom: 50px">
                                 <button type="submit" class="btn btn-success"> <i class="fas fa-plus-circle"></i>
-                                    Submit</button>
+                                    {{ __('Submit') }}</button>
                             </div>
-                            {{-- </form> --}}
                             {{ Form::close() }}
                         </div>
                     </div>
@@ -107,16 +101,16 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="container">
-                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">All Slider</h4>
+                            <h4 class="modal-title" id="exampleModalLabel" style="padding: 20px">{{ __('All Slider') }}</h4>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Duration</th>
-                                        <th>Image</th>
-                                        <th>Action</th>
+                                        <th>{{ __('ID') }}</th>
+                                        <th>{{ __('Title') }}</th>
+                                        <th>{{ __('Description') }}</th>
+                                        <th>{{ __('Duration') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -127,7 +121,7 @@
                                     <td>{{ $slider->description }}</td>
                                     <td>{{ $slider->start }}<br>{{ $slider->end }}</td>
                                     <td>
-                                        <img src="{{ asset('assets/img/sliders') }}/{{ $slider->image }}" width="100" alt="">
+                                        <img src="{{ asset('storage/uploads/sliders/') }}/{{ $slider->image }}" width="100" alt="">
                                      </td>
                                     <td>
                                         <form  action="{{route('slider.destroy',$slider->id)}}" method="post">

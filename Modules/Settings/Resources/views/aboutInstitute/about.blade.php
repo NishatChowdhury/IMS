@@ -42,7 +42,7 @@
                             </div>
                         @endif
                         <div class="card-body">
-                            {{ Form::model($aboutInstitute,['route'=>'instituteMessageUpdate','method'=>'post']) }}
+                            {{ Form::model($aboutInstitute,['route'=>'instituteMessageUpdate','method'=>'patch']) }}
                             {{ Form::hidden('alias','about') }}
                             <div class="mb-3">
                                 <div class="form-group">
