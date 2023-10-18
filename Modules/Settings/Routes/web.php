@@ -74,7 +74,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('{id}/delete-subject',[InstitutionController::class,'delete_subject'])->name('delete_subject');
 
         //Route::get('institution/classsubjects','Backend\InstitutionController@classsubjects')->name('institution.classsubjects');
-        Route::post('assign-subject',[InstitutionController::class,'assign_subject'])->name('assign.subject');
+        Route::post('assign-subject',[InstitutionController::class,'assignSubject'])->name('assign.subject');
         //Route::post('institution/assign-subject','Backend\InstitutionController@assign_subject')->name('assign.subject');
         Route::post('edit-assigned-subject',[InstitutionController::class,'edit_assigned'])->name('edit.assign');
         Route::get('{id}/delete-assigned-subject',[InstitutionController::class,'delete_assigned'])->name('delete_assigned');
