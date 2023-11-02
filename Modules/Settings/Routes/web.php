@@ -219,6 +219,12 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('result-system/{id3}/result-system-2', [SiteInformationController::class,'resultSystem3'])->name('result-system.result-system-3');
         Route::post('result-system/{id4}/result-system-2', [SiteInformationController::class,'resultSystem4'])->name('result-system.result-system-4');
 
+    // Site Layout Setup
+    Route::get('layoutTest',function (){
+        return view('layouts.font_gold');
+    });
+    Route::get('layout',[SiteInformationController::class,'layoutIndex'])->name('layout.index');
+    Route::post('layout-update/{id}/layout',[SiteInformationController::class,'layoutUpdate'])->name('layout.update');
 });
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Backend\InstituteMessage;
+use App\Models\Backend\SiteInformation;
 use App\Models\Backend\Subscriber;
 use App\Models\Frontend\Alumni;
 use App\Models\Frontend\Language;
@@ -44,17 +45,25 @@ use App\Models\Backend\GalleryCategory;
 use App\Models\Backend\OnlineAdmission;
 use App\Models\Backend\GalleryCorner;
 
+
 class FrontController extends Controller
 {
     protected $repository;
+    protected $layoutdir;
 
     public function __construct(FrontRepository $repository)
     {
         $this->repository = $repository;
+        $id=siteConfig('layout_id');
+        $dir = 'front_layout_';
+        $this->layoutdir=$dir.$id;
+
     }
+
 
     public function index()
     {
+
         $sliders = Slider::query()
             //->where('start','<',Carbon::StudentControllertoday())
             ->where(function($query){
@@ -85,7 +94,17 @@ class FrontController extends Controller
         $features = Feature::query()->where('active',1)->take(6)->get();
 
         //return view('front.index-navy');
-        return view('front.index',compact('galleryCorner','about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+       // return view('layouts.font_gold');
+        $data = SiteInformation::query()->first();
+        if($data->layout_id == 2){
+
+            //return view('master_front_gold');
+            return view($this->layoutdir.'.front_gold.index',compact('galleryCorner','about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+        }else{
+            return view(".front.index",compact('galleryCorner','about','principal','chairman','sliders','content','teachers','links','notices','events','newses','latestNews','features'));
+
+        }
+
     }
 
     public function StoreSubscriber(Request $request){

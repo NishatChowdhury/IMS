@@ -29,7 +29,7 @@ return new class extends Migration
     {
         Schema::table('themes', function (Blueprint $table) {
             $table->renameColumn('layout_home','layout');
-            $table->dropColumn('layout_inner');
+           $table->dropColumn('layout_inner');
         });
     }
 };

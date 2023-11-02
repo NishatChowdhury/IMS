@@ -12,6 +12,7 @@
                     </div>
                 </div>
             </div>
+			
             <div class="col-lg-4 mt-5 mt-md-0">
                 <div class="card shadow-v2 z-index-5" data-offset-top-xl="-160">
                     <div class="card-header text-white border-bottom-0" style="background-color: #97a1aa">

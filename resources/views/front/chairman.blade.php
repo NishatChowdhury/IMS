@@ -11,8 +11,8 @@
                 @if($chairman)
                     {!! Str::limit($chairman->body,800) !!}
                 @endif
-                <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ __('...more') }}</a>
-            </div>
+               re') }}</a>
+            </div> <a style="color: blue" class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ __('...mo
         </div>
     </div>
 </section>
