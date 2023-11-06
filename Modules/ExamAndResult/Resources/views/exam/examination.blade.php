@@ -67,16 +67,23 @@
                                                 <a href="{{ route('exam-seat-plan.seatPlan', $exam->id) }}"
                                                     class="btn btn-dark btn-sm" title="Exam Set Plan"><i
                                                         class="fa fa-th"></i></a>
+
                                                 <a href="{{ url('/admin/exam/admit-card') }}/{{ $exam->id }}"
                                                     class="btn btn-primary btn-sm" title="Admit Card"><i
                                                         class="fa fa-id-badge" aria-hidden="true"></i></a>
+
                                                 <a href="{{ route('exam.schedule.index', $exam->id) }}"
                                                     class="btn btn-info btn-sm" title="Exam Schedule"><i
                                                         class="far fa-calendar-alt"></i></a>
+
+                                                <a href="{{ route('exam.resultSystem', $exam->id) }}"
+                                                    class="btn btn-info btn-sm" title="Result System"><i class="fas fa-tools"></i>
+                                                </a>
+
                                                 <a href="{{ route('exam.tabulation', $exam->id) }}"
                                                     class="btn btn-dark btn-sm" title="Tabulation Sheet"><i
                                                         class="fas fa-list-ol"></i></a>
-                                                {{--                                        <a type="button" href="{{ action('Backend\ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a> --}}
+
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
                                                         class="fas fa-trash"></i></button>
                                                 <a href="{{ route('exam.generateResult', $exam->id) }}" role="button"

@@ -16,6 +16,7 @@ use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\Subject;
+use App\Models\ResultSystem;
 use App\Repository\ExamRepository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -50,6 +51,62 @@ class ExamController extends Controller
         $grade->delete();
         return redirect('admin/exam/gradesystem')->with('success', 'Grading System Deleted Successfully');
     }
+
+
+
+
+
+
+
+
+    public function resultSystem(){
+        $subjects = Subject::query()->get();
+        $resultSystem = ResultSystem::query()->with('firstSubject','secondSubject')->get();
+        return view ('examandresultv2::exam.result-system',compact('subjects','resultSystem'));
+    }
+
+    public function resultSystemStore(Request $request){
+        ResultSystem::query()->create($request->all());
+        return redirect('admin/exam/result-system');
+    }
+
+    public function resultSystemEdit($id)
+    {
+        $resultSystem =  ResultSystem::find($id)->selected_value;
+        $subjects = Subject::all();
+        return view ('examandresult::exam.edit-result-system',compact('resultSystem','subjects'));
+    }
+
+    public function resultSystemUpdate($id,Request $request)
+    {
+        $page = Page::query()->findOrFail($id);
+
+        if($request->hasFile('image')){
+            $name = $id.'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path().'/assets/img/pages/', $name);
+            $data = $request->except('image');
+            $data['image'] = $name;
+            $page->update($data);
+        }else{
+            $page->update($request->all());
+        }
+
+        return redirect('admin/pages');
+    }
+
+    function  resultSystemDestroy($id){
+        $page = Page::query()->findOrFail($id);
+        $page->delete();
+        return back();
+    }
+
+
+
+
+
+
+
+
 
     public function examination()
     {

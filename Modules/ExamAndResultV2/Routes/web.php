@@ -11,13 +11,6 @@
 |
 */
 
-// Route::prefix('examandresultv2')->group(function() {
-//     Route::get('/', 'ExamAndResultV2Controller@index');
-// });
-
-
-
-
 use Illuminate\Support\Facades\Route;
 use Modules\ExamAndResult\Http\Controllers\ExamController;
 use Modules\ExamAndResult\Http\Controllers\ExamScheduleController;
@@ -28,9 +21,10 @@ use Modules\ExamAndResult\Http\Controllers\CompetencyController;
 use Modules\ExamAndResult\Http\Controllers\IndicatorController;
 use Modules\ExamAndResult\Http\Controllers\RemarkController;
 use Modules\ExamAndResult\Http\Controllers\CompetencyRemarkController;
+use Modules\ExamAndResultV2\Http\Controllers\ResultSystemController;
 
-Route::prefix('examandresult')->group(function() {
-    Route::get('/', 'ExamAndResultController@index')->name('exam-n-result');
+Route::prefix('examandresultv2')->group(function() {
+    Route::get('/', 'ExamAndResultV2Controller@index')->name('exam-n-result-v2');
 });
 
 
@@ -51,6 +45,14 @@ Route::prefix('admin')->group(function() {
     Route::post('exam/store-schedule', [ExamController::class,'store_schedule'])->name('exam.store_schedule');
     Route::get('exam/admit-card/{exam_id}',[ExamController::class,'admitCard'])->name('exam.admitCard');
     Route::get('exam/seat-allocate',[ExamController::class,'seatAllocate'])->name('exam.seatAllocate');
+
+    // Result System
+    Route::get('exam/result-system/{examId}',[ResultSystemController::class,'resultSystem'])->name('exam.resultSystem');
+    Route::post('exam/result-system/store',[ResultSystemController::class,'resultSystemStore'])->name('exam.resultSystemStore');
+    Route::get('exam/result-system/edit/{id}',[ResultSystemController::class,'resultSystemEdit'])->name('exam.resultSystemEdit');
+    Route::patch('exam/result-system/{id}/update',[ResultSystemController::class,'resultSystemUpdate'])->name('exam.resultSystemUpdate');
+    Route::delete('exam/result-system/destroy/{id}',[ResultSystemController::class,'resultSystemDestroy'])->name('exam.resultSystemDestroy');
+
 
     // result
     Route::get('exam/result-details/{id}',[ResultController::class,'resultDetails'])->name('exam.resultDetails');
