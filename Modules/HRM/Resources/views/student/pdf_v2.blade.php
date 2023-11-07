@@ -181,7 +181,7 @@
 
                         @isset($card['nickname'])
                             <h2
-                                style="position: relative;top: -10px;margin: 2px;text-align: center; font-size:18px ;color:#042E57">
+                                style="position: relative;top: -10px;margin: 2px;text-align: center; font-size:13px ;color:#000000">
                                 <strong> {{ $student->student->name ?? ''}} </strong>
                             </h2>
                         @endisset
