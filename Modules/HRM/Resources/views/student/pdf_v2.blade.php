@@ -255,7 +255,7 @@
                                 <tr>
                                     <td>{{ __('Session') }}</td>
                                     <td>&nbsp;:&nbsp;</td>
-                                    <td><strong>{{ __('2022-2023') }}</strong></td>
+                                    <td><strong>{{ __('2023-2024') }}</strong></td>
                                 </tr>
                                 @isset($card['blood'])
                                     <tr>
