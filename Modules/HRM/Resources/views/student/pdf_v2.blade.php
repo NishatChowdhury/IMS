@@ -146,7 +146,7 @@
     <div class="row" style="{{ ($key + 1) % 4 == 0 ? 'page-break-after: always' : '' }}">
         @foreach ($chunk as $student)
             <div class="col-3 col-2-5">
-                <div class="card text-center" style="width: 2.17in;height:4.42in">
+                <div class="card text-center" style="width: 2.17in;height:4.00in">
                     <div class="card-header bg-white border-0"
                         style="padding:10px 0 0 10px;">
                         <div class="row">
@@ -214,13 +214,7 @@
                                         <td>{{ __('Class') }}</td>
                                         <td>&nbsp;:&nbsp;</td>
                                         <td>
-                                            <strong>{{ $student->classes->name ?? '' }}</strong>&nbsp;
-                                            @if ($card['group'])
-                                                {{ $student->group->name ?? '' }}&nbsp;
-                                            @endif
-                                            @if ($card['section'])
-                                                {{ $student->section->name ?? '' }}
-                                            @endif
+                                            <strong>{{ $student->classes->name ?? '' }}</strong>
                                         </td>
                                     </tr>
                                 @endisset
