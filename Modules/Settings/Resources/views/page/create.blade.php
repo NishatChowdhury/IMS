@@ -13,8 +13,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">General Form</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('General Form') }}</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Create Page</h3>
+                            <h3 class="card-title">{{ __('Create Page') }}</h3>
                         </div>
                         <div class="card-body">
                             @if($errors->any())
@@ -46,30 +46,30 @@
                         {{ Form::open(['route'=>'page.store','method'=>'post','files'=>true]) }}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
+                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Page Name*') }}</label>
 {{--                                {{ Form::select('id',$pages,null,['class'=>'form-control','readonly']) }}--}}
                                 {{ Form::text('name',null,['class'=>'form-control']) }}
 
                             </div>
                             <div class="form-group row">
-                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Content*</label>
+                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">{{ __('Content') }}*</label>
 {{--                                <textarea name="content" id="txtEditor">{{ $page->content }}</textarea>--}}
                                 <span class="col-md-12"></span>
 {{--                                {{ Form::textarea('content',null,['id'=>'editor1','class'=>'form-control']) }}--}}
-<textarea id="summernote" name="pageContent"></textarea>
+                                <textarea id="summernote" name="pageContent"></textarea>
 
 
 {{--                                <textarea name="content" id="formsummernote" cols="30" rows="10"></textarea>--}}
 {{--                                {{ Form::textarea('content',null,['id'=>'formsummernote','cols'=>30,'rows'=>10]) }}--}}
 
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>
-                                <div class="input-group">
-                                    {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                    {{ Form::text('order',null,['class'=>'form-control']) }}
-                                </div>
-                            </div>
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>--}}
+{{--                                <div class="input-group">--}}
+{{--                                    --}}{{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+{{--                                    {{ Form::text('order',null,['class'=>'form-control']) }}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 {{--                            <div class="form-group row">--}}
 {{--                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>--}}
 {{--                                <div class="col-sm-10">--}}
@@ -82,7 +82,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                            <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> {{ __('Add') }}</button>
                         </div>
                         {{ Form::close() }}
                     </div>
