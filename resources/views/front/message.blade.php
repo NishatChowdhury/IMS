@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <img src="{{ asset('uploads/message') }}/{{ $principal->image }}" alt="">
+                    <img src="{{ asset('storage/uploads/message') }}/{{ $principal->image }}" alt="">
                 </div>
                 <div class="col-md-6 mt-3">
                     <h2>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img style="margin-top: 10px"  height="200px"  width="200px" src="{{asset('uploads/message/'.$principal->image)}}" alt="">
+                                    <img style="margin-top: 10px" src="{{asset('storage/uploads/message/'.$principal->image)}}" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <h2>

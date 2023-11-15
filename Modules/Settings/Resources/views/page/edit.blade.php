@@ -48,7 +48,7 @@
                             <div class="form-group row">
                                 <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Page Name*</label>
 {{--                                {{ Form::select('id',$pages,null,['class'=>'form-control','readonly']) }}--}}
-                                {{ Form::text('id',$page->name,['class'=>'form-control','readonly']) }}
+                                {{ Form::text('name',$page->name,['class'=>'form-control','readonly']) }}
 
                             </div>
                             <div class="form-group row">
@@ -61,13 +61,13 @@
                                 {{ Form::textarea('content',null,['id'=>'formsummernote','cols'=>30,'rows'=>10]) }}
 
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>
-                                <div class="input-group">
-                                    {{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
-                                    {{ Form::text('order',null,['class'=>'form-control']) }}
-                                </div>
-                            </div>
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="" class="col-form-label" style="font-weight: 500; text-align: right">Order*</label>--}}
+{{--                                <div class="input-group">--}}
+{{--                                    --}}{{--<input type="text" class="form-control" id=""  aria-describedby="">--}}
+{{--                                    {{ Form::text('order',null,['class'=>'form-control']) }}--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 {{--                            <div class="form-group row">--}}
 {{--                                <label for="" class="col-sm-2 col-form-label" style="font-weight: 500; text-align: right">Image*</label>--}}
 {{--                                <div class="col-sm-10">--}}
@@ -80,7 +80,8 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i> Add</button>
+                            <button type="submit" class="btn btn-success  btn-sm" > <i class="fas fa-plus-circle"></i>
+                                {{ __('Update') }}</button>
                         </div>
                         {{ Form::close() }}
                     </div>

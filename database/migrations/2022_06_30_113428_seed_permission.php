@@ -578,6 +578,10 @@ class SeedPermission extends Migration
                     "exam.setfinalresultrule",
                     "exam.getfinalresultrule",
                     "exam.finalResultNew",
+                    "competency.index",
+                    "indicator.index",
+                    "remark.index",
+                    "competency-remark.index"
                 ],
             ],[
                 'group_name' => 'Role',

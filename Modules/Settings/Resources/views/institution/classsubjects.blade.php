@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Classes</a></li>
-                        <li class="breadcrumb-item active">Subjects</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Classes') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Subjects') }}</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                                 <div class="col-md-3">
                                     <div class="dec-block">
                                         <div class="dec-block-dec" style="float:left;">
-                                            <h5 style="margin-bottom: 0px;">{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</h5>
+                                            <h5>{{ $class->academicClasses->name ?? '' }} - {{ $class->section->name ?? '' }}{{ $class->group->name ?? '' }}</h5>
                                             <p>{{ $class->academicClasses->short_name }}</p>
                                         </div>
                                     </div>
@@ -53,14 +53,13 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Short Name </th>
-                                    <th>Teacher</th>
-                                    <th>Pass Mark</th>
-                                    <th>Optional</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>{{ __('Code') }}</th>
+                                    <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Short Name') }}</th>
+                                    <th>{{ __('Teacher') }}</th>
+                                    <th>{{ __('Optional') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -70,20 +69,6 @@
                                         <td>{{$sub->subject->name}}</td>
                                         <td>{{$sub->subject->short_name}}</td>
                                         <td>{{ $sub->staff }}</td>
-                                        <td>
-                                            @if($sub->objective_pass)
-                                                Obj-{{$sub->objective_pass}};
-                                            @endif
-                                            @if($sub->written_pass)
-                                                Wrtn-{{$sub->written_pass}};
-                                            @endif
-                                            @if($sub->practical_pass)
-                                                Pra-{{ $sub->practical_pass }};
-                                            @endif
-                                            @if($sub->viva_pass)
-                                                Viva-{{ $sub->viva_pass }}
-                                            @endif
-                                        </td>
                                         <td>{{$sub->is_optional ? 'YES' : 'NO'}}</td>
                                         <td></td>
                                         <td>
@@ -104,32 +89,23 @@
 
     <!-- ***/ Pop Up Model for subjects -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content modal-lg" style="width:600px; padding: 0px 23px;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Assign Subject</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Assign Subject') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{--                        {{ Form::model($subject,['action'=>'InstitutionController@assign_subject']) }}--}}
-
-                    {{--                        {{ Form::close() }}--}}
-                    {!! Form::open(['route'=>'institution.assign.subject', 'method'=>'post', 'class'=>'form-inline']) !!}
-                        {{--                        <div class="col-12">--}}
-                        {{--                            <div class="form-check form-check-inline mb-2" style="justify-content: normal">--}}
-                        {{--                                <input type="checkbox"  class="form-check-input sub" id="allSelect">--}}
-                        {{--                                <label class="form-check-label" for="sub">All Select</label>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
+                    {{ Form::open(['route'=>'institution.assign.subject', 'method'=>'post']) }}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
                                 @foreach($subjects as $key => $subject)
                                     @if($key == 1)
                                         <div class="col-md-4">
-                                            <h5 class="mb-1">Compulsory</h5>
+                                            <h5 class="mb-1">{{ __('Compulsory') }}</h5>
                                             <hr>
                                             @foreach($subject as  $sb)
                                                 <div class="form-check form-check-inline mb-3" style="justify-content: normal">
@@ -172,7 +148,7 @@
                         </div>
 
                     </div>
-                    {!! Form::close() !!}
+                    {{ Form::close() }}
                 </div>
                 <div class="modal-footer"></div>
             </div>

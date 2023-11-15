@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Configured Pages </h1>
+                    <h1>{{ __('Configured Pages') }} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
-                        <li class="breadcrumb-item active">Configured Pages</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Settings') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Configured Pages') }}</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header" style="border-bottom: none !important;">
                             {{--<div class="row">--}}
-                                {{--<h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : 1000</h3>--}}
+                            {{--<h3 class="card-title"><span style="padding-right: 10px;margin-left: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : 1000</h3>--}}
                             {{--</div>--}}
                             <div class="row">
                                 <div>
@@ -41,33 +41,32 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Site</th>
-                                    <th>Page</th>
-                                    <th>Content</th>
-                                    <th>Used in</th>
-                                    <th>Action</th>
+                                    <th>{{ __('ID') }}</th>
+                                    <th>{{ __('Page') }}</th>
+                                    <th>{{ __('Content') }}</th>
+                                    <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($pages as $page)
-                                <tr>
-                                    <td></td>
-                                    <td>{{ $page->name }}</td>
-                                    <td style="line-break:anywhere">{{ substr(strip_tags($page->content),0,99) }}</td>
-                                    <td>{{ $page->order }}</td>
-                                    <td>
-                                        {{ Form::model($page,['route'=>['page.destroy',$page->id],'method'=>'delete','onsubmit'=>'confirmDelete()']) }}
-                                        <a href="{{ route('page.edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                        {{ Form::close() }}
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $page->id }}</td>
+                                        <td>{{ $page->name }}</td>
+                                        <td style="line-break:anywhere">{{ substr(strip_tags($page->content),0,99) }}</td>
+                                        <td>
+                                            {{ Form::model($page,['route'=>['page.destroy',$page->id],'method'=>'delete','onsubmit'=>'confirmDelete()']) }}
+                                            <a href="{{ route('page.edit',$page->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                            {{ Form::close() }}
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top: 10px">
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing {{ $pages->firstItem() }} to {{ $pages->count() }} of {{ $pages->total() }} entries</div>
+                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing {{ $pages->firstItem() }} to {{ $pages->count() }}
+                                        {{ __('of') }} {{ $pages->total() }} {{ __('entries') }}</div>
                                 </div>
                                 <div class="col-sm-12 col-md-3">
                                     {{ $pages->links() }}

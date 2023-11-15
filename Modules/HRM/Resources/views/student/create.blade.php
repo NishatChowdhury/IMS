@@ -84,16 +84,14 @@
         });
 
         $(document).on('keyup','#rank', function () {
-            alert();
             var academicYear = $('.year').val();
             $.ajax({
-                url:"{{url('admin/load_student_id')}}",
+                url:"{{ route('student.load_student_id') }}",
                 type:'GET',
                 data:{academicYear:academicYear},
                 success:function (data) {
                     console.log(data);
                     $('#studentID').val(data);
-
                 }
             });
         });

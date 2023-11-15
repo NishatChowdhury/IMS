@@ -43,7 +43,7 @@
     <!-- Google Font: Source Sans Pro -->
     {{--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
 <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
     {{--    @livewireStyles--}}
     {{--    <livewire:styles />--}}
 

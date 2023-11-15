@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class CreatePageTable extends Migration
 {
@@ -17,7 +16,7 @@ class CreatePageTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('content');
+            $table->longText('content');
             $table->string('image');
             $table->integer('order');
             $table->string('file')->nullable();

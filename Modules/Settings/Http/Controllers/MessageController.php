@@ -4,9 +4,11 @@ namespace Modules\Settings\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\InstituteMessage;
+use App\Models\Backend\Slider;
+use App\Slim\Slim;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class MessageController extends Controller
@@ -44,11 +46,26 @@ class MessageController extends Controller
         $data['body'] = $request->body;
         $data['alias'] = $request->alias;
 
-        if($request->file('image')) {
-            $file = $request->file('image');
-            $filename = date('YmdHi') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/message'), $filename);
-            $data['image'] = $filename;
+//        if($request->file('image')) {
+//            $file = $request->file('image');
+//            $filename = date('YmdHi') . '.' . $file->getClientOriginalExtension();
+//            $file->move(public_path('uploads/message'), $filename);
+//            $data['image'] = $filename;
+//        }
+
+        $images = Slim::getImages('image');
+        if (!empty($images)) {
+            $image = array_shift($images);
+            $imageName = date('YmdHi') . '.' . pathinfo($image['output']['name'], PATHINFO_EXTENSION);
+            $imageData = $image['output']['data'];
+            $output = Slim::saveFile($imageData, $imageName, '../storage/app/public/uploads/message', false);
+            $data['image'] = $imageName;
+            $data['active'] = 1;
+            try{
+                Slider::query()->create($data);
+            }catch(\Exception $e){
+                dd($e);
+            }
         }
 
         if($msg){

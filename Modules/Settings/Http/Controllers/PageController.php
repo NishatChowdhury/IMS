@@ -28,16 +28,16 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
-    $validated = $request->validate([
+    $request->validate([
         'name' => 'required',
         'pageContent' => 'required',
-        'order' => 'required',
+        //'order' => 'required',
     ]);
-        Page::create([
+        Page::query()->create([
             'name' => $request->name,
             'content' => $request->pageContent,
-            'order' => $request->order,
-            'image' => 'jshdfhj'
+            //'order' => $request->order,
+            //'image' => 'jshdfhj'
         ]);
         Session::flash('success','Page created successfully');
         return redirect('admin/pages');
@@ -52,17 +52,27 @@ class PageController extends Controller
 
     public function update($id,Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'content' => 'required',
+            //'order' => 'required',
+        ]);
+
         $page = Page::query()->findOrFail($id);
 
-        if($request->hasFile('image')){
-            $name = $id.'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path().'/assets/img/pages/', $name);
-            $data = $request->except('image');
-            $data['image'] = $name;
-            $page->update($data);
-        }else{
-            $page->update($request->all());
-        }
+//        if($request->hasFile('image')){
+//            $name = $id.'.'.$request->file('image')->getClientOriginalExtension();
+//            $request->file('image')->move(public_path().'/assets/img/pages/', $name);
+//            $data = $request->except('image');
+//            $data['image'] = $name;
+//            $page->update($data);
+//        }else{
+//            $page->update($request->all());
+//        }
+
+        $page->update($request->all());
+
+        Session::flash('success','Page updated successfully');
 
         return redirect('admin/pages');
     }
