@@ -12,6 +12,7 @@ use App\Models\Backend\FinalResult;
 use App\Models\Backend\Grade;
 use App\Models\Backend\Mark;
 use App\Models\Backend\Session;
+use App\Models\Backend\SiteInformation;
 use App\Models\Backend\Staff;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
@@ -36,49 +37,94 @@ class ExamController extends Controller
 
     public function gradesystem()
     {
+        $siteInformation = SiteInformation::query()->first();
         $gradings = Grade::all();
-        return view ('examandresult::exam.gradesystem', compact('gradings'));
+
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.gradesystem', compact('gradings'));
+        }
+        else{
+            return view ('examandresultv2::exam.gradesystem', compact('gradings'));
+        }
     }
 
     public function store_grade(Request $request){
+
+        $siteInformation = SiteInformation::query()->first();
         Grade::query()->create($request->all());
-        return redirect('admin/exam/gradesystem')->with('success', 'Grading System Added Successfully');
+        if($siteInformation->result_id == 1){
+            return redirect('admin/exam/gradesystem')->with('success', 'Grading System Added Successfully');
+        }
+        else{
+            return redirect('admin/exam/gradesystem/v2')->with('success', 'Grading System Added Successfully');
+        }
+        
     }
 
     public function delete_grade($id){
+        $siteInformation = SiteInformation::query()->first();
         $grade = Grade::query()->findOrFail($id);
         $grade->delete();
-        return redirect('admin/exam/gradesystem')->with('success', 'Grading System Deleted Successfully');
+        if($siteInformation->result_id == 1){
+            return redirect('admin/exam/gradesystem')->with('success', 'Grading System Added Successfully');
+        }
+        else{
+            return redirect('admin/exam/gradesystem/v2')->with('success', 'Grading System Added Successfully');
+        }
     }
 
     public function examination()
     {
+        $siteInformation = SiteInformation::query()->first();
         $exams = Exam::whereHas('session', function($q){
             return $q->where('active', 1);
         })->get();
         $repository = $this->repository;
-        return view ('examandresult::exam.examination', compact('exams','repository'));
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.examination', compact('exams','repository'));
+        }
+        else{
+            return view ('examandresultv2::exam.examination_v2', compact('exams','repository'));
+        }
     }
 
     public function store_exam(Request $request){
+        $siteInformation = SiteInformation::query()->first();
         Exam::query()->create($request->all());
-        return redirect('admin/exam/examination')->with('success', 'Exam Added Successfully');
+        if($siteInformation->result_id == 1){
+            return redirect('admin/exam/examination')->with('success', 'Exam Added Successfully');
+        }
+        else{
+            return redirect('admin/exam/examination/v2')->with('success', 'Exam Added Successfully');
+        }
     }
 
     public function destroy($id){
+        $siteInformation = SiteInformation::query()->first();
         $exam = Exam::query()->findOrFail($id);
         $exam->delete();
-        return redirect('admin/exam/examination')->with('success', 'Exam Deleted Successfully');
+        if($siteInformation->result_id == 1){
+            return redirect('admin/exam/examination')->with('success', 'Exam Added Successfully');
+        }
+        else{
+            return redirect('admin/exam/examination/v2')->with('success', 'Exam Added Successfully');
+        }
     }
 
     public function examitems()
     {
+        $siteInformation = SiteInformation::query()->first();
         $sessions = Session::all()->pluck('year', 'id');
         $exams = Exam::all()->pluck('name', 'id');
         $classes = AcademicClass::all()->pluck('name', 'id');
         $schedules = ExamSchedule::all();
         $subjects = Subject::all()->pluck('name','id');
-        return view ('examandresult::exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
+        }
+        else{
+            return view ('examandresultv2::exam.examitems', compact('sessions', 'exams', 'classes', 'schedules','subjects'));
+        }
     }
 
     public function store_schedule(Request $request){
