@@ -88,7 +88,7 @@
                                 <div class="col-md-12">
 
                                     <div style="float: right;">
-                                        <a role="button" href="{{ route('exam.allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                        <a role="button" href="{{ url('admin/exam/result-details-all') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
                                             {{ __('All Details')}} </a>
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
                                             {{ __('Notify')}}</button>

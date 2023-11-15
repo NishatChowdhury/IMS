@@ -9,6 +9,7 @@ use App\Models\Backend\ExamResult;
 use App\Models\Backend\ExamSchedule;
 use App\Models\Backend\Grade;
 use App\Models\Backend\Mark;
+use App\Models\Backend\SiteInformation;
 use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Models\Backend\Subject;
@@ -31,9 +32,15 @@ class ResultSystemController extends Controller
     }
 
     public function gradesystem()
-    {
+    {   $siteInformation = SiteInformation::query()->first();
         $gradings = Grade::all();
-        return view ('examandresultv2::exam.gradesystem', compact('gradings'));
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.gradesystem', compact('gradings'));
+        }
+        else{
+            return view ('examandresultv2::exam.gradesystem', compact('gradings'));
+        }
+        
     }
 
     public function store_grade(Request $request){
@@ -92,16 +99,23 @@ class ResultSystemController extends Controller
     }
 
     public function examination()
-    {
+    {  
+        $siteInformation = SiteInformation::query()->first();
         $exams = Exam::whereHas('session', function($q){
             return $q->where('active', 1);
         })->get();
         $repository = $this->repository;
-        return view ('examandresultv2::exam.examination_v2', compact('exams','repository'));
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.examination', compact('exams','repository'));
+        }
+        else{
+            return view ('examandresultv2::exam.examination_v2', compact('exams','repository'));
+        }
     }
 
     public function index(Request $request, ExamResult $examResult)
     {
+        $siteInformation = SiteInformation::query()->first();
         if ($request->all()) {
             $r = $examResult->newQuery();
 
@@ -129,11 +143,18 @@ class ResultSystemController extends Controller
         }
 
         $repository = $this->repository;
-        return view('examandresultv2::exam.examresult_v2', compact('repository', 'results'));
+
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.examresult', compact('results','repository'));
+        }
+        else{
+            return view ('examandresultv2::exam.examresult_v2', compact('results','repository'));
+        }
     }
 
     public function generateResult($examId)
     {
+        $siteInformation = SiteInformation::query()->first();
         $method = 2;
 
         $sessionId = 1;
@@ -232,11 +253,17 @@ class ResultSystemController extends Controller
                 /* update exam rank end */
             }
         }
-        return redirect('admin/exam/examresult/v2');
+        if($siteInformation->result_id == 1){
+            return redirect('admin/exam/examresult');
+        }
+        else{
+            return redirect('admin/exam/examresult/v2');
+        }
     }
 
     public function allDetails(Request $request, ExamResult $examResult)
     {
+        $siteInformation = SiteInformation::query()->first();
         if ($request->all()) {
             $r = $examResult->newQuery();
 
@@ -259,13 +286,19 @@ class ResultSystemController extends Controller
         }
 
         $repository = $this->repository;
-        return view('examandresultv2::exam.all-details', compact('results', 'repository'));
+
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.all-details', compact('results','repository'));
+        }
+        else{
+            return view('examandresultv2::exam.all-details', compact('results', 'repository'));
+        }
     }
 
     public function resultDetails($id)
     {
+        $siteInformation = SiteInformation::query()->first();
         $result = ExamResult::query()->with('studentAcademic')->findOrFail($id);
-
         $marks = Mark::query()
             ->where('student_id', $result->studentAcademic->id) //student_id == student academic id
             ->where('exam_id', $result->exam_id)
@@ -274,13 +307,18 @@ class ResultSystemController extends Controller
             ->orderBy('level')
             ->get();
 
-        return view('examandresultv2::exam.result-details', compact('result', 'marks'));
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.all-details', compact('result','marks'));
+        }
+        else{
+            return view('examandresultv2::exam.all-details', compact('result', 'marks'));
+        }
     }
 
     public function resultDetails_Layout2($id)
     {
+        $siteInformation = SiteInformation::query()->first();
         $result = ExamResult::query()->with('studentAcademic')->findOrFail($id);
-
         $marks = Mark::query()
             ->where('student_id', $result->studentAcademic->id) //student_id == student academic id
             ->where('exam_id', $result->exam_id)
@@ -289,18 +327,30 @@ class ResultSystemController extends Controller
             ->orderBy('level')
             ->get();
 
-        return view('examandresultv2::exam.result-details_layout2', compact('result', 'marks'));
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.result-details_layout2', compact('result','marks'));
+        }
+        else{
+            return view('examandresultv2::exam.result-details_layout2', compact('result', 'marks'));
+        }
     }
 
     public function bulkResult()
     {
-
+        $siteInformation = SiteInformation::query()->first();
         $repository = $this->repository;
-        return view('examandresultv2::exam.bulkresult', compact('repository'));
+
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.bulkresult', compact('repository'));
+        }
+        else{
+            return view('examandresultv2::exam.bulkresult', compact('repository'));
+        }
     }
 
     public function bulkResultPdf(Request $request, ExamResult $examResult)
     {
+        $siteInformation = SiteInformation::query()->first();
 
         if ($request->all()) {
             $r = $examResult->newQuery();
@@ -329,6 +379,12 @@ class ResultSystemController extends Controller
         }
 
         $repository = $this->repository;
-        return view('examandresultv2::exam.bulkresult-pdf', compact('repository', 'results'));
+
+        if($siteInformation->result_id == 1){
+            return view ('examandresult::exam.bulkresult-pdf', compact('repository','results'));
+        }
+        else{
+            return view('examandresultv2::exam.bulkresult-pdf', compact('repository', 'results'));
+        }
     }
 }
