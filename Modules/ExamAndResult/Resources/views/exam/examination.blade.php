@@ -76,10 +76,6 @@
                                                     class="btn btn-info btn-sm" title="Exam Schedule"><i
                                                         class="far fa-calendar-alt"></i></a>
 
-                                                <a href="{{ route('exam.resultSystem', $exam->id) }}"
-                                                    class="btn btn-info btn-sm" title="Result System"><i class="fas fa-tools"></i>
-                                                </a>
-
                                                 <a href="{{ route('exam.tabulation', $exam->id) }}"
                                                     class="btn btn-dark btn-sm" title="Tabulation Sheet"><i
                                                         class="fas fa-list-ol"></i></a>

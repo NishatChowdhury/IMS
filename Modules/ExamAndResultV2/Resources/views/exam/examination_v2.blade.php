@@ -1,4 +1,4 @@
-@extends('examandresult::layouts.master')
+@extends('examandresultv2::layouts.master')
 
 @section('title', 'Exam Mgmt | Examinations')
 
@@ -33,7 +33,7 @@
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#addexam" data-whatever="@mdo"
                                             style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
-                                            New</button>
+                                            {{ __('New') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                             <td>{{ $exam->status }}</td>
                                             <td>{{ $exam->notify == 1 ? 'Notify' : "Don't Notify" }}</td>
                                             <td>
-                                                {{ Form::open(['route' => ['exam.destroy', $exam->id], 'method' => 'delete', 'onsubmit' => 'return deleteConfirm()']) }}
+                                                {{ Form::open(['route' => ['exam.destroy_v2', $exam->id], 'method' => 'delete', 'onsubmit' => 'return deleteConfirm()']) }}
                                                 <a href="{{ route('exam-seat-plan.seatPlan', $exam->id) }}"
                                                     class="btn btn-dark btn-sm" title="Exam Set Plan"><i
                                                         class="fa fa-th"></i></a>
@@ -73,13 +73,15 @@
                                                 <a href="{{ route('exam.schedule.index', $exam->id) }}"
                                                     class="btn btn-info btn-sm" title="Exam Schedule"><i
                                                         class="far fa-calendar-alt"></i></a>
+                                                <a href="{{ route('exam.resultSystem', $exam->id) }}"
+                                                    class="btn btn-info btn-sm" title="Result System"><i class="fas fa-tools"></i>
+                                                </a>
                                                 <a href="{{ route('exam.tabulation', $exam->id) }}"
                                                     class="btn btn-dark btn-sm" title="Tabulation Sheet"><i
                                                         class="fas fa-list-ol"></i></a>
-                                                {{--                                        <a type="button" href="{{ action('Backend\ExamController@delete_exam',$exam->id) }}" class="btn btn-danger btn-sm" style="margin-left: 5px;" title="Delete"><i class="fas fa-trash "></i></a> --}}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
                                                         class="fas fa-trash"></i></button>
-                                                <a href="{{ route('exam.generateResult', $exam->id) }}" role="button"
+                                                <a href="{{ route('exam.generateResult_v2', $exam->id) }}" role="button"
                                                     class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></a>
                                                 {{ Form::close() }}
                                             </td>
@@ -87,21 +89,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- <div class="row" style="margin-top: 10px">
-                                <div class="col-sm-12 col-md-9">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">{{ __('First')}}</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">{{ __('Previous')}}</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">{{ __('Next')}}</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">{{ __('Last')}}</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -114,7 +101,7 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                {!! Form::open(['route' => 'store.exam', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'store.exam_v2', 'method' => 'post']) !!}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Exam') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -129,7 +116,6 @@
                             <div class="input-group">
                                 <input type="text" name="name" class="form-control" id="name" aria-describedby=""
                                     placeholder="Enter Your Exam Name" required>
-                                {{-- {{ Form::text('title',null,['class'=>'form-control']) }} --}}
                             </div>
                         </div>
                     </div>

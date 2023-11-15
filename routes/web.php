@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\ExStudentRegistrationController;
 use App\Http\Controllers\Front\AlumniController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\HomeController;
@@ -122,3 +123,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/nagad/create',[NagadPaymentController::class,'create'])->name('nagad.create');
 Route::post('/nagad/store', [NagadPaymentController::class,'store'])->name('nagad.store');
 Route::get('/nagad/callback', [NagadPaymentController::class,'callback'])->name('nagad.callback');
+
+// Ex-student registration
+Route::get('ex_student_registration',[ExStudentRegistrationController::class,'index'])->name('ex_student_registration.index');
+Route::post('ex_student_registration/store',[ExStudentRegistrationController::class,'store'])->name('ex_student_registration.store');

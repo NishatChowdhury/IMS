@@ -1,4 +1,4 @@
-@extends('examandresult::layouts.master')
+@extends('examandresultv2::layouts.master')
 
 @section('title', 'Exam Mgmt | Result Details')
 
@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['route'=>'exam.allDetails','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['route'=>'exam.allDetails_v2','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col">

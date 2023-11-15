@@ -1,4 +1,4 @@
-@extends('examandresult::layouts.master')
+@extends('examandresultv2::layouts.master')
 
 @section('title', 'Exam Mgmt | Result System')
 
