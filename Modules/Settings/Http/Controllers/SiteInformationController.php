@@ -94,7 +94,7 @@ class SiteInformationController extends Controller
     }
 
     // for layouts
-    public function layoutIndex(Request $request){
+    public function layoutIndex(){
         $layoutData = siteInformation::query()->first();
         return view('settings::settings.layouts_settings',compact('layoutData'));
     }
@@ -106,7 +106,7 @@ class SiteInformationController extends Controller
         $data->update($request->only('layout_id'));
         //return redirect()->back()->with('success','Thank you for choosing this layout',);
         //return view('layouts.front_gold');
-        return redirect('/');
+        return redirect()->back()->with('success','successfully activated');
     }
 
 }

@@ -16,6 +16,7 @@
     @include('front.notice')
 
     @include('front.chairman')
+
     <hr>
 
     @include('front.message')

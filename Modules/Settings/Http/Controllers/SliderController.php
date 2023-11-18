@@ -60,4 +60,5 @@ class SliderController extends Controller
         session()->flash('success', 'Slider removed successfully!');
         return redirect('admin/sliders');
     }
+
 }
