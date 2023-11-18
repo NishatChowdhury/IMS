@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
+     // dd('form');
         if(auth()->guard('student')->user()){
             return redirect('student/profile');
         }
@@ -41,8 +43,12 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-//        dd($request->all());
-        $this->validator($request);
+
+
+
+        $validator = $this->validator($request);
+
+
 
         if(Auth::guard('student')->attempt($request->only('studentId','password'))){
             //Authentication passed...
@@ -77,6 +83,7 @@ class LoginController extends Controller
     private function validator(Request $request)
     {
         //validation rules.
+
         $rules = [
             'studentId'    => 'required|exists:student_logins|min:2|max:191',
             'password' => 'required|string|min:4|max:255',
@@ -86,9 +93,16 @@ class LoginController extends Controller
         $messages = [
             'studentId.exists' => 'These credentials do not match our records.',
         ];
+        $customVariable = 'slogin';
 
         //validate the request.
-        $request->validate($rules,$messages);
+        //$request->validate($rules,$messages,$custom_variable);
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->with('custom_variable', $customVariable);
+        }
     }
 
     /**

@@ -21,14 +21,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 class OnlineApplyController extends Controller
 {
     private $repository;
-
+    protected $layoutdir;
     public function __construct(FrontRepository $repository)
     {
         $this->repository = $repository;
+        $id=siteConfig('layout_id');
+        $dir = $id==2?'front_layout_2.front':'front';
+        $this->layoutdir=$dir;
+
     }
      // school online admission form 
     public function onlineApply($id = null)
@@ -45,7 +50,7 @@ class OnlineApplyController extends Controller
         $data['religion'] = Religion::all()->pluck('name','id');
         $onlineAdmission = OnlineAdmission::find($id);
 
-        return view('front.pages.school-admission-form',compact('data','onlineAdmission'));
+        return view($this->layoutdir.'.'.'pages.school-admission-form',compact('data','onlineAdmission'));
         // return view('front.pages.applySchool',compact('content'));
     }
 
@@ -150,12 +155,14 @@ class OnlineApplyController extends Controller
     // college online admission validation form 
     public function onlineApplyCollege()
     {
-        return view('front.admission.validate-admission');
+        return view($this->layoutdir.'.'.'admission.validate-admission');
     }
 
     // college online admission form 
     public function admissionForm(Request $request)
     {
+
+
         $this->validate($request,[
             'ssc_roll' => 'required|numeric|exists:merit_lists'
         ]);
@@ -180,17 +187,19 @@ class OnlineApplyController extends Controller
 
         if($student){
             if($student->approved){
-                return view('front.admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
+                return view($this->layoutdir.'.'.'admission.admission-block-form',compact('repository','student','compulsory','selective','optional'));
             }
-            return view('front.admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
+            return view($this->layoutdir.'.'.'admission.admission-edit-form',compact('repository','student','compulsory','selective','optional'));
         }
 
-        return view('front.admission.admission-form',compact('repository','compulsory','selective','optional'));
+
+        return view($this->layoutdir.'.'.'admission.admission-form',compact('repository','compulsory','selective','optional'));
     }
 
     //college online form store
     public function storeCollege(Request $request)
     {
+
         $this->validate($request,[
             'session_id'=>'required',
             'class_id'=>'required',

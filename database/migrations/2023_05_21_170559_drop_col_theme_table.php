@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('themes', function (Blueprint $table) {
-            $table->dropColumn(['layout_home','layout_inner','top_bar_background','top_bar_color','header_background','header_color','menu_background','menu_color','submenu_background','submenu_color','inner_background','inner_color','footer_background','footer_color']);
+           // $table->dropColumn(['layout','layout_inner','top_bar_background','top_bar_color','header_background','header_color','menu_background','menu_color','submenu_background','submenu_color','inner_background','inner_color','footer_background','footer_color']);
+            $table->dropColumn(['layout','top_bar_background','top_bar_color','header_background','header_color','menu_background','menu_color','submenu_background','submenu_color','inner_background','inner_color','footer_background','footer_color']);
         });
     }
 

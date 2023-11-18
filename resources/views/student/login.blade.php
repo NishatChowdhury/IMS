@@ -23,7 +23,8 @@
                                 </ul>
                             @endif
 
-                            <form action="{{ route($loginRoute) }}" method="POST" class="px-lg-4">
+
+                                <form action="{{ route($loginRoute) }}" method="POST" class="px-lg-4">
                                 @csrf
                                 <div class="input-group input-group--focus mb-3">
                                     <div class="input-group-prepend">

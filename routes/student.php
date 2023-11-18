@@ -31,6 +31,7 @@ Route::prefix('student')->name('student.')->namespace('Student')->group(function
     Route::namespace('Auth')->group(function(){
         //Login Routes
         Route::get('/login','LoginController@showLoginForm')->name('login');
+        //Route::get('/login','LoginController@showLoginForm')->name('login');
         Route::post('/login','LoginController@login');
         Route::post('/logout','LoginController@logout')->name('logout');
 

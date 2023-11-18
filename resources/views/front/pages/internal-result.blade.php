@@ -31,7 +31,7 @@
     <section class="padding-y-100 border-bottom no-print">
         <div class="container">
 
-            {{ Form::open(['action'=>'FrontController@internal_exam','method'=>'get']) }}
+            {{ Form::open(['action'=>'Front\FrontController@internal_exam','method'=>'get']) }}
             <div class="row align-items-center">
 
                 <div class="col-md-3">

@@ -34,7 +34,7 @@
         <div class="container">
             <div class="row align-items-center">
 
-                @foreach($syllabuses as $syllabus)
+                @foreach($syllabus as $syllabus)
                 <div class="col-lg-3 col-md-6 marginTop-30 wow fadeIn">
                     <div class="card text-center height-100p shadow-v1">
                         <div class="card-header">

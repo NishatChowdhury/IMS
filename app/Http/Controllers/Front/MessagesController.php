@@ -7,13 +7,14 @@ use App\Models\Backend\Message;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class MessagesController extends Controller
+class cMessagesController extends Controller
 {
     /**
      * @throws ValidationException
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'name'       => 'required|min:4',
             'email'      => 'required|email',

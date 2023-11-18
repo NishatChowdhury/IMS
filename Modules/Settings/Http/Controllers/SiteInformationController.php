@@ -68,6 +68,7 @@ class SiteInformationController extends Controller
 
     public function resultSystem1(Request $request)
     {
+
         $data = SiteInformation::query()->first();
         $data->update($request->only('result_id'));
         return redirect()->back();
@@ -91,4 +92,21 @@ class SiteInformationController extends Controller
         $data->update($request->only('result_id'));
         return redirect()->back();
     }
+
+    // for layouts
+    public function layoutIndex(){
+        $layoutData = siteInformation::query()->first();
+        return view('settings::settings.layouts_settings',compact('layoutData'));
+    }
+
+    public function layoutUpdate(Request $request)
+    {
+
+        $data = SiteInformation::query()->first();
+        $data->update($request->only('layout_id'));
+        //return redirect()->back()->with('success','Thank you for choosing this layout',);
+        //return view('layouts.front_gold');
+        return redirect()->back()->with('success','successfully activated');
+    }
+
 }

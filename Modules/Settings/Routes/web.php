@@ -10,6 +10,7 @@ use Modules\Settings\Http\Controllers\LanguageController;
 use Modules\Settings\Http\Controllers\MenuController;
 use Modules\Settings\Http\Controllers\MessageController;
 use Modules\Settings\Http\Controllers\PageController;
+use Modules\Settings\Http\Controllers\ResultSettingsController;
 use Modules\Settings\Http\Controllers\RolePermissionController;
 use Modules\Settings\Http\Controllers\ScheduleController;
 use Modules\Settings\Http\Controllers\SettingsController;
@@ -179,6 +180,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('lang/translation/{id}',[LanguageController::class,'translation'])->name('lang.translation');
         Route::post('lang/translate/{id}',[LanguageController::class,'translate'])->name('lang.translate');
 
+    // Result Settings
+        Route::get('results',[ResultSettingsController::class,'index'])->name('result.index');
+
+
     # ---------------------------------------------- User Management -------------------------------------------------------
         // User
         Route::get('users',[UserController::class,'index'])->name('user.index');
@@ -214,6 +219,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('result-system/{id3}/result-system-2', [SiteInformationController::class,'resultSystem3'])->name('result-system.result-system-3');
         Route::post('result-system/{id4}/result-system-2', [SiteInformationController::class,'resultSystem4'])->name('result-system.result-system-4');
 
+    // Site Layout Setup
+    Route::get('layout',[SiteInformationController::class,'layoutIndex'])->name('layout.index');
+    Route::post('layout-update/{id}/layout',[SiteInformationController::class,'layoutUpdate'])->name('layout.update');
 });
 
 

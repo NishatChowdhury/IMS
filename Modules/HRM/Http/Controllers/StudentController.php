@@ -1078,6 +1078,6 @@ class StudentController extends Controller
 
             return redirect()->back()->with('status', 'Your Password has been Change');
         }
-        return redirect()->back()->with('status', 'NEw Password can not be same old password:)');
+        return redirect()->back()->with('status', 'New Password can not be same old password:)');
     }
 }

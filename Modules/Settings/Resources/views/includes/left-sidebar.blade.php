@@ -238,6 +238,16 @@
                                 </a>
                             </li>
                         @endcan
+
+                            @can('middleware-passed','academic-calender.index')
+                                {{-- @if(in_array("academic-calender.index", auth()->user()->permissions)) --}}
+                                <li class="nav-item"  style="background-color: rgb(40, 40, 45);">
+                                    <a href="{{ route('layout.index') }}" class="nav-link {{ isActive(['admin/languages','admin/lang*']) }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Layouts</p>
+                                    </a>
+                                </li>
+                            @endcan
                     </ul>
                 </li>
             @endcan

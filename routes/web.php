@@ -122,3 +122,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/nagad/create',[NagadPaymentController::class,'create'])->name('nagad.create');
 Route::post('/nagad/store', [NagadPaymentController::class,'store'])->name('nagad.store');
 Route::get('/nagad/callback', [NagadPaymentController::class,'callback'])->name('nagad.callback');
+
+// new tample
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

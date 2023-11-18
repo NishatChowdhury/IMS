@@ -130,6 +130,31 @@
             </li>
         @endcan
 
+            @can('middleware-passed', 'competency.index')
+                <li class="nav-item has-treeview {{ isActive(['admin/competency*']) }}">
+                    <a href="#" class="nav-link {{ isActive(['admin/competency*']) }}">
+                        <i class="nav-icon fas fa-diagnoses"></i>
+                        <p>
+                            {{ __('Result Management') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
+                        @can('middleware-passed', 'competency.index')
+                            <li class="nav-item" style="background-color: rgb(40, 40, 45);">
+                                <a href=" {{ url('result/index') }}"
+                                   class="nav-link {{ isActive('admin/competencies') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Result Template') }}</p>
+                                </a>
+                            </li>
+                        @endcan
+
+
+
+                    </ul>
+                </li>
+            @endcan
 
         </ul>
     </nav>
