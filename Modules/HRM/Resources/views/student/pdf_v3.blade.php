@@ -263,7 +263,7 @@
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <div class="nat" style="background-color:{{ $card['bgcolor'] }}">
-                                        <h2 style="color: {{ $card['bgfont'] }}; font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;"> 
+                                        <h2 style="color: {{ $card['bgfont'] }}; font-size: {{ $card['name_size'] != null ? $card['name_size'] : 0 }}px;">
                                             {{ siteConfig('name') }}
                                         </h2>
                                         <h3> {{ siteConfig('address') }}</h3>

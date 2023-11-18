@@ -78,6 +78,11 @@
                                                                     <td>:</td>
                                                                     <td>Lorem ipsum.</td>
                                                                 </tr>
+                                                                <tr class="tguardianname">
+                                                                    <td> Guardian </td>
+                                                                    <td>:</td>
+                                                                    <td>Lorem ipsum.</td>
+                                                                </tr>
                                                                 <tr class="tcname">
                                                                     <td> Class </td>
                                                                     <td>:</td>
@@ -314,6 +319,14 @@
                                                     <input class="form-check-input aname" type="checkbox" id="admissiondate" name="admissiondate">
                                                     <label class="form-check-label" for="admissiondate">
                                                         Admission Date
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input guardianname" type="checkbox" id="guardianname" name="guardianname">
+                                                    <label class="form-check-label" for="guardianname">
+                                                        Guardian Name
                                                     </label>
                                                 </div>
                                             </div>
@@ -589,6 +602,7 @@
             $(".tdname").css({"display":"none"});  // for department
             $(".tdobname").css({"display":"none"});  // for dob
             $(".taname").css({"display":"none"}); // for admission
+            $(".tguardianname").css({"display":"none"}); // for guardian
         });
         //nick name
         $(document).on('click','.nname',function(){
@@ -628,6 +642,16 @@
                 $(".tmname").css({"display":"table-row"})
             }else{
                 $(".tmname").css({"display":"none"})
+            }
+        });
+        //guardian name
+        $(document).on('click','.guardianname',function(){
+            var tguardianname = $(this);
+            if (tguardianname.is (':checked'))
+            {
+                $(".tguardianname").css({"display":"inline"})
+            }else{
+                $(".tguardianname").css({"display":"none"})
             }
         });
         //class name

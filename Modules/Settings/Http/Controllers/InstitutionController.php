@@ -230,9 +230,14 @@ class InstitutionController extends Controller
     }
 
     public function delete_SessionClass($id){
-        $class = Classes::query()->findOrFail($id);
-        $class->delete();
-        return redirect('admin/institution/class')->with('success', 'Class has been Deleted');
+		
+		$Aclass = AcademicClass::query()->findOrFail($id);
+		
+       // $class = Classes::query()->findOrFail($id);
+        $Aclass->delete();
+		
+        //return redirect('admin/institution/class')->with('success', 'Class has been Deleted');
+		return redirect()->back()->with('success','Academic Class has been  Deleted');
     }
 
     /*Subjects Start*/

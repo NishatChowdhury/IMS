@@ -109,8 +109,7 @@
                                                 <a type="button" class="btn btn-warning btn-sm edit"
                                                     value='{{ $class->id }}' title="Edit"> <i
                                                         class="fas fa-edit"></i></a>
-                                                <button type="submit" disabled class="btn btn-danger btn-sm"
-                                                    title="Delete"><i class="fas fa-trash"></i></button>
+                                                <button type="submit" disabled class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this Academic Class?')" title="Delete"><i class="fas fa-trash"></i></button>
                                                 {{ Form::close() }}
                                             </td>
                                         </tr>
@@ -218,7 +217,7 @@
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0px 50px;">
+            <div class="modal-content" style="left:-150px; width: 1000px !important; padding: 0 50px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Academic Class</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

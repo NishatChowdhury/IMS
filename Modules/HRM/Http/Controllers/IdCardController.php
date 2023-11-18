@@ -4,6 +4,7 @@ namespace Modules\HRM\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Staff;
+use App\Models\Backend\Student;
 use App\Models\Backend\StudentAcademic;
 use App\Repository\StudentRepository;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -79,7 +80,8 @@ class IdCardController extends Controller
     {
         $repository = $this->repository;
         return view('hrm::student.designStudentCard_v9', compact('repository'));
-    }  public function generateStudentCard_v10()
+    }
+    public function generateStudentCard_v10()
     {
         $repository = $this->repository;
         return view('hrm::student.designStudentCard_v10', compact('repository'));

@@ -721,20 +721,18 @@ class StudentController extends Controller
 
     public function downloadBlank($academicClassId)
     {
+		
         $academicClass = AcademicClass::query()->findOrFail($academicClassId);
-
+        //dd($academicClass);
         $class = $academicClass->academicClasses->name;
         $group = $academicClass->group->name ?? '';
         $section = $academicClass->section->name ?? '';
-
+		
         $filename = $class.$section.$group.".csv";
 
         $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('id', 'name', 'studentId','rank','father','mother','gender_id','mobile','dob','blood_group_id','religion_id','image','address','area','zip','city_id','country_id','email','father_mobile','mother_mobile'));
+		fputcsv($handle, array('id', 'name','name_bangla', 'studentId','gender_id','mobile','birth_date','birth_certificate','blood_group_id','religion_id','nationality','disability','freedom_fighter','image','address','area','zip','city_id','country_id','email','status','student_id','academic_class_id','session_id','class_id','section_id','group_id','shift_id','rank','mother_name','mother_name_bangla','mother_mobile','mother_email','mother_birth_date','mother_occupation','mother_nid','mother_birth_certificate','guardian_name','guardian_name_bangla','guardian_mobile','guardian_email','guardian_birth_date','guardian_occupation','guardian_nid','guardian_birth_certificate','father_name','father_name_bangla','father_mobile','father_email','father_birth_date','father_occupation','father_nid','father_birth_certificate'));
 
-//        foreach($table as $row) {
-//            fputcsv($handle, array($col['tweet_text'], $col['screen_name'], $col['name'], $col['created_at']));
-//        }
 
         fclose($handle);
 
@@ -755,6 +753,7 @@ class StudentController extends Controller
     {
         return DB::transaction(function()use($request){
             $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
+		
 
             $file = file($request->file('file'));
 
@@ -762,7 +761,7 @@ class StudentController extends Controller
             foreach($file as $row){
                 if($sl != 0){
                     $col = explode('|',$row);
-
+                    // dump($col);
                     //students table
                     $data['name'] = $col[1];
                     $data['name_bn'] = $col[2];
@@ -790,10 +789,17 @@ class StudentController extends Controller
 
                     if($student){
                         $student->update($data);
+						
                         $stuid = $student;
+						//dump("update");
+						
                     }else{
                         $stuid = Student::query()->create($data);
+						//dd('create');
+						//dump('create');
                     }
+					//dump($stuid->id);
+					
 
                     // student_logins table
 
@@ -805,16 +811,27 @@ class StudentController extends Controller
                     if($slogin){
                         $slogin->update($Ldata);
                     }else{
-                        StudentLogin::query()->create($Ldata);
+                         StudentLogin::query()->create($Ldata);
                     }
 
                     // student_academics table
+						/*$sacademic = StudentAcademic::query()
+                        ->where('academic_class_id',$academicClass->id)
+						->where('student_id',$stuid->id)
+                        ->latest()
+									->first();
+						if($sacademic){
+							dd($sacademic);
+						}else{
+							dd('not ok');
+						}*/
                     $dataAC['student_id']=$stuid->id;
                     $dataAC['academic_class_id'] = $request->get('academic_class_id');
                     $dataAC['session_id'] = $academicClass->session_id;
                     $dataAC['class_id'] = $academicClass->class_id;
                     $dataAC['section_id'] = $academicClass->section_id;
-                    $dataAC['group_id'] = $academicClass->group_id;//shows null in database;
+					//dump($dataAC['section_id']);
+                    $dataAC['group_id'] = $academicClass->group_id;
                     $dataAC['shift_id'] = $col[27];
                     $dataAC['rank'] = $col[28];
                     $dataAC['status'] =1;
@@ -841,7 +858,7 @@ class StudentController extends Controller
                     $Fdata['f_nid']=$col[51];
                     $Fdata['f_birth_certificate']=$col[52];
 
-                    $fstudent = Father::query()->where('student_id',$stuid->id)->latest()->first();
+                   $fstudent = Father::query()->where('student_id',$stuid->id)->latest()->first();
 					//dd($fstudent);
                     if($fstudent){
                         $fstudent->update($Fdata);
@@ -864,7 +881,7 @@ class StudentController extends Controller
                     if($mstudent){
                         $mstudent->update($Mdata);
                     }else{
-                        Mother::query()->create($Mdata);
+                         Mother::query()->create($Mdata);
                     }
 
                     // guardians table
@@ -888,6 +905,7 @@ class StudentController extends Controller
             }
 
             // return redirect('institution/academic-class');
+			//dump('ok');
             return redirect()->back()->withSuccess('success');
         },5);
 
