@@ -103,61 +103,31 @@
             <div class="mobile-menu">
               <nav id="dropdown">
                 <ul>
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="{{ url('/') }}">Home</a></li>
+                  @foreach(menus() as $menu)
                   <li>
-                    <a href="index.html">Institute </a>
-                    <ul>
-                      <li><a href="index.html">About Institute</a>
+                    <a href="{{ url('page',$menu->uri) }}">{{ $menu->name }} </a>
+					@if($menu->hasChild())
+                    <ul class="sub-menu">
+				    @foreach($menu->childrenActive->sortBy('order') as $subMenu)
+                      <li><a href="{{ $subMenu->url ?: url('page',$subMenu->uri) }}">{{ $subMenu->name }}</a>
+					  @if($subMenu->hasChild())
                         <ul class="subdrop">
-                          <li class="bg-primary"><a href="about.html">Introduction</a></li>
-                          <li class="bg-success"><a href="GoverningBody.html">Governing Body</a></li>
-                          <li class="bg-primary"><a href="Founder.html">Founder & Donor</a></li>
+					     @foreach($subMenu->childrenActive->sortBy('order') as $subSubMenu)
+                          <li class="bg-primary"><a href="{{ url('page',$subSubMenu->uri) }}">Introduction</a></li>
+						 @endforeach 
+                          
                         </ul>
+						@endif
                       </li>
-                           <li>
-                            <a href="index.html">Admistration Message <i class="fa fa-angle-right"></i></a>
-                            <ul class="subdrop">
-
-                              <li><a href="Principalmessage.html">Principal Message </a></li>
-                              <li><a href="Presidentmessage.html">President Message</a></li>
-                             
-                            </ul>
-                          </li>
-                       <li>
-                            <a href="index.html">Infrastructure <i class="fa fa-angle-right"></i></a>
-                            <ul class="subdrop">
-
-                              <li><a href="building.html">Building & Room </a></li>
-                              <li><a href="library.html">library</a></li>
-                              <li><a href="Transport.html">Transport Management</a></li>
-                              <li><a href="Principalmessage.html"> Hostel </a></li>
-                              <li><a href="Principalmessage.html">Land Information </a></li>
-                            </ul>
-                          </li>
-                            <li>
-                            <a href="index.html">Academics <i class="fa fa-angle-right"></i></a>
-                            <ul class="subdrop">
-
-                              <li><a href="Classroutine.html">Class- Routine </a></li>
-                              <li><a href="Dairy.html">Diray Management</a></li>
-                              <li><a href="AccademicCalender.html">Academic Claender</a></li>
-                              <li><a href="Syllabus.html">Syllabus</a></li>
-                              <li><a href="Performance.html"> Performance </a></li>
-                              
-                            </ul>
-                          </li>
-                        <li>
-                            <a href="index.html">Digital Campus<i class="fa fa-angle-right"></i></a>
-                            <ul class="subdrop">
-                              <li><a href="multimedia.html">Multimedia Class Room </a></li>
-                              <li><a href="ComputerLab.html">Computer Lab</a></li>
-                              <li><a href="Science.html">Science</a></li>                                                            
-                            </ul>
-                          </li>
+                      @endforeach    
+                       
                     </ul>
+					@endif
                   </li>
+				  @endforeach
 
-                  <li>
+                 <!-- <li>
                     <a href="#">Team <i class="fa fa-angle-down"></i></a>
                     <ul class="sub-menu">
                       <li><a href="ManagingComt.html"> Managing Committee </a></li>
@@ -225,7 +195,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a href="contact.html">CONTACT</a></li>
+                  <li><a href="contact.html">CONTACT</a></li>-->
                 </ul>
               </nav>
             </div>

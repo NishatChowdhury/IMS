@@ -740,6 +740,7 @@ class StudentController extends Controller
 
     public function up(Request $request)
     {
+
         return DB::transaction(function () use ($request) {
             $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
 
@@ -749,9 +750,8 @@ class StudentController extends Controller
             foreach ($file as $row) {
                 if ($sl != 0) {
                     $col = explode('|', $row);
-                    //students table
                     $data['name'] = $col[1];
-                    $data['name_bn'] = $col[2];
+                   $data['name_bn'] = $col[2];
                     $data['studentId'] = $col[3];
                     $data['gender_id'] = $col[4];
                     $data['mobile'] = $col[5];
@@ -771,6 +771,7 @@ class StudentController extends Controller
                     $data['email'] = $col[19];
                     //$data['status'] =$col[20];
                     $data['status'] = 1;
+                   // dd('ok');
 
                     $student = Student::query()->where('studentId', $col[3])->latest()->first();
 
@@ -780,7 +781,7 @@ class StudentController extends Controller
                     } else {
                         $stuid = Student::query()->create($data);
                     }
-
+                   // dd('ok');
                     // student_logins table
 
                     $Ldata['name'] = $col[1];

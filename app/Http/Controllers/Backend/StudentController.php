@@ -751,6 +751,7 @@ class StudentController extends Controller
 
     public function up(Request $request)
     {
+
         return DB::transaction(function()use($request){
             $academicClass = AcademicClass::query()->findOrFail($request->get('academic_class_id'));
 		
@@ -761,7 +762,8 @@ class StudentController extends Controller
             foreach($file as $row){
                 if($sl != 0){
                     $col = explode('|',$row);
-                    // dump($col);
+                    //dump($col);
+
                     //students table
                     $data['name'] = $col[1];
                     $data['name_bn'] = $col[2];
