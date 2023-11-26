@@ -14,7 +14,7 @@ class ExamAndResultController extends Controller
      */
     public function index()
     {
-        return view('examandresult::index');
+        return view('examandresultv2::index');
     }
 
     /**

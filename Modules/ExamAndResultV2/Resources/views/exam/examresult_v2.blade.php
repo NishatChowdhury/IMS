@@ -1,4 +1,4 @@
-@extends('examandresult::layouts.master')
+@extends('examandresultv2::layouts.master')
 
 @section('title', 'Exam Mgmt | Examination Results')
 
@@ -28,15 +28,9 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['route'=>'exam.examresult','role'=>'form','method'=>'get']) }}
+                        {{ Form::open(['route'=>'exam.examresult_v2','role'=>'form','method'=>'get']) }}
                         <div class="card-body">
                             <div class="form-row">
-{{--                                <div class="col">--}}
-{{--                                    <label for="">Session</label>--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        {{ Form::select('session_id',$repository->sessions(),null,['class'=>'form-control','placeholder'=>'Select Session']) }}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="col">
                                     <label for="">{{ __('Exam Name')}}</label>
                                     <div class="input-group">
@@ -52,7 +46,6 @@
                                 <div class="col">
                                     <label for="class">{{ __('Class')}}</label>
                                     <div class="input-group">
-{{--                                        {{ Form::select('class_id',$repository->classes(),null,['class'=>'form-control','placeholder'=>'Select Class']) }}--}}
                                         <select name="academic_class_id" id="class" class="form-control">
                                             <option value="" disabled selected>--Select Class--</option>
                                             @foreach($repository->academicClasses() as $class)
@@ -88,7 +81,7 @@
                                 <div class="col-md-12">
 
                                     <div style="float: right;">
-                                        <a role="button" href="{{ route('exam.allDetails') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
+                                        <a role="button" href="{{ route('exam.allDetails_v2') }}" class="btn btn-info btn-sm" style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
                                             {{ __('All Details')}} </a>
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addexam" data-whatever="@mdo"  style="margin-top: 10px; margin-left: 10px;"> <i class="fas fa-plus-circle"></i>
                                             {{ __('Notify')}}</button>
@@ -139,8 +132,8 @@
                                         <td>{{ $result->rank }}</td>
                                         <td>{{ $result->total_mark }}</td>
                                         <td>
-                                            <a href="{{route('exam.resultDetails',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a>
-                                            <a href="{{route('exam.resultDetails_Layout2',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a>
+                                            <a href="{{route('exam.resultDetails_v2',$result->id)}}" class="btn btn-success btn-sm"> <i class="fa fa-folder"></i></a>
+                                            <a href="{{route('exam.resultDetails_Layout2_v2',$result->id)}}" class="btn btn-success btn-sm"> <i class="fas fa-list-ol"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

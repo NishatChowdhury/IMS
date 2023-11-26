@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\ExStudentRegistrationController;
 use Illuminate\Support\Facades\Route;
 use Modules\HRM\Http\Controllers\AttendanceController;
 use Modules\HRM\Http\Controllers\HolidayController;
@@ -171,6 +172,13 @@ Route::prefix('admin')->group(function() {
     Route::post('attendance/weeklyOff/store',[WeeklyOffController::class,'store'])->name('weeklyOff.store');
     Route::get('attendance/weeklyOff/edit/{id}',[WeeklyOffController::class,'edit'])->name('weeklyOff.edit');
     Route::get('attendance/weeklyOff/delete/{id}',[WeeklyOffController::class,'destroy'])->name('weeklyOff.destroy');
+
+    // Ex Students Registration
+    Route::get('ex_students',[ExStudentRegistrationController::class,'exStudents'])->name('exStudents.index');
+    Route::get('ex_students/view/{id}',[ExStudentRegistrationController::class,'view'])->name('exStudents.view');
+    Route::get('ex_students/edit/{id}',[ExStudentRegistrationController::class,'edit'])->name('exStudents.edit');
+    Route::patch('ex_students/{id}/update',[ExStudentRegistrationController::class,'update'])->name('exStudents.update');
+    Route::delete('ex_students/delete/{id}',[ExStudentRegistrationController::class,'destroy'])->name('exStudents.destroy');
 
 });
 

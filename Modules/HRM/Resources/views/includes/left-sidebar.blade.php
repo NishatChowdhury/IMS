@@ -99,6 +99,13 @@
                                 </a>
                             </li>
                         @endcan
+                            <li class="nav-item">
+                                <a href="{{ route('exStudents.index') }}"
+                                   class="nav-link {{ isActive('admin/ex_students') }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Ex-Students') }} </p>
+                                </a>
+                            </li>
                         @can('middleware-passed', 'student.testimonial')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{ route('student.testimonial') }}"

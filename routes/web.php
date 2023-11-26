@@ -125,3 +125,8 @@ Route::get('/nagad/callback', [NagadPaymentController::class,'callback'])->name(
 
 // new tample
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Ex-student registration
+Route::get('ex_student_registration',[ExStudentRegistrationController::class,'index'])->name('ex_student_registration.index');
+Route::post('ex_student_registration/store',[ExStudentRegistrationController::class,'store'])->name('ex_student_registration.store');

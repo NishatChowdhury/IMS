@@ -21,23 +21,24 @@ use Modules\ExamAndResult\Http\Controllers\CompetencyController;
 use Modules\ExamAndResult\Http\Controllers\IndicatorController;
 use Modules\ExamAndResult\Http\Controllers\RemarkController;
 use Modules\ExamAndResult\Http\Controllers\CompetencyRemarkController;
+use Modules\ExamAndResultV2\Http\Controllers\ExamAndResultController;
 use Modules\ExamAndResultV2\Http\Controllers\ResultSystemController;
 
 Route::prefix('examandresultv2')->group(function() {
-    Route::get('/', 'ExamAndResultV2Controller@index')->name('exam-n-result-v2');
+    Route::get('/', [ExamAndResultController::class,'index'])->name('exam-n-result-v2');
 });
 
 
 Route::prefix('admin')->group(function() {
 
     //Exam Route Start  by Rimon
-    Route::get('exam/gradesystem',[ExamController::class,'gradesystem'])->name('exam.gradesystem');
+    Route::get('exam/gradesystem/v2',[ResultSystemController::class,'gradesystem'])->name('exam.gradesystem_v2');
     //Grading System @MKH
-    Route::post('exam/store-grade', [ExamController::class,'store_grade'])->name('exam.store_grade');
-    Route::get('exam/delete-grade/{id}', [ExamController::class,'delete_grade'])->name('exam.delete_grade');
-    Route::get('exam/examination',[ExamController::class,'examination'])->name('exam.examination');
-    Route::post('exam/sotre-exam', [ExamController::class,'store_exam'])->name('store.exam');
-    Route::delete('exam/destroy/{id}', [ExamController::class,'destroy'])->name('exam.destroy');
+    Route::post('exam/store-grade/v2', [ResultSystemController::class,'store_grade'])->name('exam.store_grade_v2');
+    Route::get('exam/delete-grade/v2/{id}', [ResultSystemController::class,'delete_grade'])->name('exam.delete_grade_v2');
+    Route::get('exam/examination/v2',[ResultSystemController::class,'examination'])->name('exam.examination_v2');
+    Route::post('exam/sotre-exam/v2', [ResultSystemController::class,'store_exam'])->name('store.exam_v2');
+    Route::delete('exam/destroy/v2/{id}', [ResultSystemController::class,'destroy'])->name('exam.destroy_v2');
     Route::get('exam/examitems',[ExamController::class,'examitems'])->name('exam.examitems');
     Route::get('exam/schedule/create/{exam}',[ExamScheduleController::class,'create'])->name('exam.schedule.create');
     Route::post('exam/schedule/store',[ExamScheduleController::class,'store'])->name('exam.schedule.store');
@@ -55,15 +56,15 @@ Route::prefix('admin')->group(function() {
 
 
     // result
-    Route::get('exam/result-details/{id}',[ResultController::class,'resultDetails'])->name('exam.resultDetails');
-    Route::get('exam/result-details-layout2/{id}',[ResultController::class,'resultDetails_Layout2'])->name('exam.resultDetails_Layout2');
+    Route::get('exam/result-details/v2/{id}',[ResultSystemController::class,'resultDetails'])->name('exam.resultDetails_v2');
+    Route::get('exam/result-details-layout2/v2/{id}',[ResultSystemController::class,'resultDetails_Layout2'])->name('exam.resultDetails_Layout2_v2');
     Route::get('exam/final-result-details/{id}',[ResultController::class,'finalResultDetails'])->name('exam.finalResultDetails');
-    Route::get('exam/result-details-all',[ResultController::class,'allDetails'])->name('exam.allDetails');
-    Route::get('exam/examresult',[ResultController::class,'index'])->name('exam.examresult');
+    Route::get('exam/result-details-all',[ResultSystemController::class,'allDetails'])->name('exam.allDetails_v2');
+    Route::get('exam/examresult/v2',[ResultSystemController::class,'index'])->name('exam.examresult_v2');
     Route::get('exam/tabulation/{examID}',[ResultController::class,'tabulation'])->name('exam.tabulation');
-    Route::get('exam/generate-exam-result/{examID}',[ResultController::class,'generateResult'])->name('exam.generateResult');
-    Route::get('exam/bulk-result',[ResultController::class,'bulkResult'])->name('exam.bulkResult');
-    Route::post('exam/bulk-result/pdf',[ResultController::class,'bulkResultPdf'])->name('exam.bulkResultPdf');
+    Route::get('exam/generate-exam-result-v2/{examID}',[ResultSystemController::class,'generateResult'])->name('exam.generateResult_v2');
+    Route::post('exam/bulk-result/v2',[ResultSystemController::class,'bulkResult'])->name('exam.bulkResult_v2');
+    Route::post('exam/bulk-result/pdf/v2',[ResultSystemController::class,'bulkResultPdf'])->name('exam.bulkResultPdf_v2');
 
 
 

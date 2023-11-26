@@ -41,6 +41,9 @@
                         @endif
                     </li>
                 @endforeach
+                <li class="nav-item nav-item__has-megamenu megamenu-col-2">
+                    <a class="nav-link" href="{{ url('ex_student_registration') }}" >{{ __('প্রাক্তন শিক্ষার্থী রেজিস্ট্রেশন ফর্ম') }}</a>
+                </li>
                 <li class="nav-item nav-item__has-dropdown">
                     <a class="nav-link dropdown-toggle no-caret" href="#" data-toggle="dropdown"><i class="fas fa-language"></i></a>
                     <ul class="dropdown-menu dropdown-cart" aria-labelledby="navbarDropdown" style="width: auto">

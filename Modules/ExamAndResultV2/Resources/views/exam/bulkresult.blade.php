@@ -1,4 +1,4 @@
-@extends('examandresult::layouts.master')
+@extends('examandresultv2::layouts.master')
 
 @section('title', 'Exam Mgmt | Examination Bulk Results')
 
@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px;">
                         <!-- form start -->
-                        {{ Form::open(['route' => 'exam.bulkResultPdf', 'method' => 'post']) }}
+                        {{ Form::open(['route' => 'exam.bulkResult_v2', 'method' => 'post']) }}
 
                         <div class="card-body">
                             <div class="form-row">

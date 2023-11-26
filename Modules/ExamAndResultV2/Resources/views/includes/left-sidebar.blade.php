@@ -29,7 +29,7 @@
             </li>
 
             <!------------------------------------- Exam, Grade, Result  --------------------------------------------------->
-            @can('middleware-passed', 'exam.examresult')
+            @can('middleware-passed', 'exam.examresult_v2')
                 <li class="nav-item has-treeview {{ isActive(['admin/exam*']) }}">
                     <a href="#" class="nav-link {{ isActive(['admin/exam*']) }}">
                         <i class="nav-icon fas fa-diagnoses"></i>
@@ -39,38 +39,38 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview" style="background-color: rgb(40, 40, 45);">
-                        @can('middleware-passed', 'exam.gradesystem')
+                        @can('middleware-passed', 'exam.gradesystem_v2')
                             <li class="nav-item">
-                                <a href="{{ route('exam.gradesystem') }}"
-                                    class="nav-link {{ isActive('admin/exam/gradesystem') }}">
+                                <a href="{{ route('exam.gradesystem_v2') }}"
+                                    class="nav-link {{ isActive('admin/exam/gradesystem/v2') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Grade System') }}</p>
                                 </a>
                             </li>
                         @endcan
 
-                        @can('middleware-passed', 'exam.examination')
+                        @can('middleware-passed', 'exam.examination_v2')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('exam.examination') }}"
-                                    class="nav-link {{ isActive('admin/exam/examination') }}">
+                                <a href="{{ route('exam.examination_v2') }}"
+                                    class="nav-link {{ isActive('admin/exam/examination/v2') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Examinations') }}</p>
                                 </a>
                             </li>
                         @endcan
-                        @can('middleware-passed', 'exam.examresult')
+                        @can('middleware-passed', 'exam.examresult_v2')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('exam.examresult') }}"
-                                    class="nav-link {{ isActive('admin/exam/examresult') }}">
+                                <a href="{{ route('exam.examresult_v2') }}"
+                                    class="nav-link {{ isActive('admin/exam/examresult/v2') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Exam Results') }}</p>
                                 </a>
                             </li>
                         @endcan
-                        @can('middleware-passed', 'exam.bulkResult')
+                        @can('middleware-passed', 'exam.bulkResult_v2')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
-                                <a href="{{ route('exam.bulkResult') }}"
-                                    class="nav-link {{ isActive('admin/exam/bulk-result') }}">
+                                <a href="{{ route('exam.bulkResult_v2') }}"
+                                    class="nav-link {{ isActive('admin/exam/bulk-result/v2') }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Download Bulk Results') }}</p>
                                 </a>
