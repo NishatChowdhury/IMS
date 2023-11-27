@@ -28,6 +28,7 @@
 
 
   <!-- Google Fonts -->
+  <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/all.css') }}">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700" rel="stylesheet" type="text/css" />
 
   <!-- Style CSS -->
@@ -306,6 +307,8 @@ asset('assets/front_gold/')
 <!-- plugins JS -->
 <script src="{{asset('assets/front_gold/js/plugins.js')}}"></script>
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
 <!-- main JS -->
 <script src="{{asset('assets/front_gold/js/main.js')}}"></script>
@@ -318,6 +321,22 @@ asset('assets/front_gold/')
       window.location.reload();
     }
   });
+</script>
+<script>
+  @if(session('success'))
+  Swal.fire({
+    title: "Success",
+    text: "{{ session('success') }}",
+    icon: "success",
+  });
+  @endif
+  @if(session('status'))
+  Swal.fire({
+    title: "Success",
+    text: "{{ session('status') }}",
+    icon: "success",
+  });
+  @endif
 </script>
 @yield('script')
 </body>

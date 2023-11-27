@@ -24,6 +24,7 @@ class MessagesController extends Controller
 
         Message::query()->create($request->all());
 
-        return redirect('contacts')->with('success','Your Message Send....');
+        //return redirect('contacts')->with('success','Your Message Send....');
+        return redirect()->back()->with('success','Message has been sent!');
     }
 }

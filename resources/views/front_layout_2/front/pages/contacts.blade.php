@@ -14,22 +14,11 @@
                     <ol class="breadcrumb justify-content-md-end bg-transparent">
                         <li class="breadcrumb-item">
                             <a href="#">{{ __('Contact')}}</a>
-                        </li>
-                        {{--                        <li class="breadcrumb-item">--}}
-                        {{--                            <a href="#"> Elements</a>--}}
-                        {{--                        </li>--}}
-                        {{--                        <li class="breadcrumb-item">--}}
-                        {{--                            Contact Us--}}
-                        {{--                        </li>--}}
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-
-    {{--    <section class="padding-y-100 border-bottom">--}}
-    {{--        <div class="container">--}}
-    {{--            <div class="row align-items-center">--}}
 
     <div class="py-5 shadow-v2 position-relative">
         <div class="container">
@@ -47,7 +36,7 @@
 
                 <div class="col-lg-4 col-md-6 mt-4">
                     <div class="media">
-                        <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-email"></i></span>
+                        <span class="iconbox iconbox-md bg-primary text-white"><i class="fas fa-paper-plane"></i></span>
                         <div class="media-body ml-3">
                             <a href="" class="h5">{{ siteConfig('email') }}</a>
                             {{--                                        <p>Call Us (9AM-10PM)</p>--}}
@@ -57,7 +46,7 @@
 
                 <div class="col-lg-4 col-md-6 mt-4">
                     <div class="media">
-                        <span class="iconbox iconbox-md bg-primary text-white"><i class="ti-location-pin"></i></span>
+                        <span class="iconbox iconbox-md bg-primary text-white"><i class="fas fa-map-marker"></i></span>
                         <div class="media-body ml-3">
                             <h5 class="mb-0">{{ __('Chittagong, Bangladesh')}}</h5>
                             <p>{{ siteConfig('address') }}</p>
@@ -80,19 +69,16 @@
                     <div class="width-4rem height-4 bg-primary my-2 mx-auto rounded"></div>
                 </div>
                 <div class="col-12 text-center">
-                    <div id="success">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                    </div>
+{{--                    <div id="success">--}}
+{{--                        @if (session('success'))--}}
+{{--                            <div class="alert alert-success">--}}
+{{--                                {{ session('success') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
 
                     <form action="{{ action('Front\MessagesController@store') }}" method="POST" class="card p-4 p-md-5 shadow-v1">
                         @csrf
-                        {{--                                    <p class="lead mt-2">--}}
-                        {{--                                        Investig tiones demons travge wunt ectores legere lkurus quod legunt saepiu clear <br> tasest consectetur adipi sicing elitsed eusmod tempor cididunt.--}}
-                        {{--                                    </p>--}}
                         <div class="row mt-5 mx-0">
                             <div class="col-md-4 mb-4">
                                 <input type="text" name="name" class="form-control" placeholder="Name" required>
@@ -128,13 +114,6 @@
     </section>
 
     {!! siteConfig('map') !!}
-
-    {{--                <div class="google-map" data-address="Harvard University" data-zoom="14" data-key="AIzaSyB0uuKeEkPfAo7EUINYPQs3bzXn7AabgJI" style="height:450px;"></div>--}}
-
-
-    {{--            </div> <!-- END row-->--}}
-    {{--        </div> <!-- END container-->--}}
-    {{--    </section>--}}
 
 @stop
 
