@@ -168,9 +168,15 @@
         });
 
         // delete slider
-        function archiveFunction() {
+        function archiveFunction(event) {
             event.preventDefault(); // prevent form submit
             var form = event.target.form; // storing the form
+
+            if (!form) {
+                console.error("Form is undefined. Check your HTML structure.");
+                return;
+            }
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "Do you want to delete this slider!!!",
@@ -183,7 +189,8 @@
                 if (result.value) {
                     form.submit();
                 }
-            })
+            });
         }
+
     </script>
 @stop

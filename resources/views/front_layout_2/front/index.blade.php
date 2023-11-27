@@ -1,15 +1,14 @@
 {{--@extends('layouts.test-layout')--}}
 @extends('layouts.front_gold')
+
 @section('title_bar')
     @include('front_layout_2.front.inc.title-bar')
 @endsection
-@section('content')
 
+@section('content')
     
     @include('front_layout_2.front.carousel')
-   
 
-    
     {{-- @include('front_gold.bootstrap-carousel')--}}
     
 

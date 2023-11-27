@@ -52,7 +52,7 @@
                         @can('middleware-passed', 'exam.examination_v2')
                             <li class="nav-item" style="background-color: rgb(40, 40, 45);">
                                 <a href="{{ route('exam.examination_v2') }}"
-                                    class="nav-link {{ isActive('admin/exam/examination/v2') }}">
+                                    class="nav-link {{ isActive(['admin/exam/examination/v2','admin/exam/result-system/*']) }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Examinations') }}</p>
                                 </a>

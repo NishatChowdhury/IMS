@@ -19,7 +19,7 @@
                 @endforeach
             </div>
             <div class="col-md-4">
-                <img src="{{ asset('uploads/message/'.$msg->image) }}" width="350px" height="350px" alt="">
+                <img src="{{ asset('storage/uploads/message') }}/{{ $msg->image ?? 'untitled.png' }}" width="350px" height="350px" alt="">
             </div>
         </div>
     </div>

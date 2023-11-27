@@ -118,34 +118,27 @@
 @stop
 
 @section('script')
-    <script>
-        $('.objective').keyup(function(){
-            let marks = $(this).val();
-            let fullMarks = $('#objectiveFull').val();
-            if(fullMarks <= marks){
-                alert("Objective Marks Can't biger then " + fullMarks);
-                // $(this).val(0)
-            }
-        });
-        $('.writtenInput').keyup(function(){
-            let marks = $(this).val();
-            let fullMarks = $('#writtenFull').val();
-            if( fullMarks <= marks){
-                alert("Written Marks Can't biger then " + fullMarks);
-                // $(this).val(0)
-            }
-        });
-        $('.practical').keyup(function(){
-            let marks = $(this).val();
-            let fullMarks = $('#practicalFull').val();
-            if( fullMarks <= marks){
-                alert("Practical Marks Can't biger then " + fullMarks);
-                // $(this).val(0)
-            }
-        });
-
-
-// writtenFull
-// practicalFull
-    </script>
+{{--    <script>--}}
+{{--        $('.objective').keyup(function(){--}}
+{{--            let marks = $(this).val();--}}
+{{--            let fullMarks = $('#objectiveFull').val();--}}
+{{--            if(fullMarks <= marks){--}}
+{{--                alert("Objective Marks Can't biger then " + fullMarks);--}}
+{{--            }--}}
+{{--        });--}}
+{{--        $('.writtenInput').keyup(function(){--}}
+{{--            let marks = $(this).val();--}}
+{{--            let fullMarks = $('#writtenFull').val();--}}
+{{--            if( fullMarks <= marks){--}}
+{{--                alert("Written Marks Can't biger then " + fullMarks);--}}
+{{--            }--}}
+{{--        });--}}
+{{--        $('.practical').keyup(function(){--}}
+{{--            let marks = $(this).val();--}}
+{{--            let fullMarks = $('#practicalFull').val();--}}
+{{--            if( fullMarks <= marks){--}}
+{{--                alert("Practical Marks Can't biger then " + fullMarks);--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection

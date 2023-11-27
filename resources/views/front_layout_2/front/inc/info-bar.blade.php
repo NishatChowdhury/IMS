@@ -24,7 +24,7 @@
             <div class="header-top-info">
 			<span><i class="fa fa-phone"></i><a href="tel:{{  siteConfig('phone') }}">{{  siteConfig('phone') }}</a></span>
               <div class="social-links">
-                <a href="{{ socialConfig('facebook') }}" target="_blank""><i class="fa fa-facebook"></i></a>
+                <a href="{{ socialConfig('facebook') }}" target="_blank"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-google-plus"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-pinterest-p"></i></a>

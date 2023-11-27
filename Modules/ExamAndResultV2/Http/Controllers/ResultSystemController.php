@@ -68,7 +68,7 @@ class ResultSystemController extends Controller
     public function resultSystem($examId){
         $academicClass = AcademicClass::with('classes', 'sessions', 'section', 'group')->get();
         $subjects = Subject::query()->get();
-        $resultSystem = ResultSystem::query()->with('subject','combinedSubject')->get();
+        $resultSystem = ResultSystem::query()->where('exam_id',$examId)->with('subject','combinedSubject')->get();
         return view ('examandresultv2::exam.result-system',compact('subjects','resultSystem','examId','academicClass'));
     }
 

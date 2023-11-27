@@ -20,7 +20,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $apps = DB::table('apps')->get();
+        $apps = DB::table('apps')->where('status',1)->get();
         return view('home',compact('apps'));
     }
 

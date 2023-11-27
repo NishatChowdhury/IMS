@@ -7,7 +7,7 @@ use App\Models\Backend\Message;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class cMessagesController extends Controller
+class MessagesController extends Controller
 {
     /**
      * @throws ValidationException

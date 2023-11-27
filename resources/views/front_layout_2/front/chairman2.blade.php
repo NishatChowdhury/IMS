@@ -6,15 +6,12 @@
       <div class="row">
         <div class="py-2 py-md-4 col-lg-6">
           <div class="member d-flex">
-            <div class="thumb rounded overflow-hidden"><img alt="Chairman" class="img-fluid" src="img/teacher/5.jpg">
+            <div class="thumb rounded overflow-hidden"><img alt="Chairman" class="img-fluid" src="{{ asset('storage/uploads/message') }}/{{ $chairman->image ?? 'untitled.png' }}">
             </div>
             <div class="info">
               <div class="designation"> {{ $chairman->title ?? 'Chairman Message' }} <span></span></div>
               <div class="name">কমান্ডার মাহবুব আহমদ শাহজালাল, (শিক্ষা), বিএন </div>
               <p style="max-height: 210px; overflow: hidden;">
-                <div style=" margin: 5px;">
-                  <font face="tahoma, arial, verdana, sans-serif">বিসমিল্লাহির রাহমানির রাহিম।</font>
-                </div>
                 <div style="">
                   <font face="tahoma, arial, verdana, sans-serif"> {!! $chairman->body !!}</font>
                 </div>

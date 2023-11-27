@@ -27,18 +27,15 @@
   <script src="https://cdn.jsdelivr.net/npm/venobox/venobox/venobox.min.js"></script>
 
 
-  <!-- Google Fonts
-		============================================ -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700" rel="stylesheet" type="text/css" />
 
-  <!-- Style CSS
-		============================================ -->
+  <!-- Style CSS -->
   <link rel="stylesheet" href="{{asset('assets/front_gold/style.css')}}" />
   @yield('style')
   <script src="https://www.vnsc.edu.bd/frontend/vnsc/js/venobox.min.js"></script>
 
-  <!-- Modernizr JS
-		============================================ -->
+  <!-- Modernizr JS -->
   <script src="{{asset('assets/front_gold/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
 
@@ -266,66 +263,51 @@ asset('assets/front_gold/')
       ============================================ -->
 <script src=" {{asset('assets/front_gold/js/popper.js')}}"></script>
 
-<!-- bootstrap
-      ============================================ -->
+<!-- bootstrap -->
 <script src="{{ asset('assets/front_gold/js/bootstrap.min.js') }}"></script>
 
-<!-- bootstrap Toggle JS
-      ============================================ -->
+<!-- bootstrap Toggle JS -->
 <script src="{{ asset('assets/front_gold/js/bootstrap-toggle.min.js')}}"></script>
 
-<!-- nivo slider js
-      ============================================ -->
+<!-- nivo slider js -->
 <script src="{{asset('assets/front_gold/lib/nivo-slider/js/jquery.nivo.slider.js')}}"></script>
 <script src="{{asset('assets/front_gold/lib/nivo-slider/home.js')}}"></script>
 
-<!-- wow JS
-      ============================================ -->
+<!-- wow JS -->
 <script src="{{asset('assets/front_gold/js/wow.min.js')}}"></script>
 
-<!-- meanmenu JS
-      ============================================ -->
+<!-- meanmenu JS -->
 <script src="{{asset('assets/front_gold/js/jquery.meanmenu.js')}}"></script>
 
-<!-- Owl carousel JS
-      ============================================ -->
+<!-- Owl carousel JS -->
 <script src="{{asset('assets/front_gold/js/owl.carousel.min.js')}}"></script>
 
-<!-- Countdown JS
-      ============================================ -->
+<!-- Countdown JS -->
 <script src="{{asset('assets/front_gold/js/jquery.countdown.min.js')}}"></script>
 
-<!-- scrollUp JS
-      ============================================ -->
+<!-- scrollUp JS -->
 <script src="{{asset('assets/front_gold/js/jquery.scrollUp.min.js')}}"></script>
 
-<!-- Waypoints JS
-      ============================================ -->
+<!-- Waypoints JS -->
 <script src="{{asset('assets/front_gold/js/waypoints.min.js')}}"></script>
 
-<!-- Counterup JS
-      ============================================ -->
+<!-- Counterup JS -->
 <script src="{{asset('assets/front_gold/js/jquery.counterup.min.js')}}"></script>
 
-<!-- Slick JS
-      ============================================ -->
+<!-- Slick JS -->
 <script src="{{asset('assets/front_gold/js/slick.min.js')}}"></script>
 
-<!-- Mix It Up JS
-      ============================================ -->
+<!-- Mix It Up JS -->
 <script src="{{asset('assets/front_gold/js/jquery.mixitup.js')}}"></script>
 
-<!-- Venubox JS
-      ============================================ -->
+<!-- Venubox JS -->
 <script src="{{asset('assets/front_gold/js/venobox.min.js')}}"></script>
 
-<!-- plugins JS
-      ============================================ -->
+<!-- plugins JS -->
 <script src="{{asset('assets/front_gold/js/plugins.js')}}"></script>
 
 
-<!-- main JS
-      ============================================ -->
+<!-- main JS -->
 <script src="{{asset('assets/front_gold/js/main.js')}}"></script>
 <!-- Pull to refresh -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pulltorefreshjs/0.1.21/index.umd.min.js" integrity="sha512-oEw4xuIi6LVmWze9XMkOUKVrN3l4gIMDrnuci0T3NlcM5tbK9R21ZgP6mqOcit7m41sahXSIG88WOPKgFSWalA==" crossorigin="anonymous"></script>
