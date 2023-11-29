@@ -58,6 +58,7 @@
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('Mobile') }}</th>
                                             <th>{{ __('Image') }}</th>
+                                            <th>{{ __('Status') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -73,6 +74,15 @@
                                             <td>{{ $student->mobile }}</td>
                                             <td>
                                                 <img src="{{ asset('assets/img/exStudents/') }}/{{ $student->image }}" width="100" alt="">
+                                            </td>
+                                            <td>
+                                                {{ Form::model($student, ['route' => ['exStudents.status', $student->id], 'method' => 'patch', 'onsubmit' => 'return statusChange()']) }}
+                                                @if ($student->active == 0)
+                                                    <button class="btn btn-danger btn-sm">Inactive</button>
+                                                @else
+                                                    <button class="btn btn-success btn-sm">Active</button>
+                                                @endif
+                                                {{ Form::close() }}
                                             </td>
                                             <td>
                                                 {{ Form::model($student, ['route' => ['exStudents.destroy', $student->id], 'method' => 'delete', 'onsubmit' => 'confirmDelete()']) }}
@@ -96,5 +106,14 @@
             </div>
         </div>
     </section>
+@stop
+
+@section('script')
+<script>
+    function statusChange() {
+            var x = confirm('Are you sure, you want to change status?');
+            return !!x;
+        }
+</script>
 @stop
 

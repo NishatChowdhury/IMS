@@ -62,4 +62,14 @@ class ExStudentRegistrationController extends Controller
         session()->flash('success', 'Student removed successfully!');
         return redirect('admin/ex_students');
     }
+    
+    public function status($id){
+        $student = ExStudentRegistration::query()->findOrFail($id);
+        if($student->active == 0){
+            $student->update(['active'=>1]);
+        }else{
+            $student->update(['active'=>0]);
+        }
+        return redirect('admin/ex_students')->with('success', 'Status change successfully!');
+    }
 }

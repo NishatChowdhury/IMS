@@ -179,7 +179,7 @@ Route::prefix('admin')->group(function() {
     Route::get('ex_students/edit/{id}',[ExStudentRegistrationController::class,'edit'])->name('exStudents.edit');
     Route::patch('ex_students/{id}/update',[ExStudentRegistrationController::class,'update'])->name('exStudents.update');
     Route::delete('ex_students/delete/{id}',[ExStudentRegistrationController::class,'destroy'])->name('exStudents.destroy');
-
+    Route::patch('status/{id}',[ExStudentRegistrationController::class,'status'])->name('exStudents.status');
 });
 
 

@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Student</h1>
+                    <h1 class="m-0 text-dark">{{ __('Student') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Students</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('All Students') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -88,10 +88,6 @@
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title"><span style="padding-right: 10px;"><i class="fas fa-user-graduate" style="border-radius: 50%; padding: 15px; background: #3d807a;"></i></span>Total Found : {{ $students->count() }}</h3>
-                        {{--<div class="card-tools">--}}
-                            {{--<a href="{{route('student.add')}}" class="btn btn-success btn-sm" style="padding-top: 5px; margin-left: 60px;"><i class="fas fa-plus-circle"></i> New</a>--}}
-                            {{--<a href="" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> CSV</a>--}}
-                        {{--</div>--}}
                     </div>
                     <!-- /.card-header -->
                     {{ Form::open(['route'=>'student.promote','method'=>'post','onsubmit'=>'return confirmPromotion()']) }}
@@ -116,26 +112,26 @@
                                     <th>
                                         {{ Form::checkbox('ids[]',$student->id,true,['class'=>'checkbox']) }}
                                     </th>
-                                    <td>{{ $student->studentId }}</td>
-                                    <td>{{ $student->rank }}</td>
+                                    <td>{{ $student->student->studentId ?? ''}}</td>
+                                    <td>{{ $student->rank ?? ''}}</td>
                                     <td>{{ Form::text('rank['.$student->id.']',null,['class'=>'form-control']) }}</td>
-                                    <td>{{ $student->name }}</td>
+                                    <td>{{ $student->student->name ?? ''}}</td>
                                     <td>
-                                    {{ $student->academicClass ? $student->academicClass->name : ''}}
+                                    {{ $student->classes ? $student->classes->name : ''}}
                                     {{ $student->section ? $student->section->name : ''}}
                                     {{ $student->group ? $student->group->name : ''}}
 
                                     </td>
-                                    <td>{{ $student->father }}</td>
-                                    <td>{{ $student->mother }}</td>
-                                    <td><img src="{{ asset('assets/img/students/') }}/{{ $student->image }}" height="100" alt=""></td>
+                                    <td>{{ $student->student->father->f_name ?? '' }}</td>
+                                    <td>{{ $student->student->mother->m_name ?? '' }}</td>
+                                    <td><img src="{{ asset('storage/uploads/students/') }}/{{ $student->student->image }}"
+                                        height="100" alt=""></td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="card-body">
-{{--                        {{ $students->appends(Request::except('page'))->links() }}--}}
                         <div class="row">
                             <div class="col">
                                 <label for="">Session</label>
