@@ -27,12 +27,14 @@ use App\Models\Backend\StudentSubject;
 use App\Models\Backend\Subject;
 use App\Models\LocationStudent;
 use App\Models\Student\StudentLogin;
+use App\Models\TestimonialReport;
 use App\Repository\StudentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 //use App\State;
 
@@ -609,10 +611,36 @@ class StudentController extends Controller
         return redirect()->back();
     }
 
-
-    public function testimonial()
+    public function testimonial(Request $request)
     {
-        return view('hrm::student.testimonial');
+        $studentId = $request->studentId;
+        $student = Student::where(function ($q) use ($studentId){
+                if(!empty($studentId))
+                    $q->where('studentId',$studentId);
+        })->first();
+        return view('hrm::student.testimonial_design2',compact('student'));
+    }
+
+    public function testimonialStore(Request $request){
+        $request->validate([
+            'student_id' => 'required',
+        ]);
+
+        $student_id = $request->student_id;
+        $existCheck = TestimonialReport::query()->where('student_id',$student_id)->count();
+        if($existCheck){
+            return redirect()->back()->with('error', 'Student already received testimonial!');
+        }
+        TestimonialReport::query()->insert([
+            'student_id'=>$student_id,
+            'created_at'=>Carbon::now(),
+        ]);
+        return redirect()->back()->with('success', 'Testimonial received record successfully added!');
+    }
+
+    public function testimonialReport(Request $request){
+        $testimonials = TestimonialReport::query()->get();
+        return view('hrm::student.testimonial_report',compact('testimonials'));
     }
 
     public function transferCertificate()

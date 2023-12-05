@@ -83,6 +83,8 @@ Route::prefix('admin')->group(function() {
     Route::get('student/generateStudentCard_v10',[IdCardController::class,'generateStudentCard_v10'])->name('student.generateStudentCard_v10');
 
     Route::get('student/testimonial',[StudentController::class,'testimonial'])->name('student.testimonial');
+    Route::post('student/testimonial/store', [StudentController::class, 'testimonialStore'])->name('student.testimonialStore');
+    Route::get('student/testimonial/report', [StudentController::class, 'testimonialReport'])->name('student.testimonialReport');
     // Route::get('student/tc','Backend\StudentController@tc')->name('student.tc');
     Route::get('student/assign-transport',[StudentController::class,'assignTransport'])->name('student.transport');
     Route::post('student/assign-transport-ending',[StudentController::class,'assignTransportEnd'])->name('assign.transport.end');
